@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\..\examples\03-FSM\FSMGame.cpp" />
+    <ClCompile Include="..\..\examples\03-FSM\main.cpp" />
+    <ClCompile Include="..\..\examples\03-FSM\WestWorldWithMessaging\MinerComponent.cpp">
+      <Filter>WestWorldWithMessaging</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\examples\03-FSM\WestWorldWithMessaging\MinerOwnedStates.cpp">
+      <Filter>WestWorldWithMessaging</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\examples\03-FSM\WestWorldWithMessaging\MinersWifeComponent.cpp">
+      <Filter>WestWorldWithMessaging</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\examples\03-FSM\WestWorldWithMessaging\MinersWifeOwnedStates.cpp">
+      <Filter>WestWorldWithMessaging</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\examples\03-FSM\FSMGame.h" />
+    <ClInclude Include="..\..\examples\03-FSM\WestWorldWithMessaging\Locations.h">
+      <Filter>WestWorldWithMessaging</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\examples\03-FSM\WestWorldWithMessaging\MessageTypes.h">
+      <Filter>WestWorldWithMessaging</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\examples\03-FSM\WestWorldWithMessaging\MinerComponent.h">
+      <Filter>WestWorldWithMessaging</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\examples\03-FSM\WestWorldWithMessaging\MinerOwnedStates.h">
+      <Filter>WestWorldWithMessaging</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\examples\03-FSM\WestWorldWithMessaging\MinersWifeComponent.h">
+      <Filter>WestWorldWithMessaging</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\examples\03-FSM\WestWorldWithMessaging\MinersWifeOwnedStates.h">
+      <Filter>WestWorldWithMessaging</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\examples\03-FSM\WestWorldWithMessaging\Config.h">
+      <Filter>WestWorldWithMessaging</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="WestWorldWithMessaging">
+      <UniqueIdentifier>{3349b734-4382-4d38-aaf4-109bc65351bf}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

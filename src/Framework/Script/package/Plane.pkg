@@ -1,0 +1,16 @@
+
+class CPlane
+{
+	CPlane(float A = 0.0f, float B = 0.0f, float C = 0.0f, float D = 0.0f);
+	CPlane(const CVector3<float>& v0, const CVector3<float>& v1, const CVector3<float>& v2);
+	CPlane(const CVector3<float>& Normal, const CVector3<float>& Point);
+	
+	void BuildFromPoints(const CVector3<float>& v0, const CVector3<float>& v1, const CVector3<float>& v2);
+	float DistanceToPoint(const CVector3<float>& Point) const;
+	float DistanceToPoint(const CVector4<float>& Point) const;
+	
+	bool IntersectLine(const CVector3<float>& p1_, const CVector3<float>& p2_, CVector3<float> *pOut_);
+	
+	bool operator ==(const CPlane& p) const;
+	//bool operator !=(const CPlane& p) const;
+};

@@ -1,0 +1,7 @@
+
+class IOManager
+{
+	static IFile *OpenFile(std::string &fileName_, FileMode::TFileMode mode_);
+	static IFile *OpenFile(const char *fileName_, FileMode::TFileMode mode_);
+	static IFile *CreateFile( const std::string& filename_, bool append_ = false);
+};

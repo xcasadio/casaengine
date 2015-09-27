@@ -1,0 +1,1 @@
+javah -verbose -bootclasspath "C:\dev\test\Android\android-sdk\platforms\android-14\android.jar" -classpath bin/classes -jni -o jni\renderer_wrapper.h com.casaproduction.casaengine.RendererWrapper

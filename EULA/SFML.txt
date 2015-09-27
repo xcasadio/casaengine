@@ -1,0 +1,22 @@
+
+   If you use this software in a product, an acknowledgment
+   in the product documentation would be appreciated but
+   is not required.
+
+2. Altered source versions must be plainly marked as such,
+   and must not be misrepresented as being the original software.
+
+3. This notice may not be removed or altered from any
+   source distribution.
+
+
+
+External libraries used by SFML
+-------------------------------
+
+* OpenAL-Soft is under the LGPL license
+* libsndfile is under the LGPL license
+* libjpeg is public domain
+* stb_image and stb_image_write are public domain
+* freetype is under the FreeType license or the GPL license
+* GLEW is under the modified BSD License, the Mesa 3-D License (MIT License), and the Khronos License (MIT License)

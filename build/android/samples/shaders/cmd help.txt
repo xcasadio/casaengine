@@ -1,0 +1,5 @@
+cd /cygdrive/h/Developpement/Android/android-ndk-r9c
+./ndk-gdb --project=/cygdrive/h/Developpement/CasaEngine/build/android/samples/shaders --launch=.MainActivity --verbose
+ndk-gdb --project=/cygdrive/c/dev/test/CasaEngine++/build/android/samples/shaders --launch=.MainActivity --verbose
+
+adb.exe logcat>c:\logcat.txt

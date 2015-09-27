@@ -1,0 +1,28 @@
+/***********************************************************************
+	LoggingLevel
+***********************************************************************/
+enum TLogVerbosity
+{
+	Trace,
+	Debug,
+	Info,
+	Warning,
+	Error,
+	Fatal,
+	None
+};
+
+
+
+/***********************************************************************
+	Logger
+***********************************************************************/
+class LogManager
+{
+	static LogManager& Instance();
+	
+	TLogVerbosity getVerbosity() const;
+	void setVerbosity(TLogVerbosity val);
+
+	void Log(TLogVerbosity verbose_, const char * message);
+};

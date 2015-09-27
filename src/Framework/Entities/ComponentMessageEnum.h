@@ -1,0 +1,15 @@
+#ifndef COMPONENTMESSAGEENUM_H_
+#define COMPONENTMESSAGEENUM_H_
+
+namespace CasaEngine
+{
+	enum 
+	{
+		BASE_ENTITY_PARENT_CHANGE = 0
+	};
+
+}
+
+#endif // COMPONENTMESSAGEENUM_H_
+
+

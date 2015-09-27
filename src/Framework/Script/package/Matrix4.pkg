@@ -1,0 +1,77 @@
+
+class Matrix4
+{
+	Matrix4( float m11 = 1.0f, float m12 = 0.0f, float m13 = 0.0f, float m14 = 0.0f,
+                 float m21 = 0.0f, float m22 = 1.0f, float m23 = 0.0f, float m24 = 0.0f,
+                 float m31 = 0.0f, float m32 = 0.0f, float m33 = 1.0f, float m34 = 0.0f,
+                 float m41 = 0.0f, float m42 = 0.0f, float m43 = 0.0f, float m44 = 1.0f);
+
+        void Identity();
+        float Determinant() const;
+        Matrix4 Transpose() const;
+        Matrix4 Invert() const;
+
+		void SetTranslation(float x, float y, float z);
+		void SetTranslation(CVector3<float> trans_);
+
+        void CreateTranslation(float x, float y, float z);
+
+        //----------------------------------------------------------
+        void CreateScale(float x, float y, float z);
+
+        void CreateRotationX(float Angle);
+        void CreateRotationY(float Angle);
+        void CreateRotationZ(float Angle);
+
+        void CreateRotationX(float Angle, const CVector3<float>& Center);
+        void CreateRotationY(float Angle, const CVector3<float>& Center);
+        void CreateRotationZ(float Angle, const CVector3<float>& Center);
+
+        CVector3<float> GetTranslation() const;
+
+		/**
+		 * 
+		 */
+		void Transformation(
+			const CVector3<float> *pscalingcenter, 
+			const Quaternion *pscalingrotation, 
+			const CVector3<float> *pscaling, 
+			const CVector3<float> *protationcenter, 
+			const Quaternion *protation, 
+			const CVector3<float> *ptranslation);
+
+        CVector3<float> Transform(const CVector3<float>& v, float w = 1.0f) const;
+        CVector4<float> Transform(const CVector4<float>& v) const;
+
+		void Transform(const CVector3<float> &position, CVector3<float> &result);
+		void Transform(const std::vector<CVector3<float>> &sourceArray, std::vector<CVector3<float>> &destinationArray);
+		void TransformNormal(const CVector3<float> &normal, CVector3<float> &result);
+
+        void OrthoOffCenter(float Left, float Top, float Right, float Bottom);
+        void PerspectiveFOV(float Fov, float Ratio, float Near, float Far);
+        void LookAt(const CVector3<float>& From, const CVector3<float>& To, const CVector3<float>& Up = CVector3<float>(0, 1, 0));
+
+        Matrix4 operator +() const;
+        Matrix4 operator -() const;
+
+        Matrix4 operator +(const Matrix4& m) const;
+        Matrix4 operator -(const Matrix4& m) const;
+
+        //const Matrix4& operator +=(const Matrix4& m);
+        //const Matrix4& operator -=(const Matrix4& m);
+
+        Matrix4 operator *(const Matrix4& m) const;
+        //const Matrix4& operator *=(const Matrix4& m);
+
+        //const Matrix4& operator *=(float t);
+        //const Matrix4& operator /=(float t);
+
+        bool operator ==(const Matrix4& m) const;
+        //bool operator !=(const Matrix4& m) const;
+
+        //float& operator ()(std::size_t i, std::size_t j);
+        //const float& operator ()(std::size_t i, std::size_t j) const;
+
+        //operator float*();
+        //operator const float*() const;
+};

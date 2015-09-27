@@ -1,0 +1,17 @@
+﻿""
+{
+"FILE_VERSION" = "9237"
+"ENLISTMENT_CHOICE" = "NEVER"
+"PROJECT_FILE_RELATIVE_PATH" = ""
+"NUMBER_OF_EXCLUDED_FILES" = "7"
+"EXCLUDED_FILE0" = "GeneratedFiles\\Editor Release\\moc_GameThread.cpp"
+"EXCLUDED_FILE1" = "GeneratedFiles\\Editor Release\\moc_GameView.cpp"
+"EXCLUDED_FILE2" = "GeneratedFiles\\Editor Debug\\moc_CasaEditor.cpp"
+"EXCLUDED_FILE3" = "GeneratedFiles\\ui_CasaEditor.h"
+"EXCLUDED_FILE4" = "GeneratedFiles\\Editor Debug\\moc_GameThread.cpp"
+"EXCLUDED_FILE5" = "GeneratedFiles\\Editor Release\\moc_CasaEditor.cpp"
+"EXCLUDED_FILE6" = "GeneratedFiles\\Editor Debug\\moc_GameView.cpp"
+"ORIGINAL_PROJECT_FILE_PATH" = ""
+"NUMBER_OF_NESTED_PROJECTS" = "0"
+"SOURCE_CONTROL_SETTINGS_PROVIDER" = "PROJECT"
+}

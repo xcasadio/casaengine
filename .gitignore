@@ -1,0 +1,83 @@
+# Visual studio #
+###################
+**/obj/**
+**/bin/**
+**/ipch/**
+**/Debug*/**
+**/Release*/**
+**/Editor Debug/**
+**/Editor Release/**
+*.csproj.*
+*.suo
+*.sdf
+*.opensdf
+*.ncb
+
+# Android #
+###################
+.classpath
+.cproject
+.project
+build/android/gen/**
+build/android/libs/**
+build/android/**/gen/**
+build/android/**/libs/**
+build/eclipse/**
+
+# Eclipse #
+###################
+.settings
+
+# Compiled source #
+###################
+*.com
+*.class
+*.obj
+*.o
+*.so
+
+# Packages #
+############
+# it's better to unpack these files and commit the raw source
+# git has its own built in compression methods
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Other #
+#########
+build bgfx shaders.txt
+Copy.bat
+except.txt
+*.bak
+imgui_log.txt
+sfml-log.txt
+
+build/android/samples/shaders/assets/**
+samples/resources/cegui/**
+external/CEGUI/android/**
+external/FreeImage/libs/**
+external/freetype2/android/**
+external/bullet/bullet2/**
+build/windows/*.asm

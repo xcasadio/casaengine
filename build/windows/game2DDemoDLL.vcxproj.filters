@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\..\examples\game2DDemoDLL\Character.cpp" />
+    <ClCompile Include="..\..\examples\game2DDemoDLL\EnemyStates.cpp" />
+    <ClCompile Include="..\..\examples\game2DDemoDLL\Hero.cpp" />
+    <ClCompile Include="..\..\examples\game2DDemoDLL\IController.cpp" />
+    <ClCompile Include="..\..\examples\game2DDemoDLL\PlayerController.cpp" />
+    <ClCompile Include="..\..\examples\game2DDemoDLL\PlayerStates.cpp" />
+    <ClCompile Include="..\..\examples\game2DDemoDLL\ScriptObjectFactory.cpp" />
+    <ClCompile Include="..\..\examples\game2DDemoDLL\ScriptPlayer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\examples\game2DDemoDLL\Character.h" />
+    <ClInclude Include="..\..\examples\game2DDemoDLL\CharacterEnum.h" />
+    <ClInclude Include="..\..\examples\game2DDemoDLL\CustomComponentType.h" />
+    <ClInclude Include="..\..\examples\game2DDemoDLL\EnemyStates.h" />
+    <ClInclude Include="..\..\examples\game2DDemoDLL\Export.h" />
+    <ClInclude Include="..\..\examples\game2DDemoDLL\Hero.h" />
+    <ClInclude Include="..\..\examples\game2DDemoDLL\IController.h" />
+    <ClInclude Include="..\..\examples\game2DDemoDLL\MessageType.h" />
+    <ClInclude Include="..\..\examples\game2DDemoDLL\PlayerController.h" />
+    <ClInclude Include="..\..\examples\game2DDemoDLL\PlayerStates.h" />
+    <ClInclude Include="..\..\examples\game2DDemoDLL\ScriptObjectFactory.h" />
+    <ClInclude Include="..\..\examples\game2DDemoDLL\ScriptPlayer.h" />
+  </ItemGroup>
+</Project>

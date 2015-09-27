@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<Project version="1">
+  <Config name="LostKingdom" version="2" windowTitle="LostKingdom" firstScreenName="" AllowUserResizing="False" IsFixedTimeStep="True" IsMouseVisible="False">
+    <Debug debugIsFullScreen="False" debugHeight="768" debugWidth="1024" />
+  </Config>
+  <EngineSettings>
+	
+  </EngineSettings>
+</Project>

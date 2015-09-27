@@ -1,0 +1,48 @@
+/************************************************************************
+    Lua iterator implementation
+*************************************************************************/
+$[
+
+function CasaEngine.iterator_impl_next(p)
+    if p:isAtEnd() then
+        return nil;
+    end
+    local k,v = p:key(), p:value();
+    p:next();
+    return k,v;
+end
+
+function CasaEngine.iterator_impl(self)
+   return CasaEngine.iterator_impl_next, self; 
+end
+
+$]
+
+
+/************************************************************************
+    EventIterator
+*************************************************************************/
+class EventIterator
+{
+    string getCurrentKey @ key() const;
+    Event* getCurrentValue @ value() const;
+
+    bool isAtEnd() const;
+    bool isAtStart() const;
+
+    EventIterator& __operator_increment @ next();
+    EventIterator& __operator_decrement @ previous();
+    bool operator== (const EventIterator& rhs) const;
+
+    void toStart();
+    void toEnd();
+
+    EventIterator(const EventIterator& org);
+};
+
+// lua iterator
+$[
+
+CasaEngine.EventIterator.iterator = CasaEngine.iterator_impl;
+
+$]
