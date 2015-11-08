@@ -1504,10 +1504,11 @@ CasaEngine::Vector2F SteeringBehaviorComponent::OffsetPursuit(BaseEntity* leader
 	PhysicalEntity &pLeaderPhysic = leader->GetPhysicalEntity();
 
 	//calculate the offset's position in world space
-	Vector2F WorldOffsetPos = Transformation::PointToWorldSpace(offset,
-													pLeaderPhysic.Heading(),
-													pLeaderPhysic.Side(),
-													pLeaderTransform2D->GetPosition());
+	Vector3F WorldOffsetPos;
+// 	Vector2F WorldOffsetPos = Transformation::PointToWorldSpace(offset,
+// 													pLeaderPhysic.Heading(),
+// 													pLeaderPhysic.Side(),
+// 													pLeaderTransform2D->GetPosition());
 
 	Vector2F ToOffset = WorldOffsetPos - m_Position2D;
 
@@ -1518,8 +1519,8 @@ CasaEngine::Vector2F SteeringBehaviorComponent::OffsetPursuit(BaseEntity* leader
 						(this->GetEntity()->GetPhysicalEntity().MaxSpeed() + pLeaderPhysic.Speed());
   
 	//now Arrive at the predicted future position of the offset
-	return Arrive(WorldOffsetPos + pLeaderPhysic.Velocity() * LookAheadTime, FAST);
-	//return Vector2F::Zero();
+	//return Arrive(WorldOffsetPos + pLeaderPhysic.Velocity() * LookAheadTime, FAST);
+	return Vector2F::Zero();
 }
 
 //----------------------------- RenderAids -------------------------------
