@@ -7,7 +7,7 @@
 
 #include "IShape.h"
 #include "Parsers/Xml/tinyxml2.h"
-#include "CompilationMacro.h"
+
 
 namespace CasaEngine
 {
@@ -33,16 +33,16 @@ namespace CasaEngine
 		float Radius() const;
 		void Radius(float val);
 
-		void Read( const tinyxml2::XMLElement& node_ ) OVERRIDE;
-		void Read( std::ifstream& in ) OVERRIDE;
-		void Write( const tinyxml2::XMLElement& node_ ) OVERRIDE;
-		void Write( std::ostream& os ) OVERRIDE;
+		void Read( const tinyxml2::XMLElement& node_ ) override;
+		void Read( std::ifstream& in ) override;
+		void Write( const tinyxml2::XMLElement& node_ ) override;
+		void Write( std::ostream& os ) override;
 
 	private:
 		Vector3F m_Center;
 		float m_Radius;
 	};
-} // namespace CasaEngine
+}
 
 
 #endif // CIRCLE_H_

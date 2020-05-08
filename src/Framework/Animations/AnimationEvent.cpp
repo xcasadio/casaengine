@@ -32,8 +32,10 @@ namespace CasaEngine
 	/**
 	 * 
 	 */
-	const AnimationEvent& AnimationEvent::operator = (const AnimationEvent& /*rsh*/)
+	const AnimationEvent& AnimationEvent::operator = (const AnimationEvent& rsh)
 	{
+		this->m_ID = rsh.m_ID;
+		this->m_Time = rsh.m_Time;
 		return *this;
 	}
 
@@ -61,6 +63,13 @@ namespace CasaEngine
 		return m_Time; 
 	}
 
+	/**
+	 *
+	 */
+	void AnimationEvent::Time(float val)
+	{
+		m_Time = val;
+	}
 	
 	/**
 	 * 
@@ -83,14 +92,6 @@ namespace CasaEngine
 	/**
 	 * 
 	 */
-	void AnimationEvent::Time(float val) 
-	{ 
-		m_Time = val; 
-	}
-
-	/**
-	 * 
-	 */
 	void AnimationEvent::Write(std::ostream& /*os*/) const
 	{
 
@@ -106,4 +107,4 @@ namespace CasaEngine
 	
 #endif
 
-} // namespace CasaEngine
+}

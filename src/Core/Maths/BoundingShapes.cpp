@@ -420,4 +420,4 @@ namespace CasaEngine
 		if (v.z > maxs.z)	maxs.z = v.z;
 	}
 
-} // namespace CasaEngine
+}

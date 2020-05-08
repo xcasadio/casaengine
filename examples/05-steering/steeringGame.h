@@ -14,12 +14,12 @@
 using namespace CasaEngine;
 
 /**
- * 
+ *
  */
 class SteeringGame :
 	public Game
 {
-public :
+public:
 
 	SteeringGame();
 	~SteeringGame();
@@ -35,14 +35,14 @@ private:
 	void CreateBoids();
 
 private:
-	MeshRendererGameComponent *m_pModelRenderer;
-	Line3DRendererComponent *m_pLine3DRenderer;
+	MeshRendererGameComponent* m_pModelRenderer;
+	Line3DRendererComponent* m_pLine3DRenderer;
 
-	std::vector<BaseEntity *> m_Entities;
-	Camera3DComponent *m_pCamera3D;
-	World *m_pWorld;
+	std::vector<BaseEntity*> m_Entities;
+	Camera3DComponent* m_pCamera3D;
+	World* m_pWorld;
 
-	Program *m_pProgram;
+	Program* m_pProgram;
 };
 
 #endif // STEERINGGAME_H_

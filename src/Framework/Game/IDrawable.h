@@ -15,6 +15,6 @@ namespace CasaEngine
 	public:
 		virtual void Render(GameTime& gameTime_) = 0;		
 	};
-} // namespace CasaEngine
+}
 
 #endif // _IUPDATEABLE_H_

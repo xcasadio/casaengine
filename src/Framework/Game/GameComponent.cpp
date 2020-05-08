@@ -43,4 +43,4 @@ namespace CasaEngine
 		m_Initialized = true;
 	}
 
-} // namespace CasaEngine
+}

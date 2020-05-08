@@ -58,7 +58,7 @@ void destructN(T* basePtr, size_t count)
     }
 }
 
-} // namespace CasaEngine
+}
 
 #ifndef CA_CUSTOM_ALLOCATORS_DEBUG
 #   define NEW_AO new

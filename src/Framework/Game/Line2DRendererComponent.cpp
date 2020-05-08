@@ -14,7 +14,7 @@
 #include "GameInfo.h"
 #include "Graphics/Color.h"
 #include "Maths/Vector2.h"
-#include "EngineInfo.h"
+
 #include "Maths/Vector3.h"
 #include "Memory/MemoryAllocation.h"
 
@@ -44,7 +44,7 @@ namespace CasaEngine
 	 */
 	Line2DRendererComponent::~Line2DRendererComponent()
 	{
-		bgfx::destroyDynamicVertexBuffer(m_VertexBuffer);
+		bgfx::destroy(m_VertexBuffer);
 	}
 
 	/**
@@ -52,7 +52,7 @@ namespace CasaEngine
 	 */
 	void Line2DRendererComponent::OnLoadContent() 
 	{
-		m_VertexBuffer = bgfx::createDynamicVertexBuffer(NbLineMax * 2, VertexPositionColor::ms_decl);
+		m_VertexBuffer = bgfx::createDynamicVertexBuffer(NbLineMax * 2, VertexPositionColor::ms_layout);
 		//m_pEffect = IRenderer::Get().CreateEffectFromFile("line_renderer");
 	}
 
@@ -86,21 +86,20 @@ namespace CasaEngine
 
 		CameraComponent *pCamera = GameInfo::Instance().GetActiveCamera();
 
-		bgfx::setState(BGFX_STATE_RGB_WRITE | BGFX_STATE_ALPHA_WRITE
-			| BGFX_STATE_BLEND_FUNC(BGFX_STATE_BLEND_SRC_ALPHA, BGFX_STATE_BLEND_INV_SRC_ALPHA));
+		bgfx::setState(BGFX_STATE_WRITE_RGB // depth always ??
+			| BGFX_STATE_WRITE_A
+			| BGFX_STATE_BLEND_ALPHA
+			| BGFX_STATE_PT_LINES);
 
 		Matrix4 matProj;
 		matProj.OrthoOffCenter(
-			static_cast<float>(pCamera->GetViewport().X() * CA_DEFAULT_WIDTH), // TODO get screen size
-			static_cast<float>(pCamera->GetViewport().Y() * CA_DEFAULT_HEIGHT), 
-			static_cast<float>(pCamera->GetViewport().Width() * CA_DEFAULT_WIDTH), 
-			static_cast<float>(pCamera->GetViewport().Height() * CA_DEFAULT_HEIGHT),
+			static_cast<float>(pCamera->GetViewport().X() * GetGame()->GetWindow()->getSize().x),
+			static_cast<float>(pCamera->GetViewport().Y() * GetGame()->GetWindow()->getSize().y),
+			static_cast<float>(pCamera->GetViewport().Width() * GetGame()->GetWindow()->getSize().x),
+			static_cast<float>(pCamera->GetViewport().Height() * GetGame()->GetWindow()->getSize().y),
 			0.0f, 1000.0f);
 
-		bgfx::setVertexBuffer(m_VertexBuffer, m_NbLines);
-		bgfx::setState(BGFX_STATE_DEFAULT);
-
-
+		bgfx::setVertexBuffer(0, m_VertexBuffer, 0, m_NbLines);
 	}
 
 	/**
@@ -158,10 +157,10 @@ namespace CasaEngine
 			nbLines++;
 		}
 
-		bgfx::updateDynamicVertexBuffer(m_VertexBuffer, 0 , bgfx::copy(pVertices, (uint32_t)m_Lines.size() * 2 * sizeof(VertexPositionColor) ));
+		bgfx::update(m_VertexBuffer, 0 , bgfx::copy(pVertices, (uint32_t)m_Lines.size() * 2 * sizeof(VertexPositionColor) ));
 		::delete[] pVertices;
 
 		m_bRecomputeVB = false;
 	}
 
-} // namespace CasaEngine
+}

@@ -455,6 +455,6 @@ namespace CasaEngine
 									const float     radiusOb,
 									const Vector2F& posHunter);
 	}; // class SteeringBehaviourComponent
-} // namespace CasaEngine
+}
 
 #endif // STEERING_BEHAVIOUR_COMPONENT_H_

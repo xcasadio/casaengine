@@ -146,4 +146,4 @@ namespace CasaEngine
 #endif // CA_PLATFORM_DESKTOP
 	}
 
-} // namespace CasaEngine
+}

@@ -39,6 +39,6 @@ namespace CasaEngine
 		TCommandTable m_Commands; ///< Table des commandes enregistrées
 		std::string   m_LastLine;
 	}; // class Console
-} // namespace CasaEngine
+}
 
 #endif // CONSOLE_H_

@@ -78,4 +78,4 @@ namespace CasaEngine
 		return m_iLastFPSCount;
 	}
 
-} // namespace CasaEngine
+}

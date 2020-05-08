@@ -138,7 +138,7 @@ namespace CasaEngine
 
     #include "MediaManager.inl"
 
-} // namespace CasaEngine
+}
 
 
 #endif // MEDIAMANAGER_H

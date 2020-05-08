@@ -83,7 +83,7 @@ namespace CasaEngine
         ILoader() {}
     };
 
-} // namespace CasaEngine
+}
 
 
 #endif // LOADER_H

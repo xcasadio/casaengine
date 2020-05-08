@@ -1,4 +1,3 @@
-
 #include "Base.h"
 
 #include <string>
@@ -7,7 +6,6 @@
 #include "Maths/Matrix4.h"
 #include "Game/Game.h"
 #include "StringUtils.h"
-
 
 
 namespace CasaEngine
@@ -34,9 +32,6 @@ ICameraController::~ICameraController()
  */
 void ICameraController::Update(const GameTime& /*gameTime_*/)
 {
-	/*Matrix4 mat = m_pTransform->GetWorldMatrix();
-	Vector3F pos3 = mat.GetTranslation();
-	Vector2F pos(pos3.x, pos3.y);*/
 }
 
 /**
@@ -84,4 +79,4 @@ void ICameraController::Write(tinyxml2::XMLElement& xmlElt)
 	CA_UNUSED_1(xmlElt)
 }
 
-} // namespace CasaEngine
+}

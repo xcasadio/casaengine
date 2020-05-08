@@ -31,15 +31,6 @@ namespace CasaEngine
 		 */
 		//void Update(const GameTime& gameTime_);
 
-#if EDITOR
-
-		/**
-		 * 
-		 */
-		void Draw();
-
-#endif // EDITOR
-
 		//all entities can communicate using messages. They are sent
 		//using the MessageDispatcher singleton class
 		//void HandleEvent(const Event* pEvent_);
@@ -64,14 +55,14 @@ namespace CasaEngine
 		void Read (std::ifstream& is);
 
 	protected:
-		void ComputeProjectionMatrix();
-		void ComputeViewMatrix();
+		void ComputeProjectionMatrix() override;
+		void ComputeViewMatrix() override;
 
 	private:
 		Vector3F m_Target, m_Position;
-		float /*m_fNear, m_fFar,*/ m_fFOV;
+		float m_fFOV;
 	};
-} // namespace CasaEngine
+}
 
 #endif // CAMERA3DCOMPONENT_H_
 

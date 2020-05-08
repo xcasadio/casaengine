@@ -30,6 +30,6 @@ namespace CasaEngine
 		VertexPositionColor m_Vertices[6];
 	};
 
-} // namespace CasaEngine
+}
 
 #endif // _DISPLAYDEBUGINFO_H_

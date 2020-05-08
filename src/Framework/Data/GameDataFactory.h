@@ -47,6 +47,6 @@ private:
 	FactoryMap m_Factories;
 };
 
-} // namespace CasaEngine
+}
 
 #endif // GAMEDATAFACTORY_H_

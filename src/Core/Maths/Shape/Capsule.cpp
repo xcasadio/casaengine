@@ -56,4 +56,4 @@ void Capsule::Write( std::ostream& /*os*/ )
 		
 }
 
-} // namespace CasaEngine
+}

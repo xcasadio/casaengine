@@ -31,6 +31,11 @@ void AssetManager::AddAsset(Asset *asset_)
 	m_Assets.insert(std::make_pair(asset_->GetName(), asset_));
 }
 
+bool AssetManager::Contains(std::string name)
+{
+	return m_Assets.find(name) != m_Assets.end();
+}
+
 /**
  * 
  */
@@ -80,4 +85,4 @@ void AssetManager::Write(std::ostream& /*os*/) const
 
 #endif // EDITOR
 
-} // namespace CasaEngine
+}

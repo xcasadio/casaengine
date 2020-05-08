@@ -60,7 +60,7 @@ private:
     Impl* d_pimpl;
 };
 
-} // namespace CasaEngine
+}
 
 
 #endif // PLUGIN_H

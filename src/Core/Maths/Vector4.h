@@ -120,7 +120,7 @@ namespace CasaEngine
 
     #include "Vector4.inl"
 
-} // namespace CasaEngine
+}
 
 
 #endif // VECTOR4_H

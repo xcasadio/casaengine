@@ -1,6 +1,6 @@
 /*
- * Copyright 2010-2015 Branimir Karadzic. All rights reserved.
- * License: http://www.opensource.org/licenses/BSD-2-Clause
+ * Copyright 2010-2020 Branimir Karadzic. All rights reserved.
+ * License: https://github.com/bkaradzic/bx#license-bsd-2-clause
  */
 
 #ifndef BX_HANDLE_ALLOC_H_HEADER_GUARD
@@ -8,184 +8,315 @@
 
 #include "bx.h"
 #include "allocator.h"
+#include "uint32_t.h"
 
 namespace bx
 {
-	template <uint16_t MaxHandlesT>
-	class HandleAllocT
-	{
-	public:
-		static const uint16_t invalid = 0xffff;
+	constexpr uint16_t kInvalidHandle = UINT16_MAX;
 
-		HandleAllocT()
-			: m_numHandles(0)
-		{
-			for (uint16_t ii = 0; ii < MaxHandlesT; ++ii)
-			{
-				m_handles[ii] = ii;
-			}
-		}
-
-		~HandleAllocT()
-		{
-		}
-
-		const uint16_t* getHandles() const
-		{
-			return m_handles;
-		}
-
-		uint16_t getHandleAt(uint16_t _at) const
-		{
-			return m_handles[_at];
-		}
-
-		uint16_t getNumHandles() const
-		{
-			return m_numHandles;
-		}
-
-		uint16_t getMaxHandles() const
-		{
-			return MaxHandlesT;
-		}
-
-		uint16_t alloc()
-		{
-			if (m_numHandles < MaxHandlesT)
-			{
-				uint16_t index = m_numHandles;
-				++m_numHandles;
-
-				uint16_t handle = m_handles[index];
-				uint16_t* sparse = &m_handles[MaxHandlesT];
-				sparse[handle] = index;
-				return handle;
-			}
-
-			return invalid;
-		}
-
-		bool isValid(uint16_t _handle)
-		{
-			uint16_t* sparse = &m_handles[MaxHandlesT];
-			uint16_t index = sparse[_handle];
-
-			return index < m_numHandles
-				&& m_handles[index] == _handle
-				;
-		}
-
-		void free(uint16_t _handle)
-		{
-			BX_CHECK(0 < m_numHandles, "Freeing invalid handle %d.", _handle);
-			uint16_t* sparse = &m_handles[MaxHandlesT];
-			uint16_t index = sparse[_handle];
-			--m_numHandles;
-			uint16_t temp = m_handles[m_numHandles];
-			m_handles[m_numHandles] = _handle;
-			sparse[temp] = index;
-			m_handles[index] = temp;
-		}
-
-	private:
-		uint16_t m_handles[MaxHandlesT*2];
-		uint16_t m_numHandles;
-	};
-
+	///
 	class HandleAlloc
 	{
 	public:
-		static const uint16_t invalid = 0xffff;
+		///
+		HandleAlloc(uint16_t _maxHandles);
 
-		HandleAlloc(uint16_t _maxHandles, void* _handles)
-			: m_handles( (uint16_t*)_handles)
-			, m_numHandles(0)
-			, m_maxHandles(_maxHandles)
-		{
-			for (uint16_t ii = 0; ii < _maxHandles; ++ii)
-			{
-				m_handles[ii] = ii;
-			}
-		}
+		///
+		~HandleAlloc();
 
-		~HandleAlloc()
-		{
-		}
+		///
+		const uint16_t* getHandles() const;
 
-		const uint16_t* getHandles() const
-		{
-			return m_handles;
-		}
+		///
+		uint16_t getHandleAt(uint16_t _at) const;
 
-		uint16_t getHandleAt(uint16_t _at) const
-		{
-			return m_handles[_at];
-		}
+		///
+		uint16_t getNumHandles() const;
 
-		uint16_t getNumHandles() const
-		{
-			return m_numHandles;
-		}
+		///
+		uint16_t getMaxHandles() const;
 
-		uint16_t getMaxHandles() const
-		{
-			return m_maxHandles;
-		}
+		///
+		uint16_t alloc();
 
-		uint16_t alloc()
-		{
-			if (m_numHandles < m_maxHandles)
-			{
-				uint16_t index = m_numHandles;
-				++m_numHandles;
+		///
+		bool isValid(uint16_t _handle) const;
 
-				uint16_t handle = m_handles[index];
-				uint16_t* sparse = &m_handles[m_maxHandles];
-				sparse[handle] = index;
-				return handle;
-			}
+		///
+		void free(uint16_t _handle);
 
-			return invalid;
-		}
-
-		bool isValid(uint16_t _handle)
-		{
-			uint16_t* sparse = &m_handles[m_maxHandles];
-			uint16_t index = sparse[_handle];
-
-			return (index < m_numHandles && m_handles[index] == _handle);
-		}
-
-		void free(uint16_t _handle)
-		{
-			uint16_t* sparse = &m_handles[m_maxHandles];
-			uint16_t index = sparse[_handle];
-			--m_numHandles;
-			uint16_t temp = m_handles[m_numHandles];
-			m_handles[m_numHandles] = _handle;
-			sparse[temp] = index;
-			m_handles[index] = temp;
-		}
+		///
+		void reset();
 
 	private:
-		uint16_t* m_handles;
+		HandleAlloc();
+
+		///
+		uint16_t* getDensePtr() const;
+
+		///
+		uint16_t* getSparsePtr() const;
+
 		uint16_t m_numHandles;
 		uint16_t m_maxHandles;
 	};
 
-	inline HandleAlloc* createHandleAlloc(AllocatorI* _allocator, uint16_t _maxHandles)
-	{
-		uint8_t* ptr = (uint8_t*)BX_ALLOC(_allocator, sizeof(HandleAlloc) + 2*_maxHandles*sizeof(uint16_t) );
-		return ::new (ptr) HandleAlloc(_maxHandles, &ptr[sizeof(HandleAlloc)]);
-	}
+	///
+	HandleAlloc* createHandleAlloc(AllocatorI* _allocator, uint16_t _maxHandles);
 
-	inline void destroyHandleAlloc(AllocatorI* _allocator, HandleAlloc* _handleAlloc)
+	///
+	void destroyHandleAlloc(AllocatorI* _allocator, HandleAlloc* _handleAlloc);
+
+	///
+	template <uint16_t MaxHandlesT>
+	class HandleAllocT : public HandleAlloc
 	{
-		_handleAlloc->~HandleAlloc();
-		BX_FREE(_allocator, _handleAlloc);
-	}
+	public:
+		///
+		HandleAllocT();
+
+		///
+		~HandleAllocT();
+
+	private:
+		uint16_t m_padding[2*MaxHandlesT];
+	};
+
+	///
+	template <uint16_t MaxHandlesT>
+	class HandleListT
+	{
+	public:
+		///
+		HandleListT();
+
+		///
+		void pushBack(uint16_t _handle);
+
+		///
+		uint16_t popBack();
+
+		///
+		void pushFront(uint16_t _handle);
+
+		///
+		uint16_t popFront();
+
+		///
+		uint16_t getFront() const;
+
+		///
+		uint16_t getBack() const;
+
+		///
+		uint16_t getNext(uint16_t _handle) const;
+
+		///
+		uint16_t getPrev(uint16_t _handle) const;
+
+		///
+		void remove(uint16_t _handle);
+
+		///
+		void reset();
+
+	private:
+		///
+		void insertBefore(uint16_t _before, uint16_t _handle);
+
+		///
+		void insertAfter(uint16_t _after, uint16_t _handle);
+
+		///
+		bool isValid(uint16_t _handle) const;
+
+		///
+		void updateFrontBack(uint16_t _handle);
+
+		uint16_t m_front;
+		uint16_t m_back;
+
+		struct Link
+		{
+			uint16_t m_prev;
+			uint16_t m_next;
+		};
+
+		Link m_links[MaxHandlesT];
+	};
+
+	///
+	template <uint16_t MaxHandlesT>
+	class HandleAllocLruT
+	{
+	public:
+		///
+		HandleAllocLruT();
+
+		///
+		~HandleAllocLruT();
+
+		///
+		const uint16_t* getHandles() const;
+
+		///
+		uint16_t getHandleAt(uint16_t _at) const;
+
+		///
+		uint16_t getNumHandles() const;
+
+		///
+		uint16_t getMaxHandles() const;
+
+		///
+		uint16_t alloc();
+
+		///
+		bool isValid(uint16_t _handle) const;
+
+		///
+		void free(uint16_t _handle);
+
+		///
+		void touch(uint16_t _handle);
+
+		///
+		uint16_t getFront() const;
+
+		///
+		uint16_t getBack() const;
+
+		///
+		uint16_t getNext(uint16_t _handle) const;
+
+		///
+		uint16_t getPrev(uint16_t _handle) const;
+
+		///
+		void reset();
+
+	private:
+		HandleListT<MaxHandlesT>  m_list;
+		HandleAllocT<MaxHandlesT> m_alloc;
+	};
+
+	///
+	template <uint32_t MaxCapacityT, typename KeyT = uint32_t>
+	class HandleHashMapT
+	{
+	public:
+		///
+		HandleHashMapT();
+
+		///
+		~HandleHashMapT();
+
+		///
+		bool insert(KeyT _key, uint16_t _handle);
+
+		///
+		bool removeByKey(KeyT _key);
+
+		///
+		bool removeByHandle(uint16_t _handle);
+
+		///
+		uint16_t find(KeyT _key) const;
+
+		///
+		void reset();
+
+		///
+		uint32_t getNumElements() const;
+
+		///
+		uint32_t getMaxCapacity() const;
+
+		///
+		struct Iterator
+		{
+			uint16_t handle;
+
+		private:
+			friend class HandleHashMapT<MaxCapacityT, KeyT>;
+			uint32_t pos;
+			uint32_t num;
+		};
+
+		///
+		Iterator first() const;
+
+		///
+		bool next(Iterator& _it) const;
+
+	private:
+		///
+		uint32_t findIndex(KeyT _key) const;
+
+		///
+		void removeIndex(uint32_t _idx);
+
+		///
+		uint32_t mix(uint32_t _x) const;
+
+		///
+		uint64_t mix(uint64_t _x) const;
+
+		uint32_t m_maxCapacity;
+		uint32_t m_numElements;
+
+		KeyT     m_key[MaxCapacityT];
+		uint16_t m_handle[MaxCapacityT];
+	};
+
+	///
+	template <uint16_t MaxHandlesT, typename KeyT = uint32_t>
+	class HandleHashMapAllocT
+	{
+	public:
+		///
+		HandleHashMapAllocT();
+
+		///
+		~HandleHashMapAllocT();
+
+		///
+		uint16_t alloc(KeyT _key);
+
+		///
+		void free(KeyT _key);
+
+		///
+		void free(uint16_t _handle);
+
+		///
+		uint16_t find(KeyT _key) const;
+
+		///
+		const uint16_t* getHandles() const;
+
+		///
+		uint16_t getHandleAt(uint16_t _at) const;
+
+		///
+		uint16_t getNumHandles() const;
+
+		///
+		uint16_t getMaxHandles() const;
+
+		///
+		bool isValid(uint16_t _handle) const;
+
+		///
+		void reset();
+
+	private:
+		HandleHashMapT<MaxHandlesT+MaxHandlesT/2, KeyT> m_table;
+		HandleAllocT<MaxHandlesT> m_alloc;
+	};
 
 } // namespace bx
+
+#include "inline/handlealloc.inl"
 
 #endif // BX_HANDLE_ALLOC_H_HEADER_GUARD

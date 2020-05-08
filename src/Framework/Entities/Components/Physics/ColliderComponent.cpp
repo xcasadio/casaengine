@@ -108,4 +108,4 @@ IShape *ColliderComponent::GetShape() const
 	return m_pShape;
 }
 
-} // namespace CasaEngine
+}

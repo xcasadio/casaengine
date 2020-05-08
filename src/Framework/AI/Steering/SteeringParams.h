@@ -65,6 +65,6 @@ namespace CasaEngine
   
 	}; // struct SteeringParams
 
-} // namespace CasaEngine
+}
 
 #endif // STEERINGPARAMS_H_

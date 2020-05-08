@@ -85,4 +85,4 @@ namespace CasaEngine
 		m_pTm = localtime(&m_CurrentTime);
 	}
 
-} // namespace CasaEngine
+}

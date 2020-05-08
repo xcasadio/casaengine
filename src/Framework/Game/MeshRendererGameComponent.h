@@ -49,6 +49,6 @@ namespace CasaEngine
 		std::vector<ModelRendererData *> m_Datas;
 	};
 
-} // namespace CasaEngine
+}
 
 #endif // _MeshRendererGameComponent_H_

@@ -150,4 +150,4 @@ void ResourceManager::Rename(const std::string& newName_, IResource* Resource)
 }
 
 
-} // namespace CasaEngine
+}

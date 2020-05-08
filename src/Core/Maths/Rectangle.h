@@ -1,4 +1,3 @@
-
 #ifndef RECTANGLE_H
 #define RECTANGLE_H
 
@@ -6,109 +5,57 @@
 #include "Maths/Vector2.h"
 #include "Memory/MemoryAllocation.h"
 
+#include <algorithm>
 #include <iostream>
 
 namespace CasaEngine
 {
-	////////////////////////////////////////////////////////////
-	/// Types d'intersections
-	////////////////////////////////////////////////////////////
-	enum TIntersection
-	{
-		INT_IN,        ///< Complétement à l'intérieur
-		INT_OUT,       ///< Complétement à l'extérieur
-		INT_INTERSECTS ///< Intersection
-	};
-
-
-    ////////////////////////////////////////////////////////////
-    /// Class des rectangles 2D à coordonnées entières
-    ////////////////////////////////////////////////////////////
-	class CA_EXPORT CRectangle :
-		public AllocatedObject<CRectangle>
+    using TIntersection = enum
     {
-    public :
-
-        //----------------------------------------------------------
-        // Constructeur par défaut
-        //----------------------------------------------------------
-        CRectangle(const Vector2I& Start = Vector2I(0, 0), const Vector2I& Size = Vector2I(0, 0));
-
-        //----------------------------------------------------------
-        // Constructeur à partir de 2 coordonnées et 2 dimensions
-        //----------------------------------------------------------
-        CRectangle(int Left, int Top, int Width, int Height);
-
-        //----------------------------------------------------------
-        // Réinitialise le rectangle
-        //----------------------------------------------------------
-        void Set(int Left, int Top, int Width, int Height);
-
-        //----------------------------------------------------------
-        // Renvoie le coté gauche du rectangle
-        //----------------------------------------------------------
-        int Left() const;
-
-        //----------------------------------------------------------
-        // Renvoie le coté droit du rectangle
-        //----------------------------------------------------------
-        int Right() const;
-
-        //----------------------------------------------------------
-        // Renvoie le coté haut du rectangle
-        //----------------------------------------------------------
-        int Top() const;
-
-        //----------------------------------------------------------
-        // Renvoie le coté bas du rectangle
-        //----------------------------------------------------------
-        int Bottom() const;
-
-        //----------------------------------------------------------
-        // Renvoie la largeur du rectangle
-        //----------------------------------------------------------
-        int Width() const;
-
-        //----------------------------------------------------------
-        // Renvoie la hauteur du rectangle
-        //----------------------------------------------------------
-        int Height() const;
-
-        //----------------------------------------------------------
-        // Renvoie la taille du rectangle
-        //----------------------------------------------------------
-        Vector2I Size() const;
-
-        //----------------------------------------------------------
-        // Test d'intersection avec un point
-        //----------------------------------------------------------
-        TIntersection Intersects(const Vector2I& Point) const;
-
-        //----------------------------------------------------------
-        // Test d'intersection avec un rectangle
-        //----------------------------------------------------------
-        TIntersection Intersects(const CRectangle& Rect) const;
-
-        //----------------------------------------------------------
-        // Opérateurs de comparaison
-        //----------------------------------------------------------
-        bool operator ==(const CRectangle& Rect) const;
-        bool operator !=(const CRectangle& Rect) const;
-
-        //----------------------------------------------------------
-        // Données membres
-        //----------------------------------------------------------
-        Vector2I Origin; ///< Coin haut-gauche
-        Vector2I End;    ///< Coin bas-droit
+        INT_IN,        // totally inside
+        INT_OUT,       // totally outside
+        INT_INTERSECTS // intersection
     };
 
-    //==========================================================
-    // Fonctions globales relatives aux rectangles
-    //==========================================================
-    CA_EXPORT std::istream& operator >>(std::ostream& Stream, CRectangle& Rect);
-    CA_EXPORT std::ostream& operator <<(std::ostream& Stream, const CRectangle& Rect);
+    template<class T>
+	class CA_EXPORT CRectangle :
+		public AllocatedObject<CRectangle<T>>
+    {
+    public :
+    public:
+        CRectangle() = default;
+        CRectangle(T Left, T Top, T Width, T Height);
 
-} // namespace CasaEngine
+        void Set(T Left, T Top, T Width, T Height);
+
+        T Left() const;
+
+        T Right() const;
+
+        T Top() const;
+
+        T Bottom() const;
+
+        CVector2<T> Size() const;
+
+        TIntersection Intersects(const CVector2<T> & Point) const;
+        TIntersection Intersects(const CRectangle<T> & Rect) const;
+
+        bool operator ==(const CRectangle<T> & Rect) const;
+        bool operator !=(const CRectangle<T> & Rect) const;
+
+        T x, y, w, h;
+    };
+
+    template <class T> std::istream& operator >>(std::ostream& Stream, CRectangle<T>& Rect);
+    template <class T> std::ostream& operator <<(std::ostream& Stream, const CRectangle<T>& Rect);
+
+    typedef CRectangle<int> CRectangleI;
+    typedef CRectangle<float> CRectangleF;
+
+#include "Rectangle.inl"
+
+}
 
 
 #endif // RECTANGLE_H

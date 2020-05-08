@@ -10,103 +10,48 @@
 
 namespace CasaEngine
 {
-    ////////////////////////////////////////////////////////////
-    // Classe des quaternions
-    ////////////////////////////////////////////////////////////
 	class CA_EXPORT Quaternion :
 		public AllocatedObject<Quaternion>
-    {
-    public :
-
-        //----------------------------------------------------------
-        // Constructeur par défaut
-        //----------------------------------------------------------
-        Quaternion(float X = 0.0f, float Y = 0.0f, float Z = 0.0f, float W = 1.0f);
-
-        //----------------------------------------------------------
-        // Constructeur à partir d'une matrice
-        //----------------------------------------------------------
-        Quaternion(const Matrix4& Matrix);
-
-        //----------------------------------------------------------
-        // Constructeur à partir d'un axe et d'un angle
-        //----------------------------------------------------------
-        Quaternion(const Vector3F& Axis, float Angle);
+	{
+	public:
+		Quaternion(float X = 0.0f, float Y = 0.0f, float Z = 0.0f, float W = 1.0f);
+		Quaternion(const Matrix4& Matrix);
+		Quaternion(const Vector3F& Axis, float Angle);
 
 		float getX() const;
 		float getY() const;
 		float getZ() const;
 		float getW() const;
 
-        //----------------------------------------------------------
-        // Met le quaternion à l'identité
-        //----------------------------------------------------------
-        void Identity();
+		void Identity();
+		void Normalize();
 
-        //----------------------------------------------------------
-        // Normalise le quaternion
-        //----------------------------------------------------------
-        void Normalize();
+		Quaternion Conjugate() const;
 
-        //----------------------------------------------------------
-        // Renvoie le conjugué
-        //----------------------------------------------------------
-        Quaternion Conjugate() const;
+		Matrix3 ToMatrix3() const;
+		Matrix4 ToMatrix4() const;
 
-        Matrix3 ToMatrix3() const;
-        Matrix4 ToMatrix4() const;
+		void FromMatrix(const Matrix4& Matrix);
+		void FromAxisAngle(const Vector3F& Axis, float Angle);
+		void ToAxisAngle(Vector3F& Axis, float& Angle) const;
 
-        //----------------------------------------------------------
-        // Construit le quaternion à partir d'une matrice
-        //----------------------------------------------------------
-        void FromMatrix(const Matrix4& Matrix);
+		void Transform(const Vector3F& value, Vector3F& result) const;
+		void Transform(const std::vector<Vector3F>& sourceArray, std::vector<Vector3F>& destinationArray) const;
 
-        //----------------------------------------------------------
-        // Construit le quaternion à partir d'un axe et d'un angle
-        //----------------------------------------------------------
-        void FromAxisAngle(const Vector3F& Axis, float Angle);
+		void FromEulerAngles(float X, float Y, float Z);
 
-        //----------------------------------------------------------
-        // Transforme le quaternion en axe & angle de rotation
-        //----------------------------------------------------------
-        void ToAxisAngle(Vector3F& Axis, float& Angle) const;
+		Quaternion operator *(const Quaternion& q_) const;
+		const Quaternion& operator *=(const Quaternion& q_);
 
-		void Transform(const Vector3F &value, Vector3F &result) const;
-		void Transform(const std::vector<Vector3F> &sourceArray, std::vector<Vector3F> &destinationArray) const;
+		float x;
+		float y;
+		float z;
+		float w;
+	};
 
+	std::istream& operator >>(std::istream& Stream, Quaternion& Quaternion);
+	std::ostream& operator <<(std::ostream& Stream, const Quaternion& Quaternion);
 
-        //----------------------------------------------------------
-        // Construit le quaternion à partir de 3 angles d'Euler
-        //----------------------------------------------------------
-        void FromEulerAngles(float X, float Y, float Z);
-
-        //----------------------------------------------------------
-        // Opérateur de multiplication
-        //----------------------------------------------------------
-        Quaternion operator *(const Quaternion& q_) const;
-
-        //----------------------------------------------------------
-        // Opérateur de multiplication - affectation
-        //----------------------------------------------------------
-        const Quaternion& operator *=(const Quaternion& q_);
-
-        //----------------------------------------------------------
-        // Données membres
-        //----------------------------------------------------------
-        float x; ///< Composante X
-        float y; ///< Composante Y
-        float z; ///< Composante Z
-        float w; ///< Composante W
-    };
-
-
-    //==========================================================
-    // Fonctions globales relatives aux quaternions
-    //==========================================================
-    std::istream& operator >>(std::istream& Stream, Quaternion& Quaternion);
-    std::ostream& operator <<(std::ostream& Stream, const Quaternion& Quaternion);
-
-} // namespace CasaEngine
-
+}
 
 #endif // QUATERNION_H

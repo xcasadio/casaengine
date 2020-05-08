@@ -91,7 +91,7 @@ namespace CasaEngine
 		/**
 		 * 
 		 */
-		void SetClearColor(unsigned char index_, CColor val);
+		void SetClearColor(unsigned char index_, CColor val) const;
 
 		/**
 		 * 
@@ -134,7 +134,7 @@ namespace CasaEngine
 		bool m_bDeviceLost;	
     };
 
-} // namespace CasaEngine
+}
 
 
 #endif // RENDERER_H

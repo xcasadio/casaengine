@@ -35,6 +35,6 @@ namespace CasaEngine
 		int m_DrawOrder;		
 	};
 
-} // namespace CasaEngine
+}
 
 #endif // _DRAWABLEGAMECOMPONENT_H_

@@ -41,6 +41,6 @@ namespace CasaEngine
 		~PhysicsEngine();
 	};
 
-} // namespace CasaEngine
+}
 
 #endif // PHYSICSENGINE_H_

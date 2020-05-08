@@ -98,7 +98,7 @@ namespace CasaEngine
 
     #include "ResourceManager.inl"
 
-} // namespace CasaEngine
+}
 
 
 #endif // RESOURCEMANAGER_H

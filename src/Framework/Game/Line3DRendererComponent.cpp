@@ -13,7 +13,7 @@
 #include "GameInfo.h"
 #include "Graphics/Color.h"
 #include "Maths/Vector3.h"
-#include "EngineInfo.h"
+
 
 #include "Memory/MemoryAllocation.h"
 
@@ -46,8 +46,8 @@ namespace CasaEngine
 	 */
 	Line3DRendererComponent::~Line3DRendererComponent()
 	{
-		if (m_pProgram != nullptr) DELETE_AO m_pProgram;
-		bgfx::destroyDynamicVertexBuffer(m_VertexBuffer);
+		DELETE_AO m_pProgram;
+		bgfx::destroy(m_VertexBuffer);
 	}
 
 	/**
@@ -55,8 +55,8 @@ namespace CasaEngine
 	 */
 	void Line3DRendererComponent::OnLoadContent() 
 	{
-		m_pProgram = Program::loadProgram("vs_3Dlines", "fs_3Dlines");
-		m_VertexBuffer = bgfx::createDynamicVertexBuffer(NbLineMax * 2, VertexPositionColor::ms_decl);
+		m_pProgram = NEW_AO Program("vs_3Dlines", "fs_3Dlines");
+		m_VertexBuffer = bgfx::createDynamicVertexBuffer(NbLineMax * 2, VertexPositionColor::ms_layout);
 	}
 
 	/**
@@ -89,14 +89,17 @@ namespace CasaEngine
 
 		CameraComponent *pCamera = GameInfo::Instance().GetActiveCamera();
 		bgfx::setViewTransform(0, pCamera->GetViewMatrix(), pCamera->GetProjectionMatrix());
-		bgfx::setVertexBuffer(m_VertexBuffer, m_NbLines * 2);
+		bgfx::setVertexBuffer(0, m_VertexBuffer, 0, m_NbLines * 2);
 		//bgfx::setIndexBuffer(m_IndexBuffer);
 		//bgfx::setBuffer(0, m_VertexBuffer, bgfx::Access::Write);
 
 		Matrix4 id;
 		bgfx::setTransform(id);
 		//bgfx::setUniform(m_TextureRepitionUniform,  Vector4F(m_pMaterial->GetTexture0Repeat().x, m_pMaterial->GetTexture0Repeat().y, 1.0f, 1.0f));
-		bgfx::setState(BGFX_STATE_DEFAULT | BGFX_STATE_PT_LINES);
+		bgfx::setState(BGFX_STATE_WRITE_RGB // depth always ??
+			| BGFX_STATE_WRITE_A
+			| BGFX_STATE_BLEND_ALPHA
+			| BGFX_STATE_PT_LINES);
 
 		bgfx::submit(0, m_pProgram->Handle());
 	}
@@ -157,7 +160,7 @@ namespace CasaEngine
 			index++;
 		}
 
-		bgfx::updateDynamicVertexBuffer(m_VertexBuffer , 0, 
+		bgfx::update(m_VertexBuffer , 0, 
 			bgfx::copy(pVertices, (uint32_t)(m_Lines.size() * 2 * sizeof(VertexPositionColor)) ));
 
 		::delete[] pVertices;
@@ -166,4 +169,4 @@ namespace CasaEngine
 		m_NbLines = m_Lines.size();
 	}
 
-} // namespace CasaEngine
+}

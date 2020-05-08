@@ -28,7 +28,7 @@ public:
         d_object(obj)
     {}
 
-    virtual bool operator()(const EventArgs& args)
+    bool operator()(const EventArgs& args) override
     {
         return (d_object->*d_function)(args);
     }

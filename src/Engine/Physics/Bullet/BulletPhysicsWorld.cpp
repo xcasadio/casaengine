@@ -254,6 +254,6 @@ namespace CasaEngine
 		m_pBulletWorld->removeRigidBody(pRB->GetRigidBody());
 	}
 
-} // namespace CasaEngine
+}
 
 #endif // USE_BULLET_PHYSICS

@@ -1,4 +1,3 @@
-
 #include "Base.h"
 
 #include "IOManager.h"
@@ -11,17 +10,14 @@
 
 #endif
 
-//
-
-
 namespace CasaEngine
 {
 #if CA_PLATFORM_ANDROID
 
-	AAssetManager *IOManager::m_pAAssetManager(nullptr);
+	AAssetManager* IOManager::m_pAAssetManager(nullptr);
 
 	/**
-	 * 
+	 *
 	 */
 	void IOManager::SetAssetManager(AAssetManager* mgr)
 	{
@@ -32,24 +28,24 @@ namespace CasaEngine
 #endif
 
 	/**
-	 * 
+	 *
 	 */
-	IFile *IOManager::OpenFile(std::string &fileName_, unsigned int mode_)
+	IFile* IOManager::OpenFile(std::string& fileName_, unsigned int mode_)
 	{
 		return IOManager::OpenFile(fileName_.c_str(), mode_);
 	}
 
 	/**
-	 * 
+	 *
 	 */
-	IFile *IOManager::OpenFile(const char *fileName_, unsigned int mode_)
+	IFile* IOManager::OpenFile(const char* fileName_, unsigned int mode_)
 	{
-		IFile *pRes = nullptr;
-		
+		IFile* pRes = nullptr;
+
 #if CA_PLATFORM_ANDROID
 		CA_ASSERT(m_pAAssetManager != nullptr, "AAssetManager is not set.");
 		pRes = NEW_AO FileAsset(m_pAAssetManager);
-		
+
 		//mContext.getFilesDir(); //directory where the application is
 		//mContext.getExternalFilesDir(null); // external SDCard
 #else
@@ -61,12 +57,12 @@ namespace CasaEngine
 	}
 
 	/**
-	 * 
+	 *
 	 */
-	IFile *IOManager::CreateFile(const std::string& Filename, bool append_)
+	IFile* IOManager::CreateFile(const std::string& Filename, bool append_)
 	{
-		IFile *pRes = NEW_AO File();
-		
+		IFile* pRes = NEW_AO File();
+
 		if (pRes->Create(Filename.c_str(), append_) == false)
 		{
 			DELETE_AO pRes;
@@ -76,4 +72,4 @@ namespace CasaEngine
 		return pRes;
 	}
 
-} // namespace CasaEngine
+}

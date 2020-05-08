@@ -36,6 +36,6 @@ namespace CasaEngine
 		int m_UpdateOrder;
 		bool m_Initialized;
 	};
-} // namespace CasaEngine
+}
 
 #endif // _GAMECOMPONENT_H_

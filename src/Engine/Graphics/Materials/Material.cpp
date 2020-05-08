@@ -76,4 +76,4 @@ namespace CasaEngine
 		m_Texture0Repeat = val_;
 	}
 
-} // namespace CasaEngine
+}

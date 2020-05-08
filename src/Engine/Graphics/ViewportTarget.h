@@ -1,4 +1,3 @@
-
 #ifndef _VIEWPORTTARGET_H_
 #define _VIEWPORTTARGET_H_
 
@@ -12,7 +11,7 @@
 namespace CasaEngine
 {
 	///
-	class CA_EXPORT ViewportTarget : 
+	class CA_EXPORT ViewportTarget :
 		public RenderTarget
 	{
 	public:
@@ -27,31 +26,31 @@ namespace CasaEngine
 		/**
 		 *
 		 */
-		void Create(const CRectangle &rect);
+		void Create(const CRectangleI& rect);
 
 		/**
-		 * 
+		 *
 		 */
 		void Activate();
 
 		/**
-		 * 
+		 *
 		 */
 		void Deactivate();
 
 		/**
-		 * 
+		 *
 		 */
 		bool IsImageryCache() const;
 
 		/**
-		 * 
+		 *
 		 */
 		bool IsRenderingInverted() const;
 
 	private:
 	};
 
-}  // namespace CasaEngine
+} 
 
 #endif //_VIEWPORTTARGET_H_

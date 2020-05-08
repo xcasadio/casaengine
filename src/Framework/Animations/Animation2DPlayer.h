@@ -42,6 +42,6 @@ namespace CasaEngine
 		int m_iCurrentAnimationIndex;
 };
 
-} // namespace CasaEngine
+}
 
 #endif // _ANIMATION2DPLAYER_H_

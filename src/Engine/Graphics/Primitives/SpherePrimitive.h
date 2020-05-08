@@ -31,6 +31,6 @@ namespace CasaEngine
 		unsigned int m_Tessellation;
     };
 
-} // namespace CasaEngine
+}
 
 #endif // SPHEREPRIMITIVE_H

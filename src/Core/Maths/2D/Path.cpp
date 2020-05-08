@@ -11,7 +11,7 @@
 namespace CasaEngine
 {
 
-	Path::Path():
+	Path::Path() :
 		m_bLooped(false)
 	{
 
@@ -41,16 +41,16 @@ namespace CasaEngine
 	//moves the iterator on to the next waypoint in the list
 	inline void Path::SetNextWaypoint()
 	{
-		CA_ASSERT( m_WayPoints.size() > 0, "Path::SetNextWaypoint()");
+		CA_ASSERT(m_WayPoints.size() > 0, "Path::SetNextWaypoint()");
 
 		if (++m_CurWaypoint == m_WayPoints.end())
 		{
 			if (m_bLooped)
 			{
-				m_CurWaypoint = m_WayPoints.begin(); 
+				m_CurWaypoint = m_WayPoints.begin();
 			}
 		}
-	} 
+	}
 
 	void Path::LoopOn()
 	{
@@ -77,7 +77,7 @@ namespace CasaEngine
 
 	void Path::Set(const Path& path)
 	{
-		m_WayPoints = path.GetPath(); 
+		m_WayPoints = path.GetPath();
 		m_CurWaypoint = m_WayPoints.begin();
 	}
 
@@ -95,20 +95,20 @@ namespace CasaEngine
 
 	void Path::Render()const
 	{
-	  /*gdi->OrangePen();
+		/*gdi->OrangePen();
 
-	  std::list<Vector2F>::const_iterator it = m_WayPoints.begin();
+		std::list<Vector2F>::const_iterator it = m_WayPoints.begin();
 
-	  Vector2F wp = *it++;
+		Vector2F wp = *it++;
 
-	  while (it != m_WayPoints.end())
-	  {
-		gdi->Line(wp, *it);
+		while (it != m_WayPoints.end())
+		{
+		  gdi->Line(wp, *it);
 
-		wp = *it++;
-	  }
+		  wp = *it++;
+		}
 
-	  if (m_bLooped) gdi->Line(*(--it), *m_WayPoints.begin());*/
+		if (m_bLooped) gdi->Line(*(--it), *m_WayPoints.begin());*/
 	}
 
-} // namespace CasaEngine
+}

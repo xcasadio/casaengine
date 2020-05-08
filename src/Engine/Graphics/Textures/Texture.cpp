@@ -4,6 +4,7 @@
 #include "IO\IFile.h"
 #include "Resources\MediaManager.h"
 #include "bx\string.h"
+#include "bimg\decode.h"
 
 // #define STB_IMAGE_IMPLEMENTATION
 #include <stb/stb_image.h>
@@ -11,129 +12,174 @@
 namespace CasaEngine
 {
 
-/**
- * 
- */
-Texture *Texture::loadTexture(const char *pFileName_, uint32_t _flags, uint8_t _skip, bgfx::TextureInfo* _info)
-{
-	bgfx::TextureHandle h = BGFX_INVALID_HANDLE;
-	IFile *pFile = MediaManager::Instance().FindMedia(pFileName_, true);
-
-	if (pFile == nullptr) 
+	//create only one allocator
+	bx::AllocatorI* getDefaultAllocator()
 	{
-		return nullptr;
+		static bx::DefaultAllocator s_allocator;
+		return &s_allocator;
 	}
 
-	const bgfx::Memory *pMem = bgfx::makeRef((uint8_t *)pFile->GetBuffer(), pFile->GetBufferLength());
-
-	if (NULL != bx::stristr(pFileName_, ".dds")
-		||  NULL != bx::stristr(pFileName_, ".pvr")
-		||  NULL != bx::stristr(pFileName_, ".ktx") )
+	static void imageReleaseCb(void* _ptr, void* _userData)
 	{
-		h = bgfx::createTexture(pMem, _flags, _skip, _info);
-		return NEW_AO Texture(h, _info);
+		bimg::ImageContainer* imageContainer = (bimg::ImageContainer*)_userData;
+		bimg::imageFree(imageContainer);
 	}
 
-	bgfx::TextureHandle handle = BGFX_INVALID_HANDLE;
-
-	uint32_t size = pMem->size;
-	void* data = const_cast<bgfx::Memory *>(pMem);
-
-	if (NULL != data)
+	/**
+	 *
+	 */
+	Texture* Texture::loadTexture(const char* pFileName_, uint32_t _flags, uint8_t _skip, bgfx::TextureInfo* _info)
 	{
-		int width  = 0;
-		int height = 0;
-		int comp   = 0;
+		bgfx::TextureHandle handle = BGFX_INVALID_HANDLE;
 
-		uint8_t* img = NULL;
-		img = stbi_load_from_memory((uint8_t*)data, size, &width, &height, &comp, 4);
+		bgfx::TextureHandle h = BGFX_INVALID_HANDLE;
+		IFile* pFile = MediaManager::Instance().FindMedia(pFileName_, true);
 
-		if (NULL != img)
+		if (pFile == nullptr)
 		{
-			handle = bgfx::createTexture2D(uint16_t(width), uint16_t(height), 1
-				, bgfx::TextureFormat::RGBA8
-				, _flags
-				, bgfx::copy(img, width*height*4)
+			CA_ERROR("Failed to load %s.", pFileName_);
+			return nullptr;
+		}
+
+		void* data = pFile->GetBuffer();
+
+		if (NULL != data)
+		{
+			bimg::ImageContainer* imageContainer = bimg::imageParse(getDefaultAllocator(), data, pFile->GetBufferLength());
+
+			if (NULL != imageContainer)
+			{
+				/*if (NULL != _orientation)
+				{
+					*_orientation = imageContainer->m_orientation;
+				}*/
+
+				const bgfx::Memory* mem = bgfx::makeRef(
+					imageContainer->m_data
+					, imageContainer->m_size
+					, imageReleaseCb
+					, imageContainer
 				);
 
-			free(img);
-
-			if (NULL != _info)
-			{
-				bgfx::calcTextureSize(*_info
-					, uint16_t(width)
-					, uint16_t(height)
-					, 0
-					, false
-					, 1
-					, bgfx::TextureFormat::RGBA8
+				if (imageContainer->m_cubeMap)
+				{
+					handle = bgfx::createTextureCube(
+						uint16_t(imageContainer->m_width)
+						, 1 < imageContainer->m_numMips
+						, imageContainer->m_numLayers
+						, bgfx::TextureFormat::Enum(imageContainer->m_format)
+						, _flags
+						, mem
 					);
+				}
+				else if (1 < imageContainer->m_depth)
+				{
+					handle = bgfx::createTexture3D(
+						uint16_t(imageContainer->m_width)
+						, uint16_t(imageContainer->m_height)
+						, uint16_t(imageContainer->m_depth)
+						, 1 < imageContainer->m_numMips
+						, bgfx::TextureFormat::Enum(imageContainer->m_format)
+						, _flags
+						, mem
+					);
+				}
+				else if (bgfx::isTextureValid(0, false, imageContainer->m_numLayers, bgfx::TextureFormat::Enum(imageContainer->m_format), _flags))
+				{
+					handle = bgfx::createTexture2D(
+						uint16_t(imageContainer->m_width)
+						, uint16_t(imageContainer->m_height)
+						, 1 < imageContainer->m_numMips
+						, imageContainer->m_numLayers
+						, bgfx::TextureFormat::Enum(imageContainer->m_format)
+						, _flags
+						, mem
+					);
+				}
+
+				if (bgfx::isValid(handle))
+				{
+					bgfx::setName(handle, pFile->Fullname().c_str());
+				}
+
+				if (nullptr == _info)
+				{
+					_info = NEW_AO bgfx::TextureInfo();
+				}
+
+				bgfx::calcTextureSize(
+					*_info
+					, uint16_t(imageContainer->m_width)
+					, uint16_t(imageContainer->m_height)
+					, uint16_t(imageContainer->m_depth)
+					, imageContainer->m_cubeMap
+					, 1 < imageContainer->m_numMips
+					, imageContainer->m_numLayers
+					, bgfx::TextureFormat::Enum(imageContainer->m_format)
+				);
 			}
 		}
+
+		DELETE_AO pFile;
+		return NEW_AO Texture(handle, _info);
 	}
-	else
+
+	/**
+	 *
+	 */
+	Texture* Texture::createTexture(const unsigned int width_, const unsigned int height_, const bgfx::TextureFormat::Enum format_,
+		const bgfx::Memory* pData_, const unsigned long flags_, bgfx::TextureInfo* info_)
 	{
-		CA_ERROR("Failed to load %s.", pFileName_);
-	}
+		bgfx::TextureHandle handle = bgfx::createTexture2D(uint16_t(width_), uint16_t(height_), true, 1,
+			format_, uint32_t(flags_), pData_);
 
-	return NEW_AO Texture(h, _info);
-}
-
-/**
- * 
- */
-Texture *Texture::createTexture(const unsigned int width_, const unsigned int height_, const bgfx::TextureFormat::Enum format_, 
-	const bgfx::Memory *pData_, const unsigned long flags_, bgfx::TextureInfo* info_)
-{
-	bgfx::TextureHandle handle = bgfx::createTexture2D(uint16_t(width_), uint16_t(height_), 1, 
-		format_ , uint32_t(flags_) , pData_);
-
-	if (NULL != info_)
-	{
-		bgfx::calcTextureSize(*info_
-			, uint16_t(width_)
-			, uint16_t(height_)
-			, 0
-			, false
-			, 1
-			, format_
+		if (NULL != info_)
+		{
+			bgfx::calcTextureSize(*info_
+				, uint16_t(width_)
+				, uint16_t(height_)
+				, 0
+				, false
+				, true
+				, 1
+				, format_
 			);
+		}
+
+		return NEW_AO Texture(handle, info_);
 	}
 
-	return NEW_AO Texture(handle, info_);
-}
+	/**
+	 *
+	 */
+	Texture::Texture(bgfx::TextureHandle handle_, bgfx::TextureInfo* pInfo_ /*= nullptr*/)
+	{
+		m_Handle = handle_;
+		m_pTextureInfo = pInfo_;
+	}
 
-/**
- * 
- */
-Texture::Texture(bgfx::TextureHandle handle_, bgfx::TextureInfo *pInfo_ /*= nullptr*/)
-{
-	m_Handle = handle_;
-	m_pTextureInfo = pInfo_;
-}
+	/**
+	 *
+	 */
+	Texture::~Texture()
+	{
+		bgfx::destroy(m_Handle);
+	}
 
-/**
- * 
- */
-Texture::~Texture()
-{
-	bgfx::destroyTexture(m_Handle);
-}
+	/**
+	 *
+	 */
+	bgfx::TextureInfo* Texture::TextureInfo() const
+	{
+		return m_pTextureInfo;
+	}
 
-/**
- * 
- */
-bgfx::TextureInfo * Texture::TextureInfo() const
-{
-	return m_pTextureInfo;
-}
+	/**
+	 *
+	 */
+	bgfx::TextureHandle Texture::Handle() const
+	{
+		return m_Handle;
+	}
 
-/**
- * 
- */
-bgfx::TextureHandle Texture::Handle() const
-{
-	return m_Handle;
 }
-
-} // namespace CasaEngine

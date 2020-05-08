@@ -1,4 +1,3 @@
-
 #include "Base.h"
 
 #include "CylinderPrimitive.h"
@@ -7,7 +6,6 @@
 #include "Maths/Vector2.h"
 #include "Graphics/Renderer/Renderer.h"
 #include "Graphics/Mesh/Mesh.h"
-
 
 
 namespace CasaEngine
@@ -108,4 +106,4 @@ namespace CasaEngine
 
 	}
 
-} // namespace CasaEngine
+}

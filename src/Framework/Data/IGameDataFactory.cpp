@@ -17,4 +17,4 @@ AutoRegisterGameDataFactory::AutoRegisterGameDataFactory(
 	GameDataFactory::Instance().RegisterFactory(pObject_);
 }
 
-} // namespace CasaEngine
+}

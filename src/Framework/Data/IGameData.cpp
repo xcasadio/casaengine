@@ -52,4 +52,4 @@ void IGameData::Write(std::ostream& os)
 	IAssetable::Write(os);
 }
 
-} // namespace CasaEngine
+}

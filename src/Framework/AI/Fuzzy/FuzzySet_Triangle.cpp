@@ -37,4 +37,4 @@ float FuzzySet_Triangle::CalculateDOM(float val)const
   }
 }
 
-} // namespace CasaEngine
+}

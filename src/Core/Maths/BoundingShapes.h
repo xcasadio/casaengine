@@ -17,8 +17,6 @@ template <typename F> struct OBB_tpl;
 struct Sphere;
 struct Cone;
 
-//////////////////////////////////////////////////////////////////////////
-
 /**
  *
  */
@@ -34,8 +32,6 @@ struct Cone
 	Cone();
 	Cone(const Vector3F& tip , const Vector3F& dir, float height, float baseRadius);
 };
-
-//////////////////////////////////////////////////////////////////////////
 
 /**
  *
@@ -159,10 +155,9 @@ struct AABB
 	static AABB CreateAABBfromCone(const Cone& c);
 };
 
-bool IsEquivalent(const AABB& a, const AABB& b, float epsilon = MATH_16F_EPSILON );
+bool IsEquivalent(const AABB& a, const AABB& b, float epsilon = Epsilon );
 
 
-//////////////////////////////////////////////////////////////////////////
 
 /**
  *
@@ -217,6 +212,6 @@ Vector3F SetMinBB();
 
 void AddToBounds(const Vector3F& v, Vector3F& mins, Vector3F& maxs);
 
-} // namespace CasaEngine
+}
 
-#endif // BOUNDINGSHAPE_H
+#endif

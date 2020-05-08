@@ -4,7 +4,7 @@
 /**
  *  
  */
-const float logDelay = 1000000000.0f;
+const float logDelay = 32.0f;
 
 /**
  *  

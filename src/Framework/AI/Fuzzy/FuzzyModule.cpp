@@ -135,4 +135,4 @@ inline void FuzzyModule::SetConfidencesOfConsequentsToZero()
 	}
 }
 
-} // namespace CasaEngine
+}

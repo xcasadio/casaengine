@@ -187,4 +187,4 @@ void Transform2DComponent::UpdateWorldMatrix()
 }
 
 
-} // namespace CasaEngine
+}

@@ -1,16 +1,3 @@
-//------------------------------------------------------------------------
-//
-//  Name:   Wall2D.h
-//
-//  Desc:   class to create and render 2D walls. Defined as the two 
-//          vectors A - B with a perpendicular normal. 
-//          
-//
-//  Author: Mat Buckland (fup@ai-junkie.com)
-//
-//------------------------------------------------------------------------
-
-
 #ifndef LINE2D_H
 #define LINE2D_H
 
@@ -21,18 +8,9 @@
 
 namespace CasaEngine
 {
-
 	class CA_EXPORT Line2D :
 		public AllocatedObject<Line2D>
 	{
-	protected:
-
-	  Vector2F    m_vA,
-				  m_vB,
-				  m_vN;
-
-	  void CalculateNormal();
-
 	public:
 
 		Line2D();
@@ -59,8 +37,17 @@ namespace CasaEngine
 		std::ostream& Write(std::ostream& os) const;
 
 		void Read(std::ifstream& in);
+
+	protected:
+
+		Vector2F    m_vA,
+			m_vB,
+			m_vN;
+
+		void CalculateNormal();
+
 	};
 
-} // namespace CasaEngine
+}
 
 #endif // LINE2D_H

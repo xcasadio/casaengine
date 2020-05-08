@@ -92,7 +92,7 @@ public:
   void ORwithDOM(float val);
 };
 
-} // namespace CasaEngine
+}
 
 #endif
 

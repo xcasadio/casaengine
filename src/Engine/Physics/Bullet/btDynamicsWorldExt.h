@@ -23,6 +23,6 @@ namespace CasaEngine
 		void debugDrawObject( const btTransform& worldTransform, const btCollisionShape* shape, const btVector3& color );
 	};
 
-} // namespace CasaEngine
+}
 
 #endif // BTDYNAMICSWORLDEXT_H_

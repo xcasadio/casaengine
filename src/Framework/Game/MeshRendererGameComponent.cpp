@@ -15,7 +15,7 @@
 
 
 #include "Memory/MemoryAllocation.h"
-#include "bx/fpumath.h"
+#include "bx/math.h"
 
 
 namespace CasaEngine
@@ -57,28 +57,31 @@ namespace CasaEngine
 			it != m_Datas.end();
 			it++)
 		{
-			::delete (*it);
+			DELETE_AO (*it); //TODO : no delete in real time
 		}
 		
 		m_Datas.clear();
 	}
-
+	
 	/**
 	 * 
 	 */
 	void MeshRendererGameComponent::Draw()
 	{
 		CameraComponent *pCamera = GameInfo::Instance().GetActiveCamera();
-		bgfx::setViewTransform(0, pCamera->GetViewMatrix(), pCamera->GetProjectionMatrix());
-
-		std::vector<ModelRendererData *>::iterator it;
-
-		for (it = m_Datas.begin();
-			it != m_Datas.end();
-			it++)
+		//if (pCamera != nullptr)
 		{
-			(*it)->pModel->Render((*it)->handle, (*it)->pMatWorld);
+			bgfx::setViewTransform(0, pCamera->GetViewMatrix(), pCamera->GetProjectionMatrix());
+
+			for (auto data : m_Datas)
+			{
+				data->pModel->Render(data->handle, data->pMatWorld);
+			}
 		}
+		/*else
+		{
+			CA_WARN("No active camera defined\n");
+		}*/
 	}
 
 	/**
@@ -89,11 +92,11 @@ namespace CasaEngine
 		CA_ASSERT(pModel_ != nullptr, "MeshRendererGameComponent::AddModel() : Mesh is nullptr");
 		CA_ASSERT(pProgram_ != nullptr, "MeshRendererGameComponent::AddModel() : Program is nullptr");
 
-		ModelRendererData *pData = ::new ModelRendererData();
+		ModelRendererData *pData = NEW_AO ModelRendererData();//TODO : no new in real time
 		pData->pModel = pModel_;
 		pData->pMatWorld = pMatWorld_;
 		pData->handle = pProgram_->Handle();
 		m_Datas.push_back(pData);
 	}
 
-} // namespace CasaEngine
+}

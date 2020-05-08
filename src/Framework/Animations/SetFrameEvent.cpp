@@ -1,6 +1,3 @@
-//==========================================================
-// En-têtes
-//==========================================================
 #include "Base.h"
 
 #include "Animations/SetFrameEvent.h"
@@ -26,7 +23,7 @@ namespace CasaEngine
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	SetFrameEvent::SetFrameEvent(const SetFrameEvent& rsh)
 	{
@@ -34,24 +31,30 @@ namespace CasaEngine
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	const SetFrameEvent& SetFrameEvent::operator = (const SetFrameEvent& rsh)
 	{
+		AnimationEvent::operator=(rsh);
 		m_FrameID = rsh.m_FrameID;
 		return *this;
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	SetFrameEvent::~SetFrameEvent()
 	{
 
 	}
 
+	AnimationEvent* SetFrameEvent::Copy()
+	{
+		return NEW_AO SetFrameEvent(*this);
+	}
+
 	/**
-	 * 
+	 *
 	 */
 	const char* SetFrameEvent::FrameID() const
 	{
@@ -59,13 +62,13 @@ namespace CasaEngine
 	}
 
 	/**
-	 * 
+	 *
 	 */
-	void SetFrameEvent::Activate(Animation *pAnim_)
+	void SetFrameEvent::Activate(Animation* pAnim_)
 	{
 		CA_ASSERT(pAnim_ != nullptr, "SetFrameEvent::Activate() : Animation is nullptr");
 
-		Animation2D *pAnim2D = static_cast<Animation2D *>(pAnim_);
+		Animation2D* pAnim2D = static_cast<Animation2D*>(pAnim_);
 
 		if (pAnim2D != nullptr)
 		{
@@ -73,48 +76,39 @@ namespace CasaEngine
 		}
 		else
 		{
-			CA_ERROR("SetFrameEvent.Activate() : Animation(%d - %s) is not a Animation2D\n", 
+			CA_ERROR("SetFrameEvent.Activate() : Animation(%d - %s) is not a Animation2D\n",
 				pAnim_->ID(), pAnim_->GetName().c_str());
 		}
 	}
 
 	/**
-	 * 
+	 *
 	 */
-	void SetFrameEvent::Read (std::ifstream& /*is*/)
+	void SetFrameEvent::Read(std::ifstream& /*is*/)
 	{
 
 	}
 
 	/**
-	 * 
+	 *
 	 */
-	void SetFrameEvent::Read(tinyxml2::XMLElement *el_)
+	void SetFrameEvent::Read(tinyxml2::XMLElement* el_)
 	{
 		AnimationEvent::Read(el_);
-
-		unsigned int spriteID;
-		el_->QueryUnsignedAttribute("spriteID", &spriteID);
-
-		std::ostringstream str;
-		str << spriteID;
-
-		m_FrameID = str.str().c_str();
+		m_FrameID = el_->Attribute("spriteID");
 	}
 
-
-#if EDITOR
-
 	/**
-	 * 
+	 *
 	 */
-	void SetFrameEvent::FrameID( const char* val )
+	void SetFrameEvent::FrameID(const char* val)
 	{
 		m_FrameID = val;
 	}
-	
+
+#if EDITOR
 	/**
-	 * 
+	 *
 	 */
 	void SetFrameEvent::Write(std::ostream& /*os*/) const
 	{
@@ -122,9 +116,9 @@ namespace CasaEngine
 	}
 
 	/**
-	 * 
+	 *
 	 */
-	void SetFrameEvent::Write(tinyxml2::XMLElement *el_) const
+	void SetFrameEvent::Write(tinyxml2::XMLElement* el_) const
 	{
 
 	}
@@ -132,4 +126,4 @@ namespace CasaEngine
 #endif // EDITOR
 
 
-} // namespace CasaEngine
+}

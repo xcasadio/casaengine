@@ -9,7 +9,6 @@
 #include "GameTime.h"
 #include "Maths/Matrix4.h"
 #include "Entities/Components/CameraComponent.h"
-#include "CompilationMacro.h"
 
 
 namespace CasaEngine
@@ -32,13 +31,13 @@ namespace CasaEngine
 		//all entities can communicate using messages. They are sent
 		//using the MessageDispatcher singleton class
 		//void HandleEvent(const Event* pEvent_);
-		 
-		Matrix4 ViewMatrix(Matrix4 &viewMatrix_);		
 
-		void Read (std::ifstream& is) OVERRIDE;
-		void Write(std::ostream& os) OVERRIDE;
-		void Read (const tinyxml2::XMLElement& xmlElt) OVERRIDE;
-		void Write(tinyxml2::XMLElement& xmlElt) OVERRIDE;
+		void ViewMatrix(Matrix4& viewMatrix_);		
+
+		void Read (std::ifstream& is) override;
+		void Write(std::ostream& os) override;
+		void Read (const tinyxml2::XMLElement& xmlElt) override;
+		void Write(tinyxml2::XMLElement& xmlElt) override;
 	
 	protected:		
 		

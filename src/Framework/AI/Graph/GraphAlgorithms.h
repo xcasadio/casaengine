@@ -769,6 +769,6 @@ public:
   
 };
 
-} // namespace CasaEngine
+}
 
 #endif

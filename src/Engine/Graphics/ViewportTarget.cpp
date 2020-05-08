@@ -4,7 +4,7 @@
 #include "ViewportTarget.h"
 #include "Maths\Matrix4.h"
 #include "Maths\Vector3.h"
-#include "EngineInfo.h"
+
 #include "Viewport.h"
 #include "Renderer/Renderer.h"
 #include "Log/LogManager.h"
@@ -41,7 +41,7 @@ namespace CasaEngine
 	/**
 	 *
 	 */
-	void ViewportTarget::Create(const CRectangle &rect)
+	void ViewportTarget::Create(const CRectangleI &rect)
 	{
 		SetArea(rect);
 	}
@@ -53,10 +53,10 @@ namespace CasaEngine
 	{
 		//TODO : use view id
 		bgfx::setViewRect(254, 
-			static_cast<float>(m_Area.Left()),
-			static_cast<float>(m_Area.Top()),
-			static_cast<float>(m_Area.Width()),
-			static_cast<float>(m_Area.Height()));
+			static_cast<float>(m_Area.x),
+			static_cast<float>(m_Area.y),
+			static_cast<float>(m_Area.w),
+			static_cast<float>(m_Area.h));
 	}
 
 	/**
@@ -83,4 +83,4 @@ namespace CasaEngine
 		return false;
 	}
 
-} // namespace CasaEngine
+}

@@ -24,6 +24,6 @@ namespace CasaEngine
 		bool IsDebugActivated;
 
 	}; // struct EditorOptions
-} // namespace CasaEngine
+}
 
 #endif // DEBUGOPTIONS_H

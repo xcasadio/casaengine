@@ -2,276 +2,277 @@
 #include "MinerComponent.h"
 #include "Locations.h"
 #include "MessageTypes.h"
-
-
-#include <iostream>
-#include "AI\Messaging\Telegram.h"
 #include "..\FSMGame.h"
+#include "Config.h"
+
+#include "AI\Messaging\Telegram.h"
 #include "AI\Messaging\MessageDispatcher.h"
 #include "Log\LogManager.h"
 #include "DateTime.h"
-#include <stdlib.h>
-#include <iosfwd>
-#include "MinerComponent.h"
 #include "Tools\InGameLogger.h"
-#include "Config.h"
+
+#include <iosfwd>
 
 using namespace CasaEngine;
+
+void Log(const char* name, const char* msg)
+{
+	InGameLog(logDelay, "\x1b[12;m%s: %s", name, msg);
+}
 
 //------------------------------------------------------------------------methods for EnterMineAndDigForNugget
 EnterMineAndDigForNugget* EnterMineAndDigForNugget::Instance()
 {
-  static EnterMineAndDigForNugget instance;
-  return &instance;
+	static EnterMineAndDigForNugget instance;
+	return &instance;
 }
 
 
 void EnterMineAndDigForNugget::Enter(MinerComponent* pMiner)
 {
-  //if the miner is not already located at the goldmine, he must
-  //change location to the gold mine
-  if (pMiner->Location() != goldmine)
-  {
-    InGameLog(logDelay, "%s: %s", pMiner->GetEntity()->GetName(), "Walkin' to the goldmine");
-    pMiner->ChangeLocation(goldmine);
-  }
+	//if the miner is not already located at the goldmine, he must
+	//change location to the gold mine
+	if (pMiner->Location() != goldmine)
+	{
+		Log(pMiner->GetEntity()->GetName(), "Walkin' to the goldmine");
+		pMiner->ChangeLocation(goldmine);
+	}
 }
 
 
-void EnterMineAndDigForNugget::Execute(MinerComponent* pMiner, const GameTime &elapsedTime_)
-{  
-  //Now the miner is at the goldmine he digs for gold until he
-  //is carrying in excess of MaxNuggets. If he gets thirsty during
-  //his digging he packs up work for a while and changes state to
-  //gp to the saloon for a whiskey.
-  pMiner->AddToGoldCarried(1);
+void EnterMineAndDigForNugget::Execute(MinerComponent* pMiner, const GameTime& elapsedTime_)
+{
+	//Now the miner is at the goldmine he digs for gold until he
+	//is carrying in excess of MaxNuggets. If he gets thirsty during
+	//his digging he packs up work for a while and changes state to
+	//gp to the saloon for a whiskey.
+	pMiner->AddToGoldCarried(1);
 
-  pMiner->IncreaseFatigue();
+	pMiner->IncreaseFatigue();
 
-  InGameLog(logDelay, "%s: %s", pMiner->GetEntity()->GetName(), "Pickin' up a nugget");
+	Log(pMiner->GetEntity()->GetName(), "Pickin' up a nugget");
 
-  //if enough gold mined, go and put it in the bank
-  if (pMiner->PocketsFull())
-  {
-    pMiner->GetFSM()->ChangeState(VisitBankAndDepositGold::Instance());
-  }
+	//if enough gold mined, go and put it in the bank
+	if (pMiner->PocketsFull())
+	{
+		pMiner->GetFSM()->ChangeState(VisitBankAndDepositGold::Instance());
+	}
 
-  if (pMiner->Thirsty())
-  {
-    pMiner->GetFSM()->ChangeState(QuenchThirst::Instance());
-  }
+	if (pMiner->Thirsty())
+	{
+		pMiner->GetFSM()->ChangeState(QuenchThirst::Instance());
+	}
 }
 
 
 void EnterMineAndDigForNugget::Exit(MinerComponent* pMiner)
 {
-  InGameLog(logDelay, "%s: %s", pMiner->GetEntity()->GetName(), "Ah'm leavin' the goldmine with mah pockets full o' sweet gold");
+	Log(pMiner->GetEntity()->GetName(), "Ah'm leavin' the goldmine with mah pockets full o' sweet gold");
 }
 
 
 bool EnterMineAndDigForNugget::OnMessage(MinerComponent* pMiner, const Telegram& msg)
 {
-  //send msg to global message handler
-  return false;
+	//send msg to global message handler
+	return false;
 }
 
 //------------------------------------------------------------------------methods for VisitBankAndDepositGold
 
 VisitBankAndDepositGold* VisitBankAndDepositGold::Instance()
 {
-  static VisitBankAndDepositGold instance;
+	static VisitBankAndDepositGold instance;
 
-  return &instance;
+	return &instance;
 }
 
 void VisitBankAndDepositGold::Enter(MinerComponent* pMiner)
-{  
-  //on entry the miner makes sure he is located at the bank
-  if (pMiner->Location() != bank)
-  {
-    InGameLog(logDelay, "%s: %s", pMiner->GetEntity()->GetName(), "Goin' to the bank. Yes sire");
+{
+	//on entry the miner makes sure he is located at the bank
+	if (pMiner->Location() != bank)
+	{
+		Log(pMiner->GetEntity()->GetName(), "Goin' to the bank. Yes sire");
 
-    pMiner->ChangeLocation(bank);
-  }
+		pMiner->ChangeLocation(bank);
+	}
 }
 
 
-void VisitBankAndDepositGold::Execute(MinerComponent* pMiner, const GameTime &elapsedTime_)
+void VisitBankAndDepositGold::Execute(MinerComponent* pMiner, const GameTime& elapsedTime_)
 {
-  //deposit the gold
-  pMiner->AddToWealth(pMiner->GoldCarried());
-    
-  pMiner->SetGoldCarried(0);
+	//deposit the gold
+	pMiner->AddToWealth(pMiner->GoldCarried());
 
-  std::ostringstream msg;
-  msg << pMiner->GetEntity()->GetName() << ": Depositing gold. Total savings now: " << pMiner->Wealth();
-  InGameLog(logDelay, msg.str().c_str());
+	pMiner->SetGoldCarried(0);
+	std::ostringstream msg;
+	msg << "Depositing gold.Total savings now : " << pMiner->Wealth();
+	Log(pMiner->GetEntity()->GetName(), msg.str().c_str());
 
-  //wealthy enough to have a well earned rest?
-  if (pMiner->Wealth() >= ComfortLevel)
-  {
-    InGameLog(logDelay, "%s: %s", pMiner->GetEntity()->GetName(), "WooHoo! Rich enough for now. Back home to mah li'lle lady");      
-    pMiner->GetFSM()->ChangeState(GoHomeAndSleepTilRested::Instance());      
-  }
-  //otherwise get more gold
-  else 
-  {
-    pMiner->GetFSM()->ChangeState(EnterMineAndDigForNugget::Instance());
-  }
+	//wealthy enough to have a well earned rest?
+	if (pMiner->Wealth() >= ComfortLevel)
+	{
+		Log(pMiner->GetEntity()->GetName(), "WooHoo! Rich enough for now. Back home to mah li'lle lady");
+		pMiner->GetFSM()->ChangeState(GoHomeAndSleepTilRested::Instance());
+	}
+	//otherwise get more gold
+	else
+	{
+		pMiner->GetFSM()->ChangeState(EnterMineAndDigForNugget::Instance());
+	}
 }
 
 
 void VisitBankAndDepositGold::Exit(MinerComponent* pMiner)
 {
-  InGameLog(logDelay, "%s: %s", pMiner->GetEntity()->GetName(), "Leavin' the bank");
+	Log(pMiner->GetEntity()->GetName(), "Leavin' the bank");
 }
 
 
 bool VisitBankAndDepositGold::OnMessage(MinerComponent* pMiner, const Telegram& msg)
 {
-  //send msg to global message handler
-  return false;
+	//send msg to global message handler
+	return false;
 }
 //------------------------------------------------------------------------methods for GoHomeAndSleepTilRested
 
 GoHomeAndSleepTilRested* GoHomeAndSleepTilRested::Instance()
 {
-  static GoHomeAndSleepTilRested instance;
+	static GoHomeAndSleepTilRested instance;
 
-  return &instance;
+	return &instance;
 }
 
 void GoHomeAndSleepTilRested::Enter(MinerComponent* pMiner)
 {
-  if (pMiner->Location() != shack)
-  {
-    InGameLog(logDelay, "%s: %s", pMiner->GetEntity()->GetName(), "Walkin' home");
+	if (pMiner->Location() != shack)
+	{
+		Log(pMiner->GetEntity()->GetName(), "Walkin' home");
 
-    pMiner->ChangeLocation(shack); 
+		pMiner->ChangeLocation(shack);
 
-    //let the wife know I'm home
-    MsgDispatcher.DispatchMsg(SEND_MSG_IMMEDIATELY, //time delay
-                              pMiner->GetEntity()->ID(),        //ID of sender
-                              pMiner->GetWifeID(),            //ID of recipient
-                              Msg_HiHoneyImHome,   //the message
-                              NO_ADDITIONAL_INFO);    
-  }
+		//let the wife know I'm home
+		MessageDispatcher::Instance().DispatchMsg(SEND_MSG_IMMEDIATELY, //time delay
+			pMiner->GetEntity()->ID(),        //ID of sender
+			pMiner->GetWifeID(),            //ID of recipient
+			Msg_HiHoneyImHome,   //the message
+			NO_ADDITIONAL_INFO);
+	}
 }
 
-void GoHomeAndSleepTilRested::Execute(MinerComponent* pMiner, const GameTime &elapsedTime_)
-{ 
-  //if miner is not fatigued start to dig for nuggets again.
-  if (!pMiner->Fatigued())
-  {
-     InGameLog(logDelay, "%s: %s", pMiner->GetEntity()->GetName(), "All my fatigue has drained away. Time to find more gold!");
-     pMiner->GetFSM()->ChangeState(EnterMineAndDigForNugget::Instance());
-  }
-  else 
-  {
-    //sleep
-    pMiner->DecreaseFatigue();
-    InGameLog(logDelay, "%s: %s", pMiner->GetEntity()->GetName(), "ZZZZ...");
-  } 
+void GoHomeAndSleepTilRested::Execute(MinerComponent* pMiner, const GameTime& elapsedTime_)
+{
+	//if miner is not fatigued start to dig for nuggets again.
+	if (!pMiner->Fatigued())
+	{
+		Log(pMiner->GetEntity()->GetName(), "All my fatigue has drained away. Time to find more gold!");
+		pMiner->GetFSM()->ChangeState(EnterMineAndDigForNugget::Instance());
+	}
+	else
+	{
+		//sleep
+		pMiner->DecreaseFatigue();
+		Log(pMiner->GetEntity()->GetName(), "ZZZZ...");
+	}
 }
 
 void GoHomeAndSleepTilRested::Exit(MinerComponent* pMiner)
-{ 
+{
 }
 
 
 bool GoHomeAndSleepTilRested::OnMessage(MinerComponent* pMiner, const Telegram& msg)
 {
-   //SetTextColor(BACKGROUND_RED|FOREGROUND_RED|FOREGROUND_GREEN|FOREGROUND_BLUE);
+	//SetTextColor(BACKGROUND_RED|FOREGROUND_RED|FOREGROUND_GREEN|FOREGROUND_BLUE);
 
-   switch(msg.Msg)
-   {
-   case Msg_StewReady:
-     CA_DEBUG("Message handled by (%d)%s\n", 
-		 pMiner->GetEntity()->ID(), pMiner->GetEntity()->GetName());
+	switch (msg.Msg)
+	{
+	case Msg_StewReady:
+		CA_DEBUG("Message handled by (%d)%s\n",
+			pMiner->GetEntity()->ID(), pMiner->GetEntity()->GetName());
 
-     //SetTextColor(FOREGROUND_RED|FOREGROUND_INTENSITY);
+		//SetTextColor(FOREGROUND_RED|FOREGROUND_INTENSITY);
 
-     InGameLog(logDelay, "%s: %s", pMiner->GetEntity()->GetName(), "Okay Hun, ahm a comin'!");
+		Log(pMiner->GetEntity()->GetName(), "Okay Hun, ahm a comin'!");
 
-     pMiner->GetFSM()->ChangeState(EatStew::Instance());
-      
-     return true;
+		pMiner->GetFSM()->ChangeState(EatStew::Instance());
 
-   }//end switch
+		return true;
 
-   return false; //send message to global message handler
+	}//end switch
+
+	return false; //send message to global message handler
 }
 
 //------------------------------------------------------------------------QuenchThirst
 
 QuenchThirst* QuenchThirst::Instance()
 {
-  static QuenchThirst instance;
+	static QuenchThirst instance;
 
-  return &instance;
+	return &instance;
 }
 
 void QuenchThirst::Enter(MinerComponent* pMiner)
 {
-  if (pMiner->Location() != saloon)
-  {    
-    pMiner->ChangeLocation(saloon);
-    InGameLog(logDelay, "%s: %s", pMiner->GetEntity()->GetName(), "Boy, ah sure is thusty! Walking to the saloon");
-  }
+	if (pMiner->Location() != saloon)
+	{
+		pMiner->ChangeLocation(saloon);
+		Log(pMiner->GetEntity()->GetName(), "Boy, ah sure is thusty! Walking to the saloon");
+	}
 }
 
-void QuenchThirst::Execute(MinerComponent* pMiner, const GameTime &elapsedTime_)
+void QuenchThirst::Execute(MinerComponent* pMiner, const GameTime& elapsedTime_)
 {
-  pMiner->BuyAndDrinkAWhiskey();
-  InGameLog(logDelay, "%s: %s", pMiner->GetEntity()->GetName(), "That's mighty fine sippin' liquer");
-  pMiner->GetFSM()->ChangeState(EnterMineAndDigForNugget::Instance());  
+	pMiner->BuyAndDrinkAWhiskey();
+	Log(pMiner->GetEntity()->GetName(), "That's mighty fine sippin' liquer");
+	pMiner->GetFSM()->ChangeState(EnterMineAndDigForNugget::Instance());
 }
 
 
 void QuenchThirst::Exit(MinerComponent* pMiner)
-{ 
-  InGameLog(logDelay, "%s: %s", pMiner->GetEntity()->GetName(), "Leaving the saloon, feelin' good");
+{
+	Log(pMiner->GetEntity()->GetName(), "Leaving the saloon, feelin' good");
 }
 
 
 bool QuenchThirst::OnMessage(MinerComponent* pMiner, const Telegram& msg)
 {
-  //send msg to global message handler
-  return false;
+	//send msg to global message handler
+	return false;
 }
 
 //------------------------------------------------------------------------EatStew
 
 EatStew* EatStew::Instance()
 {
-  static EatStew instance;
+	static EatStew instance;
 
-  return &instance;
+	return &instance;
 }
 
 
 void EatStew::Enter(MinerComponent* pMiner)
 {
-  InGameLog(logDelay, "%s: %s", pMiner->GetEntity()->GetName(), "Smells Reaaal goood Elsa!");
+	Log(pMiner->GetEntity()->GetName(), "Smells Reaaal goood Elsa!");
 }
 
-void EatStew::Execute(MinerComponent* pMiner, const GameTime &elapsedTime_)
+void EatStew::Execute(MinerComponent* pMiner, const GameTime& elapsedTime_)
 {
-  InGameLog(logDelay, "%s: %s", pMiner->GetEntity()->GetName(), "Tastes real good too!");
+	Log(pMiner->GetEntity()->GetName(), "Tastes real good too!");
 
-  pMiner->GetFSM()->RevertToPreviousState();
+	pMiner->GetFSM()->RevertToPreviousState();
 }
 
 void EatStew::Exit(MinerComponent* pMiner)
-{ 
-  InGameLog(logDelay, "%s: %s", pMiner->GetEntity()->GetName(), "Thankya li'lle lady. Ah better get back to whatever ah wuz doin'");
+{
+	Log(pMiner->GetEntity()->GetName(), "Thankya li'lle lady. Ah better get back to whatever ah wuz doin'");
 }
 
 
 bool EatStew::OnMessage(MinerComponent* pMiner, const Telegram& msg)
 {
-  //send msg to global message handler
-  return false;
+	//send msg to global message handler
+	return false;
 }
 
 

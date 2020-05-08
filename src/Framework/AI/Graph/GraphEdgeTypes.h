@@ -155,6 +155,6 @@ public:
   }
 };
 
-} // namespace CasaEngine
+}
 
 #endif

@@ -1,4 +1,3 @@
-
 #ifndef VERTEXTYPE_H_
 #define VERTEXTYPE_H_
 
@@ -21,7 +20,7 @@ namespace CasaEngine
 		unsigned int Color;     ///< ABGR
 
 		static void init();
-		static bgfx::VertexDecl ms_decl;
+		static bgfx::VertexLayout ms_layout;
 	};
 	
 	/**
@@ -34,7 +33,7 @@ namespace CasaEngine
 		Vector2F     TexCoords; ///< Coordonnées de texture
 
 		static void init();
-		static bgfx::VertexDecl ms_decl;
+		static bgfx::VertexLayout ms_layout;
 	};
 
 	/**
@@ -48,7 +47,7 @@ namespace CasaEngine
 		unsigned int Color;     ///< ABGR
 
 		static void init();
-		static bgfx::VertexDecl ms_decl;
+		static bgfx::VertexLayout ms_layout;
 	};
 	
 	/**
@@ -62,7 +61,7 @@ namespace CasaEngine
 		Vector2F     TexCoords; ///< Coordonnées de texture
 
 		static void init();
-		static bgfx::VertexDecl ms_decl;
+		static bgfx::VertexLayout ms_layout;
 	};
 	
 	/**
@@ -77,9 +76,9 @@ namespace CasaEngine
 		unsigned int Color;     ///< ABGR
 
 		static void init();
-		static bgfx::VertexDecl ms_decl;
+		static bgfx::VertexLayout ms_layout;
 	};
 
-} // namespace CasaEngine
+}
 
 #endif // VERTEXTYPE_H_

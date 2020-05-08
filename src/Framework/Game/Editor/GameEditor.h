@@ -40,7 +40,7 @@ namespace CasaEngine
 	//extern "C" __declspec(dllexport) void Game_Delete(GameEditor* pGame_);
 
 	
-} // namespace CasaEngine
+}
 
 
 #endif // GAME_EDITOR_H

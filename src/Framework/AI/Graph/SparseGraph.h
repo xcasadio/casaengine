@@ -833,6 +833,6 @@ bool SparseGraph<node_type, edge_type>::Load(std::ifstream& stream)
   return true;
 }
    
-} // namespace CasaEngine
+}
 
 #endif

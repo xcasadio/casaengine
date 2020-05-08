@@ -14,7 +14,7 @@
 #include <iosfwd>
 #include <string>
 #include "Parsers/Xml/tinyxml2.h"
-#include "CompilationMacro.h"
+
 
 
 namespace CasaEngine
@@ -28,19 +28,11 @@ namespace CasaEngine
 		public Component
 	{
 	public:
-		Matrix4 GetViewMatrix() const;
-		Matrix4 GetProjectionMatrix() const;	
-	
+		Matrix4 GetViewMatrix();
+		Matrix4 GetProjectionMatrix();	
+
+		virtual void Initialize() override;
 		void Update(const GameTime& gameTime_);
-
-#if EDITOR
-
-		/**
-		 * Draw icon only in editor mode
-		 */
-		void Draw();
-
-#endif // EDITOR
 
 		ICameraController * CameraController() const;
 		void CameraController(ICameraController * val);
@@ -53,26 +45,38 @@ namespace CasaEngine
 		Viewport& GetViewport();
 		float GetViewDistance() const;
 		
-		virtual void Read (const tinyxml2::XMLElement& xmlElt) OVERRIDE;
-		virtual void Read (std::ifstream& is) OVERRIDE;
-		virtual void Write(tinyxml2::XMLElement& xmlElt) OVERRIDE;
-		virtual void Write(std::ostream& os) OVERRIDE;
+		virtual void Read (const tinyxml2::XMLElement& xmlElt) override;
+		virtual void Read (std::ifstream& is) override;
+		virtual void Write(tinyxml2::XMLElement& xmlElt) override;
+		virtual void Write(std::ostream& os) override;
 
 	protected:
 		CameraComponent(BaseEntity* pEntity_, int type_);
 		virtual ~CameraComponent();
 
 		virtual void ComputeProjectionMatrix() = 0;
+		virtual void ComputeViewMatrix() = 0;
 
 	protected:
-		mutable Matrix4 m_ViewMatrix;
+		Matrix4 m_ViewMatrix;
 		Matrix4 m_ProjectionMatrix;
 		Viewport m_Viewport;
 		float m_ViewDistance; // distance between the camera and the near far clip plane
+		bool m_needToComputeProjectionMatrix;
+		bool m_needToComputeViewMatrix;
 
 	private:
 		ICameraController *m_pCameraController;
 		Event::Connection m_WindowResizedConnection;
+
+#if EDITOR
+	public:
+		/**
+		 * Draw icon only in editor mode
+		 */
+		void Draw();
+
+#endif // EDITOR
 	};
 
 }

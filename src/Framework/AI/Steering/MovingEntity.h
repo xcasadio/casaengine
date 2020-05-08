@@ -166,6 +166,6 @@ inline void MovingEntity::SetHeading(Vector2F new_heading)
   m_vSide = m_vHeading.GetOrthogonal();
 }
 
-} // namespace CasaEngine
+}
 
 #endif // MOVING_ENTITY_H_

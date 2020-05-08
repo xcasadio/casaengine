@@ -84,4 +84,4 @@ void LoggerFile::Write(const std::string& Message)
 	m_File << Message << std::flush;
 }
 
-} // namespace CasaEngine
+}

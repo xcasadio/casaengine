@@ -226,7 +226,7 @@ public: void  operator delete[](void* _ptr)
 #	define CA_CLASS(_class, ...) CA_MACRO_DISPATCHER(CA_CLASS_, __VA_ARGS__)(_class, __VA_ARGS__)
 #endif // CA_COMPILER_MSVC
 
-} // namespace CasaEngine
+}
 
 namespace std { namespace tr1{}; using namespace tr1; }
 

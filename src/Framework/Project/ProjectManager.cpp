@@ -85,4 +85,4 @@ std::string ProjectManager::ProjectPath() const
 	return m_ProjectPath;
 }
 
-} // namespace CasaEngine
+}

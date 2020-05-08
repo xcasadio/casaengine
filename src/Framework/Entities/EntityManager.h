@@ -24,9 +24,6 @@ namespace CasaEngine
 {
 	class BaseEntity;
 
-	//provide easy access
-	#define EntityMgr EntityManager::Instance()
-
 	/*
 	 *	
 	 */
@@ -45,11 +42,6 @@ namespace CasaEngine
 			EntityMap m_EntityMap;
 
 		public:
-			/**
-			 * returns the first selected entity
-			 */
-			BaseEntity* GetFirstSelectedEntity() const;
-
 			/**
 			 * Entity at the index position indicated by the entity's ID
 			 */
@@ -79,8 +71,18 @@ namespace CasaEngine
 			 * Remove all registered entities and do a delete
 			 */
 			void Clear();
+
+#ifdef EDITOR
+	public:
+		/**
+			 * returns the first selected entity
+			 */
+		BaseEntity* GetFirstSelectedEntity() const;
+
+		
+#endif
 	};
 
-} // namespace CasaEngine
+}
 
 #endif // ENTITYMANAGER_H

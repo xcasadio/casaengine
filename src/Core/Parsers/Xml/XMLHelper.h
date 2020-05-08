@@ -38,7 +38,7 @@ public:
 	static const tinyxml2::XMLElement *GetChildNodeByName(const tinyxml2::XMLElement *element_, const char *name_);
 };
 
-} // namespace CasaEngine
+}
 
 
 #endif // XMLHELPER_H_

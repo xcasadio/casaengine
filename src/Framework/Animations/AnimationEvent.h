@@ -25,11 +25,14 @@ namespace CasaEngine
 		const AnimationEvent& operator = (const AnimationEvent& rsh);
 		~AnimationEvent();
 
+		virtual AnimationEvent* Copy() = 0;
+		
 		//EventHandler<AnimationFrameChangedEventArgs> OnFrameChanged;
 		//EventHandler OnEndAnimationReached;
 
 		unsigned int ID() const;
 		float Time() const;
+		void Time(float val);
 
 		virtual void Activate(Animation *pAnim_) = 0;
 
@@ -38,15 +41,12 @@ namespace CasaEngine
 
 	private:
 		unsigned int m_ID;
-
 		float m_Time;
 
 		//std::vector<IEvent> m_Events;
 
 #if EDITOR
-
 	public:
-		void Time(float val);
 
 		void Write(std::ostream& /*os*/) const;
 		void Write(tinyxml2::XMLElement *el_) const;
@@ -57,6 +57,6 @@ namespace CasaEngine
 #endif
 		
 	};
-} // namespace CasaEngine
+}
 
 #endif // _ANIMATIONEVENT_H_

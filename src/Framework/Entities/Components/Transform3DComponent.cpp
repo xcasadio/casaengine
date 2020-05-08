@@ -8,8 +8,6 @@
 #include "../ComponentTypeEnum.h"
 #include "../Events/BaseEntityEvents.h"
 #include "EventHandler/Event.h"
-#include "ocornut-imgui/imgui.h"
-
 
 
 namespace CasaEngine
@@ -54,7 +52,17 @@ void Transform3DComponent::SetWorldMatrix(Matrix4 val)
 	m_WorldMatrix = val;
 }
 
+Vector3F Transform3DComponent::GetCenterOfRotation() const
+{
+	return m_LocalCenterOfRotation;
+}
 
+void Transform3DComponent::SetCenterOfRotation(Vector3F val)
+{
+	m_LocalCenterOfRotation = val;
+	m_LocalMatrixChanged = true;
+}
+	
 Vector3F Transform3DComponent::GetLocalPosition() const 
 { 
 	return m_LocalPosition; 
@@ -111,7 +119,6 @@ Vector3F Transform3DComponent::GetScale() const
 	return m_pParentTransform == nullptr ? m_LocalScale : m_LocalScale + m_pParentTransform->GetScale(); 
 }
 
-
 /*
  *	
  */
@@ -144,12 +151,13 @@ void Transform3DComponent::UpdateLocalMatrix()
 	{
 		m_LocalMatrixChanged = false;
 
-		Matrix4 matS, matRot;
+		Matrix4 matS, transCenter, trans;
+		trans.SetTranslation(m_LocalPosition);
+		transCenter.SetTranslation(m_LocalCenterOfRotation);
 		matS.CreateScale(m_LocalScale.x, m_LocalScale.y, m_LocalScale.z);
-		matRot = m_LocalRotation.ToMatrix4();
+		Matrix4 matRot = m_LocalRotation.ToMatrix4();
 
-		m_LocalMatrix = matS * matRot;
-		m_LocalMatrix.SetTranslation(m_LocalPosition.x, m_LocalPosition.y, m_LocalPosition.z);
+		m_LocalMatrix = transCenter * matS * matRot * trans;
 	}
 }
 
@@ -175,6 +183,7 @@ void Transform3DComponent::UpdateWorldMatrix()
  */
 void Transform3DComponent::ShowDebugWidget()
 {
+	/*
 	const ImGuiStyle& style = ImGui::GetStyle();
 
 	if (ImGui::CollapsingHeader("Transform 3D"))
@@ -197,6 +206,7 @@ void Transform3DComponent::ShowDebugWidget()
 		ImGui::SameLine(0, style.ItemInnerSpacing.x); ImGui::PushItemWidth(widgetWidth); ImGui::DragFloat("Z", &m_LocalScale.z, 0.005f);
 		//entity static or movable?
 	}
+	*/
 }
 
 /**
@@ -217,4 +227,4 @@ void Transform3DComponent::Read (std::ifstream& /*is*/)
 
 
 
-} // namespace CasaEngine
+}

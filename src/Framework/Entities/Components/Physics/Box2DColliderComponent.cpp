@@ -74,4 +74,4 @@ void Box2DColliderComponent::Read (std::ifstream& /*is*/)
 
 }
 
-} // namespace CasaEngine
+}

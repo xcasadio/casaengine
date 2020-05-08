@@ -36,4 +36,4 @@ float FuzzySet_RightShoulder::CalculateDOM(float val) const
   }
 }
 
-}  // namespace CasaEngine
+} 

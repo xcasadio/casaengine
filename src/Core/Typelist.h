@@ -70,7 +70,7 @@ namespace CasaEngine
 
     #include "Typelist.inl"
 
-} // namespace CasaEngine
+}
 
 
 #endif // TYPELIST_H

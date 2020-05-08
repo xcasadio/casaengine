@@ -11,6 +11,6 @@ static const int CA_MINOR_VERSION = 1;
 
 #define CA_NAME "CasaEngine v" CA_STRINGIZE(CA_PRODUCT_VERSION) "." CA_STRINGIZE(CA_MAJOR_VERSION) "." CA_STRINGIZE(CA_MINOR_VERSION)
 
-} // namespace CasaEngine
+}
 
 #endif // VERSION_H

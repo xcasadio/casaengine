@@ -35,6 +35,6 @@ namespace CasaEngine
 		float m_Length;
     };
 
-} // namespace CasaEngine
+}
 
 #endif // BOXPRIMITIVE_H

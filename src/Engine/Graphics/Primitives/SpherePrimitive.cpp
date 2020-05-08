@@ -33,7 +33,7 @@ namespace CasaEngine
 		// Create rings of vertices at progressively higher latitudes.
 		for (int i = 0; i <= verticalSegments; i++)
 		{
-			float latitude = ((float)i * MATH_PI /
+			float latitude = ((float)i * Pi /
 				(float)verticalSegments) - MATH_PI_DIV_2;
 
 			float dy = sinf(latitude);
@@ -84,4 +84,4 @@ namespace CasaEngine
 
 	}
 
-} // namespace CasaEngine
+}

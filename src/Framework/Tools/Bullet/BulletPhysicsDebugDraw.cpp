@@ -87,4 +87,4 @@ int BulletPhysicsDebugDraw::getDebugMode() const
 	return m_debugMode;
 }
 
-} // namespace CasaEngine
+}

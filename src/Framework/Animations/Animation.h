@@ -1,4 +1,3 @@
-
 #ifndef _ANIMATION_H_
 #define _ANIMATION_H_
 
@@ -15,9 +14,6 @@
 
 namespace CasaEngine
 {
-	/////////////////////////////////////////////////////////////
-	/// Sprite
-	/////////////////////////////////////////////////////////////
 	class CA_EXPORT Animation :
 		public IAssetable,
 		public EventSet
@@ -27,8 +23,9 @@ namespace CasaEngine
 
 		//EventHandler OnEndAnimationReached;
 
-		void Initialize();
+		virtual void Initialize();
 
+		void AddEvent(AnimationEvent* event_);
 		unsigned int ID() const;
 		float TotalTime() const;
 		float CurrentTime() const;
@@ -45,11 +42,6 @@ namespace CasaEngine
 		const Animation& operator = (const Animation& rsh);
 
 		std::vector<AnimationEvent *> m_Events;
-
-#if EDITOR
-	public:
-#endif
-		void AddEvent(AnimationEvent *event_);
 
 	private:
 		unsigned int m_ID;
@@ -76,6 +68,6 @@ namespace CasaEngine
 #endif
 		
 	};
-} // namespace CasaEngine
+}
 
 #endif // _ANIMATION_H_

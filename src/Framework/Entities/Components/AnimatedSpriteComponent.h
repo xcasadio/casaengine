@@ -1,5 +1,5 @@
-#ifndef AnimatedSPRITECOMPONENT_H_
-#define AnimatedSPRITECOMPONENT_H_
+#ifndef ANIMATED_SPRITECOMPONENT_H
+#define ANIMATED_SPRITECOMPONENT_H
 
 #include <string>
 #include <iosfwd>
@@ -20,7 +20,7 @@
 #include "EventHandler/Event.h"
 
 #include "Physics/PhysicsObjectContainer.h"
-#include "CompilationMacro.h"
+
 
 
 namespace CasaEngine
@@ -84,13 +84,13 @@ namespace CasaEngine
 		bool OnFrameChanged(const EventArgs &e);
 		bool OnAnimationFinished(const EventArgs &e);
 
-		void Read (std::ifstream& is) OVERRIDE;
-		void Read (const tinyxml2::XMLElement &el_) OVERRIDE;
+		void Read (std::ifstream& is) override;
+		void Read (const tinyxml2::XMLElement &el_) override;
 
 #if EDITOR
 
-		void Write(tinyxml2::XMLElement &el_) OVERRIDE;
-		void Write(std::ostream& os) OVERRIDE;
+		void Write(tinyxml2::XMLElement &el_) override;
+		void Write(std::ostream& os) override;
 
 #endif
 		
@@ -98,6 +98,4 @@ namespace CasaEngine
 
 }
 
-#endif // AnimatedSPRITECOMPONENT_H_
-
-
+#endif // ANIMATED_SPRITECOMPONENT_H

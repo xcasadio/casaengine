@@ -217,4 +217,4 @@ std::ostream& FuzzyVariable::WriteDOMs(std::ostream& os)
     return os;
 }
 
-} // namespace CasaEngine
+}

@@ -179,5 +179,5 @@ void FzOR::ORwithDOM(float /*val*/)
 	throw CException("<FzOR::ORwithDOM>: invalid context");
 }
 
-} // namespace CasaEngine
+}
 

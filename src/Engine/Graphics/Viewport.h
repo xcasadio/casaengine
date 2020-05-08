@@ -54,6 +54,6 @@ namespace CasaEngine
 		float m_fAspectRatio;		
 	};
 
-}  // namespace CasaEngine
+} 
 
 #endif //_VIEWPORT_H_

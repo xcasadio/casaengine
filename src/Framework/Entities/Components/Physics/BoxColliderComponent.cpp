@@ -83,4 +83,4 @@ void BoxColliderComponent::Read (std::ifstream& /*is*/)
 
 }
 
-} // namespace CasaEngine
+}

@@ -76,6 +76,6 @@ namespace CasaEngine
 		const char *ID() const;
 	};
 
-} // namespace CasaEngine
+}
 
 #endif // BASEENTITYEVENTS_H

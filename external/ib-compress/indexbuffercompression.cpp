@@ -167,23 +167,20 @@ static IBC_INLINE VertexClassification ClassifyVertex( uint32_t vertex, const ui
     {
         return NEW_VERTEX;
     }
-    else
+    int32_t lowestVertexCursor = verticesRead >= VERTEX_FIFO_SIZE ? verticesRead - VERTEX_FIFO_SIZE : 0;
+
+    // Probe backwards in the vertex FIFO for a cached vertex
+    for ( int32_t vertexCursor = verticesRead - 1; vertexCursor >= lowestVertexCursor; --vertexCursor )
     {
-        int32_t lowestVertexCursor = verticesRead >= VERTEX_FIFO_SIZE ? verticesRead - VERTEX_FIFO_SIZE : 0;
+	    if ( vertexFifo[ vertexCursor & VERTEX_FIFO_MASK ] == vertex )
+	    {
+		    cachedVertexIndex = ( verticesRead - 1 ) - vertexCursor;
 
-        // Probe backwards in the vertex FIFO for a cached vertex
-        for ( int32_t vertexCursor = verticesRead - 1; vertexCursor >= lowestVertexCursor; --vertexCursor )
-        {
-            if ( vertexFifo[ vertexCursor & VERTEX_FIFO_MASK ] == vertex )
-            {
-                cachedVertexIndex = ( verticesRead - 1 ) - vertexCursor;
-
-                return CACHED_VERTEX;
-            }
-        }
-
-        return FREE_VERTEX;
+		    return CACHED_VERTEX;
+	    }
     }
+
+    return FREE_VERTEX;
 }
 
 template <typename Ty>
@@ -235,17 +232,17 @@ void CompressTriangleCodes1( const Ty* triangles,
                 spareVertex = 2;
                 break;
             }
-            else if ( edge.second == triangle[ 1 ] && edge.first == triangle[ 2 ] )
+            if ( edge.second == triangle[ 1 ] && edge.first == triangle[ 2 ] )
             {
-                foundEdge   = true;
-                spareVertex = 0;
-                break;
+	            foundEdge   = true;
+	            spareVertex = 0;
+	            break;
             }
-            else if ( edge.second == triangle[ 2 ] && edge.first == triangle[ 0 ] )
+            if ( edge.second == triangle[ 2 ] && edge.first == triangle[ 0 ] )
             {
-                foundEdge   = true;
-                spareVertex = 1;
-                break;
+	            foundEdge   = true;
+	            spareVertex = 1;
+	            break;
             }
         }
 
@@ -650,17 +647,17 @@ void CompressIndiceCodes1( const Ty* triangles,
                 freeVertex = 2;
                 break;
             }
-            else if ( edge.second == triangle[ 1 ] && edge.first == triangle[ 2 ] )
+            if ( edge.second == triangle[ 1 ] && edge.first == triangle[ 2 ] )
             {
-                foundEdge  = true;
-                freeVertex = 0;
-                break;
+	            foundEdge  = true;
+	            freeVertex = 0;
+	            break;
             }
-            else if ( edge.second == triangle[ 2 ] && edge.first == triangle[ 0 ] )
+            if ( edge.second == triangle[ 2 ] && edge.first == triangle[ 0 ] )
             {
-                foundEdge  = true;
-                freeVertex = 1;
-                break;
+	            foundEdge  = true;
+	            freeVertex = 1;
+	            break;
             }
         }
 

@@ -1,6 +1,3 @@
-//==========================================================
-// En-têtes
-//==========================================================
 #include "Base.h"
 
 #include "Sprite/Sprite.h"
@@ -9,71 +6,78 @@
 #include "Maths/Vector2.h"
 #include "Maths/Rectangle.h"
 #include "Graphics/Textures/Texture.h"
+#include "Resources/ResourceManager.h"
 
 
 namespace CasaEngine
 {
 	Sprite::Sprite() :
 		m_pTexture2D(nullptr)
-	{ 
-		
+	{
+
 	}
 
-	Sprite::~Sprite() 
+	Sprite::~Sprite()
 	{
 		Clear();
 	}
 
-	Texture* Sprite::GetTexture2D() const 
-	{ 
-		return m_pTexture2D; 
+	Texture* Sprite::GetTexture2D() const
+	{
+		return m_pTexture2D;
 	}
 
-	CRectangle Sprite::GetPositionInTexture() const 
-	{ 
-		return m_PositionInTexture; 
+	CRectangleI Sprite::GetPositionInTexture() const
+	{
+		return m_PositionInTexture;
 	}
 
-	Vector2I Sprite::GetOrigin() const 
-	{ 
-		return m_Origin; 
+	Vector2I Sprite::GetOrigin() const
+	{
+		return m_Origin;
 	}
 
-	std::string Sprite::GetAssetFileName() const 
-	{ 
-		return m_AssetFileName; 
+	std::string Sprite::GetAssetFileName() const
+	{
+		return m_AssetFileName;
 	}
 
 	void Sprite::Clear()
 	{
-		if (nullptr != m_pTexture2D) DELETE_AO m_pTexture2D;
-
-		for (std::vector<IShape *>::iterator it = m_CollisionShapes.begin();
+		for (std::vector<IShape*>::iterator it = m_CollisionShapes.begin();
 			it != m_CollisionShapes.end();
 			it++)
 		{
-			DELETE_AO *it;
+			DELETE_AO* it;
 		}
 
 		m_CollisionShapes.clear();
 	}
 
 	/**
-	 * 
+	 *
 	 */
-	void Sprite::Read( const tinyxml2::XMLElement& el_ )
+	void Sprite::Read(const tinyxml2::XMLElement& el_)
 	{
 		Clear();
 		IAssetable::Read(el_);
 
-		const tinyxml2::XMLElement *pElem, *pChild;
+		const tinyxml2::XMLElement* pElem, * pChild;
 
 		m_AssetFileName = el_.FirstChildElement("AssetFileName")->GetText();
 		//m_Name = el_->Attribute("name");
 		//m_Name = el_->Attribute("id");
 		SetName(el_.Attribute("id")); // TODO : ID is not the name
 
-		m_pTexture2D = Texture::loadTexture(m_AssetFileName.c_str());
+		Texture* pTexture = ResourceManager::Instance().Get<Texture>(m_AssetFileName.c_str());
+		
+		if (nullptr == pTexture)
+		{
+			pTexture = Texture::loadTexture(m_AssetFileName.c_str());
+			ResourceManager::Instance().Add(m_AssetFileName.c_str(), pTexture);
+		}
+		
+		m_pTexture2D = pTexture;
 
 		pElem = el_.FirstChildElement("PositionInTexture");
 		int x, y, w, h;
@@ -92,68 +96,68 @@ namespace CasaEngine
 
 		while (pChild != nullptr)
 		{
-			IShape *pShape = IShape::LoadShape(*pChild);
+			IShape* pShape = IShape::LoadShape(*pChild);
 			m_CollisionShapes.push_back(pShape);
 			pChild = pChild->NextSiblingElement();
 		}
 	}
 
 	/**
-	 * 
+	 *
 	 */
-	void Sprite::Read( std::ifstream& /*in*/ )
+	void Sprite::Read(std::ifstream& /*in*/)
 	{
-		
+
 	}
 
-//#ifdef EDITOR
+	//#ifdef EDITOR
 
-	void Sprite::SetTexture2D(Texture* val) 
-	{ 
-		m_pTexture2D = val; 
-	}
-
-	void Sprite::SetPositionInTexture(CRectangle val) 
-	{ 
-		m_PositionInTexture = val; 
-	}
-
-	void Sprite::SetOrigin(Vector2I val) 
-	{ 
-		m_Origin = val; 
-	}
-
-	void Sprite::SetAssetFileName(std::string val) 
-	{ 
-		m_AssetFileName = val; 
-	}
-
-	void Sprite::Write( const tinyxml2::XMLElement& /*node_*/ )
+	void Sprite::SetTexture2D(Texture* val)
 	{
-		
+		m_pTexture2D = val;
 	}
 
-	void Sprite::Write( std::ostream& /*os*/ )
+	void Sprite::SetPositionInTexture(CRectangleI val)
 	{
-		
+		m_PositionInTexture = val;
+	}
+
+	void Sprite::SetOrigin(Vector2I val)
+	{
+		m_Origin = val;
+	}
+
+	void Sprite::SetAssetFileName(std::string val)
+	{
+		m_AssetFileName = val;
+	}
+
+	void Sprite::Write(const tinyxml2::XMLElement& /*node_*/)
+	{
+
+	}
+
+	void Sprite::Write(std::ostream& /*os*/)
+	{
+
 	}
 
 	/**
-	 * 
+	 *
 	 */
-	std::vector<IShape *>::iterator Sprite::GetCollisionShapeIterator()
+	std::vector<IShape*>::iterator Sprite::GetCollisionShapeIterator()
 	{
 		return m_CollisionShapes.begin();
 	}
 
 	/**
-	 * 
+	 *
 	 */
-	std::vector<IShape *>::iterator Sprite::GetCollisionShapeIteratorEnd()
+	std::vector<IShape*>::iterator Sprite::GetCollisionShapeIteratorEnd()
 	{
 		return m_CollisionShapes.end();
 	}
 
-//#endif // EDITOR
+	//#endif // EDITOR
 
-} // namespace CasaEngine
+}

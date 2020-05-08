@@ -23,7 +23,7 @@ namespace CasaEngine
 
 		void Initialize();
 		void Update();
-		void OnEvent(sf::Event &event_);
+		void OnEvent(sf::Event& event_);
 
 		bool IsKeyDown(sf::Keyboard::Key KeyCode) const;
 		bool IsKeyJustDown(sf::Keyboard::Key KeyCode) const;
@@ -33,6 +33,12 @@ namespace CasaEngine
 		bool IsJoystickButtonJustDown(unsigned int JoyId, unsigned int Button) const;
 
 		float GetJoystickAxis(unsigned int JoyId, sf::Joystick::Axis Axis) const;
+		float GetJoystickLeftStickX(unsigned int JoyId) const;
+		float GetJoystickLeftStickY(unsigned int JoyId) const;
+		float GetJoystickRightStickX(unsigned int JoyId) const;
+		float GetJoystickRightStickY(unsigned int JoyId) const;
+		float GetJoystickLeftTrigger(unsigned int JoyId) const;
+		float GetJoystickRightTrigger(unsigned int JoyId) const;
 
 		int GetDeltaMouseX() const;
 		int GetDeltaMouseY() const;
@@ -45,7 +51,7 @@ namespace CasaEngine
 		bool IsTouchJustDown(unsigned int index_) const;
 		bool IsTouchUp(unsigned int index_) const;
 		bool IsTouchJustUp(unsigned int index_) const;
-		void TouchPosition(unsigned int index_, float &x, float &y) const;
+		void TouchPosition(unsigned int index_, float& x, float& y) const;
 
 		bool IsTouchMove(unsigned int index_) const;
 		float TouchMoveDeltaX(unsigned int index_) const;
@@ -78,6 +84,6 @@ namespace CasaEngine
 		bool  m_LastTouchDown[2];
 	};
 
-} // namespace CasaEngine
+}
 
 #endif // INPUTMANAGERCOMPONENT_H_

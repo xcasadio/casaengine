@@ -204,6 +204,6 @@ inline void ConstructHumanReadableText(IN const MovementRequestStatus& status, O
 }
 #endif // COMPILE_WITH_MOVEMENT_SYSTEM_DEBUG
 
-} // namespace CasaEngine
+}
 
 #endif // MovementRequest_h

@@ -38,6 +38,6 @@ namespace CasaEngine
 
 		void Update();
 	};
-} // namespace CasaEngine
+}
 
 #endif // DATETIME_H

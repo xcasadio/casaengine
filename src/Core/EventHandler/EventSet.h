@@ -173,7 +173,7 @@ public:
     \internal This is there just to make the syntax a tad easier
     */
     template<typename Arg1, typename Arg2>
-    inline Event::Connection subscribeEvent(const std::string& name, Arg1 arg1, Arg2 arg2)
+    Event::Connection subscribeEvent(const std::string& name, Arg1 arg1, Arg2 arg2)
     {
         return subscribeEvent(name, Event::Subscriber(arg1, arg2));
     }
@@ -184,7 +184,7 @@ public:
     \internal This is there just to make the syntax a tad easier
     */
     template<typename Arg1, typename Arg2>
-    inline Event::Connection subscribeEvent(const std::string& name, Event::Group group, Arg1 arg1, Arg2 arg2)
+    Event::Connection subscribeEvent(const std::string& name, Event::Group group, Arg1 arg1, Arg2 arg2)
     {
         return subscribeEvent(name, group, Event::Subscriber(arg1, arg2));
     }

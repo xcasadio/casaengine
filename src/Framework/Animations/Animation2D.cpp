@@ -32,7 +32,6 @@ namespace CasaEngine
 	 */
 	Animation2D::Animation2D(const Animation2D& rsh)
 	{
-		addEvent(FrameChangeEvent::GetEventName());
 		*this = rsh;
 	}
 
@@ -41,6 +40,7 @@ namespace CasaEngine
 	 */
 	const Animation2D& Animation2D::operator = (const Animation2D& rsh)
 	{
+		addEvent(FrameChangeEvent::GetEventName());
 		this->Animation::operator=(rsh);
 		this->m_Animation2DType = rsh.m_Animation2DType;
 
@@ -55,12 +55,31 @@ namespace CasaEngine
 
 	}
 
+	Animation2D* Animation2D::Copy()
+	{
+			return NEW_AO Animation2D(*this);
+	}
+
+	void Animation2D::Initialize()
+	{
+		Animation::Initialize();
+		Reset();
+	}
+
 	/**
 	 * 
 	 */
 	Animation2DType::TAnimation2DType Animation2D::Animation2DType() const
 	{ 
 		return m_Animation2DType; 
+	}
+
+	/**
+	 *
+	 */
+	void Animation2D::SetType(Animation2DType::TAnimation2DType val)
+	{
+		m_Animation2DType = val;
 	}
 
 	/**
@@ -147,16 +166,6 @@ namespace CasaEngine
 	/**
 	 * 
 	 */
-	void Animation2D::SetType(Animation2DType::TAnimation2DType val) 
-	{ 
-		m_Animation2DType = val; 
-	}
-
-
-
-	/**
-	 * 
-	 */
 	void Animation2D::Write( tinyxml2::XMLElement& el_ )
 	{
 
@@ -172,4 +181,4 @@ namespace CasaEngine
 
 #endif
 
-} // namespace CasaEngine
+}

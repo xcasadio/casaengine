@@ -1,5 +1,4 @@
 #include "Base.h"
-#include "ocornut-imgui/imgui.h"
 #include "bgfx.h"
 
 #include "DisplayDebugInfo.h"
@@ -38,9 +37,9 @@ namespace CasaEngine
 	void DisplayDebugInfo::Initialize() 
 	{ 
 		bgfx::setViewName(1, "DisplayDebugInfo");
-		bgfx::setViewSeq(1, true);
+		//bgfx::setView(1, true);
 		
-		m_pProgram = Program::loadProgram("vs_3Dlines", "fs_3Dlines");
+		m_pProgram = NEW_AO Program("vs_3Dlines", "fs_3Dlines");
 
 		m_Vertices[0].Position = Vector3F::Zero();  m_Vertices[0].Color = CColor::Red.ToABGR();
 		m_Vertices[1].Position = Vector3F::UnitX(); m_Vertices[1].Color = CColor::Red.ToABGR();
@@ -49,22 +48,16 @@ namespace CasaEngine
 		m_Vertices[4].Position = Vector3F::Zero();  m_Vertices[4].Color = CColor::Blue.ToABGR();
 		m_Vertices[5].Position = Vector3F::UnitZ(); m_Vertices[5].Color = CColor::Blue.ToABGR();
 
-		m_VertexBuffer = bgfx::createVertexBuffer(
-			bgfx::makeRef(m_Vertices, 6 * sizeof(VertexPositionColor)), 
-			VertexPositionColor::ms_decl);
+		m_VertexBuffer = bgfx::createVertexBuffer(bgfx::makeRef(m_Vertices, 6 * sizeof(VertexPositionColor)), VertexPositionColor::ms_layout);
 	}
 
 	/**
 	 * 
 	 */
 	void DisplayDebugInfo::Release() 
-	{ 
-		if (m_pProgram != nullptr)
-		{
-			DELETE_AO m_pProgram;
-		}
-
-		bgfx::destroyVertexBuffer(m_VertexBuffer);
+	{
+		DELETE_AO m_pProgram;
+		bgfx::destroy(m_VertexBuffer);
 	}
 
 	/**
@@ -109,13 +102,13 @@ namespace CasaEngine
 
 		Matrix4 matProj, matWorld;
 
-		//matWorld.CreateRotationZ(0.5f * MATH_PI);
+		//matWorld.CreateRotationZ(0.5f * Pi);
 		//matWorld.CreateTranslation(0.0f, 0.0f, -1.0f);
 		//matWorld.CreateScale(1.0f / (float)CA_DEFAULT_WIDTH, 1.0f / (float)CA_DEFAULT_HEIGHT, 1.0f);
 		//matWorld.CreateScale(0.989f, 1.0f, 1.0f);
 		Vector3F scale(0.989f, 1.0f, 1.0f);
 		Quaternion rot;
-		rot.FromAxisAngle(Vector3F::UnitZ(), 0.5f * MATH_PI);
+		rot.FromAxisAngle(Vector3F::UnitZ(), 0.5f * Pi);
 		matWorld.Transformation(
 			nullptr, nullptr, 
 			&scale,
@@ -137,8 +130,8 @@ namespace CasaEngine
 		bgfx::setViewRect(1, 0, 0, Game::Instance()->GetWindow()->getSize().x, Game::Instance()->GetWindow()->getSize().y);
 		bgfx::setTransform(matWorld);
 
-		bgfx::setVertexBuffer(vertexHandle_);
-		bgfx::setState(BGFX_STATE_RGB_WRITE	| BGFX_STATE_MSAA | BGFX_STATE_PT_LINES);
+		bgfx::setVertexBuffer(0, vertexHandle_);
+		bgfx::setState(BGFX_STATE_WRITE_RGB	| BGFX_STATE_MSAA | BGFX_STATE_PT_LINES);
 		bgfx::submit(1, programhandle_);
 	}
 
@@ -147,6 +140,7 @@ namespace CasaEngine
 	 */
 	void ShowFPS()
 	{
+		/*
 		ImGui::SetNextWindowPos(ImVec2(10,10));
 		if (!ImGui::Begin("FPS", nullptr, ImVec2(0,0), 0.3f, ImGuiWindowFlags_NoTitleBar|ImGuiWindowFlags_NoResize|ImGuiWindowFlags_NoMove|ImGuiWindowFlags_NoSavedSettings))
 		{
@@ -157,6 +151,7 @@ namespace CasaEngine
 		// 			ImGui::Separator();
 		ImGui::Text("FPS: %d", Game::Instance()->GetDebugSystem().GetFPS());
 		ImGui::End();
+		*/
 	}
 
 	/**
@@ -164,6 +159,7 @@ namespace CasaEngine
 	 */
 	void ShowDebugWindow()
 	{
+		/*
 		ImGui::SetNextWindowSize(ImVec2(500, 440), ImGuiSetCond_FirstUseEver);
 
 		if (ImGui::Begin("Debug window"))
@@ -224,6 +220,7 @@ namespace CasaEngine
 		}
 
 		ImGui::End();
+		*/
 	}
 
 	/**
@@ -241,4 +238,4 @@ namespace CasaEngine
 		}
 	}
 
-} // namespace CasaEngine
+}

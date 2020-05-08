@@ -72,4 +72,4 @@ void Animation2DPlayer::Advance(float elapsedTime_)
 
 }
 
-} // namespace CasaEngine
+}

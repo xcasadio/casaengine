@@ -40,6 +40,6 @@ namespace CasaEngine
 	private:
 	};
 
-} // namespace CasaEngine
+}
 
 #endif // IPHYSICSWORLD_H_

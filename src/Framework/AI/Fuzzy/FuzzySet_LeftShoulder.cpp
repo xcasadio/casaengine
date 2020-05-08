@@ -38,4 +38,4 @@ float FuzzySet_LeftShoulder::CalculateDOM(float val)const
 
 }
 
-} // namespace CasaEngine
+}

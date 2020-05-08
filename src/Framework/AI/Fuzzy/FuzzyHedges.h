@@ -71,6 +71,6 @@ public:
   void ORwithDOM(float val){m_Set.ORwithDOM(sqrt(val));}
 };
 
-} // namespace CasaEngine
+}
 
 #endif

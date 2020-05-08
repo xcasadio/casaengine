@@ -188,6 +188,6 @@ void  Goal_Composite<entity_type>::Render()
   }
 }
 
-} // namespace CasaEngine
+}
 
 #endif

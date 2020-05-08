@@ -18,6 +18,6 @@ enum
     invalid_node_index    = -1
   };
   
-} // namespace CasaEngine
+}
 
 #endif

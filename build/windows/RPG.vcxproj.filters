@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\..\examples\04-scene-2d\main.cpp" />
+    <ClCompile Include="..\..\examples\04-scene-2d\scene2DGame.cpp" />
+    <ClCompile Include="..\..\examples\04-scene-2d\Character.cpp" />
+    <ClCompile Include="..\..\examples\04-scene-2d\EnemyStates.cpp" />
+    <ClCompile Include="..\..\examples\04-scene-2d\Hero.cpp" />
+    <ClCompile Include="..\..\examples\04-scene-2d\IController.cpp" />
+    <ClCompile Include="..\..\examples\04-scene-2d\PlayerController.cpp" />
+    <ClCompile Include="..\..\examples\04-scene-2d\PlayerStates.cpp" />
+    <ClCompile Include="..\..\examples\04-scene-2d\ScriptObjectFactory.cpp" />
+    <ClCompile Include="..\..\examples\04-scene-2d\ScriptPlayer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\examples\04-scene-2d\scene2DGame.h" />
+    <ClInclude Include="..\..\examples\04-scene-2d\Character.h" />
+    <ClInclude Include="..\..\examples\04-scene-2d\CharacterEnum.h" />
+    <ClInclude Include="..\..\examples\04-scene-2d\CustomComponentType.h" />
+    <ClInclude Include="..\..\examples\04-scene-2d\EnemyStates.h" />
+    <ClInclude Include="..\..\examples\04-scene-2d\Hero.h" />
+    <ClInclude Include="..\..\examples\04-scene-2d\IController.h" />
+    <ClInclude Include="..\..\examples\04-scene-2d\MessageType.h" />
+    <ClInclude Include="..\..\examples\04-scene-2d\PlayerController.h" />
+    <ClInclude Include="..\..\examples\04-scene-2d\PlayerStates.h" />
+    <ClInclude Include="..\..\examples\04-scene-2d\ScriptObjectFactory.h" />
+    <ClInclude Include="..\..\examples\04-scene-2d\ScriptPlayer.h" />
+  </ItemGroup>
+</Project>

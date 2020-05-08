@@ -25,6 +25,6 @@ namespace CasaEngine
 		int m_iFPS;
 	};
 
-} // namespace CasaEngine
+}
 
 #endif // DEBUGTOOLEVENTS_H

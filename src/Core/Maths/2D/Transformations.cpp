@@ -233,4 +233,4 @@ namespace CasaEngine
 		return whiskers;
 	}
 
-} // namespace CasaEngine
+}

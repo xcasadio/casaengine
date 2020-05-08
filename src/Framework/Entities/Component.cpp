@@ -99,4 +99,4 @@ void Component::Write(std::ostream& os)
 	CA_UNUSED_1(os)
 }
 
-} // namespace CasaEngine
+}

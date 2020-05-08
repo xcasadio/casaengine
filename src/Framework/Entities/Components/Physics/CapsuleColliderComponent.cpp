@@ -77,4 +77,4 @@ void CapsuleColliderComponent::Read (std::ifstream& /*is*/)
 
 }
 
-} // namespace CasaEngine
+}

@@ -34,6 +34,6 @@ private:
 	BaseEntity *m_pEntity;
 };
 
-} // namespace CasaEngine
+}
 
 #endif // ISCRIPTOBJECT_H_

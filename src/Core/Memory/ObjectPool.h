@@ -42,6 +42,6 @@ namespace CasaEngine
 
 	#include "ObjectPool.inl"
 
-} // namespace CasaEngine
+}
 
 #endif // _OBJECTPOOL_H_

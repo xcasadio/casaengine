@@ -45,6 +45,6 @@ public:
 	FactoryName auto_gamedata_instance_##FactoryName; \
 	AutoRegisterGameDataFactory autoreg_gamedata_##FactoryName(&auto_gamedata_instance_##FactoryName, #FactoryName, __FILE__, __LINE__ );
 
-} // namespace CasaEngine
+}
 
 #endif // IGAMEDATAFACTORY_H_

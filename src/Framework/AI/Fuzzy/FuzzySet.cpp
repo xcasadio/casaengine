@@ -31,4 +31,4 @@ namespace CasaEngine
     m_fDOM = val;
   }
 
-} // namespace CasaEngine
+}

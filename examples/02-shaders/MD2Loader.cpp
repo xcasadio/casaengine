@@ -91,7 +91,7 @@ Mesh* CMD2Loader::LoadFromFile(CasaEngine::IFile *pFile_)
 
 	Mesh *pModel = NEW_AO Mesh(pVerts, (int)Vertices.size(), pIndices, (int)Indices.size());
 	Material *pMaterial = pModel->GetMaterial()->Clone();	
-	pMaterial->Texture0(Texture::loadTexture(Textures[0].Name, BGFX_TEXTURE_MIN_ANISOTROPIC | BGFX_TEXTURE_MAG_ANISOTROPIC));
+	pMaterial->Texture0(Texture::loadTexture(Textures[0].Name, BGFX_SAMPLER_MIN_ANISOTROPIC | BGFX_SAMPLER_MAG_ANISOTROPIC));
 	pModel->SetMaterial(pMaterial);
 
 // 	Texture* pTexture = ResourceManager::Instance().Get<Texture>(Textures[0].Name);

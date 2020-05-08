@@ -35,6 +35,6 @@ namespace CasaEngine
 		virtual IPhysicsWorld* CreateWorld() const = 0;
 	};
 
-} // namespace CasaEngine
+}
 
 #endif // IPHYSICSENGINE_H_

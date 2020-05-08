@@ -11,6 +11,7 @@
 #include "Maths/Matrix4.h"
 #include "Graphics/Textures/Texture.h"
 #include "bgfx.h"
+#include "Shader.h"
 
 namespace CasaEngine
 {
@@ -21,12 +22,6 @@ namespace CasaEngine
 		public AllocatedObject<Program>
     {
     public :
-
-		/**
-		 * 
-		 */
-		static Program *loadProgram(const char* _vsName, const char* _fsName);
-
         /**
          * 
          */
@@ -63,7 +58,8 @@ namespace CasaEngine
 		static void SetParameter(const char *pName, const Texture* Value);
 		
 	public:
-		
+        Program(const char* _vsName, const char* _fsName);
+
 		/**
          * 
          */
@@ -80,11 +76,11 @@ namespace CasaEngine
 		bgfx::ProgramHandle Handle() const;
 		
     private :
-
 		bgfx::ProgramHandle m_Handle;
+        Shader *m_pVs, *m_pFs;
 	};
 
-} // namespace CasaEngine
+}
 
 
 #endif // PROGRAM_H

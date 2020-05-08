@@ -1,7 +1,5 @@
 ﻿#include "Console.h"
 #include <string>
-#include "ocornut-imgui\imgui.h"
-#include "imgui\bgfx_imgui.h"
 #include "Game\Game.h"
 
 namespace CasaEngine
@@ -76,14 +74,12 @@ namespace CasaEngine
 		//ScrollToBottom = true;
 	}
 
-	/**
-	 * 
-	 */
+	/*
 	static int TextEditCallback(ImGuiTextEditCallbackData* data)
 	{ 
 		Console* console = (Console*)data->UserData;
-		return 0;/*console->TextEditCallback(data)*/; 
-	}
+		return 0;//console->TextEditCallback(data); 
+	}*/
 
 	/**
 	 * 
@@ -97,7 +93,7 @@ namespace CasaEngine
 
 		int winWidth = Game::Instance()->GetWindow()->getSize().x;
 		int winHeight = Game::Instance()->GetWindow()->getSize().y;
-
+		/*
 		ImGui::SetNextWindowSize(ImVec2(winWidth - 100, winHeight - 100), ImGuiSetCond_FirstUseEver);
 		if (!ImGui::Begin("Console"))
 		{
@@ -153,6 +149,7 @@ namespace CasaEngine
 			ImGui::SetKeyboardFocusHere(-1); // Auto focus
 
 		ImGui::End();
+		*/
 	}
 
 	/**
@@ -312,4 +309,4 @@ namespace CasaEngine
 		}
 	}
 
-} // namespace CasaEngine
+}

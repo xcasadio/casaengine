@@ -15,10 +15,7 @@
 
 namespace CasaEngine
 {
-	/////////////////////////////////////////////////////////////
-	/// Sprite
-	/////////////////////////////////////////////////////////////
-	class CA_EXPORT Sprite : 
+	class CA_EXPORT Sprite :
 		public IAssetable
 	{
 	public:
@@ -27,38 +24,38 @@ namespace CasaEngine
 
 		//std::string GetName() const;
 		Texture* GetTexture2D() const;
-		CRectangle GetPositionInTexture() const;	
+		CRectangleI GetPositionInTexture() const;
 		Vector2I GetOrigin() const;
 		std::string GetAssetFileName() const;
 		void Clear();
 
-		std::vector<IShape *>::iterator GetCollisionShapeIterator();
-		std::vector<IShape *>::iterator GetCollisionShapeIteratorEnd();
+		std::vector<IShape*>::iterator GetCollisionShapeIterator();
+		std::vector<IShape*>::iterator GetCollisionShapeIteratorEnd();
 
-		virtual void Read( const tinyxml2::XMLElement& node_ );
-		virtual void Read( std::ifstream& in );
-		virtual void Write( const tinyxml2::XMLElement& node_ );
-		virtual void Write( std::ostream& os );
+		virtual void Read(const tinyxml2::XMLElement& node_);
+		virtual void Read(std::ifstream& in);
+		virtual void Write(const tinyxml2::XMLElement& node_);
+		virtual void Write(std::ostream& os);
 
-//#if EDITOR
-		//void SetName(std::string val);
-		void SetTexture2D(Texture *val);
-		void SetPositionInTexture(CRectangle val);
+		//#if EDITOR
+				//void SetName(std::string val);
+		void SetTexture2D(Texture* val);
+		void SetPositionInTexture(CRectangleI val);
 		void SetOrigin(Vector2I val);
 		void SetAssetFileName(std::string val);
-//#endif // EDITOR
+		//#endif // EDITOR
 
 	private:
 		//ID
 		//std::string m_Name;
 		//constant
-		Texture* m_pTexture2D;		
-		CRectangle m_PositionInTexture;		
-		Vector2I m_Origin;		
-		std::vector<IShape *> m_CollisionShapes;
+		Texture* m_pTexture2D;
+		CRectangleI m_PositionInTexture;
+		Vector2I m_Origin;
+		std::vector<IShape*> m_CollisionShapes;
 		//std::vector<Vector2I> m_Sockets;
 		std::string m_AssetFileName;
 	};
-} // namespace CasaEngine
+}
 
 #endif // _SPRITE_H_

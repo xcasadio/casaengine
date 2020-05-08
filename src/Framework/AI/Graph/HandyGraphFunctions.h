@@ -334,6 +334,6 @@ float GetCostliestGraphEdge(const graph_type& G)
   return greatest;
 }
 
-} // namespace CasaEngine
+}
 
 #endif

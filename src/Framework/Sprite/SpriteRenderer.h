@@ -42,6 +42,8 @@ namespace CasaEngine
 			VertexPositionColorTexture BottomLeft;
 			VertexPositionColorTexture BottomRight;
 			const Texture *Texture;
+
+			Matrix4 transform;
 		};
 
 		/// Use to draw several sprites with the same texture
@@ -51,6 +53,7 @@ namespace CasaEngine
 		{
 		public:
 			const Texture *Texture;
+			//const Tra* Texture;
 			int NbSprite;
 		};
 
@@ -59,47 +62,35 @@ namespace CasaEngine
 		~SpriteRenderer();
 
 		void Initialize();
-
-		/// The Sprite list is clear during Update
-		/// @remark Must be call at the beginning of the frame (before another Update())
-		/// else the sprites added before will be removed
-		/// 
-		/// @param[in]: CGameTime & gametime_
-		/// 
-		/// @return void
 		void Update(const GameTime& gametime_);
 		void Draw();
 
-		/*
-		 *	
-		 */
+		void AddSprite(const Sprite* sprite, const Matrix4& transform, const CColor& color_, float z_order, eSpriteEffects effects_ = eSpriteEffects::SPRITE_EFFECT_NONE);
+		void AddSprite(const Texture* tex_, const CRectangleI& posInTex, const Matrix4& transform, const CColor& color_, float z_order, 
+			eSpriteEffects effects_ = eSpriteEffects::SPRITE_EFFECT_NONE);
 		void AddSprite(const Texture *tex_, 
-			const CRectangle &src_, const Vector2I &origin, const Vector2F &pos_, 
-			float rot_, const Vector2F &scale_, const CColor &color_, float ZOrder_, eSpriteEffects effects_);
-
-		/*
-		 *	
-		 */
+			const CRectangleI &posInTex, const Vector2I &origin, const Vector2F &pos_,
+			float rot_, const Vector2F &scale_, const CColor &color_, float ZOrder_, eSpriteEffects effects_ = eSpriteEffects::SPRITE_EFFECT_NONE);
 		void AddSprite(Sprite* pSprite_, const Vector2F &pos_, 
-			float rot_, const Vector2F &scale_, const CColor &color_, float ZOrder_, eSpriteEffects effects_);
+			float rot_, const Vector2F &scale_, const CColor &color_, float ZOrder_, eSpriteEffects effects_ = eSpriteEffects::SPRITE_EFFECT_NONE);
+		void AddSprite(Sprite* pSprite_, const Vector2F& pos_,
+				float rot_, const CColor& color_, float ZOrder_, eSpriteEffects effects_ = eSpriteEffects::SPRITE_EFFECT_NONE);
 
 	private:
-		void Clear();
 		void UpdateBuffer();
-
+		
 	private:
 		std::vector<SpriteDisplayData> m_SpriteDatas;
 		std::vector<SpriteBatch> m_SpriteBatches;
 
 		int m_MaxSprite;
 
-		bgfx::ProgramHandle m_Program;
+		bgfx::UniformHandle m_texColor;
+		Program *m_Program;
 		bgfx::DynamicVertexBufferHandle m_VertexBuffer;
 		bgfx::IndexBufferHandle m_IndexBuffer;
 		VertexPositionColorTexture *m_pDatas;
-
-		unsigned int m_NbElt;
 	};
-} // namespace CasaEngine
+}
 
 #endif //_SPRITERENDERER_H_

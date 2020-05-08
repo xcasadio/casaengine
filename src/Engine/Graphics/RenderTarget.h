@@ -25,12 +25,12 @@ namespace CasaEngine
 		/**
 		 * 
 		 */
-		CRectangle GetArea() const;
+		CRectangleI GetArea() const;
 
 		/**
 		 * 
 		 */
-		void SetArea(const CRectangle& val);
+		void SetArea(const CRectangleI& val);
 
 		/**
 		 * 
@@ -59,9 +59,9 @@ namespace CasaEngine
 
 	protected:
 		///< Size of the RenderTarget
-		CRectangle m_Area;
+		CRectangleI m_Area;
 	};
 
-}  // namespace CasaEngine
+} 
 
 #endif //_RENDERTARGET_H_

@@ -353,7 +353,7 @@ namespace CasaEngine
 		static const CColor MenuHighlight;
     };
 
-} // namespace CasaEngine
+}
 
 
 #endif // COLOR_H

@@ -80,6 +80,6 @@ float FuzzySet_Triangle::CalculateDOM(float val)
 
 }
 
-} // namespace CasaEngine
+}
 
 #endif

@@ -89,7 +89,7 @@ namespace CasaEngine
         int         m_RefCount; ///< Compteur de références
     };
 
-} // namespace CasaEngine
+}
 
 
 #endif // RESOURCE_H

@@ -66,6 +66,6 @@ namespace CasaEngine
 		void Read (std::ifstream& is);
 
 	};// class MovingEntity2DComponent
-} // namespace CasaEngine
+}
 
 #endif // MOVING_ENTITY_2D_COMPONENT_H_

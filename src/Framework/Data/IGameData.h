@@ -7,7 +7,7 @@
 #include "Parsers/Xml/tinyxml2.h"
 
 #include "Assets/Assetable.h"
-#include "CompilationMacro.h"
+
 
 namespace CasaEngine
 {
@@ -23,15 +23,15 @@ namespace CasaEngine
 		IGameData();
 		virtual ~IGameData();
 		
-		virtual void Read (const tinyxml2::XMLElement& xmlElt) OVERRIDE;
-		virtual void Read (std::ifstream& is) OVERRIDE;
-		virtual void Write(tinyxml2::XMLElement& xmlElt) OVERRIDE;
-		virtual void Write(std::ostream&  os) OVERRIDE;
+		virtual void Read (const tinyxml2::XMLElement& xmlElt) override;
+		virtual void Read (std::ifstream& is) override;
+		virtual void Write(tinyxml2::XMLElement& xmlElt) override;
+		virtual void Write(std::ostream&  os) override;
 
 	private:
 		
 	};
 
-} // namespace CasaEngine
+}
 
 #endif // IGAMEDATA_H_

@@ -72,6 +72,6 @@ namespace CasaEngine
 		//bgfx::ProgramHandle m_pEffect;
 	};
 
-} // namespace CasaEngine
+}
 
 #endif // _LINE2DRENDERERCOMPONENT_H_

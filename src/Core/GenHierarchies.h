@@ -66,7 +66,7 @@ namespace CasaEngine
     {
     };
 
-} // namespace CasaEngine
+}
 
 
 #endif // GENHIERARCHIES_H

@@ -31,7 +31,8 @@ namespace CasaEngine
 		//using the MessageDispatcher singleton class
 		//void HandleEvent(const Event* pEvent_);
 		 
-		virtual Matrix4 ViewMatrix(Matrix4 &viewMatrix_) = 0;
+		virtual void ViewMatrix(Matrix4& viewMatrix_) = 0;
+		virtual void ProjectionMatrix(Matrix4& projectionMatrix_) = 0;
 
 		virtual void Write(std::ostream&  os);
 		virtual void Read (std::ifstream& is);
@@ -40,7 +41,6 @@ namespace CasaEngine
 	
 	protected:
 		ICameraController(CameraComponent* pCamera);
-
 		CameraComponent* Camera() const;
 		
 	private:

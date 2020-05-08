@@ -4,24 +4,17 @@
 #include "CA_Export.h"
 
 #include "Resources/Resource.h"
-
-
 #include "Graphics/Textures/Texture.h"
-
 #include "Maths/Vector2.h"
 #include "Maths/Vector3.h"
 #include "Graphics/Materials/Material.h"
-
 #include "Graphics/Vertices/VertexType.h"
-#include "bgfx.h"
 #include "Maths/Matrix4.h"
 
+#include "bgfx.h"
 
 namespace CasaEngine
 {
-    ////////////////////////////////////////////////////////////
-    /// Classe manipulant les modèles
-    ////////////////////////////////////////////////////////////
     class CA_EXPORT Mesh :
 		public IResource
     {
@@ -65,7 +58,7 @@ namespace CasaEngine
 
 	};
 
-} // namespace CasaEngine
+}
 
 
 #endif // MESH_H

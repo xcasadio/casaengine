@@ -1,4 +1,3 @@
-
 #ifndef MATH_H_
 #define MATH_H_
 
@@ -8,52 +7,42 @@
 
 namespace CasaEngine
 {
+	constexpr float kPi = 3.1415926535897932384626433832795f;
+	constexpr float Pi = 3.141592654f;
+	constexpr float MATH_2PI = 6.283185307f;
+	constexpr float MATH_1_DIV_PI = 0.318309886f;
+	constexpr float MATH_1_DIV_2PI = 0.159154943f;
+	constexpr float MATH_PI_DIV_2 = 1.570796327f;
+	constexpr float MATH_PI_DIV_4 = 0.785398163f;
 
-//===========================================================================
-// General purpose utilities
-//===========================================================================
-#define MATH_PI				3.141592654f
-#define MATH_2PI			6.283185307f
-#define MATH_1_DIV_PI		0.318309886f
-#define MATH_1_DIV_2PI		0.159154943f
-#define MATH_PI_DIV_2		1.570796327f
-#define MATH_PI_DIV_4		0.785398163f
+	constexpr float Epsilon = 4.8875809e-4f;  // smallest such that 1.0 + epsilon != 1.0
 
-#define MATH_ToRadian( degree ) ((degree) * (MATH_PI / 180.0f))
-#define MATH_ToDegree( radian ) ((radian) * (180.0f / MATH_PI))
-
-//===========================================================================
-// 16 bit floating point numbers
-//===========================================================================
-
-#define MATH_16F_DIG          3                // # of decimal digits of precision
-#define MATH_16F_EPSILON      4.8875809e-4f    // smallest such that 1.0 + epsilon != 1.0
-#define MATH_16F_MANT_DIG     11               // # of bits in mantissa
-#define MATH_16F_MAX          6.550400e+004    // max value
-#define MATH_16F_MAX_10_EXP   4                // max decimal exponent
-#define MATH_16F_MAX_EXP      15               // max binary exponent
-#define MATH_16F_MIN          6.1035156e-5f    // min positive value
-#define MATH_16F_MIN_10_EXP   (-4)             // min decimal exponent
-#define MATH_16F_MIN_EXP      (-14)            // min binary exponent
-#define MATH_16F_RADIX        2                // exponent radix
-#define MATH_16F_ROUNDS       1                // addition rounding: near
+	constexpr int     MinInt = (std::numeric_limits<int>::min)();
+	constexpr int     MaxInt = (std::numeric_limits<int>::max)();
+	constexpr unsigned int MinUInt = (std::numeric_limits<unsigned int>::min)();
+	constexpr unsigned int MaxUInt = (std::numeric_limits<unsigned int>::max)();
+	constexpr double  MaxDouble = (std::numeric_limits<double>::max)();
+	constexpr double  MinDouble = (std::numeric_limits<double>::min)();
+	constexpr float   MaxFloat = (std::numeric_limits<float>::max)();
+	constexpr float   MinFloat = (std::numeric_limits<float>::min)();
 
 
-	const int     MinInt    = (std::numeric_limits<int>::min)();
-	const int     MaxInt    = (std::numeric_limits<int>::max)();
-	const int     MinUInt    = (std::numeric_limits<unsigned int>::min)();
-	const int     MaxUInt    = (std::numeric_limits<unsigned int>::max)();
-	const double  MaxDouble = (std::numeric_limits<double>::max)();
-	const double  MinDouble = (std::numeric_limits<double>::min)();
-	const float   MaxFloat  = (std::numeric_limits<float>::max)();
-	const float   MinFloat  = (std::numeric_limits<float>::min)();
+	inline float ToRadian(float degree)
+	{
+		return degree * (Pi / 180.0f);
+	}
+
+	inline float ToDegree(float radian)
+	{
+		return radian * (180.0f / Pi);
+	}
 
 	/**
 	 * returns true if the parameter is equal to zero
 	 */
 	inline bool IsZero(double val)
 	{
-		return ( (-MinDouble < val) && (val < MinDouble) );
+		return -MinDouble < val&& val < MinDouble;
 	}
 
 	/**
@@ -61,7 +50,7 @@ namespace CasaEngine
 	 */
 	inline bool IsZero(float val)
 	{
-		return ( (-MinFloat < val) && (val < MinFloat) );
+		return -MinFloat < val&& val < MinFloat;
 	}
 
 	/**
@@ -72,15 +61,11 @@ namespace CasaEngine
 	{
 		if (start < end)
 		{
-			if ( (val > start) && (val < end) ) return true;
-			else return false;
+			if (val > start && val < end) return true;
+			return false;
 		}
-
-		else
-		{
-			if ( (val < start) && (val > end) ) return true;
-			else return false;
-		}
+		if (val < start && val > end) return true;
+		return false;
 	}
 
 	/**
@@ -91,23 +76,19 @@ namespace CasaEngine
 	{
 		if (start < end)
 		{
-			if ( (val > start) && (val < end) ) return true;
-			else return false;
+			if (val > start && val < end) return true;
+			return false;
 		}
-
-		else
-		{
-			if ( (val < start) && (val > end) ) return true;
-			else return false;
-		}
-	}	
+		if (val < start && val > end) return true;
+		return false;
+	}
 
 	/**
 	 *
 	 */
 	inline double Sigmoid(double input, double response)
 	{
-		return ( 1.0 / ( 1.0 + exp(-input / response)));
+		return 1.0 / (1.0 + exp(-input / response));
 	}
 
 	/**
@@ -115,7 +96,7 @@ namespace CasaEngine
 	 */
 	inline float Sigmoid(float input, float response)
 	{
-		return ( 1.0f / ( 1.0f + exp(-input / response)));
+		return 1.0f / (1.0f + exp(-input / response));
 	}
 
 	//rounds a double up or down depending on its value
@@ -128,11 +109,7 @@ namespace CasaEngine
 		{
 			return integral;
 		}
-
-		else
-		{
-			return integral + 1;
-		}
+		return integral + 1;
 	}
 
 	//rounds a double up or down depending on its value
@@ -145,11 +122,7 @@ namespace CasaEngine
 		{
 			return integral;
 		}
-
-		else
-		{
-			return integral + 1;
-		}
+		return integral + 1;
 	}
 
 	//rounds a double up or down depending on whether its 
@@ -163,11 +136,7 @@ namespace CasaEngine
 		{
 			return integral;
 		}
-
-		else
-		{
-			return integral + 1;
-		}
+		return integral + 1;
 	}
 
 	//rounds a double up or down depending on whether its 
@@ -181,17 +150,13 @@ namespace CasaEngine
 		{
 			return integral;
 		}
-
-		else
-		{
-			return integral + 1;
-		}
+		return integral + 1;
 	}
 
 	//compares two real numbers. Returns true if they are equal
 	inline bool isEqual(float a, float b)
 	{
-		if (fabs(a-b) < 1E-12)
+		if (fabs(a - b) < 1E-12)
 		{
 			return true;
 		}
@@ -201,7 +166,7 @@ namespace CasaEngine
 
 	inline bool isEqual(double a, double b)
 	{
-		if (fabs(a-b) < 1E-12)
+		if (fabs(a - b) < 1E-12)
 		{
 			return true;
 		}
@@ -262,6 +227,22 @@ namespace CasaEngine
 		return (a < 0) ? -1 : 1;
 	}
 
-} // namespace CasaEngine
+	inline unsigned int NearestPowerOfTwo(unsigned int Value)
+	{
+		unsigned int Temp = Value;
+		unsigned int PowerOfTwo = 0;
+
+		while (Temp > 1)
+		{
+			Temp >>= 1;
+			++PowerOfTwo;
+		}
+
+		unsigned int Retval = 1 << PowerOfTwo;
+
+		return Retval == Value ? Retval : Retval << 1;
+	}
+
+}
 
 #endif // MATH_H_

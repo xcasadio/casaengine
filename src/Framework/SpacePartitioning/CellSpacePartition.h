@@ -300,6 +300,6 @@ namespace CasaEngine
 		}
 	}
 
-} // namespace CasaEngine
+}
 
 #endif

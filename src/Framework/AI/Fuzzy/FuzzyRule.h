@@ -55,6 +55,6 @@ public:
   }
 };
 
-} // namespace CasaEngine
+}
 
 #endif

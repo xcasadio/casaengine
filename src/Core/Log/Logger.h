@@ -1,7 +1,5 @@
-
 #ifndef LOGGER_H
 #define LOGGER_H
-
 
 #include <sstream>
 #include <string>
@@ -14,18 +12,13 @@
 
 namespace CasaEngine
 {
-    /**
-     * Logger mother class
-     */
-    class CA_EXPORT ILogger : 
+	class CA_EXPORT ILogger :
 		public AllocatedObject<ILogger>
-    {
-    public :
-        virtual ~ILogger();
+	{
+	public:
+		virtual ~ILogger();
 		virtual void Write(TLogVerbosity verbose_, const std::string& Message) = 0;
-    };
-
-} // namespace CasaEngine
-
+	};
+}
 
 #endif // LOGGER_H

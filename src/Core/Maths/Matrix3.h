@@ -160,7 +160,7 @@ namespace CasaEngine
     std::istream& operator >>(std::istream& Stream, Matrix3& Mat);
     std::ostream& operator <<(std::ostream& Stream, const Matrix3& Mat);
 
-} // namespace CasaEngine
+}
 
 
 #endif // Matrix3_H

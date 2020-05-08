@@ -107,6 +107,6 @@ namespace CasaEngine
 
 	}; // class transformation
 
-} // namespace CasaEngine
+}
 
 #endif // TRANSFORMATIONS_H

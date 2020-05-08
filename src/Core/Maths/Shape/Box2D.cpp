@@ -58,7 +58,7 @@ void Box2D::Read(const tinyxml2::XMLElement& pEl_)
 	pLocation_->QueryFloatAttribute("x", &m_Center.x);
 	pLocation_->QueryFloatAttribute("y", &m_Center.y);
 	m_Center /= 100.0f; // TODO : to remove only for testing purpose
-	//m_Center.x = -m_Center.x;
+	//m_Offset.x = -m_Offset.x;
 }
 
 /**
@@ -85,4 +85,4 @@ void Box2D::Write( std::ostream& /*os*/ )
 		
 }
 
-} // namespace CasaEngine
+}

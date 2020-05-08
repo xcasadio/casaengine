@@ -3,8 +3,11 @@
 
 #include "steeringGame.h"
 
+#include <bgfx/defines.h>
+
+
 #include "Assets/AssetManager.h"
-#include "EngineInfo.h"
+
 #include "Entities/Components/AnimatedSpriteComponent.h"
 #include "Entities/Components/Camera3DComponent.h"
 #include "Entities/Components/CameraControllers/ArcBallCameraController.h"
@@ -14,7 +17,6 @@
 #include "Entities/Components/ScriptComponent.h"
 #include "Entities/Components/StaticSpriteComponent.h"
 #include "Entities/Components/Transform3DComponent.h"
-#include "Entities/DebugTools/FPSMonitoringComponent.h"
 #include "Entities/EntityManager.h"
 #include "Game/Game.h"
 #include "Game/GameInfo.h"
@@ -58,7 +60,7 @@ SteeringGame::~SteeringGame()
 	if (m_pModelRenderer != nullptr) DELETE_AO m_pModelRenderer;
 	if (m_pLine3DRenderer != nullptr) DELETE_AO m_pLine3DRenderer;
 
-	EntityMgr.Clear();
+	EntityManager::Instance().Clear();
 
 	PhysicsEngine::Destroy();
 }
@@ -129,7 +131,7 @@ void SteeringGame::AddGameComponents()
  */
 void SteeringGame::CreateEntities()
 {
-	m_pProgram = Program::loadProgram("vs_mesh", "fs_mesh");
+	m_pProgram = NEW_AO Program("vs_mesh", "fs_mesh");
 
 	//////////////////////////////////////////////////////////////////////////
 	// Camera 3D
@@ -158,7 +160,7 @@ void SteeringGame::CreateEntities()
 	Mesh* pModel = pBox->CreateModel();
 	//new material
 	Material *pMat = pModel->GetMaterial()->Clone();
-	pMat->Texture0(Texture::loadTexture("ceilingMain_DIF.dds", BGFX_TEXTURE_MIN_ANISOTROPIC | BGFX_TEXTURE_MAG_ANISOTROPIC));
+	pMat->Texture0(Texture::loadTexture("ceilingMain_DIF.dds", BGFX_SAMPLER_MIN_ANISOTROPIC | BGFX_SAMPLER_MAG_ANISOTROPIC));
 	pMat->Texture0Repeat(Vector2F(50, 50));
 	pModel->SetMaterial(pMat);
 	//

@@ -15,8 +15,6 @@ namespace CasaEngine
 		static void imguiDestroy();
 
 		static void imguiBeginFrame(unsigned short _width, unsigned short _height, unsigned char _view = 255);
-		static void imguiBeginFrame(unsigned short _width, unsigned short _height, 
-			unsigned short _surfaceWidth, unsigned short _surfaceHeight, unsigned char _view = 255);
 		static void imguiEndFrame();
 
 		static void displayUI4Material(Material &mat_, int x_, int y_, int width_, int height_, bool enabled_);

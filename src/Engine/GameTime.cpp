@@ -104,4 +104,4 @@ void GameTime::End()
 #endif // CA_DEBUGGING
 }
 
-} // namespace CasaEngine
+}

@@ -1,4 +1,3 @@
-
 #include "Base.h"
 
 #include <string>
@@ -8,8 +7,6 @@
 #include "Game/Game.h"
 #include "StringUtils.h"
 #include "CameraController.h"
-
-
 
 
 namespace CasaEngine
@@ -56,15 +53,8 @@ void Camera2DController::Initialize()
 /**
  *
  */
-Matrix4 Camera2DController::ViewMatrix(Matrix4 &viewMatrix_)
+void Camera2DController::ViewMatrix(Matrix4& viewMatrix_)
 {
-	/*if (m_bRecomputeViewMatrix == true)
-	{
-		m_bRecomputeViewMatrix = false;
-		m_ViewMatrix.LookAt(m_Target - (Direction() * m_fDistance), m_Target, Up());
-	}*/
-
-	return viewMatrix_;
 }
 
 /**
@@ -107,4 +97,4 @@ void Camera2DController::Read (const tinyxml2::XMLElement& xmlElt)
 	CA_UNUSED_1(xmlElt)
 }
 
-} // namespace CasaEngine
+}

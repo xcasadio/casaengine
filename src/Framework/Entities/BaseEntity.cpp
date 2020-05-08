@@ -1,4 +1,3 @@
-
 #include "Base.h"
 #include "BaseEntity.h"
 
@@ -33,10 +32,13 @@ namespace CasaEngine
 		m_bIsEnabled = true;
 		m_bIsVisible = true;
 		m_pParent = nullptr;
-		m_IsSelected = false;
 
 		addEvent(EntityParentChangeEvent::GetEventName());
-		EntityMgr.RegisterEntity(this);
+		EntityManager::Instance().RegisterEntity(this);
+
+#ifdef EDITOR
+		m_IsSelected = false;
+#endif
 	}
 
 	/**
@@ -210,7 +212,9 @@ namespace CasaEngine
 	{
 		return m_PhysicalEntity;
 	}
-
+	
+#ifdef EDITOR
+	
 	void BaseEntity::IsSelected(bool val)
 	{
 		m_IsSelected = val;
@@ -220,5 +224,7 @@ namespace CasaEngine
 	{
 		return m_IsSelected;
 	}
+	
+#endif	
 
-} // namespace CasaEngine
+}

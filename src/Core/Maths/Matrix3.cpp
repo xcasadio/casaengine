@@ -624,5 +624,5 @@ std::ostream& operator <<(std::ostream& Stream, const Matrix3& Mat)
     return Stream;
 }
 
-} // namespace CasaEngine
+}
 

@@ -23,7 +23,7 @@
 using namespace CasaEngine;
 
 /**
- *	
+ *
  */
 class MinersWifeComponent :
 	public Component
@@ -44,7 +44,7 @@ private:
 public:
 	MinersWifeComponent(BaseEntity* pEntity_);
 	virtual ~MinersWifeComponent();
-		
+
 	StateMachine<MinersWifeComponent>* GetFSM() const;
 
 	//
@@ -54,24 +54,24 @@ public:
 	virtual void  Update(const GameTime& gameTime_);
 
 	/**
-	 * 
+	 *
 	 */
-	virtual bool HandleMessage( const Telegram& msg );
+	virtual bool HandleMessage(const Telegram& msg);
 
 	//all entities can communicate using messages. They are sent
 	//using the MessageDispatcher singleton class
 	//void HandleEvent(const Event* pEvent_);
 
 	//entities should be able to read/write their data to a stream
-	void Write(std::ostream&  os)const;
-	void Read (std::ifstream& is);
+	void Write(std::ostream& os)const;
+	void Read(std::ifstream& is);
 
 	//----------------------------------------------------accessors
-	location_type Location()const{return m_Location;}
-	void          ChangeLocation(location_type loc){m_Location=loc;}
+	location_type Location()const { return m_Location; }
+	void          ChangeLocation(location_type loc) { m_Location = loc; }
 
-	bool          Cooking()const{return m_bCooking;}
-	void          SetCooking(bool val){m_bCooking = val;}
+	bool          Cooking()const { return m_bCooking; }
+	void          SetCooking(bool val) { m_bCooking = val; }
 
 	int GetMinerID() const { return m_MinerID; }
 	void SetMinerID(int val) { m_MinerID = val; }

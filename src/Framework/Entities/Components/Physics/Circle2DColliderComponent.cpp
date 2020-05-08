@@ -77,4 +77,4 @@ void Circle2DColliderComponent::Read (std::ifstream& /*is*/)
 
 }
 
-} // namespace CasaEngine
+}

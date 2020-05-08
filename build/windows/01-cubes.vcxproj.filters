@@ -2,9 +2,9 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="..\..\examples\01-cubes\main.cpp" />
-    <ClCompile Include="..\..\examples\01-cubes\CubesGame.cpp" />
+    <ClCompile Include="..\..\examples\01-cubes\CubeGame.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\examples\01-cubes\CubesGame.h" />
+    <ClInclude Include="..\..\examples\01-cubes\CubeGame.h" />
   </ItemGroup>
 </Project>

@@ -1,6 +1,5 @@
 #include "ShaderGame.h"
 #include "MD2Loader.h"
-#include "../imgui/bgfx_imgui.h"
 
 #include "Entities/Components/Camera3DComponent.h"
 #include "Entities/Components/CameraControllers/ArcBallCameraController.h"
@@ -8,7 +7,6 @@
 #include "Entities/Components/GridComponent.h"
 #include "Entities/Components/MeshComponent.h"
 #include "Entities/Components/Transform2DComponent.h"
-#include "Entities/DebugTools/FPSMonitoringComponent.h"
 #include "Entities/EntityManager.h"
 #include "Game/GameInfo.h"
 #include "Game/Line2DRendererComponent.h"
@@ -118,8 +116,8 @@ void ShaderGame::LoadContent()
 	Game::LoadContent();
 
 	//m_CartoonShadingTextureHandle = CreateFromFile("cartoon_shading.dds", PixelFormat::AL_88, TEX_NOMIPMAP);
-	Texture::loadTexture("cartoon_shading.dds", BGFX_TEXTURE_MIN_ANISOTROPIC | BGFX_TEXTURE_MAG_ANISOTROPIC, 1);
-	m_pProgram = Program::loadProgram("vs_mesh", "fs_mesh");
+	Texture::loadTexture("cartoon_shading.dds", BGFX_SAMPLER_MIN_ANISOTROPIC | BGFX_SAMPLER_MAG_ANISOTROPIC, 1);
+	m_pProgram = NEW_AO Program("vs_mesh", "fs_mesh");
 
 	//ground
 	m_pEntity = NEW_AO BaseEntity();
@@ -134,7 +132,7 @@ void ShaderGame::LoadContent()
 	Mesh* pModel = pBox->CreateModel();
 	//new material
 	m_pGroundMaterial = pModel->GetMaterial()->Clone();
-	m_pGroundMaterial->Texture0(Texture::loadTexture("ceilingMain_DIF.dds", BGFX_TEXTURE_MIN_ANISOTROPIC | BGFX_TEXTURE_MAG_ANISOTROPIC));
+	m_pGroundMaterial->Texture0(Texture::loadTexture("ceilingMain_DIF.dds", BGFX_SAMPLER_MIN_ANISOTROPIC | BGFX_SAMPLER_MAG_ANISOTROPIC));
 	m_pGroundMaterial->Texture0Repeat(Vector2F(50, 50));
 	pModel->SetMaterial(m_pGroundMaterial);
 	//
@@ -142,7 +140,6 @@ void ShaderGame::LoadContent()
 	pModelCpt->SetProgram(m_pProgram);
 
 	m_pEntity->GetComponentMgr()->AddComponent(pModelCpt);
-	m_pEntity->Initialize();
 
 	m_pWorld->AddEntity(m_pEntity);
 
@@ -154,13 +151,12 @@ void ShaderGame::LoadContent()
 	pArcBall->Distance(7.0f);
 	m_pCamera3D->CameraController(pArcBall);
 	pCamera->GetComponentMgr()->AddComponent(m_pCamera3D);
-	pCamera->Initialize();
 
 	m_pWorld->AddEntity(pCamera);
 	GameInfo::Instance().SetActiveCamera(m_pCamera3D);
 
 	//FPS
-	BaseEntity *pEntity = NEW_AO BaseEntity();
+	/*BaseEntity *pEntity = NEW_AO BaseEntity();
 	pEntity->SetName("FPS Monitoring");
 	Transform2DComponent *pTranform2D = NEW_AO Transform2DComponent(pEntity);
 	pTranform2D->SetLocalPosition(Vector2F(10.0f, 10.0f));
@@ -170,7 +166,7 @@ void ShaderGame::LoadContent()
 	pEntity->Initialize();
 
 	m_pWorld->AddEntity(pEntity);
-	pEntity->Initialize();
+	pEntity->Initialize();*/
 
 	//Mesh
 	m_pModelEntity = NEW_AO BaseEntity();
@@ -190,9 +186,10 @@ void ShaderGame::LoadContent()
 	pModelCpt->SetProgram(m_pProgram);
 
 	m_pModelEntity->GetComponentMgr()->AddComponent(pModelCpt);
-	m_pModelEntity->Initialize();
 
 	m_pWorld->AddEntity(m_pModelEntity);
+
+	m_pWorld->Initialize();
 
 	//ChangeShaders("simple");
 	//LoadModel("goblin");
@@ -207,7 +204,7 @@ void ShaderGame::Update(const GameTime& gameTime_)
 
 	Quaternion q1, q2;
 	q1.FromAxisAngle(Vector3F::UnitX(), -MATH_PI_DIV_2);
-    q2.FromAxisAngle(Vector3F::UnitZ(), gameTime_.TotalTime() * 0.005f * MATH_PI);
+    q2.FromAxisAngle(Vector3F::UnitZ(), gameTime_.TotalTime() * 0.005f * Pi);
 
 	m_pTrans3D->SetLocalPosition(Vector3F(0.0f, 2.4f, 0.0f));
 	m_pTrans3D->SetLocalRotation(q1 * q2);

@@ -32,25 +32,16 @@ namespace CasaEngine
 		StaticSpriteComponent(BaseEntity* pEntity_);
 		virtual ~StaticSpriteComponent();
 
-		std::string SpriteID() const;
-		void SpriteID(std::string val);
+		std::string GetSpriteID() const;
+		void SetSpriteID(std::string val);
 
 		CColor GetColor() const;
 		void SetColor(CColor val);
 		eSpriteEffects GetSpriteEffect() const;
 		void SetSpriteEffect(eSpriteEffects val);
 
-		//all entities must implement an Initialize function
 		void Initialize();
-
-		/**
-		 * 
-		 */
 		void Update(const GameTime& gameTime_);
-
-		/**
-		 * 
-		 */
 		void Draw();
 
 		//all entities can communicate using messages. They are sent

@@ -103,4 +103,4 @@ void MovingEntity2DComponent::Read (std::ifstream& /*is*/)
 
 }
 
-} // namespace CasaEngine
+}

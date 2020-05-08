@@ -1,4 +1,3 @@
-
 #include "Base.h"
 #include "Entities/BaseEntity.h"
 
@@ -41,7 +40,7 @@ StaticSpriteComponent::~StaticSpriteComponent()
 /**
  * 
  */
-std::string StaticSpriteComponent::SpriteID() const 
+std::string StaticSpriteComponent::GetSpriteID() const 
 { 
 	return m_SpriteID; 
 }
@@ -49,10 +48,9 @@ std::string StaticSpriteComponent::SpriteID() const
 /**
  * 
  */
-void StaticSpriteComponent::SpriteID(std::string val) 
+void StaticSpriteComponent::SetSpriteID(std::string val) 
 { 
 	m_SpriteID = val;
-
 	m_pSprite = AssetManager::Instance().GetAsset<Sprite>(m_SpriteID);
 }
 
@@ -113,16 +111,9 @@ void StaticSpriteComponent::Update(const GameTime& /*gameTime_*/)
  * 
  */
 void StaticSpriteComponent::Draw()
-{
-	Matrix4 mat = m_pTransform->GetWorldMatrix();
-	Vector3F pos3 = mat.GetTranslation();
-	Vector2F pos(pos3.x, pos3.y);
-	Vector2F scale(m_pTransform->GetScale().x, m_pTransform->GetScale().y);
-
-	m_pSpriteRenderer->AddSprite(m_pSprite, 
-		pos, /*m_pTransform->GetRotation()*/0.0f, 
-		scale, m_Color, 
-		pos3.z, m_SpriteEffect);
+{	
+	m_pSpriteRenderer->AddSprite(m_pSprite, m_pTransform->GetWorldMatrix(), 
+        m_Color, m_pTransform->GetLocalMatrix().GetTranslation().z, m_SpriteEffect);
 }
 
 /**
@@ -149,4 +140,4 @@ void StaticSpriteComponent::Read (std::ifstream& /*is*/)
 
 }
 
-} // namespace CasaEngine
+}

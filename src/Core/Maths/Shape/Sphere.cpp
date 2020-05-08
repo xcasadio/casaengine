@@ -57,4 +57,4 @@ void Sphere::Write( std::ostream& /*os*/ )
 	
 }
 
-} // namespace CasaEngine
+}

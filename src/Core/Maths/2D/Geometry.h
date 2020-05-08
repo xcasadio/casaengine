@@ -225,6 +225,6 @@ namespace CasaEngine
 																 Vector2F& IntersectionPoint);
 	}; // class Transformation
 
-} // namespace CasaEngine
+}
 
 #endif // GEOMETRY_H

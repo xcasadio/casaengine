@@ -59,7 +59,7 @@ namespace CasaEngine
 #endif // CA_PLATFORM_WINDOWS
 	}
 
-} // namespace CasaEngine
+}
 
 
 #endif // CASAENGINE_DEBUG_H_

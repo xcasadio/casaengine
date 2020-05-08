@@ -291,7 +291,7 @@ namespace CasaEngine
 
 	#include "Game.inl"
 
-} // namespace CasaEngine
+}
 
 
 #endif // GAME_H

@@ -18,6 +18,6 @@ namespace CasaEngine
 		ALIGN_FORCE_DWORD = 0x7fffffff, /* force 32-bit size enum */
     };
 
-} // namespace CasaEngine
+}
 
 #endif // ENUMS_H

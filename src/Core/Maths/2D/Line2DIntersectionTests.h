@@ -24,9 +24,9 @@ namespace CasaEngine
 	//  returns true if an intersection occurs.
 	//-----------------------------------------------------------------------------
 	template <class ContWall>
-	inline bool doWallsObstructLineSegment(Vector2F from,
-										   Vector2F to,
-										   const ContWall& walls)
+	bool doWallsObstructLineSegment(Vector2F from,
+	                                Vector2F to,
+	                                const ContWall& walls)
 	{
 		//test against the walls
 		typename ContWall::const_iterator curWall = walls.cbegin();
@@ -52,13 +52,13 @@ namespace CasaEngine
 	//  entity objects)
 	//-----------------------------------------------------------------------------
 	template <class ContWall>
-	inline bool doWallsObstructCylinderSides(Vector2F        A,
-											 Vector2F        B,
-											 float           BoundingRadius,
-											 const ContWall& walls)
+	bool doWallsObstructCylinderSides(Vector2F        A,
+	                                  Vector2F        B,
+	                                  float           BoundingRadius,
+	                                  const ContWall& walls)
 	{
 		//the line segments that make up the sides of the cylinder must be created
-		Vector2F toB = B-A;
+		Vector2F toB = B - A;
 		toB.Normalize();
 
 		//A1B1 will be one side of the cylinder, A2B2 the other.
@@ -92,11 +92,11 @@ namespace CasaEngine
 	//-----------------------------------------------------------------------------
 
 	template <class ContWall>
-	inline bool FindClosestPointOfIntersectionWithWalls(Vector2F        A,
-														Vector2F        B,
-														float&          distance,
-														Vector2F&       ip,
-														const ContWall& walls)
+	bool FindClosestPointOfIntersectionWithWalls(Vector2F        A,
+	                                             Vector2F        B,
+	                                             float& distance,
+	                                             Vector2F& ip,
+	                                             const ContWall& walls)
 	{
 		distance = MaxFloat;
 
@@ -126,7 +126,7 @@ namespace CasaEngine
 	//  returns true if any walls intersect the circle of radius at point p
 	//-----------------------------------------------------------------------------
 	template <class ContWall>
-	inline bool doWallsIntersectCircle(const ContWall& walls, Vector2F p, float r)
+	bool doWallsIntersectCircle(const ContWall& walls, Vector2F p, float r)
 	{
 		//test against the walls
 		typename ContWall::const_iterator curWall = walls.cbegin();
@@ -143,6 +143,6 @@ namespace CasaEngine
 		return false;
 	}
 
-} // namespace CasaEngine
+}
 
 #endif // LINE2DINTERSECTIONTESTS_H

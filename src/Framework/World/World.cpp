@@ -23,10 +23,7 @@ World::World() :
  */
 World::~World()
 {
-	if (m_pPhysicsWorld != nullptr)
-	{
-		DELETE_AO m_pPhysicsWorld;
-	}
+	DELETE_AO m_pPhysicsWorld;
 }
 
 /**
@@ -120,7 +117,10 @@ World::WorldComponent::WorldComponent(BaseEntity* pEntity_) :
  */
 void World::WorldComponent::Initialize()
 {
-	
+	for (auto entity : m_pWorld->GetEntities())
+	{
+		entity->Initialize();
+	}
 }
 
 /**
@@ -154,4 +154,4 @@ void World::WorldComponent::Draw()
 	}
 }
 
-} // namespace CasaEngine
+}

@@ -52,7 +52,7 @@ namespace CasaEngine
         Matrix4 Invert() const;
 
 		void SetTranslation(float x, float y, float z);
-		void SetTranslation(Vector3F trans_);
+		void SetTranslation(Vector3F &trans_);
 
 		//----------------------------------------------------------
 		// Renvoie la translation contenue dans la matrice
@@ -172,6 +172,10 @@ namespace CasaEngine
         //----------------------------------------------------------
         // Données membres
         //----------------------------------------------------------
+        /*float a11, a12, a13, a14;
+        float a21, a22, a23, a24;
+        float a31, a32, a33, a34;
+        float a41, a42, a43, a44;*/
         float a11, a21, a31, a41; ///< 1ère ligne de la matrice
         float a12, a22, a32, a42; ///< 2ème ligne de la matrice
         float a13, a23, a33, a43; ///< 3ème ligne de la matrice
@@ -188,7 +192,7 @@ namespace CasaEngine
     std::istream& operator >>(std::istream& Stream, Matrix4& Mat);
     std::ostream& operator <<(std::ostream& Stream, const Matrix4& Mat);
 
-} // namespace CasaEngine
+}
 
 
 #endif // MATRIX4_H

@@ -1,4 +1,3 @@
-
 #include "Base.h"
 
 #include "PlanePrimitive.h"
@@ -47,4 +46,4 @@ namespace CasaEngine
 
 	}
 
-} // namespace CasaEngine
+}

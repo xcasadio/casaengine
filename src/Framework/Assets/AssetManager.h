@@ -31,6 +31,7 @@ namespace CasaEngine
 		T* GetAsset(std::string name_);
 
 		void AddAsset(Asset *asset_);
+		bool Contains(std::string name);
 
 		/**
 		 * Delete all asset
@@ -55,6 +56,6 @@ namespace CasaEngine
 
 	#include "AssetManager.inl"
 
-} // namespace CasaEngine
+}
 
 #endif // _ASSETMANAGER_H_

@@ -20,4 +20,4 @@ float FuzzySet_Singleton::CalculateDOM(float val)const
   }
 }
 
-} // namespace CasaEngine
+}

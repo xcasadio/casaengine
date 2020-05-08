@@ -1,6 +1,3 @@
-//==========================================================
-// En-têtes
-//==========================================================
 #include "Base.h"
 #include "Log/LogManager.h"
 #include "Animations/Animation.h"
@@ -51,8 +48,10 @@ namespace CasaEngine
 		m_bIsInitialized = rsh.m_bIsInitialized;
 		m_Loop = rsh.m_Loop;
 
-		m_Events = rsh.m_Events;
-		//m_Events.insert(m_Events.end(), m_Events.begin(), m_Events.end());
+		for (auto* event : rsh.m_Events)
+		{
+			m_Events.push_back(event->Copy());
+		}
 
 		return *this;
 	}
@@ -148,24 +147,18 @@ namespace CasaEngine
 
 		if (isFinished == true)
 		{
-			fireEvent(AnimationFinishedEvent::GetEventName(), 
-				AnimationFinishedEvent(GetName().c_str()));//AnimationFinishedEvent(ID()));
+			fireEvent(AnimationFinishedEvent::GetEventName(), AnimationFinishedEvent(GetName().c_str()));//AnimationFinishedEvent(ID()));
 		}
-
-		std::vector<AnimationEvent *>::iterator it;
-		//std::vector<AnimationEvent> activeEvents;
-
+		
 		// m_Events must be sorted by time
-		for (it = m_Events.begin();
-			it != m_Events.end();
-			it++)
+		for (auto event : m_Events)
 		{
 			// we activate only event between the last time
 			// and the current time
-			if (lastTime > (*it)->Time()
-				&& (*it)->Time() <= m_CurrentTime)
+			if (lastTime >= event->Time()
+				&& event->Time() < m_CurrentTime)
 			{
-				(*it)->Activate(this);
+				event->Activate(this);
 				//activeEvents.push_back(it);
 			}
 		}
@@ -264,4 +257,4 @@ namespace CasaEngine
 	
 #endif
 
-} // namespace CasaEngine
+}

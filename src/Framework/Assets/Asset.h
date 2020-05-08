@@ -53,6 +53,6 @@ namespace CasaEngine
 
 	#include "Asset.inl"
 
-} // namespace CasaEngine
+}
 
 #endif // _ASSET_H_

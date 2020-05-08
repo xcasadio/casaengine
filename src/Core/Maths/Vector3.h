@@ -1,27 +1,3 @@
-//==========================================================
-// CasaEngine - Free C++ 3D engine
-//
-// Copyright (C) 2004-2005 Laurent Gomila
-//
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU General Public License
-// as published by the Free Software Foundation; either version 2
-// of the License, or (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with this program; if not, write to the Free Software
-// Foundation, Inc.,
-// 59 Temple Place - Suite 330,
-// Boston, MA  02111-1307, USA.
-//
-// E-mail : laurent.gom@gmail.com
-//==========================================================
-
 #ifndef VECTOR3_H
 #define VECTOR3_H
 
@@ -31,6 +7,7 @@
 #include <iostream>
 #include <vector>
 #include <cmath>
+#include <algorithm>
 
 #include "Memory/MemoryAllocation.h"
 #include <math.h>
@@ -106,22 +83,11 @@ namespace CasaEngine
 		T getY() const;
 		T getZ() const;
 
-		///
 		bool IsZero() const;
 
-        //----------------------------------------------------------
-        // Renvoie la norme du vecteur
-        //----------------------------------------------------------
         T Length() const;
-
-        //----------------------------------------------------------
-        // Renvoie la norme au carré du vecteur
-        //----------------------------------------------------------
         T LengthSquared() const;
 
-        //----------------------------------------------------------
-        // Normalise le vecteur
-        //----------------------------------------------------------
         void Normalize();
 		CVector3<T> GetNormalized();
 
@@ -146,39 +112,22 @@ namespace CasaEngine
 		inline void SetOrthogonal( const CVector3<T>& v );
 		inline CVector3<T> GetOrthogonal() const;
 
-        //----------------------------------------------------------
-        // Opérateurs unaires + et -
-        //----------------------------------------------------------
         CVector3<T> operator +() const;
         CVector3<T> operator -() const;
 
         //----------------------------------------------------------
-        // Opérateurs binaires + et -
-        //----------------------------------------------------------
         CVector3<T> operator +(const CVector3<T>& v) const;
         CVector3<T> operator -(const CVector3<T>& v) const;
 
-        //----------------------------------------------------------
-        // Opérateurs += et -=
-        //----------------------------------------------------------
         const CVector3<T>& operator +=(const CVector3<T>& v);
         const CVector3<T>& operator -=(const CVector3<T>& v);
 
-        //----------------------------------------------------------
-        // Opérateurs *= et /=
-        //----------------------------------------------------------
         const CVector3<T>& operator *=(T t);
         const CVector3<T>& operator /=(T t);
 
-        //----------------------------------------------------------
-        // Opérateurs de comparaison
-        //----------------------------------------------------------
         bool operator ==(const CVector3<T>& v) const;
         bool operator !=(const CVector3<T>& v) const;
 
-        //----------------------------------------------------------
-        // Opérateur de cast en T*
-        //----------------------------------------------------------
         operator T*();
 
 		inline T &operator [] (int index)	   { CA_ASSERT(index>=0 && index<=2, "Vector3 operator[]"); return ((T*)this)[index]; }
@@ -192,7 +141,7 @@ namespace CasaEngine
     template <class T> std::istream& operator >>(std::istream& Stream, CVector3<T>& Vector);
     template <class T> std::ostream& operator <<(std::ostream& Stream, const CVector3<T>& Vector);
 
-	template <class T> bool IsEquivalent(const CVector3<T> &v0, const CVector3<T> &v1, float epsilon=MATH_16F_EPSILON) 
+	template <class T> bool IsEquivalent(const CVector3<T> &v0, const CVector3<T> &v1, float epsilon=Epsilon) 
 	{
 		return  ((fabs(v0.x-v1.x) <= epsilon) && (fabs(v0.y-v1.y) <= epsilon) && (fabs(v0.z-v1.z) <= epsilon));	
 	}
@@ -203,7 +152,6 @@ namespace CasaEngine
 
     #include "Vector3.inl"
 
-} // namespace CasaEngine
-
+}
 
 #endif // VECTOR3_H

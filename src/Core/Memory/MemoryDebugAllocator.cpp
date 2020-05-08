@@ -28,4 +28,4 @@ namespace CasaEngine
 		return std::numeric_limits<size_t>::max();
 	}
 
-} // namespace CasaEngine
+}

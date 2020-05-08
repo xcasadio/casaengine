@@ -22,14 +22,9 @@ namespace CasaEngine
 		public TransformComponent
 	{
 	private:
-
-		// The position in local space.
+		Vector3F m_LocalCenterOfRotation;
 		Vector3F m_LocalPosition;
-		
-		// The rotation in local space and in degrees unit.
 		Quaternion m_LocalRotation;
-		
-		// The scale in local space.
 		Vector3F m_LocalScale;
 		
 		// The parent of this transform component.
@@ -45,6 +40,9 @@ namespace CasaEngine
 		void SetLocalMatrix(Matrix4 val);
 		void SetWorldMatrix(Matrix4 val);
 
+		Vector3F GetCenterOfRotation() const;
+		void SetCenterOfRotation(Vector3F val);
+		
 		Vector3F GetLocalPosition() const;
 		void SetLocalPosition(Vector3F val);
 

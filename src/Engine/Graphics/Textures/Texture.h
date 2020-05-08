@@ -53,7 +53,7 @@ namespace CasaEngine
 		bgfx::TextureHandle m_Handle;
 	};
 
-} // namespace CasaEngine
+}
 
 
 #endif // TEXTURE_H

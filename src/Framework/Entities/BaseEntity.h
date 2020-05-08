@@ -38,7 +38,6 @@ namespace CasaEngine
 		public AllocatedObject<BaseEntity>
 	{  
 	public:
-
 		/*
 		 *	setting the ID and incrementing
 		 *	the next valid ID
@@ -86,11 +85,6 @@ namespace CasaEngine
 		virtual void Write(tinyxml2::XMLElement& xmlElt);
 		virtual void Write(std::ostream&  os);
 
-
-		// editor
-		bool IsSelected() const;
-		void IsSelected(bool val);
-
 	private:
 
 		//this is the next valid ID. Each time a BaseEntity is instantiated
@@ -108,9 +102,16 @@ namespace CasaEngine
 		const char *m_szName;
 		bool m_bIsEnabled, m_bIsVisible;
 
+#ifdef EDITOR
+	public:
+		// editor
+		bool IsSelected() const;
+		void IsSelected(bool val);
+
 	public:
 		//editor
 		bool m_IsSelected;
+#endif
 	};
 
 }

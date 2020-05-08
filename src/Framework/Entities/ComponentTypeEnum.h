@@ -21,6 +21,8 @@ namespace CasaEngine
 		SCRIPT,
 		WORLD,
 
+		TILED_MAP,
+
 		BOX_COLLIDER,
 		SPHERE_COLLIDER,
 		CAPSULE_COLLIDER,

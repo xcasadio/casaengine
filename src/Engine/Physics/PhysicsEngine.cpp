@@ -31,10 +31,7 @@ namespace CasaEngine
 	 */
 	PhysicsEngine::~PhysicsEngine()
 	{
-		if (m_pPhysicsEngine != nullptr)
-		{
-			DELETE_AO m_pPhysicsEngine;
-		}
+		DELETE_AO m_pPhysicsEngine;
 	}
 	
 	/**
@@ -73,4 +70,4 @@ namespace CasaEngine
 		return m_pPhysicsEngine;
 	}
 
-} // namespace CasaEngine
+}

@@ -142,6 +142,6 @@ namespace CasaEngine
 		CA_ERROR("[BULLET] %s\n", msg);
 	}
 
-} // namespace CasaEngine
+}
 
 #endif // USE_BULLET_PHYSICS

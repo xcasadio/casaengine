@@ -23,4 +23,4 @@ IScriptObject::IScriptObject(BaseEntity *pEntity_)
 }
 
 
-} // namespace CasaEngine
+}

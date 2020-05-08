@@ -42,6 +42,6 @@ public:
   float CalculateDOM(float val)const;  
 };
 
-} // namespace CasaEngine
+}
 
 #endif

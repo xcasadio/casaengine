@@ -10,9 +10,6 @@
     <Filter Include="Framework">
       <UniqueIdentifier>{b0316a0c-3677-4b09-9737-5698940f8acc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\Collection">
-      <UniqueIdentifier>{7b7ac1db-6e8f-4fd1-b2eb-b05914c7e0c0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Core\EventHandler">
       <UniqueIdentifier>{bc185424-d658-47b5-be8c-f7d7716a4155}</UniqueIdentifier>
     </Filter>
@@ -73,17 +70,11 @@
     <Filter Include="Engine\Graphics\Vertices">
       <UniqueIdentifier>{32698902-2661-41ea-9e67-def94ce95e0c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Network">
-      <UniqueIdentifier>{b32d7f88-a281-4d93-a68b-d2c88109c634}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Physics">
       <UniqueIdentifier>{b7b50209-fe74-4425-851b-6533954e66ff}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Physics\Bullet">
       <UniqueIdentifier>{afac9801-36ce-426b-b4ed-b548960a2cf0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\Profiling">
-      <UniqueIdentifier>{00df7856-67d5-40ad-85a0-ed77af8eccac}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Resources">
       <UniqueIdentifier>{05df07c1-9b1c-4eea-a073-a421b06f5a4a}</UniqueIdentifier>
@@ -117,9 +108,6 @@
     </Filter>
     <Filter Include="Framework\Assets">
       <UniqueIdentifier>{41864964-cdff-4963-be4b-202d7b20124c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\CEGUI">
-      <UniqueIdentifier>{8316d85d-63c4-4ad7-b01a-896e3c686200}</UniqueIdentifier>
     </Filter>
     <Filter Include="Framework\Data">
       <UniqueIdentifier>{15b27981-44fc-4efc-b9a1-27a48ac6a458}</UniqueIdentifier>
@@ -157,12 +145,6 @@
     <Filter Include="Framework\Script">
       <UniqueIdentifier>{d6b06d4d-bde4-4b49-a475-63e13154d5ab}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Framework\Script\lua">
-      <UniqueIdentifier>{70a75b67-0f35-49b6-936f-95b1bac1661a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\Script\lua\Package">
-      <UniqueIdentifier>{a4dbf37e-48be-4fd1-9036-4d59011ac675}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Framework\SpacePartitioning">
       <UniqueIdentifier>{7773e379-01e4-40e4-8473-5ee0b1f6ff43}</UniqueIdentifier>
     </Filter>
@@ -187,12 +169,6 @@
     <Filter Include="Engine\Graphics\3rdparty\ib-compress">
       <UniqueIdentifier>{9b00a8c4-f42e-44f3-9806-810c490a9690}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Graphics\3rdparty\ocornut-imgui">
-      <UniqueIdentifier>{278a2bf8-070e-4b3c-8c8b-bdfab89c36f2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\Graphics\3rdparty\imgui">
-      <UniqueIdentifier>{94e54446-a53c-4685-be3b-04b884992d7a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Graphics\3rdparty\nanovg">
       <UniqueIdentifier>{3222a02f-a753-4eda-8e8d-e1c41901c2c6}</UniqueIdentifier>
     </Filter>
@@ -201,6 +177,9 @@
     </Filter>
     <Filter Include="Engine\Graphics\Mesh">
       <UniqueIdentifier>{3a049c83-fd36-488b-a5bb-0b3c87d9dac8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Map2D">
+      <UniqueIdentifier>{9d9f0f78-1aa9-431d-b780-9517a159c49e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -211,12 +190,6 @@
       <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Core\CompilationConfig.h">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Core\CompilationMacro.h">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Core\CompileTimeAssert.h">
       <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Core\ContainerUtil.h">
@@ -255,14 +228,8 @@
     <ClInclude Include="..\..\src\Core\Types.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\Util.h">
-      <Filter>Core</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Core\Version.h">
       <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Core\Collection\PriorityQueue.h">
-      <Filter>Core\Collection</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Core\EventHandler\BoundSlot.h">
       <Filter>Core\EventHandler</Filter>
@@ -537,9 +504,6 @@
     <ClInclude Include="..\..\src\Engine\Physics\Bullet\BulletPhysicsWorld.h">
       <Filter>Engine\Physics\Bullet</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Profiling\Profiling.h">
-      <Filter>Engine\Profiling</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Engine\Resources\MediaManager.h">
       <Filter>Engine\Resources</Filter>
     </ClInclude>
@@ -548,9 +512,6 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Engine\Resources\ResourceManager.h">
       <Filter>Engine\Resources</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\EngineInfo.h">
-      <Filter>Engine</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Engine\EngineSettings.h">
       <Filter>Engine</Filter>
@@ -762,9 +723,6 @@
     <ClInclude Include="..\..\src\Framework\Entities\Components\TransformComponent.h">
       <Filter>Framework\Entities\Components</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Entities\DebugTools\FPSMonitoringComponent.h">
-      <Filter>Framework\Entities\DebugTools</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Framework\Entities\Events\BaseEntityEvents.h">
       <Filter>Framework\Entities\Events</Filter>
     </ClInclude>
@@ -834,9 +792,6 @@
     <ClInclude Include="..\..\src\Framework\Script\ScriptEngine.h">
       <Filter>Framework\Script</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Script\required.h">
-      <Filter>Framework\Script\lua</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Framework\SpacePartitioning\CellSpacePartition.h">
       <Filter>Framework\SpacePartitioning</Filter>
     </ClInclude>
@@ -857,9 +812,6 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Framework\World\World.h">
       <Filter>Framework\World</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Graphics\bgfx_utils.h">
-      <Filter>Engine\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="..\..\external\stb\stb_rect_pack.h">
       <Filter>Engine\Graphics\3rdparty\stb</Filter>
@@ -888,72 +840,6 @@
     <ClInclude Include="..\..\external\ib-compress\writebitstream.h">
       <Filter>Engine\Graphics\3rdparty\ib-compress</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\external\ocornut-imgui\imconfig.h">
-      <Filter>Engine\Graphics\3rdparty\ocornut-imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\external\ocornut-imgui\imgui.h">
-      <Filter>Engine\Graphics\3rdparty\ocornut-imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\external\ocornut-imgui\memory_editor.h">
-      <Filter>Engine\Graphics\3rdparty\ocornut-imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\external\ocornut-imgui\stb_rect_pack.h">
-      <Filter>Engine\Graphics\3rdparty\ocornut-imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\external\ocornut-imgui\stb_textedit.h">
-      <Filter>Engine\Graphics\3rdparty\ocornut-imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\external\ocornut-imgui\stb_truetype.h">
-      <Filter>Engine\Graphics\3rdparty\ocornut-imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\external\imgui\droidsans.ttf.h">
-      <Filter>Engine\Graphics\3rdparty\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\external\imgui\fs_imgui_color.bin.h">
-      <Filter>Engine\Graphics\3rdparty\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\external\imgui\fs_imgui_cubemap.bin.h">
-      <Filter>Engine\Graphics\3rdparty\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\external\imgui\fs_imgui_image.bin.h">
-      <Filter>Engine\Graphics\3rdparty\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\external\imgui\fs_imgui_image_swizz.bin.h">
-      <Filter>Engine\Graphics\3rdparty\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\external\imgui\fs_imgui_latlong.bin.h">
-      <Filter>Engine\Graphics\3rdparty\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\external\imgui\fs_imgui_texture.bin.h">
-      <Filter>Engine\Graphics\3rdparty\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\external\imgui\fs_ocornut_imgui.bin.h">
-      <Filter>Engine\Graphics\3rdparty\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\external\imgui\ocornut_imgui.h">
-      <Filter>Engine\Graphics\3rdparty\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\external\imgui\scintilla.h">
-      <Filter>Engine\Graphics\3rdparty\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\external\imgui\vs_imgui_color.bin.h">
-      <Filter>Engine\Graphics\3rdparty\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\external\imgui\vs_imgui_cubemap.bin.h">
-      <Filter>Engine\Graphics\3rdparty\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\external\imgui\vs_imgui_image.bin.h">
-      <Filter>Engine\Graphics\3rdparty\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\external\imgui\vs_imgui_latlong.bin.h">
-      <Filter>Engine\Graphics\3rdparty\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\external\imgui\vs_imgui_texture.bin.h">
-      <Filter>Engine\Graphics\3rdparty\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\external\imgui\vs_ocornut_imgui.bin.h">
-      <Filter>Engine\Graphics\3rdparty\imgui</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\external\nanovg\fontstash.h">
       <Filter>Engine\Graphics\3rdparty\nanovg</Filter>
     </ClInclude>
@@ -968,9 +854,6 @@
     </ClInclude>
     <ClInclude Include="..\..\external\stb\stb_image.h">
       <Filter>Engine\Graphics\3rdparty\stb</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\external\imgui\bgfx_imgui.h">
-      <Filter>Engine\Graphics\3rdparty\imgui</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Framework\Entities\Components\MeshComponent.h">
       <Filter>Framework\Entities\Components</Filter>
@@ -1002,11 +885,26 @@
     <ClInclude Include="..\..\src\Framework\Tools\InGameLogger.h">
       <Filter>Framework\Tools</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Framework\Animations\AnimationEndEvent.h">
+      <Filter>Framework\Animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Framework\Map2D\AnimatedTile.h">
+      <Filter>Framework\Map2D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Framework\Map2D\AutoTile.h">
+      <Filter>Framework\Map2D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Framework\Map2D\StaticTile.h">
+      <Filter>Framework\Map2D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Framework\Map2D\Tile.h">
+      <Filter>Framework\Map2D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Framework\Map2D\TiledMapComponent.h">
+      <Filter>Framework\Map2D</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\Core\ContainerUtil.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Core\DateTime.cpp">
       <Filter>Core</Filter>
     </ClCompile>
@@ -1062,9 +960,6 @@
       <Filter>Core\Maths</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Core\Maths\Quaternion.cpp">
-      <Filter>Core\Maths</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Core\Maths\Rectangle.cpp">
       <Filter>Core\Maths</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Core\Maths\2D\Geometry.cpp">
@@ -1187,9 +1082,6 @@
     <ClCompile Include="..\..\src\Engine\Physics\Bullet\BulletPhysicsWorld.cpp">
       <Filter>Engine\Physics\Bullet</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Profiling\Profiling.cpp">
-      <Filter>Engine\Profiling</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Engine\Resources\MediaManager.cpp">
       <Filter>Engine\Resources</Filter>
     </ClCompile>
@@ -1198,9 +1090,6 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Resources\ResourceManager.cpp">
       <Filter>Engine\Resources</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\EngineInfo.cpp">
-      <Filter>Engine</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\GameTime.cpp">
       <Filter>Engine</Filter>
@@ -1334,9 +1223,6 @@
     <ClCompile Include="..\..\src\Framework\Entities\Components\TransformComponent.cpp">
       <Filter>Framework\Entities\Components</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Framework\Entities\DebugTools\FPSMonitoringComponent.cpp">
-      <Filter>Framework\Entities\DebugTools</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Framework\Entities\Events\BaseEntityEvents.cpp">
       <Filter>Framework\Entities\Events</Filter>
     </ClCompile>
@@ -1400,12 +1286,6 @@
     <ClCompile Include="..\..\src\Framework\Script\ScriptEngine.cpp">
       <Filter>Framework\Script</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Framework\Script\lua_CasaEngine.cpp">
-      <Filter>Framework\Script\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Framework\Script\required.cpp">
-      <Filter>Framework\Script\lua</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Framework\Sprite\Sprite.cpp">
       <Filter>Framework\Sprite</Filter>
     </ClCompile>
@@ -1421,32 +1301,17 @@
     <ClCompile Include="..\..\src\Framework\World\World.cpp">
       <Filter>Framework\World</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Graphics\bgfx_utils.cpp">
-      <Filter>Engine\Graphics</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\external\ib-compress\indexbuffercompression.cpp">
       <Filter>Engine\Graphics\3rdparty\ib-compress</Filter>
     </ClCompile>
     <ClCompile Include="..\..\external\ib-compress\indexbufferdecompression.cpp">
       <Filter>Engine\Graphics\3rdparty\ib-compress</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\external\ocornut-imgui\imgui.cpp">
-      <Filter>Engine\Graphics\3rdparty\ocornut-imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\external\imgui\ocornut_imgui.cpp">
-      <Filter>Engine\Graphics\3rdparty\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\external\imgui\scintilla.cpp">
-      <Filter>Engine\Graphics\3rdparty\imgui</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\external\nanovg\nanovg.cpp">
       <Filter>Engine\Graphics\3rdparty\nanovg</Filter>
     </ClCompile>
     <ClCompile Include="..\..\external\nanovg\nanovg_bgfx.cpp">
       <Filter>Engine\Graphics\3rdparty\nanovg</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\external\imgui\bgfx_imgui.cpp">
-      <Filter>Engine\Graphics\3rdparty\imgui</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Framework\Entities\Components\MeshComponent.cpp">
       <Filter>Framework\Entities\Components</Filter>
@@ -1456,9 +1321,6 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Graphics\Mesh\Mesh.cpp">
       <Filter>Engine\Graphics\Mesh</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Framework\UI\imguiAdapter.cpp">
-      <Filter>Framework\UI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Graphics\Textures\Texture.cpp">
       <Filter>Engine\Graphics\Textures</Filter>
@@ -1480,6 +1342,27 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Framework\Tools\InGameLogger.cpp">
       <Filter>Framework\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Framework\Animations\AnimationEndEvent.cpp">
+      <Filter>Framework\Animations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Framework\Map2D\AnimatedTile.cpp">
+      <Filter>Framework\Map2D</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Framework\Map2D\AutoTile.cpp">
+      <Filter>Framework\Map2D</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Framework\Map2D\StaticTile.cpp">
+      <Filter>Framework\Map2D</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Framework\Map2D\Tile.cpp">
+      <Filter>Framework\Map2D</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Framework\Map2D\TiledMapComponent.cpp">
+      <Filter>Framework\Map2D</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Core\ContainerUtil.cpp">
+      <Filter>Core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1519,68 +1402,11 @@
     <None Include="..\..\src\Framework\Game\Game.inl">
       <Filter>Framework\Game</Filter>
     </None>
-    <None Include="..\..\src\Framework\Script\package\CasaEngine.pkg">
-      <Filter>Framework\Script\lua\Package</Filter>
-    </None>
-    <None Include="..\..\src\Framework\Script\package\EventArgs.pkg">
-      <Filter>Framework\Script\lua\Package</Filter>
-    </None>
-    <None Include="..\..\src\Framework\Script\package\EventSet.pkg">
-      <Filter>Framework\Script\lua\Package</Filter>
-    </None>
-    <None Include="..\..\src\Framework\Script\package\exceptions.lua">
-      <Filter>Framework\Script\lua\Package</Filter>
-    </None>
-    <None Include="..\..\src\Framework\Script\package\File.pkg">
-      <Filter>Framework\Script\lua\Package</Filter>
-    </None>
-    <None Include="..\..\src\Framework\Script\package\IFile.pkg">
-      <Filter>Framework\Script\lua\Package</Filter>
-    </None>
-    <None Include="..\..\src\Framework\Script\package\IOManager.pkg">
-      <Filter>Framework\Script\lua\Package</Filter>
-    </None>
-    <None Include="..\..\src\Framework\Script\package\Iterators.pkg">
-      <Filter>Framework\Script\lua\Package</Filter>
-    </None>
-    <None Include="..\..\src\Framework\Script\package\Keyboard.pkg">
-      <Filter>Framework\Script\lua\Package</Filter>
-    </None>
-    <None Include="..\..\src\Framework\Script\package\Logger.pkg">
-      <Filter>Framework\Script\lua\Package</Filter>
-    </None>
-    <None Include="..\..\src\Framework\Script\package\Matrix3.pkg">
-      <Filter>Framework\Script\lua\Package</Filter>
-    </None>
-    <None Include="..\..\src\Framework\Script\package\Matrix4.pkg">
-      <Filter>Framework\Script\lua\Package</Filter>
-    </None>
-    <None Include="..\..\src\Framework\Script\package\Mouse.pkg">
-      <Filter>Framework\Script\lua\Package</Filter>
-    </None>
-    <None Include="..\..\src\Framework\Script\package\Plane.pkg">
-      <Filter>Framework\Script\lua\Package</Filter>
-    </None>
-    <None Include="..\..\src\Framework\Script\package\Quaternion.pkg">
-      <Filter>Framework\Script\lua\Package</Filter>
-    </None>
-    <None Include="..\..\src\Framework\Script\package\Rectangle.pkg">
-      <Filter>Framework\Script\lua\Package</Filter>
-    </None>
-    <None Include="..\..\src\Framework\Script\package\Vector2.pkg">
-      <Filter>Framework\Script\lua\Package</Filter>
-    </None>
-    <None Include="..\..\src\Framework\Script\package\Vector3.pkg">
-      <Filter>Framework\Script\lua\Package</Filter>
-    </None>
-    <None Include="..\..\src\Framework\Script\package\Vector4.pkg">
-      <Filter>Framework\Script\lua\Package</Filter>
-    </None>
-    <None Include="..\..\src\Framework\UI\imguiAdapter.h">
-      <Filter>Framework\UI</Filter>
-    </None>
     <None Include="..\..\src\Core\Functor.inl">
       <Filter>Core</Filter>
+    </None>
+    <None Include="..\..\src\Core\Maths\Rectangle.inl">
+      <Filter>Core\Maths</Filter>
     </None>
   </ItemGroup>
 </Project>

@@ -38,29 +38,16 @@ namespace CasaEngine
     private :
         static T* Inst; ///< Instance unique de la classe
 
-        //----------------------------------------------------------------
-        // Copie interdite
-        //----------------------------------------------------------------
         CSingleton(const CSingleton&);
         CSingleton& operator =(const CSingleton&);
     };
 
-    ////////////////////////////////////////////////////////////
-    /// Macro automatisant la création d'un singleton --
-    /// à placer dans la définition de la classe concernée.
-    /// La raison pour laquelle il faut redéfinir (et masquer)
-    /// la fonction Instance() reste obscure, mais si ce n'est pas
-    /// fait le client obtient des erreurs de link sur Inst
-    ////////////////////////////////////////////////////////////
     #define MAKE_SINGLETON(Class) \
         public : \
             friend class CasaEngine::CSingleton<Class>; \
             static Class& Instance(); \
         private :
 
-    ////////////////////////////////////////////////////////////
-    /// Macro automatisant
-    ////////////////////////////////////////////////////////////
     #define SINGLETON_IMPL(Class) \
         template <> Class* CasaEngine::CSingleton<Class>::Inst = nullptr; \
         Class& Class::Instance() \
@@ -68,7 +55,7 @@ namespace CasaEngine
             return CasaEngine::CSingleton<Class>::Instance(); \
         } \
 
-} // namespace CasaEngine
+}
 
 
 #endif // SINGLETON_H

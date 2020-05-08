@@ -47,6 +47,6 @@ public:
 	FactoryName auto_gameplay_instance_##FactoryName; \
 	AutoRegisterScriptObjectFactory autoreg_gameplay_##FactoryName(&auto_gameplay_instance_##FactoryName, #FactoryName, __FILE__, __LINE__ );
 
-} // namespace CasaEngine
+}
 
 #endif // ISCRIPTOBJECTFACTORY_H_

@@ -67,6 +67,6 @@ public:
   }
 };
 
-} // namespace CasaEngine
+}
 
 #endif

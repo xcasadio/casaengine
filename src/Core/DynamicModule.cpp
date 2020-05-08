@@ -221,4 +221,4 @@ void* DynamicModule::getSymbolAddress(const std::string& symbol) const
 
 //----------------------------------------------------------------------------//
 
-} // namespace CasaEngine
+}

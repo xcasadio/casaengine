@@ -100,4 +100,4 @@ namespace CasaEngine
 		return NEW_AO Mesh(m_Vertices.data(), m_Vertices.size(), m_Indices.data(), m_Indices.size());
 	}
 
-} // namespace CasaEngine
+}

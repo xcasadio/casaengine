@@ -1,10 +1,5 @@
-//==========================================================
-// CasaEngine - Free C++ 3D engine
-//==========================================================
-
 #ifndef CA_EXPORT_H
 #define CA_EXPORT_H
-
 
 #include "SystemPlatform.h"
 
@@ -35,15 +30,6 @@
 
 #endif // #if CA_PLATFORM_WINDOWS
 
-
-//==========================================================
-// Désactivation de warnings "gênants" de Visual C++
-//
-// 4251 : "T1 nécessite une interface DLL pour être utilisé(e)
-//         par les clients de class T2" 
-// 4661 : "Aucune définition appropriée pour la demande
-//         d'instanciation explicite du modèle"
-//==========================================================
 #ifdef _MSC_VER
 #   pragma warning(disable : 4251)
 #   pragma warning(disable : 4661)

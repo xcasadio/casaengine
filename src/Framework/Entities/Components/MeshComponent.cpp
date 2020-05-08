@@ -21,7 +21,6 @@
 #include "TransformComponent.h"
 #include "Game/MeshRendererGameComponent.h"
 #include "Game/GameInfo.h"
-#include "ocornut-imgui/imgui.h"
 
 namespace CasaEngine
 {
@@ -140,6 +139,7 @@ void MeshComponent::Read (std::ifstream& /*is*/)
  */
 void MeshComponent::ShowDebugWidget()
 {
+	/*
 	const ImGuiStyle& style = ImGui::GetStyle();
 
 	if (ImGui::CollapsingHeader("Static Mesh"))
@@ -159,6 +159,7 @@ void MeshComponent::ShowDebugWidget()
 		ImGui::SameLine(0, style.ItemInnerSpacing.x); ImGui::PushItemWidth(widgetWidth); ImGui::DragFloat("U", &pMat->m_Texture0Repeat.x, 0.01f);
 		ImGui::SameLine(0, style.ItemInnerSpacing.x); ImGui::PushItemWidth(widgetWidth); ImGui::DragFloat("V", &pMat->m_Texture0Repeat.y, 0.01f);
 	}
+	*/
 }
 
-} // namespace CasaEngine
+}

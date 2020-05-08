@@ -41,7 +41,7 @@ Shader::Shader(bgfx::ShaderHandle handle_)
  */
 Shader::~Shader()
 {
-	bgfx::destroyShader(m_Handle);
+	bgfx::destroy(m_Handle);
 }
 
 /**
@@ -52,4 +52,4 @@ bgfx::ShaderHandle Shader::Handle() const
 	return m_Handle;
 }
 
-} // namespace CasaEngine
+}

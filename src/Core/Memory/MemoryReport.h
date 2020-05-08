@@ -48,6 +48,6 @@ private:
 #endif // #if CA_PLATFORM_DESKTOP
 };
 
-} // namespace CasaEngine
+}
 
 #endif	// _MEMORYREPORT_H_

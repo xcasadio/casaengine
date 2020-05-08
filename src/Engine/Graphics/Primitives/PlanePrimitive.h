@@ -1,4 +1,3 @@
-
 #ifndef PLANEPRIMITIVE_H
 #define PLANEPRIMITIVE_H
 
@@ -30,6 +29,6 @@ namespace CasaEngine
 		float m_Height;
     };
 
-} // namespace CasaEngine
+}
 
 #endif // PLANEPRIMITIVE_H

@@ -95,6 +95,6 @@ namespace CasaEngine
 
 #endif // ifdef USE_LUA_SCRIPT
 	};
-} // namespace CasaEngine
+}
 
 #endif // SCRIPTENGINE_H_

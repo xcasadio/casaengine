@@ -38,6 +38,6 @@ namespace CasaEngine
 // 
 // #endif // EDITOR
 
-} // namespace CasaEngine
+}
 
 #endif // PROJECTMANAGER_H_

@@ -145,6 +145,6 @@ inline void MovementStyle::ReadFromXml(const XmlNodeRef& node)
 }
 */
 
-} // namespace CasaEngine
+}
 
 #endif // MovementStyle_h

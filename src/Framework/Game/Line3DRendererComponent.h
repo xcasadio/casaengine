@@ -68,6 +68,6 @@ namespace CasaEngine
 		unsigned int m_NbLines;
 	};
 
-} // namespace CasaEngine
+}
 
 #endif // _LINE3DRENDERERCOMPONENT_H_

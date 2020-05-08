@@ -7,7 +7,7 @@
 
 #include "IShape.h"
 #include "Parsers/Xml/tinyxml2.h"
-#include "CompilationMacro.h"
+
 
 namespace CasaEngine
 {
@@ -28,12 +28,12 @@ namespace CasaEngine
 		 */
 		~Capsule();
 
-		void Read( const tinyxml2::XMLElement& node_ ) OVERRIDE;
-		void Read( std::ifstream& in ) OVERRIDE;
-		void Write( const tinyxml2::XMLElement& node_ ) OVERRIDE;
-		void Write( std::ostream& os ) OVERRIDE;
+		void Read( const tinyxml2::XMLElement& node_ ) override;
+		void Read( std::ifstream& in ) override;
+		void Write( const tinyxml2::XMLElement& node_ ) override;
+		void Write( std::ostream& os ) override;
     };
-} // namespace CasaEngine
+}
 
 
 #endif // CAPSULE_H

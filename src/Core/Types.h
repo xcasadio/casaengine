@@ -168,6 +168,6 @@ namespace CasaEngine
 #error No 32 bits integer type for this platform
 #endif
 
-} // namespace casaEngine
+}
 
 #endif // TYPES_H_

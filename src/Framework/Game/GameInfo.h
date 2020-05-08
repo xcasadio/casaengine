@@ -36,6 +36,6 @@ namespace CasaEngine
 		~GameInfo();
 	};
 
-} // namespace CasaEngine
+}
 
 #endif // GAMEINFO_H_

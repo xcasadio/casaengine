@@ -15,7 +15,6 @@
 namespace CasaEngine
 {
 #define InGameLog(delay, fmt, ...) InGameLogger::Instance().AddLog(delay, fmt, ##__VA_ARGS__)
-#define InGameLogUpdate(gameTime_) InGameLogger::Instance().Update(gameTime_)
 
 	/**
 	 *  
@@ -29,8 +28,7 @@ namespace CasaEngine
 		struct LogData
 		{
 			float delay; // in ms
-			const char *text;			
-			bool isDeleted;
+			const char *text;
 		};
 
 	private:
@@ -44,16 +42,10 @@ namespace CasaEngine
 		void ShowWindow();
 
 	private:
-// 		typedef std::vector<LogData> LogDatas;
-// 		typedef std::vector<LogData>::iterator LogDataIt;
-// 		
-// 		LogDatas m_Lines;
-#define NBLOGLINES 512
-		unsigned int m_FreeLinePos;
-		LogData m_Lines[NBLOGLINES];
+		std::vector<LogData> m_Lines;
 	};
 
-} // namespace CasaEngine
+}
 
 
 #else

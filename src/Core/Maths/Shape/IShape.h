@@ -44,7 +44,7 @@ namespace CasaEngine
 	private:
 		ShapeType m_ShapeType;
     };
-} // namespace CasaEngine
+}
 
 
 #endif // ISHAPE_H

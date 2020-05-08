@@ -1,6 +1,6 @@
 #include "imguiAdapter.h"
 
-#include "imgui\bgfx_imgui.h"
+#include "bgfx-imgui\imgui.h"
 
 
 namespace CasaEngine
@@ -28,16 +28,8 @@ namespace CasaEngine
 	 */
 	void imguiAdapter::imguiBeginFrame(unsigned short _width, unsigned short _height, unsigned char _view /*= 255*/)
 	{
-		::imguiBeginFrame(_width, _height);
-	}
-
-	/**
-	 * 
-	 */
-	void imguiAdapter::imguiBeginFrame(unsigned short _width, unsigned short _height, 
-		unsigned short _surfaceWidth, unsigned short _surfaceHeight, unsigned char _view /*= 255*/)
-	{
-		::imguiBeginFrame(_width, _height, _surfaceWidth, _surfaceHeight, _view);
+		//Get status of mouse and keyboard
+		::imguiBeginFrame(0, 0, 0, 0, _width, _height);
 	}
 
 	/**
@@ -59,7 +51,7 @@ namespace CasaEngine
 		{
 			m_Vars[id] = 0;
 		}
-
+		/*
 		::imguiBeginScrollArea((std::string("Material ") + mat_.GetName()).c_str(), x_, y_, width_, height_, &m_Vars[id], enabled_);
 		::imguiSeparatorLine();
 
@@ -70,6 +62,7 @@ namespace CasaEngine
 		::imguiSlider("Texture repetition V", mat_.m_Texture0Repeat.y, 0.01f, 100.0f, 0.1f);
 
 		::imguiEndScrollArea();
+		*/
 	}
 
 } // namespace CasaEngine

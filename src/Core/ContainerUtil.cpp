@@ -1,4 +1,3 @@
-
 #include "Base.h"
 #include "ContainerUtil.h"
 #include <vector>
@@ -26,4 +25,4 @@ namespace CasaEngine
 		return std::sqrt(sd);
 	}
 
-} // namespace CasaEngine
+}

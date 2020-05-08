@@ -1,4 +1,3 @@
-
 #ifndef GAMETIME_H
 #define GAMETIME_H
 
@@ -50,6 +49,6 @@ namespace CasaEngine
 		float m_TotalElapsedTime; ///< last frame elapsed time
 	};
 
-}  // namespace CasaEngine
+} 
 
 #endif //GAMETIME_H

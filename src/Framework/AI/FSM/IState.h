@@ -41,6 +41,6 @@ namespace CasaEngine
 		virtual bool OnMessage(entity_type*, const Telegram&) = 0;
 	};
 
-} // namespace CasaEngine
+}
 
 #endif // STATE_H_

@@ -134,7 +134,7 @@ void Matrix4::SetTranslation(float x, float y, float z)
 /**
  *	
  */
-void Matrix4::SetTranslation(Vector3F trans_)
+void Matrix4::SetTranslation(Vector3F &trans_)
 {
 	SetTranslation(trans_.x, trans_.y, trans_.z);
 }
@@ -899,4 +899,4 @@ std::ostream& operator <<(std::ostream& Stream, const Matrix4& Mat)
     return Stream;
 }
 
-} // namespace CasaEngine
+}

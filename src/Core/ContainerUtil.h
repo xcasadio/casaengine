@@ -1,4 +1,3 @@
-
 #ifndef CONTAINERUTIL_H_
 #define CONTAINERUTIL_H_
 
@@ -19,7 +18,7 @@ namespace CasaEngine
 	 *	
 	 */
 	template <class T>
-	inline double Average(const std::vector<T>& v)
+	double Average(const std::vector<T>& v)
 	{
 		double average = 0.0;
 
@@ -35,7 +34,7 @@ namespace CasaEngine
 	 *	
 	 */
 	template <class container>
-	inline void DeleteSTLContainer(container& c)
+	void DeleteSTLContainer(container& c)
 	{
 		for (typename container::iterator it = c.begin(); it!=c.end(); ++it)
 		{
@@ -48,7 +47,7 @@ namespace CasaEngine
 	 *	
 	 */
 	template <class map>
-	inline void DeleteSTLMap(map& m)
+	void DeleteSTLMap(map& m)
 	{
 		for (typename map::iterator it = m.begin(); it!=m.end(); ++it)
 		{
@@ -57,6 +56,6 @@ namespace CasaEngine
 		}
 	}
 
-} // namespace CasaEngine
+}
 
 #endif // CONTAINERUTIL_H_

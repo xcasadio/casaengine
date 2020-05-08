@@ -131,6 +131,6 @@ void  Goal<entity_type>::RenderAtPos(Vector2F& pos, TypeToString* tts)const
   gdi->TextAtPos(pos.x, pos.y, tts->Convert(GetType())); */
 }
 
-} // namespace CasaEngine
+}
 
 #endif

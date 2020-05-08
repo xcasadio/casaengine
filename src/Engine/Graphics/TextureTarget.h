@@ -28,6 +28,6 @@ namespace CasaEngine
 		virtual Texture *GetTexture() = 0;
 	};
 
-}  // namespace CasaEngine
+} 
 
 #endif //_RenderTargetTexture_H_

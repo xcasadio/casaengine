@@ -178,7 +178,7 @@ public:
     {}
 
     typename ConstBaseIterator<T, typename T::mapped_type>::value_type
-    getCurrentValue() const
+    getCurrentValue() const override
     {
         return this->d_currIter->second;
     }
@@ -264,7 +264,7 @@ public:
     {}
 
     typename ConstBaseIterator<T>::value_type
-    getCurrentValue() const
+    getCurrentValue() const override
     {
         return *this->d_currIter;
     }

@@ -9,7 +9,7 @@
 #include "Entities/Components/CameraComponent.h"
 #include <string>
 #include "Transform2DComponent.h"
-#include "CompilationMacro.h"
+
 
 namespace CasaEngine
 {
@@ -26,35 +26,21 @@ namespace CasaEngine
 		/**
 		 * 
 		 */
-		void Initialize();
-
-		/**
-		 * 
-		 */
-		void  Update(const GameTime& gameTime_);	
-
-		#if EDITOR
-
-		/**
-		 * Draw icon only in editor mode
-		 */
-		void Draw();
-
-		#endif // EDITOR
+		void Initialize() override;	
 
 		//all entities can communicate using messages. They are sent
 		//using the MessageDispatcher singleton class
 		//void HandleEvent(const Event* pEvent_);
 
-		void Read (const tinyxml2::XMLElement& xmlElt) OVERRIDE;
-		void Read (std::ifstream& is) OVERRIDE;
-		void Write(tinyxml2::XMLElement& xmlElt) OVERRIDE;
-		void Write(std::ostream& os) OVERRIDE;
+		void Read (const tinyxml2::XMLElement& xmlElt) override;
+		void Read (std::ifstream& is) override;
+		void Write(tinyxml2::XMLElement& xmlElt) override;
+		void Write(std::ostream& os) override;
 
 
 	protected:
-		void ComputeProjectionMatrix();
-		
+		void ComputeProjectionMatrix() override;
+		void ComputeViewMatrix() override;
 	private:
 		Transform2DComponent* m_pTransform;
 		Vector2F m_Position;

@@ -148,6 +148,6 @@ namespace CasaEngine
 	}
 
 
-} // namespace CasaEngine
+}
 
 #endif // USE_BULLET_PHYSICS

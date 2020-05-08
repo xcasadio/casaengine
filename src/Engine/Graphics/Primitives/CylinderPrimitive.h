@@ -1,4 +1,3 @@
-
 #ifndef CYLINDERPRIMITIVE_H
 #define CYLINDERPRIMITIVE_H
 
@@ -31,6 +30,6 @@ namespace CasaEngine
 		unsigned int m_Tessellation;
     };
 
-} // namespace CasaEngine
+}
 
 #endif // CYLINDERPRIMITIVE_H

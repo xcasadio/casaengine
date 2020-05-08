@@ -252,4 +252,4 @@ void PhysicalEntity::Read (std::ifstream& /*is*/)
 
 }
 
-} // namespace CasaEngine
+}

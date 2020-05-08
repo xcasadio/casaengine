@@ -19,7 +19,7 @@
 
 #include "Memory\MemoryAllocation.h"
 #include "Physics\PhysicsObjectContainer.h"
-#include "CompilationMacro.h"
+
 #include "Log\LogManager.h"
 
 namespace CasaEngine
@@ -50,20 +50,20 @@ namespace CasaEngine
 		 */
 		~BulletPhysicsWorld();
 
-		void Update(const GameTime& gameTime_) OVERRIDE;
+		void Update(const GameTime& gameTime_) override;
 
-		void SetGravity(const Vector3F& gravity_) OVERRIDE;
+		void SetGravity(const Vector3F& gravity_) override;
 		Vector3F GetGravity() const override;
 		
 		void setDebugDraw(btIDebugDraw *pIDebugDraw_);
 
-		IRigidBodyContainer *AddRigidBody(const RigidBody *pRigidBody_) OVERRIDE;
-		void RemoveRigidBody(IRigidBodyContainer *pObj_) OVERRIDE;
+		IRigidBodyContainer *AddRigidBody(const RigidBody *pRigidBody_) override;
+		void RemoveRigidBody(IRigidBodyContainer *pObj_) override;
 
-		void AddCollisionObject(ICollisionObjectContainer *pObj_) OVERRIDE;
-		void RemoveCollisionObject(ICollisionObjectContainer *pObj_) OVERRIDE;
+		void AddCollisionObject(ICollisionObjectContainer *pObj_) override;
+		void RemoveCollisionObject(ICollisionObjectContainer *pObj_) override;
 
-		ICollisionObjectContainer *AddCollisionShape(const IShape *pShape_, const Vector3F &origin_) OVERRIDE;
+		ICollisionObjectContainer *AddCollisionShape(const IShape *pShape_, const Vector3F &origin_) override;
 
 	private:
 		void AddCollisionObject(btCollisionObject *pColObj_);
@@ -78,6 +78,6 @@ namespace CasaEngine
 		btDynamicsWorldExt * m_pBulletWorld;
 	};
 
-} // namespace CasaEngine
+}
 
 #endif // BULLETPHYSICSWORLD_H_

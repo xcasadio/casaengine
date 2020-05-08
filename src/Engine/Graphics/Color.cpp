@@ -1,77 +1,19 @@
-//==========================================================
-// CasaEngine - Free C++ 3D engine
-//
-// Copyright (C) 2004-2005 Laurent Gomila
-//
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU General Public License
-// as published by the Free Software Foundation; either version 2
-// of the License, or (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with this program; if not, write to the Free Software
-// Foundation, Inc.,
-// 59 Temple Place - Suite 330,
-// Boston, MA  02111-1307, USA.
-//
-// E-mail : laurent.gom@gmail.com
-//==========================================================
-
-
-//==========================================================
-// En-têtes
-//==========================================================
 #include "Base.h"
-
 #include "Color.h"
-
-
 
 namespace CasaEngine
 {
-
-/////////////////////////////////////////////////////////////
-/// Constructeur par défaut
-///
-/// \param Color : Couleur sous forme ARGB 32 bits
-///
-////////////////////////////////////////////////////////////
 CColor::CColor(unsigned long Color) :
 m_Color(Color)
 {
 
 }
 
-
-/////////////////////////////////////////////////////////////
-/// Constructeur à partir de composantes 
-///
-/// \param r : Canal rouge
-/// \param g : Canal vert
-/// \param b : Canal bleu
-/// \param a : Canal alpha
-///
-////////////////////////////////////////////////////////////
 CColor::CColor(unsigned char r, unsigned char g, unsigned char b, unsigned char a)
 {
     Set(r, g, b, a);
 }
 
-
-/////////////////////////////////////////////////////////////
-/// Met à jour la couleur à partir de 4 composantes flottantes
-///
-/// \param r : Canal rouge
-/// \param g : Canal vert
-/// \param b : Canal bleu
-/// \param a : Canal alpha
-///
-////////////////////////////////////////////////////////////
 void CColor::SetFloats(float r, float g, float b, float a)
 {
     int R = static_cast<int>(r * 255.0f);
@@ -82,32 +24,11 @@ void CColor::SetFloats(float r, float g, float b, float a)
 	SetInt(R, G, B, A);
 }
 
-
-/////////////////////////////////////////////////////////////
-/// Met à jour la couleur à partir de 4 composantes
-///
-/// \param r : Canal rouge
-/// \param g : Canal vert
-/// \param b : Canal bleu
-/// \param a : Canal alpha
-///
-////////////////////////////////////////////////////////////
 void CColor::Set(unsigned char r, unsigned char g, unsigned char b, unsigned char a)
 {
     m_Color = (a << 24) | (r << 16) | (g << 8) | (b << 0);
 }
 
-
-/////////////////////////////////////////////////////////////
-/// Met à jour la couleur à partir de 4 composantes
-/// Utilisé en interne - sert à clamper les composantes
-///
-/// \param r : Canal rouge
-/// \param g : Canal vert
-/// \param b : Canal bleu
-/// \param a : Canal alpha
-///
-////////////////////////////////////////////////////////////
 void CColor::SetInt(int r, int g, int b, int a)
 {
 	unsigned char R = static_cast<unsigned char>((r >= 0) ? (r <= 255 ? r : 255) : 0);
@@ -118,15 +39,6 @@ void CColor::SetInt(int r, int g, int b, int a)
 	Set(R, G, B, A);
 }
 
-
-/////////////////////////////////////////////////////////////
-/// Surcharge de l'opérateur == pour comparer deux couleurs
-///
-/// \param c : Couleur à comparer
-///
-/// \return True si les deux couleurs sont identiques
-///
-////////////////////////////////////////////////////////////
 bool CColor::operator ==(const CColor& c) const
 {
     return m_Color == c.m_Color;
@@ -655,4 +567,4 @@ const CColor CColor::GradientInactiveCaption(215, 228, 242, 255);
 const CColor CColor::MenuBar(240, 240, 240, 255);
 const CColor CColor::MenuHighlight(51, 153, 255, 255);
 
-} // namespace CasaEngine
+}

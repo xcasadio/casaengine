@@ -1,13 +1,3 @@
-//-----------------------------------------------------------------------------
-//
-//  Name:   InvertedAABBox2D.h
-//
-//  Author: Mat Buckland (www.ai-junkie.com)
-//
-//  Desc:   v simple inverted (y increases down screen) axis aligned bounding
-//          box class
-//-----------------------------------------------------------------------------
-
 #ifndef INVAABBOX2D_H
 #define INVAABBOX2D_H
 
@@ -18,36 +8,36 @@
 namespace CasaEngine
 {
 
-class CA_EXPORT InvertedAABBox2D :
-	public AllocatedObject<InvertedAABBox2D>
-{
-private:
-  
-  Vector2F  m_vTopLeft;
-  Vector2F  m_vBottomRight;
+	class CA_EXPORT InvertedAABBox2D :
+		public AllocatedObject<InvertedAABBox2D>
+	{
+	private:
 
-  Vector2F  m_vCenter;
-  
-public:
+		Vector2F  m_vTopLeft;
+		Vector2F  m_vBottomRight;
 
-  InvertedAABBox2D(Vector2F tl, Vector2F br);
+		Vector2F  m_vCenter;
 
-  //returns true if the bbox described by other intersects with this one
-  bool isOverlappedWith(const InvertedAABBox2D& other)const;
+	public:
 
-  
-  Vector2F TopLeft()const;
-  Vector2F BottomRight()const;
+		InvertedAABBox2D(Vector2F tl, Vector2F br);
 
-  double    Top() const;
-  double    Left() const;
-  double    Bottom() const;
-  double    Right() const;
-  Vector2F  Center() const;
+		//returns true if the bbox described by other intersects with this one
+		bool isOverlappedWith(const InvertedAABBox2D& other)const;
 
-  void     Render(bool RenderCenter = false) const;
-};
-  
-} // namespace CasaEngine
+
+		Vector2F TopLeft()const;
+		Vector2F BottomRight()const;
+
+		double    Top() const;
+		double    Left() const;
+		double    Bottom() const;
+		double    Right() const;
+		Vector2F  Center() const;
+
+		void     Render(bool RenderCenter = false) const;
+	};
+
+}
 
 #endif // INVAABBOX2D_H

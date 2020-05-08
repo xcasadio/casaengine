@@ -20,58 +20,58 @@
 namespace CasaEngine
 {
 	/*
-	 *	
+	 *
 	 */
 	class CA_EXPORT Path :
 		public AllocatedObject<Path>
 	{
 	private:
-  
-	  std::list<Vector2F> m_WayPoints;
 
-	  //points to the current waypoint
-	  std::list<Vector2F>::iterator m_CurWaypoint;
+		std::list<Vector2F> m_WayPoints;
 
-	  //flag to indicate if the path should be looped
-	  //(The last waypoint connected to the first)
-	  bool m_bLooped;
+		//points to the current waypoint
+		std::list<Vector2F>::iterator m_CurWaypoint;
+
+		//flag to indicate if the path should be looped
+		//(The last waypoint connected to the first)
+		bool m_bLooped;
 
 	public:
-  
-	  Path();
 
-	  //constructor for creating a path with initial random waypoints. MinX/Y
-	  //& MaxX/Y define the bounding box of the path.
-	  Path(std::list<Vector2F> path_, bool looped);
+		Path();
 
-	  //returns the current waypoint
-	  Vector2F    CurrentWaypoint() const;
+		//constructor for creating a path with initial random waypoints. MinX/Y
+		//& MaxX/Y define the bounding box of the path.
+		Path(std::list<Vector2F> path_, bool looped);
 
-	  //returns true if the end of the list has been reached
-	  bool        Finished();
-  
-	  //moves the iterator on to the next waypoint in the list
-	  inline void SetNextWaypoint();
+		//returns the current waypoint
+		Vector2F    CurrentWaypoint() const;
 
-	  void LoopOn();
-	  void LoopOff();
- 
-	  //adds a waypoint to the end of the path
-	  void AddWayPoint(Vector2F new_point);
+		//returns true if the end of the list has been reached
+		bool        Finished();
 
-	  //methods for setting the path with either another Path or a list of vectors
-	  void Set(std::list<Vector2F> new_path);
-	  void Set(const Path& path);
-  
+		//moves the iterator on to the next waypoint in the list
+		inline void SetNextWaypoint();
 
-	  void Clear();
+		void LoopOn();
+		void LoopOff();
 
-	  std::list<Vector2F> GetPath() const;
+		//adds a waypoint to the end of the path
+		void AddWayPoint(Vector2F new_point);
 
-	  //renders the path in orange
-	  void Render()const; 
-	}; 
+		//methods for setting the path with either another Path or a list of vectors
+		void Set(std::list<Vector2F> new_path);
+		void Set(const Path& path);
 
-} // namespace CasaEngine
+
+		void Clear();
+
+		std::list<Vector2F> GetPath() const;
+
+		//renders the path in orange
+		void Render()const;
+	};
+
+}
 
 #endif // PATH_H

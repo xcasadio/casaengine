@@ -56,6 +56,6 @@ namespace CasaEngine
 		{}
 	};
 
-} // namespace CasaEngine
+}
 
 #endif // RIGIDBODY_H_

@@ -138,6 +138,6 @@ namespace CasaEngine
 	  }
 	};
 
-} // namespace CasaEngine
+}
 
 #endif // STATEMACHINE_H

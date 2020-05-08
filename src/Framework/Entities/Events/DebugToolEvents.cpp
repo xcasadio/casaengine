@@ -22,4 +22,4 @@ namespace CasaEngine
 		return m_iFPS;
 	}
 
-} // namespace CasaEngine
+}

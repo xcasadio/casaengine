@@ -248,6 +248,38 @@ float Input::GetJoystickAxis( unsigned int JoyId, sf::Joystick::Axis Axis ) cons
 		return 0.f;
 }
 
+float Input::GetJoystickLeftStickX(unsigned JoyId) const
+{
+	return GetJoystickAxis(JoyId, sf::Joystick::X);
+}
+
+float Input::GetJoystickLeftStickY(unsigned JoyId) const
+{
+	return GetJoystickAxis(JoyId, sf::Joystick::Y);
+}
+
+float Input::GetJoystickRightStickX(unsigned JoyId) const
+{
+	return GetJoystickAxis(JoyId, sf::Joystick::U);
+}
+
+float Input::GetJoystickRightStickY(unsigned JoyId) const
+{
+	return GetJoystickAxis(JoyId, sf::Joystick::V);
+}
+
+float Input::GetJoystickLeftTrigger(unsigned JoyId) const
+{
+	float val = GetJoystickAxis(JoyId, sf::Joystick::Z);
+	return val > 0.0f ? val : 0.0f;
+}
+
+float Input::GetJoystickRightTrigger(unsigned JoyId) const
+{
+	float val = GetJoystickAxis(JoyId, sf::Joystick::Z);
+	return val < 0.0f ? std::abs(val) : 0.0f;
+}
+
 /**
  * 
  */
@@ -315,4 +347,4 @@ float Input::TouchMoveDeltaY(unsigned int index_) const
 	return 0.0f; //return m_pInput->TouchPositionY(index_) - m_LastTouchData[index_].Positions.back().y;
 }
 
-} // namespace CasaEngine
+}

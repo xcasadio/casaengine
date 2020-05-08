@@ -5,7 +5,7 @@
 #include "BulletDynamics\Dynamics\btRigidBody.h"
 #include "BulletCollision\CollisionDispatch\btCollisionObject.h"
 #include "CA_Export.h"
-#include "CompilationMacro.h"
+
 #include "Maths\Vector3.h"
 #include "Maths\Quaternion.h"
 
@@ -27,21 +27,21 @@ namespace CasaEngine
 
 #if defined(CA_DEBUG)
 
-		void logInfo() OVERRIDE;
+		void logInfo() override;
 
 #endif // #if defined(CA_DEBUG)
 
-		const Vector3F& getLinearVelocity() const OVERRIDE;
-		void setLinearVelocity(const Vector3F& lin_vel) OVERRIDE;
+		const Vector3F& getLinearVelocity() const override;
+		void setLinearVelocity(const Vector3F& lin_vel) override;
 
-		Vector3F& getAngularVelocity() const OVERRIDE;
-		void setAngularVelocity(const Vector3F& ang_vel) OVERRIDE;
+		Vector3F& getAngularVelocity() const override;
+		void setAngularVelocity(const Vector3F& ang_vel) override;
 
-		Vector3F& getTranslation() const OVERRIDE;
-		void setTranslation(const Vector3F& ang_vel) OVERRIDE;
+		Vector3F& getTranslation() const override;
+		void setTranslation(const Vector3F& ang_vel) override;
 
-		Quaternion& getRotation() const OVERRIDE;
-		void setRotation(const Quaternion& rot) OVERRIDE;
+		Quaternion& getRotation() const override;
+		void setRotation(const Quaternion& rot) override;
 
 	private:
 		btRigidBody *m_pRigidBody;
@@ -65,6 +65,6 @@ namespace CasaEngine
 		btCollisionObject *m_pCollisionObject;
 	};
 
-} // namespace CasaEngine
+}
 
 #endif // BULLETOBJECTSCONTAINER_H_

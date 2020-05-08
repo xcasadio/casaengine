@@ -80,5 +80,5 @@ int INIReader::ValueHandler(void* user, const char* section, const char* name,
     return 1;
 }
 
-} // namespace CasaEngine
+}
 

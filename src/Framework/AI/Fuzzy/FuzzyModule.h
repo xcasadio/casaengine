@@ -80,6 +80,6 @@ public:
 
 };
 
-} // namespace CasaEngine
+}
 
 #endif

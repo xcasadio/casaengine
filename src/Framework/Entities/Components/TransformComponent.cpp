@@ -60,4 +60,4 @@ void TransformComponent::Read (std::ifstream& /*is*/)
 
 }
 
-} // namespace CasaEngine
+}

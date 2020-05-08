@@ -42,6 +42,6 @@ namespace CasaEngine
 	  void       ORwithDOM(float val){m_Set.ORwithDOM(val);}
 	};
 
-} // namespace CasaEngine
+}
 
 #endif

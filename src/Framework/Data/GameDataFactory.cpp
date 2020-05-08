@@ -109,4 +109,4 @@ namespace CasaEngine
 		return res;
 	}
 
-} // namespace CasaEngine
+}

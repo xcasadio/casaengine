@@ -11,6 +11,6 @@ namespace CasaEngine
 	public:
 		virtual void OnFrameChanged(const char* frameID_) = 0;
 	};
-} // namespace CasaEngine
+}
 
 #endif // _IANIMATIONEVENTLISTENER_H_

@@ -22,7 +22,7 @@ namespace CasaEngine
 		POLYGON,
 	};
 	
-} // namespace CasaEngine
+}
 
 
 #endif // SHAPETYPE_H

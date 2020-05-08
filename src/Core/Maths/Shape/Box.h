@@ -2,15 +2,13 @@
 #define BOX_H
 
 #include "CA_Export.h"
-#include "CompilationMacro.h"
 #include "Maths/Matrix4.h"
 #include "Maths/Vector3.h"
 #include "IShape.h"
-
 #include "Memory/MemoryAllocation.h"
 #include "Parsers/Xml/tinyxml2.h"
+
 #include <iosfwd>
-#include "CompilationMacro.h"
 
 
 namespace CasaEngine
@@ -52,10 +50,10 @@ namespace CasaEngine
 		 */
 		void Center(Vector3F val);
 
-		void Read( const tinyxml2::XMLElement& node_ ) OVERRIDE;
-		void Read( std::ifstream& in ) OVERRIDE;
-		void Write( const tinyxml2::XMLElement& node_ ) OVERRIDE;
-		void Write( std::ostream& os ) OVERRIDE;
+		void Read( const tinyxml2::XMLElement& node_ ) override;
+		void Read( std::ifstream& in ) override;
+		void Write( const tinyxml2::XMLElement& node_ ) override;
+		void Write( std::ostream& os ) override;
 		
 	protected:
 
@@ -63,7 +61,7 @@ namespace CasaEngine
 	private:
 		Vector3F m_Center, m_Size;
 	};
-} // namespace CasaEngine
+}
 
 
 #endif // BOX_H

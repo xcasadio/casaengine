@@ -35,7 +35,8 @@ namespace CasaEngine
 		Vector3F Position() const;
 		void Position(Vector3F val);
 
-		Matrix4 ViewMatrix(Matrix4 &viewMatrix_);
+		void ViewMatrix(Matrix4& viewMatrix_) override;
+		void ProjectionMatrix(Matrix4& projectionMatrix_) override;
 
 		Vector3F Target() const;
 		void Target(Vector3F val);

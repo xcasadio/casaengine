@@ -56,6 +56,6 @@ public:
   void               SetDOM(float val);
 };
 
-} // namespace CasaEngine
+}
 
 #endif

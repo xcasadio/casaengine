@@ -42,7 +42,6 @@
 #ifndef WIN32EXCEPTION_H__
 #define WIN32EXCEPTION_H__
 
-
 #include "CA_Export.h"
 
 #include <TCHAR.H>

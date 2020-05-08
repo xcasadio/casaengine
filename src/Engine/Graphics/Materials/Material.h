@@ -43,6 +43,6 @@ namespace CasaEngine
 		Vector2F m_Texture0Repeat;
 	};
 
-} // namespace CasaEngine
+}
 
 #endif // MATERIAL_H

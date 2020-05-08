@@ -16,4 +16,4 @@ AutoRegisterScriptObjectFactory::AutoRegisterScriptObjectFactory(
 	ScriptEngine::Instance().RegisterFactory(pObject_);
 }
 
-} // namespace CasaEngine
+}

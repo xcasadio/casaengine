@@ -49,6 +49,6 @@ namespace CasaEngine
 
 	#include "Functor.inl"
 
-} // namespace CasaEngine
+}
 
 #endif // FUNCTOR_H

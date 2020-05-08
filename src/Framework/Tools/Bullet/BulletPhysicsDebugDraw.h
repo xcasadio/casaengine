@@ -5,7 +5,7 @@
 #include "LinearMath\btIDebugDraw.h"
 #include "Game\Line3DRendererComponent.h"
 #include "Memory\MemoryAllocation.h"
-#include "CompilationMacro.h"
+
 
 namespace CasaEngine
 {
@@ -23,15 +23,15 @@ public:
 
 	void Initialize();
 
-	void drawLine( const btVector3& from,const btVector3& to,const btVector3& color ) OVERRIDE;
+	void drawLine( const btVector3& from,const btVector3& to,const btVector3& color ) override;
 
-	void drawContactPoint( const btVector3& PointOnB,const btVector3& normalOnB,btScalar distance,int lifeTime,const btVector3& color ) OVERRIDE;
+	void drawContactPoint( const btVector3& PointOnB,const btVector3& normalOnB,btScalar distance,int lifeTime,const btVector3& color ) override;
 
-	void reportErrorWarning( const char* warningString ) OVERRIDE;
+	void reportErrorWarning( const char* warningString ) override;
 
-	void draw3dText( const btVector3& location,const char* textString ) OVERRIDE;
+	void draw3dText( const btVector3& location,const char* textString ) override;
 
-	void setDebugMode( int debugMode ) OVERRIDE;
+	void setDebugMode( int debugMode ) override;
 
 	int getDebugMode() const override;
 
@@ -39,6 +39,6 @@ private:
 	Line3DRendererComponent *m_pLineRenderer;
 };
 
-} // namespace CasaEngine
+}
 
 #endif // BULLETPHYSICSDEBUGDRAW_H_

@@ -16,9 +16,6 @@ namespace CasaEngine
 #define Win32Check(Func) (Func)
 #endif
 
-	////////////////////////////////////////////////////////////
-	/// Check Wni32 error
-	////////////////////////////////////////////////////////////
 	inline void OnWin32Error(BOOL res, const char* functionName_, const char* file, DWORD Line)
 	{
 		if (res == false && GetLastError() != 0)

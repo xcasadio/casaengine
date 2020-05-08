@@ -69,4 +69,4 @@ void Polygon::Write( std::ostream& /*os*/ )
 		
 }
 
-} // namespace CasaEngine
+}

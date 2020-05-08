@@ -72,5 +72,5 @@ namespace CasaEngine
 		return element_->FirstChildElement(name_);
 	}
 
-} // namespace CasaEngine
+}
 

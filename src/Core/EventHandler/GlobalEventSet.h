@@ -53,7 +53,7 @@ public:
 	\return
 		Nothing.
 	*/
-	virtual void	fireEvent(const std::string& name, EventArgs& args, const std::string& eventNamespace = "");
+	void	fireEvent(const std::string& name, EventArgs& args, const std::string& eventNamespace = "") override;
 };
 
 }

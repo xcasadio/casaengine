@@ -20,6 +20,6 @@ namespace CasaEngine
 		Vector2I origin;
 		//Sprite Effect
 	};
-} // namespace CasaEngine
+}
 
 #endif // _FRAME2D_H_

@@ -97,4 +97,4 @@ int IResource::Release()
     return RefCount;
 }
 
-} // namespace CasaEngine
+}

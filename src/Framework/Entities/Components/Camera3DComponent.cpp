@@ -11,7 +11,7 @@
 #include "StringUtils.h"
 
 #include "Transform3DComponent.h"
-#include "EngineInfo.h"
+
 
 namespace CasaEngine
 {
@@ -21,11 +21,10 @@ namespace CasaEngine
  */
 Camera3DComponent::Camera3DComponent(BaseEntity* pEntity_)
 	: CameraComponent(pEntity_, CAMERA_3D),
-		m_Position(Vector3F::One()),
+		m_Position(Vector3F(0.0f, 10.0f, -10.0f)),
 		m_Target(Vector3F::Zero()),
 		m_fFOV(MATH_PI_DIV_4)
 {
-	ComputeProjectionMatrix();
 }
 
 /**
@@ -51,18 +50,6 @@ void Camera3DComponent::Initialize()
 	
 }*/
 
-#if EDITOR
-
-/**
- * 
- */
-void Camera3DComponent::Draw()
-{
-	//Draw icon only in editor mode
-}
-
-#endif // EDITOR
-
 /**
  * 
  */
@@ -85,7 +72,7 @@ Vector3F Camera3DComponent::Position() const
 void Camera3DComponent::Position(Vector3F val) 
 { 
 	m_Position = val; 
-	ComputeViewMatrix();
+    m_needToComputeViewMatrix = true;
 }
 
 /**
@@ -102,7 +89,7 @@ Vector3F Camera3DComponent::Target() const
 void Camera3DComponent::Target(Vector3F val) 
 {
 	m_Target = val; 
-	ComputeViewMatrix();
+    m_needToComputeViewMatrix = true;
 }
 
 
@@ -119,8 +106,8 @@ float Camera3DComponent::FOV() const
  */
 void Camera3DComponent::FOV(float val) 
 { 
-	m_fFOV = val; 
-	ComputeProjectionMatrix();
+	m_fFOV = val;
+    m_needToComputeProjectionMatrix = true;
 }
 
 /**
@@ -136,8 +123,8 @@ float Camera3DComponent::FarClipPlane() const
  */
 void Camera3DComponent::FarClipPlane(float val) 
 { 
-	m_Viewport.FarClipPlane(val); 
-	ComputeProjectionMatrix();
+	m_Viewport.FarClipPlane(val);
+    m_needToComputeProjectionMatrix = true;
 }
 
 /**
@@ -154,20 +141,30 @@ float Camera3DComponent::NearClipPlane() const
 void Camera3DComponent::NearClipPlane(float val)
 { 
 	m_Viewport.NearClipPlane(val);
-	ComputeProjectionMatrix();
+    m_needToComputeProjectionMatrix = true;
 }
 
+/**
+ *
+ */
+void Camera3DComponent::ComputeViewMatrix()
+{
+    m_needToComputeViewMatrix = false;
+    m_ViewMatrix.LookAt(m_Position, m_Target);
+}
+	
 /**
  * 
  */
 void Camera3DComponent::ComputeProjectionMatrix()
 {
+    m_needToComputeProjectionMatrix = false;
 	float ratio = static_cast<float>(m_Viewport.Width() * Game::Instance()->GetWindow()->getSize().x) / 
 		static_cast<float>(m_Viewport.Height() * Game::Instance()->GetWindow()->getSize().y);
 
 	m_ProjectionMatrix.PerspectiveFOV(
 		m_fFOV,
-		ratio/*m_Viewport.AspectRatio()*/, 
+		ratio, 
 		m_Viewport.NearClipPlane(),
 		m_Viewport.FarClipPlane());
 }
@@ -189,12 +186,4 @@ void Camera3DComponent::Read (std::ifstream& /*is*/)
 
 }
 
-/**
- * 
- */
-void Camera3DComponent::ComputeViewMatrix()
-{
-	m_ViewMatrix.LookAt(m_Position, m_Target);
 }
-
-} // namespace CasaEngine

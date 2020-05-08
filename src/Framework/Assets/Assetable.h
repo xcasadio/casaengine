@@ -40,6 +40,6 @@ namespace CasaEngine
 
 	}; // class IAssetable
 
-} // namespace CasaEngine
+}
 
 #endif // _ASSETABLE_H_

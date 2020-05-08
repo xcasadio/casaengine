@@ -14,7 +14,7 @@
 #include "ColliderComponent.h"
 #include "Physics/RigidBody.h"
 #include "Parsers/Xml/tinyxml2.h"
-#include "CompilationMacro.h"
+
 #include "AI/Messaging/Telegram.h"
 
 namespace CasaEngine
@@ -43,12 +43,12 @@ namespace CasaEngine
 		/**
 		 * 
 		 */
-		void Update(const GameTime& gameTime_) OVERRIDE;
+		void Update(const GameTime& gameTime_) override;
 
 		/**
 		 * 
 		 */
-		bool HandleMessage(const Telegram& msg) OVERRIDE;
+		bool HandleMessage(const Telegram& msg) override;
 
 		/**
 		 * 
@@ -63,10 +63,10 @@ namespace CasaEngine
 		void AddShape(ColliderComponent *pShape_);
 		void RemoveShape(ColliderComponent *pShape_);
 
-		void Read (const tinyxml2::XMLElement& xmlElt) OVERRIDE;
-		void Read (std::ifstream& is) OVERRIDE;
-		void Write(tinyxml2::XMLElement& xmlElt) OVERRIDE;
-		void Write(std::ostream& os) OVERRIDE;
+		void Read (const tinyxml2::XMLElement& xmlElt) override;
+		void Read (std::ifstream& is) override;
+		void Write(tinyxml2::XMLElement& xmlElt) override;
+		void Write(std::ostream& os) override;
 
 		
 

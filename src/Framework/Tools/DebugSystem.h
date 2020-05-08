@@ -32,7 +32,7 @@ namespace CasaEngine
 		int m_iLastFPSCount;
 	};
 
-} // namespace CasaEngine
+}
 
 
 #endif // _DEBUGSYSTEM_H_

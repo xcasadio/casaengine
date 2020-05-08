@@ -1,4 +1,3 @@
-
 #ifndef LOGVERBOSE_H_
 #define LOGVERBOSE_H_
 
@@ -10,12 +9,8 @@
 
 namespace CasaEngine
 {
-	/**
-	 * 
-	 */
 	enum TLogVerbosity
 	{
-
 #if CA_PLATFORM_ANDROID
 
 		Trace = ANDROID_LOG_VERBOSE,
@@ -26,7 +21,6 @@ namespace CasaEngine
 		Fatal = ANDROID_LOG_FATAL,
 		None = ANDROID_LOG_SILENT
 #else
-
 		Trace,
 		Debug,
 		Info,
@@ -34,9 +28,7 @@ namespace CasaEngine
 		Error,
 		Fatal,
 		None
-
-#endif
-		
+#endif		
 	};
 }
 

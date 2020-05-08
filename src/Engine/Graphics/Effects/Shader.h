@@ -76,7 +76,7 @@ namespace CasaEngine
 		bgfx::ShaderHandle m_Handle;
 	};
 
-} // namespace CasaEngine
+}
 
 
 #endif // SHADER_H

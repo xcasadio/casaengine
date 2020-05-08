@@ -7,7 +7,7 @@
 
 #include "IShape.h"
 #include "Maths/Vector2.h"
-#include "CompilationMacro.h"
+
 
 namespace CasaEngine
 {
@@ -28,10 +28,10 @@ namespace CasaEngine
 		 */
 		~Polygon();
 
-		void Read( const tinyxml2::XMLElement& node_ ) OVERRIDE;
-		void Read( std::ifstream& in ) OVERRIDE;
-		void Write( const tinyxml2::XMLElement& node_ ) OVERRIDE;
-		void Write( std::ostream& os ) OVERRIDE;
+		void Read( const tinyxml2::XMLElement& node_ ) override;
+		void Read( std::ifstream& in ) override;
+		void Write( const tinyxml2::XMLElement& node_ ) override;
+		void Write( std::ostream& os ) override;
 		
 	protected:
 		
@@ -39,7 +39,7 @@ namespace CasaEngine
 	private:
 		std::vector<Vector2F> m_PointList;
     };
-} // namespace CasaEngine
+}
 
 
 #endif // POLYGON_H

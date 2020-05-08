@@ -57,7 +57,7 @@ private:
                             const char* value);
 };
 
-} // namespace CasaEngine
+}
 
 
 #endif  // __INIREADER_H__

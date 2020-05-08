@@ -123,4 +123,4 @@ ShapeType IShape::Type() const
 	return m_ShapeType;
 }
 
-} // namespace CasaEngine
+}

@@ -42,7 +42,8 @@ Texture *Mesh::m_pDefaultTexture = nullptr;
 // 	}
 // 
 // 	return bgfx::createTexture2D(uint16_t(_width), uint16_t(_height), 0, bgfx::TextureFormat::BGRA8, 0, mem);
-// }
+// }
+
 
 /**
  * 
@@ -60,14 +61,14 @@ Mesh::Mesh(const VertexPositionNormalTexture* Vertices, unsigned long VerticesCo
     CA_ASSERT(Indices != nullptr, "Mesh::Mesh() : Indices is nullptr");
 
 	m_VertexBuffer = bgfx::createVertexBuffer(
-		bgfx::makeRef((uint8_t *)Vertices, VerticesCount * sizeof(VertexPositionNormalTexture)), 
-		VertexPositionNormalTexture::ms_decl);
+		bgfx::makeRef(Vertices, VerticesCount * sizeof(VertexPositionNormalTexture)), 
+		VertexPositionNormalTexture::ms_layout);
 
 	m_IndexBuffer = bgfx::createIndexBuffer(
-		bgfx::makeRef((uint8_t *)Indices, IndicesCount * sizeof(short)));
+		bgfx::makeRef(Indices, IndicesCount * sizeof(short)));
 
 	m_TextureRepitionUniform = bgfx::createUniform("u_texcoord0rep", bgfx::UniformType::Vec4);
-	m_TextureUniform = bgfx::createUniform("s_texColor", bgfx::UniformType::Int1);	
+	m_TextureUniform = bgfx::createUniform("s_texColor", bgfx::UniformType::Sampler);	
 
 	const char *materialName = "internal_default_material";
 	m_pMaterial = ResourceManager::Instance().Get<Material>(materialName);
@@ -90,8 +91,8 @@ Mesh::~Mesh()
 		m_pMaterial->Release();
 	}
 
-	bgfx::destroyIndexBuffer(m_IndexBuffer);
-	bgfx::destroyVertexBuffer(m_VertexBuffer);
+	bgfx::destroy(m_IndexBuffer);
+	bgfx::destroy(m_VertexBuffer);
 }
 
 /**
@@ -122,15 +123,22 @@ void Mesh::Render(bgfx::ProgramHandle handle_, Matrix4 &matWorld_) const
 {
 	bgfx::setTransform(matWorld_);
 
-	bgfx::setVertexBuffer(m_VertexBuffer);
+	bgfx::setVertexBuffer(0, m_VertexBuffer);
 	bgfx::setIndexBuffer(m_IndexBuffer);
 
 	bgfx::TextureHandle texture = m_pMaterial->Texture0() != nullptr ? m_pMaterial->Texture0()->Handle() : m_pDefaultTexture->Handle();
 	bgfx::setTexture(0, m_TextureUniform, bgfx::isValid(texture) ? texture : m_pDefaultTexture->Handle());
 
 	bgfx::setUniform(m_TextureRepitionUniform,  Vector4F(m_pMaterial->Texture0Repeat().x, m_pMaterial->Texture0Repeat().y, 1.0f, 1.0f));
-	bgfx::setState(BGFX_STATE_DEFAULT);
+
+	bgfx::setState(BGFX_STATE_WRITE_RGB
+		| BGFX_STATE_WRITE_A
+		| BGFX_STATE_WRITE_Z
+		| BGFX_STATE_DEPTH_TEST_GREATER
+		| BGFX_STATE_CULL_CW 
+		| BGFX_STATE_MSAA);
+	
 	bgfx::submit(0, handle_);
 }
 
-} // namespace CasaEngine
+}

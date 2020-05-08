@@ -48,8 +48,8 @@ public:
 			WindowWidth = ini.GetInteger("Engine.Settings", "WindowWidth", 1280);
 			WindowHeight = ini.GetInteger("Engine.Settings", "WindowHeight", 720);
 			DepthColor = ini.GetInteger("Engine.Settings", "DepthColor", 32);
-			FullScreen = ini.GetBoolean("Engine.Settings", "FullScreen", 0);
-			//TODO : etc
+			FullScreen = ini.GetBoolean("Engine.Settings", "FullScreen", false);
+
 			memcpy_s( (void *)GameplayDLL,
 				256 * sizeof(char), 
 				ini.Get("Engine.Settings", "GameplayDLL", "").substr(0, 255).c_str(), 
@@ -62,6 +62,6 @@ public:
 	}
 };
 
-} // namespace CasaEngine
+}
 
 #endif // ENGINESETTINGS_H_

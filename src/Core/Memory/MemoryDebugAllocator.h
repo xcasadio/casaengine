@@ -38,6 +38,6 @@ struct AllocatorConfig
 	typedef DebugAllocator Allocator;
 };
 
-} // namespace CasaEngine
+}
 
 #endif	// end of guard _CASAENGINEMemoryDebugAllocator_h_

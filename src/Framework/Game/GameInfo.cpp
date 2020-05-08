@@ -61,6 +61,7 @@ void GameInfo::SetActiveCamera(CameraComponent *val)
 	m_pCamera = val;
 	Viewport &viewport = m_pCamera->GetViewport();
 
+	//todo in graphics or in renderer
 	bgfx::setViewRect(0, 
 		viewport.X() * Game::Instance()->GetWindow()->getSize().x,
 		viewport.Y() * Game::Instance()->GetWindow()->getSize().y,
@@ -69,4 +70,4 @@ void GameInfo::SetActiveCamera(CameraComponent *val)
 }
 
 
-} // namespace CasaEngine
+}

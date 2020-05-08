@@ -80,4 +80,4 @@ void Asset::Write(std::ostream& /*os*/) const
 
 // #endif // EDITOR
 
-} // namespace CasaEngine
+}

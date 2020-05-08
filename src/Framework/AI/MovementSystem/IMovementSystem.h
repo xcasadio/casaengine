@@ -59,6 +59,6 @@ struct IMovementSystem
 	virtual void Update(float updateTime) = 0;
 };
 
-} // namespace CasaEngine
+}
 
 #endif // IMovementSystem_h

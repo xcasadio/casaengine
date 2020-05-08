@@ -13,7 +13,7 @@
 #include "BulletCollision\BroadphaseCollision\btBroadphaseInterface.h"
 #include "BulletDynamics\ConstraintSolver\btSequentialImpulseConstraintSolver.h"
 #include "LinearMath\btIDebugDraw.h"
-#include "CompilationMacro.h"
+
 
 
 namespace CasaEngine
@@ -45,7 +45,7 @@ namespace CasaEngine
 		/**
 		 * 
 		 */
-		void Initialize() OVERRIDE;
+		void Initialize() override;
 		
 		/**
 		 * 
@@ -58,6 +58,6 @@ namespace CasaEngine
 		IPhysicsWorld* CreateWorld() const override;
 	};
 
-} // namespace CasaEngine
+}
 
 #endif // BULLETPHYSICSENGINE_H_

@@ -1,7 +1,6 @@
 #include "Base.h"
 #include "DebugOptions.h"
 #include <string>
-#include "ocornut-imgui\imgui.h"
 #include "Game\Game.h"
 
 namespace CasaEngine
@@ -54,4 +53,4 @@ namespace CasaEngine
 		}
 	}
 
-} // namespace CasaEngine
+}

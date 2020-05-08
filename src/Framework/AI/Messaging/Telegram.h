@@ -43,20 +43,22 @@ namespace CasaEngine
 		 * 
 		 */
 		Telegram():
-			DispatchTime(-1),
 			Sender(-1),
 			Receiver(-1),
-			Msg(-1)
-		{}
+			Msg(-1),
+			DispatchTime(-1),
+			ExtraInfo(nullptr)
+		{
+		}
 
 		/**
 		 * 
 		 */
 		Telegram(double time, int sender, int receiver, int msg, void*  info = nullptr) : 
-			DispatchTime(time),
 			Sender(sender),
 			Receiver(receiver),
 			Msg(msg),
+			DispatchTime(time),
 			ExtraInfo(info)
 		{}
  
@@ -84,11 +86,8 @@ namespace CasaEngine
 	  {
 		return false;
 	  }
-
-	  else
-	  {
-		return  (t1.DispatchTime < t2.DispatchTime);
-	  }
+		
+	  return  (t1.DispatchTime < t2.DispatchTime);
 	}
 
 	inline std::ostream& operator<<(std::ostream& os, const Telegram& t)
@@ -102,12 +101,12 @@ namespace CasaEngine
 	//handy helper function for dereferencing the ExtraInfo field of the Telegram 
 	//to the required type.
 	template <class T>
-	inline T DereferenceToType(void* p)
+	T DereferenceToType(void* p)
 	{
 	  return *(T*)(p);
 	}
 
-} // namespace CasaEngine
+}
 
 
 #endif

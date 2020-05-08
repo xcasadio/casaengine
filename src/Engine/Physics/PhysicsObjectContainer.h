@@ -45,6 +45,6 @@ namespace CasaEngine
 		virtual ~ICollisionObjectContainer() {}
 	};
 
-} // namespace CasaEngine
+}
 
 #endif // PHYSICSOBJECTCONTAINER_H_
