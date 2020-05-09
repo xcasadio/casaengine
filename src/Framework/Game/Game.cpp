@@ -1,6 +1,4 @@
-
 #include "Base.h"
-
 
 #include "Entities/EntityManager.h"
 #include "Exceptions.h"
@@ -81,24 +79,21 @@ Game* Game::s_Application = nullptr;
  */
 //CEGUI::Key::Scan convertKeyCodeToCEGUIKey(sf::Keyboard::Key code_);
 
-Game *Game::Instance()
+Game& Game::Instance()
 {
-	return s_Application;
+	return *s_Application;
 }
 
 /**
  * 
  */
 #if CA_PLATFORM_DESKTOP
-
 Game::Game(sf::WindowHandle handle_) :
-	m_pWindow(nullptr)
-
-#else // mobile platform
-
+	m_pWindow(nullptr),
+#else
 Game::Game() :
-
-#endif // CA_PLATFORM_DESKTOP
+#endif
+	m_pGlobalEventSet(GlobalEventSet::Instance())
 {
 	m_pGamePlayDLL = nullptr;
 	m_IsRunning = true;
@@ -109,7 +104,7 @@ Game::Game() :
 // 	m_pCEGUILogger = nullptr;
 // 	m_pCEGUIImageCodec = nullptr;
 	m_NeedResize = false;
-    s_Application = this;
+    s_Application = this;	
 
     RegisterLoaders();
 
@@ -134,13 +129,13 @@ Game::Game() :
  */
 Game::~Game()
 {
-	if (m_pGamePlayDLL != nullptr)
-	{
-		DELETE_AO m_pGamePlayDLL;
-	}
+	DELETE_AO m_pGamePlayDLL;
 
-	GlobalEventSet::Destroy();
-	ScriptEngine::Destroy();
+// 	::delete m_pCEGUIRenderer;
+// 	::delete m_pCEGUIResourceProvider;
+// 	::delete m_pCEGUIXMLParser;
+// 	::delete m_pCEGUILogger;
+// 	::delete m_pCEGUIImageCodec;
 
 #if CA_PLATFORM_DESKTOP
 
@@ -152,31 +147,12 @@ Game::~Game()
 
 #endif // CA_PLATFORM_DESKTOP
 
-    //m_Plugins.clear();
-// 	::delete m_pCEGUIRenderer;
-// 	::delete m_pCEGUIResourceProvider;
-// 	::delete m_pCEGUIXMLParser;
-// 	::delete m_pCEGUILogger;
-// 	::delete m_pCEGUIImageCodec;
-
-	GameInfo::Destroy();
-	EntityManager::Destroy();
-	MediaManager::Destroy();
-
-	AssetManager::Instance().Clear();
-	AssetManager::Instance().Destroy();
-
-	ResourceManager::Instance().Clear();
-	ResourceManager::Destroy();
-
-	IRenderer::Destroy();
-
-	LogManager::Destroy();
-
 #if defined(CA_CUSTOM_ALLOCATORS) && defined(CA_CUSTOM_ALLOCATORS_DEBUG)
 	MemoryReport::Instance().ReportLeak();
 	MemoryReport::Destroy();
 #endif
+
+	LogManager::Destroy();
 }
 
 /**
@@ -450,7 +426,7 @@ void Game::Run()
 //#if BGFX_CONFIG_MULTITHREADED
 
 	MakeWindow();
-	IRenderer::Get().Initialize(m_EngineSettings);
+	m_Renderer.Initialize(m_EngineSettings);
 	OnWindowResized(m_EngineSettings.WindowWidth, m_EngineSettings.WindowHeight);
 
 	//s_renderThread.init(renderThreadFunc, this);
@@ -514,7 +490,7 @@ void Game::EndRun()
 //----------------------------------------------------------
 void Game::Initialize()
 {
-	ScriptEngine::Instance().Initialize();
+	m_ScriptEngine.Initialize();
 
 #ifndef EDITOR
 
@@ -553,7 +529,7 @@ void Game::Initialize()
 
 #endif // #ifndef EDITOR
 
-	PhysicsEngine::Instance().Initialize();
+	m_PhysicsEngine.Initialize();
 
 // 	if (LoadGamePlayDLL(m_EngineSettings.GameplayDLL) == true)
 // 	{
@@ -597,22 +573,12 @@ void Game::LoadContent()
 	pDebugDraw->Initialize();
 	dynamic_cast<BulletPhysicsEngine *>(PhysicsEngine::Instance().GetPhysicsEngineImpl())->SetPhysicsDebugDraw(pDebugDraw);
 #endif
-	
-	std::vector<IGameComponent *>::const_iterator it;
-	DrawableGameComponent *pDrawableGC;
 
-	for (it = m_Components.cbegin();
-		it != m_Components.cend();
-		++it)
+	for (auto* component : m_DrawableComponents)
 	{
-		pDrawableGC = dynamic_cast<DrawableGameComponent *>(*it);
-
-		if (pDrawableGC != nullptr)
-		{
-			pDrawableGC->OnLoadContent();
-		}		
+		component->OnLoadContent();
 	}
-
+	
 	m_DebugSystem.Initialize();
 	m_DisplayDebugInfo.Initialize();
 
@@ -627,21 +593,17 @@ void Game::Update(const GameTime& gameTime_)
 
 #endif // #ifndef EDITOR
 
-	if (GameInfo::Instance().GetWorld() != nullptr)
+	if (m_GameInfo.GetWorld() != nullptr)
 	{
-		GameInfo::Instance().GetWorld()->Update(gameTime_);
+		m_GameInfo.GetWorld()->Update(gameTime_);
 	}
 
-	std::vector<IGameComponent *>::const_iterator it;
-	
-	for (it = m_Components.cbegin();
-		it != m_Components.cend();
-		++it)
+	for (auto* component : m_Components)
 	{
-		(*it)->Update(gameTime_);
+		component->Update(gameTime_);
 	}
 
-	InGameLogger::Instance().Update(gameTime_);
+	m_InGameLogger.Update(gameTime_);
 	m_DebugSystem.Update(gameTime_);
 	m_DisplayDebugInfo.Update(gameTime_);
 }
@@ -663,18 +625,14 @@ void Game::BeginDraw()
  */
 void Game::Draw()
 {
-	if (GameInfo::Instance().GetWorld() != nullptr)
+	if (m_GameInfo.GetWorld() != nullptr)
 	{
-		GameInfo::Instance().GetWorld()->Draw();
+		m_GameInfo.GetWorld()->Draw();
 	}
 
-	std::vector<DrawableGameComponent *>::const_iterator it;
-
-	for (it = m_DrawableComponents.cbegin();
-		it != m_DrawableComponents.cend();
-		++it)
+	for (auto* component : m_DrawableComponents)
 	{
-		(*it)->Draw();	
+		component->Draw();
 	}
 
 	int width = GetEngineSettings().WindowWidth;
@@ -832,11 +790,9 @@ sf::Window* Game::GetWindow()
  */
 void Game::RegisterLoaders()
 {
-	MediaManager& MediaManager = MediaManager::Instance();
-
-// 	MediaManager.RegisterLoader(NEW_AO CImagesLoader, "bmp, dds, jpg, pcx, png, pnm, raw, sgi, tga, tif");
-// 	MediaManager.RegisterLoader(NEW_AO CShadersLoader(), "vert, fx");
-	MediaManager.RegisterLoader(NEW_AO XmlLoader, "xml");
+// 	m_MediaManager.RegisterLoader(NEW_AO CImagesLoader, "bmp, dds, jpg, pcx, png, pnm, raw, sgi, tga, tif");
+// 	m_MediaManager.RegisterLoader(NEW_AO CShadersLoader(), "vert, fx");
+	m_MediaManager.RegisterLoader(NEW_AO XmlLoader, "xml");
 }
 
 /**
@@ -854,15 +810,15 @@ void Game::OnWindowResized(unsigned int width_, unsigned int height_)
  */
 void Game::Resize()
 {
-	IRenderer::Get().Resize(m_NewSize.x, m_NewSize.y);
+	m_Renderer.Resize(m_NewSize.x, m_NewSize.y);
 
 	//event on all entities
 	WindowResizeEvent event(m_NewSize.x, m_NewSize.y);
-	GlobalEventSet::Instance().fireEvent(WindowResizeEvent::GetEventName(), event);
+	GetGlobalEventSet().fireEvent(WindowResizeEvent::GetEventName(), event);
 
-	if (nullptr != GameInfo::Instance().GetActiveCamera())
+	if (nullptr != m_GameInfo.GetActiveCamera()) // ??
 	{
-		GameInfo::Instance().SetActiveCamera(GameInfo::Instance().GetActiveCamera());
+		m_GameInfo.SetActiveCamera(m_GameInfo.GetActiveCamera());
 	}
 }
     
@@ -899,6 +855,66 @@ DebugOptions &Game::GetDebugOptions()
 DebugSystem &Game::GetDebugSystem()
 {
 	return m_DebugSystem;
+}
+
+GlobalEventSet& Game::GetGlobalEventSet()
+{
+	return *m_pGlobalEventSet;
+}
+
+ScriptEngine& Game::GetScriptEngine()
+{
+	return m_ScriptEngine;
+}
+
+GameInfo& Game::GetGameInfo()
+{
+	return m_GameInfo;
+}
+
+EntityManager& Game::GetEntityManager()
+{
+	return m_EntityManager;
+}
+
+MediaManager& Game::GetMediaManager()
+{
+	return m_MediaManager;
+}
+
+AssetManager& Game::GetAssetManager()
+{
+	return m_AssetManager;
+}
+
+ResourceManager& Game::GetResourceManager()
+{
+	return m_ResourceManager;
+}
+
+IRenderer& Game::GetRenderer()
+{
+	return m_Renderer;
+}
+
+InGameLogger& Game::GetInGameLogger()
+{
+	return m_InGameLogger;
+}
+
+GameDataFactory& Game::GetGameDataFactory()
+{
+	return m_GameDataFactory;
+}
+
+PhysicsEngine& Game::GetPhysicsEngine()
+{
+	return m_PhysicsEngine;
+}
+
+MessageDispatcher& Game::GetMessageDispatcher()
+{
+	return m_MessageDispatcher;
 }
 
 /**

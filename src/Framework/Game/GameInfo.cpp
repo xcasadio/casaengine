@@ -1,4 +1,3 @@
-
 #include "Base.h"
 #include "GameInfo.h"
 #include "Project/ProjectManager.h"
@@ -7,67 +6,49 @@
 
 namespace CasaEngine
 {
+	GameInfo::GameInfo() :
+		m_pCamera(nullptr),
+		m_pWorld(nullptr)
+	{
+	}
 
-SINGLETON_IMPL(GameInfo)
+	GameInfo::~GameInfo()
+	{
+	}
 
-GameInfo::GameInfo() :
-	m_pCamera(nullptr),
-	m_pWorld(nullptr)
-{
-}
+	ProjectManager& GameInfo::GetProjectManager()
+	{
+		return m_ProjectManager;
+	}
 
+	World* GameInfo::GetWorld() const
+	{
+		return m_pWorld;
+	}
 
-GameInfo::~GameInfo()
-{
-}
+	void GameInfo::SetWorld(World* val)
+	{
+		m_pWorld = val;
+	}
 
-ProjectManager& GameInfo::GetProjectManager() 
-{ 
-	return m_ProjectManager; 
-}
+	CameraComponent* GameInfo::GetActiveCamera() const
+	{
+		//CA_ASSERT("GameInfo::GetActiveCamera() : camera is nullptr", m_pCamera != nullptr);
+		return m_pCamera;
+	}
 
-/*
- *	
- */
-World* GameInfo::GetWorld() const 
-{ 
-	return m_pWorld; 
-}
+	void GameInfo::SetActiveCamera(CameraComponent* val)
+	{
+		CA_ASSERT(val != nullptr, "GameInfo::SetActiveCamera() : camera is nullptr");
 
-/*
- *	
- */
-void GameInfo::SetWorld(World* val)
-{ 
-	m_pWorld = val; 
-}
+		m_pCamera = val;
+		Viewport& viewport = m_pCamera->GetViewport();
 
-/**
- * 
- */
-CameraComponent *GameInfo::GetActiveCamera() const 
-{
-	//CA_ASSERT("GameInfo::GetActiveCamera() : camera is nullptr", m_pCamera != nullptr);
-	return m_pCamera; 
-}
-
-/**
- * 
- */
-void GameInfo::SetActiveCamera(CameraComponent *val) 
-{
-	CA_ASSERT(val != nullptr, "GameInfo::SetActiveCamera() : camera is nullptr");
-
-	m_pCamera = val;
-	Viewport &viewport = m_pCamera->GetViewport();
-
-	//todo in graphics or in renderer
-	bgfx::setViewRect(0, 
-		viewport.X() * Game::Instance()->GetWindow()->getSize().x,
-		viewport.Y() * Game::Instance()->GetWindow()->getSize().y,
-		viewport.Width() * Game::Instance()->GetWindow()->getSize().x,
-		viewport.Height() * Game::Instance()->GetWindow()->getSize().y);
-}
-
-
+		//todo in graphics or in renderer
+		bgfx::setViewRect(0,
+			viewport.X() * Game::Instance().GetWindow()->getSize().x,
+			viewport.Y() * Game::Instance().GetWindow()->getSize().y,
+			viewport.Width() * Game::Instance().GetWindow()->getSize().x,
+			viewport.Height() * Game::Instance().GetWindow()->getSize().y);
+	}
 }

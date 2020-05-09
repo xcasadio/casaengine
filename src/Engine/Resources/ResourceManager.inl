@@ -9,8 +9,5 @@ inline T* ResourceManager::Get(const char *pName_) const
         It->second->AddRef();
         return static_cast<T*>(It->second);
     }
-    else
-    {
-        return nullptr;
-    }
+    return nullptr;
 }

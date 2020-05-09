@@ -60,7 +60,7 @@ SteeringGame::~SteeringGame()
 	if (m_pModelRenderer != nullptr) DELETE_AO m_pModelRenderer;
 	if (m_pLine3DRenderer != nullptr) DELETE_AO m_pLine3DRenderer;
 
-	EntityManager::Instance().Clear();
+	Game::Instance().GetEntityManager().Clear();
 
 	PhysicsEngine::Destroy();
 }
@@ -70,13 +70,13 @@ SteeringGame::~SteeringGame()
  */
 void SteeringGame::Initialize()
 {
-	MediaManager::Instance().AddSearchPath("../../examples/resources");
-	MediaManager::Instance().AddSearchPath("../../examples/resources/textures");
-	MediaManager::Instance().AddSearchPath("../../examples/resources/models");
-	MediaManager::Instance().AddSearchPath("../../examples/resources/shaders");
-	MediaManager::Instance().AddSearchPath("../../examples/resources/spriteSheet");
-	MediaManager::Instance().AddSearchPath("../../examples/resources/script");
-	MediaManager::Instance().AddSearchPath("../../examples/resources/fonts");
+	Game::Instance().GetMediaManager().AddSearchPath("../../examples/resources");
+	Game::Instance().GetMediaManager().AddSearchPath("../../examples/resources/textures");
+	Game::Instance().GetMediaManager().AddSearchPath("../../examples/resources/models");
+	Game::Instance().GetMediaManager().AddSearchPath("../../examples/resources/shaders");
+	Game::Instance().GetMediaManager().AddSearchPath("../../examples/resources/spriteSheet");
+	Game::Instance().GetMediaManager().AddSearchPath("../../examples/resources/script");
+	Game::Instance().GetMediaManager().AddSearchPath("../../examples/resources/fonts");
 
 	AddGameComponents();
 
@@ -91,7 +91,7 @@ void SteeringGame::LoadContent()
 	Game::LoadContent();
 
 	m_pWorld = NEW_AO World();
-	GameInfo::Instance().SetWorld(m_pWorld);
+	Game::Instance().GetGameInfo().SetWorld(m_pWorld);
 	//m_pWorld->SetPhysicsWorld(PhysicsEngine::Instance().CreateWorld());
 
 	CreateEntities();
@@ -144,7 +144,7 @@ void SteeringGame::CreateEntities()
 	pCamera->GetComponentMgr()->AddComponent(m_pCamera3D);	
 	pCamera->Initialize();
 	m_pWorld->AddEntity(pCamera);
-	GameInfo::Instance().SetActiveCamera(m_pCamera3D);
+	Game::Instance().GetGameInfo().SetActiveCamera(m_pCamera3D);
 
 	//////////////////////////////////////////////////////////////////////////
 	// ground

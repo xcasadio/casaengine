@@ -26,8 +26,6 @@ FSMGame::FSMGame()
  */
 FSMGame::~FSMGame()
 {
-	delete m_pElsa;
-	delete m_pBob;
 }
 
 /**
@@ -35,24 +33,24 @@ FSMGame::~FSMGame()
  */
 void FSMGame::Initialize()
 {
-	MediaManager::Instance().AddSearchPath("../../examples/resources");
-	MediaManager::Instance().AddSearchPath("../../examples/resources/textures");
-	MediaManager::Instance().AddSearchPath("../../examples/resources/models");
-	MediaManager::Instance().AddSearchPath("../../examples/resources/shaders");
-	MediaManager::Instance().AddSearchPath("../../examples/resources/spriteSheet");
-	MediaManager::Instance().AddSearchPath("../../examples/resources/fonts");
+	Game::Instance().GetMediaManager().AddSearchPath("../../examples/resources");
+	Game::Instance().GetMediaManager().AddSearchPath("../../examples/resources/textures");
+	Game::Instance().GetMediaManager().AddSearchPath("../../examples/resources/models");
+	Game::Instance().GetMediaManager().AddSearchPath("../../examples/resources/shaders");
+	Game::Instance().GetMediaManager().AddSearchPath("../../examples/resources/spriteSheet");
+	Game::Instance().GetMediaManager().AddSearchPath("../../examples/resources/fonts");
 
-	GameInfo::Instance().SetWorld(NEW_AO World());
+	Game::Instance().GetGameInfo().SetWorld(NEW_AO World());
 
 	m_pBob = NEW_AO BaseEntity();
 	MinerComponent* pMiner = NEW_AO MinerComponent(m_pBob);
 	m_pBob->GetComponentMgr()->AddComponent(pMiner);
-	GameInfo::Instance().GetWorld()->AddEntity(m_pBob);
+	Game::Instance().GetGameInfo().GetWorld()->AddEntity(m_pBob);
 
 	m_pElsa = NEW_AO BaseEntity();
 	MinersWifeComponent* pMinersWife = NEW_AO MinersWifeComponent(m_pElsa);
 	m_pElsa->GetComponentMgr()->AddComponent(pMinersWife);
-	GameInfo::Instance().GetWorld()->AddEntity(m_pElsa);
+	Game::Instance().GetGameInfo().GetWorld()->AddEntity(m_pElsa);
 
 	m_pBob->SetName("Miner");
 	m_pElsa->SetName("Miner's wife");

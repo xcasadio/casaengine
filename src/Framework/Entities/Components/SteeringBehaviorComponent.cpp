@@ -117,7 +117,7 @@ Vector2F SteeringBehaviorComponent::Calculate(float elapsedTime_)
 // 		//tag neighbors if any of the following 3 group behaviors are switched on
 // 		if (On(separation) || On(allignment) || On(cohesion))
 // 		{
-// 			GameInfo::Instance().GetWorld()->TagVehiclesWithinViewRange(GetEntity(), m_dViewDistance);
+// 			Game::Instance().GetGameInfo().GetWorld()->TagVehiclesWithinViewRange(GetEntity(), m_dViewDistance);
 // 		}
 // 	}
 // 	else
@@ -126,7 +126,7 @@ Vector2F SteeringBehaviorComponent::Calculate(float elapsedTime_)
 		//behaviors are switched on
 		if (On(separation) || On(allignment) || On(cohesion))
 		{
-			GameInfo::Instance().GetWorld()->GetSpacePartition().CalculateNeighbors(m_Position2D, m_fViewDistance);
+			Game::Instance().GetGameInfo().GetWorld()->GetSpacePartition().CalculateNeighbors(m_Position2D, m_fViewDistance);
 		}
 // 	}
 
@@ -224,13 +224,13 @@ Vector2F SteeringBehaviorComponent::CalculatePrioritized(float elapsedTime_)
   
 // 	if (On(wall_avoidance))
 // 	{
-// 		force = WallAvoidance(GameInfo::Instance().GetWorld()->Walls()) * m_fWeightWallAvoidance;
+// 		force = WallAvoidance(Game::Instance().GetGameInfo().GetWorld()->Walls()) * m_fWeightWallAvoidance;
 // 		if (!AccumulateForce(m_vSteeringForce, force)) return m_vSteeringForce;
 // 	}
 //    
 // 	if (On(obstacle_avoidance))
 // 	{
-// 		force = ObstacleAvoidance(GameInfo::Instance().GetWorld()->Obstacles()) * m_fWeightObstacleAvoidance;
+// 		force = ObstacleAvoidance(Game::Instance().GetGameInfo().GetWorld()->Obstacles()) * m_fWeightObstacleAvoidance;
 // 		if (!AccumulateForce(m_vSteeringForce, force)) return m_vSteeringForce;
 // 	}
 // 
@@ -243,7 +243,7 @@ Vector2F SteeringBehaviorComponent::CalculatePrioritized(float elapsedTime_)
 //   
 // 	if (On(flee))
 // 	{
-// 		force = Flee(GameInfo::Instance().GetWorld()->Crosshair()) * m_fWeightFlee;
+// 		force = Flee(Game::Instance().GetGameInfo().GetWorld()->Crosshair()) * m_fWeightFlee;
 // 		if (!AccumulateForce(m_vSteeringForce, force)) return m_vSteeringForce;
 // 	}
 //  
@@ -253,19 +253,19 @@ Vector2F SteeringBehaviorComponent::CalculatePrioritized(float elapsedTime_)
 // 	{
 // 		if (On(separation))
 // 		{
-// 			force = Separation(GameInfo::Instance().GetWorld()->GetEntities()) * m_fWeightSeparation;
+// 			force = Separation(Game::Instance().GetGameInfo().GetWorld()->GetEntities()) * m_fWeightSeparation;
 // 			if (!AccumulateForce(m_vSteeringForce, force)) return m_vSteeringForce;
 // 		}
 // 
 // 		if (On(allignment))
 // 		{
-// 			force = Alignment(GameInfo::Instance().GetWorld()->GetEntities()) * m_fWeightAlignment;
+// 			force = Alignment(Game::Instance().GetGameInfo().GetWorld()->GetEntities()) * m_fWeightAlignment;
 // 			if (!AccumulateForce(m_vSteeringForce, force)) return m_vSteeringForce;
 // 		}
 // 
 // 		if (On(cohesion))
 // 		{
-// 			force = Cohesion(GameInfo::Instance().GetWorld()->GetEntities()) * m_fWeightCohesion;
+// 			force = Cohesion(Game::Instance().GetGameInfo().GetWorld()->GetEntities()) * m_fWeightCohesion;
 // 			if (!AccumulateForce(m_vSteeringForce, force)) return m_vSteeringForce;
 // 		}
 // 	}
@@ -273,32 +273,32 @@ Vector2F SteeringBehaviorComponent::CalculatePrioritized(float elapsedTime_)
 // 	{
 // 		if (On(separation))
 // 		{
-// 			force = SeparationPlus(GameInfo::Instance().GetWorld()->GetEntities()) * m_fWeightSeparation;
+// 			force = SeparationPlus(Game::Instance().GetGameInfo().GetWorld()->GetEntities()) * m_fWeightSeparation;
 // 			if (!AccumulateForce(m_vSteeringForce, force)) return m_vSteeringForce;
 // 		}
 // 
 // 		if (On(allignment))
 // 		{
-// 			force = AlignmentPlus(GameInfo::Instance().GetWorld()->GetEntities()) * m_fWeightAlignment;
+// 			force = AlignmentPlus(Game::Instance().GetGameInfo().GetWorld()->GetEntities()) * m_fWeightAlignment;
 // 			if (!AccumulateForce(m_vSteeringForce, force)) return m_vSteeringForce;
 // 		}
 // 
 // 		if (On(cohesion))
 // 		{
-// 			force = CohesionPlus(GameInfo::Instance().GetWorld()->GetEntities()) * m_fWeightCohesion;
+// 			force = CohesionPlus(Game::Instance().GetGameInfo().GetWorld()->GetEntities()) * m_fWeightCohesion;
 // 			if (!AccumulateForce(m_vSteeringForce, force)) return m_vSteeringForce;
 // 		}
 // 	}
 // 
 // 	if (On(seek))
 // 	{
-// 		force = Seek(GameInfo::Instance().GetWorld()->Crosshair()) * m_fWeightSeek;
+// 		force = Seek(Game::Instance().GetGameInfo().GetWorld()->Crosshair()) * m_fWeightSeek;
 // 		if (!AccumulateForce(m_vSteeringForce, force)) return m_vSteeringForce;
 // 	}
 // 
 // 	if (On(arrive))
 // 	{
-// 		force = Arrive(GameInfo::Instance().GetWorld()->Crosshair(), m_Deceleration) * m_fWeightArrive;
+// 		force = Arrive(Game::Instance().GetGameInfo().GetWorld()->Crosshair(), m_Deceleration) * m_fWeightArrive;
 // 		if (!AccumulateForce(m_vSteeringForce, force)) return m_vSteeringForce;
 // 	}
 // 
@@ -333,7 +333,7 @@ Vector2F SteeringBehaviorComponent::CalculatePrioritized(float elapsedTime_)
 // 	if (On(hide))
 // 	{
 // 		CA_ASSERT(m_pTargetAgent1, "Hide target not assigned");
-// 		force = Hide(m_pTargetAgent1, GameInfo::Instance().GetWorld()->Obstacles()) * m_fWeightHide;
+// 		force = Hide(m_pTargetAgent1, Game::Instance().GetGameInfo().GetWorld()->Obstacles()) * m_fWeightHide;
 // 		if (!AccumulateForce(m_vSteeringForce, force)) return m_vSteeringForce;
 // 	}
 // 
@@ -357,13 +357,13 @@ Vector2F SteeringBehaviorComponent::CalculateWeightedSum(float elapsedTime_)
 {        
 //   if (On(wall_avoidance))
 //   {
-//     m_vSteeringForce += WallAvoidance(GameInfo::Instance().GetWorld()->Walls()) *
+//     m_vSteeringForce += WallAvoidance(Game::Instance().GetGameInfo().GetWorld()->Walls()) *
 //                          m_fWeightWallAvoidance;
 //   }
 //    
 //   if (On(obstacle_avoidance))
 //   {
-//     m_vSteeringForce += ObstacleAvoidance(GameInfo::Instance().GetWorld()->Obstacles()) * 
+//     m_vSteeringForce += ObstacleAvoidance(Game::Instance().GetGameInfo().GetWorld()->Obstacles()) * 
 //             m_fWeightObstacleAvoidance;
 //   }
 // 
@@ -381,34 +381,34 @@ Vector2F SteeringBehaviorComponent::CalculateWeightedSum(float elapsedTime_)
 //   {
 //     if (On(separation))
 //     {
-//       m_vSteeringForce += Separation(GameInfo::Instance().GetWorld()->GetEntities()) * m_fWeightSeparation;
+//       m_vSteeringForce += Separation(Game::Instance().GetGameInfo().GetWorld()->GetEntities()) * m_fWeightSeparation;
 //     }
 // 
 //     if (On(allignment))
 //     {
-//       m_vSteeringForce += Alignment(GameInfo::Instance().GetWorld()->GetEntities()) * m_fWeightAlignment;
+//       m_vSteeringForce += Alignment(Game::Instance().GetGameInfo().GetWorld()->GetEntities()) * m_fWeightAlignment;
 //     }
 // 
 //     if (On(cohesion))
 //     {
-//       m_vSteeringForce += Cohesion(GameInfo::Instance().GetWorld()->GetEntities()) * m_fWeightCohesion;
+//       m_vSteeringForce += Cohesion(Game::Instance().GetGameInfo().GetWorld()->GetEntities()) * m_fWeightCohesion;
 //     }
 //   }
 //   else
 //   {*/
 //     if (On(separation))
 //     {
-//       m_vSteeringForce += SeparationPlus(GameInfo::Instance().GetWorld()->GetEntities()) * m_fWeightSeparation;
+//       m_vSteeringForce += SeparationPlus(Game::Instance().GetGameInfo().GetWorld()->GetEntities()) * m_fWeightSeparation;
 //     }
 // 
 //     if (On(allignment))
 //     {
-//       m_vSteeringForce += AlignmentPlus(GameInfo::Instance().GetWorld()->GetEntities()) * m_fWeightAlignment;
+//       m_vSteeringForce += AlignmentPlus(Game::Instance().GetGameInfo().GetWorld()->GetEntities()) * m_fWeightAlignment;
 //     }
 // 
 //     if (On(cohesion))
 //     {
-//       m_vSteeringForce += CohesionPlus(GameInfo::Instance().GetWorld()->GetEntities()) * m_fWeightCohesion;
+//       m_vSteeringForce += CohesionPlus(Game::Instance().GetGameInfo().GetWorld()->GetEntities()) * m_fWeightCohesion;
 //     }
 //   //}
 // 
@@ -420,17 +420,17 @@ Vector2F SteeringBehaviorComponent::CalculateWeightedSum(float elapsedTime_)
 // 
 //   if (On(seek))
 //   {
-//     m_vSteeringForce += Seek(GameInfo::Instance().GetWorld()->Crosshair()) * m_fWeightSeek;
+//     m_vSteeringForce += Seek(Game::Instance().GetGameInfo().GetWorld()->Crosshair()) * m_fWeightSeek;
 //   }
 // 
 //   if (On(flee))
 //   {
-//     m_vSteeringForce += Flee(GameInfo::Instance().GetWorld()->Crosshair()) * m_fWeightFlee;
+//     m_vSteeringForce += Flee(Game::Instance().GetGameInfo().GetWorld()->Crosshair()) * m_fWeightFlee;
 //   }
 // 
 //   if (On(arrive))
 //   {
-//     m_vSteeringForce += Arrive(GameInfo::Instance().GetWorld()->Crosshair(), m_Deceleration) * m_fWeightArrive;
+//     m_vSteeringForce += Arrive(Game::Instance().GetGameInfo().GetWorld()->Crosshair(), m_Deceleration) * m_fWeightArrive;
 //   }
 // 
 //   if (On(pursuit))
@@ -459,7 +459,7 @@ Vector2F SteeringBehaviorComponent::CalculateWeightedSum(float elapsedTime_)
 //   {
 //     CA_ASSERT(m_pTargetAgent1, "Hide target not assigned");
 // 
-//     m_vSteeringForce += Hide(m_pTargetAgent1, GameInfo::Instance().GetWorld()->Obstacles()) * m_fWeightHide;
+//     m_vSteeringForce += Hide(m_pTargetAgent1, Game::Instance().GetGameInfo().GetWorld()->Obstacles()) * m_fWeightHide;
 //   }
 // 
 //   if (On(follow_path))
@@ -492,7 +492,7 @@ Vector2F SteeringBehaviorComponent::CalculateDithered(float elapsedTime_)
 // 
 //   if (On(wall_avoidance) && RandFloat() < PrWallAvoidance())
 //   {
-//     m_vSteeringForce = WallAvoidance(GameInfo::Instance().GetWorld()->Walls()) *
+//     m_vSteeringForce = WallAvoidance(Game::Instance().GetGameInfo().GetWorld()->Walls()) *
 //                          m_fWeightWallAvoidance / PrWallAvoidance();
 // 
 //     if (!m_vSteeringForce.IsZero())
@@ -505,7 +505,7 @@ Vector2F SteeringBehaviorComponent::CalculateDithered(float elapsedTime_)
 //    
 //   if (On(obstacle_avoidance) && RandFloat() < PrObstacleAvoidance())
 //   {
-//     m_vSteeringForce += ObstacleAvoidance(GameInfo::Instance().GetWorld()->Obstacles()) * 
+//     m_vSteeringForce += ObstacleAvoidance(Game::Instance().GetGameInfo().GetWorld()->Obstacles()) * 
 //             m_fWeightObstacleAvoidance / PrObstacleAvoidance();
 // 
 //     if (!m_vSteeringForce.IsZero())
@@ -520,7 +520,7 @@ Vector2F SteeringBehaviorComponent::CalculateDithered(float elapsedTime_)
 //   {
 //     if (On(separation) && RandFloat() < PrSeparation())
 //     {
-//       m_vSteeringForce += Separation(GameInfo::Instance().GetWorld()->GetEntities()) * 
+//       m_vSteeringForce += Separation(Game::Instance().GetGameInfo().GetWorld()->GetEntities()) * 
 //                           m_fWeightSeparation / PrSeparation();
 // 
 //       if (!m_vSteeringForce.IsZero())
@@ -536,7 +536,7 @@ Vector2F SteeringBehaviorComponent::CalculateDithered(float elapsedTime_)
 //   {*/
 //     if (On(separation) && RandFloat() < PrSeparation())
 //     {
-//       m_vSteeringForce += SeparationPlus(GameInfo::Instance().GetWorld()->GetEntities()) * 
+//       m_vSteeringForce += SeparationPlus(Game::Instance().GetGameInfo().GetWorld()->GetEntities()) * 
 //                           m_fWeightSeparation / PrSeparation();
 // 
 //       if (!m_vSteeringForce.IsZero())
@@ -551,7 +551,7 @@ Vector2F SteeringBehaviorComponent::CalculateDithered(float elapsedTime_)
 // 
 //   if (On(flee) && RandFloat() < PrFlee())
 //   {
-//     m_vSteeringForce += Flee(GameInfo::Instance().GetWorld()->Crosshair()) * m_fWeightFlee / PrFlee();
+//     m_vSteeringForce += Flee(Game::Instance().GetGameInfo().GetWorld()->Crosshair()) * m_fWeightFlee / PrFlee();
 // 
 //     if (!m_vSteeringForce.IsZero())
 //     {
@@ -580,7 +580,7 @@ Vector2F SteeringBehaviorComponent::CalculateDithered(float elapsedTime_)
 //   {
 //     if (On(allignment) && RandFloat() < PrAlignment())
 //     {
-//       m_vSteeringForce += Alignment(GameInfo::Instance().GetWorld()->GetEntities()) *
+//       m_vSteeringForce += Alignment(Game::Instance().GetGameInfo().GetWorld()->GetEntities()) *
 //                           m_fWeightAlignment / PrAlignment();
 // 
 //       if (!m_vSteeringForce.IsZero())
@@ -593,7 +593,7 @@ Vector2F SteeringBehaviorComponent::CalculateDithered(float elapsedTime_)
 // 
 //     if (On(cohesion) && RandFloat() < PrCohesion())
 //     {
-//       m_vSteeringForce += Cohesion(GameInfo::Instance().GetWorld()->GetEntities()) * 
+//       m_vSteeringForce += Cohesion(Game::Instance().GetGameInfo().GetWorld()->GetEntities()) * 
 //                           m_fWeightCohesion / PrCohesion();
 // 
 //       if (!m_vSteeringForce.IsZero())
@@ -608,7 +608,7 @@ Vector2F SteeringBehaviorComponent::CalculateDithered(float elapsedTime_)
 //   {*/
 //     if (On(allignment) && RandFloat() < PrAlignment())
 //     {
-//       m_vSteeringForce += AlignmentPlus(GameInfo::Instance().GetWorld()->GetEntities()) *
+//       m_vSteeringForce += AlignmentPlus(Game::Instance().GetGameInfo().GetWorld()->GetEntities()) *
 //                           m_fWeightAlignment / PrAlignment();
 // 
 //       if (!m_vSteeringForce.IsZero())
@@ -621,7 +621,7 @@ Vector2F SteeringBehaviorComponent::CalculateDithered(float elapsedTime_)
 // 
 //     if (On(cohesion) && RandFloat() < PrCohesion())
 //     {
-//       m_vSteeringForce += CohesionPlus(GameInfo::Instance().GetWorld()->GetEntities()) *
+//       m_vSteeringForce += CohesionPlus(Game::Instance().GetGameInfo().GetWorld()->GetEntities()) *
 //                           m_fWeightCohesion / PrCohesion();
 // 
 //       if (!m_vSteeringForce.IsZero())
@@ -647,7 +647,7 @@ Vector2F SteeringBehaviorComponent::CalculateDithered(float elapsedTime_)
 // 
 //   if (On(seek) && RandFloat() < PrSeek())
 //   {
-//     m_vSteeringForce += Seek(GameInfo::Instance().GetWorld()->Crosshair()) * m_fWeightSeek / PrSeek();
+//     m_vSteeringForce += Seek(Game::Instance().GetGameInfo().GetWorld()->Crosshair()) * m_fWeightSeek / PrSeek();
 // 
 //     if (!m_vSteeringForce.IsZero())
 //     {
@@ -659,7 +659,7 @@ Vector2F SteeringBehaviorComponent::CalculateDithered(float elapsedTime_)
 // 
 //   if (On(arrive) && RandFloat() < PrArrive())
 //   {
-//     m_vSteeringForce += Arrive(GameInfo::Instance().GetWorld()->Crosshair(), m_Deceleration) * 
+//     m_vSteeringForce += Arrive(Game::Instance().GetGameInfo().GetWorld()->Crosshair(), m_Deceleration) * 
 //                         m_fWeightArrive / PrArrive();
 // 
 //     if (!m_vSteeringForce.IsZero())
@@ -872,7 +872,7 @@ Vector2F SteeringBehaviorComponent::ObstacleAvoidance(const std::vector<BaseEnti
 //   std::vector<BaseEntity*> obstaclesWithinViewRange;
 // 
 //   //tag all obstacles within range of the box for processing
-//   //GameInfo::Instance().GetWorld()->TagObstaclesWithinViewRange(GetEntity(), m_dDBoxLength);
+//   //Game::Instance().GetGameInfo().GetWorld()->TagObstaclesWithinViewRange(GetEntity(), m_dDBoxLength);
 //   //iterate through all entities checking for range
 //   for (std::vector<BaseEntity *>::const_iterator curEntity = obstacles.cbegin();
 // 	  curEntity != obstacles.cend();
@@ -1237,9 +1237,9 @@ Vector2F SteeringBehaviorComponent::SeparationPlus(const std::vector<BaseEntity*
 //   Vector2F pos = GetEntity()->GetComponentMgr()->GetComponent<Transform2DComponent>()->GetPosition();
 // 
 //   //iterate through the neighbors and sum up all the position vectors
-//   for (BaseEntity* pV = GameInfo::Instance().GetWorld()->GetCellSpcEntity()->begin();
-//                          !GameInfo::Instance().GetWorld()->GetCellSpcEntity()->end();     
-//                        pV = GameInfo::Instance().GetWorld()->GetCellSpcEntity()->next())
+//   for (BaseEntity* pV = Game::Instance().GetGameInfo().GetWorld()->GetCellSpcEntity()->begin();
+//                          !Game::Instance().GetGameInfo().GetWorld()->GetCellSpcEntity()->end();     
+//                        pV = Game::Instance().GetGameInfo().GetWorld()->GetCellSpcEntity()->next())
 //   {    
 //     //make sure this agent isn't included in the calculations and that
 //     //the agent being examined is close enough
@@ -1274,9 +1274,9 @@ Vector2F SteeringBehaviorComponent::AlignmentPlus(const std::vector<BaseEntity*>
 // 	float    NeighborCount = 0.0f;
 // 
 // 	//iterate through the neighbors and sum up all the position vectors
-// 	for (BaseEntity* pV = GameInfo::Instance().GetWorld()->GetCellSpcEntity()->begin();
-// 							!GameInfo::Instance().GetWorld()->GetCellSpcEntity()->end();     
-// 						pV = GameInfo::Instance().GetWorld()->GetCellSpcEntity()->next())
+// 	for (BaseEntity* pV = Game::Instance().GetGameInfo().GetWorld()->GetCellSpcEntity()->begin();
+// 							!Game::Instance().GetGameInfo().GetWorld()->GetCellSpcEntity()->end();     
+// 						pV = Game::Instance().GetGameInfo().GetWorld()->GetCellSpcEntity()->next())
 // 	{
 // 		//make sure *this* agent isn't included in the calculations and that
 // 		//the agent being examined  is close enough
@@ -1315,9 +1315,9 @@ Vector2F SteeringBehaviorComponent::CohesionPlus(const std::vector<BaseEntity*>&
 //   int NeighborCount = 0;
 // 
 // 	//iterate through the neighbors and sum up all the position vectors
-// 	for (BaseEntity* pV = GameInfo::Instance().GetWorld()->GetCellSpcEntity()->begin();
-// 							!GameInfo::Instance().GetWorld()->GetCellSpcEntity()->end();     
-// 						pV = GameInfo::Instance().GetWorld()->GetCellSpcEntity()->next())
+// 	for (BaseEntity* pV = Game::Instance().GetGameInfo().GetWorld()->GetCellSpcEntity()->begin();
+// 							!Game::Instance().GetGameInfo().GetWorld()->GetCellSpcEntity()->end();     
+// 						pV = Game::Instance().GetGameInfo().GetWorld()->GetCellSpcEntity()->next())
 // 	{
 // 		//make sure *this* agent isn't included in the calculations and that
 // 		//the agent being examined is close enough
@@ -1546,7 +1546,7 @@ void SteeringBehaviorComponent::RenderAids( )
   if (GetEntity()->ID() == 0){ gdi->TextAtPos(5,NextSlot,"MaxSpeed(Home/End):"); gdi->TextAtPos(160,NextSlot,ttos(GetEntity()->MaxSpeed()));NextSlot+=SlotSize;}
 
   //render the steering force
-  if (GameInfo::Instance().GetWorld()->RenderSteeringForce())
+  if (Game::Instance().GetGameInfo().GetWorld()->RenderSteeringForce())
   {  
     gdi->RedPen();
     Vector2F F = (m_vSteeringForce / Prm.SteeringForceTweaker) * Prm.VehicleScale ;
@@ -1554,7 +1554,7 @@ void SteeringBehaviorComponent::RenderAids( )
   }
 
   //render wander stuff if relevant
-  if (On(wander) && GameInfo::Instance().GetWorld()->RenderWanderCircle())
+  if (On(wander) && Game::Instance().GetGameInfo().GetWorld()->RenderWanderCircle())
   {    
     if (KEYDOWN('F')){m_fWanderJitter+=1.0f*GetEntity()->TimeElapsed(); Clamp(m_fWanderJitter, 0.0f, 100.0f);}
     if (KEYDOWN('V')){m_fWanderJitter-=1.0f*GetEntity()->TimeElapsed(); Clamp(m_fWanderJitter, 0.0f, 100.0f );}
@@ -1588,7 +1588,7 @@ void SteeringBehaviorComponent::RenderAids( )
   }
 
   //render the detection box if relevant
-  if (GameInfo::Instance().GetWorld()->RenderDetectionBox())
+  if (Game::Instance().GetGameInfo().GetWorld()->RenderDetectionBox())
   {
     gdi->GreyPen();
 
@@ -1625,7 +1625,7 @@ void SteeringBehaviorComponent::RenderAids( )
                   Prm.MinDetectionBoxLength;
 
   //tag all obstacles within range of the box for processing
-  GameInfo::Instance().GetWorld()->TagObstaclesWithinViewRange(GetEntity(), m_dDBoxLength);
+  Game::Instance().GetGameInfo().GetWorld()->TagObstaclesWithinViewRange(GetEntity(), m_dDBoxLength);
 
   //this will keep track of the closest intersecting obstacle (CIB)
   BaseEntity* ClosestIntersectingObstacle = nullptr;
@@ -1636,9 +1636,9 @@ void SteeringBehaviorComponent::RenderAids( )
   //this will record the transformed local coordinates of the CIB
   Vector2F LocalPosOfClosestObstacle;
 
-  std::vector<BaseEntity*>::const_iterator curOb = GameInfo::Instance().GetWorld()->Obstacles().begin();
+  std::vector<BaseEntity*>::const_iterator curOb = Game::Instance().GetGameInfo().GetWorld()->Obstacles().begin();
 
-  while(curOb != GameInfo::Instance().GetWorld()->Obstacles().end())
+  while(curOb != Game::Instance().GetGameInfo().GetWorld()->Obstacles().end())
   {
     //if the obstacle has been tagged within range proceed
     if ((*curOb)->IsTagged())
@@ -1672,7 +1672,7 @@ void SteeringBehaviorComponent::RenderAids( )
   }
 
   //render the wall avoidnace feelers
-  if (On(wall_avoidance) && GameInfo::Instance().GetWorld()->RenderFeelers())
+  if (On(wall_avoidance) && Game::Instance().GetGameInfo().GetWorld()->RenderFeelers())
   {
     gdi->OrangePen();
 
@@ -1684,7 +1684,7 @@ void SteeringBehaviorComponent::RenderAids( )
   }  
 
   //render path info
-  if (On(follow_path) && GameInfo::Instance().GetWorld()->RenderPath())
+  if (On(follow_path) && Game::Instance().GetGameInfo().GetWorld()->RenderPath())
   {
     m_pPath->Render();
   }

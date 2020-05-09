@@ -1,4 +1,3 @@
-
 #ifndef _ASSET_H_
 #define _ASSET_H_
 
@@ -17,13 +16,13 @@
 namespace CasaEngine
 {
 	/**
-	 * A container which contains the parameters to load the asset 
+	 * A container which contains the parameters to load the asset
 	 */
 	class CA_EXPORT Asset : //public IResource
 		public AllocatedObject<Asset>
 	{
 	public:
-		Asset(std::string name_, IAssetable *pObject);
+		Asset(std::string name_, IAssetable* pObject);
 		Asset(const tinyxml2::XMLElement& node_);
 		Asset(std::ifstream& in);
 		~Asset();
@@ -36,23 +35,23 @@ namespace CasaEngine
 		void Read(const tinyxml2::XMLElement& node_);
 		void Read(std::ifstream& in);
 
-		//#ifdef EDITOR
+//#ifdef EDITOR
 
 		void Write(const tinyxml2::XMLElement* node_);
 		void Write(std::ostream& os)const;
 
-		// #endif // EDITOR
+// #endif // EDITOR
 
 	private:
-		IAssetable *m_pObject;
+		IAssetable* m_pObject;
 		std::string m_Name;
 
 		void LoadAsset();
 
-	}; // class Asset
+	};
 
-	#include "Asset.inl"
+#include "Asset.inl"
 
 }
 
-#endif // _ASSET_H_
+#endif

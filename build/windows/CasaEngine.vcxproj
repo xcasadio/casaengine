@@ -227,7 +227,6 @@
     <ClInclude Include="..\..\src\Core\Parsers\Ini\INIReader.h" />
     <ClInclude Include="..\..\src\Core\Parsers\Xml\tinyxml2.h" />
     <ClInclude Include="..\..\src\Core\Parsers\Xml\XMLHelper.h" />
-    <ClInclude Include="..\..\src\Core\Singleton.h" />
     <ClInclude Include="..\..\src\Core\StringUtils.h" />
     <ClInclude Include="..\..\src\Core\SystemPlatform.h" />
     <ClInclude Include="..\..\src\Core\Typelist.h" />

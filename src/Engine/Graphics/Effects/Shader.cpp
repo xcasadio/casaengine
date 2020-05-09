@@ -1,6 +1,8 @@
 #include "Base.h"
 
 #include "Shader.h"
+
+#include "Game/Game.h"
 #include "Graphics/Renderer/Renderer.h"
 #include "Resources/ResourceManager.h"
 #include "Resources/MediaManager.h"
@@ -18,7 +20,7 @@ Shader *Shader::loadShader(const char* name_)
 	//TODO : create name corresponding to the renderer type
 	sprintf_s(n, PATH_SIZE, "%s.bin", name_);
 
-	IFile *pFile = MediaManager::Instance().FindMedia(n, true);
+	IFile *pFile = Game::Instance().GetMediaManager().FindMedia(n, true);
 	if (pFile == nullptr) 
 	{
 		return nullptr;

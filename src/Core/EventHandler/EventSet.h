@@ -53,7 +53,7 @@ public:
     \brief
         Destructor for EventSet objects
     */
-    virtual ~EventSet(void);
+    virtual ~EventSet();
 
     /*!
     \brief

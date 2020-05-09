@@ -6,7 +6,7 @@
 #include "GameTime.h"
 #include "Game/Game.h"
 #include "Maths/Matrix4.h"
-#include "Singleton.h"
+
 #include "Sprite/Sprite.h"
 #include "Sprite/SpriteRenderer.h"
 #include "Game/Input.h"

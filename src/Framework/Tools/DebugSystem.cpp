@@ -18,8 +18,7 @@ namespace CasaEngine
 		m_fFPSLastDelta = 0.0f;
 		m_iFPSCount = 0;
 		m_iLastFPSCount = 0;
-
-		GlobalEventSet::Instance().addEvent(FPSChangeEvent::FPSChangeEventName);
+		//Game::Instance().GetGlobalEventSet().addEvent(FPSChangeEvent::FPSChangeEventName);
 	}
 
 	/**
@@ -27,7 +26,7 @@ namespace CasaEngine
 	 */
 	DebugSystem::~DebugSystem()
 	{
-		GlobalEventSet::Instance().removeEvent(FPSChangeEvent::FPSChangeEventName);
+		//Game::Instance().GetGlobalEventSet().removeEvent(FPSChangeEvent::FPSChangeEventName);
 	}
 
 	/**
@@ -64,7 +63,7 @@ namespace CasaEngine
 
 			//CA_TRACE("FPS %d\n", m_iLastFPSCount);
 
-			GlobalEventSet::Instance().fireEvent(
+			Game::Instance().GetGlobalEventSet().fireEvent(
 				FPSChangeEvent::FPSChangeEventName,
 				FPSChangeEvent(m_iLastFPSCount));
 		}

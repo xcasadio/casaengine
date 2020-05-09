@@ -133,7 +133,7 @@ namespace CasaEngine
 
 	void AnimatedSpriteComponent::Initialize()
 	{
-		m_pSpriteRenderer = Game::Instance()->GetGameComponent<SpriteRenderer>();
+		m_pSpriteRenderer = Game::Instance().GetGameComponent<SpriteRenderer>();
 		CA_ASSERT(m_pSpriteRenderer != nullptr, "AnimatedSpriteComponent::Initialize() can't find the component SpriteRenderer");
 
 		m_pTransform = GetEntity()->GetComponentMgr()->GetComponent<Transform3DComponent>();
@@ -153,7 +153,7 @@ namespace CasaEngine
 		if (m_pCurrentAnim != nullptr)
 		{
 			m_pSpriteRenderer->AddSprite(
-				AssetManager::Instance().GetAsset<Sprite>(m_pCurrentAnim->CurrentFrame()),
+				Game::Instance().GetAssetManager().GetAsset<Sprite>(m_pCurrentAnim->CurrentFrame()),
 				m_pTransform->GetWorldMatrix(),
 				m_Color,
 				m_pTransform->GetWorldMatrix().GetTranslation().z,
@@ -180,7 +180,7 @@ namespace CasaEngine
 		//we need the position of the entity to set the right position
 		//do it in the script ?
 
-		/*Sprite *pNewSprite = AssetManager::Instance().GetAsset<Sprite>(event.ID());
+		/*Sprite *pNewSprite = Game::Instance().GetAssetManager().GetAsset<Sprite>(event.ID());
 
 		std::vector<ICollisionObjectContainer *>::iterator itColObj;
 		for (itColObj = m_LastSpriteCollisionObjects.begin();
@@ -188,7 +188,7 @@ namespace CasaEngine
 			itColObj++)
 		{
 			//delete (*itColObj)->getCollisionShape();
-			GameInfo::Instance().GetWorld()->GetPhysicsWorld()->RemoveCollisionShape(*itColObj);
+			Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->RemoveCollisionShape(*itColObj);
 			DELETE_AO *itColObj;
 		}
 		m_LastSpriteCollisionObjects.clear();
@@ -201,7 +201,7 @@ namespace CasaEngine
 			itShape++)
 		{
 			ICollisionObjectContainer *pObj =
-				GameInfo::Instance().GetWorld()->GetPhysicsWorld()->AddCollisionShape(*itShape, Vector3F::Zero());
+				Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->AddCollisionShape(*itShape, Vector3F::Zero());
 			m_LastSpriteCollisionObjects.push_back(pObj);
 		}*/
 

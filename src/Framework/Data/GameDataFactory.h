@@ -4,49 +4,40 @@
 #include "CA_Export.h"
 #include <string>
 #include "IGameData.h"
-#include "Singleton.h"
+
 #include <vector>
 #include "IGameDataFactory.h"
 #include <map>
 
-
 namespace CasaEngine
 {
+	class CA_EXPORT GameDataFactory
+	{
+	public:
+		GameDataFactory();
+		~GameDataFactory();
 
-/**
- * 
- */
-class CA_EXPORT GameDataFactory :
-	public CSingleton<GameDataFactory>
-{
-	MAKE_SINGLETON(GameDataFactory)
+		//void Initialize();
+		void Release();
 
-public:
-	~GameDataFactory();
+		void RegisterFactory(IGameDataFactory* pFactory_);
+		void UnRegisterFactory(IGameDataFactory* pFactory_);
 
-	//void Initialize();
-	void Release();
+		IGameData* CreateGameDataFromClassID(GameDataClassID id_);
 
-	void RegisterFactory(IGameDataFactory *pFactory_);
-	void UnRegisterFactory(IGameDataFactory *pFactory_);
+		IGameData* LoadGameData(GameDataClassID id_, std::ifstream& is);
+		IGameData* LoadGameData(GameDataClassID id_, const tinyxml2::XMLElement& xmlElt);
 
-	IGameData *CreateGameDataFromClassID(GameDataClassID id_);
+		void SaveGameData(IGameData* pData, std::ostream& os);
+		void SaveGameData(IGameData* pData, tinyxml2::XMLElement& xmlElt);
 
-	IGameData *LoadGameData(GameDataClassID id_, std::ifstream& is);
-	IGameData *LoadGameData(GameDataClassID id_, const tinyxml2::XMLElement& xmlElt);
+		std::vector<std::string> GetAllGameDataName() const;
 
-	void SaveGameData(IGameData *pData, std::ostream&  os);
-	void SaveGameData(IGameData *pData, tinyxml2::XMLElement& xmlElt);
-
-	std::vector<std::string> GetAllGameDataName() const;
-
-private:
-	GameDataFactory();
-
-	typedef std::map<GameDataClassID, IGameDataFactory *> FactoryMap;
-	FactoryMap m_Factories;
-};
+	private:
+		typedef std::map<GameDataClassID, IGameDataFactory*> FactoryMap;
+		FactoryMap m_Factories;
+	};
 
 }
 
-#endif // GAMEDATAFACTORY_H_
+#endif

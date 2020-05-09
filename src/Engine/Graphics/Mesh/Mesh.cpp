@@ -11,6 +11,7 @@
 #include "Log/LogManager.h"
 #include "Log/LogVerbose.h"
 #include "CA_Assert.h"
+#include "Game/Game.h"
 #include "Graphics/bgfx_utils.h"
 
 
@@ -71,13 +72,13 @@ Mesh::Mesh(const VertexPositionNormalTexture* Vertices, unsigned long VerticesCo
 	m_TextureUniform = bgfx::createUniform("s_texColor", bgfx::UniformType::Sampler);	
 
 	const char *materialName = "internal_default_material";
-	m_pMaterial = ResourceManager::Instance().Get<Material>(materialName);
+	m_pMaterial = Game::Instance().GetResourceManager().Get<Material>(materialName);
 
 	if (nullptr == m_pMaterial)
 	{
 		m_pMaterial = NEW_AO Material();
 		m_pMaterial->Texture0(m_pDefaultTexture);
-		ResourceManager::Instance().Add(materialName, m_pMaterial);
+		Game::Instance().GetResourceManager().Add(materialName, m_pMaterial);
 	}
 }
 

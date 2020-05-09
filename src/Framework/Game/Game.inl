@@ -1,12 +1,11 @@
-
 template <class T>
 T *Game::GetGameComponent() const
 {
 	T* res = nullptr;
 
-	for (size_t i=0; i<m_Components.size(); i++)
+	for (auto* component : m_Components)
 	{
-		res = dynamic_cast<T *>(m_Components[i]);
+		res = dynamic_cast<T*>(component);
 
 		if (res != nullptr)
 		{

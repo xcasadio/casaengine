@@ -2,7 +2,7 @@
 #define _MEMORYREPORT_H_
 
 #include "CA_Export.h"
-#include "Singleton.h"
+
 
 #include <map>
 #include <fstream>

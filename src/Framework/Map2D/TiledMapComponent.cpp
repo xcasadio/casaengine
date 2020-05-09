@@ -17,7 +17,7 @@ namespace CasaEngine
 
 	void TiledMapComponent::Initialize()
 	{
-		m_pSpriteRenderer = Game::Instance()->GetGameComponent<SpriteRenderer>();
+		m_pSpriteRenderer = Game::Instance().GetGameComponent<SpriteRenderer>();
 		CA_ASSERT(m_pSpriteRenderer != nullptr);
 
 		m_pTransform3DComponent = GetEntity()->GetComponentMgr()->GetComponent<Transform3DComponent>();
@@ -63,7 +63,7 @@ namespace CasaEngine
 					/*Animation2D& anim = *m_Tiles[x + y * m_MapSize.x];
 					world_matrix.SetTranslation(Vector3F(px + x * m_TileSize.x, py + y * m_TileSize.y, z));
 					auto* spriteName = anim.CurrentFrame();
-					m_pSpriteRenderer->AddSprite(AssetManager::Instance().GetAsset<Sprite>(spriteName),
+					m_pSpriteRenderer->AddSprite(Game::Instance().GetAssetManager().GetAsset<Sprite>(spriteName),
 						world_matrix,
 						CColor::White,
 						z,

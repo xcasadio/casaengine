@@ -12,34 +12,34 @@ namespace CasaEngine
 {
 	typedef unsigned int GameDataFactoryID;
 
-/**
- * 
- */
-class CA_EXPORT IGameDataFactory :
-	public AllocatedObject<IGameDataFactory>
-{
-public:
-	virtual ~IGameDataFactory() {}
+	/**
+	 *
+	 */
+	class CA_EXPORT IGameDataFactory :
+		public AllocatedObject<IGameDataFactory>
+	{
+	public:
+		virtual ~IGameDataFactory() {}
 
-	GameDataFactoryID GetID() const;
+		GameDataFactoryID GetID() const;
 
-protected:
-	IGameDataFactory(GameDataFactoryID id_);
+	protected:
+		IGameDataFactory(GameDataFactoryID id_);
 
-private:
-	GameDataFactoryID m_ID;
-	//std::string m_Name;
-};
+	private:
+		GameDataFactoryID m_ID;
+		//std::string m_Name;
+	};
 
-/**
- * 
- */
-class CA_EXPORT AutoRegisterGameDataFactory
-{
-public:
-	AutoRegisterGameDataFactory(IGameDataFactory *pObject_, const char *factoryName_, 
-		const char *filename, int line);
-};
+	/**
+	 *
+	 */
+	class CA_EXPORT AutoRegisterGameDataFactory
+	{
+	public:
+		AutoRegisterGameDataFactory(IGameDataFactory* pObject_, const char* factoryName_,
+			const char* filename, int line);
+	};
 
 #define GAMEDATA_REGISTER(FactoryName) \
 	FactoryName auto_gamedata_instance_##FactoryName; \

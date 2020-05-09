@@ -63,44 +63,44 @@ namespace CasaEngine
 		const float step = 1.0f;
 
 		//Keyboard
-		if (Game::Instance()->GetInput().IsKeyDown(sf::Keyboard::Right) == true)
+		if (Game::Instance().GetInput().IsKeyDown(sf::Keyboard::Right) == true)
 		{
 			rightAxis = -step;
 		}
-		else if (Game::Instance()->GetInput().IsKeyDown(sf::Keyboard::Left) == true)
+		else if (Game::Instance().GetInput().IsKeyDown(sf::Keyboard::Left) == true)
 		{
 			rightAxis = step;
 		}
 
-		if (Game::Instance()->GetInput().IsKeyDown(sf::Keyboard::Up) == true)
+		if (Game::Instance().GetInput().IsKeyDown(sf::Keyboard::Up) == true)
 		{
 			forwardAxis = step;
 		}
-		else if (Game::Instance()->GetInput().IsKeyDown(sf::Keyboard::Down) == true)
+		else if (Game::Instance().GetInput().IsKeyDown(sf::Keyboard::Down) == true)
 		{
 			forwardAxis = -step;
 		}
 
-		if (Game::Instance()->GetInput().IsKeyDown(sf::Keyboard::PageUp) == true)
+		if (Game::Instance().GetInput().IsKeyDown(sf::Keyboard::PageUp) == true)
 		{
 			upAxis = step;
 		}
-		else if (Game::Instance()->GetInput().IsKeyDown(sf::Keyboard::PageDown) == true)
+		else if (Game::Instance().GetInput().IsKeyDown(sf::Keyboard::PageDown) == true)
 		{
 			upAxis = -step;
 		}
 
-		if (Game::Instance()->GetInput().IsMouseButtonDown(sf::Mouse::Middle) == true)
+		if (Game::Instance().GetInput().IsMouseButtonDown(sf::Mouse::Middle) == true)
 		{
-			horizontalOrbit = (float)-Game::Instance()->GetInput().GetDeltaMouseX();
-			verticalOrbit = (float)-Game::Instance()->GetInput().GetDeltaMouseY();
+			horizontalOrbit = (float)-Game::Instance().GetInput().GetDeltaMouseX();
+			verticalOrbit = (float)-Game::Instance().GetInput().GetDeltaMouseY();
 		}
 
 		//Touch
-		if (Game::Instance()->GetInput().IsTouchMove(0) == true)
+		if (Game::Instance().GetInput().IsTouchMove(0) == true)
 		{
-			horizontalOrbit = (float)-Game::Instance()->GetInput().TouchMoveDeltaX(0);
-			verticalOrbit = (float)-Game::Instance()->GetInput().TouchMoveDeltaY(0);
+			horizontalOrbit = (float)-Game::Instance().GetInput().TouchMoveDeltaX(0);
+			verticalOrbit = (float)-Game::Instance().GetInput().TouchMoveDeltaY(0);
 			CA_TRACE("TouchMove x:%f y=%f\n", horizontalOrbit, verticalOrbit);
 		}
 
@@ -313,8 +313,8 @@ namespace CasaEngine
 	{
 		auto& viewport = this->Camera()->GetViewport();
 
-		float ratio = static_cast<float>(viewport.Width() * Game::Instance()->GetWindow()->getSize().x) /
-			static_cast<float>(viewport.Height() * Game::Instance()->GetWindow()->getSize().y);
+		float ratio = static_cast<float>(viewport.Width() * Game::Instance().GetWindow()->getSize().x) /
+			static_cast<float>(viewport.Height() * Game::Instance().GetWindow()->getSize().y);
 
 		projectionMatrix_.PerspectiveFOV(
 			dynamic_cast<Camera3DComponent*>(Camera())->FOV(),

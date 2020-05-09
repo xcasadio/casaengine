@@ -84,7 +84,7 @@ namespace CasaEngine
 			return;
 		}
 
-		CameraComponent *pCamera = GameInfo::Instance().GetActiveCamera();
+		CameraComponent *pCamera = Game::Instance().GetGameInfo().GetActiveCamera();
 
 		bgfx::setState(BGFX_STATE_WRITE_RGB // depth always ??
 			| BGFX_STATE_WRITE_A

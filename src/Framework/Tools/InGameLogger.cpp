@@ -12,26 +12,12 @@
 
 namespace CasaEngine
 {
-	SINGLETON_IMPL(InGameLogger)
-
-	/**
-	 * 
-	 */
-	InGameLogger::InGameLogger() 
-	{
-	}
-
-	/**
-	 * 
-	 */
-	InGameLogger::~InGameLogger() { }
-
 	/**
 	 * 
 	 */
 	void InGameLogger::AddLog(float delay_, const char *fmt, ...)
 	{
-		static char sBuffer[8192];
+		static char sBuffer[1024];
 		va_list Params;
 		va_start(Params, fmt);
 		vsprintf(sBuffer, fmt, Params);
@@ -87,8 +73,8 @@ namespace CasaEngine
 		
 		/*
 		ImGui::SetNextWindowSize(ImVec2(
-			Game::Instance()->GetWindow()->getSize().x - 50,
-			Game::Instance()->GetWindow()->getSize().y - 50));
+			Game::Instance().GetWindow()->getSize().x - 50,
+			Game::Instance().GetWindow()->getSize().y - 50));
 		ImGui::SetNextWindowPosCenter();
 
 		if (!ImGui::Begin("Log in game", nullptr, ImVec2(0,0), 0.3f, 

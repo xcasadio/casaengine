@@ -12,28 +12,28 @@ namespace CasaEngine
 	typedef unsigned int ScriptObjectClassID;
 	typedef unsigned int ScriptObjectID;
 
-/**
- * 
- */
-class CA_EXPORT IScriptObject :
-	public AllocatedObject<IScriptObject>
-{
-public:
-	virtual ~IScriptObject() {}
+	/**
+	 *
+	 */
+	class CA_EXPORT IScriptObject :
+		public AllocatedObject<IScriptObject>
+	{
+	public:
+		virtual ~IScriptObject() {}
 
-	BaseEntity *GetEntity() const;
+		BaseEntity* GetEntity() const;
 
-	virtual void OnInitialize() = 0;
-	virtual void OnUpdate(const GameTime& gameTime_) = 0;
-	virtual void OnDestroy() = 0;
+		virtual void OnInitialize() = 0;
+		virtual void OnUpdate(const GameTime& gameTime_) = 0;
+		virtual void OnDestroy() = 0;
 
-protected:
-	IScriptObject(BaseEntity *pEntity_);
+	protected:
+		IScriptObject(BaseEntity* pEntity_);
 
-private:
-	BaseEntity *m_pEntity;
-};
+	private:
+		BaseEntity* m_pEntity;
+	};
 
 }
 
-#endif // ISCRIPTOBJECT_H_
+#endif

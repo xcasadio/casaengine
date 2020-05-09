@@ -1,6 +1,7 @@
 #include "CA_Assert.h"
 #include "IGameDataFactory.h"
 #include "GameDataFactory.h"
+#include "Game/Game.h"
 #include "Log\LogManager.h"
 
 
@@ -14,7 +15,7 @@ AutoRegisterGameDataFactory::AutoRegisterGameDataFactory(
 		const char *filename, int line)
 {
 	CA_TRACE("register GameData factory '%s' (%d) (%d:%s)\n", factoryName_, pObject_->GetID(), line, filename);
-	GameDataFactory::Instance().RegisterFactory(pObject_);
+	Game::Instance().GetGameDataFactory().RegisterFactory(pObject_);
 }
 
 }

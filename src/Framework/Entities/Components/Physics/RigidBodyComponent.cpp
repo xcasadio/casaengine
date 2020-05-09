@@ -40,7 +40,7 @@ RigidBodyComponent::~RigidBodyComponent()
 void RigidBodyComponent::Initialize()
 {
 	m_RigidBody.mass = 1.0f;
-	IRigidBodyContainer *pContainer = GameInfo::Instance().GetWorld()->GetPhysicsWorld()->AddRigidBody(&m_RigidBody);
+	IRigidBodyContainer *pContainer = Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->AddRigidBody(&m_RigidBody);
 	GetEntity()->GetPhysicalEntity().SetRigidBody(pContainer);
 }
 

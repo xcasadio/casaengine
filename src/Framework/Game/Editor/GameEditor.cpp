@@ -55,15 +55,15 @@ namespace CasaEngine
 		AddComponent(m_SpriteRenderer);
 
 		m_pWorld = NEW_AO World();
-		GameInfo::Instance().SetWorld(m_pWorld);
+		Game::Instance().GetGameInfo().SetWorld(m_pWorld);
 
 		// Ajout des chemins prédéfinis
-		MediaManager::Instance().AddSearchPath("../../examples/resources");
-		MediaManager::Instance().AddSearchPath("../../examples/resources/textures");
-		MediaManager::Instance().AddSearchPath("../../examples/resources/models");
-		MediaManager::Instance().AddSearchPath("../../examples/resources/shaders");
-		MediaManager::Instance().AddSearchPath("../../examples/resources/spriteSheet");
-		MediaManager::Instance().AddSearchPath("../../examples/resources/fonts");
+		Game::Instance().GetMediaManager().AddSearchPath("../../examples/resources");
+		Game::Instance().GetMediaManager().AddSearchPath("../../examples/resources/textures");
+		Game::Instance().GetMediaManager().AddSearchPath("../../examples/resources/models");
+		Game::Instance().GetMediaManager().AddSearchPath("../../examples/resources/shaders");
+		Game::Instance().GetMediaManager().AddSearchPath("../../examples/resources/spriteSheet");
+		Game::Instance().GetMediaManager().AddSearchPath("../../examples/resources/fonts");
 
 		//Grid
 		BaseEntity *pEntity = NEW_AO BaseEntity();
@@ -92,9 +92,9 @@ namespace CasaEngine
 		m_pCamera3D->CameraController(pArcBall);
 		pCamera->GetComponentMgr()->AddComponent(m_pCamera3D);	
 		pCamera->Initialize();
-		GameInfo::Instance().GetWorld()->AddEntity(pCamera);
+		Game::Instance().GetGameInfo().GetWorld()->AddEntity(pCamera);
 
-		GameInfo::Instance().SetActiveCamera(m_pCamera3D);
+		Game::Instance().GetGameInfo().SetActiveCamera(m_pCamera3D);
 	}
 
 	/**

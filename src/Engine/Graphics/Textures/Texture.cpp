@@ -9,6 +9,8 @@
 // #define STB_IMAGE_IMPLEMENTATION
 #include <stb/stb_image.h>
 
+#include "Game/Game.h"
+
 namespace CasaEngine
 {
 
@@ -33,7 +35,7 @@ namespace CasaEngine
 		bgfx::TextureHandle handle = BGFX_INVALID_HANDLE;
 
 		bgfx::TextureHandle h = BGFX_INVALID_HANDLE;
-		IFile* pFile = MediaManager::Instance().FindMedia(pFileName_, true);
+		IFile* pFile = Game::Instance().GetMediaManager().FindMedia(pFileName_, true);
 
 		if (pFile == nullptr)
 		{

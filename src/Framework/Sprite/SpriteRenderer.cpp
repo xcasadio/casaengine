@@ -92,7 +92,7 @@ namespace CasaEngine
 		UpdateBuffer();
 		
 		int indexPos = 0;
-		CameraComponent *pCamera = GameInfo::Instance().GetActiveCamera();
+		CameraComponent *pCamera = Game::Instance().GetGameInfo().GetActiveCamera();
 		if (pCamera == nullptr)
 		{
 			float proj[16];

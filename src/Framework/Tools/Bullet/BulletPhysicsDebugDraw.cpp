@@ -20,7 +20,7 @@ BulletPhysicsDebugDraw::~BulletPhysicsDebugDraw()
 
 void BulletPhysicsDebugDraw::Initialize()
 {
-	m_pLineRenderer = Game::Instance()->GetGameComponent<Line3DRendererComponent>();
+	m_pLineRenderer = Game::Instance().GetGameComponent<Line3DRendererComponent>();
 	CA_ASSERT(m_pLineRenderer != nullptr, "BulletPhysicsDebugDraw::Initialize() : Line3DRendererComponent is nullptr");
 }
 

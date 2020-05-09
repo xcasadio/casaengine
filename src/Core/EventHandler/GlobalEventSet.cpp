@@ -11,8 +11,23 @@
 // Start of CEGUI namespace section
 namespace CasaEngine
 {
-	SINGLETON_IMPL(GlobalEventSet)
+	GlobalEventSet* GlobalEventSet::s_pInstance(nullptr);
+	
+	GlobalEventSet* GlobalEventSet::Instance()
+	{
+		if (s_pInstance == nullptr)
+		{
+			s_pInstance = NEW_AO GlobalEventSet();
+		}
+		
+		return s_pInstance;
+	}
 
+	void GlobalEventSet::Destroy()
+	{
+		DELETE_AO s_pInstance;
+	}
+	
 	/*************************************************************************
 		GlobalEventSet constructor.
 	*************************************************************************/

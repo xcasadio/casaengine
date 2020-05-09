@@ -46,8 +46,8 @@ void Camera2DComponent::ComputeProjectionMatrix()
     m_ProjectionMatrix.OrthoOffCenter(
         static_cast<float>(m_Viewport.X()),
         static_cast<float>(m_Viewport.Y()),
-        static_cast<float>(m_Viewport.Width() * Game::Instance()->GetWindow()->getSize().x),
-        static_cast<float>(m_Viewport.Height() * Game::Instance()->GetWindow()->getSize().y),
+        static_cast<float>(m_Viewport.Width() * Game::Instance().GetWindow()->getSize().x),
+        static_cast<float>(m_Viewport.Height() * Game::Instance().GetWindow()->getSize().y),
         m_Viewport.NearClipPlane(), 
         m_Viewport.FarClipPlane());
     m_ProjectionMatrix = m_ProjectionMatrix.Transpose();

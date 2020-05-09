@@ -9,6 +9,7 @@
 #include "Game\GameInfo.h"
 #include "Entities\Components\Transform3DComponent.h"
 #include "Entities\BaseEntity.h"
+#include "Game/Game.h"
 #include "Maths\Vector2.h"
 
 
@@ -41,7 +42,7 @@ PhysicalEntity::~PhysicalEntity()
 			itColObj != it->second.end();
 			itColObj++)
 		{
-			GameInfo::Instance().GetWorld()->GetPhysicsWorld()->RemoveCollisionObject(*itColObj);
+			Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->RemoveCollisionObject(*itColObj);
 			DELETE_AO *itColObj;
 		}
 	}
@@ -103,7 +104,7 @@ void PhysicalEntity::AddSpritePhysics(Sprite *pSprite_)
 			itShape++)
 		{
 			ICollisionObjectContainer *pObj = 
-				GameInfo::Instance().GetWorld()->GetPhysicsWorld()->AddCollisionShape(*itShape, posWithOrigin);
+				Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->AddCollisionShape(*itShape, posWithOrigin);
 			m_SpriteCollisionObjects[m_LastSpriteID].push_back(pObj);
 		}
 	}
@@ -115,7 +116,7 @@ void PhysicalEntity::AddSpritePhysics(Sprite *pSprite_)
 			it != m_SpriteCollisionObjects[m_LastSpriteID].end();
 			it++)
 		{
-			GameInfo::Instance().GetWorld()->GetPhysicsWorld()->AddCollisionObject(*it);
+			Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->AddCollisionObject(*it);
 		}
 	}
 }
@@ -132,7 +133,7 @@ void PhysicalEntity::RemoveSpritePhysics(Sprite *pSprite_)
 			itColObj != m_SpriteCollisionObjects[m_LastSpriteID].end();
 			itColObj++)
 		{
-			GameInfo::Instance().GetWorld()->GetPhysicsWorld()->RemoveCollisionObject(*itColObj);
+			Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->RemoveCollisionObject(*itColObj);
 		}
 	}
 }

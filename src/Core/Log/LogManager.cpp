@@ -30,7 +30,7 @@ namespace CasaEngine
 			m_sInstance = nullptr;
 		}
 	}
-
+	
 	LogManager::LogManager()
 	{
 		m_Verbosity = Trace;
@@ -38,13 +38,9 @@ namespace CasaEngine
 
 	LogManager::~LogManager()
 	{
-		std::vector<ILogger*>::iterator it;
-
-		for (it = m_Logs.begin();
-			it != m_Logs.end();
-			++it)
+		for (auto* log : m_Logs)
 		{
-			DELETE_AO(*it);
+			DELETE_AO log;
 		}
 	}
 
@@ -80,13 +76,9 @@ namespace CasaEngine
 		vsprintf(sBuffer, Format, Params);
 		va_end(Params);
 
-		std::vector<ILogger*>::iterator it;
-
-		for (it = m_Logs.begin();
-			it != m_Logs.end();
-			++it)
+		for (auto* log : m_Logs)
 		{
-			(*it)->Write(verbose_, sBuffer);
+			log->Write(verbose_, sBuffer);
 		}
 	}
 

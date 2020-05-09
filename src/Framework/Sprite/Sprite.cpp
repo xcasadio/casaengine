@@ -3,6 +3,8 @@
 #include "Sprite/Sprite.h"
 #include "Parsers/Xml/tinyxml2.h"
 #include <iosfwd>
+
+#include "Game/Game.h"
 #include "Maths/Vector2.h"
 #include "Maths/Rectangle.h"
 #include "Graphics/Textures/Texture.h"
@@ -69,12 +71,12 @@ namespace CasaEngine
 		//m_Name = el_->Attribute("id");
 		SetName(el_.Attribute("id")); // TODO : ID is not the name
 
-		Texture* pTexture = ResourceManager::Instance().Get<Texture>(m_AssetFileName.c_str());
+		Texture* pTexture = Game::Instance().GetResourceManager().Get<Texture>(m_AssetFileName.c_str());
 		
 		if (nullptr == pTexture)
 		{
 			pTexture = Texture::loadTexture(m_AssetFileName.c_str());
-			ResourceManager::Instance().Add(m_AssetFileName.c_str(), pTexture);
+			Game::Instance().GetResourceManager().Add(m_AssetFileName.c_str(), pTexture);
 		}
 		
 		m_pTexture2D = pTexture;

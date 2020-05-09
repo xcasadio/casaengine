@@ -68,7 +68,7 @@ namespace CasaEngine
 	 */
 	void MeshRendererGameComponent::Draw()
 	{
-		CameraComponent *pCamera = GameInfo::Instance().GetActiveCamera();
+		CameraComponent *pCamera = Game::Instance().GetGameInfo().GetActiveCamera();
 		//if (pCamera != nullptr)
 		{
 			bgfx::setViewTransform(0, pCamera->GetViewMatrix(), pCamera->GetProjectionMatrix());

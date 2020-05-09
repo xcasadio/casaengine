@@ -3,7 +3,7 @@
 #define BULLETPHYSICSENGINE_H_
 
 #include "CA_Export.h"
-#include "Singleton.h"
+
 #include "Physics/IPhysicsWorld.h"
 #include "Physics\IPhysicsEngine.h"
 

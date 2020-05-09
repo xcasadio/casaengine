@@ -213,9 +213,6 @@
     <ClInclude Include="..\..\src\Core\Macro.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\Singleton.h">
-      <Filter>Core</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Core\StringUtils.h">
       <Filter>Core</Filter>
     </ClInclude>

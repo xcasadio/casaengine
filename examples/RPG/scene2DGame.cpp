@@ -63,8 +63,6 @@ Scene2DGame::~Scene2DGame()
 	DELETE_AO m_pLine2DRenderer;
 	DELETE_AO m_pLine3DRenderer;
 	DELETE_AO m_pGroundTexture;
-	EntityManager::Instance().Clear();
-	PhysicsEngine::Destroy();
 }
 
 /**
@@ -72,18 +70,18 @@ Scene2DGame::~Scene2DGame()
  */
 void Scene2DGame::Initialize()
 {
-	MediaManager::Instance().AddSearchPath("../../examples/resources");
-	MediaManager::Instance().AddSearchPath("../../examples/resources/textures");
-	MediaManager::Instance().AddSearchPath("../../examples/resources/models");
-	MediaManager::Instance().AddSearchPath("../../examples/resources/shaders");
-	MediaManager::Instance().AddSearchPath("../../examples/resources/spriteSheet");
-	MediaManager::Instance().AddSearchPath("../../examples/resources/script");
-	MediaManager::Instance().AddSearchPath("../../examples/resources/fonts");
+	GetMediaManager().AddSearchPath("../../examples/resources");
+	GetMediaManager().AddSearchPath("../../examples/resources/textures");
+	GetMediaManager().AddSearchPath("../../examples/resources/models");
+	GetMediaManager().AddSearchPath("../../examples/resources/shaders");
+	GetMediaManager().AddSearchPath("../../examples/resources/spriteSheet");
+	GetMediaManager().AddSearchPath("../../examples/resources/script");
+	GetMediaManager().AddSearchPath("../../examples/resources/fonts");
 
 	AddGameComponent();
 
 	Game::Initialize();
-	Game::Instance()->GetDebugOptions().ShowLogInGame = true;
+	GetDebugOptions().ShowLogInGame = true;
 }
 
 float rotation = 0.0f;
@@ -96,7 +94,7 @@ void Scene2DGame::LoadContent()
 	Game::LoadContent();
 
 	m_pWorld = NEW_AO World();
-	GameInfo::Instance().SetWorld(m_pWorld);
+	GetGameInfo().SetWorld(m_pWorld);
 	//m_pWorld->SetPhysicsWorld(PhysicsEngine::Instance().CreateWorld());
 	/*
 	LoadAssets();
@@ -109,7 +107,7 @@ void Scene2DGame::LoadContent()
 	pSprite->SetName("1");
 	pSprite->SetPositionInTexture(CRectangleI(0, 0, texture->TextureInfo()->width, texture->TextureInfo()->height));
 	pSprite->SetTexture2D(texture);
-	AssetManager::Instance().AddAsset(new Asset("1", pSprite));
+	GetAssetManager().AddAsset(new Asset("1", pSprite));
 
 	BaseEntity* pEntity = NEW_AO BaseEntity();
 	pEntity->SetName("sprite");
@@ -137,7 +135,7 @@ void Scene2DGame::LoadContent()
 	//custom_camera_controller->SetDeadZoneRatio(Vector2F(0.8f, 0.8f));
 	//custom_camera_controller->SetTargetedEntity(pEntity);
 	m_pWorld->AddEntity(pCamera);
-	GameInfo::Instance().SetActiveCamera(m_pCamera2D);
+	GetGameInfo().SetActiveCamera(m_pCamera2D);
 	
 	m_pWorld->Initialize();
 }
@@ -199,7 +197,7 @@ void Scene2DGame::Draw()
  */
 void Scene2DGame::AddGameComponent()
 {
-	//GameInfo::Instance().GetProjectManager().LoadProject("H:\\Developpement\\CasaEngine2D\\Projects\\LostKingdom\\LostKingdom.xml");
+	//GetGameInfo().GetProjectManager().LoadProject("H:\\Developpement\\CasaEngine2D\\Projects\\LostKingdom\\LostKingdom.xml");
 	//m_pModelRenderer = NEW_AO MeshRendererGameComponent(this);
 	m_pLine2DRenderer = NEW_AO Line2DRendererComponent(this);
 	//m_pLine3DRenderer = NEW_AO Line3DRendererComponent(this);
@@ -228,7 +226,7 @@ void Scene2DGame::LoadAssets()
 	{
 		Animation2D* pAnim = NEW_AO Animation2D();
 		pAnim->Read(*pElem);
-		AssetManager::Instance().AddAsset(NEW_AO Asset(pAnim->GetName(), pAnim));
+		GetAssetManager().AddAsset(NEW_AO Asset(pAnim->GetName(), pAnim));
 		pElem = pElem->NextSiblingElement();
 	}
 
@@ -239,7 +237,7 @@ void Scene2DGame::LoadAssets()
 	{
 		Sprite* pSprite = NEW_AO Sprite();
 		pSprite->Read(*pElem);
-		AssetManager::Instance().AddAsset(NEW_AO Asset(pSprite->GetName(), pSprite));
+		GetAssetManager().AddAsset(NEW_AO Asset(pSprite->GetName(), pSprite));
 		pElem = pElem->NextSiblingElement();
 	}
 
@@ -262,7 +260,7 @@ void Scene2DGame::CreateEntities()
 	pCamera->Initialize();
 	m_pWorld->AddEntity(pCamera);
 
-	GameInfo::Instance().SetActiveCamera(m_pCamera3D);
+	GetGameInfo().SetActiveCamera(m_pCamera3D);
 
 	//FPS
 	/*BaseEntity *pEntity = NEW_AO BaseEntity();
@@ -292,11 +290,11 @@ void Scene2DGame::CreateEntities()
 	MeshComponent *pModelCpt = NEW_AO MeshComponent(pEntity);
 	PlanePrimitive *pPrimitive = NEW_AO PlanePrimitive(100.0f, 100.0f);
 	Model *pModel = pPrimitive->CreateModel();
-	ResourceManager::Instance().Add("groundModel", pModel);
+	GetResourceManager().Add("groundModel", pModel);
 	DELETE_AO pPrimitive;
 	//new material
 	Material* pMat = pModel->GetMaterial()->Clone();
-	ResourceManager::Instance().Add("groundMaterial", pMat);
+	GetResourceManager().Add("groundMaterial", pMat);
 	pModel->SetMaterial(pMat);
 	m_pGroundTexture = NEW_AO Texture();
 	m_pGroundTexture->CreateFromFile("ceilingMain_DIF.png", PixelFormat::ARGB_8888);
@@ -327,7 +325,7 @@ void Scene2DGame::CreateEntities()
 	MeshComponent *pModelCpt = NEW_AO MeshComponent(pEntity);
 	BoxPrimitive *pPrimitive = NEW_AO BoxPrimitive();
 	Model *pModel = pPrimitive->CreateModel();
-	ResourceManager::Instance().Add("groundModel", pModel);
+	GetResourceManager().Add("groundModel", pModel);
 	DELETE_AO pPrimitive;
 	pModelCpt->SetModel(pModel);
 
@@ -387,50 +385,50 @@ void Scene2DGame::CreatePlayer()
 	m_pAnimatedSprite = NEW_AO AnimatedSpriteComponent(pEntity);
 	pEntity->GetComponentMgr()->AddComponent(m_pAnimatedSprite);
 
-	m_pAnimatedSprite->AddAnimation(AssetManager::Instance().GetAsset<Animation2D>("Anim_belrick_idle_r"));
-	m_pAnimatedSprite->AddAnimation(AssetManager::Instance().GetAsset<Animation2D>("Anim_belrick_idle_l"));
-	m_pAnimatedSprite->AddAnimation(AssetManager::Instance().GetAsset<Animation2D>("Anim_belrick_idle_u"));
-	m_pAnimatedSprite->AddAnimation(AssetManager::Instance().GetAsset<Animation2D>("Anim_belrick_idle_d"));
-	m_pAnimatedSprite->AddAnimation(AssetManager::Instance().GetAsset<Animation2D>("Anim_belrick_idle_ur"));
-	m_pAnimatedSprite->AddAnimation(AssetManager::Instance().GetAsset<Animation2D>("Anim_belrick_idle_dr"));
-	m_pAnimatedSprite->AddAnimation(AssetManager::Instance().GetAsset<Animation2D>("Anim_belrick_idle_ul"));
-	m_pAnimatedSprite->AddAnimation(AssetManager::Instance().GetAsset<Animation2D>("Anim_belrick_idle_dl"));
+	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("Anim_belrick_idle_r"));
+	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("Anim_belrick_idle_l"));
+	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("Anim_belrick_idle_u"));
+	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("Anim_belrick_idle_d"));
+	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("Anim_belrick_idle_ur"));
+	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("Anim_belrick_idle_dr"));
+	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("Anim_belrick_idle_ul"));
+	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("Anim_belrick_idle_dl"));
 
-	m_pAnimatedSprite->AddAnimation(AssetManager::Instance().GetAsset<Animation2D>("anim_belrick_run_r"));
-	m_pAnimatedSprite->AddAnimation(AssetManager::Instance().GetAsset<Animation2D>("anim_belrick_run_l"));
-	m_pAnimatedSprite->AddAnimation(AssetManager::Instance().GetAsset<Animation2D>("anim_belrick_run_u"));
-	m_pAnimatedSprite->AddAnimation(AssetManager::Instance().GetAsset<Animation2D>("anim_belrick_run_d"));
-	m_pAnimatedSprite->AddAnimation(AssetManager::Instance().GetAsset<Animation2D>("anim_belrick_run_ur"));
-	m_pAnimatedSprite->AddAnimation(AssetManager::Instance().GetAsset<Animation2D>("anim_belrick_run_dr"));
-	m_pAnimatedSprite->AddAnimation(AssetManager::Instance().GetAsset<Animation2D>("anim_belrick_run_ul"));
-	m_pAnimatedSprite->AddAnimation(AssetManager::Instance().GetAsset<Animation2D>("anim_belrick_run_dl"));
+	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("anim_belrick_run_r"));
+	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("anim_belrick_run_l"));
+	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("anim_belrick_run_u"));
+	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("anim_belrick_run_d"));
+	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("anim_belrick_run_ur"));
+	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("anim_belrick_run_dr"));
+	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("anim_belrick_run_ul"));
+	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("anim_belrick_run_dl"));
 
-	m_pAnimatedSprite->AddAnimation(AssetManager::Instance().GetAsset<Animation2D>("anim_belrick_attack_01_r"));
-	m_pAnimatedSprite->AddAnimation(AssetManager::Instance().GetAsset<Animation2D>("anim_belrick_attack_01_l"));
-	m_pAnimatedSprite->AddAnimation(AssetManager::Instance().GetAsset<Animation2D>("anim_belrick_attack_01_u"));
-	m_pAnimatedSprite->AddAnimation(AssetManager::Instance().GetAsset<Animation2D>("anim_belrick_attack_01_d"));
-	m_pAnimatedSprite->AddAnimation(AssetManager::Instance().GetAsset<Animation2D>("anim_belrick_attack_01_ur"));
-	m_pAnimatedSprite->AddAnimation(AssetManager::Instance().GetAsset<Animation2D>("anim_belrick_attack_01_dr"));
-	m_pAnimatedSprite->AddAnimation(AssetManager::Instance().GetAsset<Animation2D>("anim_belrick_attack_01_ul"));
-	m_pAnimatedSprite->AddAnimation(AssetManager::Instance().GetAsset<Animation2D>("anim_belrick_attack_01_dl"));
+	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("anim_belrick_attack_01_r"));
+	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("anim_belrick_attack_01_l"));
+	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("anim_belrick_attack_01_u"));
+	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("anim_belrick_attack_01_d"));
+	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("anim_belrick_attack_01_ur"));
+	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("anim_belrick_attack_01_dr"));
+	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("anim_belrick_attack_01_ul"));
+	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("anim_belrick_attack_01_dl"));
 
-	m_pAnimatedSprite->AddAnimation(AssetManager::Instance().GetAsset<Animation2D>("anim_belrick_attack_02_r"));
-	m_pAnimatedSprite->AddAnimation(AssetManager::Instance().GetAsset<Animation2D>("anim_belrick_attack_02_l"));
-	m_pAnimatedSprite->AddAnimation(AssetManager::Instance().GetAsset<Animation2D>("anim_belrick_attack_02_u"));
-	m_pAnimatedSprite->AddAnimation(AssetManager::Instance().GetAsset<Animation2D>("anim_belrick_attack_02_d"));
-	m_pAnimatedSprite->AddAnimation(AssetManager::Instance().GetAsset<Animation2D>("anim_belrick_attack_02_ur"));
-	m_pAnimatedSprite->AddAnimation(AssetManager::Instance().GetAsset<Animation2D>("anim_belrick_attack_02_dr"));
-	m_pAnimatedSprite->AddAnimation(AssetManager::Instance().GetAsset<Animation2D>("anim_belrick_attack_02_ul"));
-	m_pAnimatedSprite->AddAnimation(AssetManager::Instance().GetAsset<Animation2D>("anim_belrick_attack_02_dl"));
+	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("anim_belrick_attack_02_r"));
+	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("anim_belrick_attack_02_l"));
+	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("anim_belrick_attack_02_u"));
+	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("anim_belrick_attack_02_d"));
+	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("anim_belrick_attack_02_ur"));
+	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("anim_belrick_attack_02_dr"));
+	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("anim_belrick_attack_02_ul"));
+	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("anim_belrick_attack_02_dl"));
 
-	m_pAnimatedSprite->AddAnimation(AssetManager::Instance().GetAsset<Animation2D>("anim_belrick_attack_03_r"));
-	m_pAnimatedSprite->AddAnimation(AssetManager::Instance().GetAsset<Animation2D>("anim_belrick_attack_03_l"));
-	m_pAnimatedSprite->AddAnimation(AssetManager::Instance().GetAsset<Animation2D>("anim_belrick_attack_03_u"));
-	m_pAnimatedSprite->AddAnimation(AssetManager::Instance().GetAsset<Animation2D>("anim_belrick_attack_03_d"));
-	m_pAnimatedSprite->AddAnimation(AssetManager::Instance().GetAsset<Animation2D>("anim_belrick_attack_03_ur"));
-	m_pAnimatedSprite->AddAnimation(AssetManager::Instance().GetAsset<Animation2D>("anim_belrick_attack_03_dr"));
-	m_pAnimatedSprite->AddAnimation(AssetManager::Instance().GetAsset<Animation2D>("anim_belrick_attack_03_ul"));
-	m_pAnimatedSprite->AddAnimation(AssetManager::Instance().GetAsset<Animation2D>("anim_belrick_attack_03_dl"));
+	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("anim_belrick_attack_03_r"));
+	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("anim_belrick_attack_03_l"));
+	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("anim_belrick_attack_03_u"));
+	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("anim_belrick_attack_03_d"));
+	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("anim_belrick_attack_03_ur"));
+	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("anim_belrick_attack_03_dr"));
+	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("anim_belrick_attack_03_ul"));
+	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("anim_belrick_attack_03_dl"));
 
 	m_pAnimatedSprite->SetCurrentAnimation(0); // Anim_belrick_idle_r
 

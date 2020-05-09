@@ -22,7 +22,7 @@ void CustomCameraController::Update(const GameTime& gameTime_)
 	if (m_pTargetedEntity != nullptr)
 	{
 		auto viewport = Camera()->GetViewport();
-		const auto winSize = Game::Instance()->GetWindow()->getSize();
+		const auto winSize = Game::Instance().GetWindow()->getSize();
 		const auto transform_3d_component = m_pTargetedEntity->GetComponentMgr()->GetComponent<Transform3DComponent>();
 		CA_ASSERT(transform_3d_component != nullptr, "cameracomponent : the target need to have a Transform3DComponent");
 		const auto targetPosition = transform_3d_component->GetPosition();
@@ -78,7 +78,7 @@ void CustomCameraController::Update(const GameTime& gameTime_)
 
 void CustomCameraController::ViewMatrix(Matrix4& viewMatrix_)
 {
-	const auto winSize = Game::Instance()->GetWindow()->getSize();
+	const auto winSize = Game::Instance().GetWindow()->getSize();
 	const auto viewport = Camera()->GetViewport();
 	
 	if (m_pTargetedEntity != nullptr)
@@ -97,8 +97,8 @@ void CustomCameraController::ProjectionMatrix(Matrix4& projectionMatrix_)
 	projectionMatrix_.OrthoOffCenter(
 		static_cast<float>(viewport.X()),
 		static_cast<float>(viewport.Y()),
-		static_cast<float>(viewport.Width() * Game::Instance()->GetWindow()->getSize().x),
-		static_cast<float>(viewport.Height() * Game::Instance()->GetWindow()->getSize().y),
+		static_cast<float>(viewport.Width() * Game::Instance().GetWindow()->getSize().x),
+		static_cast<float>(viewport.Height() * Game::Instance().GetWindow()->getSize().y),
 		viewport.NearClipPlane(), viewport.FarClipPlane());
 	
 	projectionMatrix_ = projectionMatrix_.Transpose(); // TODO check the computation, why need transpose

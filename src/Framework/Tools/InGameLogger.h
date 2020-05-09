@@ -9,37 +9,31 @@
 
 #include "CA_Export.h"
 #include "GameTime.h"
-#include "Singleton.h"
+
 #include "Memory/MemoryAllocation.h"
 
 namespace CasaEngine
 {
-#define InGameLog(delay, fmt, ...) InGameLogger::Instance().AddLog(delay, fmt, ##__VA_ARGS__)
+	//TODO : create component
+#define InGameLog(delay, fmt, ...) Game::Instance().GetInGameLogger().AddLog(delay, fmt, ##__VA_ARGS__)
 
 	/**
-	 *  
+	 *
 	 */
-	class CA_EXPORT InGameLogger :
-		public CSingleton<InGameLogger>
+	class CA_EXPORT InGameLogger
 	{
-	MAKE_SINGLETON(InGameLogger)
+	public:
+
+		void AddLog(float delay, const char* fmt, ...);
+		void Update(const GameTime& gameTime_);
+		void ShowWindow();
 
 	private:
 		struct LogData
 		{
 			float delay; // in ms
-			const char *text;
+			const char* text;
 		};
-
-	private:
-		InGameLogger();
-		~InGameLogger();
-
-	public:
-
-		void AddLog(float delay, const char *fmt, ...);
-		void Update(const GameTime& gameTime_);
-		void ShowWindow();
 
 	private:
 		std::vector<LogData> m_Lines;
@@ -49,10 +43,10 @@ namespace CasaEngine
 
 
 #else
-	
-#define InGameLog(delay, fmt, ...) InGameLogger::Instance().AddLog(delay, fmt, ##__VA_ARGS__)
-#define InGameLogUpdate(gameTime_) InGameLogger::Instance().Update(gameTime_)
 
-#endif // #if defined(CA_IN_GAME_LOGGER)
+#define InGameLog(delay, fmt, ...) Game::Instance().GetInGameLogger().AddLog(delay, fmt, ##__VA_ARGS__)
+#define InGameLogUpdate(gameTime_) Game::Instance().GetInGameLogger().Update(gameTime_)
 
-#endif // _INGAMELOGGER_H_
+#endif
+
+#endif

@@ -160,7 +160,7 @@ void CookStew::Enter(MinersWifeComponent* wife)
 
 		//send a delayed message myself so that I know when to take the stew
 		//out of the oven
-		MessageDispatcher::Instance().DispatchMsg(1.5f,                  //time delay
+		Game::Instance().GetMessageDispatcher().DispatchMsg(1.5f,                  //time delay
 			wife->GetEntity()->ID(),           //sender ID
 			wife->GetEntity()->ID(),           //receiver ID
 			Msg_StewReady,        //msg
@@ -195,7 +195,7 @@ bool CookStew::OnMessage(MinersWifeComponent* wife, const Telegram& msg)
 		LogWife(wife->GetEntity()->GetName(), "StewReady! Lets eat");
 
 		//let hubby know the stew is ready
-		MessageDispatcher::Instance().DispatchMsg(SEND_MSG_IMMEDIATELY,
+		Game::Instance().GetMessageDispatcher().DispatchMsg(SEND_MSG_IMMEDIATELY,
 			wife->GetEntity()->ID(),
 			wife->GetMinerID(),
 			Msg_StewReady,

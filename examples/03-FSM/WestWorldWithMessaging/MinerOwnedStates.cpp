@@ -151,7 +151,7 @@ void GoHomeAndSleepTilRested::Enter(MinerComponent* pMiner)
 		pMiner->ChangeLocation(shack);
 
 		//let the wife know I'm home
-		MessageDispatcher::Instance().DispatchMsg(SEND_MSG_IMMEDIATELY, //time delay
+		Game::Instance().GetMessageDispatcher().DispatchMsg(SEND_MSG_IMMEDIATELY, //time delay
 			pMiner->GetEntity()->ID(),        //ID of sender
 			pMiner->GetWifeID(),            //ID of recipient
 			Msg_HiHoneyImHome,   //the message

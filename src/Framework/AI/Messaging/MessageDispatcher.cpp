@@ -5,11 +5,10 @@
 #include "Log/LogVerbose.h"
 #include "Log/LogManager.h"
 #include "GameTime.h"
-#include "Singleton.h"
+
+#include "Game/Game.h"
 
 using std::set;
-
-SINGLETON_IMPL(CasaEngine::MessageDispatcher)
 
 namespace CasaEngine
 {
@@ -44,10 +43,10 @@ namespace CasaEngine
 	{
 
 		//get a pointer to the receiver
-		BaseEntity* pReceiver = EntityManager::Instance().GetEntityFromID(receiver);
+		BaseEntity* pReceiver = Game::Instance().GetEntityManager().GetEntityFromID(receiver);
 
 		//for debugging
-		BaseEntity* pSender = EntityManager::Instance().GetEntityFromID(sender);
+		BaseEntity* pSender = Game::Instance().GetEntityManager().GetEntityFromID(sender);
 		const char* senderName = (pSender == nullptr ? "" : pSender->GetName());
 
 		//make sure the receiver is valid
@@ -103,7 +102,7 @@ namespace CasaEngine
 			const Telegram& telegram = *PriorityQ.begin();
 
 			//find the recipient
-			BaseEntity* pReceiver = EntityManager::Instance().GetEntityFromID(telegram.Receiver);
+			BaseEntity* pReceiver = Game::Instance().GetEntityManager().GetEntityFromID(telegram.Receiver);
 
 			if (pReceiver != nullptr)
 			{

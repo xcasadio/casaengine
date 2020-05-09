@@ -1,37 +1,19 @@
 #ifndef ENTITYMANAGER_H
 #define ENTITYMANAGER_H
 
-
-#pragma warning (disable:4786)
-//------------------------------------------------------------------------
-//
-//  Name:   EntityManager.h
-//
-//  Desc:   Singleton class to handle the  management of Entities.          
-//
-//  Author: Mat Buckland 2002 (fup@ai-junkie.com)
-//
-//------------------------------------------------------------------------
 #include <map>
 
 #include <string>
 #include "CA_Export.h"
-#include "Singleton.h"
-#include "EventHandler\EventArgs.h"
 
+#include "EventHandler\EventArgs.h"
 
 namespace CasaEngine
 {
 	class BaseEntity;
 
-	/*
-	 *	
-	 */
-	class CA_EXPORT EntityManager : 
-		public CSingleton<EntityManager>
+	class CA_EXPORT EntityManager
 	{
-		MAKE_SINGLETON(EntityManager)
-
 		public:
 			typedef std::map<int, BaseEntity*> EntityMap;
 			typedef EntityMap::const_iterator EntityIterator; // typename only with msvc 2012+
@@ -42,6 +24,8 @@ namespace CasaEngine
 			EntityMap m_EntityMap;
 
 		public:
+			~EntityManager();
+		
 			/**
 			 * Entity at the index position indicated by the entity's ID
 			 */
@@ -85,4 +69,4 @@ namespace CasaEngine
 
 }
 
-#endif // ENTITYMANAGER_H
+#endif

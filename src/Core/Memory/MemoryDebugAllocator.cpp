@@ -3,6 +3,7 @@
 #include <iostream>
 #include "MemoryReport.h"
 #include <limits>
+#include "Macro.h"
 
 
 namespace CasaEngine

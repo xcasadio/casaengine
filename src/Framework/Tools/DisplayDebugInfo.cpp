@@ -71,24 +71,24 @@ namespace CasaEngine
 	 */
 	void DisplayDebugInfo::Draw()
 	{
-		if (Game::Instance()->GetDebugOptions().ShowAxis == true)
+		if (Game::Instance().GetDebugOptions().ShowAxis == true)
 		{
 			DrawAxis(m_VertexBuffer, m_pProgram->Handle());
 		}
 
-		if (Game::Instance()->GetDebugOptions().ShowFPS == true)
+		if (Game::Instance().GetDebugOptions().ShowFPS == true)
 		{
 			ShowFPS();
 		}
 
-		if (Game::Instance()->GetDebugOptions().IsDebugActivated == true)
+		if (Game::Instance().GetDebugOptions().IsDebugActivated == true)
 		{
 			ShowDebugWindow();
 		}
 
-		if (Game::Instance()->GetDebugOptions().ShowLogInGame == true)
+		if (Game::Instance().GetDebugOptions().ShowLogInGame == true)
 		{
-			InGameLogger::Instance().ShowWindow();
+			Game::Instance().GetInGameLogger().ShowWindow();
 		}
 	}
 
@@ -97,7 +97,7 @@ namespace CasaEngine
 	 */
 	void DrawAxis(bgfx::VertexBufferHandle vertexHandle_, bgfx::ProgramHandle programhandle_)
 	{
-		CameraComponent *pCamera = GameInfo::Instance().GetActiveCamera();
+		CameraComponent *pCamera = Game::Instance().GetGameInfo().GetActiveCamera();
 		Viewport &viewport = pCamera->GetViewport();
 
 		Matrix4 matProj, matWorld;
@@ -127,7 +127,7 @@ namespace CasaEngine
 		bgfx::setViewTransform(1, NULL, matProj);
 		//bgfx::setViewTransform(1, pCamera->GetViewMatrix(), pCamera->GetProjectionMatrix());
 
-		bgfx::setViewRect(1, 0, 0, Game::Instance()->GetWindow()->getSize().x, Game::Instance()->GetWindow()->getSize().y);
+		bgfx::setViewRect(1, 0, 0, Game::Instance().GetWindow()->getSize().x, Game::Instance().GetWindow()->getSize().y);
 		bgfx::setTransform(matWorld);
 
 		bgfx::setVertexBuffer(0, vertexHandle_);
@@ -149,7 +149,7 @@ namespace CasaEngine
 		}
 		// 			ImGui::Text("Simple overlay\non the top-left side of the screen.");
 		// 			ImGui::Separator();
-		ImGui::Text("FPS: %d", Game::Instance()->GetDebugSystem().GetFPS());
+		ImGui::Text("FPS: %d", Game::Instance().GetDebugSystem().GetFPS());
 		ImGui::End();
 		*/
 	}
@@ -170,8 +170,8 @@ namespace CasaEngine
 			// debug options
 			if (ImGui::CollapsingHeader("debug options"))
 			{
-				ImGui::Checkbox("show axis", &Game::Instance()->GetDebugOptions().ShowAxis);
-				ImGui::Checkbox("show fps", &Game::Instance()->GetDebugOptions().ShowFPS);
+				ImGui::Checkbox("show axis", &Game::Instance().GetDebugOptions().ShowAxis);
+				ImGui::Checkbox("show fps", &Game::Instance().GetDebugOptions().ShowFPS);
 			}
 
 			// entities

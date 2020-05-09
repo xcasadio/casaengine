@@ -51,7 +51,7 @@ std::string StaticSpriteComponent::GetSpriteID() const
 void StaticSpriteComponent::SetSpriteID(std::string val) 
 { 
 	m_SpriteID = val;
-	m_pSprite = AssetManager::Instance().GetAsset<Sprite>(m_SpriteID);
+	m_pSprite = Game::Instance().GetAssetManager().GetAsset<Sprite>(m_SpriteID);
 }
 
 /**
@@ -91,7 +91,7 @@ void StaticSpriteComponent::SetSpriteEffect(eSpriteEffects val)
  */
 void StaticSpriteComponent::Initialize()
 {
-	m_pSpriteRenderer = Game::Instance()->GetGameComponent<SpriteRenderer>();
+	m_pSpriteRenderer = Game::Instance().GetGameComponent<SpriteRenderer>();
 	CA_ASSERT(m_pSpriteRenderer != nullptr, 
 		"StaticSpriteComponent::Initialize() can't find the component SpriteRenderer");
 

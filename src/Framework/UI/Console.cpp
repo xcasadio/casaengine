@@ -33,9 +33,9 @@ namespace CasaEngine
 		RegisterCommand("close",		Bind(&Console::VisibilityToggle, *this));
 		RegisterCommand("help",			Bind(&Console::GetCommands, *this));
 
-		RegisterCommand("exit",			Bind(&Game::Exit, *Game::Instance()));
-		RegisterCommand("activate",		Bind(static_cast<T1>(&DebugOptions::Activate), Game::Instance()->GetDebugOptions()));
-		RegisterCommand("show",			Bind(static_cast<T1>(&DebugOptions::Show), Game::Instance()->GetDebugOptions()));
+		RegisterCommand("exit",			Bind(&Game::Exit, Game::Instance()));
+		RegisterCommand("activate",		Bind(static_cast<T1>(&DebugOptions::Activate), Game::Instance().GetDebugOptions()));
+		RegisterCommand("show",			Bind(static_cast<T1>(&DebugOptions::Show), Game::Instance().GetDebugOptions()));
 
 		// 		Console::Instance().RegisterCommand("vsparam1", Bind(static_cast<T1>(&Shader::SetParameter), m_VertexShader));
 		// 		Console::Instance().RegisterCommand("psparam1", Bind(static_cast<T1>(&Shader::SetParameter), m_VertexShader));
@@ -91,8 +91,8 @@ namespace CasaEngine
 			return;
 		}
 
-		int winWidth = Game::Instance()->GetWindow()->getSize().x;
-		int winHeight = Game::Instance()->GetWindow()->getSize().y;
+		int winWidth = Game::Instance().GetWindow()->getSize().x;
+		int winHeight = Game::Instance().GetWindow()->getSize().y;
 		/*
 		ImGui::SetNextWindowSize(ImVec2(winWidth - 100, winHeight - 100), ImGuiSetCond_FirstUseEver);
 		if (!ImGui::Begin("Console"))

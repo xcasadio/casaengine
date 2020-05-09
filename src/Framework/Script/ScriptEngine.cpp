@@ -5,8 +5,6 @@
 
 namespace CasaEngine
 {
-	SINGLETON_IMPL(ScriptEngine)
-
 	ScriptEngine::ScriptEngine()
 	{
 		

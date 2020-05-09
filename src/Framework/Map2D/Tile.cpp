@@ -4,7 +4,7 @@ namespace CasaEngine
 {
 	void ITile::Initialize()
 	{
-		m_pSpriteRenderer = Game::Instance()->GetGameComponent<SpriteRenderer>();
+		m_pSpriteRenderer = Game::Instance().GetGameComponent<SpriteRenderer>();
 		CA_ASSERT(m_pSpriteRenderer != nullptr);
 	}
 

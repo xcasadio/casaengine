@@ -1,20 +1,17 @@
 #include "Base.h"
 
 #include "MediaManager.h"
-#include "Singleton.h"
-
-#if CA_PLATFORM_WINDOWS
-#	include <windows.h>
-#endif
 
 
 #include "IO/IOManager.h"
 #include "IO/IFile.h"
 
+#if CA_PLATFORM_WINDOWS
+#	include <windows.h>
+#endif
+
 namespace CasaEngine
 {
-	SINGLETON_IMPL(MediaManager)
-
 	MediaManager::MediaManager()
 	{
 #if CA_PLATFORM_WINDOWS
@@ -33,12 +30,6 @@ namespace CasaEngine
 		m_RootPath.append("\\");
 
 #endif
-
-	}
-
-	MediaManager::~MediaManager()
-	{
-
 	}
 
 	void MediaManager::AddSearchPath(const char* path_)
@@ -58,7 +49,7 @@ namespace CasaEngine
 	{
 		return FindMedia(fileName_.c_str(), isBinary_);
 	}
-	
+
 	IFile* MediaManager::FindMedia(const char* fileName_, bool isBinary_) const
 	{
 		for (std::set<std::string>::const_iterator i = m_Paths.begin();

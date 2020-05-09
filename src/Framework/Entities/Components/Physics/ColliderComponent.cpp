@@ -43,7 +43,7 @@ void ColliderComponent::Initialize()
 {
 	CA_ASSERT(m_pCollisionObjectContainer == nullptr, "ColliderComponent::Initialize()");
 	m_pCollisionObjectContainer = 
-		GameInfo::Instance().GetWorld()->GetPhysicsWorld()->AddCollisionShape(GetShape(), Vector3F::Zero());
+		Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->AddCollisionShape(GetShape(), Vector3F::Zero());
 }
 
 /**

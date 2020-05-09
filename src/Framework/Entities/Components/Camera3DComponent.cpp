@@ -159,8 +159,8 @@ void Camera3DComponent::ComputeViewMatrix()
 void Camera3DComponent::ComputeProjectionMatrix()
 {
     m_needToComputeProjectionMatrix = false;
-	float ratio = static_cast<float>(m_Viewport.Width() * Game::Instance()->GetWindow()->getSize().x) / 
-		static_cast<float>(m_Viewport.Height() * Game::Instance()->GetWindow()->getSize().y);
+	float ratio = static_cast<float>(m_Viewport.Width() * Game::Instance().GetWindow()->getSize().x) / 
+		static_cast<float>(m_Viewport.Height() * Game::Instance().GetWindow()->getSize().y);
 
 	m_ProjectionMatrix.PerspectiveFOV(
 		m_fFOV,

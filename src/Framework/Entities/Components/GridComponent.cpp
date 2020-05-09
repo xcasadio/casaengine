@@ -34,7 +34,7 @@ namespace CasaEngine
 	 */
 	void GridComponent::Initialize()
 	{
-		m_pLineManager = Game::Instance()->GetGameComponent<Line3DRendererComponent>();
+		m_pLineManager = Game::Instance().GetGameComponent<Line3DRendererComponent>();
 		CA_ASSERT(m_pLineManager != nullptr, "GridComponent::Initialize() : Line3DRendererComponent is nullptr");
 	
 		CreateBuffers();

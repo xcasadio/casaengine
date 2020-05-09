@@ -4,14 +4,13 @@
 #include "AI/Messaging/Telegram.h"
 #include "CA_Export.h"
 #include "GameTime.h"
-#include "Singleton.h"
 
 #include <set>
 #include <string>
 
 namespace CasaEngine
 {
-	//#define MsgDispatcher MessageDispatcher::Instance()
+	//#define MsgDispatcher Game::Instance().GetMessageDispatcher()
 	class BaseEntity;
 
 	//to make code easier to read
@@ -20,11 +19,8 @@ namespace CasaEngine
 	const int    SENDER_ID_IRRELEVANT = -1;
 
 
-	class CA_EXPORT MessageDispatcher :
-		public CSingleton<MessageDispatcher>
+	class CA_EXPORT MessageDispatcher
 	{
-		MAKE_SINGLETON(MessageDispatcher)
-
 	public:
 		//send a message to another agent. Receiving agent is referenced by ID.
 		void DispatchMsg(float      delay,
@@ -38,7 +34,6 @@ namespace CasaEngine
 		void DispatchDelayedMessages(const GameTime& gameTime_);
 		
 	private:
-
 		//a std::set is used as the container for the delayed messages
 		//because of the benefit of automatic sorting and avoidance
 		//of duplicates. Messages are sorted by their dispatch time.

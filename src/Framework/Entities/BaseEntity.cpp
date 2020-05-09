@@ -6,13 +6,14 @@
 #include "Events/BaseEntityEvents.h"
 #include "EntityManager.h"
 #include <sstream>
+
+#include "Game/Game.h"
 #include "Memory/MemoryAllocation.h"
 #include "Log/LogManager.h"
 
 
 namespace CasaEngine
 {
-
 	EntityId BaseEntity::m_iNextValidID = 0;
 
 	/**
@@ -34,7 +35,7 @@ namespace CasaEngine
 		m_pParent = nullptr;
 
 		addEvent(EntityParentChangeEvent::GetEventName());
-		EntityManager::Instance().RegisterEntity(this);
+		Game::Instance().GetEntityManager().RegisterEntity(this);
 
 #ifdef EDITOR
 		m_IsSelected = false;

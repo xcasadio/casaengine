@@ -87,7 +87,7 @@ namespace CasaEngine
 			return;
 		}
 
-		CameraComponent *pCamera = GameInfo::Instance().GetActiveCamera();
+		CameraComponent *pCamera = Game::Instance().GetGameInfo().GetActiveCamera();
 		bgfx::setViewTransform(0, pCamera->GetViewMatrix(), pCamera->GetProjectionMatrix());
 		bgfx::setVertexBuffer(0, m_VertexBuffer, 0, m_NbLines * 2);
 		//bgfx::setIndexBuffer(m_IndexBuffer);

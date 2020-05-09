@@ -7,7 +7,7 @@
 #define _CASAENGINEGlobalEventSet_h_
 
 #include "EventSet.h"
-#include "Singleton.h"
+
 #include "CA_Export.h"
 
 
@@ -27,14 +27,15 @@ namespace CasaEngine
     exist (yet).
 */
 class CA_EXPORT GlobalEventSet :
-    public EventSet,
-    public CSingleton<GlobalEventSet>
+    public EventSet
 {
-	MAKE_SINGLETON(GlobalEventSet)
+public :
+	static GlobalEventSet* Instance();
+	static void Destroy();
 
-public:
-	GlobalEventSet();
 	~GlobalEventSet();
+	GlobalEventSet(const GlobalEventSet& rsh) = delete;
+	GlobalEventSet& operator=(const GlobalEventSet& rsh) = delete;
 
 	/*!
 	\brief
@@ -54,6 +55,11 @@ public:
 		Nothing.
 	*/
 	void	fireEvent(const std::string& name, EventArgs& args, const std::string& eventNamespace = "") override;
+
+private:
+	GlobalEventSet();
+
+	static GlobalEventSet* s_pInstance;
 };
 
 }

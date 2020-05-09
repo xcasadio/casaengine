@@ -1,4 +1,3 @@
-
 #ifndef _ASSETMANAGER_H_
 #define _ASSETMANAGER_H_
 
@@ -7,7 +6,7 @@
 #include "CA_Export.h"
 #include "Asset.h"
 #include "StringUtils.h"
-#include "Singleton.h"
+
 #include "Parsers/Xml/tinyxml2.h"
 #include "Macro.h"
 
@@ -15,47 +14,36 @@
 #include <map>
 #include <iosfwd>
 
-
 namespace CasaEngine
 {
-	/*
-	 *	
-	 */
-	class CA_EXPORT AssetManager :
-		public CSingleton<AssetManager>
+	class CA_EXPORT AssetManager
 	{
-		MAKE_SINGLETON(AssetManager)
-
 	public:
+		~AssetManager();
+
 		template<class T>
 		T* GetAsset(std::string name_);
 
-		void AddAsset(Asset *asset_);
+		void AddAsset(Asset* asset_);
 		bool Contains(std::string name);
-
-		/**
-		 * Delete all asset
-		 */
 		void Clear();
 
 		void Load(const tinyxml2::XMLElement* node_);
 		void Load(std::ifstream& in);
 
-//#ifdef EDITOR
+		//#ifdef EDITOR
 
 		void Write(const tinyxml2::XMLElement* node_);
 		void Write(std::ostream& os)const;
 
-// #endif // EDITOR
+		// #endif
 
 	private:
-		//ID
-		std::map<std::string, Asset *> m_Assets;
-		
-	}; // class AssetManager
+		std::map<std::string, Asset*> m_Assets;
+	};
 
-	#include "AssetManager.inl"
+#include "AssetManager.inl"
 
 }
 
-#endif // _ASSETMANAGER_H_
+#endif

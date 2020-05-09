@@ -24,7 +24,7 @@ EventSet::EventSet() :
 }
 
 //----------------------------------------------------------------------------//
-EventSet::~EventSet(void)
+EventSet::~EventSet()
 {
     removeAllEvents();
 }
@@ -135,7 +135,7 @@ void EventSet::fireEvent(const std::string& name,
                          EventArgs& args,
                          const std::string& eventNamespace)
 {
-    if (GlobalEventSet* ges = &GlobalEventSet::Instance())
+    if (GlobalEventSet* ges = GlobalEventSet::Instance())
         ges->fireEvent(name, args, eventNamespace);
 
     fireEvent_impl(name, args);

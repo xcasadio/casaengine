@@ -94,12 +94,12 @@ Mesh* CMD2Loader::LoadFromFile(CasaEngine::IFile *pFile_)
 	pMaterial->Texture0(Texture::loadTexture(Textures[0].Name, BGFX_SAMPLER_MIN_ANISOTROPIC | BGFX_SAMPLER_MAG_ANISOTROPIC));
 	pModel->SetMaterial(pMaterial);
 
-// 	Texture* pTexture = ResourceManager::Instance().Get<Texture>(Textures[0].Name);
+// 	Texture* pTexture = Game::Instance().GetResourceManager().Get<Texture>(Textures[0].Name);
 // 
 // 	if (nullptr == pTexture)
 // 	{
 // 		pTexture = IRenderer::Get().loadTexture(Textures[0].Name, BGFX_TEXTURE_MIN_ANISOTROPIC | BGFX_TEXTURE_MAG_ANISOTROPIC);
-// 		ResourceManager::Instance().Add(Textures[0].Name, pTexture);
+// 		Game::Instance().GetResourceManager().Add(Textures[0].Name, pTexture);
 // 	}
 
     return pModel;

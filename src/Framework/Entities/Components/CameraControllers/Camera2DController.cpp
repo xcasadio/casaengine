@@ -46,7 +46,7 @@ void Camera2DController::Update(const GameTime& /*gameTime_*/)
  */
 void Camera2DController::Initialize()
 {
-	//m_pInputManager = Game::Instance()->GetGameComponent<InputManagerComponent>();
+	//m_pInputManager = Game::Instance().GetGameComponent<InputManagerComponent>();
 	//CA_ASSERT(m_pInputManager != nullptr && "ArcBallCameraController::Initialize() InputManagerComponent is nullptr");
 }
 

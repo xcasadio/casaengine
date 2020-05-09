@@ -2,18 +2,18 @@
 #include "Log/LogManager.h"
 #include "EntityManager.h"
 #include "BaseEntity.h"
-#include "Singleton.h"
+
 #include "Macro.h"
 #include "CA_Assert.h"
 #include "World/World.h"
 
 namespace CasaEngine
 {
-	SINGLETON_IMPL(EntityManager)
-
-
-	//------------------------- GetEntityFromID -----------------------------------
-	//-----------------------------------------------------------------------------
+	EntityManager::~EntityManager()
+	{
+		Clear();
+	}
+	
 	BaseEntity* EntityManager::GetEntityFromID(int id)const
 	{
 		//find the entity
@@ -25,53 +25,26 @@ namespace CasaEngine
 		return ent->second;
 	}
 
-	//------------------------- GetEntityIterator -----------------------------------
-	//-----------------------------------------------------------------------------
 	EntityManager::EntityIterator EntityManager::cbegin() const
 	{
 		return m_EntityMap.cbegin();
 	}
 
-	/**
-	 * returns
-	 */
 	EntityManager::EntityIterator EntityManager::cend() const
 	{
 		return m_EntityMap.cend();
 	}
 
-	//--------------------------- RemoveEntity ------------------------------------
-	//-----------------------------------------------------------------------------
 	void EntityManager::RemoveEntity(BaseEntity* pEntity)
 	{
 		m_EntityMap.erase(m_EntityMap.find(pEntity->ID()));
 	}
 
-	//---------------------------- RegisterEntity ---------------------------------
-	//-----------------------------------------------------------------------------
 	void EntityManager::RegisterEntity(BaseEntity* NewEntity)
 	{
 		m_EntityMap.insert(std::make_pair(NewEntity->ID(), NewEntity));
 	}
 
-	/**
-	 *
-	 *
-	void EntityManager::NotifyEvent(const Event* pEvent_)
-	{
-		EntityMap::iterator it;
-
-		for (it = m_EntityMap.begin();
-			it != m_EntityMap.end();
-			it++)
-		{
-			(*it).second->GetComponentMgr()->HandleEvent(pEvent_);
-		}
-	}*/
-
-	/**
-	 *
-	 */
 	void EntityManager::Clear()
 	{
 		std::vector<BaseEntity*> worlds;
@@ -99,20 +72,13 @@ namespace CasaEngine
 
 		m_EntityMap.clear();
 
-		std::vector<BaseEntity*>::iterator itWorld;
-
-		for (itWorld = worlds.begin();
-			itWorld != worlds.end();
-			itWorld++)
+		for (auto* world : worlds)
 		{
-			DELETE_AO* itWorld;
+			DELETE_AO world;
 		}
 	}
 
 #ifdef EDITOR
-	/**
-	 * returns the first selected entity
-	 */
 	BaseEntity* EntityManager::GetFirstSelectedEntity() const
 	{
 		EntityIterator it;

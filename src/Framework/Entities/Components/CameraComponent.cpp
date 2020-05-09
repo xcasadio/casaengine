@@ -31,7 +31,7 @@ namespace CasaEngine
 		m_pCameraController(nullptr)
 	{
 		//registerEventFunc(this, &CameraComponent::OnWindowResized);
-		m_WindowResizedConnection = GlobalEventSet::Instance().subscribeEvent(
+		m_WindowResizedConnection = Game::Instance().GetGlobalEventSet().subscribeEvent(
 			WindowResizeEvent::GetEventName(),
 			Event::Subscriber(&CameraComponent::OnWindowResized, this));
 
@@ -143,8 +143,8 @@ namespace CasaEngine
 
 		const float d_yfov_tan = 0.267949192431123f;
 
-		const float w = static_cast<float>(m_Viewport.Width() * Game::Instance()->GetWindow()->getSize().x);
-		const float h = static_cast<float>(m_Viewport.Height() * Game::Instance()->GetWindow()->getSize().y);
+		const float w = static_cast<float>(m_Viewport.Width() * Game::Instance().GetWindow()->getSize().x);
+		const float h = static_cast<float>(m_Viewport.Height() * Game::Instance().GetWindow()->getSize().y);
 		const float aspect = w / h;
 		const float midx = w * 0.5f;
 		const float midy = h * 0.5f;

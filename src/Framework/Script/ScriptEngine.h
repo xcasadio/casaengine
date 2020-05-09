@@ -1,4 +1,3 @@
-
 #ifndef SCRIPTENGINE_H_
 #define SCRIPTENGINE_H_
 
@@ -8,22 +7,17 @@
 #include "IScriptObjectFactory.h"
 #include <map>
 #include "Memory\MemoryAllocation.h"
-#include "Singleton.h"
+
 #include "Entities\BaseEntity.h"
 
-struct lua_State;
+//struct lua_State;
 
 namespace CasaEngine
 {
-	/**
-	 * 
-	 */
-	class CA_EXPORT ScriptEngine :
-		public CSingleton<ScriptEngine>
+	class CA_EXPORT ScriptEngine
 	{
-		MAKE_SINGLETON(ScriptEngine)
-
 	public:
+		ScriptEngine();
 		~ScriptEngine();
 
 		void Initialize();
@@ -34,13 +28,9 @@ namespace CasaEngine
 
 		IScriptObject *CreateScriptObjectFromClassID(ScriptObjectClassID id_, BaseEntity *pEntity_);
 
-
 	private:
-		ScriptEngine();
-
 		typedef std::map<ScriptObjectFactoryID, IScriptObjectFactory *> FactoryMap;
 		FactoryMap m_Factories;
-
 
 
 #ifdef USE_LUA_SCRIPT
@@ -93,8 +83,8 @@ namespace CasaEngine
 		*/
 		int m_ActiveErrFuncIndex;
 
-#endif // ifdef USE_LUA_SCRIPT
+#endif
 	};
 }
 
-#endif // SCRIPTENGINE_H_
+#endif

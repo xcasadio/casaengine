@@ -74,7 +74,7 @@ bool PlayerController::IsAttackButtonJustPressed()
 	// 	{
 	// 		return m_InputComponent.IsButtonJustPressed(m_PlayerIndex, Buttons.A);
 	// 	}
-	return Game::Instance()->GetInput().IsKeyJustDown(sf::Keyboard::Space);
+	return Game::Instance().GetInput().IsKeyJustDown(sf::Keyboard::Space);
 }
 
 /**
@@ -86,7 +86,7 @@ bool PlayerController::IsAttackButtonPressed()
 	{
 		return m_InputComponent.IsButtonPressed(m_PlayerIndex, Buttons.A);
 	}*/
-	return Game::Instance()->GetInput().IsKeyDown(sf::Keyboard::Space);
+	return Game::Instance().GetInput().IsKeyDown(sf::Keyboard::Space);
 }
 
 /**
@@ -96,24 +96,24 @@ orientation PlayerController::GetDirectionFromInput(Vector2F& direction_)
 {
 	direction_ = Vector2F::Zero();
 
-	if (Game::Instance()->GetInput().IsKeyDown(sf::Keyboard::Z) == true 
-		|| Game::Instance()->GetInput().GetJoystickLeftStickY(0) > Character::Deadzone)
+	if (Game::Instance().GetInput().IsKeyDown(sf::Keyboard::Z) == true 
+		|| Game::Instance().GetInput().GetJoystickLeftStickY(0) > Character::Deadzone)
 	{
 		direction_.y = 1.0f;
 	}
-	else if (Game::Instance()->GetInput().IsKeyDown(sf::Keyboard::S) == true
-		|| Game::Instance()->GetInput().GetJoystickLeftStickY(0) < -Character::Deadzone)
+	else if (Game::Instance().GetInput().IsKeyDown(sf::Keyboard::S) == true
+		|| Game::Instance().GetInput().GetJoystickLeftStickY(0) < -Character::Deadzone)
 	{
 		direction_.y = -1.0f;
 	}
 
-	if (Game::Instance()->GetInput().IsKeyDown(sf::Keyboard::D) == true
-		|| Game::Instance()->GetInput().GetJoystickLeftStickX(0) < -Character::Deadzone)
+	if (Game::Instance().GetInput().IsKeyDown(sf::Keyboard::D) == true
+		|| Game::Instance().GetInput().GetJoystickLeftStickX(0) < -Character::Deadzone)
 	{
 		direction_.x = -1.0f;
 	}
-	else if (Game::Instance()->GetInput().IsKeyDown(sf::Keyboard::Q) == true
-		|| Game::Instance()->GetInput().GetJoystickLeftStickX(0) > Character::Deadzone)
+	else if (Game::Instance().GetInput().IsKeyDown(sf::Keyboard::Q) == true
+		|| Game::Instance().GetInput().GetJoystickLeftStickX(0) > Character::Deadzone)
 	{
 		direction_.x = 1.0f;
 	}

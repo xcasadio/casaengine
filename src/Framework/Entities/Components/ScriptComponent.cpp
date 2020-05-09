@@ -36,7 +36,7 @@ ScriptComponent::~ScriptComponent()
  */
 void ScriptComponent::Initialize()
 {
-	m_pScriptObject = ScriptEngine::Instance().CreateScriptObjectFromClassID(m_ClassID, GetEntity());
+	m_pScriptObject = Game::Instance().GetScriptEngine().CreateScriptObjectFromClassID(m_ClassID, GetEntity());
 	
 	if (m_pScriptObject != nullptr)
 	{

@@ -55,7 +55,7 @@ void MeshComponent::Initialize()
 	m_pTransform = GetEntity()->GetComponentMgr()->GetComponent<TransformComponent>();
 	CA_ASSERT(m_pTransform != nullptr, "MeshComponent::Initialize() can't find the TransformComponent. Please add it before add a MeshComponent");
 
-	m_pModelRenderer = Game::Instance()->GetGameComponent<MeshRendererGameComponent>();
+	m_pModelRenderer = Game::Instance().GetGameComponent<MeshRendererGameComponent>();
 	CA_ASSERT(m_pModelRenderer != nullptr, "MeshComponent::Initialize() can't find the MeshRendererGameComponent.");
 }
 

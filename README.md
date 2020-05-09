@@ -1,2 +1,2 @@
 # casaengine
-cross platform engine
+cross platform game engine

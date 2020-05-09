@@ -1,9 +1,8 @@
-
 #ifndef PHYSICSENGINE_H_
 #define PHYSICSENGINE_H_
 
 #include "CA_Export.h"
-#include "Singleton.h"
+
 #include "IPhysicsWorld.h"
 #include "IPhysicsEngine.h"
 #include "BulletCollision\CollisionDispatch\btCollisionDispatcher.h"
@@ -15,32 +14,20 @@
 
 namespace CasaEngine
 {
-	class CA_EXPORT PhysicsEngine :
-		public CSingleton<PhysicsEngine>
+	class CA_EXPORT PhysicsEngine
 	{
-		MAKE_SINGLETON(PhysicsEngine)
-		
-	private:
-		IPhysicsEngine *m_pPhysicsEngine;
-
 	public:
-
-		void Initialize();		
-		IPhysicsWorld* CreateWorld() const;
-		IPhysicsEngine *GetPhysicsEngineImpl() const;
-		
-	private:
-		/**
-		 * 
-		 */
 		PhysicsEngine();
-
-		/**
-		 * 
-		 */
 		~PhysicsEngine();
+
+		void Initialize();
+		IPhysicsWorld* CreateWorld() const;
+		IPhysicsEngine* GetPhysicsEngineImpl() const;
+
+	private:
+		IPhysicsEngine* m_pPhysicsEngine;
 	};
 
 }
 
-#endif // PHYSICSENGINE_H_
+#endif

@@ -47,18 +47,18 @@ void ShaderGame::Initialize()
  	AddComponent(m_pLine3DRenderer);
 
 	m_pWorld = NEW_AO World();
-	GameInfo::Instance().SetWorld(m_pWorld);
+	Game::Instance().GetGameInfo().SetWorld(m_pWorld);
 
     m_LightDir.Set(1.0f, 0.0f, 0.5f);
     m_LightDir.Normalize();
 
-	MediaManager::Instance().AddSearchPath("../../examples/resources");
-	MediaManager::Instance().AddSearchPath("../../examples/resources/textures");
-	MediaManager::Instance().AddSearchPath("../../examples/resources/models");
-	MediaManager::Instance().AddSearchPath("../../examples/resources/shaders");
-	MediaManager::Instance().AddSearchPath("../../examples/resources/spriteSheet");
-	MediaManager::Instance().AddSearchPath("../../examples/resources/fonts");
-    //MediaManager::Instance().RegisterLoader(NEW_AO CMD2Loader, "md2");
+	Game::Instance().GetMediaManager().AddSearchPath("../../examples/resources");
+	Game::Instance().GetMediaManager().AddSearchPath("../../examples/resources/textures");
+	Game::Instance().GetMediaManager().AddSearchPath("../../examples/resources/models");
+	Game::Instance().GetMediaManager().AddSearchPath("../../examples/resources/shaders");
+	Game::Instance().GetMediaManager().AddSearchPath("../../examples/resources/spriteSheet");
+	Game::Instance().GetMediaManager().AddSearchPath("../../examples/resources/fonts");
+    //Game::Instance().GetMediaManager().RegisterLoader(NEW_AO CMD2Loader, "md2");
 
     // Enregistrement des commandes console
     //
@@ -153,7 +153,7 @@ void ShaderGame::LoadContent()
 	pCamera->GetComponentMgr()->AddComponent(m_pCamera3D);
 
 	m_pWorld->AddEntity(pCamera);
-	GameInfo::Instance().SetActiveCamera(m_pCamera3D);
+	Game::Instance().GetGameInfo().SetActiveCamera(m_pCamera3D);
 
 	//FPS
 	/*BaseEntity *pEntity = NEW_AO BaseEntity();
@@ -179,7 +179,7 @@ void ShaderGame::LoadContent()
 	pModelCpt = NEW_AO MeshComponent(m_pModelEntity);
 
 	CMD2Loader loader;
-	CasaEngine::IFile* pFile = CasaEngine::MediaManager::Instance().FindMedia("Goblin.md2", CasaEngine::FileMode::READ | FileMode::BINARY);
+	CasaEngine::IFile* pFile = CasaEngine::Game::Instance().GetMediaManager().FindMedia("Goblin.md2", CasaEngine::FileMode::READ | FileMode::BINARY);
 	m_Player = loader.LoadFromFile(pFile);
 	//
 	pModelCpt->SetModel(m_Player);
@@ -267,15 +267,15 @@ void ShaderGame::ChangeShaders(const std::string& Type)
  */
 void ShaderGame::UpdateShadersParams(const GameTime& gameTime_)
 {
-//     Matrix4 ModelView = m_Rotation * GameInfo::Instance().GetActiveCamera()->GetViewMatrix();
-//     Matrix4 ModelViewProj = ModelView * GameInfo::Instance().GetActiveCamera()->GetProjectionMatrix();    
+//     Matrix4 ModelView = m_Rotation * Game::Instance().GetGameInfo().GetActiveCamera()->GetViewMatrix();
+//     Matrix4 ModelViewProj = ModelView * Game::Instance().GetGameInfo().GetActiveCamera()->GetProjectionMatrix();    
 // 
 //     if (m_ShadersType == "cartoon")
 //     {
 //         m_VertexShader.SetParameter("ModelViewProj", ModelViewProj);
 //         m_VertexShader.SetParameter("ModelView",     ModelView);
 //         m_VertexShader.SetParameter("LightDir",      m_LightDir);
-//         m_VertexShader.SetParameter("CameraPos",     GameInfo::Instance().GetActiveCamera()->GetViewMatrix().GetTranslation());
+//         m_VertexShader.SetParameter("CameraPos",     Game::Instance().GetGameInfo().GetActiveCamera()->GetViewMatrix().GetTranslation());
 //     }
 //     else if (m_ShadersType == "scale")
 //     {
@@ -322,7 +322,7 @@ void ShaderGame::LoadModel(const char *Filename)
 {
 	static CMD2Loader loader;
 
-	CasaEngine::IFile* pFile = CasaEngine::MediaManager::Instance().FindMedia((std::string(Filename) + ".md2").c_str(), CasaEngine::FileMode::READ | FileMode::BINARY);
+	CasaEngine::IFile* pFile = CasaEngine::Game::Instance().GetMediaManager().FindMedia((std::string(Filename) + ".md2").c_str(), CasaEngine::FileMode::READ | FileMode::BINARY);
 	m_Player = loader.LoadFromFile(pFile);
 }
 
