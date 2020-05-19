@@ -7,7 +7,7 @@
 #include "Graphics\Textures\Texture.h"
 #include "Maths\Vector2.h"
 #include "Memory/MemoryAllocation.h"
-#include "bgfx.h"
+#include <bgfx/bgfx.h>
 
 
 namespace CasaEngine

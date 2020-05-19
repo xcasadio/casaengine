@@ -7,76 +7,45 @@
 #include "Game/Game.h"
 #include "StringUtils.h"
 
-
 namespace CasaEngine
 {
+	ICameraController::ICameraController(CameraComponent* pCamera)
+		: m_pCamera(pCamera)
+	{
 
-/**
- * 
- */
-ICameraController::ICameraController(CameraComponent* pCamera)
-	: m_pCamera(pCamera)
-{
-	
-}
+	}
 
-/**
- * 
- */
-ICameraController::~ICameraController()
-{
-}
+	ICameraController::~ICameraController()
+	{
+	}
 
-/**
- * 
- */
-void ICameraController::Update(const GameTime& /*gameTime_*/)
-{
-}
+	void ICameraController::Update(const GameTime& /*gameTime_*/)
+	{
+	}
 
-/**
- * 
- */
-/*void ICameraController::HandleEvent(const Event* pEvent_)
-{
+	CameraComponent* ICameraController::Camera() const
+	{
+		return m_pCamera;
+	}
 
-}*/
+	void ICameraController::Write(std::ostream& os)
+	{
 
-CameraComponent* ICameraController::Camera() const 
-{ 
-	return m_pCamera; 
-}
+	}
 
-/**
- * 
- */
-void ICameraController::Write(std::ostream& os)
-{
-	CA_UNUSED_1(os)
-}
+	void ICameraController::Read(std::ifstream& is)
+	{
 
-/**
- * 
- */
-void ICameraController::Read (std::ifstream& is)
-{
-	CA_UNUSED_1(is)
-}
+	}
 
-/**
- * 
- */
-void ICameraController::Read (const tinyxml2::XMLElement& xmlElt)
-{
-	CA_UNUSED_1(xmlElt)
-}
+	void ICameraController::Read(const tinyxml2::XMLElement& xmlElt)
+	{
 
-/**
- * 
- */
-void ICameraController::Write(tinyxml2::XMLElement& xmlElt)
-{
-	CA_UNUSED_1(xmlElt)
-}
+	}
+
+	void ICameraController::Write(tinyxml2::XMLElement& xmlElt)
+	{
+
+	}
 
 }

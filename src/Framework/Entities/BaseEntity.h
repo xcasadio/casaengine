@@ -102,18 +102,16 @@ namespace CasaEngine
 		const char *m_szName;
 		bool m_bIsEnabled, m_bIsVisible;
 
-#ifdef EDITOR
+//#ifdef EDITOR
 	public:
-		// editor
 		bool IsSelected() const;
 		void IsSelected(bool val);
 
 	public:
-		//editor
 		bool m_IsSelected;
-#endif
+//#endif
 	};
 
 }
 
-#endif // BASEENTITY_H
+#endif

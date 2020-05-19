@@ -3,10 +3,8 @@
   <ItemGroup>
     <ClCompile Include="..\..\examples\04-TileMap\main.cpp" />
     <ClCompile Include="..\..\examples\04-TileMap\TileMapGame.cpp" />
-    <ClCompile Include="..\..\examples\04-TileMap\CustomCameraController.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\examples\04-TileMap\TileMapGame.h" />
-    <ClInclude Include="..\..\examples\04-TileMap\CustomCameraController.h" />
   </ItemGroup>
 </Project>

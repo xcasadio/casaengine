@@ -1,37 +1,31 @@
-
 #ifndef IGAMEDATA_H_
 #define IGAMEDATA_H_
 
 #include "CA_Export.h"
-#include <iosfwd>
-#include "Parsers/Xml/tinyxml2.h"
-
 #include "Assets/Assetable.h"
-
 
 namespace CasaEngine
 {
 	typedef unsigned int GameDataClassID;
 
-	/**
-	 *	
-	 */
 	class CA_EXPORT IGameData :
 		public IAssetable
 	{
-	public:
-		IGameData();
-		virtual ~IGameData();
-		
-		virtual void Read (const tinyxml2::XMLElement& xmlElt) override;
-		virtual void Read (std::ifstream& is) override;
-		virtual void Write(tinyxml2::XMLElement& xmlElt) override;
-		virtual void Write(std::ostream&  os) override;
-
 	private:
-		
-	};
+		friend class cereal::access;
 
+		template <class Archive>
+		void load(Archive& ar)
+		{
+			ar(cereal::base_class<IAssetable>(this));
+		}
+
+		template <class Archive>
+		void save(Archive& ar) const
+		{
+			ar(cereal::base_class<IAssetable>(this));
+		}
+	};
 }
 
-#endif // IGAMEDATA_H_
+#endif

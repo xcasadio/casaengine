@@ -5,7 +5,7 @@
 #include "Log/LogManager.h"
 #include "Exceptions.h"
 #include <typeinfo>
-#include "Macro.h"
+
 #include "CA_Assert.h"
 
 namespace CasaEngine

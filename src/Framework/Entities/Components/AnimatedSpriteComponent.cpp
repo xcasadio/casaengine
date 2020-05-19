@@ -217,29 +217,4 @@ namespace CasaEngine
 		fireEvent(AnimationFinishedEvent::GetEventName(), const_cast<EventArgs&>(e));
 		return false;
 	}
-
-	void AnimatedSpriteComponent::Read(std::ifstream& is)
-	{
-		CA_UNUSED_1(is)
-	}
-
-	void AnimatedSpriteComponent::Read(const tinyxml2::XMLElement& el_)
-	{
-		CA_UNUSED_1(el_)
-	}
-
-#if EDITOR
-
-	void AnimatedSpriteComponent::Write(std::ostream& os) const
-	{
-		CA_UNUSED_1(os)
-	}
-
-	void AnimatedSpriteComponent::Write(tinyxml2::XMLElement& el_) const
-	{
-		CA_UNUSED_1(el_)
-	}
-
-#endif
-
 }

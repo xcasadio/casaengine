@@ -9,7 +9,7 @@
 #include <ostream>
 #include <sstream>
 #include <fstream>
-#include "Macro.h"
+
 #include "CA_Assert.h"
 
 namespace CasaEngine
@@ -84,46 +84,8 @@ namespace CasaEngine
 	/**
 	 *
 	 */
-	void SetFrameEvent::Read(std::ifstream& /*is*/)
-	{
-
-	}
-
-	/**
-	 *
-	 */
-	void SetFrameEvent::Read(tinyxml2::XMLElement* el_)
-	{
-		AnimationEvent::Read(el_);
-		m_FrameID = el_->Attribute("spriteID");
-	}
-
-	/**
-	 *
-	 */
 	void SetFrameEvent::FrameID(const char* val)
 	{
 		m_FrameID = val;
 	}
-
-#if EDITOR
-	/**
-	 *
-	 */
-	void SetFrameEvent::Write(std::ostream& /*os*/) const
-	{
-
-	}
-
-	/**
-	 *
-	 */
-	void SetFrameEvent::Write(tinyxml2::XMLElement* el_) const
-	{
-
-	}
-
-#endif // EDITOR
-
-
 }

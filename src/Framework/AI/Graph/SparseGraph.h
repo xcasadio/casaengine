@@ -22,7 +22,7 @@
 #include "NodeTypeEnumerations.h"
 #include "Exceptions.h"
 #include "CA_Assert.h"
-#include "Macro.h"
+
 
 
 namespace CasaEngine

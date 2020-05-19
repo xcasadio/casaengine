@@ -3,6 +3,10 @@
 
 #include "scene2DGame.h"
 
+
+
+#include "Enemy.h"
+#include "EnemyController.h"
 #include "Animations/Animation2D.h"
 #include "Assets/AssetManager.h"
 
@@ -21,6 +25,9 @@
 #include "Game/GameInfo.h"
 #include "Game/Input.h"
 #include "GameTime.h"
+#include "ScriptCharacter.h"
+#include "Animations/AnimationEndEvent.h"
+#include "Animations/SetFrameEvent.h"
 
 #include "Graphics/Materials/Material.h"
 #include "Graphics/Mesh/Mesh.h"
@@ -40,6 +47,9 @@
 #include "SFML/Window/Mouse.hpp"
 #include "Sprite/SpriteTypes.h"
 #include "Entities/Components/Physics/RigidBodyComponent.h"
+#include "Map2D/AutoTile.h"
+#include "Map2D/StaticTile.h"
+#include "Map2D/TiledMapComponent.h"
 #include "Tools/InGameLogger.h"
 
 using namespace CasaEngine;
@@ -77,14 +87,13 @@ void Scene2DGame::Initialize()
 	GetMediaManager().AddSearchPath("../../examples/resources/spriteSheet");
 	GetMediaManager().AddSearchPath("../../examples/resources/script");
 	GetMediaManager().AddSearchPath("../../examples/resources/fonts");
+	GetMediaManager().AddSearchPath("../../examples/resources/tileset");
 
 	AddGameComponent();
 
 	Game::Initialize();
-	GetDebugOptions().ShowLogInGame = true;
+	//GetDebugOptions().ShowLogInGame = true;
 }
-
-float rotation = 0.0f;
 
 /**
  *
@@ -102,33 +111,16 @@ void Scene2DGame::LoadContent()
 	CreateBackground();
 	CreatePlayer();*/
 
-	auto texture = Texture::loadTexture("checkboard_1m.png");
-	Sprite* pSprite = new Sprite();
-	pSprite->SetName("1");
-	pSprite->SetPositionInTexture(CRectangleI(0, 0, texture->TextureInfo()->width, texture->TextureInfo()->height));
-	pSprite->SetTexture2D(texture);
-	GetAssetManager().AddAsset(new Asset("1", pSprite));
-
-	BaseEntity* pEntity = NEW_AO BaseEntity();
-	pEntity->SetName("sprite");
-	Transform3DComponent* pTrans3D = NEW_AO Transform3DComponent(pEntity);
-	pTrans3D->SetCenterOfRotation(Vector3F(-0.5f, -0.5f, 0.0f));
-	pTrans3D->SetLocalPosition(Vector3F(texture->TextureInfo()->width, texture->TextureInfo()->height, 1.0f));
-	pTrans3D->SetLocalScale(Vector3F(texture->TextureInfo()->width, texture->TextureInfo()->height, 1.0f));
-	//pTrans3D->SetLocalRotation(Quaternion(Vector3F(0.0f, 0.0f, 1.0f), rotation));
-	pEntity->GetComponentMgr()->AddComponent(pTrans3D);
-	StaticSpriteComponent* pStaticSprite = NEW_AO StaticSpriteComponent(pEntity);
-	pEntity->GetComponentMgr()->AddComponent(pStaticSprite);
-	pStaticSprite->SetSpriteID("1");
-	//pStaticSprite->SetColor();
-	//pStaticSprite->SetSpriteEffect();
-	m_pWorld->AddEntity(pEntity);
+	CreateAssets(Vector2I(48, 48));
+	CreateMap(m_pWorld);
+	CreateEnnemies(m_pWorld);
+	CreateSwordman(m_pWorld);
 
 	//Camera 2D
 	BaseEntity* pCamera = NEW_AO BaseEntity();
 	pCamera->SetName("camera 2D");
 	Camera2DComponent* m_pCamera2D = NEW_AO Camera2DComponent(pCamera);
-	//auto custom_camera_controller = new CustomCameraController(m_pCamera2D);
+	//auto custom_camera_controller = new Camera2DTargetedController(m_pCamera2D);
 	//m_pCamera2D->CameraController(custom_camera_controller);
 	pCamera->GetComponentMgr()->AddComponent(m_pCamera2D);
 	//pCamera->Initialize();
@@ -146,18 +138,7 @@ void Scene2DGame::LoadContent()
 void Scene2DGame::Update(const GameTime& gameTime_)
 {
 	auto leftStickX = GetInput().GetJoystickLeftStickX(0);
-	if (leftStickX < -50.0f)
-	{
-		rotation--;
-	}
-	else if (leftStickX > 50.0f)
-	{
-		rotation++;
-	}
 
-	auto transform_3d_component = m_pWorld->GetEntities()[0]->GetComponentMgr()->GetComponent<Transform3DComponent>();
-	transform_3d_component->SetLocalRotation(Quaternion(Vector3F(0.0f, 0.0f, 1.0f), CasaEngine::ToRadian(rotation)));
-	
 	/*
 	auto leftStickX = GetInput().GetJoystickLeftStickX(0);
 	auto leftStickY = GetInput().GetJoystickLeftStickY(0);
@@ -213,7 +194,7 @@ void Scene2DGame::AddGameComponent()
  *
  */
 void Scene2DGame::LoadAssets()
-{
+{/*
 	tinyxml2::XMLDocument* xmlDoc = ::new tinyxml2::XMLDocument();
 	tinyxml2::XMLError error = xmlDoc->LoadFile("../../examples/resources/spriteSheet/assets.xml"); // TODO : xmlDoc->Parse()
 
@@ -241,7 +222,7 @@ void Scene2DGame::LoadAssets()
 		pElem = pElem->NextSiblingElement();
 	}
 
-	delete xmlDoc;
+	delete xmlDoc;*/
 }
 
 /**
@@ -452,21 +433,176 @@ void Scene2DGame::CreatePlayer()
 	m_pWorld->AddEntity(pEntity);
 }
 
+void Scene2DGame::CreateMap(World *pWorld)
+{
+	auto* pEntity = NEW_AO BaseEntity();
+	pEntity->SetName("tiled map");
+	auto* pTrans3D = NEW_AO Transform3DComponent(pEntity);
+	pTrans3D->SetLocalPosition(Vector3F(0.0f, 0.0f, 1.0f));
+	pTrans3D->SetLocalRotation(0.0f);
+	pTrans3D->SetLocalScale(Vector3F(48, 48, 1.0));
+	
+	auto* pMap = NEW_AO TiledMapComponent(pEntity);
+	pMap->SetMapSize(Vector2I(30, 11));
+	pMap->SetTileSize(Vector2I(48, 48));
 
-/**
- *
- */
-void Scene2DGame::CreateBackground()
-{/*
-	BaseEntity *pEntity = NEW_AO BaseEntity();
-	Transform3DComponent *pTrans3D = NEW_AO Transform3DComponent(pEntity);
-	pTrans3D->SetLocalPosition(Vector3F(0.0f, 0.0f, -1.0f));
+	//layer 1
+	auto* layer = new TiledMapLayer();
+	std::vector<ITile*> tiles;
+	for (int y = 0; y < pMap->GetMapSize().y; ++y)
+	{
+		for (int x = 0; x < pMap->GetMapSize().x; ++x)
+		{
+			auto* sprite = GetAssetManager().GetAsset<Sprite>("grass1");
+			auto* tile = new StaticTile(sprite);
+			tiles.push_back(tile);
+		}
+	}
+	layer->SetTiles(tiles);
+	pMap->AddLayer(layer);
+
+	//layer 2
+	layer = new TiledMapLayer();
+	tiles.clear();
+	//create tile for autotile
+	std::vector<ITile*> autoTiles;
+	for (int y = 0; y < 3; ++y)
+	{
+		for (int x = 0; x < 2; ++x)
+		{
+			std::ostringstream name;
+			name << "autoGrass2_" << x << "_" << y;
+			auto* sprite = GetAssetManager().GetAsset<Sprite>(name.str());
+			auto* tile = new StaticTile(sprite);
+			autoTiles.push_back(tile);
+		}
+	}
+	for (int y = 0; y < pMap->GetMapSize().y; ++y)
+	{
+		for (int x = 0; x < pMap->GetMapSize().x; ++x)
+		{
+			if (y > 2 && y < pMap->GetMapSize().y - 2
+				&& x > 5 && x < pMap->GetMapSize().x - 5)
+			{
+				auto* tile = new AutoTile(layer, x, y);
+				tile->setTiles(autoTiles);
+				tiles.push_back(tile);				
+			}
+			else
+			{
+				tiles.push_back(nullptr);				
+			}
+		}
+	}
+	layer->SetTiles(tiles);
+	pMap->AddLayer(layer);
+
+	//layer 3
+	/*layer = new TiledMapLayer();
+	layer->SetTiles(tiles);
+	pMap->AddLayer(layer);*/
+
+	pEntity->GetComponentMgr()->AddComponent(pTrans3D);
+	pEntity->GetComponentMgr()->AddComponent(pMap);
+	pWorld->AddEntity(pEntity);
+}
+
+
+void Scene2DGame::CreateAssets(Vector2I tileSize)
+{
+	//static tile
+	auto texture = Texture::loadTexture("Outside_A2.png");
+	Sprite* pSprite = new Sprite();
+	pSprite->SetName("grass1");
+	pSprite->SetPositionInTexture(RectangleI(0, 0, tileSize.x, tileSize.y));
+	pSprite->SetTexture2D(texture);
+	GetAssetManager().AddAsset(new Asset("grass1", pSprite));
+	//autotile
+	for (int y = 0; y < 3; ++y)
+	{
+		for (int x = 0; x < 2; ++x)
+		{
+			pSprite = new Sprite();
+			pSprite->SetName("grass1");
+			pSprite->SetPositionInTexture(RectangleI(8 * tileSize.x + tileSize.x * x, y * tileSize.y, tileSize.x, tileSize.y));
+			pSprite->SetTexture2D(texture);
+			std::ostringstream name;
+			name << "autoGrass2_" << x << "_" << y;
+			GetAssetManager().AddAsset(new Asset(name.str(), pSprite));
+		}
+	}
+}
+
+void createEnnemyAnim(const char* name, int start, int end, AssetManager &assetManager, AnimatedSpriteComponent& animated_sprite_component)
+{
+	Animation2D* pAnim = new Animation2D();
+	pAnim->SetType(Animation2DType::Loop);
+	std::ostringstream animationName;
+	animationName << "octopus_" << name;
+	pAnim->SetName(animationName.str());
+	for (int i = start; i < end; ++i)
+	{
+		SetFrameEvent* pFrameEvent = new SetFrameEvent();
+		std::ostringstream spriteName;
+		spriteName << "octopus_" << i << "_0";
+		pFrameEvent->FrameID(spriteName.str().c_str());
+		pFrameEvent->Time(0.64f * (i - start));
+		pAnim->AddEvent(pFrameEvent);		
+	}
+	auto* end_event = new AnimationEndEvent();
+	end_event->Time((end - start) * 0.64f);
+	pAnim->AddEvent(end_event);
+
+	assetManager.AddAsset(new Asset(pAnim->GetName(), pAnim));
+	animated_sprite_component.AddAnimation(pAnim->Copy());
+}
+
+void Scene2DGame::CreateEnnemies(World* pWorld)
+{
+	auto* pEntity = NEW_AO BaseEntity();
+	pEntity->SetName("ennemy 1");
+	auto* pTrans3D = NEW_AO Transform3DComponent(pEntity);
+	pTrans3D->SetLocalPosition(Vector3F(100.0f, 100.0f, 1.0f));
+	pTrans3D->SetLocalRotation(0.0f);
+	pTrans3D->SetLocalScale(Vector3F(48, 48, 1.0));
 	pEntity->GetComponentMgr()->AddComponent(pTrans3D);
 
-	StaticSpriteComponent *pStaticSprite = NEW_AO StaticSpriteComponent(pEntity);
-	pEntity->GetComponentMgr()->AddComponent(pStaticSprite);
-	pStaticSprite->GetSpriteID("1");
+	//load texture
+	auto texture = Texture::loadTexture("octupus_0_0.png");
+	//load sprite
+	Vector2I tileSize(32, 32);
+	for (int y = 0; y < 2; ++y)
+	{
+		for (int x = 0; x < 16; ++x)
+		{
+			Sprite* pSprite = new Sprite();
+			std::ostringstream name;
+			name << "octopus_" << x << "_" << y;
+			pSprite->SetName(name.str());
+			pSprite->SetPositionInTexture(RectangleI(x * tileSize.x, y * tileSize.y, tileSize.x, tileSize.y));
+			pSprite->SetTexture2D(texture);
+			GetAssetManager().AddAsset(new Asset(name.str(), pSprite));
+		}
+	}
+	
+	auto pAnimatedComponent = NEW_AO AnimatedSpriteComponent(pEntity);
+	//load anim
+	createEnnemyAnim("stand_right", 0, 2, GetAssetManager(), *pAnimatedComponent);
+	createEnnemyAnim("stand_up", 2, 4, GetAssetManager(), *pAnimatedComponent);
+	createEnnemyAnim("stand_left", 4, 6, GetAssetManager(), *pAnimatedComponent);
+	createEnnemyAnim("stand_down", 6, 8, GetAssetManager(), *pAnimatedComponent);
+	createEnnemyAnim("walk_right", 0, 2, GetAssetManager(), *pAnimatedComponent);
+	createEnnemyAnim("walk_up", 2, 4, GetAssetManager(), *pAnimatedComponent);
+	createEnnemyAnim("walk_left", 4, 6, GetAssetManager(), *pAnimatedComponent);
+	createEnnemyAnim("walk_down", 6, 8, GetAssetManager(), *pAnimatedComponent);
+	
+	pEntity->GetComponentMgr()->AddComponent(pAnimatedComponent);
+	pAnimatedComponent->SetCurrentAnimation(0);
 
-	pEntity->Initialize();
-	m_pWorld->AddEntity(pEntity);*/
+	auto scriptComponent = new ScriptComponent(pEntity);
+	auto* pScriptCharacter = new ScriptCharacter(pEntity, new Enemy(pEntity));
+	scriptComponent->SetScriptObject(pScriptCharacter);	
+	pEntity->GetComponentMgr()->AddComponent(scriptComponent);
+
+	pWorld->AddEntity(pEntity);	
 }

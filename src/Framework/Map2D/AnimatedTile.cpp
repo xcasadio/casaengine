@@ -16,7 +16,7 @@ namespace CasaEngine
 	{
 		ITile::Initialize();
 
-		CA_ASSERT(m_pAnimation != nullptr);
+		CA_ASSERT(m_pAnimation != nullptr, "animation 2D is null");
 		m_pAnimation->Initialize();
 	}
 
@@ -28,12 +28,12 @@ namespace CasaEngine
 		}
 	}
 
-	void AnimatedTile::Draw(float x, float y, float z, CRectangleI& textCoordOffset)
+	void AnimatedTile::Draw(float x, float y, float z, RectangleI uvOffset)
 	{
 		if (m_pAnimation != nullptr)
 		{
 			auto* pSprite = Game::Instance().GetAssetManager().GetAsset<Sprite>(m_pAnimation->CurrentFrame());
-			ITile::Draw(pSprite, x, y, z, textCoordOffset);
+			ITile::Draw(pSprite, x, y, z, uvOffset);
 		}
 	}
 

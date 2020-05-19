@@ -11,8 +11,6 @@
 #include "CA_Assert.h"
 #include "Memory/MemoryAllocation.h"
 
-using namespace tinyxml2;
-
 namespace CasaEngine
 {
 	Asset::Asset(std::string name_, IAssetable* pObject)
@@ -24,23 +22,10 @@ namespace CasaEngine
 		//Game::Instance().GetResourceManager().Add(name_, this);
 	}
 
-	Asset::Asset(const tinyxml2::XMLElement& node_) :
-		m_pObject(nullptr)
-	{
-		Read(node_);
-	}
-
-	Asset::Asset(std::ifstream& in) :
-		m_pObject(nullptr)
-	{
-		Read(in);
-	}
-
 	Asset::~Asset()
 	{
-		if (nullptr != m_pObject) DELETE_AO m_pObject;
+		DELETE_AO m_pObject;
 	}
-
 
 	std::string Asset::GetName() const
 	{
@@ -51,27 +36,4 @@ namespace CasaEngine
 	{
 		throw NEW_AO CNotImplementedException("Asset::LoadAsset()");
 	}
-
-	void Asset::Read(const XMLElement& /*node_*/)
-	{
-
-	}
-
-	void Asset::Read(std::ifstream& /*in*/)
-	{
-
-	}
-
-//#ifdef EDITOR
-	void Asset::Write(const XMLElement* /*node_*/)
-	{
-
-	}
-
-	void Asset::Write(std::ostream& /*os*/) const
-	{
-
-	}
-// #endif // EDITOR
-
 }

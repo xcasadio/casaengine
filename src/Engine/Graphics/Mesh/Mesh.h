@@ -11,7 +11,7 @@
 #include "Graphics/Vertices/VertexType.h"
 #include "Maths/Matrix4.h"
 
-#include "bgfx.h"
+#include <bgfx/bgfx.h>
 
 namespace CasaEngine
 {

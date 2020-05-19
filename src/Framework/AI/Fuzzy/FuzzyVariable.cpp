@@ -11,7 +11,7 @@
 #include "FuzzySet_RightShoulder.h"
 #include "FuzzySet_Singleton.h"
 #include "FzSet.h"
-#include "Macro.h"
+
 #include "CA_Assert.h"
 #include "Memory/MemoryAllocation.h"
 

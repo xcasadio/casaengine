@@ -29,7 +29,7 @@ namespace CasaEngine
 		return m_pTexture2D;
 	}
 
-	CRectangleI Sprite::GetPositionInTexture() const
+	RectangleI Sprite::GetPositionInTexture() const
 	{
 		return m_PositionInTexture;
 	}
@@ -56,9 +56,7 @@ namespace CasaEngine
 		m_CollisionShapes.clear();
 	}
 
-	/**
-	 *
-	 */
+	/*
 	void Sprite::Read(const tinyxml2::XMLElement& el_)
 	{
 		Clear();
@@ -102,24 +100,16 @@ namespace CasaEngine
 			m_CollisionShapes.push_back(pShape);
 			pChild = pChild->NextSiblingElement();
 		}
-	}
+	}*/
 
-	/**
-	 *
-	 */
-	void Sprite::Read(std::ifstream& /*in*/)
-	{
-
-	}
-
-	//#ifdef EDITOR
+//#ifdef EDITOR
 
 	void Sprite::SetTexture2D(Texture* val)
 	{
 		m_pTexture2D = val;
 	}
 
-	void Sprite::SetPositionInTexture(CRectangleI val)
+	void Sprite::SetPositionInTexture(RectangleI val)
 	{
 		m_PositionInTexture = val;
 	}
@@ -132,16 +122,6 @@ namespace CasaEngine
 	void Sprite::SetAssetFileName(std::string val)
 	{
 		m_AssetFileName = val;
-	}
-
-	void Sprite::Write(const tinyxml2::XMLElement& /*node_*/)
-	{
-
-	}
-
-	void Sprite::Write(std::ostream& /*os*/)
-	{
-
 	}
 
 	/**
@@ -160,6 +140,6 @@ namespace CasaEngine
 		return m_CollisionShapes.end();
 	}
 
-	//#endif // EDITOR
+//#endif
 
 }

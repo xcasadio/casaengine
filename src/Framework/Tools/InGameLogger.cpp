@@ -3,7 +3,8 @@
 
 #if defined(CA_IN_GAME_LOGGER)
 
-#include "bgfx.h"
+#include "UI/imgui/bgfx-imgui.h"
+#include <bgfx/bgfx.h>
 
 #include "Game/Game.h"
 #include <stdarg.h>
@@ -12,10 +13,7 @@
 
 namespace CasaEngine
 {
-	/**
-	 * 
-	 */
-	void InGameLogger::AddLog(float delay_, const char *fmt, ...)
+	void InGameLogger::AddLog(float delay_, CColor color, const char *fmt, ...)
 	{
 		static char sBuffer[1024];
 		va_list Params;
@@ -26,12 +24,10 @@ namespace CasaEngine
 		LogData logData;
 		logData.delay = delay_;
 		logData.text = _strdup(sBuffer);
+		logData.color = color;
 		m_Lines.push_back(logData);
 	}
 
-	/**
-	 * 
-	 */
 	void InGameLogger::Update(const GameTime& gameTime_)
 	{
 		const float time = gameTime_.FrameTime();
@@ -58,48 +54,38 @@ namespace CasaEngine
 		}
 	}
 
-	/**
-	 * 
-	 */
 	void InGameLogger::ShowWindow()
 	{
-		bgfx::dbgTextClear();
-		int y = 0;
+		/*bgfx::dbgTextClear();
+		unsigned int y = 0;
 		for (int i = m_Lines.size() - 1; i >= 0; --i)
 		{
 			bgfx::dbgTextPrintf(0, y, 0x0f, m_Lines[i].text);
 			y++;
-		}
-		
-		/*
+		}*/
+				
 		ImGui::SetNextWindowSize(ImVec2(
-			Game::Instance().GetWindow()->getSize().x - 50,
-			Game::Instance().GetWindow()->getSize().y - 50));
-		ImGui::SetNextWindowPosCenter();
-
-		if (!ImGui::Begin("Log in game", nullptr, ImVec2(0,0), 0.3f, 
+			Game::Instance().GetWindowSize().x - 50,
+			Game::Instance().GetWindowSize().y - 50));
+		ImGui::SetNextWindowPos(ImVec2(0.5f, 0.5f));
+		//ImVec2(0,0), 0.3f, 
+		if (!ImGui::Begin("Log in game", nullptr, 
 			ImGuiWindowFlags_NoTitleBar|ImGuiWindowFlags_NoResize|ImGuiWindowFlags_NoMove|ImGuiWindowFlags_NoSavedSettings))
 		{
 			ImGui::End();
 			return;
 		}
 
-		for (unsigned int i=m_FreeLinePos + 1; i<m_FreeLinePos + NBLOGLINES; i++)
+		for (int i = m_Lines.size() - 1; i >= 0; --i)
 		{
-			int index = i > NBLOGLINES ? i - NBLOGLINES : i;
-
-			if (m_Lines[index].isDeleted == false)
-			{
-				//ImGui::PushStyleColor(ImGuiCol_Text, ImColor(CColor::Green.GetRed(), CColor::Green.GetGreen(), CColor::Green.GetBlue()));
-				ImGui::TextWrapped(m_Lines[index].text);
-				//ImGui::PopStyleColor();
-			}
+			ImGui::PushStyleColor(ImGuiCol_Text, ImColor(m_Lines[i].color.GetRed(), m_Lines[i].color.GetGreen(), m_Lines[i].color.GetBlue()).Value);
+			ImGui::TextWrapped(m_Lines[i].text);
+			ImGui::PopStyleColor();
 		}
 
-		ImGui::End();
-		*/
+		ImGui::End();		
 	}
 
 }
 
-#endif // #if defined(CA_IN_GAME_LOGGER)
+#endif

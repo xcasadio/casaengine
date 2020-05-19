@@ -7,9 +7,10 @@
 /**
  * 
  */
-IController::IController() :
-	m_FSM(this)
+IController::IController(Character* pCharacter) :
+	m_FSM(this), m_pCharacter(pCharacter)
 {
+    CA_ASSERT(m_pCharacter != nullptr, ":IController() : Character is null");
 }
 
 /**
@@ -52,4 +53,12 @@ void IController::Update(const GameTime elapsedTime_)
 StateMachine<IController> *IController::FSM()
 {
 	return &m_FSM;
+}
+
+/**
+ *
+ */
+Character* IController::GetCharacter() const
+{
+    return m_pCharacter;
 }

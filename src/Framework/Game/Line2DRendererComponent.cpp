@@ -93,10 +93,10 @@ namespace CasaEngine
 
 		Matrix4 matProj;
 		matProj.OrthoOffCenter(
-			static_cast<float>(pCamera->GetViewport().X() * GetGame()->GetWindow()->getSize().x),
-			static_cast<float>(pCamera->GetViewport().Y() * GetGame()->GetWindow()->getSize().y),
-			static_cast<float>(pCamera->GetViewport().Width() * GetGame()->GetWindow()->getSize().x),
-			static_cast<float>(pCamera->GetViewport().Height() * GetGame()->GetWindow()->getSize().y),
+			static_cast<float>(pCamera->GetViewport().X() * GetGame()->GetWindowSize().x),
+			static_cast<float>(pCamera->GetViewport().Y() * GetGame()->GetWindowSize().y),
+			static_cast<float>(pCamera->GetViewport().Width() * GetGame()->GetWindowSize().x),
+			static_cast<float>(pCamera->GetViewport().Height() * GetGame()->GetWindowSize().y),
 			0.0f, 1000.0f);
 
 		bgfx::setVertexBuffer(0, m_VertexBuffer, 0, m_NbLines);
@@ -126,7 +126,7 @@ namespace CasaEngine
 		
 		m_Lines.push_back(pLineData);
 		m_bRecomputeVB = true;
-		m_NbLines = m_Lines.size();
+		m_NbLines = static_cast<unsigned int>(m_Lines.size());
 	}
 
 	/**

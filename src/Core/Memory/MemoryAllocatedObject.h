@@ -1,4 +1,3 @@
-
 #ifndef _CASAENGINEMemoryAllocatedObject_h_
 #define _CASAENGINEMemoryAllocatedObject_h_
 
@@ -87,8 +86,8 @@ public:
 	{}
 };
 
-#endif // CA_CUSTOM_ALLOCATORS
+#endif
 
 }
 
-#endif	// end of guard _CASAENGINEMemoryAllocatedObject_h_
+#endif

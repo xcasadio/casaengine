@@ -17,7 +17,7 @@ class Hero :
 	public Character
 {
 public:
-	Hero(AnimatedSpriteComponent *pAnimatedSprite_);
+	Hero(BaseEntity* pEntity);
 	virtual ~Hero();
 	
 	void Initialize() override;
@@ -53,12 +53,6 @@ public:
 	int MaxFuryPoint() const;
 	void MaxFuryPoint(int val);
 
-	//////////////////////////////////////////////////////////////////////////
-	void Read( const tinyxml2::XMLElement& xmlElt ) override;
-	void Read( std::ifstream& is ) override;
-	void Write( tinyxml2::XMLElement& xmlElt ) override;
-	void Write( std::ostream& os ) override;
-
 private:
 	int m_FuryPoint;
     float m_FuryPointDecrease;
@@ -72,4 +66,4 @@ private:
 	int m_MaxFuryPoint;
 };
 
-#endif // HERO_H_
+#endif

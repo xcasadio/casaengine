@@ -32,16 +32,28 @@ namespace CasaEngine
 	private:
 		std::string m_FrameID;
 
-#if EDITOR
-	public:
-		void Write(std::ostream& /*os*/) const;
-		void Write(tinyxml2::XMLElement* el_) const;
+	private:
+		friend class cereal::access;
 
+		template <class Archive>
+		void load(Archive& ar)
+		{
+			ar(cereal::base_class<AnimationEvent>(this));
+			ar(cereal::make_nvp("sprite_name", m_FrameID));
+		}
+
+		template <class Archive>
+		void save(Archive& ar) const
+		{
+			ar(cereal::base_class<AnimationEvent>(this));
+			ar(cereal::make_nvp("sprite_name", m_FrameID));
+		}
+
+#if EDITOR
 	private:
 		static const int m_Version; // load version
 #endif
-
 	};
 }
 
-#endif // _CHANGEFRAMEEVENT_H_
+#endif

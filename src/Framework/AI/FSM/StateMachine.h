@@ -17,7 +17,7 @@
 #include "Log/LogManager.h"
 
 #include <string>
-#include "Macro.h"
+
 #include <typeinfo>
 #include "CA_Assert.h"
 #include "GameTime.h"
@@ -140,4 +140,4 @@ namespace CasaEngine
 
 }
 
-#endif // STATEMACHINE_H
+#endif

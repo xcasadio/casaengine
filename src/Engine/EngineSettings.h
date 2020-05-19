@@ -1,6 +1,6 @@
 #include "Parsers\Ini\INIReader.h"
 #include "Log\LogManager.h"
-#include "bgfx.h"
+#include <bgfx/bgfx.h>
 
 #ifndef ENGINESETTINGS_H_
 #define ENGINESETTINGS_H_

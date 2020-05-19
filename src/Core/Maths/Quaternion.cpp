@@ -249,13 +249,13 @@ namespace CasaEngine
 	/// <param name="result">The result of the operation.</param>
 	void Quaternion::Transform(const Vector3F& value, Vector3F& result) const
 	{
-		float x = 2 * (this->y * value.z - this->z * value.y);
-		float y = 2 * (this->z * value.x - this->x * value.z);
-		float z = 2 * (this->x * value.y - this->y * value.x);
+		float x1 = 2 * (y * value.z - z * value.y);
+		float y1 = 2 * (z * value.x - x * value.z);
+		float z1 = 2 * (x * value.y - y * value.x);
 
-		result.x = value.x + x * this->w + (this->y * z - this->z * y);
-		result.y = value.y + y * this->w + (this->z * x - this->x * z);
-		result.z = value.z + z * this->w + (this->x * y - this->y * x);
+		result.x = value.x + x1 * w + (y * z1 - z * y1);
+		result.y = value.y + y1 * w + (z * x1 - x * z1);
+		result.z = value.z + z1 * w + (x * y1 - y * x1);
 	}
 
 	/// <summary>
@@ -276,14 +276,14 @@ namespace CasaEngine
 		{
 			Vector3F position = *it;
 
-			float x = 2 * (this->y * position.z - this->z * position.y);
-			float y = 2 * (this->z * position.x - this->x * position.z);
-			float z = 2 * (this->x * position.y - this->y * position.x);
+			float x1 = 2 * (y * position.z - z * position.y);
+			float y1 = 2 * (z * position.x - x * position.z);
+			float z1 = 2 * (x * position.y - y * position.x);
 
 			destinationArray[i] = Vector3F(
-				position.x + x * this->w + (this->y * z - this->z * y),
-				position.y + y * this->w + (this->z * x - this->x * z),
-				position.z + z * this->w + (this->x * y - this->y * x));
+				position.x + x1 * w + (y * z1 - z * y1),
+				position.y + y1 * w + (z * x1 - x * z1),
+				position.z + z1 * w + (x * y1 - y * x1));
 			i++;
 		}
 	}

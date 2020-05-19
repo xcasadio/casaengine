@@ -1,7 +1,10 @@
 #include "Base.h"
-#include "bgfx.h"
+#include <bgfx/bgfx.h>
 
 #include "DisplayDebugInfo.h"
+
+#include <dear-imgui/imgui.h>
+
 #include "Entities/Components/CameraComponent.h"
 #include "Game/Game.h"
 #include "Game/GameInfo.h"
@@ -29,17 +32,12 @@ namespace CasaEngine
 	/**
 	 * 
 	 */
-	DisplayDebugInfo::~DisplayDebugInfo() { }
-
-	/**
-	 * 
-	 */
 	void DisplayDebugInfo::Initialize() 
 	{ 
 		bgfx::setViewName(1, "DisplayDebugInfo");
 		//bgfx::setView(1, true);
 		
-		m_pProgram = NEW_AO Program("vs_3Dlines", "fs_3Dlines");
+		m_pProgram = NEW_AO Program("vs_3DLines", "fs_3DLines");
 
 		m_Vertices[0].Position = Vector3F::Zero();  m_Vertices[0].Color = CColor::Red.ToABGR();
 		m_Vertices[1].Position = Vector3F::UnitX(); m_Vertices[1].Color = CColor::Red.ToABGR();
@@ -54,10 +52,12 @@ namespace CasaEngine
 	/**
 	 * 
 	 */
-	void DisplayDebugInfo::Release() 
+	void DisplayDebugInfo::Release()
 	{
 		DELETE_AO m_pProgram;
+		m_pProgram = nullptr;
 		bgfx::destroy(m_VertexBuffer);
+		m_VertexBuffer = BGFX_INVALID_HANDLE;
 	}
 
 	/**
@@ -127,7 +127,7 @@ namespace CasaEngine
 		bgfx::setViewTransform(1, NULL, matProj);
 		//bgfx::setViewTransform(1, pCamera->GetViewMatrix(), pCamera->GetProjectionMatrix());
 
-		bgfx::setViewRect(1, 0, 0, Game::Instance().GetWindow()->getSize().x, Game::Instance().GetWindow()->getSize().y);
+		bgfx::setViewRect(1, 0, 0, Game::Instance().GetWindowSize().x, Game::Instance().GetWindowSize().y);
 		bgfx::setTransform(matWorld);
 
 		bgfx::setVertexBuffer(0, vertexHandle_);
@@ -140,9 +140,9 @@ namespace CasaEngine
 	 */
 	void ShowFPS()
 	{
-		/*
 		ImGui::SetNextWindowPos(ImVec2(10,10));
-		if (!ImGui::Begin("FPS", nullptr, ImVec2(0,0), 0.3f, ImGuiWindowFlags_NoTitleBar|ImGuiWindowFlags_NoResize|ImGuiWindowFlags_NoMove|ImGuiWindowFlags_NoSavedSettings))
+		//ImVec2(0,0), 0.3f,
+		if (!ImGui::Begin("FPS", nullptr,  ImGuiWindowFlags_NoTitleBar|ImGuiWindowFlags_NoResize|ImGuiWindowFlags_NoMove|ImGuiWindowFlags_NoSavedSettings))
 		{
 			ImGui::End();
 			return;
@@ -151,7 +151,6 @@ namespace CasaEngine
 		// 			ImGui::Separator();
 		ImGui::Text("FPS: %d", Game::Instance().GetDebugSystem().GetFPS());
 		ImGui::End();
-		*/
 	}
 
 	/**
@@ -159,8 +158,7 @@ namespace CasaEngine
 	 */
 	void ShowDebugWindow()
 	{
-		/*
-		ImGui::SetNextWindowSize(ImVec2(500, 440), ImGuiSetCond_FirstUseEver);
+		ImGui::SetNextWindowSize(ImVec2(500, 440), ImGuiCond_FirstUseEver);
 
 		if (ImGui::Begin("Debug window"))
 		{
@@ -183,7 +181,7 @@ namespace CasaEngine
 
 				EntityManager::EntityIterator it;
 
-				for (it = EntityMgr.cbegin(); it != EntityMgr.cend(); it++)
+				for (it = Game::Instance().GetEntityManager().cbegin(); it != Game::Instance().GetEntityManager().cend(); it++)
 				{
 					char label[128];
 					sprintf(label, "%s (%d)", it->second->GetName(), it->first);
@@ -194,11 +192,11 @@ namespace CasaEngine
 
 				// right
 				ImGui::BeginGroup();
-				BaseEntity *pEntity = EntityMgr.GetFirstSelectedEntity();
+				BaseEntity *pEntity = Game::Instance().GetEntityManager().GetFirstSelectedEntity();
 
 				if (pEntity != nullptr)
 				{
-					ImGui::BeginChild("item view", ImVec2(0, -ImGui::GetItemsLineHeightWithSpacing())); // Leave room for 1 line below us
+					ImGui::BeginChild("item view", ImVec2(0, ImGui::GetTextLineHeightWithSpacing())); // Leave room for 1 line below us
 					ImGui::Text("Object selected : %s (%d)", pEntity->GetName(), pEntity->ID());
 					ImGui::Separator();
 
@@ -220,7 +218,6 @@ namespace CasaEngine
 		}
 
 		ImGui::End();
-		*/
 	}
 
 	/**

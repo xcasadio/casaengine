@@ -56,7 +56,7 @@ namespace CasaEngine
 			 */
 			void Clear();
 
-#ifdef EDITOR
+//#ifdef EDITOR
 	public:
 		/**
 			 * returns the first selected entity
@@ -64,7 +64,7 @@ namespace CasaEngine
 		BaseEntity* GetFirstSelectedEntity() const;
 
 		
-#endif
+//#endif
 	};
 
 }

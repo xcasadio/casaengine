@@ -52,11 +52,9 @@ namespace CasaEngine
 
 	IFile* MediaManager::FindMedia(const char* fileName_, bool isBinary_) const
 	{
-		for (std::set<std::string>::const_iterator i = m_Paths.begin();
-			i != m_Paths.end();
-			++i)
+		for (auto dir : m_Paths)
 		{
-			std::string path = m_RootPath + *i + fileName_;
+			std::string path = m_RootPath + dir + fileName_;
 			//TODO : set if open in BINARY MODE or not
 			IFile* pRetFile = IOManager::OpenFile(path, FileMode::READ | (isBinary_ == true ? FileMode::BINARY : 0));
 
@@ -64,10 +62,8 @@ namespace CasaEngine
 			{
 				return pRetFile;
 			}
-			else
-			{
-				DELETE_AO pRetFile;
-			}
+
+			DELETE_AO pRetFile;
 		}
 
 		return nullptr;

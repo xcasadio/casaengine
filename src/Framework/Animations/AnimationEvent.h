@@ -1,4 +1,3 @@
-
 #ifndef _ANIMATIONEVENT_H_
 #define _ANIMATIONEVENT_H_
 
@@ -7,15 +6,16 @@
 #include <vector>
 #include "Parsers\Xml\tinyxml2.h"
 #include <iosfwd>
+#include <cereal/access.hpp>
+#include <cereal/cereal.hpp>
+
+
 #include "Memory\MemoryAllocation.h"
 
 namespace CasaEngine
 {
 	class Animation;
 
-	/**
-	 * 
-	 */
 	class CA_EXPORT AnimationEvent :
 		public AllocatedObject<AnimationEvent>
 	{
@@ -36,27 +36,30 @@ namespace CasaEngine
 
 		virtual void Activate(Animation *pAnim_) = 0;
 
-		void Read(std::ifstream& /*is*/);
-		void Read(tinyxml2::XMLElement *el_);
-
 	private:
-		unsigned int m_ID;
+		unsigned int m_ID; // TODO : usefull ?
 		float m_Time;
 
-		//std::vector<IEvent> m_Events;
+	private:
+		friend class cereal::access;
+
+		template <class Archive>
+		void load(Archive& ar)
+		{
+			ar(cereal::make_nvp("time", m_Time));
+		}
+
+		template <class Archive>
+		void save(Archive& ar) const
+		{
+			ar(cereal::make_nvp("time", m_Time));
+		}
 
 #if EDITOR
-	public:
-
-		void Write(std::ostream& /*os*/) const;
-		void Write(tinyxml2::XMLElement *el_) const;
-
 	private:
 		static const int m_Version; // load version
-
 #endif
-		
 	};
 }
 
-#endif // _ANIMATIONEVENT_H_
+#endif

@@ -1,17 +1,13 @@
 #ifndef PLAYERSTATES_H_
 #define PLAYERSTATES_H_
 
-
 #include "GameTime.h"
 #include "AI\FSM\IState.h"
 #include "IController.h"
 
-
 using namespace CasaEngine;
 
-class ScriptPlayer;
-
-enum PlayerControllerState
+typedef enum PlayerControllerState
 {
 	IDLE,
 	MOVING,
@@ -24,9 +20,8 @@ enum PlayerControllerState
 	DEAD,
 	TO_FURY_MODE,
 	TO_NORMAL_MODE,
-};
+} PlayerControllerState;
 
-//////////////////////////////////////////////////////////////////////////
 
 /**
  * 
@@ -47,7 +42,6 @@ private:
 
 };
 
-//////////////////////////////////////////////////////////////////////////
 
 /**
  * 
@@ -68,6 +62,4 @@ private:
 
 };
 
-
-
-#endif // PLAYERSTATES_H_
+#endif 

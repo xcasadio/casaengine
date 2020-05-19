@@ -58,13 +58,15 @@
 #include "Tools/Bullet/BulletPhysicsDebugDraw.h"
 #endif // #ifdef USE_BULLET_PHYSICS
 
+#include <dear-imgui/imgui.h>
+
 #include "Memory/MemoryReport.h"
-#include "Graphics/bgfx_utils.h"
-#include "platform.h"
+#include "bgfx/platform.h"
 #include "Graphics/Effects/Shader.h"
 #include "bx/math.h"
 #include "Maths/Vector4.h"
 #include "Tools/InGameLogger.h"
+#include "UI/imguiAdapter.h"
 
 namespace CasaEngine
 {
@@ -277,7 +279,7 @@ void Game::HandleWindowEvents()
 
 #endif // #ifndef EDITOR
 	
-	//ImGuiIO& io = ImGui::GetIO();
+	ImGuiIO& io = ImGui::GetIO();
 
 	while (m_pWindow->pollEvent(event))
 	{
@@ -294,7 +296,7 @@ void Game::HandleWindowEvents()
 			break;
 
 		case sf::Event::KeyPressed:
-			//io.KeysDown[event.key.code] = 1;
+			io.KeysDown[event.key.code] = 1;
 
 			switch (event.key.code)
 			{
@@ -327,7 +329,7 @@ void Game::HandleWindowEvents()
 		case sf::Event::TextEntered:
 			//Console::Instance().SendChar(static_cast<char>(event.text.unicode));
 			//handled = GUIContext.injectChar(static_cast<char>(event.text.unicode));
-			//io.AddInputCharacter(event.text.unicode);
+			io.AddInputCharacter(event.text.unicode);
 			break;
 
 		case sf::Event::MouseButtonPressed:
@@ -335,17 +337,17 @@ void Game::HandleWindowEvents()
 			{
 			case sf::Mouse::Left:
 				//handled = GUIContext.injectMouseButtonDown(CEGUI::LeftButton);
-				//io.MouseDown[0] = true;
+				io.MouseDown[0] = true;
 				break;
 
 			case sf::Mouse::Right:
 				//handled = GUIContext.injectMouseButtonDown(CEGUI::RightButton);
-				//io.MouseDown[1] = true;
+				io.MouseDown[1] = true;
 				break;
 
 			case sf::Mouse::Middle:
 				//handled = GUIContext.injectMouseButtonDown(CEGUI::MiddleButton);
-				//io.MouseDown[2] = true;
+				io.MouseDown[2] = true;
 				break;
 
 			case sf::Mouse::XButton1:
@@ -363,17 +365,17 @@ void Game::HandleWindowEvents()
 			{
 			case sf::Mouse::Left:
 				//handled = GUIContext.injectMouseButtonUp(CEGUI::LeftButton);
-				//io.MouseDown[0] = false;
+				io.MouseDown[0] = false;
 				break;
 
 			case sf::Mouse::Right:
 				//handled = GUIContext.injectMouseButtonUp(CEGUI::RightButton);
-				//io.MouseDown[1] = false;
+				io.MouseDown[1] = false;
 				break;
 
 			case sf::Mouse::Middle:
 				//handled = GUIContext.injectMouseButtonUp(CEGUI::MiddleButton);
-				//io.MouseDown[2] = false;
+				io.MouseDown[2] = false;
 				break;
 
 			case sf::Mouse::XButton1:
@@ -390,23 +392,19 @@ void Game::HandleWindowEvents()
 // 			handled = GUIContext.injectMousePosition(
 // 				static_cast<float>(event.mouseMove.x), 
 // 				static_cast<float>(event.mouseMove.y));
-			//io.MousePos.x = static_cast<float>(event.mouseMove.x);
-			//io.MousePos.y = static_cast<float>(event.mouseMove.y);
+			io.MousePos.x = static_cast<float>(event.mouseMove.x);
+			io.MousePos.y = static_cast<float>(event.mouseMove.y);
 
 		case sf::Event::MouseWheelMoved:
 			//handled = GUIContext.injectMouseWheelChange(static_cast<float>(event.mouseWheel.delta));
-			//io.MouseWheel += static_cast<float>(event.mouseWheel.delta);
+			io.MouseWheel += static_cast<float>(event.mouseWheel.delta);
 			break;
 
-#endif // #ifndef EDITOR
+#endif
 		}
 	}
 }
 
-
-/**
- * 
- */
 int32_t renderThreadFunc(void* _userData)
 {
 	Game* game = (Game*)_userData;
@@ -415,10 +413,6 @@ int32_t renderThreadFunc(void* _userData)
 	return 0;
 }
 
-/////////////////////////////////////////////////////////////
-/// Lance l'application
-///
-////////////////////////////////////////////////////////////
 void Game::Run()
 {
 	InitializeEngineSettings();
@@ -435,9 +429,6 @@ void Game::Run()
   	//s_renderThread.shutdown();
 }
 
-/**
- * 
- */
 void Game::RenderThreadloop()
 {
 	CA_TRACE("Renderer initialized\n");
@@ -455,7 +446,7 @@ void Game::RenderThreadloop()
 		FrameLoop();
 		EndRun();
 
-#endif // #if CA_PLATFORM_DESKTOP
+#endif
 
 	}
 	catch (const std::exception& ex)
@@ -482,12 +473,9 @@ void Game::BeginRun()
  */
 void Game::EndRun()
 {
-	//imguiAdapter::imguiDestroy();
+	imguiAdapter::imguiDestroy();
 }
 
-//----------------------------------------------------------
-// 
-//----------------------------------------------------------
 void Game::Initialize()
 {
 	m_ScriptEngine.Initialize();
@@ -509,25 +497,23 @@ void Game::Initialize()
 // 		"", // configFile
 // 		"CEGUI.log", // logFile
 // 		CEGUI_VERSION_ABI); // CEGUI_VERSION_ABI
-
-#endif // #ifndef EDITOR
-
-	std::vector<IGameComponent *>::const_iterator it;
-
-	for (it = m_Components.cbegin();
-		it != m_Components.cend();
-		++it)
-	{
-		(*it)->Initialize();
-	}
-
-#ifndef EDITOR
-		
-// 	pSystem->getDefaultGUIContext().injectMousePosition(
+//
+// 		pSystem->getDefaultGUIContext().injectMousePosition(
 // 		static_cast<float>(sf::Mouse::getPosition(*m_pWindow).x), 
 // 		static_cast<float>(sf::Mouse::getPosition(*m_pWindow).y));
 
-#endif // #ifndef EDITOR
+#endif
+	
+#ifdef USE_BULLET_PHYSICS
+	BulletPhysicsDebugDraw* pDebugDraw = NEW_AO BulletPhysicsDebugDraw();
+	pDebugDraw->Initialize();
+	dynamic_cast<BulletPhysicsEngine*>(PhysicsEngine::Instance().GetPhysicsEngineImpl())->SetPhysicsDebugDraw(pDebugDraw);
+#endif
+
+	for (auto* component : m_Components)
+	{
+		component->Initialize();
+	}
 
 	m_PhysicsEngine.Initialize();
 
@@ -539,7 +525,11 @@ void Game::Initialize()
 // 	{
 // 		CA_ERROR("Can't load the Gameplay module %s\n", m_EngineSettings.GameplayDLL.c_str());
 // 	}
-	/*
+	
+	m_DebugSystem.Initialize();
+	m_DisplayDebugInfo.Initialize();
+
+	imguiAdapter::imguiCreate();
 	ImGuiIO& io = ImGui::GetIO();
 	io.KeyMap[ImGuiKey_Tab]			= sf::Keyboard::Tab;
 	io.KeyMap[ImGuiKey_LeftArrow]	= sf::Keyboard::Left;
@@ -560,7 +550,7 @@ void Game::Initialize()
 	io.KeyMap[ImGuiKey_X]			= sf::Keyboard::X;
 	io.KeyMap[ImGuiKey_Y]			= sf::Keyboard::Y;
 	io.KeyMap[ImGuiKey_Z]			= sf::Keyboard::Z;
-	*/
+	
 	m_Console.Initialize();
 
 	m_Initialized = true;
@@ -568,21 +558,10 @@ void Game::Initialize()
 
 void Game::LoadContent()
 {
-#ifdef USE_BULLET_PHYSICS
-	BulletPhysicsDebugDraw *pDebugDraw = NEW_AO BulletPhysicsDebugDraw();
-	pDebugDraw->Initialize();
-	dynamic_cast<BulletPhysicsEngine *>(PhysicsEngine::Instance().GetPhysicsEngineImpl())->SetPhysicsDebugDraw(pDebugDraw);
-#endif
-
 	for (auto* component : m_DrawableComponents)
 	{
 		component->OnLoadContent();
 	}
-	
-	m_DebugSystem.Initialize();
-	m_DisplayDebugInfo.Initialize();
-
-	//imguiAdapter::imguiCreate();
 }
 
 void Game::Update(const GameTime& gameTime_)
@@ -613,7 +592,7 @@ void Game::Update(const GameTime& gameTime_)
  */
 void Game::BeginDraw()
 {
-	bgfx::setViewRect(0, 0, 0, GetWindow()->getSize().x, GetWindow()->getSize().y);
+	bgfx::setViewRect(0, 0, 0, GetWindowSize().x, GetWindowSize().y);
 
 	// This dummy draw call is here to make sure that view 0 is cleared
 	// if no other draw calls are submitted to view 0.
@@ -638,7 +617,7 @@ void Game::Draw()
 	int width = GetEngineSettings().WindowWidth;
 	int height = GetEngineSettings().WindowHeight;
 
-	//imguiAdapter::imguiBeginFrame(width , height);
+	imguiAdapter::imguiBeginFrame(width , height);
 }
 
 /**
@@ -649,13 +628,13 @@ void Game::EndDraw()
 	m_DisplayDebugInfo.Draw();
 	m_Console.Draw();
 
-	//imguiAdapter::imguiEndFrame();
+	imguiAdapter::imguiEndFrame();
 
 #ifndef EDITOR
 
 	//CEGUI::System::getSingleton().renderAllGUIContexts();
 
-#endif // #ifndef EDITOR
+#endif
 
 	bgfx::frame();
 }
@@ -780,9 +759,9 @@ Input &Game::GetInput()
 /**
  * 
  */
-sf::Window* Game::GetWindow()
+Vector2I Game::GetWindowSize() const
 {
-	return m_pWindow;
+	return Vector2I(m_pWindow->getSize().x, m_pWindow->getSize().y);
 }
 
 /**

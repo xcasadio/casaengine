@@ -15,12 +15,14 @@
 /**
  *
  */
-Character::Character(AnimatedSpriteComponent* pAnimatedSprite_)
+Character::Character(BaseEntity* pEntity)
 {
-	CA_ASSERT(pAnimatedSprite_ != nullptr, "Character() : AnimatedSpriteComponent is null");
-	m_pAnimatedSprite = pAnimatedSprite_;
+	AnimatedSpriteComponent* pAnimatedSprite = pEntity->GetComponentMgr()->GetComponent<AnimatedSpriteComponent>();
+	
+	CA_ASSERT(pAnimatedSprite != nullptr, "Character() : AnimatedSpriteComponent is null");
+	m_pAnimatedSprite = pAnimatedSprite;
 
-	m_pEntity = m_pAnimatedSprite->GetEntity();
+	m_pEntity = pEntity;
 
 	m_pAnimatedSprite->subscribeEvent(
 		AnimationFinishedEvent::GetEventName(),
@@ -59,7 +61,7 @@ Character::Character(AnimatedSpriteComponent* pAnimatedSprite_)
 	SetAnimationDirectionOffset(orientation::UP, (int)AnimationDirectionOffset::UP);
 	SetAnimationDirectionOffset(orientation::UP_LEFT, (int)AnimationDirectionOffset::UP_LEFT);
 	SetAnimationDirectionOffset(orientation::UP_RIGHT, (int)AnimationDirectionOffset::UP_RIGHT);
-	SetAnimationParameters(8, -1);
+	SetAnimationParameters(4, -1);
 }
 
 /**
@@ -67,7 +69,7 @@ Character::Character(AnimatedSpriteComponent* pAnimatedSprite_)
  */
 Character::~Character()
 {
-
+	DELETE_AO m_pController;
 }
 
 /**
@@ -322,38 +324,4 @@ bool Character::OnFrameChangedEvent(const EventArgs& e_)
 	m_pLastSprite = pNewSprite;
 
 	return false;
-}
-
-//////////////////////////////////////////////////////////////////////////
-
-/**
- *
- */
-void Character::Read(const tinyxml2::XMLElement& xmlElt)
-{
-
-}
-
-/**
- *
- */
-void Character::Read(std::ifstream& is)
-{
-
-}
-
-/**
- *
- */
-void Character::Write(tinyxml2::XMLElement& xmlElt)
-{
-
-}
-
-/**
- *
- */
-void Character::Write(std::ostream& os)
-{
-
 }

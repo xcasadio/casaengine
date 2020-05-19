@@ -28,7 +28,7 @@ namespace CasaEngine
 
 		std::ostringstream s;
 		s << "entity_" << m_ID;
-		m_szName = strdup(s.str().c_str());
+		m_szName = _strdup(s.str().c_str());
 		m_pComponentManager = NEW_AO ComponentManager(this);
 		m_bIsEnabled = true;
 		m_bIsVisible = true;
@@ -214,7 +214,7 @@ namespace CasaEngine
 		return m_PhysicalEntity;
 	}
 	
-#ifdef EDITOR
+//#ifdef EDITOR
 	
 	void BaseEntity::IsSelected(bool val)
 	{
@@ -226,6 +226,6 @@ namespace CasaEngine
 		return m_IsSelected;
 	}
 	
-#endif	
+//#endif	
 
 }

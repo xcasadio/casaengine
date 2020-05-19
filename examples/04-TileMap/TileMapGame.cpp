@@ -1,7 +1,7 @@
 #include "TileMapGame.h"
 
-#include "bgfx.h"
-#include "CustomCameraController.h"
+#include "bgfx\bgfx.h"
+#include "Entities\Components\CameraControllers\Camera2DTargetedController.h"
 
 #include "Entities\Components\Camera3DComponent.h"
 #include "Entities\Components\CameraControllers\ArcBallCameraController.h"
@@ -16,7 +16,6 @@
 #include "Entities/Components/StaticSpriteComponent.h"
 #include "Game\GameInfo.h"
 #include "Game\Line2DRendererComponent.h"
-#include "Graphics\bgfx_utils.h"
 #include "Log\LoggerFile.h"
 #include "Log\LogManager.h"
 #include "Map2D/AutoTile.h"
@@ -26,7 +25,7 @@
 #include "World\World.h"
 
 Transform3DComponent* s_pTransform;
-CustomCameraController* s_pCameraController;
+Camera2DTargetedController* s_pCameraController;
 
 /**
  *
@@ -50,14 +49,14 @@ TileMapGame::~TileMapGame()
  */
 void TileMapGame::Initialize()
 {
-	Game::Instance().GetMediaManager().AddSearchPath("../../examples/resources");
-	Game::Instance().GetMediaManager().AddSearchPath("../../examples/resources/textures");
-	Game::Instance().GetMediaManager().AddSearchPath("../../examples/resources/models");
-	Game::Instance().GetMediaManager().AddSearchPath("../../examples/resources/shaders");
-	Game::Instance().GetMediaManager().AddSearchPath("../../examples/resources/spriteSheet");
-	Game::Instance().GetMediaManager().AddSearchPath("../../examples/resources/script");
-	Game::Instance().GetMediaManager().AddSearchPath("../../examples/resources/tileset");
-	Game::Instance().GetMediaManager().AddSearchPath("../../examples/resources/fonts");
+	GetMediaManager().AddSearchPath("../../examples/resources");
+	GetMediaManager().AddSearchPath("../../examples/resources/textures");
+	GetMediaManager().AddSearchPath("../../examples/resources/models");
+	GetMediaManager().AddSearchPath("../../examples/resources/shaders");
+	GetMediaManager().AddSearchPath("../../examples/resources/spriteSheet");
+	GetMediaManager().AddSearchPath("../../examples/resources/script");
+	GetMediaManager().AddSearchPath("../../examples/resources/tileset");
+	GetMediaManager().AddSearchPath("../../examples/resources/fonts");
 
 	m_pSpriteRenderer = NEW_AO SpriteRenderer(this);
 	AddComponent(m_pSpriteRenderer);
@@ -71,7 +70,7 @@ void TileMapGame::CreateBackground(World* pWorld)
 	/*Texture* texture = Texture::loadTexture("Tile1.png"); // "space-wallpaper.jpg");
 	Sprite *pSprite = NEW_AO Sprite();
 	pSprite->SetTexture2D(texture);
-	pSprite->SetPositionInTexture(CRectangleI(0, 0, texture->TextureInfo()->width, texture->TextureInfo()->height));
+	pSprite->SetPositionInTexture(RectangleI(0, 0, texture->TextureInfo()->width, texture->TextureInfo()->height));
 	pSprite->SetName("background");
 	Game::Instance().GetAssetManager().AddAsset(NEW_AO Asset(pSprite->GetName(), pSprite));*/
 
@@ -93,8 +92,8 @@ void TileMapGame::CreateBackground(World* pWorld)
 	const int size = 48; // 32
 	Sprite* pSprite = NEW_AO Sprite();
 	pSprite->SetTexture2D(texture);
-	//pSprite->SetPositionInTexture(CRectangleI(7 * size, size, size, size));
-	pSprite->SetPositionInTexture(CRectangleI(0, 0, size, size));
+	//pSprite->SetPositionInTexture(RectangleI(7 * size, size, size, size));
+	pSprite->SetPositionInTexture(RectangleI(0, 0, size, size));
 	pSprite->SetName("tile0");
 	Game::Instance().GetAssetManager().AddAsset(NEW_AO Asset(pSprite->GetName(), pSprite));
 
@@ -104,8 +103,8 @@ void TileMapGame::CreateBackground(World* pWorld)
 		{
 			pSprite = NEW_AO Sprite();
 			pSprite->SetTexture2D(texture);
-			//pSprite->SetPositionInTexture(CRectangleI(12 * size, 4 * size, size, size));
-			pSprite->SetPositionInTexture(CRectangleI(2 * size + x * size, y * size, size, size));
+			//pSprite->SetPositionInTexture(RectangleI(12 * size, 4 * size, size, size));
+			pSprite->SetPositionInTexture(RectangleI(2 * size + x * size, y * size, size, size));
 			std::ostringstream str;
 			str << "autoTile" << (x + y * 2);
 			pSprite->SetName(str.str());
@@ -147,7 +146,7 @@ void TileMapGame::CreateBackground(World* pWorld)
 	pAnim->AddEvent(pEndEvent);
 	pAnim->SetName("anim2D_tile0");
 	pAnim->SetType(Animation2DType::TAnimation2DType::Loop);
-	Game::Instance().GetAssetManager().AddAsset(new Asset(pAnim->GetName(), pAnim));
+	GetAssetManager().AddAsset(new Asset(pAnim->GetName(), pAnim));
 
 	std::vector<ITile*> tiles4AutoTile;
 	for (int y = 0; y < 3; ++y)
@@ -156,10 +155,12 @@ void TileMapGame::CreateBackground(World* pWorld)
 		{
 			std::ostringstream str;
 			str << "autoTile" << (x + y * 2);
-			auto* staticTile = NEW_AO StaticTile(Game::Instance().GetAssetManager().GetAsset<Sprite>(str.str()));
+			auto* staticTile = NEW_AO StaticTile(GetAssetManager().GetAsset<Sprite>(str.str()));
 			tiles4AutoTile.push_back(staticTile);
 		}
 	}
+
+	auto* layer = new TiledMapLayer();
 	
 	std::vector<ITile*> tiles;
 	for (int y = 0; y < 11; ++y)
@@ -170,7 +171,7 @@ void TileMapGame::CreateBackground(World* pWorld)
 				((x % 2 == 0) && (y == 1 || y == 9)) ||
 				((y % 2 == 0) && (x == 1 || x == 28)))
 			{
-				auto* autoTile = NEW_AO AutoTile(pMap, x, y);
+				auto* autoTile = NEW_AO AutoTile(layer, x, y);
 				autoTile->setTiles(tiles4AutoTile);
 				tiles.push_back(autoTile);
 			}
@@ -181,7 +182,9 @@ void TileMapGame::CreateBackground(World* pWorld)
 			}
 		}
 	}
-	pMap->SetTiles(tiles);
+	
+	layer->SetTiles(tiles);
+	pMap->AddLayer(layer);
 
 	pTrans3D->SetLocalScale(Vector3F(size, size, 1.0));
 	pEntity->GetComponentMgr()->AddComponent(pTrans3D);
@@ -202,10 +205,10 @@ void TileMapGame::LoadContent()
 	auto texture = Texture::loadTexture("vegeta.png");
 	auto pSprite = NEW_AO Sprite();
 	pSprite->SetTexture2D(texture);
-	pSprite->SetPositionInTexture(CRectangleI(0, 0, texture->TextureInfo()->width, texture->TextureInfo()->height));
+	pSprite->SetPositionInTexture(RectangleI(0, 0, texture->TextureInfo()->width, texture->TextureInfo()->height));
 	pSprite->SetName("sprite");
 	//pSprite->SetAssetFileName("vegeta.png");
-	Game::Instance().GetAssetManager().AddAsset(NEW_AO Asset(pSprite->GetName(), pSprite));
+	GetAssetManager().AddAsset(NEW_AO Asset(pSprite->GetName(), pSprite));
 
 	BaseEntity* pEntity = NEW_AO BaseEntity();
 	pEntity->SetName("vegeta");
@@ -224,15 +227,15 @@ void TileMapGame::LoadContent()
 	BaseEntity* pCamera = NEW_AO BaseEntity();
 	pCamera->SetName("camera 2D");
 	Camera2DComponent* m_pCamera2D = NEW_AO Camera2DComponent(pCamera);
-	auto custom_camera_controller = new CustomCameraController(m_pCamera2D);
+	auto custom_camera_controller = new Camera2DTargetedController(m_pCamera2D);
 	s_pCameraController = custom_camera_controller;
 	m_pCamera2D->CameraController(custom_camera_controller);
 	pCamera->GetComponentMgr()->AddComponent(m_pCamera2D);
 	custom_camera_controller->SetDeadZoneRatio(Vector2F(0.7f, 0.7f));
 	custom_camera_controller->SetTargetedEntity(pEntity);
-	custom_camera_controller->SetLimits(CRectangleI(0, 0, 1500, 800));
+	custom_camera_controller->SetLimits(RectangleI(0, 0, 1500, 800));
 	p_world->AddEntity(pCamera);
-	Game::Instance().GetGameInfo().SetActiveCamera(m_pCamera2D);
+	GetGameInfo().SetActiveCamera(m_pCamera2D);
 
 
 	CreateBackground(p_world);
@@ -271,7 +274,6 @@ void TileMapGame::Draw()
 	bgfx::dbgTextClear();
 	bgfx::dbgTextPrintf(0, 0, 0x0f, "player position: %.0f, %.0f", s_pTransform->GetPosition().x, s_pTransform->GetPosition().y);
 	bgfx::dbgTextPrintf(0, 1, 0x0f, "camera offset: %d, %d", s_pCameraController->GetOffset().x, s_pCameraController->GetOffset().y);
-
 
 	Game::Draw();
 }

@@ -13,9 +13,6 @@
 
 namespace CasaEngine
 {
-	/*
-	 *	
-	 */
 	class CA_EXPORT Camera2DController : public ICameraController
 	{
 	public:
@@ -32,23 +29,18 @@ namespace CasaEngine
 		//using the MessageDispatcher singleton class
 		//void HandleEvent(const Event* pEvent_);
 
-		void ViewMatrix(Matrix4& viewMatrix_);		
+		void ViewMatrix(Matrix4& viewMatrix_);
 
-		void Read (std::ifstream& is) override;
+		void Read(std::ifstream& is) override;
 		void Write(std::ostream& os) override;
-		void Read (const tinyxml2::XMLElement& xmlElt) override;
+		void Read(const tinyxml2::XMLElement& xmlElt) override;
 		void Write(tinyxml2::XMLElement& xmlElt) override;
-	
-	protected:		
-		
+
 	private:
 		Matrix4 m_ViewMatrix;
-		//bool m_bRecomputeViewMatrix;
 		Vector3F m_vPosition;
 		float m_fRotation;
 	};
 }
 
-#endif // CAMERA2DCONTROLLER_H_
-
-
+#endif

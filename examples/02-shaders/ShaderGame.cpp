@@ -37,6 +37,13 @@ ShaderGame::ShaderGame() :
  */
 void ShaderGame::Initialize()
 {
+	GetMediaManager().AddSearchPath("../../examples/resources");
+	GetMediaManager().AddSearchPath("../../examples/resources/textures");
+	GetMediaManager().AddSearchPath("../../examples/resources/models");
+	GetMediaManager().AddSearchPath("../../examples/resources/shaders");
+	GetMediaManager().AddSearchPath("../../examples/resources/spriteSheet");
+	GetMediaManager().AddSearchPath("../../examples/resources/fonts");
+	
 	Game::Initialize();
 
  	m_pLine2DRenderer = NEW_AO Line2DRendererComponent(this);
@@ -47,17 +54,10 @@ void ShaderGame::Initialize()
  	AddComponent(m_pLine3DRenderer);
 
 	m_pWorld = NEW_AO World();
-	Game::Instance().GetGameInfo().SetWorld(m_pWorld);
+	GetGameInfo().SetWorld(m_pWorld);
 
     m_LightDir.Set(1.0f, 0.0f, 0.5f);
     m_LightDir.Normalize();
-
-	Game::Instance().GetMediaManager().AddSearchPath("../../examples/resources");
-	Game::Instance().GetMediaManager().AddSearchPath("../../examples/resources/textures");
-	Game::Instance().GetMediaManager().AddSearchPath("../../examples/resources/models");
-	Game::Instance().GetMediaManager().AddSearchPath("../../examples/resources/shaders");
-	Game::Instance().GetMediaManager().AddSearchPath("../../examples/resources/spriteSheet");
-	Game::Instance().GetMediaManager().AddSearchPath("../../examples/resources/fonts");
     //Game::Instance().GetMediaManager().RegisterLoader(NEW_AO CMD2Loader, "md2");
 
     // Enregistrement des commandes console

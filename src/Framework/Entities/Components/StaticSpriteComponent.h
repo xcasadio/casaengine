@@ -14,9 +14,6 @@
 
 namespace CasaEngine
 {
-	/*
-	 *	
-	 */
 	class CA_EXPORT StaticSpriteComponent :
 		public Component
 	{
@@ -43,18 +40,8 @@ namespace CasaEngine
 		void Initialize();
 		void Update(const GameTime& gameTime_);
 		void Draw();
-
-		//all entities can communicate using messages. They are sent
-		//using the MessageDispatcher singleton class
-		//void HandleEvent(const Event* pEvent_);
-
-		//entities should be able to read/write their data to a stream
-		void Write(std::ostream&  os)const;
-		void Read (std::ifstream& is);
 	};
 
 }
 
-#endif // STATICSPRITECOMPONENT_H_
-
-
+#endif

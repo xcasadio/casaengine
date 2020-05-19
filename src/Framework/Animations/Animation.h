@@ -32,10 +32,7 @@ namespace CasaEngine
 		bool GetLoop() const;
 
 		void Update(float elapsedTime_);
-
-		void Read (std::ifstream& is);
-		void Read (const tinyxml2::XMLElement& el_);
-
+		
 	protected:
 		Animation();
 		Animation(const Animation& rsh);
@@ -44,7 +41,7 @@ namespace CasaEngine
 		std::vector<AnimationEvent *> m_Events;
 
 	private:
-		unsigned int m_ID;
+		unsigned int m_ID;// TODO : usefull ?
 		
 		float m_TotalTime; // total time of the animation
 		float m_CurrentTime;
@@ -52,22 +49,36 @@ namespace CasaEngine
 		bool m_Loop;
 		bool m_bIsInitialized;
 
-#if EDITOR
+	private:
+		friend class cereal::access;
 
+		template <class Archive>
+		void load(Archive& ar)
+		{
+			ar(cereal::base_class<IAssetable>(this));
+			ar(cereal::make_nvp("loop", m_Loop));
+			ar(cereal::make_nvp("animation_event", m_Events));
+		}
+
+		template <class Archive>
+		void save(Archive& ar) const
+		{
+			ar(cereal::base_class<IAssetable>(this));
+			ar(cereal::make_nvp("loop", m_Loop));
+			ar(cereal::make_nvp("animation_event", m_Events));
+		}
+
+#if EDITOR
 	public:
 		void CurrentTime(float val);
 		void RemoveEvent(AnimationEvent *event_);
 		void SortEventList();
 
-		void Write(tinyxml2::XMLElement *el_);
-		void Write(std::ostream& os);
-
 	private:
 		static const int m_Version; // load version
-
 #endif
 		
 	};
 }
 
-#endif // _ANIMATION_H_
+#endif

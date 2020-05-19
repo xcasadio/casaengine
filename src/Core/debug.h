@@ -34,7 +34,7 @@ namespace CasaEngine
 #elif CA_CPU_X86 && (CA_COMPILER_GCC || CA_COMPILER_CLANG)
 		// NaCl doesn't like int 3:
 		// NativeClient: NaCl module load failed: Validation failure. File violates Native Client safety rules.
-		__asm__ ("int $3");
+		__asm__("int $3");
 #else // cross platform implementation
 		int* int3 = (int*)3L;
 		*int3 = 3;
@@ -61,5 +61,4 @@ namespace CasaEngine
 
 }
 
-
-#endif // CASAENGINE_DEBUG_H_
+#endif

@@ -25,7 +25,7 @@ class Character :
 public:
 	// Index of character animation.
 	// Respect the order of the enum CharacterAnimation
-	enum AnimationIndices
+	enum class AnimationIndices
 	{
 		IDLE = 0,
 		RUN = 1,
@@ -42,20 +42,20 @@ public:
 
 		//FuryModeOffset, //use to set animation
 		//respect the order : same as "normal mode"
-		FURY_IDLE,
-		FURY_RUN,
-		FURY_ATTACK1,
-		FURY_ATTACK2,
-		FURY_ATTACK3,
-		FURY_HIT,
-		FURY_MAGIC1,
-		FURY_MAGIC2,
-		FURY_DYING,
-		FURY_DEAD,
+		FURY_IDLE = 12,
+		FURY_RUN = 13,
+		FURY_ATTACK1 = 14,
+		FURY_ATTACK2 = 15,
+		FURY_ATTACK3 = 16,
+		FURY_HIT = 17,
+		FURY_MAGIC1 = 18,
+		FURY_MAGIC2 = 19,
+		FURY_DYING = 20,
+		FURY_DEAD = 21,
 	};
 
 	// Respect the order of the enum CharacterAnimation
-	enum AnimationDirectionOffset
+	enum class AnimationDirectionOffset
 	{
 		RIGHT = 0,
 		LEFT = 1,
@@ -73,7 +73,7 @@ public:
 	static orientation GetOrientationFromVector2(Vector2F v_);
 
 public:
-	~Character();
+	virtual ~Character();
 
 	virtual void Initialize();
 	void Update(const GameTime& gameTime_);
@@ -103,14 +103,8 @@ public:
 	orientation GetOrientation() const;
 	void SetOrientation(orientation val);
 
-	//////////////////////////////////////////////////////////////////////////
-	void Read(const tinyxml2::XMLElement& xmlElt) override;
-	void Read(std::ifstream& is) override;
-	void Write(tinyxml2::XMLElement& xmlElt) override;
-	void Write(std::ostream& os) override;
-
 protected:
-	Character(AnimatedSpriteComponent* pAnimatedSprite_);
+	Character(BaseEntity* pEntity);
 
 private:
 	int GetAnimationDirectionOffset();
@@ -166,4 +160,4 @@ private:
 	std::queue<Telegram> m_MessageQueue;
 };
 
-#endif // CHARACTER_H_
+#endif

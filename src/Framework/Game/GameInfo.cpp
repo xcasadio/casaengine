@@ -46,9 +46,9 @@ namespace CasaEngine
 
 		//todo in graphics or in renderer
 		bgfx::setViewRect(0,
-			viewport.X() * Game::Instance().GetWindow()->getSize().x,
-			viewport.Y() * Game::Instance().GetWindow()->getSize().y,
-			viewport.Width() * Game::Instance().GetWindow()->getSize().x,
-			viewport.Height() * Game::Instance().GetWindow()->getSize().y);
+			viewport.X() * static_cast<float>(Game::Instance().GetWindowSize().x),
+			viewport.Y() * static_cast<float>(Game::Instance().GetWindowSize().y),
+			viewport.Width() * static_cast<float>(Game::Instance().GetWindowSize().x),
+			viewport.Height() * static_cast<float>(Game::Instance().GetWindowSize().y));
 	}
 }

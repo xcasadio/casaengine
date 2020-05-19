@@ -61,7 +61,7 @@ namespace CasaEngine
 	/**
 	 *
 	 */
-	IGameData* GameDataFactory::LoadGameData(GameDataClassID id_, std::ifstream& is)
+	IGameData* GameDataFactory::LoadGameData(GameDataClassID id_, const char* name)
 	{
 		IGameData* pRes = nullptr;
 
@@ -72,26 +72,7 @@ namespace CasaEngine
 	/**
 	 *
 	 */
-	IGameData* GameDataFactory::LoadGameData(GameDataClassID id_, const tinyxml2::XMLElement& xmlElt)
-	{
-		IGameData* pRes = nullptr;
-
-
-		return pRes;
-	}
-
-	/**
-	 *
-	 */
-	void GameDataFactory::SaveGameData(IGameData* pData, std::ostream& os)
-	{
-
-	}
-
-	/**
-	 *
-	 */
-	void GameDataFactory::SaveGameData(IGameData* pData, tinyxml2::XMLElement& xmlElt)
+	void GameDataFactory::SaveGameData(IGameData* pData, const char* name)
 	{
 
 	}

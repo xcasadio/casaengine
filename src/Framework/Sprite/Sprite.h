@@ -13,6 +13,9 @@
 #include <iosfwd>
 #include "Maths/Shape/IShape.h"
 
+#include <cereal/access.hpp>
+#include <cereal/types/vector.hpp>
+
 namespace CasaEngine
 {
 	class CA_EXPORT Sprite :
@@ -24,7 +27,7 @@ namespace CasaEngine
 
 		//std::string GetName() const;
 		Texture* GetTexture2D() const;
-		CRectangleI GetPositionInTexture() const;
+		RectangleI GetPositionInTexture() const;
 		Vector2I GetOrigin() const;
 		std::string GetAssetFileName() const;
 		void Clear();
@@ -32,15 +35,10 @@ namespace CasaEngine
 		std::vector<IShape*>::iterator GetCollisionShapeIterator();
 		std::vector<IShape*>::iterator GetCollisionShapeIteratorEnd();
 
-		virtual void Read(const tinyxml2::XMLElement& node_);
-		virtual void Read(std::ifstream& in);
-		virtual void Write(const tinyxml2::XMLElement& node_);
-		virtual void Write(std::ostream& os);
-
 		//#if EDITOR
 				//void SetName(std::string val);
 		void SetTexture2D(Texture* val);
-		void SetPositionInTexture(CRectangleI val);
+		void SetPositionInTexture(RectangleI val);
 		void SetOrigin(Vector2I val);
 		void SetAssetFileName(std::string val);
 		//#endif // EDITOR
@@ -50,12 +48,35 @@ namespace CasaEngine
 		//std::string m_Name;
 		//constant
 		Texture* m_pTexture2D;
-		CRectangleI m_PositionInTexture;
+		RectangleI m_PositionInTexture;
 		Vector2I m_Origin;
 		std::vector<IShape*> m_CollisionShapes;
 		//std::vector<Vector2I> m_Sockets;
 		std::string m_AssetFileName;
+
+	private:
+		friend class cereal::access;
+
+		template <class Archive>
+		void load(Archive& ar)
+		{
+			ar(cereal::base_class<IAssetable>(this));
+			ar(cereal::make_nvp("texture_name", m_AssetFileName));
+			ar(cereal::make_nvp("uv", m_PositionInTexture));
+			ar(cereal::make_nvp("hotspot", m_Origin));
+			//ar(cereal::make_nvp("collisions", m_CollisionShapes));
+		}
+
+		template <class Archive>
+		void save(Archive& ar) const
+		{
+			ar(cereal::base_class<IAssetable>(this));
+			ar(cereal::make_nvp("texture_name", m_AssetFileName));
+			ar(cereal::make_nvp("uv", m_PositionInTexture));
+			ar(cereal::make_nvp("hotspot", m_Origin));
+			//ar(cereal::make_nvp("collisions", m_CollisionShapes));
+		}
 	};
 }
 
-#endif // _SPRITE_H_
+#endif

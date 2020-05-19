@@ -44,11 +44,6 @@ namespace CasaEngine
 		 */
 		Viewport& GetViewport();
 		float GetViewDistance() const;
-		
-		virtual void Read (const tinyxml2::XMLElement& xmlElt) override;
-		virtual void Read (std::ifstream& is) override;
-		virtual void Write(tinyxml2::XMLElement& xmlElt) override;
-		virtual void Write(std::ostream& os) override;
 
 	protected:
 		CameraComponent(BaseEntity* pEntity_, int type_);

@@ -21,13 +21,8 @@
 
 #include "Physics/PhysicsObjectContainer.h"
 
-
-
 namespace CasaEngine
 {
-	/*
-	 *	
-	 */
 	class CA_EXPORT AnimatedSpriteComponent :
 		public Component,
 		public EventSet
@@ -56,20 +51,9 @@ namespace CasaEngine
 		eSpriteEffects GetSpriteEffect() const;
 		void SetSpriteEffect(eSpriteEffects val);
 
-		/**
-		 * 
-		 */
-		void Initialize();
-
-		/**
-		 * 
-		 */
-		void Update(const GameTime& gameTime_);
-
-		/**
-		 * 
-		 */
-		void Draw();
+		void Initialize() override;
+		void Update(const GameTime& gameTime_) override;
+		void Draw() override;
 
 		//all entities can communicate using messages. They are sent
 		//using the MessageDispatcher singleton class
@@ -83,19 +67,7 @@ namespace CasaEngine
 		//Event
 		bool OnFrameChanged(const EventArgs &e);
 		bool OnAnimationFinished(const EventArgs &e);
-
-		void Read (std::ifstream& is) override;
-		void Read (const tinyxml2::XMLElement &el_) override;
-
-#if EDITOR
-
-		void Write(tinyxml2::XMLElement &el_) override;
-		void Write(std::ostream& os) override;
-
-#endif
-		
 	};
-
 }
 
-#endif // ANIMATED_SPRITECOMPONENT_H
+#endif

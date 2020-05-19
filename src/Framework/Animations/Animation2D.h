@@ -1,4 +1,3 @@
-
 #ifndef _ANIMATION2D_H_
 #define _ANIMATION2D_H_
 
@@ -15,9 +14,6 @@
 
 namespace CasaEngine
 {
-	/**
-	 * 
-	 */
 	class CA_EXPORT Animation2D : 
 		public Animation
 	{
@@ -41,22 +37,31 @@ namespace CasaEngine
 		const char* CurrentFrame() const;
 		void CurrentFrame(const char* val);
 
-		void Read (std::ifstream& is);
-		void Read (const tinyxml2::XMLElement& el_);
-
 	private:
 		void NotifyFrameListener(const char* frameID_);
 
-	private:
 		Animation2DType::TAnimation2DType m_Animation2DType;
 		const char* m_CurrentFrame;
 
+	private:
+		friend class cereal::access;
+
+		template <class Archive>
+		void load(Archive& ar)
+		{
+			ar(cereal::base_class<Animation>(this));
+			ar(cereal::make_nvp("animation_type", m_Animation2DType));
+			
+		}
+
+		template <class Archive>
+		void save(Archive& ar) const
+		{
+			ar(cereal::base_class<Animation>(this));
+			ar(cereal::make_nvp("animation_type", m_Animation2DType));
+		}
+
 #if EDITOR
-
-	public:
-		void Write(tinyxml2::XMLElement& el_);
-		void Write(std::ostream&  os);
-
 	private:
 		static const int m_Version; // load version
 
@@ -65,4 +70,4 @@ namespace CasaEngine
 	};
 }
 
-#endif // _ANIMATION2D_H_
+#endif

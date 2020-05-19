@@ -3,7 +3,7 @@
 #include "EntityManager.h"
 #include "BaseEntity.h"
 
-#include "Macro.h"
+
 #include "CA_Assert.h"
 #include "World/World.h"
 
@@ -78,24 +78,20 @@ namespace CasaEngine
 		}
 	}
 
-#ifdef EDITOR
+//#ifdef EDITOR
 	BaseEntity* EntityManager::GetFirstSelectedEntity() const
 	{
-		EntityIterator it;
-
-		for (it = m_EntityMap.cbegin();
-			it != m_EntityMap.cend();
-			it++)
+		for (auto pair : m_EntityMap)
 		{
-			if (it->second->IsSelected() == true)
+			if (pair.second->IsSelected() == true)
 			{
-				return it->second;
+				return pair.second;
 			}
 		}
 
 		return nullptr;
 	}
 
-#endif
+//#endif
 
 }

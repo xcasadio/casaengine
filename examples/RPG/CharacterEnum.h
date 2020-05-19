@@ -237,5 +237,4 @@ enum AnimationIndex
 	FURY_DEAD_DOWN_LEFT,
 };
 
-
-#endif // CHARACTERANIMATION_H_
+#endif

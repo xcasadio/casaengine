@@ -18,10 +18,8 @@ namespace CasaEngine
 		void Initialize();
 		void Update( const GameTime& gameTime_ );
 
-		void Read( const tinyxml2::XMLElement& xmlElt ) override;
-		void Read( std::ifstream& is ) override;
-		void Write( tinyxml2::XMLElement& xmlElt ) override;
-		void Write( std::ostream& os ) override;
+
+		void SetScriptObject(IScriptObject *);
 
 	private:
 		IScriptObject *m_pScriptObject;
@@ -29,4 +27,4 @@ namespace CasaEngine
 	};
 }
 
-#endif // SCRIPTCOMPONENT_H_
+#endif

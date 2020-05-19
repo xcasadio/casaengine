@@ -9,6 +9,8 @@
 
 #include "Memory/MemoryAllocation.h"
 
+#include <cereal/access.hpp>
+
 namespace CasaEngine
 {
     template <class T>
@@ -96,8 +98,22 @@ namespace CasaEngine
 
         operator T*();
 
-        T x;
-        T y;
+        T x, y;
+
+    private:
+        friend class cereal::access;
+
+        template <class Archive>
+        void load(Archive& ar)
+        {
+            ar(x, y);
+        }
+
+        template <class Archive>
+        void save(Archive& ar) const
+        {
+            ar(x, y);
+        }
     };
 
     template <class T> CVector2<T>   operator * (const CVector2<T>& v, T t);
@@ -115,5 +131,4 @@ namespace CasaEngine
 
 }
 
-
-#endif // VECTOR2_H
+#endif

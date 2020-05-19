@@ -12,8 +12,6 @@
 #include "Log/LogVerbose.h"
 #include "CA_Assert.h"
 #include "Game/Game.h"
-#include "Graphics/bgfx_utils.h"
-
 
 namespace CasaEngine
 {

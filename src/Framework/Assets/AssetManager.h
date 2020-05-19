@@ -8,7 +8,7 @@
 #include "StringUtils.h"
 
 #include "Parsers/Xml/tinyxml2.h"
-#include "Macro.h"
+
 
 #include <string>
 #include <map>
@@ -16,7 +16,8 @@
 
 namespace CasaEngine
 {
-	class CA_EXPORT AssetManager
+	class CA_EXPORT AssetManager :
+		public AllocatedObject<AssetManager>
 	{
 	public:
 		~AssetManager();
@@ -27,22 +28,24 @@ namespace CasaEngine
 		void AddAsset(Asset* asset_);
 		bool Contains(std::string name);
 		void Clear();
-
-		void Load(const tinyxml2::XMLElement* node_);
-		void Load(std::ifstream& in);
-
-		//#ifdef EDITOR
-
-		void Write(const tinyxml2::XMLElement* node_);
-		void Write(std::ostream& os)const;
-
-		// #endif
-
+		
 	private:
 		std::map<std::string, Asset*> m_Assets;
+
+#if EDITOR
+		void RemoveAsset(std::string name);
+		void RemoveAsset(Asset* asset_);
+#endif
 	};
 
-#include "AssetManager.inl"
+	template<class T>
+	T* AssetManager::GetAsset(std::string name_)
+	{
+		std::map<std::string, Asset*>::const_iterator asset = m_Assets.find(name_);
+		CA_ASSERT(asset != m_Assets.end(),
+			(CStringBuilder("AssetManager::GetAsset(): can't find the asset '")(name_)("'")).c_str());
+		return asset->second->GetAsset<T>();
+	}
 
 }
 

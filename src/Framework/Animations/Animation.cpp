@@ -4,7 +4,7 @@
 #include <string>
 #include "AnimationEvent.h"
 #include "Assets/Assetable.h"
-#include "Macro.h"
+
 #include "CA_Assert.h"
 #include "Entities/Events/BaseEntityEvents.h"
 
@@ -167,54 +167,12 @@ namespace CasaEngine
 	/**
 	 * 
 	 */
-	void Animation::Read( std::ifstream& /*is*/ )
-	{
-
-	}
-
-	/**
-	 * 
-	 */
-	void Animation::Read(const tinyxml2::XMLElement& el_)
-	{
-		IAssetable::Read(el_);
-
-		const tinyxml2::XMLElement *pElemFrame = el_.FirstChildElement("EventList")->FirstChildElement("Event");
-
-		while (pElemFrame != nullptr)
-		{
-			//get type event
-			//EventFactory.Read()
-			// 
-			pElemFrame = pElemFrame->NextSiblingElement();
-		}
-	}
-
-	/**
-	 * 
-	 */
 	void Animation::AddEvent(AnimationEvent *event_) 
 	{ 
 		m_Events.push_back(event_); 
 	}
 
 #if EDITOR
-
-	/**
-	 * 
-	 */
-	void Animation::Write( tinyxml2::XMLElement *el_ )
-	{
-
-	}
-
-	/**
-	 * 
-	 */
-	void Animation::Write( std::ostream& os )
-	{
-
-	}
 
 	/**
 	 * 

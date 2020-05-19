@@ -8,6 +8,8 @@
 #include <algorithm>
 #include <iostream>
 
+#include <cereal/access.hpp>
+
 namespace CasaEngine
 {
     using TIntersection = enum
@@ -21,7 +23,6 @@ namespace CasaEngine
 	class CA_EXPORT CRectangle :
 		public AllocatedObject<CRectangle<T>>
     {
-    public :
     public:
         CRectangle() = default;
         CRectangle(T Left, T Top, T Width, T Height);
@@ -45,13 +46,28 @@ namespace CasaEngine
         bool operator !=(const CRectangle<T> & Rect) const;
 
         T x, y, w, h;
+
+    private:
+        friend class cereal::access;
+    	
+        template <class Archive>
+        void load(Archive& ar)
+        {
+            ar(x, y, w, h);
+        }
+    	
+        template <class Archive>
+        void save(Archive& ar) const
+        {
+            ar(x, y, w, h);
+        }
     };
 
     template <class T> std::istream& operator >>(std::ostream& Stream, CRectangle<T>& Rect);
     template <class T> std::ostream& operator <<(std::ostream& Stream, const CRectangle<T>& Rect);
 
-    typedef CRectangle<int> CRectangleI;
-    typedef CRectangle<float> CRectangleF;
+    typedef CRectangle<int> RectangleI;
+    typedef CRectangle<float> RectangleF;
 
 #include "Rectangle.inl"
 

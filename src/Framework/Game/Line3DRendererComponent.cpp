@@ -166,7 +166,7 @@ namespace CasaEngine
 		::delete[] pVertices;
 
 		m_bRecomputeVB = false;
-		m_NbLines = m_Lines.size();
+		m_NbLines = static_cast<unsigned int>(m_Lines.size());
 	}
 
 }

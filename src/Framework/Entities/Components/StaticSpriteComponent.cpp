@@ -16,128 +16,69 @@
 
 namespace CasaEngine
 {
-
-/**
- * 
- */
-StaticSpriteComponent::StaticSpriteComponent(BaseEntity* pEntity_)
-	: Component(pEntity_, STATIC_SPRITE),
+	StaticSpriteComponent::StaticSpriteComponent(BaseEntity* pEntity_)
+		: Component(pEntity_, STATIC_SPRITE),
 		m_pSpriteRenderer(nullptr),
 		m_pSprite(nullptr),
 		m_pTransform(nullptr)
-{
-	
-}
+	{
 
-/**
- * 
- */
-StaticSpriteComponent::~StaticSpriteComponent()
-{
+	}
 
-}
+	StaticSpriteComponent::~StaticSpriteComponent()
+	{
 
-/**
- * 
- */
-std::string StaticSpriteComponent::GetSpriteID() const 
-{ 
-	return m_SpriteID; 
-}
+	}
 
-/**
- * 
- */
-void StaticSpriteComponent::SetSpriteID(std::string val) 
-{ 
-	m_SpriteID = val;
-	m_pSprite = Game::Instance().GetAssetManager().GetAsset<Sprite>(m_SpriteID);
-}
+	std::string StaticSpriteComponent::GetSpriteID() const
+	{
+		return m_SpriteID;
+	}
 
-/**
- * 
- */
-CColor StaticSpriteComponent::GetColor() const 
-{ 
-	return m_Color; 
-}
+	void StaticSpriteComponent::SetSpriteID(std::string val)
+	{
+		m_SpriteID = val;
+		m_pSprite = Game::Instance().GetAssetManager().GetAsset<Sprite>(m_SpriteID);
+	}
 
-/**
- * 
- */
-void StaticSpriteComponent::SetColor(CColor val) 
-{ 
-	m_Color = val; 
-}
+	CColor StaticSpriteComponent::GetColor() const
+	{
+		return m_Color;
+	}
 
-/**
- * 
- */
-eSpriteEffects StaticSpriteComponent::GetSpriteEffect() const 
-{ 
-	return m_SpriteEffect; 
-}
+	void StaticSpriteComponent::SetColor(CColor val)
+	{
+		m_Color = val;
+	}
 
-/**
- * 
- */
-void StaticSpriteComponent::SetSpriteEffect(eSpriteEffects val) 
-{ 
-	m_SpriteEffect = val; 
-}
+	eSpriteEffects StaticSpriteComponent::GetSpriteEffect() const
+	{
+		return m_SpriteEffect;
+	}
 
-/**
- * 
- */
-void StaticSpriteComponent::Initialize()
-{
-	m_pSpriteRenderer = Game::Instance().GetGameComponent<SpriteRenderer>();
-	CA_ASSERT(m_pSpriteRenderer != nullptr, 
-		"StaticSpriteComponent::Initialize() can't find the component SpriteRenderer");
+	void StaticSpriteComponent::SetSpriteEffect(eSpriteEffects val)
+	{
+		m_SpriteEffect = val;
+	}
 
-	m_pTransform = GetEntity()->GetComponentMgr()->GetComponent<Transform3DComponent>();
-	CA_ASSERT(m_pTransform != nullptr, 
-		"StaticSpriteComponent::Initialize() can't find the Transform2DComponent. Please add it before add a StaticSpriteComponent");
-}
+	void StaticSpriteComponent::Initialize()
+	{
+		m_pSpriteRenderer = Game::Instance().GetGameComponent<SpriteRenderer>();
+		CA_ASSERT(m_pSpriteRenderer != nullptr,
+			"StaticSpriteComponent::Initialize() can't find the component SpriteRenderer");
 
-/**
- * 
- */
-void StaticSpriteComponent::Update(const GameTime& /*gameTime_*/)
-{
-}
+		m_pTransform = GetEntity()->GetComponentMgr()->GetComponent<Transform3DComponent>();
+		CA_ASSERT(m_pTransform != nullptr,
+			"StaticSpriteComponent::Initialize() can't find the Transform2DComponent. Please add it before add a StaticSpriteComponent");
+	}
 
-/**
- * 
- */
-void StaticSpriteComponent::Draw()
-{	
-	m_pSpriteRenderer->AddSprite(m_pSprite, m_pTransform->GetWorldMatrix(), 
-        m_Color, m_pTransform->GetLocalMatrix().GetTranslation().z, m_SpriteEffect);
-}
+	void StaticSpriteComponent::Update(const GameTime& /*gameTime_*/)
+	{
+	}
 
-/**
- * 
- */
-/*void StaticSpriteComponent::HandleEvent(const Event* pEvent_)
-{
-
-}*/
-
-/**
- * 
- */
-void StaticSpriteComponent::Write(std::ostream& /*os*/) const
-{
-
-}
-
-/**
- * 
- */
-void StaticSpriteComponent::Read (std::ifstream& /*is*/)
-{
-
-}
-
+	void StaticSpriteComponent::Draw()
+	{
+		m_pSpriteRenderer->AddSprite(m_pSprite, m_pTransform->GetWorldMatrix(),
+			m_Color, m_pTransform->GetLocalMatrix().GetTranslation().z, m_SpriteEffect);
+	}
 }

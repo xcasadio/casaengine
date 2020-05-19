@@ -4,28 +4,23 @@
 #include "GameTime.h"
 #include "AI\FSM\IState.h"
 #include "IController.h"
+#include "Character.h"
 
 using namespace CasaEngine;
 
-/**
- * 
- */
-enum EnemyControllerState
+enum class EnemyControllerState
 {
-	IDLE,
-	MOVING,
-	ATTACK_1,
-	ATTACK_2,
-	ATTACK_3,
-	MAGIC_1,
-	MAGIC_2,
-	HIT,
-	DEAD,
+	IDLE = 0,
+	MOVING = 1,
+	ATTACK_1 = 2,
+	ATTACK_2 = 3,
+	ATTACK_3 = 4,
+	MAGIC_1 = 5,
+	MAGIC_2 = 6,
+	HIT = 7,
+	DEAD = 8,
 };
 
-/**
- * 
- */
 class EnemyStateIdle : 
 	public IState<IController>
 {
@@ -34,12 +29,22 @@ public:
 	~EnemyStateIdle();
 
 	void Enter(IController *pController_) override;
-	void Execute(IController *pController_, GameTime elpasedTime_);
+	void Execute(IController *pController_, const GameTime& elpasedTime_);
 	void Exit(IController *pController_) override;
 	bool OnMessage(IController *pController_, const Telegram& msg) override;
-
-private:
-
 };
 
-#endif // ENEMYSTATES_H_
+class EnemyStateWalking :
+	public IState<IController>
+{
+public:
+	EnemyStateWalking();
+	~EnemyStateWalking();
+
+	void Enter(IController* pController_) override;
+	void Execute(IController* pController_, const GameTime& elpasedTime_);
+	void Exit(IController* pController_) override;
+	bool OnMessage(IController* pController_, const Telegram& msg) override;
+};
+
+#endif

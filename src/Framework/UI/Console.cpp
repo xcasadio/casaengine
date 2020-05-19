@@ -91,8 +91,8 @@ namespace CasaEngine
 			return;
 		}
 
-		int winWidth = Game::Instance().GetWindow()->getSize().x;
-		int winHeight = Game::Instance().GetWindow()->getSize().y;
+		int winWidth = Game::Instance().GetWindowSize().x;
+		int winHeight = Game::Instance().GetWindowSize().y;
 		/*
 		ImGui::SetNextWindowSize(ImVec2(winWidth - 100, winHeight - 100), ImGuiSetCond_FirstUseEver);
 		if (!ImGui::Begin("Console"))

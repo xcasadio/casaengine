@@ -160,18 +160,6 @@
     <Filter Include="Framework\World">
       <UniqueIdentifier>{22fb6d3d-098f-40e3-bdac-93d39298e7f5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Graphics\3rdparty">
-      <UniqueIdentifier>{70e7e638-d6d4-4a64-a808-f5bd87097b73}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\Graphics\3rdparty\stb">
-      <UniqueIdentifier>{b9909ec3-ad75-4c34-ac53-57abaa8a88f2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\Graphics\3rdparty\ib-compress">
-      <UniqueIdentifier>{9b00a8c4-f42e-44f3-9806-810c490a9690}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\Graphics\3rdparty\nanovg">
-      <UniqueIdentifier>{3222a02f-a753-4eda-8e8d-e1c41901c2c6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Framework\UI">
       <UniqueIdentifier>{82a0b57b-9a37-4fac-8ce4-c6e730417c1b}</UniqueIdentifier>
     </Filter>
@@ -180,6 +168,18 @@
     </Filter>
     <Filter Include="Framework\Map2D">
       <UniqueIdentifier>{9d9f0f78-1aa9-431d-b780-9517a159c49e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\UI\imgui">
+      <UniqueIdentifier>{04a5a60e-5ff6-425a-b6a9-150da91874a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3rdparty">
+      <UniqueIdentifier>{add86508-2199-48f7-8354-e2bb8fa78b50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3rdparty\dear-imgui">
+      <UniqueIdentifier>{3cb7a6f4-a9c9-475e-88a8-8849d9e37ee0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3rdparty\dear-imgui\widgets">
+      <UniqueIdentifier>{40c5bc90-2d39-45d8-976e-3eaed28dbb85}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -208,9 +208,6 @@
       <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Core\GenHierarchies.h">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Core\Macro.h">
       <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Core\StringUtils.h">
@@ -693,9 +690,6 @@
     <ClInclude Include="..\..\src\Framework\Entities\Components\CameraComponent.h">
       <Filter>Framework\Entities\Components</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Entities\Components\FSMComponent.h">
-      <Filter>Framework\Entities\Components</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Framework\Entities\Components\GridComponent.h">
       <Filter>Framework\Entities\Components</Filter>
     </ClInclude>
@@ -810,48 +804,6 @@
     <ClInclude Include="..\..\src\Framework\World\World.h">
       <Filter>Framework\World</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\external\stb\stb_rect_pack.h">
-      <Filter>Engine\Graphics\3rdparty\stb</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\external\stb\stb_truetype.h">
-      <Filter>Engine\Graphics\3rdparty\stb</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\external\stb\stb_textedit.h">
-      <Filter>Engine\Graphics\3rdparty\stb</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\external\ib-compress\indexbuffercompression.h">
-      <Filter>Engine\Graphics\3rdparty\ib-compress</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\external\ib-compress\indexbuffercompressionformat.h">
-      <Filter>Engine\Graphics\3rdparty\ib-compress</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\external\ib-compress\indexbufferdecompression.h">
-      <Filter>Engine\Graphics\3rdparty\ib-compress</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\external\ib-compress\indexcompressionconstants.h">
-      <Filter>Engine\Graphics\3rdparty\ib-compress</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\external\ib-compress\readbitstream.h">
-      <Filter>Engine\Graphics\3rdparty\ib-compress</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\external\ib-compress\writebitstream.h">
-      <Filter>Engine\Graphics\3rdparty\ib-compress</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\external\nanovg\fontstash.h">
-      <Filter>Engine\Graphics\3rdparty\nanovg</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\external\nanovg\fs_nanovg_fill.bin.h">
-      <Filter>Engine\Graphics\3rdparty\nanovg</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\external\nanovg\nanovg.h">
-      <Filter>Engine\Graphics\3rdparty\nanovg</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\external\nanovg\vs_nanovg_fill.bin.h">
-      <Filter>Engine\Graphics\3rdparty\nanovg</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\external\stb\stb_image.h">
-      <Filter>Engine\Graphics\3rdparty\stb</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Framework\Entities\Components\MeshComponent.h">
       <Filter>Framework\Entities\Components</Filter>
     </ClInclude>
@@ -898,6 +850,126 @@
       <Filter>Framework\Map2D</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Framework\Map2D\TiledMapComponent.h">
+      <Filter>Framework\Map2D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Framework\UI\imguiAdapter.h">
+      <Filter>Framework\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Framework\UI\imgui\droidsans.ttf.h">
+      <Filter>Framework\UI\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Framework\UI\imgui\fs_imgui_color.bin.h">
+      <Filter>Framework\UI\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Framework\UI\imgui\fs_imgui_cubemap.bin.h">
+      <Filter>Framework\UI\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Framework\UI\imgui\fs_imgui_image.bin.h">
+      <Filter>Framework\UI\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Framework\UI\imgui\fs_imgui_image_swizz.bin.h">
+      <Filter>Framework\UI\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Framework\UI\imgui\fs_imgui_latlong.bin.h">
+      <Filter>Framework\UI\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Framework\UI\imgui\fs_imgui_texture.bin.h">
+      <Filter>Framework\UI\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Framework\UI\imgui\fs_ocornut_imgui.bin.h">
+      <Filter>Framework\UI\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Framework\UI\imgui\icons_font_awesome.ttf.h">
+      <Filter>Framework\UI\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Framework\UI\imgui\icons_kenney.ttf.h">
+      <Filter>Framework\UI\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Framework\UI\imgui\roboto_regular.ttf.h">
+      <Filter>Framework\UI\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Framework\UI\imgui\robotomono_regular.ttf.h">
+      <Filter>Framework\UI\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Framework\UI\imgui\vs_imgui_color.bin.h">
+      <Filter>Framework\UI\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Framework\UI\imgui\vs_imgui_cubemap.bin.h">
+      <Filter>Framework\UI\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Framework\UI\imgui\vs_imgui_image.bin.h">
+      <Filter>Framework\UI\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Framework\UI\imgui\vs_imgui_latlong.bin.h">
+      <Filter>Framework\UI\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Framework\UI\imgui\vs_imgui_texture.bin.h">
+      <Filter>Framework\UI\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Framework\UI\imgui\vs_ocornut_imgui.bin.h">
+      <Filter>Framework\UI\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\external\dear-imgui\imconfig.h">
+      <Filter>3rdparty\dear-imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\external\dear-imgui\imgui.h">
+      <Filter>3rdparty\dear-imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\external\dear-imgui\imgui_internal.h">
+      <Filter>3rdparty\dear-imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\external\dear-imgui\imgui_user.h">
+      <Filter>3rdparty\dear-imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\external\dear-imgui\imstb_rectpack.h">
+      <Filter>3rdparty\dear-imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\external\dear-imgui\imstb_textedit.h">
+      <Filter>3rdparty\dear-imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\external\dear-imgui\imstb_truetype.h">
+      <Filter>3rdparty\dear-imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\external\dear-imgui\stb_rect_pack.h">
+      <Filter>3rdparty\dear-imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\external\dear-imgui\stb_textedit.h">
+      <Filter>3rdparty\dear-imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\external\dear-imgui\stb_truetype.h">
+      <Filter>3rdparty\dear-imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\external\dear-imgui\widgets\color_picker.h">
+      <Filter>3rdparty\dear-imgui\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\external\dear-imgui\widgets\color_wheel.h">
+      <Filter>3rdparty\dear-imgui\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\external\dear-imgui\widgets\dock.h">
+      <Filter>3rdparty\dear-imgui\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\external\dear-imgui\widgets\file_list.h">
+      <Filter>3rdparty\dear-imgui\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\external\dear-imgui\widgets\gizmo.h">
+      <Filter>3rdparty\dear-imgui\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\external\dear-imgui\widgets\markdown.h">
+      <Filter>3rdparty\dear-imgui\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\external\dear-imgui\widgets\memory_editor.h">
+      <Filter>3rdparty\dear-imgui\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\external\dear-imgui\widgets\range_slider.h">
+      <Filter>3rdparty\dear-imgui\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Framework\UI\imgui\bgfx-imgui.h">
+      <Filter>Framework\UI\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Framework\Entities\Components\CameraControllers\Camera2DTargetedController.h">
+      <Filter>Framework\Entities\Components\CameraControllers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Framework\Map2D\TiledMapLayer.h">
       <Filter>Framework\Map2D</Filter>
     </ClInclude>
   </ItemGroup>
@@ -1193,9 +1265,6 @@
     <ClCompile Include="..\..\src\Framework\Entities\Components\CameraComponent.cpp">
       <Filter>Framework\Entities\Components</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Framework\Entities\Components\FSMComponent.cpp">
-      <Filter>Framework\Entities\Components</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Framework\Entities\Components\GridComponent.cpp">
       <Filter>Framework\Entities\Components</Filter>
     </ClCompile>
@@ -1298,18 +1367,6 @@
     <ClCompile Include="..\..\src\Framework\World\World.cpp">
       <Filter>Framework\World</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\external\ib-compress\indexbuffercompression.cpp">
-      <Filter>Engine\Graphics\3rdparty\ib-compress</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\external\ib-compress\indexbufferdecompression.cpp">
-      <Filter>Engine\Graphics\3rdparty\ib-compress</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\external\nanovg\nanovg.cpp">
-      <Filter>Engine\Graphics\3rdparty\nanovg</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\external\nanovg\nanovg_bgfx.cpp">
-      <Filter>Engine\Graphics\3rdparty\nanovg</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Framework\Entities\Components\MeshComponent.cpp">
       <Filter>Framework\Entities\Components</Filter>
     </ClCompile>
@@ -1361,6 +1418,30 @@
     <ClCompile Include="..\..\src\Core\ContainerUtil.cpp">
       <Filter>Core</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Framework\UI\imguiAdapter.cpp">
+      <Filter>Framework\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\external\dear-imgui\imgui.cpp">
+      <Filter>3rdparty\dear-imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\external\dear-imgui\imgui_demo.cpp">
+      <Filter>3rdparty\dear-imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\external\dear-imgui\imgui_draw.cpp">
+      <Filter>3rdparty\dear-imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\external\dear-imgui\imgui_widgets.cpp">
+      <Filter>3rdparty\dear-imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Framework\UI\imgui\bgfx-imgui.cpp">
+      <Filter>Framework\UI\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Framework\Entities\Components\CameraControllers\Camera2DTargetedController.cpp">
+      <Filter>Framework\Entities\Components\CameraControllers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Framework\Map2D\TiledMapLayer.cpp">
+      <Filter>Framework\Map2D</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\src\Core\StringUtils.inl">
@@ -1390,12 +1471,6 @@
     <None Include="..\..\src\Engine\Resources\ResourceManager.inl">
       <Filter>Engine\Resources</Filter>
     </None>
-    <None Include="..\..\src\Framework\Assets\Asset.inl">
-      <Filter>Framework\Assets</Filter>
-    </None>
-    <None Include="..\..\src\Framework\Assets\AssetManager.inl">
-      <Filter>Framework\Assets</Filter>
-    </None>
     <None Include="..\..\src\Framework\Game\Game.inl">
       <Filter>Framework\Game</Filter>
     </None>
@@ -1404,6 +1479,33 @@
     </None>
     <None Include="..\..\src\Core\Maths\Rectangle.inl">
       <Filter>Core\Maths</Filter>
+    </None>
+    <None Include="..\..\external\dear-imgui\imgui_user.inl">
+      <Filter>3rdparty\dear-imgui</Filter>
+    </None>
+    <None Include="..\..\external\dear-imgui\widgets\color_picker.inl">
+      <Filter>3rdparty\dear-imgui\widgets</Filter>
+    </None>
+    <None Include="..\..\external\dear-imgui\widgets\color_wheel.inl">
+      <Filter>3rdparty\dear-imgui\widgets</Filter>
+    </None>
+    <None Include="..\..\external\dear-imgui\widgets\dock.inl">
+      <Filter>3rdparty\dear-imgui\widgets</Filter>
+    </None>
+    <None Include="..\..\external\dear-imgui\widgets\file_list.inl">
+      <Filter>3rdparty\dear-imgui\widgets</Filter>
+    </None>
+    <None Include="..\..\external\dear-imgui\widgets\gizmo.inl">
+      <Filter>3rdparty\dear-imgui\widgets</Filter>
+    </None>
+    <None Include="..\..\external\dear-imgui\widgets\markdown.inl">
+      <Filter>3rdparty\dear-imgui\widgets</Filter>
+    </None>
+    <None Include="..\..\external\dear-imgui\widgets\memory_editor.inl">
+      <Filter>3rdparty\dear-imgui\widgets</Filter>
+    </None>
+    <None Include="..\..\external\dear-imgui\widgets\range_slider.inl">
+      <Filter>3rdparty\dear-imgui\widgets</Filter>
     </None>
   </ItemGroup>
 </Project>

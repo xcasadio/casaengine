@@ -9,7 +9,7 @@
 #include <ostream>
 #include <sstream>
 #include <fstream>
-#include "Macro.h"
+
 #include "CA_Assert.h"
 
 namespace CasaEngine
@@ -59,41 +59,4 @@ namespace CasaEngine
 	{
 		
 	}
-
-	/**
-	 * 
-	 */
-	void AnimationEndEvent::Read (std::ifstream& /*is*/)
-	{
-
-	}
-
-	/**
-	 * 
-	 */
-	void AnimationEndEvent::Read(tinyxml2::XMLElement *el_)
-	{
-		AnimationEvent::Read(el_);
-	}
-	
-#if EDITOR
-	/**
-	 * 
-	 */
-	void AnimationEndEvent::Write(std::ostream& /*os*/) const
-	{
-
-	}
-
-	/**
-	 * 
-	 */
-	void AnimationEndEvent::Write(tinyxml2::XMLElement *el_) const
-	{
-
-	}
-
-#endif // EDITOR
-
-
 }

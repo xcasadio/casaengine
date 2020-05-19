@@ -14,125 +14,92 @@
 namespace CasaEngine
 {
 
-/**
- * 
- */
-RigidBodyComponent::RigidBodyComponent(BaseEntity* pEntity_)
-	: Component(pEntity_, RIGID_BODY)
-{
-	m_ListShapes.reserve(1);
-	m_Mass = 0.0f;
-	m_UseGravity = true;
-	m_IsKinematic = false;
-}
-
-/**
- * 
- */
-RigidBodyComponent::~RigidBodyComponent()
-{
-
-}
-
-/**
- * 
- */
-void RigidBodyComponent::Initialize()
-{
-	m_RigidBody.mass = 1.0f;
-	IRigidBodyContainer *pContainer = Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->AddRigidBody(&m_RigidBody);
-	GetEntity()->GetPhysicalEntity().SetRigidBody(pContainer);
-}
-
-/**
- * 
- */
-bool RigidBodyComponent::HandleMessage(const Telegram& msg)
-{
-	return false;
-}
-
-/**
- * 
- */
-void RigidBodyComponent::Update(const GameTime& gameTime_)
-{
-
-}
-
-/**
- * 
- */
-RigidBody& RigidBodyComponent::GetRigidBody()
-{
-	return m_RigidBody;
-}
-
-/**
- * 
- */
-void RigidBodyComponent::SetRigidBody(RigidBody& val)
-{
-	m_RigidBody = val;
-}
-
-/**
- * 
- */
-void RigidBodyComponent::AddShape(ColliderComponent *pShape_)
-{
-	m_ListShapes.push_back(pShape_);
-}
-
-/**
- * 
- */
-void RigidBodyComponent::RemoveShape(ColliderComponent *pShape_)
-{
-	std::vector<ColliderComponent *>::iterator it;
-
-	for (it = m_ListShapes.begin(); it != m_ListShapes.end(); it++)
+	/**
+	 *
+	 */
+	RigidBodyComponent::RigidBodyComponent(BaseEntity* pEntity_)
+		: Component(pEntity_, RIGID_BODY)
 	{
-		if ((*it) == pShape_)
-		{
-			m_ListShapes.erase(it);
-			break;
-		}
+		m_ListShapes.reserve(1);
+		m_Mass = 0.0f;
+		m_UseGravity = true;
+		m_IsKinematic = false;
 	}
 
-	CA_ASSERT(0, "RigidBodyComponent::RemoveShape() ColliderComponent not found")
-}
+	/**
+	 *
+	 */
+	RigidBodyComponent::~RigidBodyComponent()
+	{
 
-/**
- * 
- */
-void RigidBodyComponent::Read(const tinyxml2::XMLElement& xmlElt)
-{
-	
-}
+	}
 
-/**
- * 
- */
-void RigidBodyComponent::Read(std::ifstream& is)
-{
-	
-}
+	/**
+	 *
+	 */
+	void RigidBodyComponent::Initialize()
+	{
+		m_RigidBody.mass = 1.0f;
+		IRigidBodyContainer* pContainer = Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->AddRigidBody(&m_RigidBody);
+		GetEntity()->GetPhysicalEntity().SetRigidBody(pContainer);
+	}
 
-/**
- * 
- */
-void RigidBodyComponent::Write(tinyxml2::XMLElement& xmlElt)
-{
-	
-}
+	/**
+	 *
+	 */
+	bool RigidBodyComponent::HandleMessage(const Telegram& msg)
+	{
+		return false;
+	}
 
-/**
- * 
- */
-void RigidBodyComponent::Write(std::ostream& os)
-{
-	
-}
+	/**
+	 *
+	 */
+	void RigidBodyComponent::Update(const GameTime& gameTime_)
+	{
 
+	}
+
+	/**
+	 *
+	 */
+	RigidBody& RigidBodyComponent::GetRigidBody()
+	{
+		return m_RigidBody;
+	}
+
+	/**
+	 *
+	 */
+	void RigidBodyComponent::SetRigidBody(RigidBody& val)
+	{
+		m_RigidBody = val;
+	}
+
+	/**
+	 *
+	 */
+	void RigidBodyComponent::AddShape(ColliderComponent* pShape_)
+	{
+		m_ListShapes.push_back(pShape_);
+	}
+
+	/**
+	 *
+	 */
+	void RigidBodyComponent::RemoveShape(ColliderComponent* pShape_)
+	{
+		std::vector<ColliderComponent*>::iterator it;
+
+		for (it = m_ListShapes.begin(); it != m_ListShapes.end(); it++)
+		{
+			if ((*it) == pShape_)
+			{
+				m_ListShapes.erase(it);
+				break;
+			}
+		}
+
+		CA_ASSERT(0, "RigidBodyComponent::RemoveShape() ColliderComponent not found")
+	}
 }

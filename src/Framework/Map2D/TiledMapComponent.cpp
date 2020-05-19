@@ -10,66 +10,36 @@ namespace CasaEngine
 {
 	TiledMapComponent::TiledMapComponent(BaseEntity* pEntity_)
 		: Component(pEntity_, ComponentType::TILED_MAP)
-		, m_pSpriteRenderer(nullptr)
 		, m_pTransform3DComponent(nullptr)
 	{
 	}
 
 	void TiledMapComponent::Initialize()
 	{
-		m_pSpriteRenderer = Game::Instance().GetGameComponent<SpriteRenderer>();
-		CA_ASSERT(m_pSpriteRenderer != nullptr);
-
 		m_pTransform3DComponent = GetEntity()->GetComponentMgr()->GetComponent<Transform3DComponent>();
-		CA_ASSERT(m_pTransform3DComponent != nullptr);
-
-		for (auto* anim : m_Tiles)
+		CA_ASSERT(m_pTransform3DComponent != nullptr, "entity must contain a Transform3DComponent")
+		
+		for (auto* pLayer : m_Layers)
 		{
-			if (anim != nullptr)
-			{
-				anim->Initialize();
-			}
+			pLayer->Initialize();
 		}
 	}
 
 	void TiledMapComponent::Update(const GameTime& gameTime_)
 	{
-		for (auto* anim : m_Tiles)
+		for (auto* pLayer : m_Layers)
 		{
-			if (anim != nullptr)
-			{
-				anim->Update(gameTime_);
-			}
+			pLayer->Update(gameTime_);
 		}
 	}
 
 	void TiledMapComponent::Draw()
 	{
-		auto world_matrix = m_pTransform3DComponent->GetWorldMatrix();
-		const float px = world_matrix.GetTranslation().x;
-		const float py = world_matrix.GetTranslation().y;
-		const float z = world_matrix.GetTranslation().z;
-
-		for (int y = 0; y < m_MapSize.y; ++y)
+		float zOrder = 0.0f;
+		for (auto* pLayer : m_Layers)
 		{
-			for (int x = 0; x < m_MapSize.x; ++x)
-			{
-				if (m_Tiles[x + y * m_MapSize.x] != nullptr)
-				{
-					m_Tiles[x + y * m_MapSize.x]->Draw(
-						px + x * m_TileSize.x, py + y * m_TileSize.y, z,
-						CRectangleI(0, 0, m_TileSize.x, m_TileSize.y));
-
-					/*Animation2D& anim = *m_Tiles[x + y * m_MapSize.x];
-					world_matrix.SetTranslation(Vector3F(px + x * m_TileSize.x, py + y * m_TileSize.y, z));
-					auto* spriteName = anim.CurrentFrame();
-					m_pSpriteRenderer->AddSprite(Game::Instance().GetAssetManager().GetAsset<Sprite>(spriteName),
-						world_matrix,
-						CColor::White,
-						z,
-						eSpriteEffects::SPRITE_EFFECT_NONE);*/
-				}
-			}
+			pLayer->Draw(m_pTransform3DComponent, m_pTransform3DComponent->GetPosition().z + zOrder);
+			zOrder += 0.01f;
 		}
 	}
 
@@ -93,35 +63,20 @@ namespace CasaEngine
 		m_TileSize = size;
 	}
 
-	std::vector<ITile*> TiledMapComponent::GetTiles() const
+	std::vector<TiledMapLayer*> TiledMapComponent::GetLayers() const
 	{
-		return m_Tiles;
+		return m_Layers;
 	}
 
-	void TiledMapComponent::SetTiles(std::vector<ITile*>& tiles)
+	void TiledMapComponent::AddLayer(TiledMapLayer *pLayer)
 	{
-		m_Tiles.clear();
-
-		for (auto* tile : tiles)
-		{
-			m_Tiles.push_back(tile);
-		}
+		pLayer->SetTileSize(m_TileSize);
+		pLayer->SetMapSize(m_MapSize);
+		m_Layers.push_back(pLayer);
 	}
 
-	void TiledMapComponent::SetTile(int x, int y, ITile* pTile)
+	TiledMapLayer* TiledMapComponent::GetLayer(const int layerNum) const
 	{
-		m_Tiles[x + y * m_MapSize.x] = pTile;
-	}
-
-	ITile* TiledMapComponent::GetTile(const int x, const int y) const
-	{
-		if (x >= m_MapSize.x || x < 0
-			|| y >= m_MapSize.y || y < 0)
-		{
-			return nullptr;
-		}
-
-		//check limits
-		return m_Tiles[x + y * m_MapSize.x];
+		return m_Layers[layerNum];
 	}
 }

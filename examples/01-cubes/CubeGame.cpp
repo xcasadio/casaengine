@@ -1,5 +1,5 @@
 #include "CubeGame.h"
-#include "bgfx.h"
+#include "bgfx\bgfx.h"
 
 #include "Entities\Components\Camera3DComponent.h"
 #include "Entities\Components\CameraControllers\ArcBallCameraController.h"
@@ -15,14 +15,13 @@
 #include "Graphics\Primitives\CylinderPrimitive.h"
 #include "Graphics\Primitives\PlanePrimitive.h"
 #include "Graphics\Primitives\SpherePrimitive.h"
-#include "Graphics\bgfx_utils.h"
 #include "Log\LoggerFile.h"
 #include "Log\LogManager.h"
 #include "Tools\DebugSystem.h"
 #include "World\World.h"
 
 /**
- * 
+ *
  */
 CubeGame::CubeGame()
 {
@@ -30,59 +29,64 @@ CubeGame::CubeGame()
 }
 
 /**
- * 
+ *
  */
 CubeGame::~CubeGame()
 {
 }
 
 /**
- * 
+ *
  */
 void CubeGame::Initialize()
 {
+	GetMediaManager().AddSearchPath("../../examples/resources");
+	GetMediaManager().AddSearchPath("../../examples/resources/textures");
+	GetMediaManager().AddSearchPath("../../examples/resources/models");
+	GetMediaManager().AddSearchPath("../../examples/resources/shaders");
+	GetMediaManager().AddSearchPath("../../examples/resources/spriteSheet");
+	GetMediaManager().AddSearchPath("../../examples/resources/script");
+	GetMediaManager().AddSearchPath("../../examples/resources/fonts");
+
 	Game::Initialize();
-	
-	Game::Instance().GetMediaManager().AddSearchPath("../../examples/resources");
-	Game::Instance().GetMediaManager().AddSearchPath("../../examples/resources/textures");
-	Game::Instance().GetMediaManager().AddSearchPath("../../examples/resources/models");
-	Game::Instance().GetMediaManager().AddSearchPath("../../examples/resources/shaders");
-	Game::Instance().GetMediaManager().AddSearchPath("../../examples/resources/spriteSheet");
-	Game::Instance().GetMediaManager().AddSearchPath("../../examples/resources/script");
-	Game::Instance().GetMediaManager().AddSearchPath("../../examples/resources/fonts");
 
 
-// 	Line2DRendererComponent *m_pLine2DRenderer = NEW_AO Line2DRendererComponent(this);
- //	Line3DRendererComponent *m_pLine3DRenderer = NEW_AO Line3DRendererComponent(this);
-	MeshRendererGameComponent *m_pModelRenderer = NEW_AO MeshRendererGameComponent(this);
+	// 	Line2DRendererComponent *m_pLine2DRenderer = NEW_AO Line2DRendererComponent(this);
+	 //	Line3DRendererComponent *m_pLine3DRenderer = NEW_AO Line3DRendererComponent(this);
+	MeshRendererGameComponent* m_pModelRenderer = NEW_AO MeshRendererGameComponent(this);
 	//DebugSystem *m_pDebugSystem = NEW_AO DebugSystem(this);
 
 // 	AddComponent(m_pLine2DRenderer);
 // 	AddComponent(m_pLine3DRenderer);	
 	AddComponent(m_pModelRenderer);
 	//AddComponent(m_pDebugSystem);
+
+	GetDebugOptions().ShowAxis = true;
+	GetDebugOptions().ShowFPS == true;
+	GetDebugOptions().IsDebugActivated = true;
+	GetDebugOptions().ShowLogInGame = true;
 }
 
 /**
- * 
+ *
  */
 void CubeGame::LoadContent()
 {
 	Game::LoadContent();
-	
-	World *m_pWorld = NEW_AO World();
+
+	World* m_pWorld = NEW_AO World();
 	Game::Instance().GetGameInfo().SetWorld(m_pWorld);
 
 	m_pProgram = NEW_AO Program("vs_mesh", "fs_mesh");
 
 	//Camera 3D
-	BaseEntity *pCamera = NEW_AO BaseEntity();
-	Camera3DComponent *m_pCamera3D = NEW_AO Camera3DComponent(pCamera);
-	ArcBallCameraController *pArcBall = NEW_AO ArcBallCameraController(m_pCamera3D);
+	BaseEntity* pCamera = NEW_AO BaseEntity();
+	Camera3DComponent* m_pCamera3D = NEW_AO Camera3DComponent(pCamera);
+	ArcBallCameraController* pArcBall = NEW_AO ArcBallCameraController(m_pCamera3D);
 	pArcBall->SetCamera(Vector3F(0, 20.0f, -50.0f), Vector3F::Zero(), Vector3F::Up());
 	pArcBall->Distance(15.0f);
 	m_pCamera3D->CameraController(pArcBall);
-	pCamera->GetComponentMgr()->AddComponent(m_pCamera3D);	
+	pCamera->GetComponentMgr()->AddComponent(m_pCamera3D);
 	m_pWorld->AddEntity(pCamera);
 	Game::Instance().GetGameInfo().SetActiveCamera(m_pCamera3D);
 
@@ -91,14 +95,14 @@ void CubeGame::LoadContent()
 	//Box
 	BaseEntity* pEntity = NEW_AO BaseEntity();
 	pEntity->SetName("box");
-	Transform3DComponent *pTransform = NEW_AO Transform3DComponent(pEntity);
+	Transform3DComponent* pTransform = NEW_AO Transform3DComponent(pEntity);
 	pTransform->SetLocalPosition(Vector3F(0.0f, 0.5f, delta));
 	pTransform->SetLocalRotation(0.0f);
 	pTransform->SetLocalScale(Vector3F::One());
 	pEntity->GetComponentMgr()->AddComponent(pTransform);
-	MeshComponent *pModelCpt = NEW_AO MeshComponent(pEntity);
-	IPrimitive3D *pPrimitive = NEW_AO BoxPrimitive();
-	Mesh *pModel = pPrimitive->CreateModel();
+	MeshComponent* pModelCpt = NEW_AO MeshComponent(pEntity);
+	IPrimitive3D* pPrimitive = NEW_AO BoxPrimitive();
+	Mesh* pModel = pPrimitive->CreateModel();
 	//Game::Instance().GetResourceManager().Add("boxModel", pModel);
 	//DELETE_AO pPrimitive;
 	pModelCpt->SetModel(pModel);
@@ -176,7 +180,7 @@ void CubeGame::LoadContent()
 }
 
 /**
- * 
+ *
  */
 void CubeGame::Draw()
 {
@@ -184,7 +188,7 @@ void CubeGame::Draw()
 }
 
 /**
- * 
+ *
  */
 void CubeGame::Update(const GameTime& gameTime_)
 {

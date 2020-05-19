@@ -19,9 +19,6 @@
 
 namespace CasaEngine
 {
-	/*
-	 *	
-	 */
 	class CA_EXPORT RigidBodyComponent :
 		public Component
 	{
@@ -30,7 +27,7 @@ namespace CasaEngine
 		bool m_UseGravity;
 		bool m_IsKinematic;
 
-		std::vector<ColliderComponent *> m_ListShapes;
+		std::vector<ColliderComponent*> m_ListShapes;
 		RigidBody m_RigidBody;
 
 	public:
@@ -41,39 +38,28 @@ namespace CasaEngine
 		void Initialize();
 
 		/**
-		 * 
+		 *
 		 */
 		void Update(const GameTime& gameTime_) override;
 
 		/**
-		 * 
+		 *
 		 */
 		bool HandleMessage(const Telegram& msg) override;
 
 		/**
-		 * 
+		 *
 		 */
 		RigidBody& GetRigidBody();
 
 		/**
-		 * 
+		 *
 		 */
 		void SetRigidBody(RigidBody& val);
 
-		void AddShape(ColliderComponent *pShape_);
-		void RemoveShape(ColliderComponent *pShape_);
-
-		void Read (const tinyxml2::XMLElement& xmlElt) override;
-		void Read (std::ifstream& is) override;
-		void Write(tinyxml2::XMLElement& xmlElt) override;
-		void Write(std::ostream& os) override;
-
-		
-
+		void AddShape(ColliderComponent* pShape_);
+		void RemoveShape(ColliderComponent* pShape_);
 	};
-
 }
 
-#endif // COLLIDERCOMPONENT_H_
-
-
+#endif

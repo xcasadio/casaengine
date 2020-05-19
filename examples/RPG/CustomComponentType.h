@@ -5,10 +5,7 @@
 
 using namespace CasaEngine;
 
-/**
- * 
- */
-enum CustomComponentType
+enum class CustomComponentType
 {
 	//CHARACTER_COMPONENT = ComponentType::CUSTOM_COMPONENT + 1,
 	HERO_COMPONENT = ComponentType::CUSTOM_COMPONENT + 1,
@@ -17,4 +14,4 @@ enum CustomComponentType
 	BOSS_COMPONENT = ComponentType::CUSTOM_COMPONENT + 4,
 };
 
-#endif // CUSTOMCOMPONENTTYPE_H_
+#endif

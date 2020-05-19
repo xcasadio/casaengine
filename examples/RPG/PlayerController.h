@@ -10,15 +10,10 @@
 #include "Maths\Vector2.h"
 #include "Hero.h"
 
-
-
 using namespace CasaEngine;
 
 typedef unsigned int PlayerIndex;
 
-/**
- * 
- */
 class PlayerController :
 	public IController
 {
@@ -41,4 +36,4 @@ private:
 	Hero *m_pHero;
 };
 
-#endif // PLAYERCONTROLLER_H_
+#endif

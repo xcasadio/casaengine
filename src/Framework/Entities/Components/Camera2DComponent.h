@@ -13,9 +13,6 @@
 
 namespace CasaEngine
 {
-	/*
-	 *	
-	 */
 	class CA_EXPORT Camera2DComponent :
 		public CameraComponent
 	{
@@ -23,20 +20,7 @@ namespace CasaEngine
 		Camera2DComponent(BaseEntity* pEntity_);
 		virtual ~Camera2DComponent();
 
-		/**
-		 * 
-		 */
-		void Initialize() override;	
-
-		//all entities can communicate using messages. They are sent
-		//using the MessageDispatcher singleton class
-		//void HandleEvent(const Event* pEvent_);
-
-		void Read (const tinyxml2::XMLElement& xmlElt) override;
-		void Read (std::ifstream& is) override;
-		void Write(tinyxml2::XMLElement& xmlElt) override;
-		void Write(std::ostream& os) override;
-
+		void Initialize() override;
 
 	protected:
 		void ComputeProjectionMatrix() override;
@@ -49,6 +33,4 @@ namespace CasaEngine
 
 }
 
-#endif // CAMERA2DCOMPONENT_H_
-
-
+#endif

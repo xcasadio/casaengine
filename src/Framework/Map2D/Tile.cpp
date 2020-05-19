@@ -8,13 +8,13 @@ namespace CasaEngine
 		CA_ASSERT(m_pSpriteRenderer != nullptr);
 	}
 
-	void ITile::Draw(Sprite* pSprite, float x, float y, float z, CRectangleI& textCoordOffset) const
+	void ITile::Draw(Sprite* pSprite, float x, float y, float z, RectangleI uvOffset) const
 	{
-		const CRectangleI texUV = CRectangleI(
-			pSprite->GetPositionInTexture().Left() + textCoordOffset.Left(),
-			pSprite->GetPositionInTexture().Top() + textCoordOffset.Top(),
-			textCoordOffset.w,
-			textCoordOffset.h);
+		const RectangleI texUV = RectangleI(
+			pSprite->GetPositionInTexture().Left() + uvOffset.Left(),
+			pSprite->GetPositionInTexture().Top() + uvOffset.Top(),
+			uvOffset.w,
+			uvOffset.h);
 
 		m_pSpriteRenderer->AddSprite(
 			pSprite->GetTexture2D(),

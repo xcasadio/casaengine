@@ -66,10 +66,10 @@ namespace CasaEngine
 		void Draw();
 
 		void AddSprite(const Sprite* sprite, const Matrix4& transform, const CColor& color_, float z_order, eSpriteEffects effects_ = eSpriteEffects::SPRITE_EFFECT_NONE);
-		void AddSprite(const Texture* tex_, const CRectangleI& posInTex, const Matrix4& transform, const CColor& color_, float z_order, 
+		void AddSprite(const Texture* tex_, const RectangleI& posInTex, const Matrix4& transform, const CColor& color_, float z_order, 
 			eSpriteEffects effects_ = eSpriteEffects::SPRITE_EFFECT_NONE);
 		void AddSprite(const Texture *tex_, 
-			const CRectangleI &posInTex, const Vector2I &origin, const Vector2F &pos_,
+			const RectangleI &posInTex, const Vector2I &origin, const Vector2F &pos_,
 			float rot_, const Vector2F &scale_, const CColor &color_, float ZOrder_, eSpriteEffects effects_ = eSpriteEffects::SPRITE_EFFECT_NONE);
 		void AddSprite(Sprite* pSprite_, const Vector2F &pos_, 
 			float rot_, const Vector2F &scale_, const CColor &color_, float ZOrder_, eSpriteEffects effects_ = eSpriteEffects::SPRITE_EFFECT_NONE);

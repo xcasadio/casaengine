@@ -23,4 +23,4 @@
 #elif CA_PLATFORM_LINUX
 #endif
 
-#endif // BASE_H_
+#endif

@@ -3,17 +3,12 @@
 #include <iostream>
 #include "MemoryReport.h"
 #include <limits>
-#include "Macro.h"
-
 
 namespace CasaEngine
 {
-
 	void* DebugAllocator::allocateBytes(size_t size, const char* file, int line, const char* func)
 	{
-		CA_UNUSED(func)
-
-		void *ptr = malloc(size);
+		void* ptr = malloc(size);
 		MemoryReport::Instance().Allocate(ptr, size, file, line);
 		return ptr;
 	}
@@ -28,5 +23,4 @@ namespace CasaEngine
 	{
 		return std::numeric_limits<size_t>::max();
 	}
-
 }

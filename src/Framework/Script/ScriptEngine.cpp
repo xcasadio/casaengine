@@ -57,11 +57,9 @@ namespace CasaEngine
 	{
 		IScriptObject *pObj = nullptr;
 
-		for (FactoryMap::iterator it = m_Factories.begin();
-			it != m_Factories.end();
-			it++)
+		for (auto factory : m_Factories)
 		{
-			pObj = (*it).second->CreateObject(id_, pEntity_);
+			pObj = factory.second->CreateObject(id_, pEntity_);
 
 			if (pObj != nullptr)
 			{

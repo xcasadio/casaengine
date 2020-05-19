@@ -96,7 +96,7 @@ namespace CasaEngine
 	 */
 	inline float Sigmoid(float input, float response)
 	{
-		return 1.0f / (1.0f + exp(-input / response));
+		return 1.0f / (1.0f + static_cast<float>(exp(-input / response)));
 	}
 
 	//rounds a double up or down depending on its value

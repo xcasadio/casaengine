@@ -6,7 +6,7 @@
 #include "LogVerbose.h"
 #include "DateTime.h"
 #include "Version.h"
-#include "Macro.h"
+
 #include "CA_Assert.h"
 
 

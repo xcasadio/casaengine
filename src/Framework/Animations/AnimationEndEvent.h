@@ -22,20 +22,28 @@ namespace CasaEngine
 		AnimationEvent* Copy() override;
 
 		void Activate(Animation *pAnim_) override;
+		
+	private:
+		friend class cereal::access;
 
-		void Read(std::ifstream& /*is*/);
-		void Read(tinyxml2::XMLElement *el_);
+		template <class Archive>
+		void load(Archive& ar)
+		{
+			ar(cereal::base_class<AnimationEvent>(this));
+		}
+
+		template <class Archive>
+		void save(Archive& ar) const
+		{
+			ar(cereal::base_class<AnimationEvent>(this));
+			ar(cereal::make_nvp("type", "AnimationEndEvent"));
+		}
 		
 #if EDITOR
-	public:
-		void Write(std::ostream& /*os*/) const;
-		void Write(tinyxml2::XMLElement *el_) const;
-
 	private:
 		static const int m_Version; // load version
 #endif
-		
 	};
 }
 
-#endif // _ANIMATIONENDEVENT_H_
+#endif

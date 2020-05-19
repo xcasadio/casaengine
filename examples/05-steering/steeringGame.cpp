@@ -60,9 +60,8 @@ SteeringGame::~SteeringGame()
 	if (m_pModelRenderer != nullptr) DELETE_AO m_pModelRenderer;
 	if (m_pLine3DRenderer != nullptr) DELETE_AO m_pLine3DRenderer;
 
-	Game::Instance().GetEntityManager().Clear();
-
-	PhysicsEngine::Destroy();
+	//Game::Instance().GetEntityManager().Clear();
+	//PhysicsEngine::Destroy();
 }
 
 /**

@@ -25,11 +25,8 @@ namespace CasaEngine
 
 		IGameData* CreateGameDataFromClassID(GameDataClassID id_);
 
-		IGameData* LoadGameData(GameDataClassID id_, std::ifstream& is);
-		IGameData* LoadGameData(GameDataClassID id_, const tinyxml2::XMLElement& xmlElt);
-
-		void SaveGameData(IGameData* pData, std::ostream& os);
-		void SaveGameData(IGameData* pData, tinyxml2::XMLElement& xmlElt);
+		IGameData* LoadGameData(GameDataClassID id_, const char *name);
+		void SaveGameData(IGameData* pData, const char* name);
 
 		std::vector<std::string> GetAllGameDataName() const;
 

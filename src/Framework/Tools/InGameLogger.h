@@ -2,6 +2,7 @@
 #define _INGAMELOGGER_H_
 
 #include "CompilationConfig.h"
+#include "Graphics/Color.h"
 
 #if defined(CA_IN_GAME_LOGGER)
 
@@ -15,7 +16,7 @@
 namespace CasaEngine
 {
 	//TODO : create component
-#define InGameLog(delay, fmt, ...) Game::Instance().GetInGameLogger().AddLog(delay, fmt, ##__VA_ARGS__)
+#define IN_GAME_LOG(delay, color, fmt, ...) Game::Instance().GetInGameLogger().AddLog(delay, color, fmt, ##__VA_ARGS__)
 
 	/**
 	 *
@@ -24,7 +25,7 @@ namespace CasaEngine
 	{
 	public:
 
-		void AddLog(float delay, const char* fmt, ...);
+		void AddLog(float delay, CColor color, const char* fmt, ...);
 		void Update(const GameTime& gameTime_);
 		void ShowWindow();
 
@@ -33,6 +34,7 @@ namespace CasaEngine
 		{
 			float delay; // in ms
 			const char* text;
+			CColor color;
 		};
 
 	private:

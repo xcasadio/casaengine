@@ -1,15 +1,12 @@
 #ifndef _ASSET_H_
 #define _ASSET_H_
 
-#include <iosfwd>
 #include <string>
 
 #include "CA_Export.h"
-#include "Macro.h"
+
 #include "Assetable.h"
-#include "Parsers\Xml\tinyxml2.h"
 #include "Resources\Resource.h"
-#include "StringUtils.h"
 #include "StringUtils.h"
 #include "CA_Assert.h"
 
@@ -23,8 +20,6 @@ namespace CasaEngine
 	{
 	public:
 		Asset(std::string name_, IAssetable* pObject);
-		Asset(const tinyxml2::XMLElement& node_);
-		Asset(std::ifstream& in);
 		~Asset();
 
 		std::string GetName() const;
@@ -32,26 +27,26 @@ namespace CasaEngine
 		template<class T>
 		T* GetAsset();
 
-		void Read(const tinyxml2::XMLElement& node_);
-		void Read(std::ifstream& in);
-
-//#ifdef EDITOR
-
-		void Write(const tinyxml2::XMLElement* node_);
-		void Write(std::ostream& os)const;
-
-// #endif // EDITOR
-
 	private:
 		IAssetable* m_pObject;
 		std::string m_Name;
 
 		void LoadAsset();
-
 	};
 
-#include "Asset.inl"
+	template<class T>
+	T* Asset::GetAsset()
+	{
+		if (m_pObject == nullptr)
+		{
+			LoadAsset();
+		}
 
+		CA_ASSERT(m_pObject != nullptr, "Asset::GetAsset() : can't load the asset %s", GetName().c_str());
+		T* val = dynamic_cast<T*>(m_pObject);
+		CA_ASSERT(val != nullptr, "Asset::GetAsset() : the asset '%s' is not type of ", GetName().c_str(), typeid(T).name());
+		return val;
+	}
 }
 
 #endif

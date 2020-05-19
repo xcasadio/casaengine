@@ -6,13 +6,12 @@
 #include "Sprite/Sprite.h"
 #include "Sprite/SpriteRenderer.h"
 #include "Sprite/SpriteTypes.h"
-
-
 #include "Entities/Components/CameraComponent.h"
 #include "Game/GameInfo.h"
 
+#include <bx/math.h>
+
 #include <vector>
-#include <Graphics/bgfx_utils.h>
 
 namespace CasaEngine
 {
@@ -97,8 +96,8 @@ namespace CasaEngine
 		{
 			float proj[16];
 			bx::mtxOrtho(proj, 0.0f,
-				this->GetGame()->GetWindow()->getSize().x,
-				this->GetGame()->GetWindow()->getSize().y,
+				static_cast<float>(this->GetGame()->GetWindowSize().x),
+				static_cast<float>(this->GetGame()->GetWindowSize().y),
 				0.0f, -1.0f, 1000.0f, 0.0f, false);
 			bgfx::setViewTransform(0, nullptr, proj);
 		}
@@ -188,7 +187,7 @@ namespace CasaEngine
 	 *
 	 */
 	void SpriteRenderer::AddSprite(const Texture* tex_,
-		const CRectangleI& posInTex, const Matrix4& transform, const CColor& color_, float z_order, eSpriteEffects effects_)
+		const RectangleI& posInTex, const Matrix4& transform, const CColor& color_, float z_order, eSpriteEffects effects_)
 	{
 		if (tex_ == nullptr)
 		{
@@ -250,7 +249,7 @@ namespace CasaEngine
 	 * 
 	 */
 	void SpriteRenderer::AddSprite(const Texture *tex_, 
-		const CRectangleI &posInTex, const Vector2I &origin, const Vector2F &pos_,
+		const RectangleI &posInTex, const Vector2I &origin, const Vector2F &pos_,
 		float /*rot_*/, const Vector2F &scale_, const CColor &color_, float z_order, eSpriteEffects /*effects_*/)
 	{
 		if (tex_ == nullptr)

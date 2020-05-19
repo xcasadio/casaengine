@@ -63,7 +63,7 @@ namespace CasaEngine
 		bool LoadGamePlayDLL(const char* pFileName_);
 		void RenderThreadloop();
 
-		sf::Window* GetWindow();
+		Vector2I GetWindowSize() const;
 		EngineSettings& GetEngineSettings();
 		Input& GetInput();
 		DebugOptions& GetDebugOptions();
@@ -176,7 +176,7 @@ namespace CasaEngine
 		MessageDispatcher m_MessageDispatcher;
 
 #if CA_PLATFORM_DESKTOP
-		sf::WindowHandle		m_Hwnd;
+		sf::WindowHandle m_Hwnd;
 #endif
 		sf::Window* m_pWindow;
 	};

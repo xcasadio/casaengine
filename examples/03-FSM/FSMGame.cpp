@@ -33,14 +33,14 @@ FSMGame::~FSMGame()
  */
 void FSMGame::Initialize()
 {
-	Game::Instance().GetMediaManager().AddSearchPath("../../examples/resources");
-	Game::Instance().GetMediaManager().AddSearchPath("../../examples/resources/textures");
-	Game::Instance().GetMediaManager().AddSearchPath("../../examples/resources/models");
-	Game::Instance().GetMediaManager().AddSearchPath("../../examples/resources/shaders");
-	Game::Instance().GetMediaManager().AddSearchPath("../../examples/resources/spriteSheet");
-	Game::Instance().GetMediaManager().AddSearchPath("../../examples/resources/fonts");
+	GetMediaManager().AddSearchPath("../../examples/resources");
+	GetMediaManager().AddSearchPath("../../examples/resources/textures");
+	GetMediaManager().AddSearchPath("../../examples/resources/models");
+	GetMediaManager().AddSearchPath("../../examples/resources/shaders");
+	GetMediaManager().AddSearchPath("../../examples/resources/spriteSheet");
+	GetMediaManager().AddSearchPath("../../examples/resources/fonts");
 
-	Game::Instance().GetGameInfo().SetWorld(NEW_AO World());
+	GetGameInfo().SetWorld(NEW_AO World());
 
 	m_pBob = NEW_AO BaseEntity();
 	MinerComponent* pMiner = NEW_AO MinerComponent(m_pBob);

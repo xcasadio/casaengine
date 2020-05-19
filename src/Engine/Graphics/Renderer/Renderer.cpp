@@ -1,5 +1,5 @@
 #include <string>
-#include <bgfx.h>
+#include <bgfx/bgfx.h>
 
 #include "Graphics/Renderer/Renderer.h"
 
@@ -14,7 +14,6 @@
 #include "StringUtils.h"
 #include <stdint.h>
 #include "bx/string.h"
-#include "Graphics/bgfx_utils.h"
 #include "EngineSettings.h"
 
 namespace CasaEngine
@@ -43,7 +42,9 @@ namespace CasaEngine
 		//Setup(); // mobile
 
 		//bgfx::reset(settings_.WindowWidth, settings_.WindowHeight, BGFX_RESET_NONE);
-		bgfx::setDebug(BGFX_DEBUG_TEXT);
+		m_debugFlag = BGFX_DEBUG_TEXT;
+		SetDebugFlag();
+		
 		bgfx::setViewClear(0
 			, BGFX_CLEAR_COLOR | BGFX_CLEAR_DEPTH | BGFX_CLEAR_STENCIL
 			, CColor::CornflowerBlue.ToRGBA()
@@ -67,6 +68,24 @@ namespace CasaEngine
 		m_bDeviceLost = true;
 	}
 
+	void IRenderer::SetWireframe(bool enable)
+	{
+		if (enable)
+		{
+			m_debugFlag |= BGFX_DEBUG_WIREFRAME;
+		}
+		else
+		{
+			m_debugFlag &= ~BGFX_DEBUG_WIREFRAME;
+		}
+
+		SetDebugFlag();
+	}
+
+	void IRenderer::SetDebugFlag()
+	{
+		bgfx::setDebug(m_debugFlag);
+	}
 
 #if CA_PLATFORM_MOBILE
 	void IRenderer::Setup()
@@ -79,7 +98,6 @@ namespace CasaEngine
 		
 	}
 #endif
-	
 
 	void IRenderer::SetClearColor(unsigned char index_, CColor val) const
 	{

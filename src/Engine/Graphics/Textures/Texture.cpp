@@ -6,9 +6,6 @@
 #include "bx\string.h"
 #include "bimg\decode.h"
 
-// #define STB_IMAGE_IMPLEMENTATION
-#include <stb/stb_image.h>
-
 #include "Game/Game.h"
 
 namespace CasaEngine

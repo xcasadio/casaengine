@@ -17,7 +17,7 @@
 #include "Entities/Components/CameraControllers/CameraController.h"
 #include "EventHandler/GlobalEventSet.h"
 #include "EventHandler/Event.h"
-#include "Macro.h"
+
 
 namespace CasaEngine
 {
@@ -143,8 +143,8 @@ namespace CasaEngine
 
 		const float d_yfov_tan = 0.267949192431123f;
 
-		const float w = static_cast<float>(m_Viewport.Width() * Game::Instance().GetWindow()->getSize().x);
-		const float h = static_cast<float>(m_Viewport.Height() * Game::Instance().GetWindow()->getSize().y);
+		const float w = static_cast<float>(m_Viewport.Width() * Game::Instance().GetWindowSize().x);
+		const float h = static_cast<float>(m_Viewport.Height() * Game::Instance().GetWindowSize().y);
 		const float aspect = w / h;
 		const float midx = w * 0.5f;
 		const float midy = h * 0.5f;
@@ -168,39 +168,6 @@ namespace CasaEngine
 	{
 		return m_ViewDistance;
 	}
-
-	/**
-	 *
-	 */
-	void CameraComponent::Write(std::ostream& os)
-	{
-		//CA_UNUSED_1(os)
-	}
-
-	/**
-	 *
-	 */
-	void CameraComponent::Read(std::ifstream& is)
-	{
-		//CA_UNUSED_1(is)
-	}
-
-	/**
-	 *
-	 */
-	void CameraComponent::Read(const tinyxml2::XMLElement& xmlElt)
-	{
-		//CA_UNUSED_1(xmlElt)
-	}
-
-	/**
-	 *
-	 */
-	void CameraComponent::Write(tinyxml2::XMLElement& xmlElt)
-	{
-		//CA_UNUSED_1(xmlElt)
-	}
-
 
 #if EDITOR
 

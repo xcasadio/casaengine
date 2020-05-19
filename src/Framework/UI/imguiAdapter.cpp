@@ -1,6 +1,5 @@
 #include "imguiAdapter.h"
-
-#include "bgfx-imgui\imgui.h"
+#include "imgui/bgfx-imgui.h"
 
 
 namespace CasaEngine
@@ -10,9 +9,9 @@ namespace CasaEngine
 	/**
 	 * 
 	 */
-	unsigned short imguiAdapter::imguiCreate(const void* _data /*= NULL*/, uint32_t _size /*= 0*/, float _fontSize /*= 15.0f*/)
+	void imguiAdapter::imguiCreate(float _fontSize)
 	{
-		return ::imguiCreate().idx;
+		::imguiCreate(_fontSize);
 	}
 
 	/**
@@ -64,5 +63,4 @@ namespace CasaEngine
 		::imguiEndScrollArea();
 		*/
 	}
-
-} // namespace CasaEngine
+}

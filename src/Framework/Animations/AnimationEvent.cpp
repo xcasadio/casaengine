@@ -70,41 +70,4 @@ namespace CasaEngine
 	{
 		m_Time = val;
 	}
-	
-	/**
-	 * 
-	 */
-	void AnimationEvent::Read (std::ifstream& /*is*/)
-	{
-
-	}
-
-	/**
-	 * 
-	 */
-	void AnimationEvent::Read(tinyxml2::XMLElement* el_)
-	{
-		el_->QueryFloatAttribute("time", &m_Time);
-	}
-
-#if EDITOR
-
-	/**
-	 * 
-	 */
-	void AnimationEvent::Write(std::ostream& /*os*/) const
-	{
-
-	}
-
-	/**
-	 * 
-	 */
-	void AnimationEvent::Write(tinyxml2::XMLElement *el_) const
-	{
-
-	}
-	
-#endif
-
 }

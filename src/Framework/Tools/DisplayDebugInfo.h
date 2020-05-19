@@ -17,7 +17,7 @@ namespace CasaEngine
 	{
 	public:
 		DisplayDebugInfo();
-		virtual ~DisplayDebugInfo();
+		virtual ~DisplayDebugInfo() = default;
 
 		void Initialize();
 		void Release();

@@ -33,7 +33,7 @@
 #include "Graphics/TextureTarget.h"
 #include "SFML/Window/Window.hpp"
 #include "EngineSettings.h"
-#include "bgfx.h"
+#include <bgfx/bgfx.h>
 
 #define CA_DEFAULT_WIDTH 1280
 #define CA_DEFAULT_HEIGHT 720
@@ -55,17 +55,23 @@ namespace CasaEngine
 		bool IsDeviceLost() const;
 		void SetDeviceLost();
 
+		void SetWireframe(bool enable);
+
 	private:        
 		IRenderer(const IRenderer&) = delete;
 		IRenderer& operator = (const IRenderer&) = delete;
+
+		void SetDebugFlag();
     	
 #if CA_PLATFORM_MOBILE
 		void Setup();
 #else
 		void Setup(sf::Window* pWindow_);
 #endif
-
-		bool m_bDeviceLost;	
+    	
+	private:
+		bool m_bDeviceLost;
+		unsigned int m_debugFlag;
     };
 }
 

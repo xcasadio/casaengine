@@ -10,7 +10,8 @@
 /**
  *
  */
-PlayerController::PlayerController(Hero* pHero_, PlayerIndex index_)
+PlayerController::PlayerController(Hero* pHero_, PlayerIndex index_):
+	IController(pHero_)
 {
 	m_PlayerIndex = index_;
 	m_pHero = pHero_;

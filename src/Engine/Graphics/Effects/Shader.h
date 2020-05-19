@@ -35,7 +35,7 @@
 #include "Memory/MemoryAllocation.h"
 #include "Maths/Matrix4.h"
 #include "Graphics/Textures/Texture.h"
-#include "bgfx.h"
+#include <bgfx/bgfx.h>
 
 
 namespace CasaEngine

@@ -8,23 +8,20 @@
 
 #ifdef CA_DEBUGGING
 
-//#include "Log/LogManager.h"
-#include "Macro.h"
 #include "debug.h"
 
-// #ifndef CA_ERROR
-// 	#error Please include LogManager.h before include CA_Assert.h
-// #endif
+#define CA_STRINGIZE(_x) CA_STRINGIZE_(_x)
+#define CA_STRINGIZE_(_x) #_x
+#define CA_FILE_LINE_LITERAL "" __FILE__ "(" CA_STRINGIZE(__LINE__) "): "
 
-#	define CA_ASSERT(x, format, ...) \
-	CA_MACRO_BLOCK_BEGIN \
+#define CA_ASSERT(x, format, ...) \
+	for(;;) { \
 	if (!(x)) { CA_ERROR("assert: " CA_STRINGIZE(format) " in " CA_FILE_LINE_LITERAL, ##__VA_ARGS__); \
 	CasaEngine::debugBreak(); } \
-	CA_MACRO_BLOCK_END
+	break; }
 
 #else
 #   define CA_ASSERT( x, format, ...)
-#endif // CA_DEBUGGING
+#endif
 
-
-#endif // CA_ASSERT_H_
+#endif

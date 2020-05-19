@@ -12,9 +12,6 @@
 
 namespace CasaEngine
 {
-	/*
-	 *	
-	 */
 	class CA_EXPORT ICameraController :
 		public AllocatedObject<ICameraController>
 	{
@@ -30,24 +27,22 @@ namespace CasaEngine
 		//all entities can communicate using messages. They are sent
 		//using the MessageDispatcher singleton class
 		//void HandleEvent(const Event* pEvent_);
-		 
+
 		virtual void ViewMatrix(Matrix4& viewMatrix_) = 0;
 		virtual void ProjectionMatrix(Matrix4& projectionMatrix_) = 0;
 
-		virtual void Write(std::ostream&  os);
-		virtual void Read (std::ifstream& is);
-		virtual void Read (const tinyxml2::XMLElement& xmlElt);
+		virtual void Write(std::ostream& os);
+		virtual void Read(std::ifstream& is);
+		virtual void Read(const tinyxml2::XMLElement& xmlElt);
 		virtual void Write(tinyxml2::XMLElement& xmlElt);
-	
+
 	protected:
 		ICameraController(CameraComponent* pCamera);
 		CameraComponent* Camera() const;
-		
+
 	private:
 		CameraComponent* m_pCamera;
 	};
 }
 
-#endif // CAMERACONTROLLER_H_
-
-
+#endif

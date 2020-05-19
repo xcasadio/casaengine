@@ -5,7 +5,7 @@
 #include <string>
 
 #include "FuzzySet.h"
-#include "Macro.h"
+
 #include "CA_Assert.h"
 
 namespace CasaEngine

@@ -5,7 +5,7 @@
 #include <iostream>
 
 #include "FuzzyModule.h"
-#include "Macro.h"
+
 #include "CA_Assert.h"
 #include "Memory\MemoryAllocation.h"
 

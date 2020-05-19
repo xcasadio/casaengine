@@ -1,9 +1,10 @@
-#ifndef TILEDMAP_H_
-#define TILEDMAP_H_
+#ifndef TILEDMAPCOMPONENT_H_
+#define TILEDMAPCOMPONENT_H_
 
 #include <vector>
 
 #include "Tile.h"
+#include "TiledMapLayer.h"
 #include "Animations/Animation2D.h"
 #include "Entities/Component.h"
 #include "Entities/Components/Transform3DComponent.h"
@@ -29,20 +30,17 @@ namespace CasaEngine
 		Vector2I GetTileSize() const;
 		void SetTileSize(Vector2I& size);
 
-		std::vector<ITile*> GetTiles()  const;
-		void SetTiles(std::vector<ITile*>& tiles);
+		std::vector<TiledMapLayer*> GetLayers()  const;
 
-		void SetTile(int x, int y, ITile* pTile);
-		ITile* GetTile(const int x, const int y) const;
+		void AddLayer(TiledMapLayer *pLayer);
+		TiledMapLayer* GetLayer(const int layerNum) const;
 
 	private:
 		Vector2I m_MapSize;
 		Vector2I m_TileSize;
-		std::vector<ITile*> m_Tiles;
-
-		SpriteRenderer* m_pSpriteRenderer;
+		std::vector<TiledMapLayer*> m_Layers;
 		Transform3DComponent* m_pTransform3DComponent;
 	};
 }
 
-#endif // TILEDMAP_H_
+#endif

@@ -96,7 +96,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../examples/04-scene-2d;../../src/Core;../../src/Engine;../../src/Framework;..\..\external\SFML\include;../../external/CEGUI;../../external/bullet/include;../../external/bgfx/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../examples/04-scene-2d;../../src/Core;../../src/Engine;../../src/Framework;..\..\external\SFML\include;../../external/CEGUI;../../external/bullet/include;../../external/bgfx/include;../../external/cereal/include</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <PreprocessorDefinitions>CA_DLL;WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>

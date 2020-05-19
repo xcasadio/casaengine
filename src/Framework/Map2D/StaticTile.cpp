@@ -15,11 +15,11 @@ namespace CasaEngine
 		//do nothing
 	}
 
-	void StaticTile::Draw(float x, float y, float z, CRectangleI& textCoordOffset)
+	void StaticTile::Draw(float x, float y, float z, RectangleI uvOffset)
 	{
 		if (m_pSprite != nullptr)
 		{
-			ITile::Draw(m_pSprite, x, y, z, textCoordOffset);
+			ITile::Draw(m_pSprite, x, y, z, uvOffset);
 		}
 	}
 

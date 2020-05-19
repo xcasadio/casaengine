@@ -16,7 +16,7 @@ namespace CasaEngine
 	const unsigned int mask_right_bottom = 1 << 7;
 	const unsigned int mask_all = (mask_left | mask_right | mask_top | mask_bottom | mask_left_top | mask_left_bottom | mask_right_top | mask_right_bottom);
 
-	AutoTile::AutoTile(TiledMapComponent* map, int x, int y) : m_Map(map), m_x(x), m_y(y), m_Hidden(false)
+	AutoTile::AutoTile(TiledMapLayer* pLayer, int x, int y) : m_pLayer(pLayer), m_x(x), m_y(y), m_Hidden(false)
 	{
 	}
 
@@ -45,9 +45,9 @@ namespace CasaEngine
 		}
 	}
 
-	unsigned int getMask(TiledMapComponent* pMap, int x, int y, int offset)
+	unsigned int getMask(TiledMapLayer* pLayer, int x, int y, int offset)
 	{
-		const AutoTile* pTile = dynamic_cast<AutoTile*>(pMap->GetTile(x, y));
+		const AutoTile* pTile = dynamic_cast<AutoTile*>(pLayer->GetTile(x, y));
 		if (pTile != nullptr && pTile->Hidden() == false)
 		{
 			return  1 << offset;
@@ -64,40 +64,40 @@ namespace CasaEngine
 		}
 	}
 
-	void AutoTile::Draw(float x, float y, float z, CRectangleI& textCoordOffset)
+	void AutoTile::Draw(float x, float y, float z, RectangleI uvOffset)
 	{
 		unsigned int mask = 0;
-		mask |= getMask(m_Map, m_x - 1, m_y, 0);
-		mask |= getMask(m_Map, m_x + 1, m_y, 1);
-		mask |= getMask(m_Map, m_x, m_y - 1, 2);
-		mask |= getMask(m_Map, m_x, m_y + 1, 3);
-		mask |= getMask(m_Map, m_x - 1, m_y - 1, 4);
-		mask |= getMask(m_Map, m_x - 1, m_y + 1, 5);
-		mask |= getMask(m_Map, m_x + 1, m_y - 1, 6);
-		mask |= getMask(m_Map, m_x + 1, m_y + 1, 7);
+		mask |= getMask(m_pLayer, m_x - 1, m_y, 0);
+		mask |= getMask(m_pLayer, m_x + 1, m_y, 1);
+		mask |= getMask(m_pLayer, m_x, m_y - 1, 2);
+		mask |= getMask(m_pLayer, m_x, m_y + 1, 3);
+		mask |= getMask(m_pLayer, m_x - 1, m_y - 1, 4);
+		mask |= getMask(m_pLayer, m_x - 1, m_y + 1, 5);
+		mask |= getMask(m_pLayer, m_x + 1, m_y - 1, 6);
+		mask |= getMask(m_pLayer, m_x + 1, m_y + 1, 7);
 
-		DrawTile(mask, x, y, z, textCoordOffset);
+		DrawTile(mask, x, y, z, uvOffset);
 	}
 
-	void AutoTile::DrawTile(unsigned int mask, float x, float y, float z, CRectangleI& textCoordOffset)
+	void AutoTile::DrawTile(unsigned int mask, float x, float y, float z, RectangleI uvOffset)
 	{
 		//trivial case
 		if (mask == mask_none)
 		{
-			m_Tiles[0]->Draw(x, y, z, textCoordOffset);
+			m_Tiles[0]->Draw(x, y, z, uvOffset);
 			return;
 		}
 
-		const auto width = textCoordOffset.w / 2;
-		const auto height = textCoordOffset.h / 2;
+		const auto width = uvOffset.w / 2;
+		const auto height = uvOffset.h / 2;
 
 		//trivial case
 		if (mask == mask_all)
 		{
-			m_Tiles[2]->Draw(x, y, z, CRectangleI(width, height, width, height));
-			m_Tiles[3]->Draw(x + width, y, z, CRectangleI(0, height, width, height));
-			m_Tiles[4]->Draw(x, y + height, z, CRectangleI(width, 0, width, height));
-			m_Tiles[5]->Draw(x + width, y + height, z, CRectangleI(0, 0, width, height));
+			m_Tiles[2]->Draw(x, y, z, RectangleI(width, height, width, height));
+			m_Tiles[3]->Draw(x + width, y, z, RectangleI(0, height, width, height));
+			m_Tiles[4]->Draw(x, y + height, z, RectangleI(width, 0, width, height));
+			m_Tiles[5]->Draw(x + width, y + height, z, RectangleI(0, 0, width, height));
 			return;
 		}
 
@@ -107,28 +107,28 @@ namespace CasaEngine
 		//left-top sub tile
 		if (mask1 == (mask_left_top | mask_top | mask_left))
 		{
-			m_Tiles[2]->Draw(x, y, z, CRectangleI(width, height, width, height));
+			m_Tiles[2]->Draw(x, y, z, RectangleI(width, height, width, height));
 		}
 		else if (mask1 == (mask_left_top | mask_left))
 		{
-			m_Tiles[2]->Draw(x, y, z, CRectangleI(width, 0, width, height));
+			m_Tiles[2]->Draw(x, y, z, RectangleI(width, 0, width, height));
 		}
 		else if (mask1 == (mask_left_top | mask_top)
 			|| mask1 == mask_top)
 		{
-			m_Tiles[4]->Draw(x, y, z, CRectangleI(0, 0, width, height));
+			m_Tiles[4]->Draw(x, y, z, RectangleI(0, 0, width, height));
 		}
 		else if (mask1 == (mask_top | mask_left))
 		{
-			m_Tiles[1]->Draw(x, y, z, CRectangleI(0, 0, width, height));
+			m_Tiles[1]->Draw(x, y, z, RectangleI(0, 0, width, height));
 		}
 		else if (mask1 == mask_left_top || mask1 == 0)
 		{
-			m_Tiles[0]->Draw(x, y, z, CRectangleI(0, 0, width, height));
+			m_Tiles[0]->Draw(x, y, z, RectangleI(0, 0, width, height));
 		}
 		else if (mask1 == mask_left)
 		{
-			m_Tiles[3]->Draw(x, y, z, CRectangleI(0, 0, width, height));
+			m_Tiles[3]->Draw(x, y, z, RectangleI(0, 0, width, height));
 		}
 
 		x += width;
@@ -136,28 +136,28 @@ namespace CasaEngine
 		//right-top sub tile
 		if (mask1 == (mask_right_top | mask_top | mask_right))
 		{
-			m_Tiles[3]->Draw(x, y, z, CRectangleI(0, height, width, height));
+			m_Tiles[3]->Draw(x, y, z, RectangleI(0, height, width, height));
 		}
 		else if (mask1 == (mask_right_top | mask_right))
 		{
-			m_Tiles[3]->Draw(x, y, z, CRectangleI(0, 0, width, height));
+			m_Tiles[3]->Draw(x, y, z, RectangleI(0, 0, width, height));
 		}
 		else if (mask1 == (mask_right_top | mask_top)
 			|| mask1 == mask_top)
 		{
-			m_Tiles[3]->Draw(x, y, z, CRectangleI(width, height, width, height));
+			m_Tiles[3]->Draw(x, y, z, RectangleI(width, height, width, height));
 		}
 		else if (mask1 == (mask_top | mask_right))
 		{
-			m_Tiles[1]->Draw(x, y, z, CRectangleI(width, 0, width, height));
+			m_Tiles[1]->Draw(x, y, z, RectangleI(width, 0, width, height));
 		}
 		else if (mask1 == mask_right_top || mask1 == 0)
 		{
-			m_Tiles[0]->Draw(x, y, z, CRectangleI(width, 0, width, height));
+			m_Tiles[0]->Draw(x, y, z, RectangleI(width, 0, width, height));
 		}
 		else if (mask1 == mask_right)
 		{
-			m_Tiles[2]->Draw(x, y, z, CRectangleI(width, 0, width, height));
+			m_Tiles[2]->Draw(x, y, z, RectangleI(width, 0, width, height));
 		}
 
 		x -= width;
@@ -166,25 +166,25 @@ namespace CasaEngine
 		//left-bottom sub tile
 		if (mask1 == (mask_left_bottom | mask_bottom | mask_left))
 		{
-			m_Tiles[4]->Draw(x, y, z, CRectangleI(width, 0, width, height));
+			m_Tiles[4]->Draw(x, y, z, RectangleI(width, 0, width, height));
 		}
 		else if (mask1 == (mask_left_bottom | mask_left)
 			|| (mask1 == mask_left))
 		{
-			m_Tiles[4]->Draw(x, y, z, CRectangleI(width, height, width, height));
+			m_Tiles[4]->Draw(x, y, z, RectangleI(width, height, width, height));
 		}
 		else if (mask1 == (mask_left_bottom | mask_bottom)
 			|| mask1 == mask_bottom)
 		{
-			m_Tiles[2]->Draw(x, y, z, CRectangleI(0, height, width, height));
+			m_Tiles[2]->Draw(x, y, z, RectangleI(0, height, width, height));
 		}
 		else if (mask1 == (mask_bottom | mask_left))
 		{
-			m_Tiles[1]->Draw(x, y, z, CRectangleI(0, height, width, height));
+			m_Tiles[1]->Draw(x, y, z, RectangleI(0, height, width, height));
 		}
 		else if (mask1 == mask_left_bottom || mask1 == 0)
 		{
-			m_Tiles[0]->Draw(x, y, z, CRectangleI(0, height, width, height));
+			m_Tiles[0]->Draw(x, y, z, RectangleI(0, height, width, height));
 		}
 
 		x += width;
@@ -193,28 +193,28 @@ namespace CasaEngine
 		//right-bottom sub tile
 		if (mask1 == (mask_right_bottom | mask_bottom | mask_right))
 		{
-			m_Tiles[5]->Draw(x, y, z, CRectangleI(0, 0, width, height));
+			m_Tiles[5]->Draw(x, y, z, RectangleI(0, 0, width, height));
 		}
 		else if (mask1 == (mask_right_bottom | mask_right))
 		{
-			m_Tiles[4]->Draw(x, y, z, CRectangleI(width, height, width, height));
+			m_Tiles[4]->Draw(x, y, z, RectangleI(width, height, width, height));
 		}
 		else if (mask1 == (mask_right_bottom | mask_bottom)
 			|| mask1 == mask_bottom)
 		{
-			m_Tiles[3]->Draw(x, y, z, CRectangleI(width, height, width, height));
+			m_Tiles[3]->Draw(x, y, z, RectangleI(width, height, width, height));
 		}
 		else if (mask1 == (mask_bottom | mask_right))
 		{
-			m_Tiles[1]->Draw(x, y, z, CRectangleI(width, height, width, height));
+			m_Tiles[1]->Draw(x, y, z, RectangleI(width, height, width, height));
 		}
 		else if (mask1 == mask_right_bottom || mask1 == 0)
 		{
-			m_Tiles[0]->Draw(x, y, z, CRectangleI(width, height, width, height));
+			m_Tiles[0]->Draw(x, y, z, RectangleI(width, height, width, height));
 		}
 		else if (mask1 == mask_right)
 		{
-			m_Tiles[4]->Draw(x, y, z, CRectangleI(width, height, width, height));
+			m_Tiles[4]->Draw(x, y, z, RectangleI(width, height, width, height));
 		}
 	}
 }

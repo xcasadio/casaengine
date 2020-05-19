@@ -2,7 +2,7 @@
 #include "Base.h"
 
 #include "Material.h"
-#include "bgfx.h"
+#include <bgfx/bgfx.h>
 
 namespace CasaEngine
 {

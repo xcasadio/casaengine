@@ -15,7 +15,7 @@
 #include "Memory/ObjectPool.h"
 #include <vector>
 
-#include "bgfx.h"
+#include <bgfx/bgfx.h>
 #include "Graphics/Effects/Program.h"
 
 namespace CasaEngine

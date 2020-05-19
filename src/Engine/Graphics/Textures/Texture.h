@@ -4,7 +4,7 @@
 #include "CA_Export.h"
 
 #include "Resources/Resource.h"
-#include "bgfx.h"
+#include <bgfx/bgfx.h>
 
 namespace CasaEngine
 {
@@ -55,5 +55,4 @@ namespace CasaEngine
 
 }
 
-
-#endif // TEXTURE_H
+#endif

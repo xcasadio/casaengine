@@ -6,7 +6,7 @@
 #include "Maths/Vector3.h"
 #include "Maths/Vector2.h"
 #include "Memory/MemoryAllocation.h"
-#include "bgfx.h"
+#include <bgfx/bgfx.h>
 
 namespace CasaEngine
 {

@@ -37,11 +37,11 @@ void PlayerStateIdle::Enter(IController* pController_)
 
 	if (pPlayerController->GetHero()->InFuryMode() == true)
 	{
-		pPlayerController->GetHero()->SetCurrentAnimation(Character::AnimationIndices::FURY_IDLE);
+		pPlayerController->GetHero()->SetCurrentAnimation((int)Character::AnimationIndices::FURY_IDLE);
 	}
 	else
 	{
-		pPlayerController->GetHero()->SetCurrentAnimation(Character::AnimationIndices::IDLE);
+		pPlayerController->GetHero()->SetCurrentAnimation((int)Character::AnimationIndices::IDLE);
 	}
 }
 

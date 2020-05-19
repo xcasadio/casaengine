@@ -7,8 +7,8 @@
 /**
  * 
  */
-Hero::Hero(AnimatedSpriteComponent *pAnimatedSprite_) :
-	Character(pAnimatedSprite_)
+Hero::Hero(BaseEntity *pEntity) :
+	Character(pEntity)
 {
 	m_FuryPoint = 0;
     m_FuryPointDecrease = 0.0f;
@@ -140,26 +140,4 @@ int Hero::MaxFuryPoint() const
 void Hero::MaxFuryPoint(int val)
 {
 	m_MaxFuryPoint = val;
-}
-
-
-
-void Hero::Read( const tinyxml2::XMLElement& xmlElt )
-{
-	
-}
-
-void Hero::Read( std::ifstream& is )
-{
-	
-}
-
-void Hero::Write( tinyxml2::XMLElement& xmlElt )
-{
-	
-}
-
-void Hero::Write( std::ostream& os )
-{
-	
 }

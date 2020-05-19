@@ -9,10 +9,6 @@
 #include <string>
 #include <map>
 #include <string>
-#include "Macro.h"
-#include "CA_Assert.h"
-
-using namespace tinyxml2;
 
 namespace CasaEngine
 {
@@ -26,8 +22,7 @@ namespace CasaEngine
 	 */
 	void AssetManager::AddAsset(Asset* asset_)
 	{
-		CA_ASSERT(m_Assets.find(asset_->GetName()) == m_Assets.end(),
-			"AssetManager::AddAsset(): asset '%s' already exist", asset_->GetName().c_str());
+		CA_ASSERT(m_Assets.find(asset_->GetName()) == m_Assets.end(), "AssetManager::AddAsset(): asset '%s' already exist", asset_->GetName().c_str());
 
 		m_Assets.insert(std::make_pair(asset_->GetName(), asset_));
 	}
@@ -50,40 +45,17 @@ namespace CasaEngine
 		}
 	}
 
-	/**
-	 *
-	 */
-	void AssetManager::Load(const XMLElement* /*node_*/)
+#if EDITOR
+	void AssetManager::RemoveAsset(std::string name)
 	{
-
+		auto it = m_Assets.find(name);
+		CA_ASSERT(it == m_Assets.end(), "AssetManager::AddAsset(): asset '%s' doesn't exist", name.c_str());
+		m_Assets.erase(it);
 	}
-
-	/**
-	 *
-	 */
-	void AssetManager::Load(std::ifstream& /*in*/)
+	
+	void AssetManager::RemoveAsset(Asset* asset_)
 	{
-
+		RemoveAsset(asset_->GetName());
 	}
-
-#ifdef EDITOR
-
-	/**
-	 *
-	 */
-	void AssetManager::Write(const XMLElement* /*node_*/)
-	{
-
-	}
-
-	/**
-	 *
-	 */
-	void AssetManager::Write(std::ostream& /*os*/) const
-	{
-
-	}
-
-#endif // EDITOR
-
+#endif
 }
