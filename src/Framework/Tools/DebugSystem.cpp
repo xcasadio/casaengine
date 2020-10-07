@@ -52,9 +52,9 @@ namespace CasaEngine
 			//Reset startSecondTick and repaintCountSecond
 
 			m_fFPSTime -= 1.0f;
-			float FPSDelta = (float)m_iFPSCount * m_fFPSTime;			
+			float FPSDelta = static_cast<float>(m_iFPSCount) * m_fFPSTime;			
 			//FPS - delta, to reduce the calculation to 1 second precisely
-			m_iLastFPSCount = (int)( (float)m_iFPSCount - FPSDelta + m_fFPSLastDelta );
+			m_iLastFPSCount = static_cast<int>(static_cast<float>(m_iFPSCount) - FPSDelta + m_fFPSLastDelta);
 
 			m_iFPSCount = 0;
 			m_fFPSLastDelta = FPSDelta;

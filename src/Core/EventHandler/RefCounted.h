@@ -151,7 +151,7 @@ private:
     \brief
         Increases the reference count for the wrapped object.
     */
-    void addRef()
+    void addRef() const
     {
         ++*d_count;
     }

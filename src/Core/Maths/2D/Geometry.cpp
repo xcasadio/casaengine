@@ -22,9 +22,9 @@ namespace CasaEngine
 		float denom = PlaneNormal.Dot(RayHeading);
 
 		// normal is parallel to vector
-		if ((denom < 0.000001) && (denom > -0.000001))
+		if (denom < 0.000001 && denom > -0.000001)
 		{
-			return (-1.0);
+			return -1.0;
 		}
 
 		return -(numer / denom);
@@ -63,10 +63,10 @@ namespace CasaEngine
 		float d = radius * radius - (length * length - v * v);
 
 		// If there was no intersection, return -1
-		if (d < 0.0) return (-1.0);
+		if (d < 0.0) return -1.0;
 
 		// Return the distance to the [first] intersecting point
-		return (v - sqrt(d));
+		return v - sqrt(d);
 	}
 
 	//----------------------------- DoRayCircleIntersect --------------------------
@@ -81,7 +81,7 @@ namespace CasaEngine
 		float d = radius * radius - (length * length - v * v);
 
 		// If there was no intersection, return -1
-		return (d < 0.0);
+		return d < 0.0;
 	}
 
 
@@ -137,7 +137,7 @@ namespace CasaEngine
 		if (dotB <= 0) return (B - P).Length();//Vec2DDistance(B, P);
 
 		//calculate the point along AB that is the closest to P
-		Vector2F Point = A + ((B - A) * dotA) / (dotA + dotB);
+		Vector2F Point = A + (B - A) * dotA / (dotA + dotB);
 
 		//calculate the distance P-Point
 		return (P - Point).Length();//Vec2DDistance(P,Point);
@@ -164,7 +164,7 @@ namespace CasaEngine
 		if (dotB <= 0) return (B - P).LengthSquared();//Vec2DDistanceSq(B, P);
 
 		//calculate the point along AB that is the closest to P
-		Vector2F Point = A + ((B - A) * dotA) / (dotA + dotB);
+		Vector2F Point = A + (B - A) * dotA / (dotA + dotB);
 
 		//calculate the distance P-Point
 		return (P - Point).LengthSquared();//Vec2DDistanceSq(P,Point);
@@ -197,7 +197,7 @@ namespace CasaEngine
 		float r = rTop * invBot;
 		float s = sTop * invBot;
 
-		if ((r > 0) && (r < 1) && (s > 0) && (s < 1))
+		if (r > 0 && r < 1 && s > 0 && s < 1)
 		{
 			//lines intersect
 			return true;
@@ -240,7 +240,7 @@ namespace CasaEngine
 		float r = rTop / Bot;
 		float s = sTop / Bot;
 
-		if ((r > 0) && (r < 1) && (s > 0) && (s < 1))
+		if (r > 0 && r < 1 && s > 0 && s < 1)
 		{
 			dist = (A - B).Length() * r;//Vec2DDistance(A,B) * r;
 
@@ -272,7 +272,7 @@ namespace CasaEngine
 		float sTop = (A.y - C.y) * (B.x - A.x) - (A.x - C.x) * (B.y - A.y);
 		float sBot = (B.x - A.x) * (D.y - C.y) - (B.y - A.y) * (D.x - C.x);
 
-		if ((rBot == 0) || (sBot == 0))
+		if (rBot == 0 || sBot == 0)
 		{
 			//lines are parallel
 			return false;
@@ -281,7 +281,7 @@ namespace CasaEngine
 		float r = rTop / rBot;
 		float s = sTop / sBot;
 
-		if ((r > 0) && (r < 1) && (s > 0) && (s < 1))
+		if (r > 0 && r < 1 && s > 0 && s < 1)
 		{
 			dist = (A - B).Length() * r;// Vec2DDistance(A,B) * r;
 
@@ -351,7 +351,7 @@ namespace CasaEngine
 		float DistBetweenCenters = sqrt((x1 - x2) * (x1 - x2) +
 			(y1 - y2) * (y1 - y2));
 
-		if ((DistBetweenCenters < (r1 + r2)) || (DistBetweenCenters < fabs(r1 - r2)))
+		if (DistBetweenCenters < r1 + r2 || DistBetweenCenters < fabs(r1 - r2))
 		{
 			return true;
 		}
@@ -369,7 +369,7 @@ namespace CasaEngine
 		float DistBetweenCenters = sqrt((c1.x - c2.x) * (c1.x - c2.x) +
 			(c1.y - c2.y) * (c1.y - c2.y));
 
-		if ((DistBetweenCenters < (r1 + r2)) || (DistBetweenCenters < fabs(r1 - r2)))
+		if (DistBetweenCenters < r1 + r2 || DistBetweenCenters < fabs(r1 - r2))
 		{
 			return true;
 		}
@@ -420,7 +420,7 @@ namespace CasaEngine
 
 		//Now calculate the distance from the center of each circle to the center
 		//of the line which connects the intersection points.
-		float a = (r1 - r2 + (d * d)) / (2 * d);
+		float a = (r1 - r2 + d * d) / (2 * d);
 		//float b = (r2 - r1 + (d * d)) / (2 * d);
 
 
@@ -434,14 +434,14 @@ namespace CasaEngine
 		p2Y = y1 + a * (y2 - y1) / d;
 
 		//calculate first point
-		float h1 = sqrt((r1 * r1) - (a * a));
+		float h1 = sqrt(r1 * r1 - a * a);
 
 		p3X = p2X - h1 * (y2 - y1) / d;
 		p3Y = p2Y + h1 * (x2 - x1) / d;
 
 
 		//calculate second point
-		float h2 = sqrt((r2 * r2) - (a * a));
+		float h2 = sqrt(r2 * r2 - a * a);
 
 		p4X = p2X + h2 * (y2 - y1) / d;
 		p4Y = p2Y - h2 * (x2 - x1) / d;
@@ -508,7 +508,7 @@ namespace CasaEngine
 	{
 		float DistFromCenterSquared = (p - Pos).LengthSquared();
 
-		if (DistFromCenterSquared < (radius * radius))
+		if (DistFromCenterSquared < radius * radius)
 		{
 			return true;
 		}
@@ -551,7 +551,7 @@ namespace CasaEngine
 		float    radius,
 		Vector2F& IntersectionPoint)
 	{
-		Vector2F toBNorm = (B - A); //Vec2DNormalize(B-A);
+		Vector2F toBNorm = B - A; //Vec2DNormalize(B-A);
 		toBNorm.Normalize();
 
 		//move the circle into the local space defined by the vector B-A with origin
@@ -565,8 +565,8 @@ namespace CasaEngine
 		//point A so there is no intersection possible. If the local x pos minus the 
 		//radius is greater than length A-B then the circle cannot intersect the 
 		//line segment
-		if ((LocalPos.x + radius >= 0) &&
-			((LocalPos.x - radius) * (LocalPos.x - radius) <= (B - A).LengthSquared()))//Vec2DDistanceSq(B, A)) )
+		if (LocalPos.x + radius >= 0 &&
+			(LocalPos.x - radius) * (LocalPos.x - radius) <= (B - A).LengthSquared())//Vec2DDistanceSq(B, A)) )
 		{
 			//if the distance from the x axis to the object's position is less
 			//than its radius then there is a potential intersection.

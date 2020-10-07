@@ -27,7 +27,7 @@ namespace CasaEngine
 	 * 
 	 */
 	CylinderPrimitive::CylinderPrimitive(float diameter_, float height_, unsigned int tessellation_) :
-		IPrimitive3D(IPrimitive3D::CYLINDER)
+		IPrimitive3D(CYLINDER)
 	{
 		m_Diameter = diameter_;
 		m_Height = height_;
@@ -46,8 +46,8 @@ namespace CasaEngine
 		for (unsigned int i = 0; i < m_Tessellation; i++)
 		{
 			normal = GetCircleVector(i, m_Tessellation);
-			AddVertex(normal * radius + Vector3F::Up() * heightDiv2, normal, Vector2F(1.0f, (float)i / (float)m_Tessellation));
-			AddVertex(normal * radius + Vector3F::Down() * heightDiv2, normal, Vector2F(0.0f, (float)i / (float)m_Tessellation));
+			AddVertex(normal * radius + Vector3F::Up() * heightDiv2, normal, Vector2F(1.0f, static_cast<float>(i) / static_cast<float>(m_Tessellation)));
+			AddVertex(normal * radius + Vector3F::Down() * heightDiv2, normal, Vector2F(0.0f, static_cast<float>(i) / static_cast<float>(m_Tessellation)));
 
 			AddIndex(i * 2    );
 			AddIndex(i * 2 + 1);
@@ -78,8 +78,8 @@ namespace CasaEngine
 		{
 			normal = GetCircleVector(i, m_Tessellation);
 			//TODO : UVs must be compute with a circular way
-			AddVertex(normal * radius + Vector3F::Up() * heightDiv2, Vector3F::Up(), Vector2F(1.0f, (float)i / (float)m_Tessellation));
-			AddVertex(normal * radius + Vector3F::Down() * heightDiv2, Vector3F::Down(), Vector2F(0.0f, (float)i / (float)m_Tessellation));
+			AddVertex(normal * radius + Vector3F::Up() * heightDiv2, Vector3F::Up(), Vector2F(1.0f, static_cast<float>(i) / static_cast<float>(m_Tessellation)));
+			AddVertex(normal * radius + Vector3F::Down() * heightDiv2, Vector3F::Down(), Vector2F(0.0f, static_cast<float>(i) / static_cast<float>(m_Tessellation)));
 
 			AddIndex(indexTop);
 			AddIndex(indexTop + i * 2 + 2);

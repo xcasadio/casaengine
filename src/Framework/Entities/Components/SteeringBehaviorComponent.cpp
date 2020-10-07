@@ -205,7 +205,7 @@ bool SteeringBehaviorComponent::AccumulateForce(Vector2F &RunningTot, Vector2F F
 	{
 		ForceToAdd.Normalize();
 		//add it to the steering force
-		RunningTot += (ForceToAdd * MagnitudeRemaining); 
+		RunningTot += ForceToAdd * MagnitudeRemaining; 
 	}
 }
 
@@ -1457,7 +1457,7 @@ Vector2F SteeringBehaviorComponent::GetHidingPosition(const Vector2F& posOb,
 
   //scale it to size and add to the obstacles position to get
   //the hiding spot.
-  return (ToOb * DistAway) + posOb;
+  return ToOb * DistAway + posOb;
 }
 
 

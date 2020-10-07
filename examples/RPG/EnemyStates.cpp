@@ -46,7 +46,7 @@ void EnemyStateIdle::Execute(IController *pController_, const GameTime& elpasedT
     }
     else 
     {
-        pController_->FSM()->ChangeState(pController_->GetState((int)EnemyControllerState::MOVING));
+        pController_->FSM()->ChangeState(pController_->GetState(static_cast<int>(EnemyControllerState::MOVING)));
     }
 }
 

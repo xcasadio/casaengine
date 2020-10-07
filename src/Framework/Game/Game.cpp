@@ -190,9 +190,9 @@ void Game::MakeWindow()
 #endif // CA_PLATFORM_DESKTOP
 
 		bgfx::PlatformData pd;
-		bx::memSet(&pd, 0, sizeof(pd));
+		bx::memSet(&pd, 0, sizeof pd);
 		pd.nwh = m_Hwnd;
-		bgfx::setPlatformData(pd);
+		setPlatformData(pd);
 
 		//m_pWindow->AddListener(this);
 	}
@@ -407,7 +407,7 @@ void Game::HandleWindowEvents()
 
 int32_t renderThreadFunc(void* _userData)
 {
-	Game* game = (Game*)_userData;
+	Game* game = static_cast<Game*>(_userData);
 	game->RenderThreadloop();
 
 	return 0;
@@ -685,12 +685,12 @@ void Game::Exit()
 
 bool sortGameComponent (IGameComponent* i, IGameComponent* j) 
 { 
-	return (i->UpdateOrder() < j->UpdateOrder()); 
+	return i->UpdateOrder() < j->UpdateOrder(); 
 }
 
 bool sortDrawableGameComponent (DrawableGameComponent* i, DrawableGameComponent* j) 
 { 
-	return (i->DrawOrder() < j->DrawOrder()); 
+	return i->DrawOrder() < j->DrawOrder(); 
 }
 
 //----------------------------------------------------------
@@ -725,7 +725,7 @@ void Game::RemoveComponent(IGameComponent *component_)
 		it != m_Components.end();
 		++it)
 	{
-		if ((*it) == component_)
+		if (*it == component_)
 		{
 			m_Components.erase(it);
 			break;
@@ -739,7 +739,7 @@ void Game::RemoveComponent(IGameComponent *component_)
 			it != m_DrawableComponents.end();
 			++it)
 		{
-			if ((*it) == pDGC)
+			if (*it == pDGC)
 			{
 				m_DrawableComponents.erase(it);
 				break;

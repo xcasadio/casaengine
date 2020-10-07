@@ -4,7 +4,7 @@
 
 namespace CasaEngine
 {
-	inline float __fsel(const float _a, const float _b, const float _c) { return (_a < 0.0f) ? _c : _b;}
+	inline float __fsel(const float _a, const float _b, const float _c) { return _a < 0.0f ? _c : _b;}
 	
 	/**
 	 * 
@@ -75,7 +75,7 @@ namespace CasaEngine
 
 	float AABB::IsResetSel(float ifReset, float ifNotReset) const
 	{
-		return (float)__fsel(max.x - min.x, ifNotReset, ifReset);
+		return static_cast<float>(__fsel(max.x - min.x, ifNotReset, ifReset));
 	}
 
 	bool AABB::IsEmpty() const
@@ -314,11 +314,11 @@ namespace CasaEngine
 		CA_ASSERT( b.max.IsValid(), "IsIntersectBox() : b.max is not valid");
 
 		// Check for intersection on X axis.
-		if ((min.x > b.max.x)||(b.min.x > max.x)) return false;
+		if (min.x > b.max.x||b.min.x > max.x) return false;
 		// Check for intersection on Y axis.
-		if ((min.y > b.max.y)||(b.min.y > max.y)) return false;
+		if (min.y > b.max.y||b.min.y > max.y) return false;
 		// Check for intersection on Z axis.
-		if ((min.z > b.max.z)||(b.min.z > max.z)) return false;
+		if (min.z > b.max.z||b.min.z > max.z) return false;
 		// Boxes overlap in all 3 axises.
 		return true;
 	}
@@ -386,18 +386,18 @@ namespace CasaEngine
 
 	bool IsMinBB(const Vector3F& v)
 	{
-		if (v.x<=MIN_BB) return (true);
-		if (v.y<=MIN_BB) return (true);
-		if (v.z<=MIN_BB) return (true);
-		return (false);
+		if (v.x<=MIN_BB) return true;
+		if (v.y<=MIN_BB) return true;
+		if (v.z<=MIN_BB) return true;
+		return false;
 	}
 
 	bool IsMaxBB(const Vector3F& v)
 	{
-		if (v.x>=MAX_BB) return (true);
-		if (v.y>=MAX_BB) return (true);
-		if (v.z>=MAX_BB) return (true);
-		return (false);
+		if (v.x>=MAX_BB) return true;
+		if (v.y>=MAX_BB) return true;
+		if (v.z>=MAX_BB) return true;
+		return false;
 	}
 
 	Vector3F SetMaxBB()

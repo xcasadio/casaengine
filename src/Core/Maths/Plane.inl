@@ -66,7 +66,7 @@ inline bool CPlane::IntersectLine(const Vector3F& p1_, const Vector3F& p2_, Vect
 
 inline bool CPlane::operator ==(const CPlane& p) const
 {
-    return ((n == p.n) && (fabs(d - p.d) <= std::numeric_limits<float>::epsilon()));
+    return n == p.n && fabs(d - p.d) <= std::numeric_limits<float>::epsilon();
 }
 
 inline bool CPlane::operator !=(const CPlane& p) const

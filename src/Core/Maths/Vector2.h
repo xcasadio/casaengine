@@ -37,7 +37,7 @@ namespace CasaEngine
 		/*
 		 * calculates the dot product
 		 */
-		inline float    Dot(const CVector2<T>& v2)const;
+		float    Dot(const CVector2<T>& v2)const;
 
 		/*
 		 * returns positive if v2 is clockwise of this vector,
@@ -45,38 +45,39 @@ namespace CasaEngine
 		 * X axis to right like a Window app)
 		 */
 		enum {clockwise = 1, anticlockwise = -1};
-		inline int       Sign(const CVector2<T>& v2)const;
+
+		int       Sign(const CVector2<T>& v2)const;
 
 		/*
 		 * returns the vector that is perpendicular to this one.
 		 */
-		inline CVector2<T>  GetOrthogonal() const;
+		CVector2<T>  GetOrthogonal() const;
 
 		/*
 		 * adjusts x and y so that the length of the vector does not exceed max
 		 */
-		inline void      Truncate(float max);
+		void      Truncate(float max);
 
 		/*
 		 * returns the distance between this vector and th one passed as a parameter
 		 */
-		inline float    Distance(const CVector2<T> &v2)const;
+		float    Distance(const CVector2<T> &v2)const;
 
 		/*
 		 * squared version of above.
 		 */
-		inline float    DistanceSq(const CVector2<T> &v2)const;
+		float    DistanceSq(const CVector2<T> &v2)const;
 
 		/*
 		 * given a normalized vector this method reflects the vector it
 		 * is operating upon. (like the path of a ball bouncing off a wall)
 		 */
-		inline void      Reflect(const CVector2<T>& norm);
+		void      Reflect(const CVector2<T>& norm);
 
 		/*
 		 * returns the vector that is the reverse of this vector
 		 */
-		inline CVector2<T>  GetReverse()const;
+		CVector2<T>  GetReverse()const;
 
         CVector2<T> operator +() const;
         CVector2<T> operator -() const;

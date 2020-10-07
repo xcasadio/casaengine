@@ -102,7 +102,7 @@ namespace CasaEngine
 	//rounds a double up or down depending on its value
 	inline int Rounded(double val)
 	{
-		int    integral = (int)val;
+		int    integral = static_cast<int>(val);
 		double mantissa = val - integral;
 
 		if (mantissa < 0.5)
@@ -115,7 +115,7 @@ namespace CasaEngine
 	//rounds a double up or down depending on its value
 	inline int Rounded(float val)
 	{
-		int    integral = (int)val;
+		int    integral = static_cast<int>(val);
 		float mantissa = val - integral;
 
 		if (mantissa < 0.5f)
@@ -129,7 +129,7 @@ namespace CasaEngine
 	//mantissa is higher or lower than offset
 	inline int RoundUnderOffset(double val, double offset)
 	{
-		int    integral = (int)val;
+		int    integral = static_cast<int>(val);
 		double mantissa = val - integral;
 
 		if (mantissa < offset)
@@ -143,7 +143,7 @@ namespace CasaEngine
 	//mantissa is higher or lower than offset
 	inline int RoundUnderOffset(float val, float offset)
 	{
-		int    integral = (int)val;
+		int    integral = static_cast<int>(val);
 		float mantissa = val - integral;
 
 		if (mantissa < offset)
@@ -210,14 +210,14 @@ namespace CasaEngine
 	{
 		//CA_ASSERT( (static_cast<double>(minVal) < static_cast<double>(maxVal)) && "<Clamp> MaxVal < MinVal");
 
-		if (arg < (T)minVal)
+		if (arg < static_cast<T>(minVal))
 		{
-			arg = (T)minVal;
+			arg = static_cast<T>(minVal);
 		}
 
-		if (arg > (T)maxVal)
+		if (arg > static_cast<T>(maxVal))
 		{
-			arg = (T)maxVal;
+			arg = static_cast<T>(maxVal);
 		}
 	}
 

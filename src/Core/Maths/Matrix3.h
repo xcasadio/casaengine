@@ -99,8 +99,8 @@ namespace CasaEngine
 		//----------------------------------------------------------
         // Transformation
         //----------------------------------------------------------
-		void TransformVector2List(std::vector<Vector2F> &vPoint_);
-		void TransformVector2F(Vector2F &vPoint);
+		void TransformVector2List(std::vector<Vector2F> &vPoint_) const;
+		void TransformVector2F(Vector2F &vPoint) const;
 		
         //----------------------------------------------------------
         // Opérateurs + et - unaires

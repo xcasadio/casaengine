@@ -106,7 +106,7 @@ void TileMapGame::CreateBackground(World* pWorld)
 			//pSprite->SetPositionInTexture(RectangleI(12 * size, 4 * size, size, size));
 			pSprite->SetPositionInTexture(RectangleI(2 * size + x * size, y * size, size, size));
 			std::ostringstream str;
-			str << "autoTile" << (x + y * 2);
+			str << "autoTile" << x + y * 2;
 			pSprite->SetName(str.str());
 			Game::Instance().GetAssetManager().AddAsset(NEW_AO Asset(pSprite->GetName(), pSprite));
 		}
@@ -154,7 +154,7 @@ void TileMapGame::CreateBackground(World* pWorld)
 		for (int x = 0; x < 2; ++x)
 		{
 			std::ostringstream str;
-			str << "autoTile" << (x + y * 2);
+			str << "autoTile" << x + y * 2;
 			auto* staticTile = NEW_AO StaticTile(GetAssetManager().GetAsset<Sprite>(str.str()));
 			tiles4AutoTile.push_back(staticTile);
 		}
@@ -168,8 +168,8 @@ void TileMapGame::CreateBackground(World* pWorld)
 		for (int x = 0; x < 30; ++x)
 		{
 			if (y == 10 || y == 0 || x == 0 || x == 29 ||
-				((x % 2 == 0) && (y == 1 || y == 9)) ||
-				((y % 2 == 0) && (x == 1 || x == 28)))
+				x % 2 == 0 && (y == 1 || y == 9) ||
+				y % 2 == 0 && (x == 1 || x == 28))
 			{
 				auto* autoTile = NEW_AO AutoTile(layer, x, y);
 				autoTile->setTiles(tiles4AutoTile);

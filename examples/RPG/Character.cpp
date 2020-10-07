@@ -53,14 +53,14 @@ Character::Character(BaseEntity* pEntity)
 	m_Direction = Vector2F::UnitX();
 	//m_Velocity = Vector2F::Zero();
 
-	SetAnimationDirectionOffset(orientation::DOWN, (int)AnimationDirectionOffset::DOWN);
-	SetAnimationDirectionOffset(orientation::DOWN_LEFT, (int)AnimationDirectionOffset::DOWN_LEFT);
-	SetAnimationDirectionOffset(orientation::DOWN_RIGHT, (int)AnimationDirectionOffset::DOWN_RIGHT);
-	SetAnimationDirectionOffset(orientation::RIGHT, (int)AnimationDirectionOffset::RIGHT);
-	SetAnimationDirectionOffset(orientation::LEFT, (int)AnimationDirectionOffset::LEFT);
-	SetAnimationDirectionOffset(orientation::UP, (int)AnimationDirectionOffset::UP);
-	SetAnimationDirectionOffset(orientation::UP_LEFT, (int)AnimationDirectionOffset::UP_LEFT);
-	SetAnimationDirectionOffset(orientation::UP_RIGHT, (int)AnimationDirectionOffset::UP_RIGHT);
+	SetAnimationDirectionOffset(DOWN, static_cast<int>(AnimationDirectionOffset::DOWN));
+	SetAnimationDirectionOffset(DOWN_LEFT, static_cast<int>(AnimationDirectionOffset::DOWN_LEFT));
+	SetAnimationDirectionOffset(DOWN_RIGHT, static_cast<int>(AnimationDirectionOffset::DOWN_RIGHT));
+	SetAnimationDirectionOffset(RIGHT, static_cast<int>(AnimationDirectionOffset::RIGHT));
+	SetAnimationDirectionOffset(LEFT, static_cast<int>(AnimationDirectionOffset::LEFT));
+	SetAnimationDirectionOffset(UP, static_cast<int>(AnimationDirectionOffset::UP));
+	SetAnimationDirectionOffset(UP_LEFT, static_cast<int>(AnimationDirectionOffset::UP_LEFT));
+	SetAnimationDirectionOffset(UP_RIGHT, static_cast<int>(AnimationDirectionOffset::UP_RIGHT));
 	SetAnimationParameters(4, -1);
 }
 
@@ -134,7 +134,7 @@ void Character::SetAnimationParameters(unsigned int numberOfDir_, unsigned int a
  */
 void Character::SetAnimationDirectionOffset(orientation dir_, int offset_)
 {
-	m_AnimationDirectionOffset[(int)dir_] = offset_;
+	m_AnimationDirectionOffset[static_cast<int>(dir_)] = offset_;
 }
 
 /**
@@ -149,26 +149,26 @@ bool Character::HandleMessage(const Telegram& msg)
 /**
  *
  */
-orientation Character::GetOrientationFromVector2(Vector2F v_)
+orientation Character::GetOrientationFromVector2(const Vector2F v)
 {
 	unsigned int dir = 0;
 
-	if (v_.x < -Deadzone)
+	if (v.x < -Deadzone)
 	{
-		dir |= orientation::RIGHT;
+		dir |= RIGHT;
 	}
-	else if (v_.x > Deadzone)
+	else if (v.x > Deadzone)
 	{
-		dir |= orientation::LEFT;
+		dir |= LEFT;
 	}
 
-	if (v_.y < -Deadzone)
+	if (v.y < -Deadzone)
 	{
-		dir |= orientation::UP;
+		dir |= UP;
 	}
-	else if (v_.y > Deadzone)
+	else if (v.y > Deadzone)
 	{
-		dir |= orientation::DOWN;
+		dir |= DOWN;
 	}
 
 	return static_cast<orientation>(dir);
@@ -185,7 +185,7 @@ orientation Character::GetOrientation() const
 /**
  *
  */
-void Character::SetOrientation(orientation val)
+void Character::SetOrientation(const orientation val)
 {
 	m_Orientation = val;
 }
@@ -201,9 +201,9 @@ IController* Character::GetController() const
 /**
  *
  */
-void Character::Move(Vector2F& dir_)
+void Character::Move(Vector2F& dir)
 {
-	if (dir_ == Vector2F::Zero())
+	if (dir == Vector2F::Zero())
 	{
 		//always when Vector2.Zero to stop movement
 		//else if contact the character will continue to move
@@ -216,7 +216,7 @@ void Character::Move(Vector2F& dir_)
 	}
 	else
 	{
-		Direction(dir_);
+		Direction(dir);
 
 		PhysicalEntity& physicalEntity = m_pEntity->GetPhysicalEntity();
 		// 		physicalEntity.MoveRequest(MOVE, dir_, m_Speed + m_SpeedOffSet);
@@ -232,7 +232,7 @@ void Character::Move(Vector2F& dir_)
 		// 		request.Velocity = m_Speed + m_SpeedOffSet;
 		// 		request.Style = mvtStyle;
 		// 		physicalEntity.MovementSystem.QueueRequest(request);
-		physicalEntity.SetVelocity(Vector3F(dir_.x, dir_.y, 0.0f) * (m_Speed + m_SpeedOffSet));
+		physicalEntity.SetVelocity(Vector3F(dir.x, dir.y, 0.0f) * (m_Speed + m_SpeedOffSet));
 		//physicalEntity->applyCentralImpulse(Vector3F(dir_.x, dir_.y, 0.0f) * (m_Speed + m_SpeedOffSet));
 	}
 }
@@ -242,8 +242,8 @@ void Character::Move(Vector2F& dir_)
  */
 int Character::GetAnimationDirectionOffset()
 {
-	int val = (int)m_Orientation & m_AnimationDirectioMask;
-	return m_AnimationDirectionOffset[(int)m_Orientation & m_AnimationDirectioMask];
+	int val = static_cast<int>(m_Orientation) & m_AnimationDirectioMask;
+	return m_AnimationDirectionOffset[static_cast<int>(m_Orientation) & m_AnimationDirectioMask];
 }
 
 /**
@@ -259,12 +259,12 @@ void Character::SetCurrentAnimation(int index_)
 /**
  *
  */
-void Character::SetCurrentAnimation(const char* name_)
+void Character::SetCurrentAnimation(const char* name) const
 {
 	CA_ASSERT(m_pAnimatedSprite != nullptr, "Character::SetCurrentAnimation() : m_pAnimatedSprite == nullptr");
-	CA_ASSERT(name_ != nullptr, "Character::SetCurrentAnimation() : animation name == nullptr");
+	CA_ASSERT(name != nullptr, "Character::SetCurrentAnimation() : animation name == nullptr");
 
-	m_pAnimatedSprite->SetCurrentAnimation(name_);
+	m_pAnimatedSprite->SetCurrentAnimation(name);
 }
 
 /**
@@ -292,7 +292,7 @@ bool Character::OnAnimationFinished(const EventArgs& e_)
 
 	//event.ID();
 	Telegram msg;
-	msg.Msg = MessageType::ANIMATION_FINISHED;
+	msg.Msg = ANIMATION_FINISHED;
 	msg.ExtraInfo = &event;
 	m_MessageQueue.push(msg);
 
@@ -308,7 +308,7 @@ bool Character::OnFrameChangedEvent(const EventArgs& e_)
 
 	//event.ID();
 	Telegram msg;
-	msg.Msg = MessageType::FRAME_CHANGE_EVENT;
+	msg.Msg = FRAME_CHANGE_EVENT;
 	msg.ExtraInfo = &event;
 	m_MessageQueue.push(msg);
 

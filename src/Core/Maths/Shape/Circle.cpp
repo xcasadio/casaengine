@@ -28,7 +28,7 @@ Circle::~Circle()
 /**
  * 
  */
-CasaEngine::Vector3F Circle::Center() const
+Vector3F Circle::Center() const
 {
 	return m_Center;
 }

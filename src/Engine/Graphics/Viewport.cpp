@@ -174,7 +174,7 @@ namespace CasaEngine
 	{ 
 		if (m_Height != 0)
 		{
-			m_fAspectRatio = (float) m_Width / (float)m_Height;
+			m_fAspectRatio = static_cast<float>(m_Width) / static_cast<float>(m_Height);
 		}
 		else
 		{
@@ -188,44 +188,44 @@ namespace CasaEngine
 	bool WithinEpsilon(float a, float b)
 	{
 		float num = a - b;
-		return ((-1.401298E-45f <= num) && (num <= 1.401298E-45f));
+		return -1.401298E-45f <= num && num <= 1.401298E-45f;
 	}
 
 	/**
 	 * 
 	 */
-	Vector3F Viewport::Project(const Vector3F &source, const Matrix4 &projection, const Matrix4 &view, const Matrix4 &world)
+	Vector3F Viewport::Project(const Vector3F &source, const Matrix4 &projection, const Matrix4 &view, const Matrix4 &world) const
 	{
 		Matrix4 mat = world * view * projection; // Matrix4::Multiply(Matrix4.Multiply(world, view), projection);		
 		Vector3F vector;
 		mat.Transform(source, vector); // Vector3F::Transform(source, mat);
-		float a = (((source.x * mat.a14) + (source.y * mat.a24)) + (source.z * mat.a34)) + mat.a44;
+		float a = source.x * mat.a14 + source.y * mat.a24 + source.z * mat.a34 + mat.a44;
 		if (!WithinEpsilon(a, 1.0f))
 		{
-			vector = (Vector3F) (vector / a);
+			vector = static_cast<Vector3F>(vector / a);
 		}
-		vector.x = (((vector.x + 1.0f) * 0.5f) * m_Width) + m_X;
-		vector.y = (((-vector.y + 1.0f) * 0.5f) * m_Height) + m_Y;
-		vector.z = (vector.z * (m_fFarClipPlane - m_fNearClipPlane)) + m_fNearClipPlane;
+		vector.x = (vector.x + 1.0f) * 0.5f * m_Width + m_X;
+		vector.y = (-vector.y + 1.0f) * 0.5f * m_Height + m_Y;
+		vector.z = vector.z * (m_fFarClipPlane - m_fNearClipPlane) + m_fNearClipPlane;
 		return vector;
 	}
 
 	/**
 	 * 
 	 */
-	Vector3F Viewport::Unproject(const Vector3F &source, const Matrix4 &projection, const Matrix4 &view, const Matrix4 &world)
+	Vector3F Viewport::Unproject(const Vector3F &source, const Matrix4 &projection, const Matrix4 &view, const Matrix4 &world) const
 	{
 		Vector3F vector = source;
 		Matrix4 mat = (world * view * projection).Invert(); //Matrix4.Invert(Matrix4.Multiply(Matrix4.Multiply(world, view), projection));
-		vector.x = (((source.x - m_X) / ((float) m_Width)) * 2.0f) - 1.0f;
-		vector.y = -((((source.y - m_Y) / ((float) m_Height)) * 2.0f) - 1.0f);
+		vector.x = (source.x - m_X) / m_Width * 2.0f - 1.0f;
+		vector.y = -((source.y - m_Y) / m_Height * 2.0f - 1.0f);
 		vector.z = (source.z - m_fNearClipPlane) / (m_fFarClipPlane - m_fNearClipPlane);
 
 		mat.Transform(source, vector); // Vector3F.Transform(source, mat);
-		float a = (((source.x * mat.a14) + (source.y * mat.a24)) + (source.z * mat.a34)) + mat.a44;
+		const float a = source.x * mat.a14 + source.y * mat.a24 + source.z * mat.a34 + mat.a44;
 		if (!WithinEpsilon(a, 1.0f))
 		{
-			vector = (Vector3F) (vector / a);
+			vector = vector / a;
 		}
 		return vector;
 	}

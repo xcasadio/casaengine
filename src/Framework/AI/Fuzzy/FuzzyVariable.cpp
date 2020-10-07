@@ -80,7 +80,7 @@ float FuzzyVariable::DeFuzzifyMaxAv()const
 float FuzzyVariable::DeFuzzifyCentroid(int NumSamples)const
 {
   //calculate the step size
-  float StepSize = (m_fMaxRange - m_fMinRange)/(float)NumSamples;
+  float StepSize = (m_fMaxRange - m_fMinRange)/static_cast<float>(NumSamples);
 
   float TotalArea    = 0.0;
   float SumOfMoments = 0.0;

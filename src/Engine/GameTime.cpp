@@ -18,7 +18,7 @@ int getPerfDeltaTimeUsec(const TimeVal start, const TimeVal end)
 	if (freq == 0)
 		QueryPerformanceFrequency((LARGE_INTEGER*)&freq);
 	__int64 elapsed = end - start;
-	return (int)(elapsed*1000000 / freq);
+	return static_cast<int>(elapsed * 1000000 / freq);
 }
 
 #else // Linux, BSD, OSX

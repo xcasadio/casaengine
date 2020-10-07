@@ -52,7 +52,7 @@ public:
         the use of the name Event::Subscriber is maintained for hostorical and
         compatability reasons.
     */
-    typedef CasaEngine::SubscriberSlot Subscriber;
+    typedef SubscriberSlot Subscriber;
 
     /*!
     \brief
@@ -77,11 +77,11 @@ public:
             disconnect();
         }
 
-        ScopedConnection(const Event::Connection& connection) :
+        ScopedConnection(const Connection& connection) :
             d_connection(connection)
         {}
 
-        ScopedConnection& operator=(const Event::Connection& connection)
+        ScopedConnection& operator=(const Connection& connection)
         {
             d_connection = connection;
             return *this;
@@ -98,7 +98,7 @@ public:
         }
 
     private:
-        Event::Connection d_connection;
+        Connection d_connection;
     };
 
     /*!

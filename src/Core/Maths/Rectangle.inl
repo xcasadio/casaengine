@@ -72,7 +72,7 @@ TIntersection CRectangle<T>::Intersects(const CRectangle<T>& Rect) const
 }
 
 template <class T>
-bool CasaEngine::CRectangle<T>::operator ==(const CRectangle<T>& Rect) const
+bool CRectangle<T>::operator ==(const CRectangle<T>& Rect) const
 {
 	return (x == Rect.x) && (y == Rect.y) && (w == Rect.w) && (h == Rect.h);
 }

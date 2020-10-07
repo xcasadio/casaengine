@@ -46,7 +46,7 @@ inline void ObjectPool<T>::operator delete( void *p )
 	EnterCriticalSection(get_cs());
 	#endif
 
-	T::get_list().push_back((T*)p);
+	T::get_list().push_back(static_cast<T*>(p));
 
 	#ifdef ___USE_MT___
 	LeaveCriticalSection(get_cs());

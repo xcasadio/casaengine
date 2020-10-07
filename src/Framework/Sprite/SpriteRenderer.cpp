@@ -32,8 +32,8 @@ namespace CasaEngine
 	{
 		DELETE_AO[] m_pDatas;
 
-		bgfx::destroy(m_VertexBuffer);
-		bgfx::destroy(m_IndexBuffer);
+		destroy(m_VertexBuffer);
+		destroy(m_IndexBuffer);
 		
 		DELETE_AO m_Program;
 	}
@@ -48,7 +48,7 @@ namespace CasaEngine
 		m_SpriteDatas.reserve(m_MaxSprite);
 		m_SpriteBatches.reserve(m_MaxSprite);
 		m_pDatas = NEW_AO VertexPositionColorTexture[m_MaxSprite];
-		m_VertexBuffer = bgfx::createDynamicVertexBuffer(m_MaxSprite * 4, VertexPositionColorTexture::ms_layout);
+		m_VertexBuffer = createDynamicVertexBuffer(m_MaxSprite * 4, VertexPositionColorTexture::ms_layout);
 
 		const int nbIndex = 6; //m_MaxSprite
 		short *pIndices = ::new short[nbIndex * 6];
@@ -63,11 +63,11 @@ namespace CasaEngine
 			pIndices[i * 6 + 5] = static_cast<short>(2 + i * 4);
 		}
 
-		m_IndexBuffer = bgfx::createIndexBuffer(bgfx::copy(pIndices, sizeof(short) * nbIndex * 6 ));
+		m_IndexBuffer = createIndexBuffer(bgfx::copy(pIndices, sizeof(short) * nbIndex * 6 ));
 		delete[] pIndices;
 
 		m_Program = NEW_AO Program("vs_spritebatch", "fs_spritebatch");
-		m_texColor = bgfx::createUniform("s_texColor", bgfx::UniformType::Sampler);
+		m_texColor = createUniform("s_texColor", bgfx::UniformType::Sampler);
 	}
 
 	/**
@@ -113,12 +113,12 @@ namespace CasaEngine
 				//| BGFX_STATE_CULL_CW
 				//| BGFX_STATE_MSAA
 				| BGFX_STATE_BLEND_ALPHA);
-			bgfx::setVertexBuffer(0, m_VertexBuffer, i * 4, 4);
-			bgfx::setIndexBuffer(m_IndexBuffer, 0, 6);
-			bgfx::setTexture(0, m_texColor, m_SpriteDatas[i].Texture->Handle());
+			setVertexBuffer(0, m_VertexBuffer, i * 4, 4);
+			setIndexBuffer(m_IndexBuffer, 0, 6);
+			setTexture(0, m_texColor, m_SpriteDatas[i].Texture->Handle());
 			//bgfx::setUniform(m_ColorUniform, m_SpriteDatas[i].Color);
 			bgfx::setTransform(m_SpriteDatas[i].transform);
-			bgfx::submit(0, m_Program->Handle());			
+			submit(0, m_Program->Handle());			
 		}
 	}
 
@@ -167,7 +167,7 @@ namespace CasaEngine
 		}
 
 		const uint32_t size = m_SpriteDatas.size() * 4 * sizeof(VertexPositionColorTexture);
-		bgfx::update(m_VertexBuffer, 0, bgfx::makeRef(m_pDatas, size));
+		update(m_VertexBuffer, 0, bgfx::makeRef(m_pDatas, size));
 	}
 
 	/**
@@ -203,10 +203,10 @@ namespace CasaEngine
 
 		const float texW = tex_->TextureInfo()->width;
 		const float texH = tex_->TextureInfo()->height;
-		const float texTop = (float)posInTex.Top() / texH;
-		const float texBottom = (float)posInTex.Bottom() / texH;
-		const float texLeft = (float)posInTex.Left() / texW;
-		const float texRight = (float)posInTex.Right() / texW;
+		const float texTop = static_cast<float>(posInTex.Top()) / texH;
+		const float texBottom = static_cast<float>(posInTex.Bottom()) / texH;
+		const float texLeft = static_cast<float>(posInTex.Left()) / texW;
+		const float texRight = static_cast<float>(posInTex.Right()) / texW;
 
 		SpriteDisplayData spriteData;
 
@@ -266,10 +266,10 @@ namespace CasaEngine
 
 		const float texW = tex_->TextureInfo()->width;
 		const float texH = tex_->TextureInfo()->height;
-		const float texTop = (float)posInTex.Top() / texH;
-		const float texBottom = (float)posInTex.Bottom() / texH;
-		const float texLeft = (float)posInTex.Left() / texW;
-		const float texRight = (float)posInTex.Right() / texW;
+		const float texTop = static_cast<float>(posInTex.Top()) / texH;
+		const float texBottom = static_cast<float>(posInTex.Bottom()) / texH;
+		const float texLeft = static_cast<float>(posInTex.Left()) / texW;
+		const float texRight = static_cast<float>(posInTex.Right()) / texW;
 
 		const float top = pos_.y;
 		const float bottom = pos_.y + posInTex.h;

@@ -24,10 +24,10 @@ namespace CasaEngine
 
 		for (unsigned int i=0; i < v.size(); ++i)
 		{    
-			average += (double)v[i];
+			average += static_cast<double>(v[i]);
 		}
 
-		return average / (double)v.size();
+		return average / static_cast<double>(v.size());
 	}
 	
 	/*

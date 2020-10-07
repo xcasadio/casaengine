@@ -85,7 +85,7 @@ void EventSet::removeAllEvents(void)
 //----------------------------------------------------------------------------//
 bool EventSet::isEventPresent(const std::string& name)
 {
-    return (d_events.find(name) != d_events.end());
+    return d_events.find(name) != d_events.end();
 }
 // 
 // //----------------------------------------------------------------------------//
@@ -176,7 +176,7 @@ void EventSet::fireEvent_impl(const std::string& name, EventArgs& args)
 {
     Event* ev = getEventObject(name);
 
-    if ((ev != 0) && !d_muted)
+    if (ev != 0 && !d_muted)
         (*ev)(args);
 }
 

@@ -91,7 +91,7 @@ inline DestinationType alias_cast(SourceType pPtr);
 		unsigned int i = FloatU32(x);
 		unsigned int expmask = FloatU32ExpMask;
 		unsigned int iexp = i & expmask;
-		bool invalid = (iexp == expmask);
+		bool invalid = iexp == expmask;
 
 		if (invalid)
 		{
@@ -110,45 +110,45 @@ inline DestinationType alias_cast(SourceType pPtr);
 
 	inline bool NumberNAN(const float& x)
 	{
-		return (((FloatU32(x) & FloatU32ExpMask) == FloatU32ExpMask) &&
-			((FloatU32(x) & FloatU32FracMask) != 0));
+		return (FloatU32(x) & FloatU32ExpMask) == FloatU32ExpMask &&
+			(FloatU32(x) & FloatU32FracMask) != 0;
 	}
 
 	inline bool NumberINF(const float& x)
 	{
-		return (((FloatU32(x) & FloatU32ExpMask) == FloatU32ExpMask) &&
-			((FloatU32(x) & FloatU32FracMask) == 0));
+		return (FloatU32(x) & FloatU32ExpMask) == FloatU32ExpMask &&
+			(FloatU32(x) & FloatU32FracMask) == 0;
 	}
 
 	inline bool NumberDEN(const float& x)
 	{
-		return (((FloatU32(x) & FloatU32ExpMask) == 0) &&
-			((FloatU32(x) & FloatU32FracMask) != 0));
+		return (FloatU32(x) & FloatU32ExpMask) == 0 &&
+			(FloatU32(x) & FloatU32FracMask) != 0;
 	}
 
 	//--------------------------------------------------------------------------------
 
 	inline bool NumberValid(const double& x)
 	{
-		return ((DoubleU64(x) & DoubleU64ExpMask) != DoubleU64ExpMask);
+		return (DoubleU64(x) & DoubleU64ExpMask) != DoubleU64ExpMask;
 	}
 
 	inline bool NumberNAN(const double& x)
 	{
-		return (((DoubleU64(x) & DoubleU64ExpMask) == DoubleU64ExpMask) &&
-			((DoubleU64(x) & DoubleU64FracMask) != 0));
+		return (DoubleU64(x) & DoubleU64ExpMask) == DoubleU64ExpMask &&
+			(DoubleU64(x) & DoubleU64FracMask) != 0;
 	}
 
 	inline bool NumberINF(const double& x)
 	{
-		return (((DoubleU64(x) & DoubleU64ExpMask) == DoubleU64ExpMask) &&
-			((DoubleU64(x) & DoubleU64FracMask) == 0));
+		return (DoubleU64(x) & DoubleU64ExpMask) == DoubleU64ExpMask &&
+			(DoubleU64(x) & DoubleU64FracMask) == 0;
 	}
 
 	inline bool NumberDEN(const double& x)
 	{
-		return (((DoubleU64(x) & DoubleU64ExpMask) == 0) &&
-			((DoubleU64(x) & DoubleU64FracMask) != 0));
+		return (DoubleU64(x) & DoubleU64ExpMask) == 0 &&
+			(DoubleU64(x) & DoubleU64FracMask) != 0;
 	}
 
 	//--------------------------------------------------------------------------------

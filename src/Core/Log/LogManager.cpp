@@ -60,7 +60,7 @@ namespace CasaEngine
 			it != m_Logs.end();
 			++it)
 		{
-			if ((*it) == logger_)
+			if (*it == logger_)
 			{
 				m_Logs.erase(it);
 				break;

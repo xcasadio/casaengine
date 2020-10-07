@@ -413,7 +413,7 @@ public:
 template <class node_type, class edge_type>
 bool SparseGraph<node_type, edge_type>::isNodePresent(int nd)const
 {
-    if ((nd >= (int)m_Nodes.size() || (m_Nodes[nd].Index() == invalid_node_index)))
+    if ((nd >= static_cast<int>(m_Nodes.size()) || (m_Nodes[nd].Index() == invalid_node_index)))
     {
       return false;
     }
@@ -447,7 +447,7 @@ bool SparseGraph<node_type, edge_type>::isEdgePresent(int from, int to)const
 template <class node_type, class edge_type>
 const node_type&  SparseGraph<node_type, edge_type>::GetNode(int idx)const
 {
-    CA_ASSERT((idx < (int)m_Nodes.size()) && (idx >=0), "<SparseGraph::GetNode>: invalid index");
+    CA_ASSERT((idx < static_cast<int>(m_Nodes.size())) && (idx >=0), "<SparseGraph::GetNode>: invalid index");
 
     return m_Nodes[idx];
 }
@@ -456,7 +456,7 @@ const node_type&  SparseGraph<node_type, edge_type>::GetNode(int idx)const
 template <class node_type, class edge_type>
 node_type&  SparseGraph<node_type, edge_type>::GetNode(int idx)
 {
-    CA_ASSERT((idx < (int)m_Nodes.size()) && (idx >=0), "<SparseGraph::GetNode>: invalid index");
+    CA_ASSERT((idx < static_cast<int>(m_Nodes.size())) && (idx >=0), "<SparseGraph::GetNode>: invalid index");
     
     return m_Nodes[idx];
 }
@@ -551,7 +551,7 @@ void SparseGraph<node_type, edge_type>::AddEdge(EdgeType edge)
 template <class node_type, class edge_type>
 void SparseGraph<node_type, edge_type>::RemoveEdge(int from, int to)
 {
-  CA_ASSERT((from < (int)m_Nodes.size()) && (to < (int)m_Nodes.size()),
+  CA_ASSERT((from < static_cast<int>(m_Nodes.size())) && (to < static_cast<int>(m_Nodes.size())),
 	  "<SparseGraph::RemoveEdge>:invalid node index");
 
   typename EdgeList::iterator curEdge;
@@ -585,7 +585,7 @@ void SparseGraph<node_type, edge_type>::RemoveEdge(int from, int to)
 template <class node_type, class edge_type>
 int SparseGraph<node_type, edge_type>::AddNode(node_type node)
 {
-	if (node.Index() < (int)m_Nodes.size())
+	if (node.Index() < static_cast<int>(m_Nodes.size()))
 	{
 		//make sure the client is not trying to add a node with the same ID as
 		//a currently active node
@@ -640,7 +640,7 @@ void SparseGraph<node_type, edge_type>::CullInvalidEdges()
 template <class node_type, class edge_type>
 void SparseGraph<node_type, edge_type>::RemoveNode(int node)                                   
 {
-  CA_ASSERT(node < (int)m_Nodes.size(), "<SparseGraph::RemoveNode>: invalid node index");
+  CA_ASSERT(node < static_cast<int>(m_Nodes.size()), "<SparseGraph::RemoveNode>: invalid node index");
 
   //set this node's index to invalid_node_index
   m_Nodes[node].SetIndex(invalid_node_index);
@@ -686,7 +686,7 @@ template <class node_type, class edge_type>
 void SparseGraph<node_type, edge_type>::SetEdgeCost(int from, int to, float NewCost)
 {
   //make sure the nodes given are valid
-  CA_ASSERT((from < (int)m_Nodes.size()) && (to < (int)m_Nodes.size()), "<SparseGraph::SetEdgeCost>: invalid index");
+  CA_ASSERT((from < static_cast<int>(m_Nodes.size())) && (to < static_cast<int>(m_Nodes.size())), "<SparseGraph::SetEdgeCost>: invalid index");
 
   //visit each neighbour and erase any edges leading to this node
   for (typename EdgeList::iterator curEdge = m_Edges[from].begin(); 

@@ -41,7 +41,7 @@ namespace CasaEngine
 		m_pFs = Shader::loadShader(_fsName);
 		CA_ASSERT(m_pVs != nullptr, "Can't load the vertex shader '%s'", _vsName);
 		CA_ASSERT(m_pFs != nullptr, "Can't load the fragment shader '%s'", _fsName);
-		m_Handle = bgfx::createProgram(m_pVs->Handle(), m_pFs->Handle(), false);
+		m_Handle = createProgram(m_pVs->Handle(), m_pFs->Handle(), false);
 	}
 
 	Program::Program(bgfx::ProgramHandle handle_)
@@ -51,7 +51,7 @@ namespace CasaEngine
 
 	Program::~Program()
 	{
-		bgfx::destroy(m_Handle);
+		destroy(m_Handle);
 		DELETE_AO m_pVs;
 		DELETE_AO m_pFs;
 	}

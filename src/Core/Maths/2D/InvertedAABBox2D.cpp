@@ -13,10 +13,10 @@ namespace CasaEngine
 	//returns true if the bbox described by other intersects with this one
 	bool InvertedAABBox2D::isOverlappedWith(const InvertedAABBox2D& other)const
 	{
-		return !((other.Top() > this->Bottom()) ||
-			(other.Bottom() < this->Top()) ||
-			(other.Left() > this->Right()) ||
-			(other.Right() < this->Left()));
+		return !(other.Top() > this->Bottom() ||
+			other.Bottom() < this->Top() ||
+			other.Left() > this->Right() ||
+			other.Right() < this->Left());
 	}
 
 

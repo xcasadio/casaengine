@@ -234,12 +234,12 @@ namespace CasaEngine
 	template<class entity>
 	inline int CellSpacePartition<entity>::PositionToIndex(const Vector2F& pos)const
 	{
-		int idx = (int)(m_iNumCellsX * pos.x / m_fSpaceWidth) + 
-				((int)((m_iNumCellsY) * pos.y / m_fSpaceHeight) * m_iNumCellsX);
+		int idx = static_cast<int>(m_iNumCellsX * pos.x / m_fSpaceWidth) + 
+				static_cast<int>(m_iNumCellsY * pos.y / m_fSpaceHeight) * m_iNumCellsX;
 
 		//if the entity's position is equal to Vector2F(m_fSpaceWidth, m_fSpaceHeight)
 		//then the index will overshoot. We need to check for this and adjust
-		if (idx > (int)m_Cells.size()-1) idx = (int)m_Cells.size()-1;
+		if (idx > static_cast<int>(m_Cells.size())-1) idx = static_cast<int>(m_Cells.size())-1;
 
 		return idx;
 	}

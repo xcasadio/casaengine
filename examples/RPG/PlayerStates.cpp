@@ -37,11 +37,11 @@ void PlayerStateIdle::Enter(IController* pController_)
 
 	if (pPlayerController->GetHero()->InFuryMode() == true)
 	{
-		pPlayerController->GetHero()->SetCurrentAnimation((int)Character::AnimationIndices::FURY_IDLE);
+		pPlayerController->GetHero()->SetCurrentAnimation(static_cast<int>(Character::AnimationIndices::FURY_IDLE));
 	}
 	else
 	{
-		pPlayerController->GetHero()->SetCurrentAnimation((int)Character::AnimationIndices::IDLE);
+		pPlayerController->GetHero()->SetCurrentAnimation(static_cast<int>(Character::AnimationIndices::IDLE));
 	}
 }
 
@@ -58,17 +58,17 @@ void PlayerStateIdle::Execute(IController* pController_, const GameTime& elpased
 
 	if (pPlayerController->GetHero()->FuryModeEnabling() == true)
 	{
-		pPlayerController->FSM()->ChangeState(pPlayerController->GetState((int)PlayerControllerState::TO_FURY_MODE));
+		pPlayerController->FSM()->ChangeState(pPlayerController->GetState(static_cast<int>(TO_FURY_MODE)));
 		return;
 	}
 	else if (pPlayerController->GetHero()->FuryModeDesabling() == true)
 	{
-		pPlayerController->FSM()->ChangeState(pPlayerController->GetState((int)PlayerControllerState::TO_NORMAL_MODE));
+		pPlayerController->FSM()->ChangeState(pPlayerController->GetState(static_cast<int>(TO_NORMAL_MODE)));
 		return;
 	}
 	else if (pPlayerController->IsAttackButtonPressed() == true)
 	{
-		pPlayerController->FSM()->ChangeState(pPlayerController->GetState((int)PlayerControllerState::ATTACK_1));
+		pPlayerController->FSM()->ChangeState(pPlayerController->GetState(static_cast<int>(ATTACK_1)));
 		return;
 	}
 
@@ -90,7 +90,7 @@ void PlayerStateIdle::Execute(IController* pController_, const GameTime& elpased
 		else
 		{*/
 		pPlayerController->GetHero()->Move(joyDir);
-		pPlayerController->GetHero()->SetCurrentAnimation((int)Character::AnimationIndices::RUN);
+		pPlayerController->GetHero()->SetCurrentAnimation(static_cast<int>(Character::AnimationIndices::RUN));
 		//}
 
 	}
@@ -99,7 +99,7 @@ void PlayerStateIdle::Execute(IController* pController_, const GameTime& elpased
 		joyDir = Vector2F::Zero();
 		pPlayerController->GetHero()->Move(joyDir);
 
-		pPlayerController->GetHero()->SetCurrentAnimation((int)Character::AnimationIndices::IDLE);
+		pPlayerController->GetHero()->SetCurrentAnimation(static_cast<int>(Character::AnimationIndices::IDLE));
 	}
 }
 
@@ -150,7 +150,7 @@ void PlayerStateAttack::Enter(IController* pController_)
 
 	if (pPlayerController->GetHero()->FuryModeDesabling() == true)
 	{
-		pPlayerController->FSM()->ChangeState(pPlayerController->GetState((int)PlayerControllerState::TO_NORMAL_MODE));
+		pPlayerController->FSM()->ChangeState(pPlayerController->GetState(static_cast<int>(TO_NORMAL_MODE)));
 		return;
 	}
 
@@ -161,11 +161,11 @@ void PlayerStateAttack::Enter(IController* pController_)
 
 	if (pPlayerController->GetHero()->InFuryMode() == true)
 	{
-		pPlayerController->GetHero()->SetCurrentAnimation((int)Character::AnimationIndices::FURY_ATTACK1);
+		pPlayerController->GetHero()->SetCurrentAnimation(static_cast<int>(Character::AnimationIndices::FURY_ATTACK1));
 	}
 	else
 	{
-		pPlayerController->GetHero()->SetCurrentAnimation((int)Character::AnimationIndices::ATTACK1);
+		pPlayerController->GetHero()->SetCurrentAnimation(static_cast<int>(Character::AnimationIndices::ATTACK1));
 	}
 }
 
@@ -215,7 +215,7 @@ bool PlayerStateAttack::OnMessage(IController* pController_, const Telegram& msg
 {
 	PlayerController* pPlayerController = dynamic_cast<PlayerController*>(pController_);
 
-	if (msg.Msg == MessageType::ANIMATION_FINISHED)
+	if (msg.Msg == ANIMATION_FINISHED)
 	{
 		//		if (pPlayerController->GetHero()->AttackType() == AttackType::Melee)
 		{
@@ -225,7 +225,7 @@ bool PlayerStateAttack::OnMessage(IController* pController_, const Telegram& msg
 			// 			}
 			// 			else
 			{
-				pPlayerController->FSM()->ChangeState(pPlayerController->GetState((int)PlayerControllerState::IDLE));
+				pPlayerController->FSM()->ChangeState(pPlayerController->GetState(static_cast<int>(IDLE)));
 			}
 		}
 		// 		else // ranged attack

@@ -11,7 +11,7 @@ namespace CasaEngine
 	Win32Exception::Win32Exception() 
 		: m_szErrMsg( nullptr )
 	{
-		unsigned int dwLastErr = ::GetLastError();
+		unsigned int dwLastErr = GetLastError();
 		doFormatMessage( dwLastErr );
 	}
 
@@ -100,7 +100,7 @@ namespace CasaEngine
 		///CA_ASSERT( metaMem() );
 
 		// Get the error code of the current thread
-		unsigned int dwNewErr = ::GetLastError();
+		unsigned int dwNewErr = GetLastError();
 
 		// A simple check for performance: Reformatting is only 
 		// necessary if the new code value is different.
@@ -159,7 +159,7 @@ namespace CasaEngine
 						1, 
 						nullptr );
 		allocCopyData( pTemp, nLen, dwLastErr);
-		::LocalFree( pTemp );
+		LocalFree( pTemp );
 		pTemp = nullptr;
 	}
 
@@ -175,7 +175,7 @@ namespace CasaEngine
 		pSM->m_nRefCnt = 1;
 		pSM->m_nMsgStrLen = nLen;
 		m_szErrMsg = pSM->getString();
-		::memcpy( m_szErrMsg, pTemp, nLen*sizeof(TCHAR) );
+		memcpy( m_szErrMsg, pTemp, nLen*sizeof(TCHAR) );
 		m_szErrMsg[ nLen ] = '\0';
 	}
 

@@ -31,8 +31,8 @@ void EnemyController::Initialize()
 	auto state_walking = NEW_AO EnemyStateWalking();
 	//auto state_attack = NEW_AO PlayerStateAttack();
 	
-	AddState((int)EnemyControllerState::IDLE, state_idle);
-	AddState((int)EnemyControllerState::MOVING, state_walking);
+	AddState(static_cast<int>(EnemyControllerState::IDLE), state_idle);
+	AddState(static_cast<int>(EnemyControllerState::MOVING), state_walking);
 	//AddState((int)EnemyControllerState::ATTACK_1, state_attack);
 	// 	AddState((int)EnemyControllerState::ATTACK_2, new PlayerAttack2State());
 	// 	AddState((int)EnemyControllerState::ATTACK_3, new PlayerAttack3State());
@@ -41,7 +41,7 @@ void EnemyController::Initialize()
 
 	//GetCharacter()->SetOrientation(orientation::RIGHT);
 	//Character.Animation2DPlayer.SetCurrentAnimationByID((int)AnimationIndex.IdleRight);
-	FSM()->SetCurrentState(GetState((int)EnemyControllerState::IDLE));
+	FSM()->SetCurrentState(GetState(static_cast<int>(EnemyControllerState::IDLE)));
 }
 
 /**

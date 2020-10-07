@@ -47,7 +47,7 @@ namespace CasaEngine
 	Line3DRendererComponent::~Line3DRendererComponent()
 	{
 		DELETE_AO m_pProgram;
-		bgfx::destroy(m_VertexBuffer);
+		destroy(m_VertexBuffer);
 	}
 
 	/**
@@ -56,7 +56,7 @@ namespace CasaEngine
 	void Line3DRendererComponent::OnLoadContent() 
 	{
 		m_pProgram = NEW_AO Program("vs_3Dlines", "fs_3Dlines");
-		m_VertexBuffer = bgfx::createDynamicVertexBuffer(NbLineMax * 2, VertexPositionColor::ms_layout);
+		m_VertexBuffer = createDynamicVertexBuffer(NbLineMax * 2, VertexPositionColor::ms_layout);
 	}
 
 	/**
@@ -70,7 +70,7 @@ namespace CasaEngine
 			it != m_Lines.end();
 			it++)
 		{
-			::delete (*it);
+			::delete *it;
 			*it = nullptr;
 		}
 
@@ -89,7 +89,7 @@ namespace CasaEngine
 
 		CameraComponent *pCamera = Game::Instance().GetGameInfo().GetActiveCamera();
 		bgfx::setViewTransform(0, pCamera->GetViewMatrix(), pCamera->GetProjectionMatrix());
-		bgfx::setVertexBuffer(0, m_VertexBuffer, 0, m_NbLines * 2);
+		setVertexBuffer(0, m_VertexBuffer, 0, m_NbLines * 2);
 		//bgfx::setIndexBuffer(m_IndexBuffer);
 		//bgfx::setBuffer(0, m_VertexBuffer, bgfx::Access::Write);
 
@@ -101,7 +101,7 @@ namespace CasaEngine
 			| BGFX_STATE_BLEND_ALPHA
 			| BGFX_STATE_PT_LINES);
 
-		bgfx::submit(0, m_pProgram->Handle());
+		submit(0, m_pProgram->Handle());
 	}
 
 	/**
@@ -160,8 +160,8 @@ namespace CasaEngine
 			index++;
 		}
 
-		bgfx::update(m_VertexBuffer , 0, 
-			bgfx::copy(pVertices, (uint32_t)(m_Lines.size() * 2 * sizeof(VertexPositionColor)) ));
+		update(m_VertexBuffer , 0, 
+			bgfx::copy(pVertices, static_cast<uint32_t>(m_Lines.size() * 2 * sizeof(VertexPositionColor)) ));
 
 		::delete[] pVertices;
 

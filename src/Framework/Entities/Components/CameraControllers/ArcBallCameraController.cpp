@@ -92,15 +92,15 @@ namespace CasaEngine
 
 		if (Game::Instance().GetInput().IsMouseButtonDown(sf::Mouse::Middle) == true)
 		{
-			horizontalOrbit = (float)-Game::Instance().GetInput().GetDeltaMouseX();
-			verticalOrbit = (float)-Game::Instance().GetInput().GetDeltaMouseY();
+			horizontalOrbit = static_cast<float>(-Game::Instance().GetInput().GetDeltaMouseX());
+			verticalOrbit = static_cast<float>(-Game::Instance().GetInput().GetDeltaMouseY());
 		}
 
 		//Touch
 		if (Game::Instance().GetInput().IsTouchMove(0) == true)
 		{
-			horizontalOrbit = (float)-Game::Instance().GetInput().TouchMoveDeltaX(0);
-			verticalOrbit = (float)-Game::Instance().GetInput().TouchMoveDeltaY(0);
+			horizontalOrbit = static_cast<float>(-Game::Instance().GetInput().TouchMoveDeltaX(0));
+			verticalOrbit = static_cast<float>(-Game::Instance().GetInput().TouchMoveDeltaY(0));
 			CA_TRACE("TouchMove x:%f y=%f\n", horizontalOrbit, verticalOrbit);
 		}
 
@@ -139,7 +139,7 @@ namespace CasaEngine
 
 		if (r != 0.0f || u != 0.0f || f != 0.0f)
 		{
-			Vector3F pos = Target() + (Right() * r) + (Up() * u) + (Direction() * f);
+			Vector3F pos = Target() + Right() * r + Up() * u + Direction() * f;
 			Target(pos);
 
 			/*Vector3F target = pos;
@@ -227,12 +227,12 @@ namespace CasaEngine
 		//The reduced form of the same equation follows
 		Vector3F dir = Vector3F::Zero();
 		dir.x = -2.0f *
-			((m_ArcBallOrientation.x * m_ArcBallOrientation.z) + (m_ArcBallOrientation.w * m_ArcBallOrientation.y));
+			(m_ArcBallOrientation.x * m_ArcBallOrientation.z + m_ArcBallOrientation.w * m_ArcBallOrientation.y);
 		dir.y = 2.0f *
-			((m_ArcBallOrientation.w * m_ArcBallOrientation.x) - (m_ArcBallOrientation.y * m_ArcBallOrientation.z));
+			(m_ArcBallOrientation.w * m_ArcBallOrientation.x - m_ArcBallOrientation.y * m_ArcBallOrientation.z);
 		dir.z =
-			((m_ArcBallOrientation.x * m_ArcBallOrientation.x) + (m_ArcBallOrientation.y * m_ArcBallOrientation.y)) -
-			((m_ArcBallOrientation.z * m_ArcBallOrientation.z) + (m_ArcBallOrientation.w * m_ArcBallOrientation.w));
+			m_ArcBallOrientation.x * m_ArcBallOrientation.x + m_ArcBallOrientation.y * m_ArcBallOrientation.y -
+			(m_ArcBallOrientation.z * m_ArcBallOrientation.z + m_ArcBallOrientation.w * m_ArcBallOrientation.w);
 		dir.Normalize();
 		return dir;
 	}
@@ -240,7 +240,7 @@ namespace CasaEngine
 	/**
 	 *
 	 */
-	CasaEngine::Vector3F ArcBallCameraController::Right() const
+	Vector3F ArcBallCameraController::Right() const
 	{
 		//R v R' where v = (1,0,0,0)
 		//The equation can be reduced because we know the following things:
@@ -249,12 +249,12 @@ namespace CasaEngine
 		//The reduced form of the same equation follows
 		Vector3F right = Vector3F::Zero();
 		right.x =
-			((m_ArcBallOrientation.x * m_ArcBallOrientation.x) + (m_ArcBallOrientation.w * m_ArcBallOrientation.w)) -
-			((m_ArcBallOrientation.z * m_ArcBallOrientation.z) + (m_ArcBallOrientation.y * m_ArcBallOrientation.y));
+			m_ArcBallOrientation.x * m_ArcBallOrientation.x + m_ArcBallOrientation.w * m_ArcBallOrientation.w -
+			(m_ArcBallOrientation.z * m_ArcBallOrientation.z + m_ArcBallOrientation.y * m_ArcBallOrientation.y);
 		right.y = 2.0f *
-			((m_ArcBallOrientation.x * m_ArcBallOrientation.y) + (m_ArcBallOrientation.z * m_ArcBallOrientation.w));
+			(m_ArcBallOrientation.x * m_ArcBallOrientation.y + m_ArcBallOrientation.z * m_ArcBallOrientation.w);
 		right.z = 2.0f *
-			((m_ArcBallOrientation.x * m_ArcBallOrientation.z) - (m_ArcBallOrientation.y * m_ArcBallOrientation.w));
+			(m_ArcBallOrientation.x * m_ArcBallOrientation.z - m_ArcBallOrientation.y * m_ArcBallOrientation.w);
 
 		return right;
 	}
@@ -262,7 +262,7 @@ namespace CasaEngine
 	/**
 	 *
 	 */
-	CasaEngine::Vector3F ArcBallCameraController::Up() const
+	Vector3F ArcBallCameraController::Up() const
 	{
 		//R v R' where v = (0,1,0,0)
 		//The equation can be reduced because we know the following things:
@@ -271,12 +271,12 @@ namespace CasaEngine
 		//The reduced form of the same equation follows
 		Vector3F up = Vector3F::Zero();
 		up.x = 2.0f *
-			((m_ArcBallOrientation.x * m_ArcBallOrientation.y) - (m_ArcBallOrientation.z * m_ArcBallOrientation.w));
+			(m_ArcBallOrientation.x * m_ArcBallOrientation.y - m_ArcBallOrientation.z * m_ArcBallOrientation.w);
 		up.y =
-			((m_ArcBallOrientation.y * m_ArcBallOrientation.y) + (m_ArcBallOrientation.w * m_ArcBallOrientation.w)) -
-			((m_ArcBallOrientation.z * m_ArcBallOrientation.z) + (m_ArcBallOrientation.x * m_ArcBallOrientation.x));
+			m_ArcBallOrientation.y * m_ArcBallOrientation.y + m_ArcBallOrientation.w * m_ArcBallOrientation.w -
+			(m_ArcBallOrientation.z * m_ArcBallOrientation.z + m_ArcBallOrientation.x * m_ArcBallOrientation.x);
 		up.z = 2.0f *
-			((m_ArcBallOrientation.y * m_ArcBallOrientation.z) + (m_ArcBallOrientation.x * m_ArcBallOrientation.w));
+			(m_ArcBallOrientation.y * m_ArcBallOrientation.z + m_ArcBallOrientation.x * m_ArcBallOrientation.w);
 		return up;
 	}
 
@@ -285,7 +285,7 @@ namespace CasaEngine
 	 */
 	Vector3F ArcBallCameraController::Position() const
 	{
-		return m_Target - (Direction() * m_fDistance);
+		return m_Target - Direction() * m_fDistance;
 	}
 
 	/**
@@ -304,7 +304,7 @@ namespace CasaEngine
 		if (m_bRecomputeViewMatrix == true)
 		{
 			m_bRecomputeViewMatrix = false;
-			viewMatrix_.LookAt(m_Target - (Direction() * m_fDistance), m_Target, Up());
+			viewMatrix_.LookAt(m_Target - Direction() * m_fDistance, m_Target, Up());
 		}
 	}
 
@@ -328,7 +328,7 @@ namespace CasaEngine
 		return m_Target;
 	}
 	
-	void ArcBallCameraController::Target(CasaEngine::Vector3F val)
+	void ArcBallCameraController::Target(Vector3F val)
 	{
 		m_bRecomputeViewMatrix = true;
 		m_Target = val;
@@ -371,8 +371,8 @@ namespace CasaEngine
 		//constrain pitch to vertical to avoid confusion
 		Clamp<float, float, float>(
 			m_fArcBallPitch,
-			-(MATH_PI_DIV_2)+0.0001f,
-			(MATH_PI_DIV_2)-0.0001f);
+			-MATH_PI_DIV_2+0.0001f,
+			MATH_PI_DIV_2-0.0001f);
 
 		q1.FromAxisAngle(Vector3F::Up(), -m_fArcBallYaw);
 		q2.FromAxisAngle(Vector3F::Right(), m_fArcBallPitch);
@@ -506,7 +506,7 @@ namespace CasaEngine
 		//find the yaw of the direction on the x/z plane
 		//and use the sign of the x-component since we have 360 degrees
 		//of freedom
-		m_fArcBallYaw = (acosf(-dir.z) * Sign(dir.x));
+		m_fArcBallYaw = acosf(-dir.z) * Sign(dir.x);
 
 		//Get the pitch from the angle formed by the Up vector and the 
 		//the forward direction, then subtracting Pi / 2, since 

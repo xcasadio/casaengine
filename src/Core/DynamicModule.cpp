@@ -38,7 +38,7 @@ namespace CasaEngine
 {
 //----------------------------------------------------------------------------//
 struct DynamicModule::Impl :
-    public AllocatedObject<DynamicModule::Impl>
+    public AllocatedObject<Impl>
 {
     Impl(const std::string& name) :
         d_moduleName(name),
@@ -197,8 +197,8 @@ DynamicModule::DynamicModule(const std::string& name) :
 
     // check for library load failure
     if (!d_pimpl->d_handle)
-        throw(CException("Failed to load module '" +
-            d_pimpl->d_moduleName + "': " + getFailureString()));
+        throw CException("Failed to load module '" +
+	        d_pimpl->d_moduleName + "': " + getFailureString());
 }
 
 //----------------------------------------------------------------------------//
@@ -216,7 +216,7 @@ const std::string& DynamicModule::getModuleName() const
 //----------------------------------------------------------------------------//
 void* DynamicModule::getSymbolAddress(const std::string& symbol) const
 {
-    return (void*)DYNLIB_GETSYM(d_pimpl->d_handle, symbol);
+    return static_cast<void*>(DYNLIB_GETSYM(d_pimpl->d_handle, symbol));
 }
 
 //----------------------------------------------------------------------------//

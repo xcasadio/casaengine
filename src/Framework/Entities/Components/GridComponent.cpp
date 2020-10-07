@@ -110,30 +110,30 @@ namespace CasaEngine
 				}
 
 				m_Vertices.push_back(TGridPointData(
-					Vector3F((float)x, 0.0f, (float)m_iSize), color,
-					Vector3F((float)x, 0.0f, -(float)m_iSize), color));
+					Vector3F(static_cast<float>(x), 0.0f, static_cast<float>(m_iSize)), color,
+					Vector3F(static_cast<float>(x), 0.0f, -static_cast<float>(m_iSize)), color));
 
 				m_Vertices.push_back(TGridPointData(
-					Vector3F(-(float)x, 0.0f, (float)m_iSize), color,
-					Vector3F(-(float)x, 0.0f, -(float)m_iSize), color));
+					Vector3F(-static_cast<float>(x), 0.0f, static_cast<float>(m_iSize)), color,
+					Vector3F(-static_cast<float>(x), 0.0f, -static_cast<float>(m_iSize)), color));
 
 				m_Vertices.push_back(TGridPointData(
-					Vector3F((float)m_iSize, 0.0f, (float)x), color,
-					Vector3F(-(float)m_iSize, 0.0f, (float)x), color));
+					Vector3F(static_cast<float>(m_iSize), 0.0f, static_cast<float>(x)), color,
+					Vector3F(-static_cast<float>(m_iSize), 0.0f, static_cast<float>(x)), color));
 
 				m_Vertices.push_back(TGridPointData(
-					Vector3F((float)m_iSize, 0.0f, -(float)x), color,
-					Vector3F(-(float)m_iSize, 0.0f, -(float)x), color));
+					Vector3F(static_cast<float>(m_iSize), 0.0f, -static_cast<float>(x)), color,
+					Vector3F(-static_cast<float>(m_iSize), 0.0f, -static_cast<float>(x)), color));
 			}
 
 			color = CColor::DarkBlue;
 
 			m_Vertices.push_back(TGridPointData(
-				Vector3F(-(float)m_iSize, 0.0f, 0.0f), color,
-				Vector3F((float)m_iSize, 0.0f, 0.0f), color));
+				Vector3F(-static_cast<float>(m_iSize), 0.0f, 0.0f), color,
+				Vector3F(static_cast<float>(m_iSize), 0.0f, 0.0f), color));
 			m_Vertices.push_back(TGridPointData(
-				Vector3F(0.0f, 0.0f, (float)m_iSize), color,
-				Vector3F(0.0f, 0.0f, -(float)m_iSize), color));
+				Vector3F(0.0f, 0.0f, static_cast<float>(m_iSize)), color,
+				Vector3F(0.0f, 0.0f, -static_cast<float>(m_iSize)), color));
 		}
 	}
 

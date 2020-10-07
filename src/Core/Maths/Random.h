@@ -16,7 +16,7 @@ namespace CasaEngine
 	//returns a random double between zero and 1
 	inline float RandFloat()
 	{
-		return ((rand()) / (RAND_MAX + 1.0f));
+		return rand() / (RAND_MAX + 1.0f);
 	}
 
 	inline float RandInRange(float x, float y)
@@ -61,13 +61,13 @@ namespace CasaEngine
 				w = x1 * x1 + x2 * x2;
 			} while (w >= 1.0f);
 
-			w = sqrt((-2.0f * log(w)) / w);
+			w = sqrt(-2.0f * log(w) / w);
 			y1 = x1 * w;
 			y2 = x2 * w;
 			use_last = 1;
 		}
 
-		return(mean + y1 * standard_deviation);
+		return mean + y1 * standard_deviation;
 	}
 
 }

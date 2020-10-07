@@ -20,8 +20,8 @@ namespace CasaEngine
 
 	static void imageReleaseCb(void* _ptr, void* _userData)
 	{
-		bimg::ImageContainer* imageContainer = (bimg::ImageContainer*)_userData;
-		bimg::imageFree(imageContainer);
+		bimg::ImageContainer* imageContainer = static_cast<bimg::ImageContainer*>(_userData);
+		imageFree(imageContainer);
 	}
 
 	/**
@@ -62,7 +62,7 @@ namespace CasaEngine
 
 				if (imageContainer->m_cubeMap)
 				{
-					handle = bgfx::createTextureCube(
+					handle = createTextureCube(
 						uint16_t(imageContainer->m_width)
 						, 1 < imageContainer->m_numMips
 						, imageContainer->m_numLayers
@@ -73,7 +73,7 @@ namespace CasaEngine
 				}
 				else if (1 < imageContainer->m_depth)
 				{
-					handle = bgfx::createTexture3D(
+					handle = createTexture3D(
 						uint16_t(imageContainer->m_width)
 						, uint16_t(imageContainer->m_height)
 						, uint16_t(imageContainer->m_depth)
@@ -83,9 +83,9 @@ namespace CasaEngine
 						, mem
 					);
 				}
-				else if (bgfx::isTextureValid(0, false, imageContainer->m_numLayers, bgfx::TextureFormat::Enum(imageContainer->m_format), _flags))
+				else if (isTextureValid(0, false, imageContainer->m_numLayers, bgfx::TextureFormat::Enum(imageContainer->m_format), _flags))
 				{
-					handle = bgfx::createTexture2D(
+					handle = createTexture2D(
 						uint16_t(imageContainer->m_width)
 						, uint16_t(imageContainer->m_height)
 						, 1 < imageContainer->m_numMips
@@ -96,9 +96,9 @@ namespace CasaEngine
 					);
 				}
 
-				if (bgfx::isValid(handle))
+				if (isValid(handle))
 				{
-					bgfx::setName(handle, pFile->Fullname().c_str());
+					setName(handle, pFile->Fullname().c_str());
 				}
 
 				if (nullptr == _info)
@@ -106,7 +106,7 @@ namespace CasaEngine
 					_info = NEW_AO bgfx::TextureInfo();
 				}
 
-				bgfx::calcTextureSize(
+				calcTextureSize(
 					*_info
 					, uint16_t(imageContainer->m_width)
 					, uint16_t(imageContainer->m_height)
@@ -129,12 +129,12 @@ namespace CasaEngine
 	Texture* Texture::createTexture(const unsigned int width_, const unsigned int height_, const bgfx::TextureFormat::Enum format_,
 		const bgfx::Memory* pData_, const unsigned long flags_, bgfx::TextureInfo* info_)
 	{
-		bgfx::TextureHandle handle = bgfx::createTexture2D(uint16_t(width_), uint16_t(height_), true, 1,
+		bgfx::TextureHandle handle = createTexture2D(uint16_t(width_), uint16_t(height_), true, 1,
 			format_, uint32_t(flags_), pData_);
 
 		if (NULL != info_)
 		{
-			bgfx::calcTextureSize(*info_
+			calcTextureSize(*info_
 				, uint16_t(width_)
 				, uint16_t(height_)
 				, 0
@@ -162,7 +162,7 @@ namespace CasaEngine
 	 */
 	Texture::~Texture()
 	{
-		bgfx::destroy(m_Handle);
+		destroy(m_Handle);
 	}
 
 	/**

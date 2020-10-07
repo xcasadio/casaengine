@@ -74,10 +74,10 @@ namespace CasaEngine
 
 	inline bool operator==(const Telegram& t1, const Telegram& t2)
 	{
-	  return ( fabs(t1.DispatchTime-t2.DispatchTime) < SmallestDelay) &&
-			  (t1.Sender == t2.Sender)        &&
-			  (t1.Receiver == t2.Receiver)    &&
-			  (t1.Msg == t2.Msg);
+	  return fabs(t1.DispatchTime-t2.DispatchTime) < SmallestDelay &&
+			  t1.Sender == t2.Sender        &&
+			  t1.Receiver == t2.Receiver    &&
+			  t1.Msg == t2.Msg;
 	}
 
 	inline bool operator<(const Telegram& t1, const Telegram& t2)
@@ -87,7 +87,7 @@ namespace CasaEngine
 		return false;
 	  }
 		
-	  return  (t1.DispatchTime < t2.DispatchTime);
+	  return  t1.DispatchTime < t2.DispatchTime;
 	}
 
 	inline std::ostream& operator<<(std::ostream& os, const Telegram& t)
@@ -103,7 +103,7 @@ namespace CasaEngine
 	template <class T>
 	T DereferenceToType(void* p)
 	{
-	  return *(T*)(p);
+	  return *static_cast<T*>(p);
 	}
 
 }

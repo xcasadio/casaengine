@@ -16,7 +16,7 @@ namespace CasaEngine
 	 * 
 	 */
 	SpherePrimitive::SpherePrimitive(float diameter_, unsigned int tessellation_) :
-		IPrimitive3D(IPrimitive3D::SPHERE)
+		IPrimitive3D(SPHERE)
 	{
 		if (tessellation_ < 3)
 			throw NEW_AO CArgumentOutOfRangeException("tessellation < 3");
@@ -33,8 +33,8 @@ namespace CasaEngine
 		// Create rings of vertices at progressively higher latitudes.
 		for (int i = 0; i <= verticalSegments; i++)
 		{
-			float latitude = ((float)i * Pi /
-				(float)verticalSegments) - MATH_PI_DIV_2;
+			float latitude = static_cast<float>(i) * Pi /
+				static_cast<float>(verticalSegments) - MATH_PI_DIV_2;
 
 			float dy = sinf(latitude);
 			float dxz = cosf(latitude);
@@ -42,13 +42,13 @@ namespace CasaEngine
 			// Create a single ring of vertices at this latitude.
 			for (int j = 0; j <= horizontalSegments; j++)
 			{
-				float longitude = (float)j * MATH_2PI / (float)horizontalSegments;
+				float longitude = static_cast<float>(j) * MATH_2PI / static_cast<float>(horizontalSegments);
 
-				float dx = (float)cosf(longitude) * dxz;
-				float dz = (float)sinf(longitude) * dxz;
+				float dx = static_cast<float>(cosf(longitude)) * dxz;
+				float dz = static_cast<float>(sinf(longitude)) * dxz;
 
 				Vector3F normal(dx, dy, dz);
-				AddVertex(normal * radius, normal, Vector2F((float)j / (float)horizontalSegments, (float)i / (float)verticalSegments) );
+				AddVertex(normal * radius, normal, Vector2F(static_cast<float>(j) / static_cast<float>(horizontalSegments), static_cast<float>(i) / static_cast<float>(verticalSegments)) );
 			}
 		}
 

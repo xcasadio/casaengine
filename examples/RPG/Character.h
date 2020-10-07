@@ -70,7 +70,7 @@ public:
 public:
 
 	static const int Deadzone = 20;
-	static orientation GetOrientationFromVector2(Vector2F v_);
+	static orientation GetOrientationFromVector2(Vector2F v);
 
 public:
 	virtual ~Character();
@@ -88,14 +88,14 @@ public:
 	 * See AnimationDirectionMask, CharacterDirection, AnimationIndices, NumberCharacterDriection
 	 */
 	void SetCurrentAnimation(int index_);
-	void SetCurrentAnimation(const char* name_);
+	void SetCurrentAnimation(const char* name) const;
 
 	IController* GetController() const;
 
 	bool OnFrameChangedEvent(const EventArgs& e_);
 	bool OnAnimationFinished(const EventArgs& e_);
 
-	void Move(Vector2F& dir_);
+	void Move(Vector2F& dir);
 
 	Vector2F Direction() const;
 	void Direction(Vector2F val);

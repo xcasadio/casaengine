@@ -27,7 +27,7 @@ namespace CasaEngine
 //------------------------------------------------------------------------
 bool ValidNeighbour(int x, int y, int NumCellsX, int NumCellsY)
 {
-  return !((x < 0) || (x >= NumCellsX) || (y < 0) || (y >= NumCellsY));
+  return !(x < 0 || x >= NumCellsX || y < 0 || y >= NumCellsY);
 }
   
 //------------ GraphHelper_AddAllNeighboursToGridNode ------------------
@@ -50,7 +50,7 @@ void GraphHelper_AddAllNeighboursToGridNode(graph_type& graph,
       int nodeY = row+i;
 
       //skip if equal to this node
-      if ( (i == 0) && (j==0) ) continue;
+      if ( i == 0 && j==0 ) continue;
 
       //check to see if this is a valid neighbour
       if (ValidNeighbour(nodeX, nodeY, NumCellsX, NumCellsY))
@@ -96,8 +96,8 @@ void GraphHelper_CreateGrid(graph_type& graph,
                              int NumCellsX)
 { 
   //need some temporaries to help calculate each node center
-  float CellWidth  = (float)cySize / (float)NumCellsX;
-  float CellHeight = (float)cxSize / (float)NumCellsY;
+  float CellWidth  = static_cast<float>(cySize) / static_cast<float>(NumCellsX);
+  float CellHeight = static_cast<float>(cxSize) / static_cast<float>(NumCellsY);
 
   float midX = CellWidth/2;
   float midY = CellHeight/2;
@@ -109,8 +109,8 @@ void GraphHelper_CreateGrid(graph_type& graph,
     for (int col=0; col<NumCellsX; ++col)
     {
       graph.AddNode(NavGraphNode<>(graph.GetNextFreeNodeIndex(),
-                                   Vector2F(midX + (col*CellWidth),
-                                   midY + (row*CellHeight))));
+                                   Vector2F(midX + col*CellWidth,
+                                   midY + row*CellHeight)));
 
     }
   }
@@ -151,7 +151,7 @@ void GraphHelper_DrawUsingGDI(const graph_type& graph, int color, bool DrawNodeI
     if (DrawNodeIDs)
     {
       gdi->TextColor(200,200,200);
-      gdi->TextAtPos((int)pN->Pos().x+5, (int)pN->Pos().y-5, ttos(pN->Index()));
+      gdi->TextAtPos(static_cast<int>(pN->Pos().x)+5, static_cast<int>(pN->Pos().y)-5, ttos(pN->Index()));
     }
 
     graph_type::ConstEdgeIterator EdgeItr(graph, pN->Index());
@@ -234,7 +234,7 @@ std::vector<std::vector<int> > CreateAllPairsTable(const graph_type& G)
       {
         int nd = target;
 
-        while ((nd != source) && (spt[nd] != 0))
+        while (nd != source && (spt[nd] != 0))
         {
           ShortestPaths[spt[nd]->From][target]= nd;
 
@@ -308,7 +308,7 @@ float CalculateAverageGraphEdgeLength(const graph_type& G)
     }
   }
 
-  return TotalLength / (float)NumEdgesCounted;
+  return TotalLength / static_cast<float>(NumEdgesCounted);
 }
 
 //----------------------------- GetCostliestGraphEdge -------------------

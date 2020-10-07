@@ -65,7 +65,7 @@ namespace CasaEngine
 				sum += *it;
 			}
 
-			return sum / (float)m_History.size();
+			return sum / static_cast<float>(m_History.size());
 		}
 	};
 

@@ -104,7 +104,7 @@ namespace CasaEngine
 
 		void Transform(const Vector3F &position, Vector3F &result);
 		void Transform(const std::vector<Vector3F> &sourceArray, std::vector<Vector3F> &destinationArray);
-		void TransformNormal(const Vector3F &normal, Vector3F &result);
+		void TransformNormal(const Vector3F &normal, Vector3F &result) const;
 
         //----------------------------------------------------------
         // Construit une matrice ortho non-centrée

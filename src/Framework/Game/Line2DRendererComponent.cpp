@@ -44,7 +44,7 @@ namespace CasaEngine
 	 */
 	Line2DRendererComponent::~Line2DRendererComponent()
 	{
-		bgfx::destroy(m_VertexBuffer);
+		destroy(m_VertexBuffer);
 	}
 
 	/**
@@ -52,7 +52,7 @@ namespace CasaEngine
 	 */
 	void Line2DRendererComponent::OnLoadContent() 
 	{
-		m_VertexBuffer = bgfx::createDynamicVertexBuffer(NbLineMax * 2, VertexPositionColor::ms_layout);
+		m_VertexBuffer = createDynamicVertexBuffer(NbLineMax * 2, VertexPositionColor::ms_layout);
 		//m_pEffect = IRenderer::Get().CreateEffectFromFile("line_renderer");
 	}
 
@@ -67,7 +67,7 @@ namespace CasaEngine
 			it != m_Lines.end();
 			it++)
 		{
-			::delete (*it);
+			::delete *it;
 			*it = nullptr;
 		}
 
@@ -99,7 +99,7 @@ namespace CasaEngine
 			static_cast<float>(pCamera->GetViewport().Height() * GetGame()->GetWindowSize().y),
 			0.0f, 1000.0f);
 
-		bgfx::setVertexBuffer(0, m_VertexBuffer, 0, m_NbLines);
+		setVertexBuffer(0, m_VertexBuffer, 0, m_NbLines);
 	}
 
 	/**
@@ -157,7 +157,7 @@ namespace CasaEngine
 			nbLines++;
 		}
 
-		bgfx::update(m_VertexBuffer, 0 , bgfx::copy(pVertices, (uint32_t)m_Lines.size() * 2 * sizeof(VertexPositionColor) ));
+		update(m_VertexBuffer, 0 , bgfx::copy(pVertices, static_cast<uint32_t>(m_Lines.size()) * 2 * sizeof(VertexPositionColor) ));
 		::delete[] pVertices;
 
 		m_bRecomputeVB = false;

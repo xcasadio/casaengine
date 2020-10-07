@@ -24,8 +24,7 @@ namespace CasaEngine
 	public:
 		World();
 		~World();
-
-		const std::vector<BaseEntity *>& GetEntities();
+		const std::vector<BaseEntity*>& GetEntities();
 
 		void AddEntity(BaseEntity* pEntity);
 		void RemoveEntity(BaseEntity* pEntity);

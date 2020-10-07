@@ -55,7 +55,7 @@ namespace CasaEngine
 			m_Stream.close();
 		}
 
-		m_Stream.open(m_Name.c_str(), (std::ios_base::openmode)stdMode);
+		m_Stream.open(m_Name.c_str(), static_cast<std::ios_base::openmode>(stdMode));
 		return m_Stream.is_open();
 	}
 

@@ -101,7 +101,7 @@ namespace CasaEngine
 
 	void IRenderer::SetClearColor(unsigned char index_, CColor val) const
 	{
-		bgfx::setViewClear(index_, (uint32_t)val.ToRGBA());
+		bgfx::setViewClear(index_, static_cast<uint32_t>(val.ToRGBA()));
 	}
 
 	void IRenderer::Resize(unsigned int width_, unsigned height_)

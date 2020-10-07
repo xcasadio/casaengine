@@ -54,7 +54,7 @@ bool BoundSlot::operator!=(const BoundSlot& other) const
 
 bool BoundSlot::connected() const
 {
-    return (d_subscriber != 0) && d_subscriber->connected();
+    return d_subscriber != 0 && d_subscriber->connected();
 }
 
 

@@ -26,11 +26,11 @@ public:
 
     bool operator()(std::pair<Event::Group, Event::Connection> e) const
     {
-        return *(e.second) == d_s;
+        return *e.second == d_s;
     }
 
 private:
-    void operator=(const SubComp&) {}
+    void operator=(const SubComp&) const {}
     const BoundSlot& d_s;
 };
 
@@ -56,16 +56,16 @@ Event::~Event()
 }
 
 //----------------------------------------------------------------------------//
-Event::Connection Event::subscribe(const Event::Subscriber& slot)
+Event::Connection Event::subscribe(const Subscriber& slot)
 {
     return subscribe(static_cast<Group>(-1), slot);
 }
 
 //----------------------------------------------------------------------------//
-Event::Connection Event::subscribe(Event::Group group,
-                                   const Event::Subscriber& slot)
+Event::Connection Event::subscribe(Group group,
+                                   const Subscriber& slot)
 {
-    Event::Connection c(new BoundSlot(group, slot, *this));
+    Connection c(new BoundSlot(group, slot, *this));
     d_slots.insert(std::pair<Group, Connection>(group, c));
     return c;
 }

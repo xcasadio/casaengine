@@ -32,7 +32,7 @@ namespace CasaEngine
 	 */
 	IFile* IOManager::OpenFile(std::string& fileName_, unsigned int mode_)
 	{
-		return IOManager::OpenFile(fileName_.c_str(), mode_);
+		return OpenFile(fileName_.c_str(), mode_);
 	}
 
 	/**

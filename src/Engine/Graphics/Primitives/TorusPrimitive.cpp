@@ -15,7 +15,7 @@ namespace CasaEngine
 	 * 
 	 */
 	TorusPrimitive::TorusPrimitive(float diameter_, float thickness_, unsigned int tessellation_) :
-		IPrimitive3D(IPrimitive3D::TORUS)
+		IPrimitive3D(TORUS)
 	{
 		m_Diameter = diameter_;
 		m_Thickness = thickness_;
@@ -31,7 +31,7 @@ namespace CasaEngine
 		// First we loop around the main ring of the torus.
 		for (unsigned int i = 0; i < m_Tessellation; i++)
 		{
-			float outerAngle = (float)i * MATH_2PI / (float)m_Tessellation;
+			float outerAngle = static_cast<float>(i) * MATH_2PI / static_cast<float>(m_Tessellation);
 
 			// Create a transform matrix that will align geometry to
 			// slice perpendicularly though the current ring position.
@@ -48,7 +48,7 @@ namespace CasaEngine
 			// Now we loop along the other axis, around the side of the tube.
 			for (unsigned int j = 0; j <= m_Tessellation; j++)
 			{
-				float innerAngle = (float)j * MATH_2PI / (float)m_Tessellation;
+				float innerAngle = static_cast<float>(j) * MATH_2PI / static_cast<float>(m_Tessellation);
 
 				float dx = cosf(innerAngle);
 				float dy = sinf(innerAngle);
@@ -60,7 +60,7 @@ namespace CasaEngine
 				position = transform.Transform(position);
 				transform.TransformNormal(normal, normal);
 
-				AddVertex(position, normal, Vector2F((float)i / (float)m_Tessellation, (float)j / (float)m_Tessellation));
+				AddVertex(position, normal, Vector2F(static_cast<float>(i) / static_cast<float>(m_Tessellation), static_cast<float>(j) / static_cast<float>(m_Tessellation)));
 
 				// And create indices for two triangles.
 				int nextI = (i + 1) % step;

@@ -423,9 +423,9 @@ Vector4F Matrix4::Transform(const Vector4F& v) const
  */
 void Matrix4::Transform(const Vector3F &position, Vector3F &result)
 {
-	result.x = (position.x * a11) + (position.y * a21) + (position.z * a31) + a41;
-	result.y = (position.x * a12) + (position.y * a22) + (position.z * a32) + a42;
-	result.z = (position.x * a13) + (position.y * a23) + (position.z * a33) + a43;
+	result.x = position.x * a11 + position.y * a21 + position.z * a31 + a41;
+	result.y = position.x * a12 + position.y * a22 + position.z * a32 + a42;
+	result.z = position.x * a13 + position.y * a23 + position.z * a33 + a43;
 }
 
 /**
@@ -443,21 +443,21 @@ void Matrix4::Transform(const std::vector<Vector3F> &sourceArray, std::vector<Ve
 	{
 		Vector3F position = *it;
 		destinationArray[i] = Vector3F(
-			(position.x * a11) + (position.y * a21) + (position.z * a31) + a41,
-			(position.x * a12) + (position.y * a22) + (position.z * a32) + a42,
-			(position.x * a13) + (position.y * a23) + (position.z * a33) + a43);
+			position.x * a11 + position.y * a21 + position.z * a31 + a41,
+			position.x * a12 + position.y * a22 + position.z * a32 + a42,
+			position.x * a13 + position.y * a23 + position.z * a33 + a43);
 		i++;
 	}
 }
 
 
 
-void Matrix4::TransformNormal(const Vector3F &normal, Vector3F &result)
+void Matrix4::TransformNormal(const Vector3F &normal, Vector3F &result) const
 {
 	result = Vector3F(
-		(normal.x * a11) + (normal.y * a21) + (normal.z * a31),
-		(normal.x * a12) + (normal.y * a22) + (normal.z * a32),
-		(normal.x * a13) + (normal.y * a23) + (normal.z * a33));
+		normal.x * a11 + normal.y * a21 + normal.z * a31,
+		normal.x * a12 + normal.y * a22 + normal.z * a32,
+		normal.x * a13 + normal.y * a23 + normal.z * a33);
 }
 
 /**
@@ -730,14 +730,14 @@ const Matrix4& Matrix4::operator /=(float t)
 ////////////////////////////////////////////////////////////
 bool Matrix4::operator ==(const Matrix4& m) const
 {
-    return ((std::fabs(a11 - m.a11) < std::numeric_limits<float>::epsilon()) && (std::fabs(a12 - m.a12) < std::numeric_limits<float>::epsilon()) &&
-            (std::fabs(a13 - m.a13) < std::numeric_limits<float>::epsilon()) && (std::fabs(a14 - m.a14) < std::numeric_limits<float>::epsilon()) &&
-            (std::fabs(a21 - m.a21) < std::numeric_limits<float>::epsilon()) && (std::fabs(a22 - m.a22) < std::numeric_limits<float>::epsilon()) &&
-            (std::fabs(a23 - m.a23) < std::numeric_limits<float>::epsilon()) && (std::fabs(a24 - m.a24) < std::numeric_limits<float>::epsilon()) &&
-            (std::fabs(a31 - m.a31) < std::numeric_limits<float>::epsilon()) && (std::fabs(a32 - m.a32) < std::numeric_limits<float>::epsilon()) &&
-            (std::fabs(a33 - m.a33) < std::numeric_limits<float>::epsilon()) && (std::fabs(a34 - m.a34) < std::numeric_limits<float>::epsilon()) &&
-            (std::fabs(a41 - m.a41) < std::numeric_limits<float>::epsilon()) && (std::fabs(a42 - m.a42) < std::numeric_limits<float>::epsilon()) &&
-            (std::fabs(a43 - m.a43) < std::numeric_limits<float>::epsilon()) && (std::fabs(a44 - m.a44) < std::numeric_limits<float>::epsilon()));
+    return std::fabs(a11 - m.a11) < std::numeric_limits<float>::epsilon() && std::fabs(a12 - m.a12) < std::numeric_limits<float>::epsilon() &&
+	    std::fabs(a13 - m.a13) < std::numeric_limits<float>::epsilon() && std::fabs(a14 - m.a14) < std::numeric_limits<float>::epsilon() &&
+	    std::fabs(a21 - m.a21) < std::numeric_limits<float>::epsilon() && std::fabs(a22 - m.a22) < std::numeric_limits<float>::epsilon() &&
+	    std::fabs(a23 - m.a23) < std::numeric_limits<float>::epsilon() && std::fabs(a24 - m.a24) < std::numeric_limits<float>::epsilon() &&
+	    std::fabs(a31 - m.a31) < std::numeric_limits<float>::epsilon() && std::fabs(a32 - m.a32) < std::numeric_limits<float>::epsilon() &&
+	    std::fabs(a33 - m.a33) < std::numeric_limits<float>::epsilon() && std::fabs(a34 - m.a34) < std::numeric_limits<float>::epsilon() &&
+	    std::fabs(a41 - m.a41) < std::numeric_limits<float>::epsilon() && std::fabs(a42 - m.a42) < std::numeric_limits<float>::epsilon() &&
+	    std::fabs(a43 - m.a43) < std::numeric_limits<float>::epsilon() && std::fabs(a44 - m.a44) < std::numeric_limits<float>::epsilon();
 }
 
 
@@ -766,7 +766,7 @@ bool Matrix4::operator !=(const Matrix4& m) const
 ////////////////////////////////////////////////////////////
 float& Matrix4::operator ()(std::size_t i, std::size_t j)
 {
-    return *((&a11) + (i + 4 * j));
+    return *(&a11 + (i + 4 * j));
 }
 
 
@@ -781,7 +781,7 @@ float& Matrix4::operator ()(std::size_t i, std::size_t j)
 ////////////////////////////////////////////////////////////
 const float& Matrix4::operator ()(std::size_t i, std::size_t j) const
 {
-    return *((&a11) + (i + 4 * j));
+    return *(&a11 + (i + 4 * j));
 }
 
 

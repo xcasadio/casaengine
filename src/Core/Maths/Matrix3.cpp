@@ -262,22 +262,22 @@ Vector3F Matrix3::Transform(const Vector3F& v) const
 
 
 //applies a 2D transformation matrix to a std::vector of Vector2Ds
-void Matrix3::TransformVector2List(std::vector<Vector2F> &vPoint_)
+void Matrix3::TransformVector2List(std::vector<Vector2F> &vPoint_) const
 {
 	for (unsigned int i=0; i<vPoint_.size(); ++i)
 	{
-		float tempX = (a11 * vPoint_[i].x) + (a21 * vPoint_[i].y) + a31;
-		float tempY = (a12 * vPoint_[i].x) + (a22 * vPoint_[i].y) + a32;
+		float tempX = a11 * vPoint_[i].x + a21 * vPoint_[i].y + a31;
+		float tempY = a12 * vPoint_[i].x + a22 * vPoint_[i].y + a32;
 		vPoint_[i].x = tempX;
 		vPoint_[i].y = tempY;
 	}
 }
 
 //applies a 2D transformation matrix to a single Vector2D
-void Matrix3::TransformVector2F(Vector2F &vPoint_)
+void Matrix3::TransformVector2F(Vector2F &vPoint_) const
 {
-	float tempX = (a11 * vPoint_.x) + (a21 * vPoint_.y) + a31;
-	float tempY = (a12 * vPoint_.x) + (a22 * vPoint_.y) + a32;
+	float tempX = a11 * vPoint_.x + a21 * vPoint_.y + a31;
+	float tempY = a12 * vPoint_.x + a22 * vPoint_.y + a32;
 	vPoint_.x = tempX;
 	vPoint_.y = tempY;
 }
@@ -462,11 +462,11 @@ const Matrix3& Matrix3::operator /=(float t)
 ////////////////////////////////////////////////////////////
 bool Matrix3::operator ==(const Matrix3& m) const
 {
-    return ((std::fabs(a11 - m.a11) < std::numeric_limits<float>::epsilon()) && (std::fabs(a12 - m.a12) < std::numeric_limits<float>::epsilon()) &&
-            (std::fabs(a13 - m.a13) < std::numeric_limits<float>::epsilon()) && (std::fabs(a21 - m.a21) < std::numeric_limits<float>::epsilon()) &&
-			(std::fabs(a22 - m.a22) < std::numeric_limits<float>::epsilon()) && (std::fabs(a23 - m.a23) < std::numeric_limits<float>::epsilon()) && 
-            (std::fabs(a31 - m.a31) < std::numeric_limits<float>::epsilon()) && (std::fabs(a32 - m.a32) < std::numeric_limits<float>::epsilon()) &&
-            (std::fabs(a33 - m.a33) < std::numeric_limits<float>::epsilon()) );
+    return std::fabs(a11 - m.a11) < std::numeric_limits<float>::epsilon() && std::fabs(a12 - m.a12) < std::numeric_limits<float>::epsilon() &&
+	    std::fabs(a13 - m.a13) < std::numeric_limits<float>::epsilon() && std::fabs(a21 - m.a21) < std::numeric_limits<float>::epsilon() &&
+	    std::fabs(a22 - m.a22) < std::numeric_limits<float>::epsilon() && std::fabs(a23 - m.a23) < std::numeric_limits<float>::epsilon() && 
+	    std::fabs(a31 - m.a31) < std::numeric_limits<float>::epsilon() && std::fabs(a32 - m.a32) < std::numeric_limits<float>::epsilon() &&
+	    std::fabs(a33 - m.a33) < std::numeric_limits<float>::epsilon();
 }
 
 

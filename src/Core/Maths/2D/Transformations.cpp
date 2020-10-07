@@ -28,7 +28,7 @@ namespace CasaEngine
 		Matrix3 matTransform;
 	
 		//scale
-		if ( (scale.x != 1.0) || (scale.y != 1.0) )
+		if ( scale.x != 1.0 || scale.y != 1.0 )
 		{
 			matTransform.Scale(scale.x, scale.y);
 		}
@@ -63,7 +63,7 @@ namespace CasaEngine
 		Matrix4 matTransform, matScale, matRot, matTrans;
 
 		//scale
-		if ( (scale.x != 1.0) || (scale.y != 1.0) )
+		if ( scale.x != 1.0 || scale.y != 1.0 )
 		{
 			matScale.CreateScale(scale.x, 1.0f, scale.y);
 		}
@@ -214,7 +214,7 @@ namespace CasaEngine
 												Vector2F      origin)
 	{
 		//this is the magnitude of the angle separating each whisker
-		float SectorSize = fov / (float)(NumWhiskers-1);
+		float SectorSize = fov / static_cast<float>(NumWhiskers - 1);
 
 		std::vector<Vector2F> whiskers;
 		Vector2F temp;
