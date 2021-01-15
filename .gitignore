@@ -13,6 +13,7 @@
 *.opensdf
 *.ncb
 *.db
+*.VC.*
 
 # Android #
 ###################

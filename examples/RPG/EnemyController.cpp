@@ -41,7 +41,7 @@ void EnemyController::Initialize()
 
 	//GetCharacter()->SetOrientation(orientation::RIGHT);
 	//Character.Animation2DPlayer.SetCurrentAnimationByID((int)AnimationIndex.IdleRight);
-	FSM()->SetCurrentState(GetState(static_cast<int>(EnemyControllerState::IDLE)));
+	FSM()->ChangeState(GetState(static_cast<int>(EnemyControllerState::IDLE)));
 }
 
 /**

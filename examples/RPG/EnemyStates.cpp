@@ -24,8 +24,11 @@ EnemyStateIdle::~EnemyStateIdle()
  */
 void EnemyStateIdle::Enter(IController *pController_)
 {
+    pController_->GetCharacter()->Move(Vector2F::Zero());
     //set animation stand
-    pController_->GetCharacter()->SetCurrentAnimation(0); // direction
+    /*orientation dir = (orientation)(1 << (rand() % 4));
+    pController_->GetCharacter()->SetOrientation(dir);*/
+    pController_->GetCharacter()->SetCurrentAnimation(0);
 }
 
 /**
@@ -39,12 +42,13 @@ void EnemyStateIdle::Execute(IController *pController_, const GameTime& elpasedT
     {
         //e->mov = ATTACK;
     }
-    else if (rand() % 10 == 7)
+    else if (rand() % 100 == 7)
     {
-        //e->mov = IMMOBILE;
-        //e->dir = rand() % 4 + 1;
+        orientation dir = (orientation)(1 << (rand() % 4));
+        pController_->GetCharacter()->SetOrientation(dir);
+        pController_->GetCharacter()->SetCurrentAnimation(0);
     }
-    else 
+    else if (rand() % 100 == 8)
     {
         pController_->FSM()->ChangeState(pController_->GetState(static_cast<int>(EnemyControllerState::MOVING)));
     }
@@ -98,7 +102,36 @@ void EnemyStateWalking::Enter(IController* pController_)
 void EnemyStateWalking::Execute(IController* pController_, const GameTime& elpasedTime_)
 {
     //arrive to the target
-	
+    auto dir = pController_->GetCharacter()->GetOrientation();
+    Vector2F newDir;
+
+    switch (dir)
+    {
+    case UP: newDir = -Vector2F::UnitY();
+        break;
+    case DOWN: newDir = Vector2F::UnitY();
+        break;
+    case LEFT: newDir = -Vector2F::UnitX();
+        break;
+    case RIGHT: newDir = Vector2F::UnitX();
+        break;
+    /*case UP_LEFT: newDir = -Vector2F::UnitY() - Vector2F::UnitX();
+        break;
+    case DOWN_LEFT: newDir = Vector2F::UnitY() - Vector2F::UnitX();
+        break;
+    case UP_RIGHT: newDir = -Vector2F::UnitY() + Vector2F::UnitX();
+        break;
+    case DOWN_RIGHT: newDir = Vector2F::UnitY() + Vector2F::UnitX();
+        break;*/
+    default:
+        break;
+    }
+    pController_->GetCharacter()->Move(newDir);
+
+    if (rand() % 100 == 7)
+    {
+        pController_->FSM()->ChangeState(pController_->GetState(static_cast<int>(EnemyControllerState::IDLE)));
+    }
 }
 
 /**
@@ -106,7 +139,7 @@ void EnemyStateWalking::Execute(IController* pController_, const GameTime& elpas
  */
 void EnemyStateWalking::Exit(IController* pController_)
 {
-
+    
 }
 
 /**

@@ -68,7 +68,7 @@ void PhysicalEntity::Update(GameTime gameTime_)
 			pTrans->SetLocalPosition(m_pRigidBody->getTranslation());
 			pTrans->SetLocalRotation(m_pRigidBody->getRotation());
 		}
-		else
+		else if (!m_vVelocity.IsZero())
 		{
 			pTrans->SetLocalPosition(pTrans->GetLocalPosition() + m_vVelocity * gameTime_.FrameTime());
 		}

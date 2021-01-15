@@ -41,6 +41,7 @@
     <ClInclude Include="..\..\examples\RPG\EnemyController.h" />
     <ClInclude Include="..\..\examples\RPG\Hero.h" />
     <ClInclude Include="..\..\examples\RPG\IController.h" />
+    <ClInclude Include="..\..\examples\RPG\load_save_types.h" />
     <ClInclude Include="..\..\examples\RPG\MessageType.h" />
     <ClInclude Include="..\..\examples\RPG\PlayerController.h" />
     <ClInclude Include="..\..\examples\RPG\PlayerStates.h" />

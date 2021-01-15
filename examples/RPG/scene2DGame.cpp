@@ -1,9 +1,12 @@
 #include <string>
 #include <iosfwd>
 
+#include <cereal/cereal.hpp>
+#include <cereal/archives/json.hpp>
+#include <cereal/details/helpers.hpp>
+#include <cereal/types/vector.hpp>
+
 #include "scene2DGame.h"
-
-
 
 #include "Enemy.h"
 #include "EnemyController.h"
@@ -52,6 +55,8 @@
 #include "Map2D/TiledMapComponent.h"
 #include "Tools/InGameLogger.h"
 
+#include "load_save_types.h"
+
 using namespace CasaEngine;
 
 Scene2DGame::Scene2DGame() :
@@ -81,6 +86,7 @@ Scene2DGame::~Scene2DGame()
 void Scene2DGame::Initialize()
 {
 	GetMediaManager().AddSearchPath("../../examples/resources");
+	GetMediaManager().AddSearchPath("../../examples/resources/datas");
 	GetMediaManager().AddSearchPath("../../examples/resources/textures");
 	GetMediaManager().AddSearchPath("../../examples/resources/models");
 	GetMediaManager().AddSearchPath("../../examples/resources/shaders");
@@ -605,4 +611,86 @@ void Scene2DGame::CreateEnnemies(World* pWorld)
 	pEntity->GetComponentMgr()->AddComponent(scriptComponent);
 
 	pWorld->AddEntity(pEntity);	
+}
+
+void Scene2DGame::CreateSwordman(World* pWorld)
+{
+	//player
+	const auto tileWidth = 48, tileHeight = 48;
+	auto* pPlayerEntity = NEW_AO BaseEntity();
+	pPlayerEntity->SetName("player 1");
+	auto* pTrans3D = NEW_AO Transform3DComponent(pPlayerEntity);
+	pTrans3D->SetLocalPosition(Vector3F(50.0f, 50.0f, 1.0f));
+	pTrans3D->SetLocalRotation(0.0f);
+	pTrans3D->SetLocalScale(Vector3F(tileWidth, tileHeight, 1.0));
+	pPlayerEntity->GetComponentMgr()->AddComponent(pTrans3D);
+
+	//textures
+	IFile* pFile = Game::Instance().GetMediaManager().FindMedia("player.json", true);
+	std::ifstream is(pFile->Fullname());
+	cereal::JSONInputArchive ar(is);
+
+	_joueur player_datas;
+	ar(cereal::make_nvp("swordman", player_datas));
+	
+
+	auto texture = Texture::loadTexture(player_datas.tile_set.c_str());
+	//load sprite
+	int id = 0;
+	for (auto& sprite : player_datas.sprites)
+	{
+		Sprite* pSprite = new Sprite();
+		std::ostringstream name;
+		name << "player_" << sprite.id;
+		id++;
+		pSprite->SetName(name.str());
+		pSprite->SetPositionInTexture(RectangleI(sprite.x, sprite.y, sprite.w, sprite.h));
+		pSprite->SetTexture2D(texture);
+		GetAssetManager().AddAsset(new Asset(name.str(), pSprite));
+	}
+
+	//load anim
+	auto pAnimatedComponent = NEW_AO AnimatedSpriteComponent(pPlayerEntity);
+	for (auto& anim : player_datas.animations)
+	{
+		Animation2D* pAnim = new Animation2D();
+		pAnim->SetType(Animation2DType::Loop);
+		pAnim->SetName(anim.name);
+		int i = 0;
+		const auto frame_delay = 0.64f;
+
+		for (auto& frame : anim.frames)
+		{
+			SetFrameEvent* pFrameEvent = new SetFrameEvent();
+			std::ostringstream spriteName;
+			spriteName << "player_" << frame.sprite_id;
+			pFrameEvent->FrameID(spriteName.str().c_str());
+			pFrameEvent->Time(frame_delay * i);
+			pAnim->AddEvent(pFrameEvent);
+			i++;
+		}
+		auto* end_event = new AnimationEndEvent();
+		end_event->Time(anim.frames.size() * frame_delay);
+		pAnim->AddEvent(end_event);
+
+		GetAssetManager().AddAsset(new Asset(pAnim->GetName(), pAnim));
+		pAnimatedComponent->AddAnimation(pAnim->Copy());
+	}
+
+	pPlayerEntity->GetComponentMgr()->AddComponent(pAnimatedComponent);
+	pAnimatedComponent->SetCurrentAnimation(0);
+	pWorld->AddEntity(pPlayerEntity);
+
+	//Camera 2D
+	BaseEntity* pCamera = NEW_AO BaseEntity();
+	pCamera->SetName("camera 2D");
+	Camera2DComponent* m_pCamera2D = NEW_AO Camera2DComponent(pCamera);
+	auto custom_camera_controller = new Camera2DTargetedController(m_pCamera2D);
+	m_pCamera2D->CameraController(custom_camera_controller);
+	pCamera->GetComponentMgr()->AddComponent(m_pCamera2D);
+	custom_camera_controller->SetDeadZoneRatio(Vector2F(0.7f, 0.7f));
+	custom_camera_controller->SetTargetedEntity(pPlayerEntity);
+	custom_camera_controller->SetLimits(RectangleI(0, 0, 1500, 800));
+	pWorld->AddEntity(pCamera);
+	GetGameInfo().SetActiveCamera(m_pCamera2D);
 }

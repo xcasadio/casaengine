@@ -1,6 +1,6 @@
 {
     "swordman": {
-        "tile_set": "Swordman.png",
+        "tile_set": "Swordman_1.png",
         "hp_max": 50,
         "mp_max": 10,
         "exp": 0,

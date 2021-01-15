@@ -454,6 +454,11 @@ void Game::RenderThreadloop()
 		CA_FATAL("Error during game running : %s", ex.what());
 		return;
 	}
+	catch (CException ex)
+	{
+		CA_FATAL("Error during game running : %s", ex.what());
+		return;
+	}
 	catch (...)
 	{
 		CA_FATAL("Error during game running : generic exception");

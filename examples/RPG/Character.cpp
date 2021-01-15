@@ -37,11 +37,6 @@ Character::Character(BaseEntity* pEntity)
 	m_NumberOfDirection = 8;
 	m_AnimationDirectioMask = 0;
 
-	m_Speed = 2.0f;
-	m_Strength = 10;
-	m_HPMax = 100;
-	m_MPMax = 100;
-
 	m_SpeedOffSet = 0.0f;
 	int m_HPMaxOffSet = 0.0f;
 	int m_HPOffSet = 0.0f;
@@ -52,6 +47,12 @@ Character::Character(BaseEntity* pEntity)
 
 	m_Direction = Vector2F::UnitX();
 	//m_Velocity = Vector2F::Zero();
+
+	//TODO set after creation by the level configuration
+	m_Speed = 20.0f;
+	m_Strength = 10;
+	m_HPMax = 100;
+	m_MPMax = 100;
 
 	SetAnimationDirectionOffset(DOWN, static_cast<int>(AnimationDirectionOffset::DOWN));
 	SetAnimationDirectionOffset(DOWN_LEFT, static_cast<int>(AnimationDirectionOffset::DOWN_LEFT));

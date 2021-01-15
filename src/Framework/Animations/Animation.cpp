@@ -40,6 +40,7 @@ namespace CasaEngine
 	 */
 	const Animation& Animation::operator = (const Animation& rsh)
 	{
+		this->IAssetable::operator=(rsh);
 		//m_Name = rsh.m_Name;
 		m_ID = rsh.m_ID;
 		m_TotalTime = rsh.m_TotalTime;

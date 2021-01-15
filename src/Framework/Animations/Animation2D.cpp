@@ -57,7 +57,7 @@ namespace CasaEngine
 
 	Animation2D* Animation2D::Copy()
 	{
-			return NEW_AO Animation2D(*this);
+		return NEW_AO Animation2D(*this);
 	}
 
 	void Animation2D::Initialize()

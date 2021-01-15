@@ -61,22 +61,4 @@ private:
 	World *m_pWorld;
 };
 
-inline void Scene2DGame::CreateSwordman(World* pWorld)
-{
-
-	
-	//Camera 2D
-	/*BaseEntity* pCamera = NEW_AO BaseEntity();
-	pCamera->SetName("camera 2D");
-	Camera2DComponent* m_pCamera2D = NEW_AO Camera2DComponent(pCamera);
-	auto custom_camera_controller = new Camera2DTargetedController(m_pCamera2D);
-	m_pCamera2D->CameraController(custom_camera_controller);
-	pCamera->GetComponentMgr()->AddComponent(m_pCamera2D);
-	custom_camera_controller->SetDeadZoneRatio(Vector2F(0.7f, 0.7f));
-	custom_camera_controller->SetTargetedEntity(pPlayerEntity);
-	custom_camera_controller->SetLimits(RectangleI(0, 0, 1500, 800));
-	pWorld->AddEntity(pCamera);
-	GetGameInfo().SetActiveCamera(m_pCamera2D);*/
-}
-
 #endif

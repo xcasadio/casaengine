@@ -29,5 +29,6 @@
     <ClInclude Include="..\..\examples\RPG\EnemyController.h" />
     <ClInclude Include="..\..\examples\RPG\Enemy.h" />
     <ClInclude Include="..\..\examples\RPG\ScriptCharacter.h" />
+    <ClInclude Include="..\..\examples\RPG\load_save_types.h" />
   </ItemGroup>
 </Project>

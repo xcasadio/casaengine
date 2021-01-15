@@ -96,7 +96,10 @@ namespace CasaEngine
 		  m_pPreviousState = m_pCurrentState;
 
 		  //call the exit method of the existing state
-		  m_pCurrentState->Exit(m_pOwner);
+		  if (m_pCurrentState != nullptr)
+		  {
+			  m_pCurrentState->Exit(m_pOwner);
+		  }
 
 		  //change state to the new state
 		  m_pCurrentState = pNewState;
