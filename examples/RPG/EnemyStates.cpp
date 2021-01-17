@@ -28,7 +28,8 @@ void EnemyStateIdle::Enter(IController *pController_)
     //set animation stand
     /*orientation dir = (orientation)(1 << (rand() % 4));
     pController_->GetCharacter()->SetOrientation(dir);*/
-    pController_->GetCharacter()->SetCurrentAnimation(0);
+    //pController_->GetCharacter()->SetCurrentAnimation(static_cast<int>(Character::AnimationIndices::IDLE));
+    pController_->GetCharacter()->SetCurrentAnimationByName("octopus_stand");
 }
 
 /**
@@ -46,7 +47,8 @@ void EnemyStateIdle::Execute(IController *pController_, const GameTime& elpasedT
     {
         orientation dir = (orientation)(1 << (rand() % 4));
         pController_->GetCharacter()->SetOrientation(dir);
-        pController_->GetCharacter()->SetCurrentAnimation(0);
+        //pController_->GetCharacter()->SetCurrentAnimation(static_cast<int>(Character::AnimationIndices::IDLE));
+        pController_->GetCharacter()->SetCurrentAnimationByName("octopus_stand");
     }
     else if (rand() % 100 == 8)
     {
@@ -93,7 +95,8 @@ EnemyStateWalking::~EnemyStateWalking()
 void EnemyStateWalking::Enter(IController* pController_)
 {
     //set animation stand
-    pController_->GetCharacter()->SetCurrentAnimation(1); // direction
+    //pController_->GetCharacter()->SetCurrentAnimation(static_cast<int>(Character::AnimationIndices::RUN)); // direction
+    pController_->GetCharacter()->SetCurrentAnimationByName("octopus_walk");
 }
 
 /**

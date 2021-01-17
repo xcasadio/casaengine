@@ -100,29 +100,29 @@ orientation PlayerController::GetDirectionFromInput(Vector2F& direction_)
 	if (Game::Instance().GetInput().IsKeyDown(sf::Keyboard::Z) == true 
 		|| Game::Instance().GetInput().GetJoystickLeftStickY(0) > Character::Deadzone)
 	{
-		direction_.y = 1.0f;
+		direction_.y = -1.0f;
 	}
 	else if (Game::Instance().GetInput().IsKeyDown(sf::Keyboard::S) == true
 		|| Game::Instance().GetInput().GetJoystickLeftStickY(0) < -Character::Deadzone)
 	{
-		direction_.y = -1.0f;
+		direction_.y = 1.0f;
 	}
 
 	if (Game::Instance().GetInput().IsKeyDown(sf::Keyboard::D) == true
 		|| Game::Instance().GetInput().GetJoystickLeftStickX(0) < -Character::Deadzone)
 	{
-		direction_.x = -1.0f;
+		direction_.x = 1.0f;
 	}
 	else if (Game::Instance().GetInput().IsKeyDown(sf::Keyboard::Q) == true
 		|| Game::Instance().GetInput().GetJoystickLeftStickX(0) > Character::Deadzone)
 	{
-		direction_.x = 1.0f;
+		direction_.x = -1.0f;
 	}
 	
 	direction_.Normalize();
 
 	Vector2F vec = direction_;
-	vec.y = -vec.y; //inverse to be on screen coordinate
+	//vec.y = -vec.y; //inverse to be on screen coordinate
 	return Character::GetOrientationFromVector2(vec);
 }
 

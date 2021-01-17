@@ -61,6 +61,7 @@ namespace CasaEngine
 
 		void SetCurrentAnimation(int index_);
 		void SetCurrentAnimation(std::string name_);
+		void SetCurrentAnimation(const char *name_);
 
 		void AddAnimation(Animation2D *pAnim_);
 

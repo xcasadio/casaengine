@@ -8,6 +8,7 @@
 
 #include "scene2DGame.h"
 
+#include "Hero.h"
 #include "Enemy.h"
 #include "EnemyController.h"
 #include "Animations/Animation2D.h"
@@ -122,19 +123,6 @@ void Scene2DGame::LoadContent()
 	CreateEnnemies(m_pWorld);
 	CreateSwordman(m_pWorld);
 
-	//Camera 2D
-	BaseEntity* pCamera = NEW_AO BaseEntity();
-	pCamera->SetName("camera 2D");
-	Camera2DComponent* m_pCamera2D = NEW_AO Camera2DComponent(pCamera);
-	//auto custom_camera_controller = new Camera2DTargetedController(m_pCamera2D);
-	//m_pCamera2D->CameraController(custom_camera_controller);
-	pCamera->GetComponentMgr()->AddComponent(m_pCamera2D);
-	//pCamera->Initialize();
-	//custom_camera_controller->SetDeadZoneRatio(Vector2F(0.8f, 0.8f));
-	//custom_camera_controller->SetTargetedEntity(pEntity);
-	m_pWorld->AddEntity(pCamera);
-	GetGameInfo().SetActiveCamera(m_pCamera2D);
-	
 	m_pWorld->Initialize();
 }
 
@@ -143,30 +131,6 @@ void Scene2DGame::LoadContent()
  */
 void Scene2DGame::Update(const GameTime& gameTime_)
 {
-	auto leftStickX = GetInput().GetJoystickLeftStickX(0);
-
-	/*
-	auto leftStickX = GetInput().GetJoystickLeftStickX(0);
-	auto leftStickY = GetInput().GetJoystickLeftStickY(0);
-
-	if (leftStickX < -50.0f)
-	{
-		m_pAnimatedSprite->SetCurrentAnimation(1);
-	}
-	else if (leftStickX > 50.0f)
-	{
-		m_pAnimatedSprite->SetCurrentAnimation(0);
-	}
-
-	if (leftStickY < -50.0f)
-	{
-		m_pAnimatedSprite->SetCurrentAnimation(2);
-	}
-	else if (leftStickY > 50.0f)
-	{
-		m_pAnimatedSprite->SetCurrentAnimation(3);
-	}*/
-
 	Game::Update(gameTime_);
 }
 
@@ -565,16 +529,22 @@ void createEnnemyAnim(const char* name, int start, int end, AssetManager &assetM
 
 void Scene2DGame::CreateEnnemies(World* pWorld)
 {
+	IFile* pFile = Game::Instance().GetMediaManager().FindMedia("octopus.json", true);
+	std::ifstream is(pFile->Fullname());
+	cereal::JSONInputArchive ar(is);
+	_ennemi ennemi_datas;
+	ar(cereal::make_nvp("octopus", ennemi_datas));
+
 	auto* pEntity = NEW_AO BaseEntity();
-	pEntity->SetName("ennemy 1");
+	pEntity->SetName("octopus 1");
 	auto* pTrans3D = NEW_AO Transform3DComponent(pEntity);
 	pTrans3D->SetLocalPosition(Vector3F(100.0f, 100.0f, 1.0f));
 	pTrans3D->SetLocalRotation(0.0f);
-	pTrans3D->SetLocalScale(Vector3F(48, 48, 1.0));
+	pTrans3D->SetLocalScale(Vector3F(32, 32, 1.0));
 	pEntity->GetComponentMgr()->AddComponent(pTrans3D);
 
 	//load texture
-	auto texture = Texture::loadTexture("octupus_0_0.png");
+	auto texture = Texture::loadTexture(ennemi_datas.tile_set.c_str());
 	//load sprite
 	Vector2I tileSize(32, 32);
 	for (int y = 0; y < 2; ++y)
@@ -603,7 +573,7 @@ void Scene2DGame::CreateEnnemies(World* pWorld)
 	createEnnemyAnim("walk_down", 6, 8, GetAssetManager(), *pAnimatedComponent);
 	
 	pEntity->GetComponentMgr()->AddComponent(pAnimatedComponent);
-	pAnimatedComponent->SetCurrentAnimation(0);
+	//pAnimatedComponent->SetCurrentAnimation(0);
 
 	auto scriptComponent = new ScriptComponent(pEntity);
 	auto* pScriptCharacter = new ScriptCharacter(pEntity, new Enemy(pEntity));
@@ -629,11 +599,10 @@ void Scene2DGame::CreateSwordman(World* pWorld)
 	IFile* pFile = Game::Instance().GetMediaManager().FindMedia("player.json", true);
 	std::ifstream is(pFile->Fullname());
 	cereal::JSONInputArchive ar(is);
-
 	_joueur player_datas;
 	ar(cereal::make_nvp("swordman", player_datas));
 	
-
+	//create sprite
 	auto texture = Texture::loadTexture(player_datas.tile_set.c_str());
 	//load sprite
 	int id = 0;
@@ -678,8 +647,13 @@ void Scene2DGame::CreateSwordman(World* pWorld)
 	}
 
 	pPlayerEntity->GetComponentMgr()->AddComponent(pAnimatedComponent);
-	pAnimatedComponent->SetCurrentAnimation(0);
+	pAnimatedComponent->SetCurrentAnimation("stand_down");
 	pWorld->AddEntity(pPlayerEntity);
+
+	auto scriptComponent = new ScriptComponent(pPlayerEntity);
+	auto* pScriptCharacter = new ScriptCharacter(pPlayerEntity, new Hero(pPlayerEntity));
+	scriptComponent->SetScriptObject(pScriptCharacter);
+	pPlayerEntity->GetComponentMgr()->AddComponent(scriptComponent);
 
 	//Camera 2D
 	BaseEntity* pCamera = NEW_AO BaseEntity();

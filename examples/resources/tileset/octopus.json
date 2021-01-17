@@ -1,6 +1,6 @@
 {
     "octopus": {
-        "tile_set": "Pieuvre0_0.png",
+        "tile_set": "octopus_0_0.png",
         "hp_max": 50,
         "mp_max": 0,
         "speed": 0,

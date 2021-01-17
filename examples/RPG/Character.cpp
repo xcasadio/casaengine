@@ -55,13 +55,13 @@ Character::Character(BaseEntity* pEntity)
 	m_MPMax = 100;
 
 	SetAnimationDirectionOffset(DOWN, static_cast<int>(AnimationDirectionOffset::DOWN));
-	SetAnimationDirectionOffset(DOWN_LEFT, static_cast<int>(AnimationDirectionOffset::DOWN_LEFT));
-	SetAnimationDirectionOffset(DOWN_RIGHT, static_cast<int>(AnimationDirectionOffset::DOWN_RIGHT));
+	//SetAnimationDirectionOffset(DOWN_LEFT, static_cast<int>(AnimationDirectionOffset::DOWN_LEFT));
+	//SetAnimationDirectionOffset(DOWN_RIGHT, static_cast<int>(AnimationDirectionOffset::DOWN_RIGHT));
 	SetAnimationDirectionOffset(RIGHT, static_cast<int>(AnimationDirectionOffset::RIGHT));
 	SetAnimationDirectionOffset(LEFT, static_cast<int>(AnimationDirectionOffset::LEFT));
 	SetAnimationDirectionOffset(UP, static_cast<int>(AnimationDirectionOffset::UP));
-	SetAnimationDirectionOffset(UP_LEFT, static_cast<int>(AnimationDirectionOffset::UP_LEFT));
-	SetAnimationDirectionOffset(UP_RIGHT, static_cast<int>(AnimationDirectionOffset::UP_RIGHT));
+	//SetAnimationDirectionOffset(UP_LEFT, static_cast<int>(AnimationDirectionOffset::UP_LEFT));
+	//SetAnimationDirectionOffset(UP_RIGHT, static_cast<int>(AnimationDirectionOffset::UP_RIGHT));
 	SetAnimationParameters(4, -1);
 }
 
@@ -153,21 +153,22 @@ bool Character::HandleMessage(const Telegram& msg)
 orientation Character::GetOrientationFromVector2(const Vector2F v)
 {
 	unsigned int dir = 0;
+	const float offset = 0.1f;
 
-	if (v.x < -Deadzone)
-	{
-		dir |= RIGHT;
-	}
-	else if (v.x > Deadzone)
+	if (v.x < -offset)
 	{
 		dir |= LEFT;
 	}
+	else if (v.x > offset)
+	{
+		dir |= RIGHT;
+	}
 
-	if (v.y < -Deadzone)
+	if (v.y < -offset)
 	{
 		dir |= UP;
 	}
-	else if (v.y > Deadzone)
+	else if (v.y > offset)
 	{
 		dir |= DOWN;
 	}
@@ -243,7 +244,7 @@ void Character::Move(Vector2F& dir)
  */
 int Character::GetAnimationDirectionOffset()
 {
-	int val = static_cast<int>(m_Orientation) & m_AnimationDirectioMask;
+	//int val = static_cast<int>(m_Orientation) & m_AnimationDirectioMask;
 	return m_AnimationDirectionOffset[static_cast<int>(m_Orientation) & m_AnimationDirectioMask];
 }
 
@@ -255,6 +256,39 @@ void Character::SetCurrentAnimation(int index_)
 	CA_ASSERT(m_pAnimatedSprite != nullptr, "Character::SetCurrentAnimation() : m_pAnimatedSprite == nullptr");
 
 	m_pAnimatedSprite->SetCurrentAnimation(index_ * m_NumberOfDirection + GetAnimationDirectionOffset());
+}
+
+//AnimationDirectionOffset::RIGHT
+void Character::SetCurrentAnimationByName(const char* name)
+{
+	CA_ASSERT(m_pAnimatedSprite != nullptr, "Character::SetCurrentAnimation() : m_pAnimatedSprite == nullptr");
+	std::ostringstream name_with_direction;
+	name_with_direction << name;
+
+	switch (GetOrientation())
+	{
+	case orientation::DOWN:
+	case orientation::DOWN_LEFT:
+	case orientation::DOWN_RIGHT:
+		name_with_direction << "_down";
+		break;
+
+	case orientation::RIGHT:
+		name_with_direction << "_right";
+		break;
+
+	case orientation::LEFT:
+		name_with_direction << "_left";
+		break;
+
+	case orientation::UP:
+	case orientation::UP_LEFT:
+	case orientation::UP_RIGHT:
+		name_with_direction << "_up";
+		break;
+	}
+
+	m_pAnimatedSprite->SetCurrentAnimation(name_with_direction.str());
 }
 
 /**

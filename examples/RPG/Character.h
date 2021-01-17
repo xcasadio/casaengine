@@ -89,6 +89,7 @@ public:
 	 */
 	void SetCurrentAnimation(int index_);
 	void SetCurrentAnimation(const char* name) const;
+	void SetCurrentAnimationByName(const char* name);
 
 	IController* GetController() const;
 

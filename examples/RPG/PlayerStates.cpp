@@ -90,7 +90,8 @@ void PlayerStateIdle::Execute(IController* pController_, const GameTime& elpased
 		else
 		{*/
 		pPlayerController->GetHero()->Move(joyDir);
-		pPlayerController->GetHero()->SetCurrentAnimation(static_cast<int>(Character::AnimationIndices::RUN));
+		//pPlayerController->GetHero()->SetCurrentAnimation(static_cast<int>(Character::AnimationIndices::RUN));
+		pPlayerController->GetHero()->SetCurrentAnimationByName("walk");
 		//}
 
 	}
@@ -99,7 +100,8 @@ void PlayerStateIdle::Execute(IController* pController_, const GameTime& elpased
 		joyDir = Vector2F::Zero();
 		pPlayerController->GetHero()->Move(joyDir);
 
-		pPlayerController->GetHero()->SetCurrentAnimation(static_cast<int>(Character::AnimationIndices::IDLE));
+		//pPlayerController->GetHero()->SetCurrentAnimation(static_cast<int>(Character::AnimationIndices::IDLE));
+		pPlayerController->GetHero()->SetCurrentAnimationByName("stand");
 	}
 }
 

@@ -116,9 +116,11 @@ namespace CasaEngine
 			Event::Subscriber(&AnimatedSpriteComponent::OnAnimationFinished, this));
 	}
 
-	/**
-	 *
-	 */
+	void AnimatedSpriteComponent::SetCurrentAnimation(const char * name_)
+	{
+		SetCurrentAnimation(std::string(name_));
+	}
+
 	void AnimatedSpriteComponent::SetCurrentAnimation(std::string name_)
 	{
 		for (unsigned int i = 0; i < m_AnimationList.size(); i++)

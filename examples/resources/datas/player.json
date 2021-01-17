@@ -12,6 +12,58 @@
         "defense_magic": 1,
         "animations": [
             {
+                "name": "stand_down",
+                "frames": [
+                    {
+                        "sprite_id": 16,
+                        "delay": 0.01666666753590107
+                    },
+                    {
+                        "sprite_id": 17,
+                        "delay": 0.01666666753590107
+                    }
+                ]
+            },
+            {
+                "name": "stand_right",
+                "frames": [
+                    {
+                        "sprite_id": 18,
+                        "delay": 0.01666666753590107
+                    },
+                    {
+                        "sprite_id": 19,
+                        "delay": 0.01666666753590107
+                    }
+                ]
+            },
+            {
+                "name": "stand_up",
+                "frames": [
+                    {
+                        "sprite_id": 20,
+                        "delay": 0.01666666753590107
+                    },
+                    {
+                        "sprite_id": 21,
+                        "delay": 0.01666666753590107
+                    }
+                ]
+            },
+            {
+                "name": "stand_left",
+                "frames": [
+                    {
+                        "sprite_id": 22,
+                        "delay": 0.01666666753590107
+                    },
+                    {
+                        "sprite_id": 23,
+                        "delay": 0.01666666753590107
+                    }
+                ]
+            },
+			{
                 "name": "walk_down",
                 "frames": [
                     {
@@ -91,58 +143,6 @@
                     },
                     {
                         "sprite_id": 15,
-                        "delay": 0.01666666753590107
-                    }
-                ]
-            },
-            {
-                "name": "stand_down",
-                "frames": [
-                    {
-                        "sprite_id": 16,
-                        "delay": 0.01666666753590107
-                    },
-                    {
-                        "sprite_id": 17,
-                        "delay": 0.01666666753590107
-                    }
-                ]
-            },
-            {
-                "name": "stand_right",
-                "frames": [
-                    {
-                        "sprite_id": 18,
-                        "delay": 0.01666666753590107
-                    },
-                    {
-                        "sprite_id": 19,
-                        "delay": 0.01666666753590107
-                    }
-                ]
-            },
-            {
-                "name": "stand_up",
-                "frames": [
-                    {
-                        "sprite_id": 20,
-                        "delay": 0.01666666753590107
-                    },
-                    {
-                        "sprite_id": 21,
-                        "delay": 0.01666666753590107
-                    }
-                ]
-            },
-            {
-                "name": "stand_left",
-                "frames": [
-                    {
-                        "sprite_id": 22,
-                        "delay": 0.01666666753590107
-                    },
-                    {
-                        "sprite_id": 23,
                         "delay": 0.01666666753590107
                     }
                 ]
