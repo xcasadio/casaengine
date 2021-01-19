@@ -7,7 +7,7 @@
 #include "Maths\Vector2.h"
 #include "IController.h"
 #include "Animations\Animation2D.h"
-#include "Data\IGameData.h"
+#include "GameDatas\IGameData.h"
 #include "Entities\Components\AnimatedSpriteComponent.h"
 #include <queue>
 

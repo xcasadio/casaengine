@@ -31,7 +31,7 @@
 #include "GameInfo.h"
 #include "AI/Messaging/MessageDispatcher.h"
 #include "Assets/AssetManager.h"
-#include "Data/GameDataFactory.h"
+#include "GameDatas/GameDataFactory.h"
 #include "EventHandler/GlobalEventSet.h"
 #include "UI/Console.h"
 #include "Tools/DisplayDebugInfo.h"

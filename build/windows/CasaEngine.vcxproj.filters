@@ -181,6 +181,9 @@
     <Filter Include="Framework\GameDatas">
       <UniqueIdentifier>{15b27981-44fc-4efc-b9a1-27a48ac6a458}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Framework\Datas">
+      <UniqueIdentifier>{c7c972b1-ba77-4e88-a25a-be179b309cad}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Core\Base.h">
@@ -639,15 +642,6 @@
     <ClInclude Include="..\..\src\Framework\Assets\AssetManager.h">
       <Filter>Framework\Assets</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Data\GameDataFactory.h">
-      <Filter>Framework\GameDatas</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Data\IGameData.h">
-      <Filter>Framework\GameDatas</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Data\IGameDataFactory.h">
-      <Filter>Framework\GameDatas</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Framework\Entities\Components\CameraControllers\ArcBallCameraController.h">
       <Filter>Framework\Entities\Components\CameraControllers</Filter>
     </ClInclude>
@@ -972,6 +966,12 @@
     <ClInclude Include="..\..\src\Framework\Map2D\TiledMapLayer.h">
       <Filter>Framework\Map2D</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Framework\GameDatas\GameDataFactory.h" />
+    <ClInclude Include="..\..\src\Framework\GameDatas\IGameData.h" />
+    <ClInclude Include="..\..\src\Framework\GameDatas\IGameDataFactory.h" />
+    <ClInclude Include="..\..\src\Framework\Datas\SpriteData.h">
+      <Filter>Framework\Datas</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Core\DateTime.cpp">
@@ -1214,15 +1214,6 @@
     <ClCompile Include="..\..\src\Framework\Assets\AssetManager.cpp">
       <Filter>Framework\Assets</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Framework\Data\GameDataFactory.cpp">
-      <Filter>Framework\GameDatas</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Framework\Data\IGameData.cpp">
-      <Filter>Framework\GameDatas</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Framework\Data\IGameDataFactory.cpp">
-      <Filter>Framework\GameDatas</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Framework\Entities\Components\CameraControllers\ArcBallCameraController.cpp">
       <Filter>Framework\Entities\Components\CameraControllers</Filter>
     </ClCompile>
@@ -1441,6 +1432,12 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Framework\Map2D\TiledMapLayer.cpp">
       <Filter>Framework\Map2D</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Framework\GameDatas\GameDataFactory.cpp" />
+    <ClCompile Include="..\..\src\Framework\GameDatas\IGameData.cpp" />
+    <ClCompile Include="..\..\src\Framework\GameDatas\IGameDataFactory.cpp" />
+    <ClCompile Include="..\..\src\Framework\Datas\SpriteData.cpp">
+      <Filter>Framework\Datas</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
