@@ -12,7 +12,7 @@
         "defense_magic": 1,
         "animations": [
             {
-                "name": "stand_down",
+                "name": "swordman_stand_down",
                 "frames": [
                     {
                         "sprite_id": 16,
@@ -25,7 +25,7 @@
                 ]
             },
             {
-                "name": "stand_right",
+                "name": "swordman_stand_right",
                 "frames": [
                     {
                         "sprite_id": 18,
@@ -38,7 +38,7 @@
                 ]
             },
             {
-                "name": "stand_up",
+                "name": "swordman_stand_up",
                 "frames": [
                     {
                         "sprite_id": 20,
@@ -51,7 +51,7 @@
                 ]
             },
             {
-                "name": "stand_left",
+                "name": "swordman_stand_left",
                 "frames": [
                     {
                         "sprite_id": 22,
@@ -64,7 +64,7 @@
                 ]
             },
 			{
-                "name": "walk_down",
+                "name": "swordman_walk_down",
                 "frames": [
                     {
                         "sprite_id": 0,
@@ -85,7 +85,7 @@
                 ]
             },
             {
-                "name": "walk_right",
+                "name": "swordman_walk_right",
                 "frames": [
                     {
                         "sprite_id": 4,
@@ -106,7 +106,7 @@
                 ]
             },
             {
-                "name": "walk_up",
+                "name": "swordman_walk_up",
                 "frames": [
                     {
                         "sprite_id": 8,
@@ -127,7 +127,7 @@
                 ]
             },
             {
-                "name": "walk_left",
+                "name": "swordman_walk_left",
                 "frames": [
                     {
                         "sprite_id": 12,
@@ -148,7 +148,7 @@
                 ]
             },
             {
-                "name": "attack_left",
+                "name": "swordman_attack_left",
                 "frames": [
                     {
                         "sprite_id": 24,
@@ -181,7 +181,7 @@
                 ]
             },
             {
-                "name": "attack_up",
+                "name": "swordman_attack_up",
                 "frames": [
                     {
                         "sprite_id": 31,
@@ -214,7 +214,7 @@
                 ]
             },
             {
-                "name": "attack_down",
+                "name": "swordman_attack_down",
                 "frames": [
                     {
                         "sprite_id": 38,
@@ -247,7 +247,7 @@
                 ]
             },
             {
-                "name": "attack_right",
+                "name": "swordman_attack_right",
                 "frames": [
                     {
                         "sprite_id": 45,

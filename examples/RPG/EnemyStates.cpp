@@ -25,6 +25,7 @@ EnemyStateIdle::~EnemyStateIdle()
 void EnemyStateIdle::Enter(IController *pController_)
 {
     pController_->GetCharacter()->Move(Vector2F::Zero());
+    pController_->GetCharacter()->SetOrientation(orientation::RIGHT);
     //set animation stand
     /*orientation dir = (orientation)(1 << (rand() % 4));
     pController_->GetCharacter()->SetOrientation(dir);*/

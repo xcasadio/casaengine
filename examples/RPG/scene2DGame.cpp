@@ -503,30 +503,6 @@ void Scene2DGame::CreateAssets(Vector2I tileSize)
 	}
 }
 
-void createEnnemyAnim(const char* name, int start, int end, AssetManager &assetManager, AnimatedSpriteComponent& animated_sprite_component)
-{
-	Animation2D* pAnim = new Animation2D();
-	pAnim->SetType(Animation2DType::Loop);
-	std::ostringstream animationName;
-	animationName << "octopus_" << name;
-	pAnim->SetName(animationName.str());
-	for (int i = start; i < end; ++i)
-	{
-		SetFrameEvent* pFrameEvent = new SetFrameEvent();
-		std::ostringstream spriteName;
-		spriteName << "octopus_" << i << "_0";
-		pFrameEvent->FrameID(spriteName.str().c_str());
-		pFrameEvent->Time(0.64f * (i - start));
-		pAnim->AddEvent(pFrameEvent);		
-	}
-	auto* end_event = new AnimationEndEvent();
-	end_event->Time((end - start) * 0.64f);
-	pAnim->AddEvent(end_event);
-
-	assetManager.AddAsset(new Asset(pAnim->GetName(), pAnim));
-	animated_sprite_component.AddAnimation(pAnim->Copy());
-}
-
 void Scene2DGame::CreateEnnemies(World* pWorld)
 {
 	IFile* pFile = Game::Instance().GetMediaManager().FindMedia("octopus.json", true);
@@ -546,31 +522,46 @@ void Scene2DGame::CreateEnnemies(World* pWorld)
 	//load texture
 	auto texture = Texture::loadTexture(ennemi_datas.tile_set.c_str());
 	//load sprite
-	Vector2I tileSize(32, 32);
-	for (int y = 0; y < 2; ++y)
+	int id = 0;
+	for (auto& sprite : ennemi_datas.sprites)
 	{
-		for (int x = 0; x < 16; ++x)
-		{
-			Sprite* pSprite = new Sprite();
-			std::ostringstream name;
-			name << "octopus_" << x << "_" << y;
-			pSprite->SetName(name.str());
-			pSprite->SetPositionInTexture(RectangleI(x * tileSize.x, y * tileSize.y, tileSize.x, tileSize.y));
-			pSprite->SetTexture2D(texture);
-			GetAssetManager().AddAsset(new Asset(name.str(), pSprite));
-		}
+		Sprite* pSprite = new Sprite();
+		std::ostringstream name;
+		name << "octopus_" << sprite.id;
+		id++;
+		pSprite->SetName(name.str());
+		pSprite->SetPositionInTexture(RectangleI(sprite.x, sprite.y, sprite.w, sprite.h));
+		pSprite->SetTexture2D(texture);
+		GetAssetManager().AddAsset(new Asset(name.str(), pSprite));
 	}
 	
 	auto pAnimatedComponent = NEW_AO AnimatedSpriteComponent(pEntity);
 	//load anim
-	createEnnemyAnim("stand_right", 0, 2, GetAssetManager(), *pAnimatedComponent);
-	createEnnemyAnim("stand_up", 2, 4, GetAssetManager(), *pAnimatedComponent);
-	createEnnemyAnim("stand_left", 4, 6, GetAssetManager(), *pAnimatedComponent);
-	createEnnemyAnim("stand_down", 6, 8, GetAssetManager(), *pAnimatedComponent);
-	createEnnemyAnim("walk_right", 0, 2, GetAssetManager(), *pAnimatedComponent);
-	createEnnemyAnim("walk_up", 2, 4, GetAssetManager(), *pAnimatedComponent);
-	createEnnemyAnim("walk_left", 4, 6, GetAssetManager(), *pAnimatedComponent);
-	createEnnemyAnim("walk_down", 6, 8, GetAssetManager(), *pAnimatedComponent);
+	for (auto& anim : ennemi_datas.animations)
+	{
+		Animation2D* pAnim = new Animation2D();
+		pAnim->SetType(Animation2DType::Loop);
+		pAnim->SetName(anim.name);
+		int i = 0;
+		const auto frame_delay = 0.64f;
+
+		for (auto& frame : anim.frames)
+		{
+			SetFrameEvent* pFrameEvent = new SetFrameEvent();
+			std::ostringstream spriteName;
+			spriteName << "octopus_" << frame.sprite_id;
+			pFrameEvent->FrameID(spriteName.str().c_str());
+			pFrameEvent->Time(frame_delay * i);
+			pAnim->AddEvent(pFrameEvent);
+			i++;
+		}
+		auto* end_event = new AnimationEndEvent();
+		end_event->Time(anim.frames.size() * frame_delay);
+		pAnim->AddEvent(end_event);
+
+		GetAssetManager().AddAsset(new Asset(pAnim->GetName(), pAnim));
+		pAnimatedComponent->AddAnimation(pAnim->Copy());
+	}
 	
 	pEntity->GetComponentMgr()->AddComponent(pAnimatedComponent);
 	//pAnimatedComponent->SetCurrentAnimation(0);
@@ -647,7 +638,7 @@ void Scene2DGame::CreateSwordman(World* pWorld)
 	}
 
 	pPlayerEntity->GetComponentMgr()->AddComponent(pAnimatedComponent);
-	pAnimatedComponent->SetCurrentAnimation("stand_down");
+	//pAnimatedComponent->SetCurrentAnimation("stand_down");
 	pWorld->AddEntity(pPlayerEntity);
 
 	auto scriptComponent = new ScriptComponent(pPlayerEntity);

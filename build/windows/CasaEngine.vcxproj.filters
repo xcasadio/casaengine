@@ -109,9 +109,6 @@
     <Filter Include="Framework\Assets">
       <UniqueIdentifier>{41864964-cdff-4963-be4b-202d7b20124c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Framework\Data">
-      <UniqueIdentifier>{15b27981-44fc-4efc-b9a1-27a48ac6a458}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Framework\Entities">
       <UniqueIdentifier>{c430fc76-cf9a-42c2-8295-c49125310f1d}</UniqueIdentifier>
     </Filter>
@@ -180,6 +177,9 @@
     </Filter>
     <Filter Include="3rdparty\dear-imgui\widgets">
       <UniqueIdentifier>{40c5bc90-2d39-45d8-976e-3eaed28dbb85}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\GameDatas">
+      <UniqueIdentifier>{15b27981-44fc-4efc-b9a1-27a48ac6a458}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -640,13 +640,13 @@
       <Filter>Framework\Assets</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Framework\Data\GameDataFactory.h">
-      <Filter>Framework\Data</Filter>
+      <Filter>Framework\GameDatas</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Framework\Data\IGameData.h">
-      <Filter>Framework\Data</Filter>
+      <Filter>Framework\GameDatas</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Framework\Data\IGameDataFactory.h">
-      <Filter>Framework\Data</Filter>
+      <Filter>Framework\GameDatas</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Framework\Entities\Components\CameraControllers\ArcBallCameraController.h">
       <Filter>Framework\Entities\Components\CameraControllers</Filter>
@@ -1215,13 +1215,13 @@
       <Filter>Framework\Assets</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Framework\Data\GameDataFactory.cpp">
-      <Filter>Framework\Data</Filter>
+      <Filter>Framework\GameDatas</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Framework\Data\IGameData.cpp">
-      <Filter>Framework\Data</Filter>
+      <Filter>Framework\GameDatas</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Framework\Data\IGameDataFactory.cpp">
-      <Filter>Framework\Data</Filter>
+      <Filter>Framework\GameDatas</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Framework\Entities\Components\CameraControllers\ArcBallCameraController.cpp">
       <Filter>Framework\Entities\Components\CameraControllers</Filter>

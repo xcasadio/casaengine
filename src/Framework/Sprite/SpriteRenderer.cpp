@@ -50,7 +50,7 @@ namespace CasaEngine
 		m_pDatas = NEW_AO VertexPositionColorTexture[m_MaxSprite];
 		m_VertexBuffer = createDynamicVertexBuffer(m_MaxSprite * 4, VertexPositionColorTexture::ms_layout);
 
-		const int nbIndex = 6; //m_MaxSprite
+		const int nbIndex = 6;
 		short *pIndices = ::new short[nbIndex * 6];
 
 		for (int i=0; i< nbIndex; i++)
@@ -109,7 +109,7 @@ namespace CasaEngine
 		for (auto i = 0; i < m_SpriteDatas.size(); i++)
 		{
 			bgfx::setState(BGFX_STATE_WRITE_MASK
-				| BGFX_STATE_DEPTH_TEST_GREATER
+				| BGFX_STATE_DEPTH_TEST_GEQUAL
 				//| BGFX_STATE_CULL_CW
 				//| BGFX_STATE_MSAA
 				| BGFX_STATE_BLEND_ALPHA);

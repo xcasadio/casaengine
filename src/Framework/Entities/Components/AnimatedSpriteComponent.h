@@ -60,8 +60,8 @@ namespace CasaEngine
 		//void HandleEvent(const Event* pEvent_);
 
 		void SetCurrentAnimation(int index_);
-		void SetCurrentAnimation(std::string name_);
-		void SetCurrentAnimation(const char *name_);
+		bool SetCurrentAnimation(std::string name_);
+		bool SetCurrentAnimation(const char *name_);
 
 		void AddAnimation(Animation2D *pAnim_);
 

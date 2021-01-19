@@ -37,11 +37,13 @@ void PlayerStateIdle::Enter(IController* pController_)
 
 	if (pPlayerController->GetHero()->InFuryMode() == true)
 	{
-		pPlayerController->GetHero()->SetCurrentAnimation(static_cast<int>(Character::AnimationIndices::FURY_IDLE));
+		//pPlayerController->GetHero()->SetCurrentAnimation(static_cast<int>(Character::AnimationIndices::FURY_IDLE));
+		pPlayerController->GetHero()->SetCurrentAnimationByName("swordman_stand");
 	}
 	else
 	{
-		pPlayerController->GetHero()->SetCurrentAnimation(static_cast<int>(Character::AnimationIndices::IDLE));
+		//pPlayerController->GetHero()->SetCurrentAnimation(static_cast<int>(Character::AnimationIndices::IDLE));
+		pPlayerController->GetHero()->SetCurrentAnimationByName("swordman_stand");
 	}
 }
 
@@ -91,7 +93,7 @@ void PlayerStateIdle::Execute(IController* pController_, const GameTime& elpased
 		{*/
 		pPlayerController->GetHero()->Move(joyDir);
 		//pPlayerController->GetHero()->SetCurrentAnimation(static_cast<int>(Character::AnimationIndices::RUN));
-		pPlayerController->GetHero()->SetCurrentAnimationByName("walk");
+		pPlayerController->GetHero()->SetCurrentAnimationByName("swordman_walk");
 		//}
 
 	}
@@ -101,7 +103,7 @@ void PlayerStateIdle::Execute(IController* pController_, const GameTime& elpased
 		pPlayerController->GetHero()->Move(joyDir);
 
 		//pPlayerController->GetHero()->SetCurrentAnimation(static_cast<int>(Character::AnimationIndices::IDLE));
-		pPlayerController->GetHero()->SetCurrentAnimationByName("stand");
+		pPlayerController->GetHero()->SetCurrentAnimationByName("swordman_stand");
 	}
 }
 
@@ -167,7 +169,8 @@ void PlayerStateAttack::Enter(IController* pController_)
 	}
 	else
 	{
-		pPlayerController->GetHero()->SetCurrentAnimation(static_cast<int>(Character::AnimationIndices::ATTACK1));
+		//pPlayerController->GetHero()->SetCurrentAnimation(static_cast<int>(Character::AnimationIndices::ATTACK1));
+		pPlayerController->GetHero()->SetCurrentAnimationByName("swordman_attack");
 	}
 }
 
@@ -176,7 +179,7 @@ void PlayerStateAttack::Enter(IController* pController_)
  */
 void PlayerStateAttack::Execute(IController* pController_, const GameTime& elpasedTime_)
 {
-	PlayerController* pPlayerController = dynamic_cast<PlayerController*>(pController_);
+	//PlayerController* pPlayerController = dynamic_cast<PlayerController*>(pController_);
 
 	//if (pPlayerController->GetHero()->AttackType() == Character::AttackType::Melee)
 	{

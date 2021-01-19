@@ -11,7 +11,7 @@
         "exp": 2,
         "animations": [
             {
-                "name": "stand_right",
+                "name": "octopus_stand_right",
                 "frames": [
                     {
                         "sprite_id": 0,
@@ -24,7 +24,7 @@
                 ]
             },
             {
-                "name": "stand_up",
+                "name": "octopus_stand_up",
                 "frames": [
                     {
                         "sprite_id": 2,
@@ -37,7 +37,7 @@
                 ]
             },
             {
-                "name": "stand_left",
+                "name": "octopus_stand_left",
                 "frames": [
                     {
                         "sprite_id": 4,
@@ -50,7 +50,7 @@
                 ]
             },
             {
-                "name": "stand_down",
+                "name": "octopus_stand_down",
                 "frames": [
                     {
                         "sprite_id": 6,
@@ -63,7 +63,7 @@
                 ]
             },
             {
-                "name": "walk_right",
+                "name": "octopus_walk_right",
                 "frames": [
                     {
                         "sprite_id": 0,
@@ -76,7 +76,7 @@
                 ]
             },
             {
-                "name": "walk_up",
+                "name": "octopus_walk_up",
                 "frames": [
                     {
                         "sprite_id": 2,
@@ -89,7 +89,7 @@
                 ]
             },
             {
-                "name": "walk_left",
+                "name": "octopus_walk_left",
                 "frames": [
                     {
                         "sprite_id": 4,
@@ -102,7 +102,7 @@
                 ]
             },
             {
-                "name": "walk_down",
+                "name": "octopus_walk_down",
                 "frames": [
                     {
                         "sprite_id": 6,
@@ -115,7 +115,7 @@
                 ]
             },
             {
-                "name": "attack_right",
+                "name": "octopus_attack_right",
                 "frames": [
                     {
                         "sprite_id": 8,
@@ -132,7 +132,7 @@
                 ]
             },
             {
-                "name": "attack_left",
+                "name": "octopus_attack_left",
                 "frames": [
                     {
                         "sprite_id": 11,
@@ -149,7 +149,7 @@
                 ]
             },
             {
-                "name": "attack_down",
+                "name": "octopus_attack_down",
                 "frames": [
                     {
                         "sprite_id": 14,
@@ -166,7 +166,7 @@
                 ]
             },
             {
-                "name": "attack_up",
+                "name": "octopus_attack_up",
                 "frames": [
                     {
                         "sprite_id": 17,

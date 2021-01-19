@@ -259,7 +259,7 @@ void Character::SetCurrentAnimation(int index_)
 }
 
 //AnimationDirectionOffset::RIGHT
-void Character::SetCurrentAnimationByName(const char* name)
+bool Character::SetCurrentAnimationByName(const char* name)
 {
 	CA_ASSERT(m_pAnimatedSprite != nullptr, "Character::SetCurrentAnimation() : m_pAnimatedSprite == nullptr");
 	std::ostringstream name_with_direction;
@@ -288,7 +288,7 @@ void Character::SetCurrentAnimationByName(const char* name)
 		break;
 	}
 
-	m_pAnimatedSprite->SetCurrentAnimation(name_with_direction.str());
+	return m_pAnimatedSprite->SetCurrentAnimation(name_with_direction.str());
 }
 
 /**
