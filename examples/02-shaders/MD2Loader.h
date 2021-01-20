@@ -37,8 +37,8 @@
 ////////////////////////////////////////////////////////////
 /// Classe prenant en charge l'importation des modèles MD2
 ////////////////////////////////////////////////////////////
-class CMD2Loader : 
-	public CasaEngine::ILoader<CasaEngine::Mesh>
+class CMD2Loader /*: 
+	public CasaEngine::ILoader<CasaEngine::Mesh>*/
 {
 public :
 

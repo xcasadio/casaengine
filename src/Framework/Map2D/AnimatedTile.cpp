@@ -32,7 +32,7 @@ namespace CasaEngine
 	{
 		if (m_pAnimation != nullptr)
 		{
-			auto* pSprite = Game::Instance().GetAssetManager().GetAsset<Sprite>(m_pAnimation->CurrentFrame());
+			auto* pSprite = Sprite::CreateFromSpriteData(*Game::Instance().GetAssetManager().GetAsset<SpriteData>(m_pAnimation->CurrentFrame()));
 			ITile::Draw(pSprite, x, y, z, uvOffset);
 		}
 	}

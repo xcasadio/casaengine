@@ -166,7 +166,7 @@ void CubeGame::LoadContent()
 	Material* pMat = pModel->GetMaterial()->Clone();
 	//Game::Instance().GetResourceManager().Add("groundMaterial", pMat);
 	pModel->SetMaterial(pMat);
-	pMat->Texture0(Texture::loadTexture("ceilingMain_DIF.dds", BGFX_SAMPLER_MIN_ANISOTROPIC | BGFX_SAMPLER_MAG_ANISOTROPIC));
+	pMat->Texture0(Texture::loadTexture(Game::Instance().GetMediaManager().FindMedia("ceilingMain_DIF.dds"), BGFX_SAMPLER_MIN_ANISOTROPIC | BGFX_SAMPLER_MAG_ANISOTROPIC));
 	pMat->Texture0Repeat(Vector2F(50, 50));
 	//
 	pModelCpt->SetModel(pModel);

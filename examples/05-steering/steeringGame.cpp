@@ -159,7 +159,7 @@ void SteeringGame::CreateEntities()
 	Mesh* pModel = pBox->CreateModel();
 	//new material
 	Material *pMat = pModel->GetMaterial()->Clone();
-	pMat->Texture0(Texture::loadTexture("ceilingMain_DIF.dds", BGFX_SAMPLER_MIN_ANISOTROPIC | BGFX_SAMPLER_MAG_ANISOTROPIC));
+	pMat->Texture0(Texture::loadTexture(Game::Instance().GetMediaManager().FindMedia("ceilingMain_DIF.dds"), BGFX_SAMPLER_MIN_ANISOTROPIC | BGFX_SAMPLER_MAG_ANISOTROPIC));
 	pMat->Texture0Repeat(Vector2F(50, 50));
 	pModel->SetMaterial(pMat);
 	//

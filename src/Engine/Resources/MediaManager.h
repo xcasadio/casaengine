@@ -47,13 +47,13 @@ namespace CasaEngine
 		 * Search a file in all registered directories
 		 * @return nullptr if the file doesn't exist in all registered directories
 		 */
-		IFile* FindMedia(const char* fileName_, bool isBinary_) const;
+		IFile* FindMedia(const char* fileName_, bool isBinary_ = true) const;
 
 		/**
 		 * Search a file in all registered directories
 		 * @return nullptr if the file doesn't exist in all registered directories
 		 */
-		IFile* FindMedia(const std::string& fileName_, bool isBinary_) const;
+		IFile* FindMedia(const std::string& fileName_, bool isBinary_ = true) const;
 
 	private:
 		template <class T> ILoader<T>& FindLoader(const IFile* Filename) const;

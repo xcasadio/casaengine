@@ -471,9 +471,6 @@
     <ClInclude Include="..\..\src\Engine\Loaders\Loader.h">
       <Filter>Engine\Loaders</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Loaders\XmlLoader.h">
-      <Filter>Engine\Loaders</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Engine\Physics\IPhysicsEngine.h">
       <Filter>Engine\Physics</Filter>
     </ClInclude>
@@ -966,10 +963,22 @@
     <ClInclude Include="..\..\src\Framework\Map2D\TiledMapLayer.h">
       <Filter>Framework\Map2D</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\GameDatas\GameDataFactory.h" />
-    <ClInclude Include="..\..\src\Framework\GameDatas\IGameData.h" />
-    <ClInclude Include="..\..\src\Framework\GameDatas\IGameDataFactory.h" />
     <ClInclude Include="..\..\src\Framework\Datas\SpriteData.h">
+      <Filter>Framework\Datas</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Framework\GameDatas\GameDataFactory.h">
+      <Filter>Framework\GameDatas</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Framework\GameDatas\IGameData.h">
+      <Filter>Framework\GameDatas</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Framework\GameDatas\IGameDataFactory.h">
+      <Filter>Framework\GameDatas</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Framework\Datas\Animation2DData.h">
+      <Filter>Framework\Datas</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Framework\Datas\FrameData.h">
       <Filter>Framework\Datas</Filter>
     </ClInclude>
   </ItemGroup>
@@ -1129,9 +1138,6 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Graphics\Primitives\TorusPrimitive.cpp">
       <Filter>Engine\Graphics\Primitives</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Loaders\XmlLoader.cpp">
-      <Filter>Engine\Loaders</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Physics\IPhysicsWorld.cpp">
       <Filter>Engine\Physics</Filter>
@@ -1433,10 +1439,22 @@
     <ClCompile Include="..\..\src\Framework\Map2D\TiledMapLayer.cpp">
       <Filter>Framework\Map2D</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Framework\GameDatas\GameDataFactory.cpp" />
-    <ClCompile Include="..\..\src\Framework\GameDatas\IGameData.cpp" />
-    <ClCompile Include="..\..\src\Framework\GameDatas\IGameDataFactory.cpp" />
     <ClCompile Include="..\..\src\Framework\Datas\SpriteData.cpp">
+      <Filter>Framework\Datas</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Framework\GameDatas\GameDataFactory.cpp">
+      <Filter>Framework\GameDatas</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Framework\GameDatas\IGameData.cpp">
+      <Filter>Framework\GameDatas</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Framework\GameDatas\IGameDataFactory.cpp">
+      <Filter>Framework\GameDatas</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Framework\Datas\Animation2DData.cpp">
+      <Filter>Framework\Datas</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Framework\Datas\FrameData.cpp">
       <Filter>Framework\Datas</Filter>
     </ClCompile>
   </ItemGroup>

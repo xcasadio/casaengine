@@ -164,35 +164,8 @@ void Scene2DGame::AddGameComponent()
  *
  */
 void Scene2DGame::LoadAssets()
-{/*
-	tinyxml2::XMLDocument* xmlDoc = ::new tinyxml2::XMLDocument();
-	tinyxml2::XMLError error = xmlDoc->LoadFile("../../examples/resources/spriteSheet/assets.xml"); // TODO : xmlDoc->Parse()
+{
 
-	const tinyxml2::XMLElement* pElem;
-
-	//load animations
-	pElem = xmlDoc->FirstChildElement("Assets")->FirstChildElement("AnimationList")->FirstChildElement("Animation2D");
-
-	while (pElem != nullptr)
-	{
-		Animation2D* pAnim = NEW_AO Animation2D();
-		pAnim->Read(*pElem);
-		GetAssetManager().AddAsset(NEW_AO Asset(pAnim->GetName(), pAnim));
-		pElem = pElem->NextSiblingElement();
-	}
-
-	//load sprite
-	pElem = xmlDoc->FirstChildElement("Assets")->FirstChildElement("SpriteList")->FirstChildElement("Sprite2D");
-
-	while (pElem != nullptr)
-	{
-		Sprite* pSprite = NEW_AO Sprite();
-		pSprite->Read(*pElem);
-		GetAssetManager().AddAsset(NEW_AO Asset(pSprite->GetName(), pSprite));
-		pElem = pElem->NextSiblingElement();
-	}
-
-	delete xmlDoc;*/
 }
 
 /**
@@ -423,8 +396,8 @@ void Scene2DGame::CreateMap(World *pWorld)
 	{
 		for (int x = 0; x < pMap->GetMapSize().x; ++x)
 		{
-			auto* sprite = GetAssetManager().GetAsset<Sprite>("grass1");
-			auto* tile = new StaticTile(sprite);
+			auto* sprite = GetAssetManager().GetAsset<SpriteData>("grass1");
+			auto* tile = new StaticTile(Sprite::CreateFromSpriteData(*sprite));
 			tiles.push_back(tile);
 		}
 	}
@@ -442,8 +415,8 @@ void Scene2DGame::CreateMap(World *pWorld)
 		{
 			std::ostringstream name;
 			name << "autoGrass2_" << x << "_" << y;
-			auto* sprite = GetAssetManager().GetAsset<Sprite>(name.str());
-			auto* tile = new StaticTile(sprite);
+			auto* sprite = GetAssetManager().GetAsset<SpriteData>(name.str());
+			auto* tile = new StaticTile(Sprite::CreateFromSpriteData(*sprite));
 			autoTiles.push_back(tile);
 		}
 	}
@@ -481,21 +454,22 @@ void Scene2DGame::CreateMap(World *pWorld)
 void Scene2DGame::CreateAssets(Vector2I tileSize)
 {
 	//static tile
-	auto texture = Texture::loadTexture("Outside_A2.png");
-	Sprite* pSprite = new Sprite();
+	//auto texture = Texture::loadTexture(Game::Instance().GetMediaManager().FindMedia("Outside_A2.png"));
+	auto pSprite = new SpriteData();
 	pSprite->SetName("grass1");
 	pSprite->SetPositionInTexture(RectangleI(0, 0, tileSize.x, tileSize.y));
-	pSprite->SetTexture2D(texture);
+	pSprite->SetAssetFileName("Outside_A2.png");
 	GetAssetManager().AddAsset(new Asset("grass1", pSprite));
 	//autotile
 	for (int y = 0; y < 3; ++y)
 	{
 		for (int x = 0; x < 2; ++x)
 		{
-			pSprite = new Sprite();
+			pSprite = new SpriteData();
 			pSprite->SetName("grass1");
 			pSprite->SetPositionInTexture(RectangleI(8 * tileSize.x + tileSize.x * x, y * tileSize.y, tileSize.x, tileSize.y));
-			pSprite->SetTexture2D(texture);
+			//pSprite->SetTexture2D(texture);
+			pSprite->SetAssetFileName("Outside_A2.png");
 			std::ostringstream name;
 			name << "autoGrass2_" << x << "_" << y;
 			GetAssetManager().AddAsset(new Asset(name.str(), pSprite));
@@ -520,18 +494,19 @@ void Scene2DGame::CreateEnnemies(World* pWorld)
 	pEntity->GetComponentMgr()->AddComponent(pTrans3D);
 
 	//load texture
-	auto texture = Texture::loadTexture(ennemi_datas.tile_set.c_str());
+	//auto texture = Texture::loadTexture(ennemi_datas.tile_set.c_str());
 	//load sprite
 	int id = 0;
 	for (auto& sprite : ennemi_datas.sprites)
 	{
-		Sprite* pSprite = new Sprite();
+		SpriteData* pSprite = new SpriteData();
 		std::ostringstream name;
 		name << "octopus_" << sprite.id;
 		id++;
 		pSprite->SetName(name.str());
 		pSprite->SetPositionInTexture(RectangleI(sprite.x, sprite.y, sprite.w, sprite.h));
-		pSprite->SetTexture2D(texture);
+		//pSprite->SetTexture2D(texture);
+		pSprite->SetAssetFileName(ennemi_datas.tile_set.c_str());
 		GetAssetManager().AddAsset(new Asset(name.str(), pSprite));
 	}
 	
@@ -594,18 +569,19 @@ void Scene2DGame::CreateSwordman(World* pWorld)
 	ar(cereal::make_nvp("swordman", player_datas));
 	
 	//create sprite
-	auto texture = Texture::loadTexture(player_datas.tile_set.c_str());
+	//auto texture = Texture::loadTexture(player_datas.tile_set.c_str());
 	//load sprite
 	int id = 0;
 	for (auto& sprite : player_datas.sprites)
 	{
-		Sprite* pSprite = new Sprite();
+		auto pSprite = new SpriteData();
 		std::ostringstream name;
 		name << "player_" << sprite.id;
 		id++;
 		pSprite->SetName(name.str());
 		pSprite->SetPositionInTexture(RectangleI(sprite.x, sprite.y, sprite.w, sprite.h));
-		pSprite->SetTexture2D(texture);
+		//pSprite->SetTexture2D(texture);
+		pSprite->SetAssetFileName(player_datas.tile_set.c_str());
 		GetAssetManager().AddAsset(new Asset(name.str(), pSprite));
 	}
 

@@ -1,7 +1,6 @@
 #include "Base.h"
 
 #include "Sprite/Sprite.h"
-#include "Parsers/Xml/tinyxml2.h"
 #include <iosfwd>
 
 #include "Game/Game.h"
@@ -13,6 +12,33 @@
 
 namespace CasaEngine
 {
+	std::map<std::string, Texture*> Sprite::_textureCache;
+
+	Sprite* Sprite::CreateFromSpriteData(SpriteData& spriteData)
+	{
+		auto pSprite = new Sprite();
+		Texture* texture;
+		auto pair = _textureCache.find(static_cast<std::string>(spriteData.GetAssetFileName()));
+
+		if (pair != _textureCache.end())
+		{
+			texture = pair->second;
+		}
+		else
+		{
+			auto textureFile = Game::Instance().GetMediaManager().FindMedia(spriteData.GetAssetFileName().c_str(), true);
+			texture = Texture::loadTexture(textureFile);
+			_textureCache.insert(std::make_pair(spriteData.GetAssetFileName(), texture));
+		}
+
+		pSprite->SetTexture2D(texture);
+		pSprite->SetPositionInTexture(spriteData.GetPositionInTexture());
+		pSprite->SetOrigin(spriteData.GetOrigin());
+
+		return pSprite;
+	}
+
+
 	Sprite::Sprite() :
 		m_pTexture2D(nullptr)
 	{
@@ -39,11 +65,6 @@ namespace CasaEngine
 		return m_Origin;
 	}
 
-	std::string Sprite::GetAssetFileName() const
-	{
-		return m_AssetFileName;
-	}
-
 	void Sprite::Clear()
 	{
 		for (std::vector<IShape*>::iterator it = m_CollisionShapes.begin();
@@ -55,52 +76,6 @@ namespace CasaEngine
 
 		m_CollisionShapes.clear();
 	}
-
-	/*
-	void Sprite::Read(const tinyxml2::XMLElement& el_)
-	{
-		Clear();
-		IAssetable::Read(el_);
-
-		const tinyxml2::XMLElement* pElem, * pChild;
-
-		m_AssetFileName = el_.FirstChildElement("AssetFileName")->GetText();
-		//m_Name = el_->Attribute("name");
-		//m_Name = el_->Attribute("id");
-		SetName(el_.Attribute("id")); // TODO : ID is not the name
-
-		Texture* pTexture = Game::Instance().GetResourceManager().Get<Texture>(m_AssetFileName.c_str());
-		
-		if (nullptr == pTexture)
-		{
-			pTexture = Texture::loadTexture(m_AssetFileName.c_str());
-			Game::Instance().GetResourceManager().Add(m_AssetFileName.c_str(), pTexture);
-		}
-		
-		m_pTexture2D = pTexture;
-
-		pElem = el_.FirstChildElement("PositionInTexture");
-		int x, y, w, h;
-		pElem->QueryIntAttribute("x", &x);
-		pElem->QueryIntAttribute("y", &y);
-		pElem->QueryIntAttribute("width", &w);
-		pElem->QueryIntAttribute("height", &h);
-		m_PositionInTexture.Set(x, y, w, h);
-
-		pElem = el_.FirstChildElement("HotSpot");
-		pElem->QueryIntAttribute("x", &m_Origin.x);
-		pElem->QueryIntAttribute("y", &m_Origin.y);
-
-		pElem = el_.FirstChildElement("CollisionList");
-		pChild = pElem->FirstChildElement("Shape");
-
-		while (pChild != nullptr)
-		{
-			IShape* pShape = IShape::LoadShape(*pChild);
-			m_CollisionShapes.push_back(pShape);
-			pChild = pChild->NextSiblingElement();
-		}
-	}*/
 
 //#ifdef EDITOR
 
@@ -119,22 +94,11 @@ namespace CasaEngine
 		m_Origin = val;
 	}
 
-	void Sprite::SetAssetFileName(std::string val)
-	{
-		m_AssetFileName = val;
-	}
-
-	/**
-	 *
-	 */
 	std::vector<IShape*>::iterator Sprite::GetCollisionShapeIterator()
 	{
 		return m_CollisionShapes.begin();
 	}
 
-	/**
-	 *
-	 */
 	std::vector<IShape*>::iterator Sprite::GetCollisionShapeIteratorEnd()
 	{
 		return m_CollisionShapes.end();

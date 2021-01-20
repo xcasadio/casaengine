@@ -4,6 +4,7 @@
 #include <Graphics/Renderer/Renderer.h>
 
 #include "Graphics/Vertices/VertexType.h"
+#include "Game/Game.h"
 
 using namespace CasaEngine;
 
@@ -16,7 +17,7 @@ using namespace CasaEngine;
 /// \return Pointeur sur le modèle créé
 ///
 ////////////////////////////////////////////////////////////
-Mesh* CMD2Loader::LoadFromFile(CasaEngine::IFile *pFile_)
+Mesh* CMD2Loader::LoadFromFile(IFile *pFile_)
 {
     // Les méthodes utilisées ici ne sont pas portables (problèmes d'endianness et de taille des types primitifs).
     // Il faudrait, pour bien faire, tout charger dans des tableaux d'octet et tout réassembler.
@@ -90,8 +91,10 @@ Mesh* CMD2Loader::LoadFromFile(CasaEngine::IFile *pFile_)
 	memcpy(pIndices, Indices.data(), Indices.size() * sizeof(unsigned short));
 
 	Mesh *pModel = NEW_AO Mesh(pVerts, (int)Vertices.size(), pIndices, (int)Indices.size());
-	Material *pMaterial = pModel->GetMaterial()->Clone();	
-	pMaterial->Texture0(Texture::loadTexture(Textures[0].Name, BGFX_SAMPLER_MIN_ANISOTROPIC | BGFX_SAMPLER_MAG_ANISOTROPIC));
+	Material *pMaterial = pModel->GetMaterial()->Clone();
+	pMaterial->Texture0(Texture::loadTexture(
+        Game::Instance().GetMediaManager().FindMedia(Textures[0].Name, true),
+        BGFX_SAMPLER_MIN_ANISOTROPIC | BGFX_SAMPLER_MAG_ANISOTROPIC));
 	pModel->SetMaterial(pMaterial);
 
 // 	Texture* pTexture = Game::Instance().GetResourceManager().Get<Texture>(Textures[0].Name);

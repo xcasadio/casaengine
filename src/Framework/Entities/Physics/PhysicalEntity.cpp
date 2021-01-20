@@ -80,13 +80,15 @@ void PhysicalEntity::Update(GameTime gameTime_)
  */
 void PhysicalEntity::AddSpritePhysics(Sprite *pSprite_)
 {
-	if (m_LastSpriteID == pSprite_->GetName())
+	//TODO
+	return;
+	/*if (m_LastSpriteID == pSprite_->GetName())
 	{
 		return;
 	}
 
 	m_LastSpriteID = pSprite_->GetName();
-
+	*/
 	//
 	if (m_SpriteCollisionObjects.find(m_LastSpriteID) == m_SpriteCollisionObjects.end())
 	{

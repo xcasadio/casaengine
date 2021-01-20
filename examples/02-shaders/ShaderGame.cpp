@@ -116,7 +116,7 @@ void ShaderGame::LoadContent()
 	Game::LoadContent();
 
 	//m_CartoonShadingTextureHandle = CreateFromFile("cartoon_shading.dds", PixelFormat::AL_88, TEX_NOMIPMAP);
-	Texture::loadTexture("cartoon_shading.dds", BGFX_SAMPLER_MIN_ANISOTROPIC | BGFX_SAMPLER_MAG_ANISOTROPIC, 1);
+	Texture::loadTexture(Game::Instance().GetMediaManager().FindMedia("cartoon_shading.dds", true), BGFX_SAMPLER_MIN_ANISOTROPIC | BGFX_SAMPLER_MAG_ANISOTROPIC, 1);
 	m_pProgram = NEW_AO Program("vs_mesh", "fs_mesh");
 
 	//ground
@@ -132,7 +132,7 @@ void ShaderGame::LoadContent()
 	Mesh* pModel = pBox->CreateModel();
 	//new material
 	m_pGroundMaterial = pModel->GetMaterial()->Clone();
-	m_pGroundMaterial->Texture0(Texture::loadTexture("ceilingMain_DIF.dds", BGFX_SAMPLER_MIN_ANISOTROPIC | BGFX_SAMPLER_MAG_ANISOTROPIC));
+	m_pGroundMaterial->Texture0(Texture::loadTexture(Game::Instance().GetMediaManager().FindMedia("ceilingMain_DIF.dds"), BGFX_SAMPLER_MIN_ANISOTROPIC | BGFX_SAMPLER_MAG_ANISOTROPIC));
 	m_pGroundMaterial->Texture0Repeat(Vector2F(50, 50));
 	pModel->SetMaterial(m_pGroundMaterial);
 	//

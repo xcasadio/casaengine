@@ -11,7 +11,6 @@
 #include "Graphics/Renderer/Enums.h"
 #include "Graphics/Renderer/Renderer.h"
 #include "Graphics/Viewport.h"
-#include "Loaders/XmlLoader.h"
 #include "Log/LogManager.h"
 #include "Log/LoggerFile.h"
 #include "Parsers/Ini/INIReader.h"
@@ -776,7 +775,7 @@ void Game::RegisterLoaders()
 {
 // 	m_MediaManager.RegisterLoader(NEW_AO CImagesLoader, "bmp, dds, jpg, pcx, png, pnm, raw, sgi, tga, tif");
 // 	m_MediaManager.RegisterLoader(NEW_AO CShadersLoader(), "vert, fx");
-	m_MediaManager.RegisterLoader(NEW_AO XmlLoader, "xml");
+//	m_MediaManager.RegisterLoader(NEW_AO XmlLoader, "xml");
 }
 
 /**

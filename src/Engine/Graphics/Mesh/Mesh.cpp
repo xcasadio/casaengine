@@ -53,7 +53,7 @@ Mesh::Mesh(const VertexPositionNormalTexture* Vertices, unsigned long VerticesCo
 	if (m_pDefaultTexture == nullptr)
 	{
 		//Todo : create it programmatically
-		m_pDefaultTexture = Texture::loadTexture("checkboard.dds", BGFX_TEXTURE_NONE);
+		m_pDefaultTexture = Texture::loadTexture(Game::Instance().GetMediaManager().FindMedia("checkboard.dds", true), BGFX_TEXTURE_NONE);
 	}
 
     CA_ASSERT(Vertices != nullptr, "Mesh::Mesh() : Vertices is nullptr");

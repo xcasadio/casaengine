@@ -4,7 +4,9 @@
 #include "CA_Export.h"
 
 #include "Resources/Resource.h"
+#include "IO\IFile.h"
 #include <bgfx/bgfx.h>
+#include <map>
 
 namespace CasaEngine
 {
@@ -19,13 +21,15 @@ namespace CasaEngine
 		/**
 		 * 
 		 */
-		static Texture *loadTexture(const char *pFileName_, uint32_t _flags = BGFX_TEXTURE_NONE, uint8_t _skip = 0, bgfx::TextureInfo* _info = nullptr);
+		static Texture *loadTexture(IFile* pFile, uint32_t _flags = BGFX_TEXTURE_NONE, uint8_t _skip = 0);
 
 		/**
 		 * 
 		 */
 		static Texture *createTexture(const unsigned int width_, const unsigned int height_, const bgfx::TextureFormat::Enum format_, 
 			const bgfx::Memory *pData_, const unsigned long flags_ = BGFX_TEXTURE_NONE, bgfx::TextureInfo* info_ = nullptr);
+	private:
+		static std::map<std::string, Texture *> _textureCache;
 
 	public:
 

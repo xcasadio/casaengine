@@ -1,15 +1,14 @@
 #include "Base.h"
 #include "Texture.h"
 #include "Log\LogManager.h"
-#include "IO\IFile.h"
 #include "Resources\MediaManager.h"
 #include "bx\string.h"
 #include "bimg\decode.h"
 
-#include "Game/Game.h"
-
 namespace CasaEngine
 {
+	std::map<std::string, Texture*> Texture::_textureCache;
+
 
 	//create only one allocator
 	bx::AllocatorI* getDefaultAllocator()
@@ -27,19 +26,16 @@ namespace CasaEngine
 	/**
 	 *
 	 */
-	Texture* Texture::loadTexture(const char* pFileName_, uint32_t _flags, uint8_t _skip, bgfx::TextureInfo* _info)
+	Texture* Texture::loadTexture(IFile* pFile, uint32_t _flags, uint8_t _skip)
 	{
-		bgfx::TextureHandle handle = BGFX_INVALID_HANDLE;
-
-		bgfx::TextureHandle h = BGFX_INVALID_HANDLE;
-		IFile* pFile = Game::Instance().GetMediaManager().FindMedia(pFileName_, true);
-
-		if (pFile == nullptr)
+		auto pair = _textureCache.find(static_cast<std::string>(pFile->Fullname()));
+		if (pair != _textureCache.end())
 		{
-			CA_ERROR("Failed to load %s.", pFileName_);
-			return nullptr;
+			return pair->second;
 		}
 
+		bgfx::TextureHandle handle = BGFX_INVALID_HANDLE;
+		bgfx::TextureInfo* info;
 		void* data = pFile->GetBuffer();
 
 		if (NULL != data)
@@ -101,13 +97,10 @@ namespace CasaEngine
 					setName(handle, pFile->Fullname().c_str());
 				}
 
-				if (nullptr == _info)
-				{
-					_info = NEW_AO bgfx::TextureInfo();
-				}
+				info = NEW_AO bgfx::TextureInfo();
 
 				calcTextureSize(
-					*_info
+					*info
 					, uint16_t(imageContainer->m_width)
 					, uint16_t(imageContainer->m_height)
 					, uint16_t(imageContainer->m_depth)
@@ -119,8 +112,9 @@ namespace CasaEngine
 			}
 		}
 
-		DELETE_AO pFile;
-		return NEW_AO Texture(handle, _info);
+		auto texture = NEW_AO Texture(handle, info);
+		_textureCache.insert(std::make_pair(pFile->Fullname(), texture));
+		return texture;
 	}
 
 	/**

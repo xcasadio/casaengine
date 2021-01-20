@@ -157,7 +157,8 @@ namespace CasaEngine
 		if (m_pCurrentAnim != nullptr)
 		{
 			m_pSpriteRenderer->AddSprite(
-				Game::Instance().GetAssetManager().GetAsset<Sprite>(m_pCurrentAnim->CurrentFrame()),
+				//TODO : load all sprites in a dictionary<name, sprite>
+				Sprite::CreateFromSpriteData(*Game::Instance().GetAssetManager().GetAsset<SpriteData>(m_pCurrentAnim->CurrentFrame())),
 				m_pTransform->GetWorldMatrix(),
 				m_Color,
 				m_pTransform->GetWorldMatrix().GetTranslation().z,

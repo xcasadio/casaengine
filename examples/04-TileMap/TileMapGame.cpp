@@ -23,6 +23,7 @@
 #include "Map2D/TiledMapComponent.h"
 #include "Tools\DebugSystem.h"
 #include "World\World.h"
+#include "Datas/SpriteData.h"
 
 Transform3DComponent* s_pTransform;
 Camera2DTargetedController* s_pCameraController;
@@ -66,33 +67,18 @@ void TileMapGame::Initialize()
 
 void TileMapGame::CreateBackground(World* pWorld)
 {
-	//background
-	/*Texture* texture = Texture::loadTexture("Tile1.png"); // "space-wallpaper.jpg");
-	Sprite *pSprite = NEW_AO Sprite();
-	pSprite->SetTexture2D(texture);
-	pSprite->SetPositionInTexture(RectangleI(0, 0, texture->TextureInfo()->width, texture->TextureInfo()->height));
-	pSprite->SetName("background");
-	Game::Instance().GetAssetManager().AddAsset(NEW_AO Asset(pSprite->GetName(), pSprite));*/
-
 	BaseEntity* pEntity = NEW_AO BaseEntity();
 	pEntity->SetName("background");
 	Transform3DComponent* pTrans3D = NEW_AO Transform3DComponent(pEntity);
 	pTrans3D->SetLocalPosition(Vector3F(0.0f, 0.0f, 1.0f));
 	pTrans3D->SetLocalRotation(0.0f);
-	/*pTrans3D->SetLocalScale(Vector3F(texture->TextureInfo()->width, texture->TextureInfo()->height, 1.0f));
-	pEntity->GetComponentMgr()->AddComponent(pTrans3D);
-	StaticSpriteComponent* pStaticSprite = NEW_AO StaticSpriteComponent(pEntity);
-	pStaticSprite->SetSpriteID("background");
-	pEntity->GetComponentMgr()->AddComponent(pStaticSprite);
-	pWorld->AddEntity(pEntity);*/
 
 
-	//Texture* texture = Texture::loadTexture("Tile1.png");
-	Texture* texture = Texture::loadTexture("Outside_A2.png");
+	//Texture* texture = Texture::loadTexture("Outside_A2.png");
 	const int size = 48; // 32
-	Sprite* pSprite = NEW_AO Sprite();
-	pSprite->SetTexture2D(texture);
-	//pSprite->SetPositionInTexture(RectangleI(7 * size, size, size, size));
+	SpriteData* pSprite = NEW_AO SpriteData();
+	pSprite->SetAssetFileName("Outside_A2.png");
+	//pSprite->SetTexture2D(texture);
 	pSprite->SetPositionInTexture(RectangleI(0, 0, size, size));
 	pSprite->SetName("tile0");
 	Game::Instance().GetAssetManager().AddAsset(NEW_AO Asset(pSprite->GetName(), pSprite));
@@ -101,9 +87,9 @@ void TileMapGame::CreateBackground(World* pWorld)
 	{
 		for (int x = 0; x < 2; ++x)
 		{
-			pSprite = NEW_AO Sprite();
-			pSprite->SetTexture2D(texture);
-			//pSprite->SetPositionInTexture(RectangleI(12 * size, 4 * size, size, size));
+			pSprite = NEW_AO SpriteData();
+			pSprite->SetAssetFileName("Outside_A2.png");
+			//pSprite->SetTexture2D(texture);
 			pSprite->SetPositionInTexture(RectangleI(2 * size + x * size, y * size, size, size));
 			std::ostringstream str;
 			str << "autoTile" << x + y * 2;
@@ -155,7 +141,7 @@ void TileMapGame::CreateBackground(World* pWorld)
 		{
 			std::ostringstream str;
 			str << "autoTile" << x + y * 2;
-			auto* staticTile = NEW_AO StaticTile(GetAssetManager().GetAsset<Sprite>(str.str()));
+			auto* staticTile = NEW_AO StaticTile(Sprite::CreateFromSpriteData(*GetAssetManager().GetAsset<SpriteData>(str.str())));
 			tiles4AutoTile.push_back(staticTile);
 		}
 	}
@@ -178,7 +164,7 @@ void TileMapGame::CreateBackground(World* pWorld)
 			else
 			{
 				//tiles.push_back(new AnimatedTile(Game::Instance().GetAssetManager().GetAsset<Animation2D>("anim2D_tile1")->Copy()));
-				tiles.push_back(new StaticTile(Game::Instance().GetAssetManager().GetAsset<Sprite>("tile0")));
+				tiles.push_back(new StaticTile(Sprite::CreateFromSpriteData(*Game::Instance().GetAssetManager().GetAsset<SpriteData>("tile0"))));
 			}
 		}
 	}
@@ -202,10 +188,11 @@ void TileMapGame::LoadContent()
 	World* p_world = NEW_AO World();
 	Game::Instance().GetGameInfo().SetWorld(p_world);
 
-	auto texture = Texture::loadTexture("vegeta.png");
-	auto pSprite = NEW_AO Sprite();
-	pSprite->SetTexture2D(texture);
-	pSprite->SetPositionInTexture(RectangleI(0, 0, texture->TextureInfo()->width, texture->TextureInfo()->height));
+	//auto texture = Texture::loadTexture("vegeta.png");
+	auto pSprite = NEW_AO SpriteData();
+	//pSprite->SetTexture2D(texture);
+	pSprite->SetAssetFileName("vegeta.png");
+	pSprite->SetPositionInTexture(RectangleI(0, 0, 43, 76));
 	pSprite->SetName("sprite");
 	//pSprite->SetAssetFileName("vegeta.png");
 	GetAssetManager().AddAsset(NEW_AO Asset(pSprite->GetName(), pSprite));
@@ -216,7 +203,7 @@ void TileMapGame::LoadContent()
 	s_pTransform = pTransform;
 	pTransform->SetLocalPosition(Vector3F(500.0f, 250.0f, 2.0f));
 	pTransform->SetLocalRotation(0.0f);
-	pTransform->SetLocalScale(Vector3F(texture->TextureInfo()->width, texture->TextureInfo()->height, 1.0f));
+	pTransform->SetLocalScale(Vector3F(43, 76, 1.0f));
 	pEntity->GetComponentMgr()->AddComponent(pTransform);
 	auto pStaticSprite = NEW_AO StaticSpriteComponent(pEntity);
 	pStaticSprite->SetSpriteID("sprite");
