@@ -62,7 +62,7 @@ void CubeGame::Initialize()
 	//AddComponent(m_pDebugSystem);
 
 	GetDebugOptions().ShowAxis = true;
-	GetDebugOptions().ShowFPS == true;
+	GetDebugOptions().ShowFPS = true;
 	GetDebugOptions().IsDebugActivated = true;
 	GetDebugOptions().ShowLogInGame = true;
 }
