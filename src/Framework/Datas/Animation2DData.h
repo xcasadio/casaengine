@@ -37,7 +37,7 @@ namespace CasaEngine
 		template <class Archive>
 		void save(Archive& ar) const
 		{
-			ar(cereal::base_class<IAssetable>(this)m_Frames;
+			ar(cereal::base_class<IAssetable>(this));
 			ar(cereal::make_nvp("frames", m_Frames));
 		}
 	};
