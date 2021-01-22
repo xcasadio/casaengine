@@ -34,6 +34,7 @@ public :
 	void Initialize();
 	void LoadContent();
 	void Update(const CasaEngine::GameTime& gameTime_);
+	void DisplayCollisions();
 	void Draw();
 
 private:

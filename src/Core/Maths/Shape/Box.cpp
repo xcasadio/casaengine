@@ -35,21 +35,4 @@ namespace CasaEngine
 	{
 		m_Center = val;
 	}
-
-	void Box::Read(const tinyxml2::XMLElement& node_)
-	{
-
-	}
-
-	void Box::Read(std::ifstream& /*in*/)
-	{
-	}
-
-	void Box::Write(const tinyxml2::XMLElement& node_)
-	{
-	}
-
-	void Box::Write(std::ostream& os)
-	{
-	}
 }

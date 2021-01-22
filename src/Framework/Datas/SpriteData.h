@@ -12,6 +12,7 @@
 
 #include <cereal/access.hpp>
 #include <cereal/types/vector.hpp>
+#include <Sprite/Collision.h>
 
 namespace CasaEngine
 {
@@ -27,8 +28,7 @@ namespace CasaEngine
 		std::string GetAssetFileName() const;
 		void Clear();
 
-		std::vector<IShape*>::iterator GetCollisionShapeIterator();
-		std::vector<IShape*>::iterator GetCollisionShapeIteratorEnd();
+		std::vector<Collision>& GetCollisions();
 
 		//#if EDITOR
 		void SetPositionInTexture(RectangleI val);
@@ -39,7 +39,7 @@ namespace CasaEngine
 	private:
 		RectangleI m_PositionInTexture;
 		Vector2I m_Origin;
-		std::vector<IShape*> m_CollisionShapes;
+		std::vector<Collision> m_CollisionShapes;
 		//std::vector<Vector2I> m_Sockets;
 		std::string m_AssetFileName;
 

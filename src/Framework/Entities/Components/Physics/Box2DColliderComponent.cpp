@@ -6,6 +6,7 @@
 #include "Entities/ComponentTypeEnum.h"
 #include <string>
 #include "Game/Game.h"
+#include "Maths/Rectangle.h"
 
 
 namespace CasaEngine
@@ -17,7 +18,7 @@ namespace CasaEngine
 Box2DColliderComponent::Box2DColliderComponent(BaseEntity* pEntity_)
 	: ColliderComponent(pEntity_, BOX2D_COLLIDER)
 {
-	m_pShape = NEW_AO Box2D();
+	m_pShape = NEW_AO RectangleF();
 }
 
 /**

@@ -101,12 +101,10 @@ void PhysicalEntity::AddSpritePhysics(Sprite *pSprite_)
 		Vector3F posWithOrigin(pos.x - origin.x, pos.y + origin.y, pos.z); 
 
 		std::vector<IShape *>::iterator itShape;
-		for (itShape = pSprite_->GetCollisionShapeIterator();
-			itShape != pSprite_->GetCollisionShapeIteratorEnd();
-			itShape++)
+		for (auto coll : pSprite_->GetCollisions())
 		{
 			ICollisionObjectContainer *pObj = 
-				Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->AddCollisionShape(*itShape, posWithOrigin);
+				Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->AddCollisionShape(coll.GetShape(), posWithOrigin);
 			m_SpriteCollisionObjects[m_LastSpriteID].push_back(pObj);
 		}
 	}

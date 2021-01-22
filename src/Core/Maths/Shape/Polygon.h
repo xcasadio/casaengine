@@ -8,38 +8,18 @@
 #include "IShape.h"
 #include "Maths/Vector2.h"
 
-
 namespace CasaEngine
 {
-    /**
-     * 
-     */
 	class CA_EXPORT Polygon :
-		public IShape
+		public IShape, public virtual AllocatedObject<Polygon>
     {
     public :
-		/**
-		 *
-		 */
         Polygon();
-
-		/**
-		 *
-		 */
 		~Polygon();
-
-		void Read( const tinyxml2::XMLElement& node_ ) override;
-		void Read( std::ifstream& in ) override;
-		void Write( const tinyxml2::XMLElement& node_ ) override;
-		void Write( std::ostream& os ) override;
-		
-	protected:
-		
 
 	private:
 		std::vector<Vector2F> m_PointList;
     };
 }
-
 
 #endif // POLYGON_H

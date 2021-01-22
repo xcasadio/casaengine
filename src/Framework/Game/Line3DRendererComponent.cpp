@@ -104,20 +104,22 @@ namespace CasaEngine
 		submit(0, m_pProgram->Handle());
 	}
 
-	/**
-	 * 
-	 */
-	void Line3DRendererComponent::AddLine( const Vector3F &start_, const CColor &startColor_, 
-		const Vector3F &end_, const CColor &endColor_ )
+	void Line3DRendererComponent::AddLine(const Vector3F& start_, const Vector3F& end_, const CColor& color_)
+	{
+		AddLine(start_, color_.ToABGR(), end_, color_.ToABGR());
+	}
+
+	void Line3DRendererComponent::AddLine(const Vector3F& start_, const Vector3F& end_, const unsigned int color_)
+	{
+		AddLine(start_, color_, end_, color_);
+	}
+
+	void Line3DRendererComponent::AddLine( const Vector3F &start_, const CColor &startColor_, const Vector3F &end_, const CColor &endColor_ )
 	{
 		AddLine(start_, startColor_.ToABGR(), end_, endColor_.ToABGR());
 	}
 
-	/**
-	 * 
-	 */
-	void Line3DRendererComponent::AddLine( const Vector3F &start_, const unsigned int &startColor_, 
-		const Vector3F &end_, const unsigned int &endColor_ )
+	void Line3DRendererComponent::AddLine( const Vector3F &start_, const unsigned int &startColor_, const Vector3F &end_, const unsigned int &endColor_ )
 	{
 		LineRenderer3DData *pLineData = ::new LineRenderer3DData();
 
@@ -130,9 +132,6 @@ namespace CasaEngine
 		m_bRecomputeVB = true;
 	}
 
-	/**
-	 * 
-	 */
 	void Line3DRendererComponent::BuildVB()
 	{
 		if (m_bRecomputeVB == false)

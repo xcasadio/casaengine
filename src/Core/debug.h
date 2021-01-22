@@ -6,7 +6,7 @@
 #if CA_PLATFORM_ANDROID
 #	include <android/log.h>
 #elif CA_PLATFORM_WINRT || CA_PLATFORM_WINDOWS || CA_PLATFORM_XBOX360
-extern "C" __declspec(dllimport) void __stdcall OutputDebugStringA(const char* _str);
+extern "C" __declspec(dllimport) void __stdcall OutputDebugString(const char* _str);
 #elif CA_PLATFORM_IOS || CA_PLATFORM_OSX
 #	if defined(__OBJC__)
 #		import <Foundation/NSObjCRuntime.h>

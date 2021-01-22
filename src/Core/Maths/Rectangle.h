@@ -4,6 +4,7 @@
 #include "CA_Export.h"
 #include "Maths/Vector2.h"
 #include "Memory/MemoryAllocation.h"
+#include "Maths/Shape/IShape.h"
 
 #include <algorithm>
 #include <iostream>
@@ -21,10 +22,10 @@ namespace CasaEngine
 
     template<class T>
 	class CA_EXPORT CRectangle :
-		public AllocatedObject<CRectangle<T>>
+        public IShape, public virtual AllocatedObject<CRectangle<T>>
     {
     public:
-        CRectangle() = default;
+        CRectangle();
         CRectangle(T Left, T Top, T Width, T Height);
 
         void Set(T Left, T Top, T Width, T Height);
@@ -72,6 +73,5 @@ namespace CasaEngine
 #include "Rectangle.inl"
 
 }
-
 
 #endif // RECTANGLE_H

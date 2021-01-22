@@ -7,6 +7,12 @@
 #include <vector>
 #include <string>
 
+enum ClsnType 
+{
+	None, 
+	Type1Attack, 
+	Type2Normal
+};
 
 struct sprite
 {
@@ -61,26 +67,26 @@ private:
 struct blending
 {
 	int BlendType;
-	float SourceFactor, DestinationFactor; 
+	float SourceFactor, DestinationFactor;
 
-	private:
-		friend class cereal::access;
+private:
+	friend class cereal::access;
 
-		template <class Archive>
-		void save(Archive& ar) const
-		{
-			ar(CEREAL_NVP(BlendType));
-			ar(CEREAL_NVP(SourceFactor));
-			ar(CEREAL_NVP(DestinationFactor));
-		}
+	template <class Archive>
+	void save(Archive& ar) const
+	{
+		ar(CEREAL_NVP(BlendType));
+		ar(CEREAL_NVP(SourceFactor));
+		ar(CEREAL_NVP(DestinationFactor));
+	}
 
-		template <class Archive>
-		void load(Archive& ar)
-		{
-			ar(CEREAL_NVP(BlendType));
-			ar(CEREAL_NVP(SourceFactor));
-			ar(CEREAL_NVP(DestinationFactor));
-		}
+	template <class Archive>
+	void load(Archive& ar)
+	{
+		ar(CEREAL_NVP(BlendType));
+		ar(CEREAL_NVP(SourceFactor));
+		ar(CEREAL_NVP(DestinationFactor));
+	}
 };
 
 struct collision

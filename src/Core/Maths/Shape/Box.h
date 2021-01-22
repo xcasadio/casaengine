@@ -13,7 +13,7 @@
 namespace CasaEngine
 {
 	class CA_EXPORT Box :
-		public IShape
+		public IShape, public virtual AllocatedObject<Box>
     {
     public :
         Box(Vector3F size_ = Vector3F::One(), Vector3F center_ = Vector3F::Zero());
@@ -23,11 +23,6 @@ namespace CasaEngine
 		void Size(Vector3F val);
 		Vector3F Center() const;
 		void Center(Vector3F val);
-
-		void Read( const tinyxml2::XMLElement& node_ ) override;
-		void Read( std::ifstream& in ) override;
-		void Write( const tinyxml2::XMLElement& node_ ) override;
-		void Write( std::ostream& os ) override;
 
 	private:
 		Vector3F m_Center, m_Size;

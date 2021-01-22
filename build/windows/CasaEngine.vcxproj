@@ -219,7 +219,6 @@
     <ClInclude Include="..\..\src\Core\Maths\Random.h" />
     <ClInclude Include="..\..\src\Core\Maths\Rectangle.h" />
     <ClInclude Include="..\..\src\Core\Maths\Shape\Box.h" />
-    <ClInclude Include="..\..\src\Core\Maths\Shape\Box2D.h" />
     <ClInclude Include="..\..\src\Core\Maths\Shape\Capsule.h" />
     <ClInclude Include="..\..\src\Core\Maths\Shape\Circle.h" />
     <ClInclude Include="..\..\src\Core\Maths\Shape\IShape.h" />
@@ -387,6 +386,7 @@
     <ClInclude Include="..\..\src\Framework\Script\IScriptObjectFactory.h" />
     <ClInclude Include="..\..\src\Framework\Script\ScriptEngine.h" />
     <ClInclude Include="..\..\src\Framework\SpacePartitioning\CellSpacePartition.h" />
+    <ClInclude Include="..\..\src\Framework\Sprite\Collision.h" />
     <ClInclude Include="..\..\src\Framework\Sprite\Sprite.h" />
     <ClInclude Include="..\..\src\Framework\Sprite\SpriteRenderer.h" />
     <ClInclude Include="..\..\src\Framework\Sprite\SpriteTypes.h" />
@@ -450,7 +450,6 @@
     <ClCompile Include="..\..\src\Core\Maths\Matrix4.cpp" />
     <ClCompile Include="..\..\src\Core\Maths\Quaternion.cpp" />
     <ClCompile Include="..\..\src\Core\Maths\Shape\Box.cpp" />
-    <ClCompile Include="..\..\src\Core\Maths\Shape\Box2D.cpp" />
     <ClCompile Include="..\..\src\Core\Maths\Shape\Capsule.cpp" />
     <ClCompile Include="..\..\src\Core\Maths\Shape\Circle.cpp" />
     <ClCompile Include="..\..\src\Core\Maths\Shape\IShape.cpp" />
@@ -566,6 +565,7 @@
     <ClCompile Include="..\..\src\Framework\Script\IScriptObject.cpp" />
     <ClCompile Include="..\..\src\Framework\Script\IScriptObjectFactory.cpp" />
     <ClCompile Include="..\..\src\Framework\Script\ScriptEngine.cpp" />
+    <ClCompile Include="..\..\src\Framework\Sprite\Collision.cpp" />
     <ClCompile Include="..\..\src\Framework\Sprite\Sprite.cpp" />
     <ClCompile Include="..\..\src\Framework\Sprite\SpriteRenderer.cpp" />
     <ClCompile Include="..\..\src\Framework\Tools\Bullet\BulletPhysicsDebugDraw.cpp" />

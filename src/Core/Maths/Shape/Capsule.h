@@ -11,27 +11,12 @@
 
 namespace CasaEngine
 {
-    /**
-     * 
-     */
 	class CA_EXPORT Capsule :
-		public IShape
+		public IShape, public virtual AllocatedObject<Capsule>
     {
     public :
-		/**
-		 *
-		 */
         Capsule();
-		
-		/**
-		 *
-		 */
 		~Capsule();
-
-		void Read( const tinyxml2::XMLElement& node_ ) override;
-		void Read( std::ifstream& in ) override;
-		void Write( const tinyxml2::XMLElement& node_ ) override;
-		void Write( std::ostream& os ) override;
     };
 }
 

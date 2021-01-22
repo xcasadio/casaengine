@@ -17,7 +17,7 @@ namespace CasaEngine
 		SPHERE,
 		CAPSULE,
 		//2D
-		BOX2D,
+		RECTANGLE,
 		CIRCLE2D,
 		POLYGON,
 	};

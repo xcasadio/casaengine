@@ -361,8 +361,8 @@ void Scene2DGame::CreatePlayer()
 // 	pBox2D->Mass(1.0f);
 // 	pEntity->GetComponentMgr()->AddComponent(pBox2D);
 
-	Box2D box2D;
-	box2D.Size(Vector2F(0.5f, 0.5f));
+	RectangleF box2D;
+	box2D.Set(0, 0, 0.5f, 0.5f);
 	//RigidBodyComponent *pRigidBodyCpt = NEW_AO RigidBodyComponent(pEntity);
 	//RigidBody &body = pRigidBodyCpt->GetRigidBody();
 	//body.pCollisionShape = &box2D;
@@ -383,7 +383,7 @@ void Scene2DGame::CreateMap(World *pWorld)
 	auto* pTrans3D = NEW_AO Transform3DComponent(pEntity);
 	pTrans3D->SetLocalPosition(Vector3F(0.0f, 0.0f, 1.0f));
 	pTrans3D->SetLocalRotation(0.0f);
-	pTrans3D->SetLocalScale(Vector3F(48, 48, 1.0));
+	//pTrans3D->SetLocalScale(Vector3F(48, 48, 1.0));
 	
 	auto* pMap = NEW_AO TiledMapComponent(pEntity);
 	pMap->SetMapSize(Vector2I(30, 11));
@@ -490,7 +490,7 @@ void Scene2DGame::CreateEnnemies(World* pWorld)
 	auto* pTrans3D = NEW_AO Transform3DComponent(pEntity);
 	pTrans3D->SetLocalPosition(Vector3F(100.0f, 100.0f, 1.0f));
 	pTrans3D->SetLocalRotation(0.0f);
-	pTrans3D->SetLocalScale(Vector3F(32, 32, 1.0));
+	//pTrans3D->SetLocalScale(Vector3F(32, 32, 1.0));
 	pEntity->GetComponentMgr()->AddComponent(pTrans3D);
 
 	//load texture
@@ -558,7 +558,7 @@ void Scene2DGame::CreateSwordman(World* pWorld)
 	auto* pTrans3D = NEW_AO Transform3DComponent(pPlayerEntity);
 	pTrans3D->SetLocalPosition(Vector3F(50.0f, 50.0f, 1.0f));
 	pTrans3D->SetLocalRotation(0.0f);
-	pTrans3D->SetLocalScale(Vector3F(tileWidth, tileHeight, 1.0));
+	//pTrans3D->SetLocalScale(Vector3F(tileWidth, tileHeight, 1.0));
 	pPlayerEntity->GetComponentMgr()->AddComponent(pTrans3D);
 
 	//textures

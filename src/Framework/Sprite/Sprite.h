@@ -29,8 +29,7 @@ namespace CasaEngine
 		Vector2I GetOrigin() const;
 		void Clear();
 
-		std::vector<IShape*>::iterator GetCollisionShapeIterator();
-		std::vector<IShape*>::iterator GetCollisionShapeIteratorEnd();
+		std::vector<Collision>& GetCollisions();
 
 		//#if EDITOR
 		void SetTexture2D(Texture* val);
@@ -42,7 +41,7 @@ namespace CasaEngine
 		Texture* m_pTexture2D;
 		RectangleI m_PositionInTexture;
 		Vector2I m_Origin;
-		std::vector<IShape*> m_CollisionShapes;
+		std::vector<Collision> m_CollisionShapes;
 		//std::vector<Vector2I> m_Sockets;
 	};
 }

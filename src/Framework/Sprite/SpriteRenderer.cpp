@@ -180,14 +180,14 @@ namespace CasaEngine
 			throw NEW_AO CException("Sprite is null");
 		}
 		
-		AddSprite(sprite->GetTexture2D(), sprite->GetPositionInTexture(), transform, color_, z_order, effects_);
+		AddSprite(sprite->GetTexture2D(), sprite->GetPositionInTexture(), sprite->GetOrigin(), transform, color_, z_order, effects_);
 	}
 	
 	/**
 	 *
 	 */
 	void SpriteRenderer::AddSprite(const Texture* tex_,
-		const RectangleI& posInTex, const Matrix4& transform, const CColor& color_, float z_order, eSpriteEffects effects_)
+		const RectangleI& posInTex, const Vector2I& origin, const Matrix4& transform, const CColor& color_, float z_order, eSpriteEffects effects_)
 	{
 		if (tex_ == nullptr)
 		{
@@ -212,7 +212,11 @@ namespace CasaEngine
 
 		//texture
 		spriteData.Texture = tex_;
-		spriteData.transform = transform;
+		Matrix4 worldMatrix = transform;
+		Matrix4 offsetMatrix;
+		//Todo : get scale
+		offsetMatrix.CreateTranslation(-origin.x * transform.a11, -origin.y * transform.a22, 0.0f);
+		spriteData.transform = worldMatrix * offsetMatrix;
 		//Left-Top
 		spriteData.TopLeft.Position.x = 0.0f;
 		spriteData.TopLeft.Position.y = 0.0f;
@@ -221,22 +225,22 @@ namespace CasaEngine
 		spriteData.TopLeft.TexCoords.x = texLeft;
 		spriteData.TopLeft.TexCoords.y = texTop;
 		//Right-Top
-		spriteData.TopRight.Position.x = 1.0f;
+		spriteData.TopRight.Position.x = 1.0f * posInTex.w;
 		spriteData.TopRight.Position.y = 0.0f;
 		spriteData.TopRight.Position.z = z_order;
 		spriteData.TopRight.Color = color;
 		spriteData.TopRight.TexCoords.x = texRight;
 		spriteData.TopRight.TexCoords.y = texTop;
 		//Right-Bottom
-		spriteData.BottomRight.Position.x = 1.0f;
-		spriteData.BottomRight.Position.y = 1.0f;
+		spriteData.BottomRight.Position.x = 1.0f * posInTex.w;
+		spriteData.BottomRight.Position.y = 1.0f * posInTex.h;
 		spriteData.BottomRight.Position.z = z_order;
 		spriteData.BottomRight.Color = color;
 		spriteData.BottomRight.TexCoords.x = texRight;
 		spriteData.BottomRight.TexCoords.y = texBottom;
 		//Left-Bottom
 		spriteData.BottomLeft.Position.x = 0.0f;
-		spriteData.BottomLeft.Position.y = 1.0f;
+		spriteData.BottomLeft.Position.y = 1.0f * posInTex.h;
 		spriteData.BottomLeft.Position.z = z_order;
 		spriteData.BottomLeft.Color = color;
 		spriteData.BottomLeft.TexCoords.x = texLeft;
@@ -248,68 +252,30 @@ namespace CasaEngine
 	/**
 	 * 
 	 */
-	void SpriteRenderer::AddSprite(const Texture *tex_, 
-		const RectangleI &posInTex, const Vector2I &origin, const Vector2F &pos_,
-		float /*rot_*/, const Vector2F &scale_, const CColor &color_, float z_order, eSpriteEffects /*effects_*/)
+	void SpriteRenderer::AddSprite(const Texture* tex_,
+		const RectangleI& posInTex, const Vector2I& origin, const Vector2F& pos_,
+		float rot_, const Vector2F& scale_, const CColor& color_, float z_order, eSpriteEffects effects_)
 	{
 		if (tex_ == nullptr)
 		{
 			throw NEW_AO CException("Texture is null");
 		}
-		
+
 		if (m_SpriteDatas.size() >= m_MaxSprite)
 		{
 			return;
 		}
 
-		const unsigned int color = color_.ToABGR(); // RGBA();
-
-		const float texW = tex_->TextureInfo()->width;
-		const float texH = tex_->TextureInfo()->height;
-		const float texTop = static_cast<float>(posInTex.Top()) / texH;
-		const float texBottom = static_cast<float>(posInTex.Bottom()) / texH;
-		const float texLeft = static_cast<float>(posInTex.Left()) / texW;
-		const float texRight = static_cast<float>(posInTex.Right()) / texW;
-
-		const float top = pos_.y;
-		const float bottom = pos_.y + posInTex.h;
-		const float left = pos_.x;
-		const float right = pos_.x + posInTex.w;
-
-		SpriteDisplayData spriteData;
-
-		//texture
-		spriteData.Texture = tex_;
-		//Left-Top
-		spriteData.TopLeft.Position.x = left;
-		spriteData.TopLeft.Position.y = top;
-		spriteData.TopLeft.Position.z = z_order;
-		spriteData.TopLeft.Color = color;
-		spriteData.TopLeft.TexCoords.x = texLeft;
-		spriteData.TopLeft.TexCoords.y = texTop;
-		//Right-Top
-		spriteData.TopRight.Position.x = right;
-		spriteData.TopRight.Position.y = top;
-		spriteData.TopRight.Position.z = z_order;
-		spriteData.TopRight.Color = color;
-		spriteData.TopRight.TexCoords.x = texRight;
-		spriteData.TopRight.TexCoords.y = texTop;
-		//Right-Bottom
-		spriteData.BottomRight.Position.x = right;
-		spriteData.BottomRight.Position.y = bottom;
-		spriteData.BottomRight.Position.z = z_order;
-		spriteData.BottomRight.Color = color;
-		spriteData.BottomRight.TexCoords.x = texRight;
-		spriteData.BottomRight.TexCoords.y = texBottom;
-		//Left-Bottom
-		spriteData.BottomLeft.Position.x = left;
-		spriteData.BottomLeft.Position.y = bottom;
-		spriteData.BottomLeft.Position.z = z_order;
-		spriteData.BottomLeft.Color = color;
-		spriteData.BottomLeft.TexCoords.x = texLeft;
-		spriteData.BottomLeft.TexCoords.y = texBottom;
-
-		m_SpriteDatas.push_back(spriteData);
+		Quaternion rot;
+		rot.FromAxisAngle(Vector3F::UnitZ(), rot_);
+		Matrix4 transform;
+		//transform.SetTranslation(Vector3F(pos_.x, pos_.y));
+		//transform.CreateScale(scale_.x, scale_.y, 0.0f);
+		transform.Transformation(nullptr,
+			nullptr, &Vector3F(scale_.x, scale_.y),
+			&Vector3F(origin.x, origin.y), &rot,
+			&Vector3F(pos_.x, pos_.y));
+		AddSprite(tex_, posInTex, origin, transform, color_, z_order, effects_);
 	}
 
 	/**

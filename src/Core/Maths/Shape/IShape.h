@@ -9,36 +9,16 @@
 #include "Memory/MemoryAllocation.h"
 #include "Parsers/Xml/tinyxml2.h"
 
-
 namespace CasaEngine
 {
-    /**
-     * 
-     */
 	class CA_EXPORT IShape :
 		public AllocatedObject<IShape>
     {
     public :
-		/**
-		 *
-		 */
         virtual ~IShape();
-		
-
 		ShapeType Type() const;
 
-		virtual void Read( const tinyxml2::XMLElement& node_ );
-		virtual void Read( std::ifstream& in );
-		virtual void Write( const tinyxml2::XMLElement& node_ );
-		virtual void Write( std::ostream& os );
-
-
-		static IShape *LoadShape(const tinyxml2::XMLElement& pElem);
-
 	protected:
-		/**
-		 *
-		 */
         IShape(ShapeType type_);
 
 	private:
@@ -46,5 +26,4 @@ namespace CasaEngine
     };
 }
 
-
-#endif // ISHAPE_H
+#endif

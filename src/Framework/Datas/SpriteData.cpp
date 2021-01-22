@@ -39,11 +39,11 @@ namespace CasaEngine
 
 	void SpriteData::Clear()
 	{
-		for (std::vector<IShape*>::iterator it = m_CollisionShapes.begin();
+		for (auto it = m_CollisionShapes.begin();
 			it != m_CollisionShapes.end();
 			it++)
 		{
-			DELETE_AO* it;
+			DELETE_AO it->GetShape();
 		}
 
 		m_CollisionShapes.clear();
@@ -66,14 +66,9 @@ namespace CasaEngine
 		m_AssetFileName = val;
 	}
 
-	std::vector<IShape*>::iterator SpriteData::GetCollisionShapeIterator()
+	std::vector<Collision>& SpriteData::GetCollisions()
 	{
-		return m_CollisionShapes.begin();
-	}
-
-	std::vector<IShape*>::iterator SpriteData::GetCollisionShapeIteratorEnd()
-	{
-		return m_CollisionShapes.end();
+		return m_CollisionShapes;
 	}
 
 //#endif

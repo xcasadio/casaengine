@@ -1,11 +1,13 @@
 template <class T>
-CRectangle<T>::CRectangle(T Left, T Top, T Width, T Height) :
-	x(Left),
-	y(Top),
-	w(Width),
-	h(Height)
+CRectangle<T>::CRectangle() : IShape(ShapeType::RECTANGLE)
 {
 
+}
+
+template <class T>
+CRectangle<T>::CRectangle(T Left, T Top, T Width, T Height) : CRectangle()
+{
+	Set(Left, Top, Width, Height);
 }
 
 template <class T>

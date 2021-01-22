@@ -135,6 +135,22 @@ namespace CasaEngine
 		return false;
 	}
 
+
+	std::string AnimatedSpriteComponent::GetCurrentFrameName()
+	{
+		if (m_pCurrentAnim == nullptr)
+		{
+			return "";
+		}
+
+		return m_pCurrentAnim->CurrentFrame();
+	}
+
+	Animation2D* AnimatedSpriteComponent::GetCurrentAnimation()
+	{
+		return m_pCurrentAnim;
+	}
+
 	void AnimatedSpriteComponent::Initialize()
 	{
 		m_pSpriteRenderer = Game::Instance().GetGameComponent<SpriteRenderer>();
@@ -156,12 +172,13 @@ namespace CasaEngine
 	{
 		if (m_pCurrentAnim != nullptr)
 		{
+			auto worldMatrix  = m_pTransform->GetWorldMatrix();
 			m_pSpriteRenderer->AddSprite(
 				//TODO : load all sprites in a dictionary<name, sprite>
 				Sprite::CreateFromSpriteData(*Game::Instance().GetAssetManager().GetAsset<SpriteData>(m_pCurrentAnim->CurrentFrame())),
-				m_pTransform->GetWorldMatrix(),
+				worldMatrix,
 				m_Color,
-				m_pTransform->GetWorldMatrix().GetTranslation().z,
+				worldMatrix.GetTranslation().z,
 				m_SpriteEffect);
 		}
 	}

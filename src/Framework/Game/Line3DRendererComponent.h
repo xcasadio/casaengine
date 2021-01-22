@@ -48,14 +48,10 @@ namespace CasaEngine
 		virtual void Update( const GameTime& gameTime_ );
 		virtual void Draw();
 
-		/**
-		 * Add line
-		 */
-		void AddLine(const Vector3F &start_, const CColor &startColor_,
-			const Vector3F &end_, const CColor &endColor_);
-
-		void AddLine(const Vector3F &start_, const unsigned int &startColor_,
-			const Vector3F &end_, const unsigned int &endColor_);
+		void AddLine(const Vector3F& start_, const Vector3F& end_, const CColor& color_);
+		void AddLine(const Vector3F& start_, const Vector3F& end_, const unsigned int color_);
+		void AddLine(const Vector3F &start_, const CColor &startColor_, const Vector3F &end_, const CColor &endColor_);
+		void AddLine(const Vector3F &start_, const unsigned int &startColor_, const Vector3F &end_, const unsigned int &endColor_);
 		
 	private:
 		void BuildVB();

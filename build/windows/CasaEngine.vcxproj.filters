@@ -357,9 +357,6 @@
     <ClInclude Include="..\..\src\Core\Maths\Shape\Box.h">
       <Filter>Core\Maths\Shape</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\Maths\Shape\Box2D.h">
-      <Filter>Core\Maths\Shape</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Core\Maths\Shape\Capsule.h">
       <Filter>Core\Maths\Shape</Filter>
     </ClInclude>
@@ -981,6 +978,9 @@
     <ClInclude Include="..\..\src\Framework\Datas\FrameData.h">
       <Filter>Framework\Datas</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Framework\Sprite\Collision.h">
+      <Filter>Framework\Sprite</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Core\DateTime.cpp">
@@ -1056,9 +1056,6 @@
       <Filter>Core\Maths\2D</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Core\Maths\Shape\Box.cpp">
-      <Filter>Core\Maths\Shape</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Core\Maths\Shape\Box2D.cpp">
       <Filter>Core\Maths\Shape</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Core\Maths\Shape\Capsule.cpp">
@@ -1456,6 +1453,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Framework\Datas\FrameData.cpp">
       <Filter>Framework\Datas</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Framework\Sprite\Collision.cpp">
+      <Filter>Framework\Sprite</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

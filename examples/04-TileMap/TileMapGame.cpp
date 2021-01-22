@@ -172,7 +172,7 @@ void TileMapGame::CreateBackground(World* pWorld)
 	layer->SetTiles(tiles);
 	pMap->AddLayer(layer);
 
-	pTrans3D->SetLocalScale(Vector3F(size, size, 1.0));
+	//pTrans3D->SetLocalScale(Vector3F(size, size, 1.0));
 	pEntity->GetComponentMgr()->AddComponent(pTrans3D);
 	pEntity->GetComponentMgr()->AddComponent(pMap);
 	pWorld->AddEntity(pEntity);
@@ -188,13 +188,10 @@ void TileMapGame::LoadContent()
 	World* p_world = NEW_AO World();
 	Game::Instance().GetGameInfo().SetWorld(p_world);
 
-	//auto texture = Texture::loadTexture("vegeta.png");
 	auto pSprite = NEW_AO SpriteData();
-	//pSprite->SetTexture2D(texture);
 	pSprite->SetAssetFileName("vegeta.png");
 	pSprite->SetPositionInTexture(RectangleI(0, 0, 43, 76));
 	pSprite->SetName("sprite");
-	//pSprite->SetAssetFileName("vegeta.png");
 	GetAssetManager().AddAsset(NEW_AO Asset(pSprite->GetName(), pSprite));
 
 	BaseEntity* pEntity = NEW_AO BaseEntity();
@@ -203,7 +200,7 @@ void TileMapGame::LoadContent()
 	s_pTransform = pTransform;
 	pTransform->SetLocalPosition(Vector3F(500.0f, 250.0f, 2.0f));
 	pTransform->SetLocalRotation(0.0f);
-	pTransform->SetLocalScale(Vector3F(43, 76, 1.0f));
+	//pTransform->SetLocalScale(Vector3F(43, 76, 1.0f));
 	pEntity->GetComponentMgr()->AddComponent(pTransform);
 	auto pStaticSprite = NEW_AO StaticSpriteComponent(pEntity);
 	pStaticSprite->SetSpriteID("sprite");

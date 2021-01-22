@@ -35,6 +35,13 @@ namespace CasaEngine
 		pSprite->SetPositionInTexture(spriteData.GetPositionInTexture());
 		pSprite->SetOrigin(spriteData.GetOrigin());
 
+		for (auto coll : spriteData.GetCollisions())
+		{
+			pSprite->GetCollisions().push_back(coll);
+		}
+
+		pSprite->SetOrigin(spriteData.GetOrigin());
+
 		return pSprite;
 	}
 
@@ -67,11 +74,9 @@ namespace CasaEngine
 
 	void Sprite::Clear()
 	{
-		for (std::vector<IShape*>::iterator it = m_CollisionShapes.begin();
-			it != m_CollisionShapes.end();
-			it++)
+		for (auto coll : m_CollisionShapes)
 		{
-			DELETE_AO* it;
+			DELETE_AO coll.GetShape();
 		}
 
 		m_CollisionShapes.clear();
@@ -94,14 +99,9 @@ namespace CasaEngine
 		m_Origin = val;
 	}
 
-	std::vector<IShape*>::iterator Sprite::GetCollisionShapeIterator()
+	std::vector<Collision>& Sprite::GetCollisions()
 	{
-		return m_CollisionShapes.begin();
-	}
-
-	std::vector<IShape*>::iterator Sprite::GetCollisionShapeIteratorEnd()
-	{
-		return m_CollisionShapes.end();
+		return m_CollisionShapes;
 	}
 
 //#endif

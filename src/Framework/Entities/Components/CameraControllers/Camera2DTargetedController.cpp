@@ -78,15 +78,7 @@ namespace CasaEngine
 
 	void Camera2DTargetedController::ViewMatrix(Matrix4& viewMatrix_)
 	{
-		const auto winSize = Game::Instance().GetWindowSize();
-		const auto viewport = Camera()->GetViewport();
-
-		if (m_pTargetedEntity != nullptr)
-		{
-			auto* const transform_3d = m_pTargetedEntity->GetComponentMgr()->GetComponent<Transform3DComponent>();
-			auto position = transform_3d->GetPosition();
-			viewMatrix_.CreateTranslation(-m_Offset.x, -m_Offset.y, 0.0f);
-		}
+		viewMatrix_.CreateTranslation(-m_Offset.x, -m_Offset.y, 0.0f);
 	}
 
 	void Camera2DTargetedController::ProjectionMatrix(Matrix4& projectionMatrix_)

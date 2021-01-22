@@ -22,7 +22,7 @@ namespace CasaEngine
 			pSprite->GetOrigin(),
 			Vector2F(x, y),
 			0.0f,
-			Vector2F(texUV.w, texUV.h),
+			Vector2F::One(),
 			CColor::White,
 			z);
 	}
