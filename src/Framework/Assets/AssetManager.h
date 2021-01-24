@@ -46,7 +46,20 @@ namespace CasaEngine
 			(CStringBuilder("AssetManager::GetAsset(): can't find the asset '")(name_)("'")).c_str());
 		return asset->second->GetAsset<T>();
 	}
+	/*
+	template<class T>
+	std::vector<T*> AssetManager::GetAssets()
+	{
+		std::vector<T*> assets;
 
+		for (auto pair : m_Assets)
+		{
+			pair.
+		}
+		
+		return assets;
+	}
+	*/
 }
 
 #endif

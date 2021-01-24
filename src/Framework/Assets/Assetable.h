@@ -25,6 +25,7 @@ namespace CasaEngine
 
 	protected:
 		IAssetable() = default;
+		const IAssetable& operator = (const IAssetable& rsh);
 		
 	private:
 		std::string m_Name;

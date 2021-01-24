@@ -66,6 +66,7 @@ namespace CasaEngine
 		Animation2D *GetCurrentAnimation();
 
 		void AddAnimation(Animation2D *pAnim_);
+		std::vector<Animation2D*>& GetAnimations();
 
 		//Event
 		bool OnFrameChanged(const EventArgs &e);

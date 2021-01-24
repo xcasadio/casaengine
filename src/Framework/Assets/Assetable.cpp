@@ -11,6 +11,13 @@ namespace CasaEngine
 		return m_Name;
 	}
 
+
+	const IAssetable& IAssetable::operator = (const IAssetable& rsh)
+	{
+		m_Name = rsh.m_Name;
+		return *this;
+	}
+
 //#if EDITOR
 
 	void IAssetable::SetName(std::string val)

@@ -23,7 +23,6 @@ namespace CasaEngine
 	void AssetManager::AddAsset(Asset* asset_)
 	{
 		CA_ASSERT(m_Assets.find(asset_->GetName()) == m_Assets.end(), "AssetManager::AddAsset(): asset '%s' already exist", asset_->GetName().c_str());
-
 		m_Assets.insert(std::make_pair(asset_->GetName(), asset_));
 	}
 

@@ -53,13 +53,18 @@
 #include "Tools/InGameLogger.h"
 #include <IO/File.h>
 #include <save_load_types.h>
+#include "../../external/dear-imgui/imgui.h"
 
 using namespace CasaEngine;
 
 Animation2DPlayerGame::Animation2DPlayerGame() :
 	m_pSpriteRenderer(nullptr),
 	m_pAnimatedSprite(nullptr),
-	m_pWorld(nullptr)
+	m_pWorld(nullptr),
+	m_AnimationIndexSelected(0),
+	m_LastAnimationIndexSelected(0),
+	m_FrameIndexSelected(0),
+	m_LastFrameIndexSelected(0)
 {
 	Logging.AddLogger(NEW_AO LoggerFile("Out.log"));
 }
@@ -88,6 +93,8 @@ void Animation2DPlayerGame::Initialize()
 	AddGameComponent();
 
 	Game::Initialize();
+
+	//GetDebugOptions().IsDebugActivated = true;
 	//GetDebugOptions().ShowLogInGame = true;
 }
 
@@ -100,7 +107,7 @@ void Animation2DPlayerGame::LoadContent()
 
 	m_pWorld = NEW_AO World();
 	GetGameInfo().SetWorld(m_pWorld);
-	
+
 	//Entity
 	auto pEntity = NEW_AO BaseEntity();
 	m_pEntity = pEntity;
@@ -110,7 +117,7 @@ void Animation2DPlayerGame::LoadContent()
 	pEntity->GetComponentMgr()->AddComponent(pTransform);
 
 	m_pAnimatedSprite = NEW_AO AnimatedSpriteComponent(pEntity);
-	pEntity->GetComponentMgr()->AddComponent(m_pAnimatedSprite);	
+	pEntity->GetComponentMgr()->AddComponent(m_pAnimatedSprite);
 	LoadSprites();
 	LoadAnimations(m_pAnimatedSprite);
 	m_pAnimatedSprite->SetCurrentAnimation(1);
@@ -144,7 +151,7 @@ void Animation2DPlayerGame::LoadContent()
 	m_pWorld->Initialize();
 }
 
-void Animation2DPlayerGame::LoadAnimations(AnimatedSpriteComponent *pAnimatedComponent)
+void Animation2DPlayerGame::LoadAnimations(AnimatedSpriteComponent* pAnimatedComponent)
 {
 	auto pFile = GetMediaManager().FindMedia("animations.json", true);
 	std::ifstream is(pFile->Fullname());
@@ -198,7 +205,7 @@ void Animation2DPlayerGame::LoadSprites()
 	sprites sprites;
 	ar(cereal::make_nvp("sprites", sprites));
 
-	for(auto sprite : sprites.sprites)
+	for (auto sprite : sprites.sprites)
 	{
 		auto spritData = NEW_AO SpriteData();
 		spritData->SetOrigin(Vector2I(sprite.X, sprite.Y));
@@ -210,23 +217,20 @@ void Animation2DPlayerGame::LoadSprites()
 	}
 }
 
-static int i;
-
-/**
- *
- */
 void Animation2DPlayerGame::Update(const GameTime& gameTime_)
 {
 	Game::Update(gameTime_);
 
-	if (Game::Instance().GetInput().IsKeyJustDown(sf::Keyboard::Space))
+	//if (Game::Instance().GetInput().IsKeyJustDown(sf::Keyboard::Space))
+	if (m_LastAnimationIndexSelected != m_AnimationIndexSelected)
 	{
-		i++;
-		m_pAnimatedSprite->SetCurrentAnimation(i);
+		m_pAnimatedSprite->SetCurrentAnimation(m_AnimationIndexSelected);
+		m_LastAnimationIndexSelected = m_AnimationIndexSelected;
 	}
 
 	//DisplayGrid();
 	DisplayCollisions();
+	DisplayPosition();
 }
 
 void Animation2DPlayerGame::DisplayCollisions()
@@ -248,8 +252,8 @@ void Animation2DPlayerGame::DisplayCollisions()
 					auto rect = dynamic_cast<RectangleI*>(coll.GetShape());
 					auto color = coll.GetType() == CollisionType::Defense ? CColor::Blue : CColor::Red;
 					auto pos = transform->GetLocalPosition();
-					auto scaleX = transform->GetLocalMatrix().a11;
-					auto scaleY = transform->GetLocalMatrix().a22;
+					auto scaleX = transform->GetLocalScale().x;
+					auto scaleY = transform->GetLocalScale().y;
 					auto rectScaled = RectangleI(rect->x * scaleX, rect->y * scaleY, rect->w * scaleX, rect->h * scaleY);
 
 					auto leftTop = Vector3F(rectScaled.Left(), rectScaled.Top()) + pos;
@@ -264,6 +268,85 @@ void Animation2DPlayerGame::DisplayCollisions()
 				}
 			}
 		}
+	}
+}
+
+void Animation2DPlayerGame::DisplayPosition()
+{
+	auto line3DRenderer = this->GetGameComponent<Line3DRendererComponent>();
+	auto position = m_pEntity->GetComponentMgr()->GetComponent<Transform3DComponent>()->GetLocalPosition();
+	auto color = CColor::Green;
+
+	line3DRenderer->AddLine(Vector3F(position.x + 10, position.y), Vector3F(position.x - 10, position.y), color);
+	line3DRenderer->AddLine(Vector3F(position.x, position.y + 10), Vector3F(position.x, position.y - 10), color);
+}
+
+void Animation2DPlayerGame::DisplayUI()
+{
+	ImGui::SetNextWindowSize(ImVec2(300, 400), ImGuiCond_FirstUseEver);
+	ImGui::SetNextWindowPos(ImVec2(0, 0));
+
+	if (ImGui::Begin("Animation Player"))
+	{
+		ImGui::BeginChild("Animation List", ImVec2(0, 0));
+
+		ImGui::Button("Play");
+		ImGui::Button("Stop");
+
+		const char** items = new const char*[m_pAnimatedSprite->GetAnimations().size()];
+		int index = 0;
+		std::vector<const char*> names;
+		for (auto anim : m_pAnimatedSprite->GetAnimations())
+		{
+			std::string str = anim->GetName();
+			char* writable = new char[str.size() + 1];
+			std::copy(str.begin(), str.end(), writable);
+			writable[str.size()] = '\0';
+			names.push_back(writable);
+		}
+		ImGui::Combo("Animations", &m_AnimationIndexSelected, &names[0], m_pAnimatedSprite->GetAnimations().size()/*IM_ARRAYSIZE(items)*/);
+
+		/*auto frames = m_pAnimatedSprite->GetCurrentAnimation();
+		GetAssetManager().GetAsset<>(frames->CurrentFrame())
+
+		for (auto anim : m_pAnimatedSprite->GetAnimations())
+		{
+			std::string str = anim->GetName();
+			char* writable = new char[str.size() + 1];
+			std::copy(str.begin(), str.end(), writable);
+			writable[str.size()] = '\0';
+			names.push_back(writable);
+		}*/
+		ImGui::Combo("Frames", &m_AnimationIndexSelected, new const char* [] { "test" }, 1);
+
+		std::vector<const char*> collisionNames;
+		auto frames = m_pAnimatedSprite->GetCurrentAnimation();
+		auto spriteData = GetAssetManager().GetAsset<SpriteData>(frames->CurrentFrame());
+		int i = 0;
+		for (auto collision : spriteData->GetCollisions())
+		{
+			auto rect = dynamic_cast<RectangleI *>(collision.GetShape());
+			std::ostringstream ostr;
+			ostr << rect->x << " " << rect->y << " " << rect->w << " " << rect->h;
+			std::string str = ostr.str();
+			char* writable = new char[str.size() + 1];
+			std::copy(str.begin(), str.end(), writable);
+			writable[str.size()] = '\0';
+			collisionNames.push_back(writable);
+		}
+		ImGui::Combo("Collisions", &m_CollisionIndexSelected, &collisionNames[0], spriteData->GetCollisions().size());
+
+		ImGui::Button("+");
+		ImGui::Button("-");
+
+		ImGui::ArrowButton("left", ImGuiDir_::ImGuiDir_Left);
+		ImGui::ArrowButton("right", ImGuiDir_::ImGuiDir_Right);
+		ImGui::ArrowButton("up", ImGuiDir_::ImGuiDir_Up);
+		ImGui::ArrowButton("down", ImGuiDir_::ImGuiDir_Down);
+
+		ImGui::EndChild();
+
+		ImGui::End();
 	}
 }
 
@@ -290,18 +373,13 @@ void Animation2DPlayerGame::DisplayGrid()
 	line3DRenderer->AddLine(Vector3F::Zero(), CColor::Blue, Vector3F::UnitZ(), CColor::Blue);
 }
 
-/**
- *
- */
 void Animation2DPlayerGame::Draw()
 {
 	Game::Draw();
+
+	DisplayUI();
 }
 
-
-/**
- *
- */
 void Animation2DPlayerGame::AddGameComponent()
 {
 	auto line3DRenderer = NEW_AO Line3DRendererComponent(this);

@@ -359,13 +359,7 @@ struct OcornutImguiContext
 		)
 	{
 		m_viewId = _viewId;
-
 		ImGuiIO& io = ImGui::GetIO();
-		if (_inputChar >= 0)
-		{
-			io.AddInputCharacter(_inputChar);
-		}
-
 		io.DisplaySize = ImVec2( (float)_width, (float)_height);
 
 		const int64_t now = bx::getHPCounter();
@@ -374,12 +368,20 @@ struct OcornutImguiContext
 		const double freq = double(bx::getHPFrequency() );
 		io.DeltaTime = float(frameTime/freq);
 
+		/*if (_inputChar >= 0)
+		{
+			io.AddInputCharacter(_inputChar);
+		}
+		
 		io.MousePos = ImVec2( (float)_mx, (float)_my);
 		io.MouseDown[0] = 0 != (_button & IMGUI_MBUT_LEFT);
 		io.MouseDown[1] = 0 != (_button & IMGUI_MBUT_RIGHT);
 		io.MouseDown[2] = 0 != (_button & IMGUI_MBUT_MIDDLE);
 		io.MouseWheel = (float)(_scroll - m_lastScroll);
 		m_lastScroll = _scroll;
+		auto scroll = io.MouseWheel;
+		io.MouseWheel = (float)(scroll - m_lastScroll);
+		m_lastScroll = scroll;*/
 
 #if USE_ENTRY
 		uint8_t modifiers = inputGetModifiersState();

@@ -194,6 +194,11 @@ namespace CasaEngine
 		m_AnimationList.push_back(pAnim_);
 	}
 
+	std::vector<Animation2D *>& AnimatedSpriteComponent::GetAnimations()
+	{
+		return m_AnimationList;
+	}
+
 	bool AnimatedSpriteComponent::OnFrameChanged(const EventArgs& e)
 	{
 		const FrameChangeEvent& event = static_cast<const FrameChangeEvent&>(e);

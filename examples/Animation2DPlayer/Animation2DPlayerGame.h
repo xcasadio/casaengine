@@ -34,7 +34,6 @@ public :
 	void Initialize();
 	void LoadContent();
 	void Update(const CasaEngine::GameTime& gameTime_);
-	void DisplayCollisions();
 	void Draw();
 
 private:
@@ -42,6 +41,9 @@ private:
 	void LoadAnimations(AnimatedSpriteComponent* pAnimatedComponent);
 	void LoadSprites();
 	void DisplayGrid();
+	void DisplayCollisions();
+	void DisplayPosition();
+	void DisplayUI();
 
 private:
 	SpriteRenderer*	m_pSpriteRenderer;
@@ -50,6 +52,10 @@ private:
 	AnimatedSpriteComponent *m_pAnimatedSprite;
 	Camera3DComponent *m_pCamera3D;
 	World *m_pWorld;
+
+	int m_AnimationIndexSelected, m_LastAnimationIndexSelected;
+	int m_FrameIndexSelected, m_LastFrameIndexSelected;
+	int m_CollisionIndexSelected, m_LastCollisionIndexSelected;
 };
 
 #endif

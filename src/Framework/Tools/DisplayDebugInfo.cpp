@@ -166,14 +166,14 @@ namespace CasaEngine
 			ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(4,1)); // Tighten spacing
 
 			// debug options
-			if (ImGui::CollapsingHeader("debug options"))
+			if (ImGui::CollapsingHeader("debug options", ImGuiTreeNodeFlags_CollapsingHeader))
 			{
 				ImGui::Checkbox("show axis", &Game::Instance().GetDebugOptions().ShowAxis);
 				ImGui::Checkbox("show fps", &Game::Instance().GetDebugOptions().ShowFPS);
 			}
 
 			// entities
-			if (ImGui::CollapsingHeader("entities"))
+			if (ImGui::CollapsingHeader("entities", ImGuiTreeNodeFlags_OpenOnArrow))
 			{
 				// left
 				static int selected = 0;

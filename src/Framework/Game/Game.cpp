@@ -307,6 +307,21 @@ void Game::HandleWindowEvents()
 				m_DebugOptions.ShowLogInGame = !m_DebugOptions.ShowLogInGame; 
 				break;
 
+			case sf::Keyboard::LAlt:
+			case sf::Keyboard::RAlt:
+				io.KeyAlt = true;
+				break;
+
+			case sf::Keyboard::LControl:
+			case sf::Keyboard::RControl:
+				io.KeyCtrl = true;
+				break;
+
+			case sf::Keyboard::LShift:
+			case sf::Keyboard::RShift:
+				io.KeyShift = true;
+				break;
+
 			default:
 
 #ifndef EDITOR
@@ -322,7 +337,24 @@ void Game::HandleWindowEvents()
 
 		case sf::Event::KeyReleased:
 			//handled = GUIContext.injectKeyUp(convertKeyCodeToCEGUIKey(event.key.code));
-			//io.KeysDown[event.key.code] = 0;
+			io.KeysDown[event.key.code] = 0;
+			switch (event.key.code)
+			{
+			case sf::Keyboard::LAlt:
+			case sf::Keyboard::RAlt:
+				io.KeyAlt = false;
+				break;
+
+			case sf::Keyboard::LControl:
+			case sf::Keyboard::RControl:
+				io.KeyCtrl = false;
+				break;
+
+			case sf::Keyboard::LShift:
+			case sf::Keyboard::RShift:
+				io.KeyShift = false;
+				break;
+			}
 			break;
 
 		case sf::Event::TextEntered:
@@ -394,9 +426,9 @@ void Game::HandleWindowEvents()
 			io.MousePos.x = static_cast<float>(event.mouseMove.x);
 			io.MousePos.y = static_cast<float>(event.mouseMove.y);
 
-		case sf::Event::MouseWheelMoved:
-			//handled = GUIContext.injectMouseWheelChange(static_cast<float>(event.mouseWheel.delta));
-			io.MouseWheel += static_cast<float>(event.mouseWheel.delta);
+		case sf::Event::MouseWheelScrolled:
+			//handled = GUIContext.injectMouseWheelChange(static_cast<float>(event.mouseWheelScroll.delta));
+			io.MouseWheel = static_cast<float>(event.mouseWheelScroll.delta);
 			break;
 
 #endif
@@ -608,6 +640,11 @@ void Game::BeginDraw()
  */
 void Game::Draw()
 {
+	int width = GetEngineSettings().WindowWidth;
+	int height = GetEngineSettings().WindowHeight;
+
+	imguiAdapter::imguiBeginFrame(width, height);
+
 	if (m_GameInfo.GetWorld() != nullptr)
 	{
 		m_GameInfo.GetWorld()->Draw();
@@ -617,11 +654,6 @@ void Game::Draw()
 	{
 		component->Draw();
 	}
-
-	int width = GetEngineSettings().WindowWidth;
-	int height = GetEngineSettings().WindowHeight;
-
-	imguiAdapter::imguiBeginFrame(width , height);
 }
 
 /**
