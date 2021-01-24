@@ -14,9 +14,8 @@ namespace CasaEngine
 {
 	std::map<std::string, Texture*> Sprite::_textureCache;
 
-	Sprite* Sprite::CreateFromSpriteData(SpriteData& spriteData)
+	Sprite::Sprite(SpriteData& spriteData)
 	{
-		auto pSprite = new Sprite();
 		Texture* texture;
 		auto pair = _textureCache.find(static_cast<std::string>(spriteData.GetAssetFileName()));
 
@@ -31,30 +30,8 @@ namespace CasaEngine
 			_textureCache.insert(std::make_pair(spriteData.GetAssetFileName(), texture));
 		}
 
-		pSprite->SetTexture2D(texture);
-		pSprite->SetPositionInTexture(spriteData.GetPositionInTexture());
-		pSprite->SetOrigin(spriteData.GetOrigin());
-
-		for (auto coll : spriteData.GetCollisions())
-		{
-			pSprite->GetCollisions().push_back(coll);
-		}
-
-		pSprite->SetOrigin(spriteData.GetOrigin());
-
-		return pSprite;
-	}
-
-
-	Sprite::Sprite() :
-		m_pTexture2D(nullptr)
-	{
-
-	}
-
-	Sprite::~Sprite()
-	{
-		Clear();
+		m_pTexture2D = texture;
+		m_pSpriteData = &spriteData;
 	}
 
 	Texture* Sprite::GetTexture2D() const
@@ -62,48 +39,8 @@ namespace CasaEngine
 		return m_pTexture2D;
 	}
 
-	RectangleI Sprite::GetPositionInTexture() const
+	SpriteData* Sprite::GetSpriteData() const
 	{
-		return m_PositionInTexture;
+		return m_pSpriteData;
 	}
-
-	Vector2I Sprite::GetOrigin() const
-	{
-		return m_Origin;
-	}
-
-	void Sprite::Clear()
-	{
-		for (auto coll : m_CollisionShapes)
-		{
-			DELETE_AO coll.GetShape();
-		}
-
-		m_CollisionShapes.clear();
-	}
-
-//#ifdef EDITOR
-
-	void Sprite::SetTexture2D(Texture* val)
-	{
-		m_pTexture2D = val;
-	}
-
-	void Sprite::SetPositionInTexture(RectangleI val)
-	{
-		m_PositionInTexture = val;
-	}
-
-	void Sprite::SetOrigin(Vector2I val)
-	{
-		m_Origin = val;
-	}
-
-	std::vector<Collision>& Sprite::GetCollisions()
-	{
-		return m_CollisionShapes;
-	}
-
-//#endif
-
 }

@@ -141,7 +141,7 @@ void TileMapGame::CreateBackground(World* pWorld)
 		{
 			std::ostringstream str;
 			str << "autoTile" << x + y * 2;
-			auto* staticTile = NEW_AO StaticTile(Sprite::CreateFromSpriteData(*GetAssetManager().GetAsset<SpriteData>(str.str())));
+			auto* staticTile = NEW_AO StaticTile(NEW_AO Sprite(*GetAssetManager().GetAsset<SpriteData>(str.str())));
 			tiles4AutoTile.push_back(staticTile);
 		}
 	}
@@ -164,7 +164,7 @@ void TileMapGame::CreateBackground(World* pWorld)
 			else
 			{
 				//tiles.push_back(new AnimatedTile(Game::Instance().GetAssetManager().GetAsset<Animation2D>("anim2D_tile1")->Copy()));
-				tiles.push_back(new StaticTile(Sprite::CreateFromSpriteData(*Game::Instance().GetAssetManager().GetAsset<SpriteData>("tile0"))));
+				tiles.push_back(new StaticTile(NEW_AO Sprite(*Game::Instance().GetAssetManager().GetAsset<SpriteData>("tile0"))));
 			}
 		}
 	}

@@ -18,31 +18,15 @@ namespace CasaEngine
 		static std::map<std::string, Texture*> _textureCache;
 
 	public:
-		static Sprite* CreateFromSpriteData(SpriteData& spriteData);
-
-	public:
-		Sprite();
-		~Sprite();
+		Sprite::Sprite(SpriteData& spriteData);
+		~Sprite() = default;
 
 		Texture* GetTexture2D() const;
-		RectangleI GetPositionInTexture() const;
-		Vector2I GetOrigin() const;
-		void Clear();
-
-		std::vector<Collision>& GetCollisions();
-
-		//#if EDITOR
-		void SetTexture2D(Texture* val);
-		void SetPositionInTexture(RectangleI val);
-		void SetOrigin(Vector2I val);
-		//#endif // EDITOR
+		SpriteData* GetSpriteData() const;
 
 	private:
 		Texture* m_pTexture2D;
-		RectangleI m_PositionInTexture;
-		Vector2I m_Origin;
-		std::vector<Collision> m_CollisionShapes;
-		//std::vector<Vector2I> m_Sockets;
+		SpriteData *m_pSpriteData;
 	};
 }
 

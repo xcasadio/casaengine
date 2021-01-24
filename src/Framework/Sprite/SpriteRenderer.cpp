@@ -180,7 +180,7 @@ namespace CasaEngine
 			throw NEW_AO CException("Sprite is null");
 		}
 		
-		AddSprite(sprite->GetTexture2D(), sprite->GetPositionInTexture(), sprite->GetOrigin(), transform, color_, z_order, effects_);
+		AddSprite(sprite->GetTexture2D(), sprite->GetSpriteData()->GetPositionInTexture(), sprite->GetSpriteData()->GetOrigin(), transform, color_, z_order, effects_);
 	}
 	
 	/**
@@ -289,16 +289,16 @@ namespace CasaEngine
 			throw NEW_AO CException("Sprite is null");
 		}
 
-		AddSprite(pSprite_->GetTexture2D(), pSprite_->GetPositionInTexture(), 
-			pSprite_->GetOrigin(), pos_, rot_, scale_, color_, ZOrder_, effects_);
+		AddSprite(pSprite_->GetTexture2D(), pSprite_->GetSpriteData()->GetPositionInTexture(),
+			pSprite_->GetSpriteData()->GetOrigin(), pos_, rot_, scale_, color_, ZOrder_, effects_);
 	}
 
 	void SpriteRenderer::AddSprite(Sprite* pSprite_, const Vector2F& pos_, float rot_, const CColor& color_,
 		float ZOrder_, eSpriteEffects effects_)
 	{
-		AddSprite(pSprite_->GetTexture2D(), pSprite_->GetPositionInTexture(),
-			pSprite_->GetOrigin(), pos_, rot_, 
-			Vector2F(pSprite_->GetPositionInTexture().w, pSprite_->GetPositionInTexture().h), 
+		AddSprite(pSprite_->GetTexture2D(), pSprite_->GetSpriteData()->GetPositionInTexture(),
+			pSprite_->GetSpriteData()->GetOrigin(), pos_, rot_,
+			Vector2F(pSprite_->GetSpriteData()->GetPositionInTexture().w, pSprite_->GetSpriteData()->GetPositionInTexture().h),
 			color_, ZOrder_, effects_);
 	}
 }

@@ -175,7 +175,7 @@ namespace CasaEngine
 			auto worldMatrix  = m_pTransform->GetWorldMatrix();
 			m_pSpriteRenderer->AddSprite(
 				//TODO : load all sprites in a dictionary<name, sprite>
-				Sprite::CreateFromSpriteData(*Game::Instance().GetAssetManager().GetAsset<SpriteData>(m_pCurrentAnim->CurrentFrame())),
+				NEW_AO Sprite(*Game::Instance().GetAssetManager().GetAsset<SpriteData>(m_pCurrentAnim->CurrentFrame())),
 				worldMatrix,
 				m_Color,
 				worldMatrix.GetTranslation().z,

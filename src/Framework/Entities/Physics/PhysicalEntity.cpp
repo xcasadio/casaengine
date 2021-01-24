@@ -97,11 +97,11 @@ void PhysicalEntity::AddSpritePhysics(Sprite *pSprite_)
 		//TODO : compute the position of the shape with the offset of the sprite
 		Transform3DComponent *pTrans = m_pEntity->GetComponentMgr()->GetComponent<Transform3DComponent>();
 		Vector3F pos = pTrans->GetLocalPosition();
-		Vector2F origin(static_cast<float>(pSprite_->GetOrigin().x) / 100.0f, static_cast<float>(pSprite_->GetOrigin().y) / 100.0f);
+		Vector2F origin(static_cast<float>(pSprite_->GetSpriteData()->GetOrigin().x) / 100.0f, static_cast<float>(pSprite_->GetSpriteData()->GetOrigin().y) / 100.0f);
 		Vector3F posWithOrigin(pos.x - origin.x, pos.y + origin.y, pos.z); 
 
 		std::vector<IShape *>::iterator itShape;
-		for (auto coll : pSprite_->GetCollisions())
+		for (auto coll : pSprite_->GetSpriteData()->GetCollisions())
 		{
 			ICollisionObjectContainer *pObj = 
 				Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->AddCollisionShape(coll.GetShape(), posWithOrigin);

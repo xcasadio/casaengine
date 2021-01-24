@@ -1,5 +1,4 @@
 #include "Base.h"
-
 #include "Datas/Animation2DData.h"
 
 
@@ -7,7 +6,6 @@ namespace CasaEngine
 {
 	Animation2DData::Animation2DData()
 	{
-
 	}
 
 	Animation2DData::~Animation2DData()
@@ -23,7 +21,4 @@ namespace CasaEngine
 	{
 		return m_Frames.push_back(frame);
 	}
-
-//#endif
-
 }

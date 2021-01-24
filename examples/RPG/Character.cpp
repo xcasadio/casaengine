@@ -348,7 +348,7 @@ bool Character::OnFrameChangedEvent(const EventArgs& e_)
 	m_MessageQueue.push(msg);
 
 	PhysicalEntity& physicalEntity = m_pEntity->GetPhysicalEntity();
-	Sprite* pNewSprite = Sprite::CreateFromSpriteData(*Game::Instance().GetAssetManager().GetAsset<SpriteData>(event.ID()));
+	Sprite* pNewSprite = NEW_AO Sprite(*Game::Instance().GetAssetManager().GetAsset<SpriteData>(event.ID()));
 
 	if (m_pLastSprite != nullptr)
 	{

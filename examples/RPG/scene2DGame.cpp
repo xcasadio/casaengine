@@ -397,7 +397,7 @@ void Scene2DGame::CreateMap(World *pWorld)
 		for (int x = 0; x < pMap->GetMapSize().x; ++x)
 		{
 			auto* sprite = GetAssetManager().GetAsset<SpriteData>("grass1");
-			auto* tile = new StaticTile(Sprite::CreateFromSpriteData(*sprite));
+			auto* tile = new StaticTile(NEW_AO Sprite(*sprite));
 			tiles.push_back(tile);
 		}
 	}
@@ -416,7 +416,7 @@ void Scene2DGame::CreateMap(World *pWorld)
 			std::ostringstream name;
 			name << "autoGrass2_" << x << "_" << y;
 			auto* sprite = GetAssetManager().GetAsset<SpriteData>(name.str());
-			auto* tile = new StaticTile(Sprite::CreateFromSpriteData(*sprite));
+			auto* tile = new StaticTile(NEW_AO Sprite(*sprite));
 			autoTiles.push_back(tile);
 		}
 	}

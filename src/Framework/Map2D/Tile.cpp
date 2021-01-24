@@ -11,15 +11,15 @@ namespace CasaEngine
 	void ITile::Draw(Sprite* pSprite, float x, float y, float z, RectangleI uvOffset) const
 	{
 		const RectangleI texUV = RectangleI(
-			pSprite->GetPositionInTexture().Left() + uvOffset.Left(),
-			pSprite->GetPositionInTexture().Top() + uvOffset.Top(),
+			pSprite->GetSpriteData()->GetPositionInTexture().Left() + uvOffset.Left(),
+			pSprite->GetSpriteData()->GetPositionInTexture().Top() + uvOffset.Top(),
 			uvOffset.w,
 			uvOffset.h);
 
 		m_pSpriteRenderer->AddSprite(
 			pSprite->GetTexture2D(),
 			texUV,
-			pSprite->GetOrigin(),
+			pSprite->GetSpriteData()->GetOrigin(),
 			Vector2F(x, y),
 			0.0f,
 			Vector2F::One(),
