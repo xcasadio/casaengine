@@ -74,9 +74,6 @@ Animation2DPlayerGame::~Animation2DPlayerGame()
 	DELETE_AO m_pSpriteRenderer;
 }
 
-/**
- *
- */
 void Animation2DPlayerGame::Initialize()
 {
 	GetMediaManager().AddSearchPath("../../examples/resources");
@@ -98,9 +95,6 @@ void Animation2DPlayerGame::Initialize()
 	//GetDebugOptions().ShowLogInGame = true;
 }
 
-/**
- *
- */
 void Animation2DPlayerGame::LoadContent()
 {
 	Game::LoadContent();
@@ -113,7 +107,8 @@ void Animation2DPlayerGame::LoadContent()
 	m_pEntity = pEntity;
 	auto pTransform = NEW_AO Transform3DComponent(pEntity);
 	pTransform->SetLocalPosition(Vector3F(520, 400));
-	pTransform->SetLocalScale(Vector3F(2, 2));
+	auto scale = 1.0f;
+	pTransform->SetLocalScale(Vector3F(scale, scale));
 	pEntity->GetComponentMgr()->AddComponent(pTransform);
 
 	m_pAnimatedSprite = NEW_AO AnimatedSpriteComponent(pEntity);
@@ -276,9 +271,10 @@ void Animation2DPlayerGame::DisplayPosition()
 	auto line3DRenderer = this->GetGameComponent<Line3DRendererComponent>();
 	auto position = m_pEntity->GetComponentMgr()->GetComponent<Transform3DComponent>()->GetLocalPosition();
 	auto color = CColor::Green;
+	auto size = 500 / 2.0f;
 
-	line3DRenderer->AddLine(Vector3F(position.x + 10, position.y), Vector3F(position.x - 10, position.y), color);
-	line3DRenderer->AddLine(Vector3F(position.x, position.y + 10), Vector3F(position.x, position.y - 10), color);
+	line3DRenderer->AddLine(Vector3F(position.x + size, position.y), Vector3F(position.x - size, position.y), color);
+	line3DRenderer->AddLine(Vector3F(position.x, position.y + size), Vector3F(position.x, position.y - size), color);
 }
 
 void Animation2DPlayerGame::DisplayUI()
@@ -344,6 +340,8 @@ void Animation2DPlayerGame::DisplayUI()
 		ImGui::ArrowButton("up", ImGuiDir_::ImGuiDir_Up);
 		ImGui::ArrowButton("down", ImGuiDir_::ImGuiDir_Down);
 
+		ImGui::Button("Save");
+
 		ImGui::EndChild();
 
 		ImGui::End();
@@ -367,10 +365,11 @@ void Animation2DPlayerGame::DisplayGrid()
 		line3DRenderer->AddLine(Vector3F(-coord, -halfLength), Vector3F(-coord, halfLength), gridColor);
 		line3DRenderer->AddLine(Vector3F(coord, -halfLength), Vector3F(coord, halfLength), gridColor);
 	}
-
+	/*
 	line3DRenderer->AddLine(Vector3F::Zero(), CColor::Red, Vector3F::UnitX(), CColor::Red);
 	line3DRenderer->AddLine(Vector3F::Zero(), CColor::Green, Vector3F::UnitY(), CColor::Green);
 	line3DRenderer->AddLine(Vector3F::Zero(), CColor::Blue, Vector3F::UnitZ(), CColor::Blue);
+	*/
 }
 
 void Animation2DPlayerGame::Draw()

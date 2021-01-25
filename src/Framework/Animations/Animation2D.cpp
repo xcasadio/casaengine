@@ -1,6 +1,3 @@
-//==========================================================
-// En-têtes
-//==========================================================
 #include "Base.h"
 
 #include "Animations/Animation2D.h"
@@ -16,9 +13,6 @@
 
 namespace CasaEngine
 {
-	/**
-	 * 
-	 */
 	Animation2D::Animation2D() :
 		Animation(),
 		m_Animation2DType(Animation2DType::Loop),
@@ -27,17 +21,11 @@ namespace CasaEngine
 		addEvent(FrameChangeEvent::GetEventName());
 	}
 
-	/**
-	 * 
-	 */
 	Animation2D::Animation2D(const Animation2D& rsh)
 	{
 		*this = rsh;
 	}
 
-	/**
-	 * 
-	 */
 	const Animation2D& Animation2D::operator = (const Animation2D& rsh)
 	{
 		addEvent(FrameChangeEvent::GetEventName());
@@ -47,9 +35,6 @@ namespace CasaEngine
 		return *this;
 	}
 
-	/**
-	 * 
-	 */
 	Animation2D::~Animation2D()
 	{
 
@@ -66,25 +51,16 @@ namespace CasaEngine
 		Reset();
 	}
 
-	/**
-	 * 
-	 */
 	Animation2DType::TAnimation2DType Animation2D::Animation2DType() const
 	{ 
 		return m_Animation2DType; 
 	}
 
-	/**
-	 *
-	 */
 	void Animation2D::SetType(Animation2DType::TAnimation2DType val)
 	{
 		m_Animation2DType = val;
 	}
 
-	/**
-	 *
-	 */
 	void Animation2D::Reset()
 	{
 		for (unsigned int i=0; i<m_Events.size(); i++)
@@ -98,17 +74,11 @@ namespace CasaEngine
 		}
 	}
 
-	/**
-	 * 
-	 */
 	const char* Animation2D::CurrentFrame() const 
 	{ 
 		return m_CurrentFrame; 
 	}
 
-	/**
-	 * 
-	 */
 	void Animation2D::CurrentFrame(const char* val) 
 	{ 
 		m_CurrentFrame = val;

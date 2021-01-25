@@ -618,9 +618,6 @@
     <ClInclude Include="..\..\src\Framework\Animations\AnimationEvent.h">
       <Filter>Framework\Animations</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Animations\Frame2D.h">
-      <Filter>Framework\Animations</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Framework\Animations\IAnimationEventListener.h">
       <Filter>Framework\Animations</Filter>
     </ClInclude>

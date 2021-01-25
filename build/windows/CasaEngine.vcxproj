@@ -319,7 +319,6 @@
     <ClInclude Include="..\..\src\Framework\Animations\Animation2DTypes.h" />
     <ClInclude Include="..\..\src\Framework\Animations\AnimationEndEvent.h" />
     <ClInclude Include="..\..\src\Framework\Animations\AnimationEvent.h" />
-    <ClInclude Include="..\..\src\Framework\Animations\Frame2D.h" />
     <ClInclude Include="..\..\src\Framework\Animations\IAnimationEventListener.h" />
     <ClInclude Include="..\..\src\Framework\Animations\SetFrameEvent.h" />
     <ClInclude Include="..\..\src\Framework\Assets\Asset.h" />
