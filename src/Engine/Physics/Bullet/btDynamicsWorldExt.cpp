@@ -14,41 +14,39 @@
 namespace CasaEngine
 {
 	/**
-	 * 
+	 *
 	 */
-	btDynamicsWorldExt::btDynamicsWorldExt( btDispatcher* dispatcher, btBroadphaseInterface* broadphase, btConstraintSolver* constraintSolver, btCollisionConfiguration* collisionConfiguration ) :
+	btDynamicsWorldExt::btDynamicsWorldExt(btDispatcher* dispatcher, btBroadphaseInterface* broadphase, btConstraintSolver* constraintSolver, btCollisionConfiguration* collisionConfiguration) :
 		btDiscreteDynamicsWorld(dispatcher, broadphase, constraintSolver, collisionConfiguration)
 	{
-		
 	}
 
 	/**
-	 * 
+	 *
 	 */
-	void btDynamicsWorldExt::debugDrawObject( const btTransform& worldTransform, const btCollisionShape* shape, const btVector3& color )
+	void btDynamicsWorldExt::debugDrawObject(const btTransform& worldTransform, const btCollisionShape* shape, const btVector3& color)
 	{
 		switch (shape->getShapeType())
 		{
 		case BOX_2D_SHAPE_PROXYTYPE:
-			{
-				const btBox2dShape* boxShape = static_cast<const btBox2dShape*>(shape);
-				btVector3 halfExtents = boxShape->getHalfExtentsWithMargin();
-				getDebugDrawer()->drawBox(-halfExtents, halfExtents, worldTransform, color);
-				break;
-			}
+		{
+			const btBox2dShape* boxShape = static_cast<const btBox2dShape*>(shape);
+			btVector3 halfExtents = boxShape->getHalfExtentsWithMargin();
+			getDebugDrawer()->drawBox(-halfExtents, halfExtents, worldTransform, color);
+			break;
+		}
 
 		/*case CONVEX_2D_SHAPE_PROXYTYPE:
 
 			break;*/
 
 		default:
-			{
-				btDynamicsWorld::debugDrawObject(worldTransform, shape, color);
-				break;
-			}
+		{
+			btDynamicsWorld::debugDrawObject(worldTransform, shape, color);
+			break;
+		}
 		}
 	}
-
 }
 
 #endif // USE_BULLET_PHYSICS

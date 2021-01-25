@@ -23,7 +23,6 @@ namespace CasaEngine
 
 	void ViewportTarget::Release()
 	{
-
 	}
 
 	void ViewportTarget::Create(const RectangleF& rect)
@@ -34,12 +33,11 @@ namespace CasaEngine
 	void ViewportTarget::Activate()
 	{
 		//TODO : use view id
-		bgfx::setViewRect(254, m_Area.x,	m_Area.y, m_Area.w, m_Area.h);
+		bgfx::setViewRect(254, m_Area.x, m_Area.y, m_Area.w, m_Area.h);
 	}
 
 	void ViewportTarget::Deactivate()
 	{
-
 	}
 
 	bool ViewportTarget::IsImageryCache() const

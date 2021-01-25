@@ -5,6 +5,7 @@
 #include <string>
 #include "Assets/Assetable.h"
 #include "Datas/FrameData.h"
+#include "Datas/AnimationData.h"
 
 #include <cereal/access.hpp>
 #include <cereal/types/vector.hpp>
@@ -12,13 +13,13 @@
 namespace CasaEngine
 {
 	class CA_EXPORT Animation2DData :
-		public IAssetable
+		public AnimationData
 	{
 	public:
 		Animation2DData();
 		~Animation2DData();
 
-		std::vector<FrameData *> GetFrames();
+		std::vector<FrameData *>& GetFrames();
 		void AddFrame(FrameData* frame);
 
 	private:
@@ -30,14 +31,14 @@ namespace CasaEngine
 		template <class Archive>
 		void load(Archive& ar)
 		{
-			ar(cereal::base_class<IAssetable>(this));
+			ar(cereal::base_class<AnimationData>(this));
 			ar(cereal::make_nvp("frames", m_Frames));
 		}
 
 		template <class Archive>
 		void save(Archive& ar) const
 		{
-			ar(cereal::base_class<IAssetable>(this));
+			ar(cereal::base_class<AnimationData>(this));
 			ar(cereal::make_nvp("frames", m_Frames));
 		}
 	};

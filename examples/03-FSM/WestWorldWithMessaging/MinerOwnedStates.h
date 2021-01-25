@@ -15,9 +15,7 @@
 #include "AI\FSM\IState.h"
 #include "AI\Messaging\Telegram.h"
 
-
 using namespace CasaEngine;
-
 
 class MinerComponent;
 
@@ -31,58 +29,56 @@ class MinerComponent;
 class EnterMineAndDigForNugget : public IState<MinerComponent>
 {
 private:
-  
-  EnterMineAndDigForNugget(){}
 
-  //copy ctor and assignment should be private
-  EnterMineAndDigForNugget(const EnterMineAndDigForNugget&);
-  EnterMineAndDigForNugget& operator=(const EnterMineAndDigForNugget&);
- 
+	EnterMineAndDigForNugget() {}
+
+	//copy ctor and assignment should be private
+	EnterMineAndDigForNugget(const EnterMineAndDigForNugget&);
+	EnterMineAndDigForNugget& operator=(const EnterMineAndDigForNugget&);
+
 public:
 
-  //this is a singleton
-  static EnterMineAndDigForNugget* Instance();
+	//this is a singleton
+	static EnterMineAndDigForNugget* Instance();
 
-  virtual void Enter(MinerComponent* miner);
+	virtual void Enter(MinerComponent* miner);
 
-  virtual void Execute(MinerComponent* miner, const GameTime &elapsedTime_);
+	virtual void Execute(MinerComponent* miner, const GameTime& elapsedTime_);
 
-  virtual void Exit(MinerComponent* miner);
+	virtual void Exit(MinerComponent* miner);
 
-  virtual bool OnMessage(MinerComponent* agent, const Telegram& msg);
-
+	virtual bool OnMessage(MinerComponent* agent, const Telegram& msg);
 };
 
 //------------------------------------------------------------------------
 //
-//  Entity will go to a bank and deposit any nuggets he is carrying. If the 
+//  Entity will go to a bank and deposit any nuggets he is carrying. If the
 //  miner is subsequently wealthy enough he'll walk home, otherwise he'll
 //  keep going to get more gold
 //------------------------------------------------------------------------
 class VisitBankAndDepositGold : public IState<MinerComponent>
 {
 private:
-  
-  VisitBankAndDepositGold(){}
 
-  //copy ctor and assignment should be private
-  VisitBankAndDepositGold(const VisitBankAndDepositGold&);
-  VisitBankAndDepositGold& operator=(const VisitBankAndDepositGold&);
- 
+	VisitBankAndDepositGold() {}
+
+	//copy ctor and assignment should be private
+	VisitBankAndDepositGold(const VisitBankAndDepositGold&);
+	VisitBankAndDepositGold& operator=(const VisitBankAndDepositGold&);
+
 public:
 
-  //this is a singleton
-  static VisitBankAndDepositGold* Instance();
+	//this is a singleton
+	static VisitBankAndDepositGold* Instance();
 
-  virtual void Enter(MinerComponent* miner);
+	virtual void Enter(MinerComponent* miner);
 
-  virtual void Execute(MinerComponent* miner, const GameTime &elapsedTime_);
+	virtual void Execute(MinerComponent* miner, const GameTime& elapsedTime_);
 
-  virtual void Exit(MinerComponent* miner);
+	virtual void Exit(MinerComponent* miner);
 
-  virtual bool OnMessage(MinerComponent* agent, const Telegram& msg);
+	virtual bool OnMessage(MinerComponent* agent, const Telegram& msg);
 };
-
 
 //------------------------------------------------------------------------
 //
@@ -92,27 +88,26 @@ public:
 class GoHomeAndSleepTilRested : public IState<MinerComponent>
 {
 private:
-  
-  GoHomeAndSleepTilRested(){}
 
-  //copy ctor and assignment should be private
-  GoHomeAndSleepTilRested(const GoHomeAndSleepTilRested&);
-  GoHomeAndSleepTilRested& operator=(const GoHomeAndSleepTilRested&);
- 
+	GoHomeAndSleepTilRested() {}
+
+	//copy ctor and assignment should be private
+	GoHomeAndSleepTilRested(const GoHomeAndSleepTilRested&);
+	GoHomeAndSleepTilRested& operator=(const GoHomeAndSleepTilRested&);
+
 public:
 
-  //this is a singleton
-  static GoHomeAndSleepTilRested* Instance();
+	//this is a singleton
+	static GoHomeAndSleepTilRested* Instance();
 
-  virtual void Enter(MinerComponent* miner);
+	virtual void Enter(MinerComponent* miner);
 
-  virtual void Execute(MinerComponent* miner, const GameTime &elapsedTime_);
+	virtual void Execute(MinerComponent* miner, const GameTime& elapsedTime_);
 
-  virtual void Exit(MinerComponent* miner);
+	virtual void Exit(MinerComponent* miner);
 
-  virtual bool OnMessage(MinerComponent* agent, const Telegram& msg);
+	virtual bool OnMessage(MinerComponent* agent, const Telegram& msg);
 };
-
 
 //------------------------------------------------------------------------
 //
@@ -123,27 +118,26 @@ public:
 class QuenchThirst : public IState<MinerComponent>
 {
 private:
-  
-  QuenchThirst(){}
 
-  //copy ctor and assignment should be private
-  QuenchThirst(const QuenchThirst&);
-  QuenchThirst& operator=(const QuenchThirst&);
- 
+	QuenchThirst() {}
+
+	//copy ctor and assignment should be private
+	QuenchThirst(const QuenchThirst&);
+	QuenchThirst& operator=(const QuenchThirst&);
+
 public:
 
-  //this is a singleton
-  static QuenchThirst* Instance();
+	//this is a singleton
+	static QuenchThirst* Instance();
 
-  virtual void Enter(MinerComponent* miner);
+	virtual void Enter(MinerComponent* miner);
 
-  virtual void Execute(MinerComponent* miner, const GameTime &elapsedTime_);
+	virtual void Execute(MinerComponent* miner, const GameTime& elapsedTime_);
 
-  virtual void Exit(MinerComponent* miner);
+	virtual void Exit(MinerComponent* miner);
 
-  virtual bool OnMessage(MinerComponent* agent, const Telegram& msg);
+	virtual bool OnMessage(MinerComponent* agent, const Telegram& msg);
 };
-
 
 //------------------------------------------------------------------------
 //
@@ -153,28 +147,25 @@ public:
 class EatStew : public IState<MinerComponent>
 {
 private:
-  
-  EatStew(){}
 
-  //copy ctor and assignment should be private
-  EatStew(const EatStew&);
-  EatStew& operator=(const EatStew&);
- 
+	EatStew() {}
+
+	//copy ctor and assignment should be private
+	EatStew(const EatStew&);
+	EatStew& operator=(const EatStew&);
+
 public:
 
-  //this is a singleton
-  static EatStew* Instance();
+	//this is a singleton
+	static EatStew* Instance();
 
-  virtual void Enter(MinerComponent* miner);
+	virtual void Enter(MinerComponent* miner);
 
-  virtual void Execute(MinerComponent* miner, const GameTime &elapsedTime_);
+	virtual void Execute(MinerComponent* miner, const GameTime& elapsedTime_);
 
-  virtual void Exit(MinerComponent* miner);
+	virtual void Exit(MinerComponent* miner);
 
-  virtual bool OnMessage(MinerComponent* agent, const Telegram& msg);
+	virtual bool OnMessage(MinerComponent* agent, const Telegram& msg);
 };
-
-
-
 
 #endif

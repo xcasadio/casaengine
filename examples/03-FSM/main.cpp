@@ -1,13 +1,13 @@
 /**
- * 
+ *
  */
 #include "FSMGame.h"
 #include <windows.h>
 #include <exception>
 
-/**
- * 
- */
+ /**
+  *
+  */
 INT WINAPI WinMain(HINSTANCE Instance, HINSTANCE PrevInst, LPSTR CmdLine, INT NbCmd)
 {
 	try
@@ -22,4 +22,3 @@ INT WINAPI WinMain(HINSTANCE Instance, HINSTANCE PrevInst, LPSTR CmdLine, INT Nb
 
 	return EXIT_SUCCESS;
 }
-

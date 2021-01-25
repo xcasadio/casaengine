@@ -7,9 +7,9 @@
 
 namespace CasaEngine
 {
-    /**
-     * 
-     */
+	/**
+	 *
+	 */
 	enum ShapeType
 	{
 		//3D
@@ -21,8 +21,6 @@ namespace CasaEngine
 		CIRCLE2D,
 		POLYGON,
 	};
-	
 }
-
 
 #endif // SHAPETYPE_H

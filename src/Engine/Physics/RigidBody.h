@@ -1,4 +1,3 @@
-
 #ifndef RIGIDBODY_H_
 #define RIGIDBODY_H_
 
@@ -8,14 +7,14 @@
 namespace CasaEngine
 {
 	/**
-	 *  
+	 *
 	 */
 	struct CA_EXPORT RigidBody :
 		public AllocatedObject<RigidBody>
 	{
 		float			mass;
-		
-		IShape*			pCollisionShape;
+
+		IShape* pCollisionShape;
 		Vector3F		localInertia;
 		float			linearDamping;
 		float			angularDamping;
@@ -36,7 +35,7 @@ namespace CasaEngine
 		float			additionalLinearDampingThresholdSqr;
 		float			additionalAngularDampingThresholdSqr;
 		float			additionalAngularDampingFactor;
-		
+
 		RigidBody() :
 			mass(1.0f),
 			pCollisionShape(nullptr),
@@ -55,7 +54,6 @@ namespace CasaEngine
 			additionalAngularDampingFactor(0.01f)
 		{}
 	};
-
 }
 
 #endif // RIGIDBODY_H_

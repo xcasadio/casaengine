@@ -22,44 +22,40 @@ typedef enum PlayerControllerState
 	TO_NORMAL_MODE,
 } PlayerControllerState;
 
-
 /**
- * 
+ *
  */
-class PlayerStateIdle : 
+class PlayerStateIdle :
 	public IState<IController>
 {
 public:
 	PlayerStateIdle();
 	~PlayerStateIdle();
 
-	void Enter(IController *pController_) override;
-	void Execute(IController *pController_, const GameTime &elpasedTime_) override;
-	void Exit(IController *pController_) override;
-	bool OnMessage(IController *pController_, const Telegram& msg) override;
+	void Enter(IController* pController_) override;
+	void Execute(IController* pController_, const GameTime& elpasedTime_) override;
+	void Exit(IController* pController_) override;
+	bool OnMessage(IController* pController_, const Telegram& msg) override;
 
 private:
-
 };
 
-
 /**
- * 
+ *
  */
-class PlayerStateAttack : 
+class PlayerStateAttack :
 	public IState<IController>
 {
 public:
 	PlayerStateAttack();
 	~PlayerStateAttack();
 
-	void Enter(IController *pController_) override;
-	void Execute(IController *pController_, const GameTime &elpasedTime_) override;
-	void Exit(IController *pController_) override;
-	bool OnMessage(IController *pController_, const Telegram& msg) override;
+	void Enter(IController* pController_) override;
+	void Execute(IController* pController_, const GameTime& elpasedTime_) override;
+	void Exit(IController* pController_) override;
+	bool OnMessage(IController* pController_, const Telegram& msg) override;
 
 private:
-
 };
 
-#endif 
+#endif

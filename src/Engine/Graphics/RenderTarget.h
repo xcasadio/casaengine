@@ -1,4 +1,3 @@
-
 #ifndef _RENDERTARGET_H_
 #define _RENDERTARGET_H_
 

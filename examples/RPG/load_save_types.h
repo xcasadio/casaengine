@@ -5,7 +5,6 @@
 
 using namespace CasaEngine;
 
-
 struct frame
 {
 	float delay;
@@ -29,7 +28,6 @@ private:
 	}
 };
 
-
 struct animation
 {
 	std::string name;
@@ -52,7 +50,6 @@ private:
 		ar(CEREAL_NVP(frames));
 	}
 };
-
 
 typedef struct { // statut : caracteristiques des individus
 	int etatNeg; // voir les enum
@@ -152,7 +149,6 @@ private:
 		ar(CEREAL_NVP(tileX));
 		ar(CEREAL_NVP(tileY));
 	}
-
 } _mapExit;
 
 typedef struct {
@@ -166,7 +162,7 @@ typedef struct {
 	//OSL_IMAGE* img;
 	_sprite* sprites_to_delete;
 	union {
-		int* tabAnim;//tableau arme droite, h, bas, gauche 
+		int* tabAnim;//tableau arme droite, h, bas, gauche
 		int nbSprite;//ou nombre de sprite si projectile ( juste image qui tourne )
 	};
 
@@ -197,7 +193,6 @@ private:
 		ar(CEREAL_NVP(animations));
 		ar(CEREAL_NVP(sprites));
 	}
-
 } _statutEquipement;
 
 typedef struct {
@@ -216,7 +211,6 @@ typedef struct {
 	int enAction; // effectu une action
 	int delaiAction;// tps entre chaque action
 	int delaiAttaque;// tps entre chaque attaque
-
 } _IA;
 
 typedef struct _ennemi {
@@ -229,10 +223,10 @@ typedef struct _ennemi {
 	int dir;
 	int dDeplacement;
 	int touche, toucheDelai; // delai d'invincibilite ( une fois touche)
-	int recul; // lorsque touché, l'ennemi recul	
+	int recul; // lorsque touché, l'ennemi recul
 	int imgCourant;
-	int exp; // experience donne au joueur une fois vaincu	
-	RectangleI mapCollision; // rectangle de collision integer x,y,w,h	
+	int exp; // experience donne au joueur une fois vaincu
+	RectangleI mapCollision; // rectangle de collision integer x,y,w,h
 	//to change
 	int ptMatX, ptMatY; // point Materiel, repere l'ennemi sur la map, permet de positionner les sprite selon leur point chaud
 	int* tabAnim; // mov, min, max, mov, min, max...  permet d'attribuer une animation selon le mov
@@ -284,7 +278,6 @@ private:
 		ar(CEREAL_NVP(animations));
 		ar(CEREAL_NVP(sprites));
 	}
-
 } _ennemi;
 
 typedef struct {
@@ -303,7 +296,7 @@ typedef struct {
 	_statut stats; // statut
 	int mapX, mapY; // position sur la map
 	int mov; // quel movement
-	int dir; // direction	
+	int dir; // direction
 	int dDeplacement;
 	int touche, toucheDelai; // duree d'invincibilite
 	int recul; // lorsque touché, le perso recul
@@ -354,7 +347,6 @@ private:
 		ar(CEREAL_NVP(animations));
 		ar(CEREAL_NVP(sprites));
 	}
-
 } _joueur;
 
 using ennemy_map_info = struct
@@ -393,7 +385,6 @@ typedef struct {
 	int nbrSortie; // nombre de sortie_to_delete
 	_mapExit* sortie_to_delete; // tableau de nombre
 	int zone; // zone dans laquelle se trouve la map
-
 
 	//OSL_SOUND* bgm;// musique de la map
 	//
@@ -436,16 +427,12 @@ private:
 		ar(CEREAL_NVP(tile_layer_4));
 		ar(CEREAL_NVP(ennemy_info));
 	}
-
 } _map;
 
 typedef struct { // pas encore definie
 	int* file; // script chargé
 	//char *imgCharge; // pour savoir quel image charge
 	//char *musicCharge;
-
 } _script;
-
-
 
 #endif

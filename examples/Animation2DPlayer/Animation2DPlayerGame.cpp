@@ -156,10 +156,11 @@ void Animation2DPlayerGame::LoadAnimations(AnimatedSpriteComponent* pAnimatedCom
 
 	for (auto animation : animations.animations)
 	{
-		auto animation2D = NEW_AO Animation2D();
+		auto animation2D = NEW_AO Animation2DData();
 		std::ostringstream number;
 		number << animation.Number;
 		animation2D->SetName(number.str());
+		animation2D->SetAnimationType(AnimationType::Loop);
 		float time = 0.0f;
 
 		for (auto frame : animation.Frames)
@@ -167,28 +168,24 @@ void Animation2DPlayerGame::LoadAnimations(AnimatedSpriteComponent* pAnimatedCom
 			if (GetAssetManager().Contains(frame.SpriteId))
 			{
 				auto sprite = GetAssetManager().GetAsset<SpriteData>(frame.SpriteId);
-				//if (sprite->GetCollisionShape().size() == 0)
+				for (auto& coll : frame.Collisions)
 				{
-					for (auto coll : frame.Collisions)
-					{
-						auto collision = NEW_AO Collision();
-						collision->SetType(coll.ClsnType == 1 ? CollisionType::Attack : CollisionType::Defense);
-						auto rect = NEW_AO RectangleI(coll.X, coll.Y, coll.Width, coll.Height);
-						collision->SetShape(rect);
-						sprite->GetCollisions().push_back(*collision);
-					}
+					auto collision = NEW_AO Collision();
+					collision->SetType(coll.ClsnType == 1 ? CollisionType::Attack : CollisionType::Defense);
+					auto rect = NEW_AO RectangleI(coll.X, coll.Y, coll.Width, coll.Height);
+					collision->SetShape(rect);
+					sprite->GetCollisions().push_back(*collision);
 				}
 			}
 
-			auto setFrameEvent = NEW_AO SetFrameEvent();
-			setFrameEvent->FrameID(frame.SpriteId.c_str());
-			setFrameEvent->Time(time);
-			time += frame.GameTick * 0.16f; // 0.048f;
-			animation2D->AddEvent(setFrameEvent);
+			auto frameData = NEW_AO FrameData();
+			frameData->SetSpriteId(frame.SpriteId.c_str());
+			frameData->SetDuration(frame.GameTick * 0.16f); // 0.048f;
+			animation2D->AddFrame(frameData);
 		}
 
 		GetAssetManager().AddAsset(new Asset(animation2D->GetName(), animation2D));
-		pAnimatedComponent->AddAnimation(animation2D->Copy());
+		pAnimatedComponent->AddAnimation(NEW_AO Animation2D(*animation2D));
 	}
 }
 
@@ -289,12 +286,12 @@ void Animation2DPlayerGame::DisplayUI()
 		ImGui::Button("Play");
 		ImGui::Button("Stop");
 
-		const char** items = new const char*[m_pAnimatedSprite->GetAnimations().size()];
+		const char** items = new const char* [m_pAnimatedSprite->GetAnimations().size()];
 		int index = 0;
 		std::vector<const char*> names;
 		for (auto anim : m_pAnimatedSprite->GetAnimations())
 		{
-			std::string str = anim->GetName();
+			std::string str = anim->GetAnimationData()->GetName();
 			char* writable = new char[str.size() + 1];
 			std::copy(str.begin(), str.end(), writable);
 			writable[str.size()] = '\0';
@@ -321,7 +318,7 @@ void Animation2DPlayerGame::DisplayUI()
 		int i = 0;
 		for (auto collision : spriteData->GetCollisions())
 		{
-			auto rect = dynamic_cast<RectangleI *>(collision.GetShape());
+			auto rect = dynamic_cast<RectangleI*>(collision.GetShape());
 			std::ostringstream ostr;
 			ostr << rect->x << " " << rect->y << " " << rect->w << " " << rect->h;
 			std::string str = ostr.str();

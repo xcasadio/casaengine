@@ -1,4 +1,3 @@
-
 #include "Base.h"
 
 #include "TorusPrimitive.h"
@@ -12,7 +11,7 @@
 namespace CasaEngine
 {
 	/**
-	 * 
+	 *
 	 */
 	TorusPrimitive::TorusPrimitive(float diameter_, float thickness_, unsigned int tessellation_) :
 		IPrimitive3D(TORUS)
@@ -80,11 +79,9 @@ namespace CasaEngine
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	TorusPrimitive::~TorusPrimitive()
 	{
-
 	}
-
 }

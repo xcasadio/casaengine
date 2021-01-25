@@ -14,7 +14,6 @@ namespace CasaEngine
 
 	Circle::~Circle()
 	{
-
 	}
 
 	Vector3F Circle::Center() const

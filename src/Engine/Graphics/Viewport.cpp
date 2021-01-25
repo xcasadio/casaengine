@@ -1,17 +1,13 @@
-
 #include "Base.h"
 
 #include "Viewport.h"
 #include "Maths\Matrix4.h"
 #include "Maths\Vector3.h"
 
-
-
-
 namespace CasaEngine
 {
 	/**
-	 * 
+	 *
 	 */
 	Viewport::Viewport()
 	{
@@ -26,7 +22,7 @@ namespace CasaEngine
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	Viewport::Viewport(const Viewport& rsh_)
 	{
@@ -34,7 +30,7 @@ namespace CasaEngine
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	Viewport::Viewport(float x, float y, float width, float height)
 	{
@@ -49,7 +45,7 @@ namespace CasaEngine
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	const Viewport& Viewport::operator = (const Viewport& rsh_)
 	{
@@ -67,123 +63,123 @@ namespace CasaEngine
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	Viewport::~Viewport()
 	{
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	float Viewport::X() const { return m_X; }
 
 	/**
-	 * 
+	 *
 	 */
 	void Viewport::X(float val) { m_X = val; }
 
 	/**
-	 * 
+	 *
 	 */
 	float Viewport::Y() const { return m_Y; }
 
 	/**
-	 * 
+	 *
 	 */
 	void Viewport::Y(float val) { m_Y = val; }
 
 	/**
-	 * 
+	 *
 	 */
-	float Viewport::Width() const 
-	{ 
-		return m_Width; 
+	float Viewport::Width() const
+	{
+		return m_Width;
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	void Viewport::Width(float val)
-	{ 
-		m_Width = val; 
+	{
+		m_Width = val;
 		ComputeAspectRatio();
 	}
 
 	/**
-	 * 
+	 *
 	 */
-	float Viewport::Height() const 
-	{ 
+	float Viewport::Height() const
+	{
 		return m_Height;
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	void Viewport::Height(float val)
-	{ 
-		m_Height = val; 
+	{
+		m_Height = val;
 		ComputeAspectRatio();
 	}
 
 	/**
-	 * 
+	 *
 	 */
-	float Viewport::NearClipPlane() const 
-	{ 
-		return m_fNearClipPlane; 
+	float Viewport::NearClipPlane() const
+	{
+		return m_fNearClipPlane;
 	}
 
 	/**
-	 * 
+	 *
 	 */
-	void Viewport::NearClipPlane(float val) 
-	{ 
-		m_fNearClipPlane = val; 
+	void Viewport::NearClipPlane(float val)
+	{
+		m_fNearClipPlane = val;
 	}
 
 	/**
-	 * 
+	 *
 	 */
-	float Viewport::FarClipPlane() const 
-	{ 
-		return m_fFarClipPlane; 
+	float Viewport::FarClipPlane() const
+	{
+		return m_fFarClipPlane;
 	}
 
 	/**
-	 * 
+	 *
 	 */
-	void Viewport::FarClipPlane(float val) 
-	{ 
-		m_fFarClipPlane = val; 
+	void Viewport::FarClipPlane(float val)
+	{
+		m_fFarClipPlane = val;
 	}
 
 	/**
-	 * 
+	 *
 	 */
-	float Viewport::AspectRatio() const 
-	{ 
-		return m_fAspectRatio; 
+	float Viewport::AspectRatio() const
+	{
+		return m_fAspectRatio;
 	}
 
 	/**
-	 * 
+	 *
 	 */
-	void Viewport::ComputeAspectRatio() 
-	{ 
+	void Viewport::ComputeAspectRatio()
+	{
 		if (m_Height != 0)
 		{
 			m_fAspectRatio = static_cast<float>(m_Width) / static_cast<float>(m_Height);
 		}
 		else
 		{
-			m_fAspectRatio = 0.0f; 
-		}		
+			m_fAspectRatio = 0.0f;
+		}
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	bool WithinEpsilon(float a, float b)
 	{
@@ -192,11 +188,11 @@ namespace CasaEngine
 	}
 
 	/**
-	 * 
+	 *
 	 */
-	Vector3F Viewport::Project(const Vector3F &source, const Matrix4 &projection, const Matrix4 &view, const Matrix4 &world) const
+	Vector3F Viewport::Project(const Vector3F& source, const Matrix4& projection, const Matrix4& view, const Matrix4& world) const
 	{
-		Matrix4 mat = world * view * projection; // Matrix4::Multiply(Matrix4.Multiply(world, view), projection);		
+		Matrix4 mat = world * view * projection; // Matrix4::Multiply(Matrix4.Multiply(world, view), projection);
 		Vector3F vector;
 		mat.Transform(source, vector); // Vector3F::Transform(source, mat);
 		float a = source.x * mat.a14 + source.y * mat.a24 + source.z * mat.a34 + mat.a44;
@@ -211,9 +207,9 @@ namespace CasaEngine
 	}
 
 	/**
-	 * 
+	 *
 	 */
-	Vector3F Viewport::Unproject(const Vector3F &source, const Matrix4 &projection, const Matrix4 &view, const Matrix4 &world) const
+	Vector3F Viewport::Unproject(const Vector3F& source, const Matrix4& projection, const Matrix4& view, const Matrix4& world) const
 	{
 		Vector3F vector = source;
 		Matrix4 mat = (world * view * projection).Invert(); //Matrix4.Invert(Matrix4.Multiply(Matrix4.Multiply(world, view), projection));
@@ -229,6 +225,4 @@ namespace CasaEngine
 		}
 		return vector;
 	}
-
-	
 }

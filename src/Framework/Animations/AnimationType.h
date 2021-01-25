@@ -3,15 +3,12 @@
 
 namespace CasaEngine
 {
-	namespace Animation2DType
+	enum AnimationType
 	{
-		enum TAnimation2DType
-		{
-			Once,
-			PingPong,
-			Loop
-		};
-	}	
+		Once,
+		PingPong,
+		Loop
+	};
 }
 
 #endif

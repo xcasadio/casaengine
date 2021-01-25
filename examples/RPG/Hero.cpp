@@ -5,33 +5,28 @@
 #include "PlayerController.h"
 
 /**
- * 
+ *
  */
-Hero::Hero(BaseEntity *pEntity) :
+Hero::Hero(BaseEntity* pEntity) :
 	Character(pEntity)
 {
 	m_FuryPoint = 0;
-    m_FuryPointDecrease = 0.0f;
-    m_InBleedingMode = false;
+	m_FuryPointDecrease = 0.0f;
+	m_InBleedingMode = false;
 }
 
 /**
- * 
+ *
  */
 Hero::~Hero()
 {
-
 }
-
 
 void Hero::Initialize()
 {
 	m_pController = ::new PlayerController(this, 0);
 	Character::Initialize();
-
-	
 }
-
 
 int Hero::FuryPoint() const
 {
@@ -40,7 +35,7 @@ int Hero::FuryPoint() const
 
 void Hero::FuryPoint(int val)
 {
-	m_FuryPoint = val; 
+	m_FuryPoint = val;
 	if (m_FuryPoint < 0)
 	{
 		m_FuryPoint = 0;

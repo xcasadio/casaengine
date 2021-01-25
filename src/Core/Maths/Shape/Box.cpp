@@ -13,7 +13,6 @@ namespace CasaEngine
 
 	Box::~Box()
 	{
-
 	}
 
 	Vector3F Box::Size() const

@@ -50,14 +50,13 @@ void CubeGame::Initialize()
 
 	Game::Initialize();
 
-
 	// 	Line2DRendererComponent *m_pLine2DRenderer = NEW_AO Line2DRendererComponent(this);
 	 //	Line3DRendererComponent *m_pLine3DRenderer = NEW_AO Line3DRendererComponent(this);
 	MeshRendererGameComponent* m_pModelRenderer = NEW_AO MeshRendererGameComponent(this);
 	//DebugSystem *m_pDebugSystem = NEW_AO DebugSystem(this);
 
 // 	AddComponent(m_pLine2DRenderer);
-// 	AddComponent(m_pLine3DRenderer);	
+// 	AddComponent(m_pLine3DRenderer);
 	AddComponent(m_pModelRenderer);
 	//AddComponent(m_pDebugSystem);
 
@@ -174,7 +173,6 @@ void CubeGame::LoadContent()
 	pEntity->GetComponentMgr()->AddComponent(pModelCpt);
 
 	m_pWorld->AddEntity(pEntity);
-
 
 	m_pWorld->Initialize();
 }

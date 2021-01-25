@@ -9,7 +9,6 @@ namespace CasaEngine
 {
 	std::map<std::string, Texture*> Texture::_textureCache;
 
-
 	//create only one allocator
 	bx::AllocatorI* getDefaultAllocator()
 	{
@@ -174,5 +173,4 @@ namespace CasaEngine
 	{
 		return m_Handle;
 	}
-
 }

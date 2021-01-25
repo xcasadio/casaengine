@@ -6,7 +6,6 @@
 
 namespace CasaEngine
 {
-
 	/**
 	 * Derived class must have a default constructor
 	 */
@@ -15,21 +14,21 @@ namespace CasaEngine
 	{
 	public:
 
-		#ifdef ___USE_MT___
+#ifdef ___USE_MT___
 		inline static CRITICAL_SECTION* get_cs();
-		#endif
+#endif
 
 		static std::vector<T* >& get_list();
 
 		static void __op_initialize();
 		static void __op_finalize();
 
-		inline void* operator new( size_t stAllocateBlock);
-		inline void operator delete( void *p );
+		inline void* operator new(size_t stAllocateBlock);
+		inline void operator delete(void* p);
 
 		static void capacity(size_t capacity_);
 		static void destroy();
-	
+
 	protected:
 
 		ObjectPool();
@@ -40,8 +39,7 @@ namespace CasaEngine
 		static void addElement();
 	};
 
-	#include "ObjectPool.inl"
-
+#include "ObjectPool.inl"
 }
 
 #endif // _OBJECTPOOL_H_

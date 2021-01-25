@@ -5,7 +5,6 @@
 
 #include <bgfx/defines.h>
 
-
 #include "Assets/AssetManager.h"
 
 #include "Entities/Components/AnimatedSpriteComponent.h"
@@ -42,7 +41,7 @@
 using namespace CasaEngine;
 
 /**
- * 
+ *
  */
 SteeringGame::SteeringGame() :
 	m_pLine3DRenderer(nullptr),
@@ -53,7 +52,7 @@ SteeringGame::SteeringGame() :
 }
 
 /**
- * 
+ *
  */
 SteeringGame::~SteeringGame()
 {
@@ -65,7 +64,7 @@ SteeringGame::~SteeringGame()
 }
 
 /**
- * 
+ *
  */
 void SteeringGame::Initialize()
 {
@@ -83,7 +82,7 @@ void SteeringGame::Initialize()
 }
 
 /**
- * 
+ *
  */
 void SteeringGame::LoadContent()
 {
@@ -98,7 +97,7 @@ void SteeringGame::LoadContent()
 }
 
 /**
- * 
+ *
  */
 void SteeringGame::Update(const GameTime& gameTime_)
 {
@@ -106,7 +105,7 @@ void SteeringGame::Update(const GameTime& gameTime_)
 }
 
 /**
- * 
+ *
  */
 void SteeringGame::Draw()
 {
@@ -114,7 +113,7 @@ void SteeringGame::Draw()
 }
 
 /**
- * 
+ *
  */
 void SteeringGame::AddGameComponents()
 {
@@ -126,7 +125,7 @@ void SteeringGame::AddGameComponents()
 }
 
 /**
- * 
+ *
  */
 void SteeringGame::CreateEntities()
 {
@@ -134,20 +133,20 @@ void SteeringGame::CreateEntities()
 
 	//////////////////////////////////////////////////////////////////////////
 	// Camera 3D
-	BaseEntity *pCamera = NEW_AO BaseEntity();
+	BaseEntity* pCamera = NEW_AO BaseEntity();
 	m_pCamera3D = NEW_AO Camera3DComponent(pCamera);
-	ArcBallCameraController *pArcBall = NEW_AO ArcBallCameraController(m_pCamera3D);
+	ArcBallCameraController* pArcBall = NEW_AO ArcBallCameraController(m_pCamera3D);
 	pArcBall->SetCamera(Vector3F(0, 20.0f, -50.0f), Vector3F::Zero(), Vector3F::Up());
 	pArcBall->Distance(15.0f);
 	m_pCamera3D->CameraController(pArcBall);
-	pCamera->GetComponentMgr()->AddComponent(m_pCamera3D);	
+	pCamera->GetComponentMgr()->AddComponent(m_pCamera3D);
 	pCamera->Initialize();
 	m_pWorld->AddEntity(pCamera);
 	Game::Instance().GetGameInfo().SetActiveCamera(m_pCamera3D);
 
 	//////////////////////////////////////////////////////////////////////////
 	// ground
-	BaseEntity *pEntity = NEW_AO BaseEntity();
+	BaseEntity* pEntity = NEW_AO BaseEntity();
 	pEntity->SetName("ground");
 	Transform3DComponent* pTransform = NEW_AO Transform3DComponent(pEntity);
 	pTransform->SetLocalPosition(Vector3F(0.0f, -0.5f, 0.0f));
@@ -155,10 +154,10 @@ void SteeringGame::CreateEntities()
 	pTransform->SetLocalScale(Vector3F::One());
 	pEntity->GetComponentMgr()->AddComponent(pTransform);
 	MeshComponent* pModelCpt = NEW_AO MeshComponent(pEntity);
-	BoxPrimitive *pBox = NEW_AO BoxPrimitive(100.0f, 1.0f, 100.0f);
+	BoxPrimitive* pBox = NEW_AO BoxPrimitive(100.0f, 1.0f, 100.0f);
 	Mesh* pModel = pBox->CreateModel();
 	//new material
-	Material *pMat = pModel->GetMaterial()->Clone();
+	Material* pMat = pModel->GetMaterial()->Clone();
 	pMat->Texture0(Texture::loadTexture(Game::Instance().GetMediaManager().FindMedia("ceilingMain_DIF.dds"), BGFX_SAMPLER_MIN_ANISOTROPIC | BGFX_SAMPLER_MAG_ANISOTROPIC));
 	pMat->Texture0Repeat(Vector2F(50, 50));
 	pModel->SetMaterial(pMat);
@@ -173,21 +172,21 @@ void SteeringGame::CreateEntities()
 }
 
 /**
- * 
+ *
  */
 void SteeringGame::CreateBoids()
 {
-	BaseEntity *pEntity = NEW_AO BaseEntity();
-	Transform3DComponent *pTrans3D = NEW_AO Transform3DComponent(pEntity);
+	BaseEntity* pEntity = NEW_AO BaseEntity();
+	Transform3DComponent* pTrans3D = NEW_AO Transform3DComponent(pEntity);
 	pEntity->GetComponentMgr()->AddComponent(pTrans3D);
 
-	MovingEntity2DComponent *pMovingCpnt = NEW_AO MovingEntity2DComponent(pEntity);
+	MovingEntity2DComponent* pMovingCpnt = NEW_AO MovingEntity2DComponent(pEntity);
 	pEntity->GetComponentMgr()->AddComponent(pMovingCpnt);
 
-	SteeringBehaviorComponent *pSteeringCpnt = NEW_AO SteeringBehaviorComponent(pEntity);
+	SteeringBehaviorComponent* pSteeringCpnt = NEW_AO SteeringBehaviorComponent(pEntity);
 	pEntity->GetComponentMgr()->AddComponent(pSteeringCpnt);
 
-	pEntity->Initialize();	
+	pEntity->Initialize();
 	m_pWorld->AddEntity(pEntity);
 
 	m_Entities.push_back(pEntity);

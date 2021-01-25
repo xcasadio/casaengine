@@ -1,4 +1,3 @@
-
 #include "Base.h"
 #include "Log/LogManager.h"
 
@@ -10,11 +9,9 @@
 
 namespace CasaEngine
 {
-
 	Path::Path() :
 		m_bLooped(false)
 	{
-
 	}
 
 	//constructor for creating a path with initial random waypoints. MinX/Y
@@ -24,7 +21,6 @@ namespace CasaEngine
 	{
 		Set(path_);
 	}
-
 
 	//returns the current waypoint
 	Vector2F Path::CurrentWaypoint() const
@@ -81,7 +77,6 @@ namespace CasaEngine
 		m_CurWaypoint = m_WayPoints.begin();
 	}
 
-
 	void Path::Clear()
 	{
 		m_WayPoints.clear();
@@ -91,7 +86,6 @@ namespace CasaEngine
 	{
 		return m_WayPoints;
 	}
-
 
 	void Path::Render()const
 	{
@@ -110,5 +104,4 @@ namespace CasaEngine
 
 		if (m_bLooped) gdi->Line(*(--it), *m_WayPoints.begin());*/
 	}
-
 }

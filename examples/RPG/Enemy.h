@@ -9,16 +9,15 @@
 
 using namespace CasaEngine;
 
-
 class Enemy :
 	public Character
 {
 public:
 	Enemy(BaseEntity* pEntity);
 	virtual ~Enemy();
-	
+
 	void Initialize() override;
-	
+
 private:
 };
 

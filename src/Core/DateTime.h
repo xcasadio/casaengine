@@ -14,7 +14,7 @@ namespace CasaEngine
 	{
 	public:
 		DateTime();
-		DateTime(const DateTime &rsh);
+		DateTime(const DateTime& rsh);
 		const DateTime& operator = (const DateTime& rsh);
 		~DateTime();
 
@@ -34,7 +34,7 @@ namespace CasaEngine
 
 		static DateTime m_Now;
 		time_t m_CurrentTime;
-		tm *m_pTm;
+		tm* m_pTm;
 
 		void Update();
 	};

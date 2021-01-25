@@ -7,32 +7,26 @@ namespace CasaEngine
 {
 	void Program::SetParameter(const char* pName, float Value)
 	{
-
 	}
 
 	void Program::SetParameter(const char* pName, const Vector2F& Value)
 	{
-
 	}
 
 	void Program::SetParameter(const char* pName, const Vector3F& Value)
 	{
-
 	}
 
 	void Program::SetParameter(const char* pName, const Vector4F& Value)
 	{
-
 	}
 
 	void Program::SetParameter(const char* pName, const Matrix4& Value)
 	{
-
 	}
 
 	void Program::SetParameter(const char* pName, const CColor& Value)
 	{
-
 	}
 
 	Program::Program(const char* _vsName, const char* _fsName)

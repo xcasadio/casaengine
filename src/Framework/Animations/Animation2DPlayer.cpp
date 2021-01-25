@@ -46,7 +46,7 @@ void Animation2DPlayer::SetCurrentAnimationByName(std::string name_)
 
 	for (it = m_Animations.cbegin(); it != m_Animations.cend(); it++)
 	{
-		if (it->second->GetName() == name_)
+		if (it->second->GetAnimationData()->GetName() == name_)
 		{
 			index = it->first;
 		}

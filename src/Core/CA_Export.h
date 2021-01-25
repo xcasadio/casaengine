@@ -21,11 +21,11 @@
 
 #elif CA_PLATFORM_ANDROID
 
-#	define CA_EXPORT 
+#	define CA_EXPORT
 
 #else
 
-	// Unsupported system
+// Unsupported system
 #	error This operating system is not supported by CasaEngine library
 
 #endif // #if CA_PLATFORM_WINDOWS
@@ -34,6 +34,5 @@
 #   pragma warning(disable : 4251)
 #   pragma warning(disable : 4661)
 #endif
-
 
 #endif // LIBRARY_CORE_EXPORT_H

@@ -1,4 +1,3 @@
-
 #ifndef _VIEWPORT_H_
 #define _VIEWPORT_H_
 
@@ -10,7 +9,7 @@
 namespace CasaEngine
 {
 	/**
-	 * 
+	 *
 	 */
 	class CA_EXPORT Viewport :
 		public AllocatedObject<Viewport>
@@ -34,10 +33,10 @@ namespace CasaEngine
 		void NearClipPlane(float val);
 		float FarClipPlane() const;
 		void FarClipPlane(float val);
-		float AspectRatio() const;		
+		float AspectRatio() const;
 
-		Vector3F Project(const Vector3F &source, const Matrix4 &projection, const Matrix4 &view, const Matrix4 &world) const;
-		Vector3F Unproject(const Vector3F &source, const Matrix4 &projection, const Matrix4 &view, const Matrix4 &world) const;
+		Vector3F Project(const Vector3F& source, const Matrix4& projection, const Matrix4& view, const Matrix4& world) const;
+		Vector3F Unproject(const Vector3F& source, const Matrix4& projection, const Matrix4& view, const Matrix4& world) const;
 
 	private:
 
@@ -45,15 +44,14 @@ namespace CasaEngine
 
 	private:
 
-		float m_X;		
-		float m_Y;		
-		float m_Width;		
-		float m_Height;		
-		float m_fNearClipPlane;		
-		float m_fFarClipPlane;		
-		float m_fAspectRatio;		
+		float m_X;
+		float m_Y;
+		float m_Width;
+		float m_Height;
+		float m_fNearClipPlane;
+		float m_fFarClipPlane;
+		float m_fAspectRatio;
 	};
-
-} 
+}
 
 #endif //_VIEWPORT_H_

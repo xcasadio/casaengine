@@ -10,53 +10,52 @@
 
 namespace CasaEngine
 {
-    /**
-     * 
-     */
-    class CA_EXPORT Texture :
+	/**
+	 *
+	 */
+	class CA_EXPORT Texture :
 		public IResource
-    {
-    public :
+	{
+	public:
 
 		/**
-		 * 
+		 *
 		 */
-		static Texture *loadTexture(IFile* pFile, uint32_t _flags = BGFX_TEXTURE_NONE, uint8_t _skip = 0);
+		static Texture* loadTexture(IFile* pFile, uint32_t _flags = BGFX_TEXTURE_NONE, uint8_t _skip = 0);
 
 		/**
-		 * 
+		 *
 		 */
-		static Texture *createTexture(const unsigned int width_, const unsigned int height_, const bgfx::TextureFormat::Enum format_, 
-			const bgfx::Memory *pData_, const unsigned long flags_ = BGFX_TEXTURE_NONE, bgfx::TextureInfo* info_ = nullptr);
+		static Texture* createTexture(const unsigned int width_, const unsigned int height_, const bgfx::TextureFormat::Enum format_,
+			const bgfx::Memory* pData_, const unsigned long flags_ = BGFX_TEXTURE_NONE, bgfx::TextureInfo* info_ = nullptr);
 	private:
-		static std::map<std::string, Texture *> _textureCache;
+		static std::map<std::string, Texture*> _textureCache;
 
 	public:
 
-        /**
-         * 
-         */
-        Texture(bgfx::TextureHandle handle_, bgfx::TextureInfo *info_ = nullptr);
-
 		/**
-		 * 
+		 *
 		 */
-        virtual ~Texture();
+		Texture(bgfx::TextureHandle handle_, bgfx::TextureInfo* info_ = nullptr);
 
 		/**
-		 * 
+		 *
+		 */
+		virtual ~Texture();
+
+		/**
+		 *
 		 */
 		bgfx::TextureHandle Handle() const;
 
 		/**
-		 * 
+		 *
 		 */
-		bgfx::TextureInfo *TextureInfo() const;
-    private :
-		bgfx::TextureInfo *m_pTextureInfo;
+		bgfx::TextureInfo* TextureInfo() const;
+	private:
+		bgfx::TextureInfo* m_pTextureInfo;
 		bgfx::TextureHandle m_Handle;
 	};
-
 }
 
 #endif

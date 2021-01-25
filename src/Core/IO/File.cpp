@@ -7,7 +7,6 @@
 #include <fstream>
 #include <iostream>
 
-
 namespace CasaEngine
 {
 	File::File()
@@ -101,7 +100,6 @@ namespace CasaEngine
 
 		m_pBuffer = NEW_AO char[m_BufferSize];
 		m_Stream.read(m_pBuffer, m_BufferSize);*/
-
 
 		/*std::ifstream file(fileName_, std::ios::binary);
 		m_Stream.seekg(0, std::ios::end);

@@ -11,55 +11,15 @@
 
 namespace CasaEngine
 {
-	/**
-	 *
-	 */
-	Animation::Animation() :
-		m_ID(0xffffffff),
-		//m_Name(""),
-		m_TotalTime(0),
+	Animation::Animation(AnimationData& animationData) :
 		m_CurrentTime(0),
 		m_AnimationEnded(0),
 		m_bIsInitialized(false),
-		m_Loop(true)
+		m_pAnimationData(&animationData)
 	{
 		addEvent(AnimationFinishedEvent::GetEventName());
 	}
 
-	/**
-	 * 
-	 */
-	Animation::Animation(const Animation& rsh)
-	{
-		addEvent(AnimationFinishedEvent::GetEventName());
-		*this = rsh;
-	}
-
-	/**
-	 * 
-	 */
-	const Animation& Animation::operator = (const Animation& rsh)
-	{
-		this->IAssetable::operator=(rsh);
-		//m_Name = rsh.m_Name;
-		m_ID = rsh.m_ID;
-		m_TotalTime = rsh.m_TotalTime;
-		m_CurrentTime = rsh.m_CurrentTime;
-		m_AnimationEnded = rsh.m_AnimationEnded;
-		m_bIsInitialized = rsh.m_bIsInitialized;
-		m_Loop = rsh.m_Loop;
-
-		for (auto* event : rsh.m_Events)
-		{
-			m_Events.push_back(event->Copy());
-		}
-
-		return *this;
-	}
-
-	/**
-	 * 
-	 */
 	Animation::~Animation()
 	{
 		std::vector<AnimationEvent *>::iterator it;
@@ -70,59 +30,37 @@ namespace CasaEngine
 		}
 	}
 
-	/**
-	 * 
-	 */
 	void Animation::Initialize()
 	{
-		if (m_Events.size() > 0)
-		{
-			m_TotalTime = m_Events.back()->Time();
-		}
-
 		m_bIsInitialized = true;
 	}
 
-	/**
-	 * 
-	 */
-	unsigned int Animation::ID() const 
-	{ 
-		return m_ID; 
-	}
-
-	/**
-	 * 
-	 */
 	float Animation::TotalTime() const 
-	{ 
-		return m_TotalTime; 
+	{
+		if (m_Events.size() > 0)
+		{
+			return m_Events.back()->Time();
+		}
+
+		return 0.0f; 
 	}
 
-	/**
-	 *
-	 */
 	float Animation::CurrentTime() const 
 	{ 
 		return m_CurrentTime; 
 	}
 
-	/**
-	 *
-	 */
-	bool Animation::GetLoop() const 
-	{ 
-		return m_Loop; 
+	AnimationData* Animation::GetAnimationData()
+	{
+		return m_pAnimationData;
 	}
 
-	/**
-	 * 
-	 */
 	void Animation::Update(float elapsedTime_)
 	{
 		CA_ASSERT(m_bIsInitialized == true, "Animation::Update() : call Initialize before Update()");
 
-		if (m_TotalTime == 0.0f) // no event do nothing
+		auto totalTime = TotalTime();
+		if (totalTime == 0.0f)
 		{
 			return;
 		}
@@ -131,31 +69,35 @@ namespace CasaEngine
 		float lastTime = m_CurrentTime;
 		m_CurrentTime += elapsedTime_;
 
-		if (m_Loop == true)
+		if (m_pAnimationData->GetAnimationType() == AnimationType::Loop)
 		{
-			//always between 0 <= current time <= TotalTime
-			while(m_CurrentTime > m_TotalTime)
+			while(m_CurrentTime > totalTime)
 			{
-				m_CurrentTime -= m_TotalTime;
+				m_CurrentTime -= totalTime;
 				isFinished = true;
 			}
 		}
-		else if (m_CurrentTime > m_TotalTime)
+		else if (m_pAnimationData->GetAnimationType() == AnimationType::Once)
 		{
-			m_CurrentTime = m_TotalTime;
-			isFinished = true;
+			if (m_CurrentTime > totalTime)
+			{
+				m_CurrentTime = totalTime;
+				isFinished = true;
+			}
+		}
+		else
+		{
+			throw new std::exception("animation type is not supported");
 		}
 
 		if (isFinished == true)
 		{
-			fireEvent(AnimationFinishedEvent::GetEventName(), AnimationFinishedEvent(GetName().c_str()));//AnimationFinishedEvent(ID()));
+			fireEvent(AnimationFinishedEvent::GetEventName(), AnimationFinishedEvent(m_pAnimationData->GetName().c_str()));
 		}
 		
 		// m_Events must be sorted by time
 		for (auto event : m_Events)
 		{
-			// we activate only event between the last time
-			// and the current time
 			if (lastTime >= event->Time()
 				&& event->Time() < m_CurrentTime)
 			{
@@ -165,9 +107,6 @@ namespace CasaEngine
 		}
 	}
 
-	/**
-	 * 
-	 */
 	void Animation::AddEvent(AnimationEvent *event_) 
 	{ 
 		m_Events.push_back(event_); 
@@ -175,17 +114,11 @@ namespace CasaEngine
 
 #if EDITOR
 
-	/**
-	 * 
-	 */
 	void Animation::CurrentTime(float val) 
 	{ 
 		m_CurrentTime = val; 
 	}
 
-	/**
-	 * 
-	 */
 	void Animation::RemoveEvent(AnimationEvent *event_) 
 	{ 
 		std::vector<AnimationEvent *>::iterator it;
@@ -206,9 +139,6 @@ namespace CasaEngine
 		}
 	}
 
-	/**
-	 * 
-	 */
 	void Animation::SortEventList() 
 	{ 
 		//m_Events.sort(); 

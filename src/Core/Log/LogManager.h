@@ -26,8 +26,8 @@ namespace CasaEngine
 		static LogManager& Instance();
 		static void Destroy();
 
-		void AddLogger(ILogger *logger_);
-		void RemoveLogger(ILogger *logger_);
+		void AddLogger(ILogger* logger_);
+		void RemoveLogger(ILogger* logger_);
 
 		TLogVerbosity getVerbosity() const;
 		void setVerbosity(TLogVerbosity val);
@@ -38,13 +38,12 @@ namespace CasaEngine
 		LogManager();
 		~LogManager();
 
-	private:		
+	private:
 		static LogManager* m_sInstance;
 
 		TLogVerbosity m_Verbosity;
-		std::vector<ILogger *> m_Logs;
+		std::vector<ILogger*> m_Logs;
 	};
-
 }
 
 #endif // LOGMANAGER_H_

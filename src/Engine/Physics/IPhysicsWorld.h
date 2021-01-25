@@ -1,4 +1,3 @@
-
 #ifndef IPHYSICSWORLD_H_
 #define IPHYSICSWORLD_H_
 
@@ -15,7 +14,7 @@
 namespace CasaEngine
 {
 	/**
-	 * 
+	 *
 	 */
 	class CA_EXPORT IPhysicsWorld :
 		public AllocatedObject<IPhysicsWorld>
@@ -29,17 +28,16 @@ namespace CasaEngine
 		virtual void SetGravity(const Vector3F& gravity_) = 0;
 		virtual Vector3F GetGravity() const = 0;
 
-		virtual ICollisionObjectContainer *AddCollisionShape(const IShape *pShape_, const Vector3F &origin_) = 0;
+		virtual ICollisionObjectContainer* AddCollisionShape(const IShape* pShape_, const Vector3F& origin_) = 0;
 
-		virtual void AddCollisionObject(ICollisionObjectContainer *) = 0;
-		virtual void RemoveCollisionObject(ICollisionObjectContainer *) = 0;
-		
-		virtual IRigidBodyContainer *AddRigidBody(const RigidBody *pRigidBody_) = 0;
-		virtual void RemoveRigidBody(IRigidBodyContainer *) = 0;
+		virtual void AddCollisionObject(ICollisionObjectContainer*) = 0;
+		virtual void RemoveCollisionObject(ICollisionObjectContainer*) = 0;
+
+		virtual IRigidBodyContainer* AddRigidBody(const RigidBody* pRigidBody_) = 0;
+		virtual void RemoveRigidBody(IRigidBodyContainer*) = 0;
 
 	private:
 	};
-
 }
 
 #endif // IPHYSICSWORLD_H_

@@ -40,39 +40,39 @@
 
 namespace CasaEngine
 {
-    class CA_EXPORT IRenderer
-    {
-    public :
+	class CA_EXPORT IRenderer
+	{
+	public:
 		IRenderer();
-    	
+
 		void shutdown();
 
 		void Resize(unsigned int width_, unsigned height_);
 
 		void SetClearColor(unsigned char index_, CColor val) const;
-		void Initialize(EngineSettings &settings_);
+		void Initialize(EngineSettings& settings_);
 
 		bool IsDeviceLost() const;
 		void SetDeviceLost();
 
 		void SetWireframe(bool enable);
 
-	private:        
+	private:
 		IRenderer(const IRenderer&) = delete;
 		IRenderer& operator = (const IRenderer&) = delete;
 
 		void SetDebugFlag();
-    	
+
 #if CA_PLATFORM_MOBILE
 		void Setup();
 #else
 		void Setup(sf::Window* pWindow_);
 #endif
-    	
+
 	private:
 		bool m_bDeviceLost;
 		unsigned int m_debugFlag;
-    };
+	};
 }
 
 #endif

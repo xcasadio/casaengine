@@ -22,7 +22,6 @@
 // E-mail : casaprod@gmail.com
 //==========================================================
 
-
 //==========================================================
 // En-têtes
 //==========================================================
@@ -37,25 +36,21 @@
 #include "Log/LogManager.h"
 #include "Log/LogVerbose.h"
 
-
-
 namespace CasaEngine
 {
 	/**
-	 * 
+	 *
 	 */
 	IPrimitive3D::IPrimitive3D(Primitive3DType type_) :
 		m_PrimitiveType(type_)
 	{
-
 	}
 
 	/**
-		* 
+		*
 		*/
 	IPrimitive3D::~IPrimitive3D()
 	{
-
 	}
 
 	/// <summary>
@@ -66,12 +61,11 @@ namespace CasaEngine
 	{
 		VertexPositionNormalTexture v;
 		v.Position = position;
-		v.Normal   = normal;
+		v.Normal = normal;
 		v.TexCoords = UV_;
 
 		m_Vertices.push_back(v);
 	}
-
 
 	/// <summary>
 	/// Adds a new index to the primitive model. This should only be called
@@ -81,7 +75,6 @@ namespace CasaEngine
 	{
 		m_Indices.push_back(static_cast<short>(index));
 	}
-
 
 	/// <summary>
 	/// Queries the index of the current vertex. This starts at
@@ -95,9 +88,8 @@ namespace CasaEngine
 	/**
 	 * The new Mesh must be deleted
 	 */
-	Mesh *IPrimitive3D::CreateModel()
+	Mesh* IPrimitive3D::CreateModel()
 	{
 		return NEW_AO Mesh(m_Vertices.data(), m_Vertices.size(), m_Indices.data(), m_Indices.size());
 	}
-
 }

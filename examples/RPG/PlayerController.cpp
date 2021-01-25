@@ -6,11 +6,10 @@
 #include "CharacterEnum.h"
 #include "Character.h"
 
-
 /**
  *
  */
-PlayerController::PlayerController(Hero* pHero_, PlayerIndex index_):
+PlayerController::PlayerController(Hero* pHero_, PlayerIndex index_) :
 	IController(pHero_)
 {
 	m_PlayerIndex = index_;
@@ -25,7 +24,6 @@ PlayerController::PlayerController(Hero* pHero_, PlayerIndex index_):
  */
 PlayerController::~PlayerController()
 {
-
 }
 
 /**
@@ -35,7 +33,7 @@ void PlayerController::Initialize()
 {
 	auto player_state_idle = NEW_AO PlayerStateIdle();
 	auto player_state_attack = NEW_AO PlayerStateAttack();
-	
+
 	AddState(static_cast<int>(IDLE), player_state_idle);
 	// 	AddState((int)PlayerControllerState::MOVING, new PlayerRunState());
 	AddState(static_cast<int>(ATTACK_1), player_state_attack);
@@ -97,7 +95,7 @@ orientation PlayerController::GetDirectionFromInput(Vector2F& direction_)
 {
 	direction_ = Vector2F::Zero();
 
-	if (Game::Instance().GetInput().IsKeyDown(sf::Keyboard::Z) == true 
+	if (Game::Instance().GetInput().IsKeyDown(sf::Keyboard::Z) == true
 		|| Game::Instance().GetInput().GetJoystickLeftStickY(0) > Character::Deadzone)
 	{
 		direction_.y = -1.0f;
@@ -118,7 +116,7 @@ orientation PlayerController::GetDirectionFromInput(Vector2F& direction_)
 	{
 		direction_.x = -1.0f;
 	}
-	
+
 	direction_.Normalize();
 
 	Vector2F vec = direction_;

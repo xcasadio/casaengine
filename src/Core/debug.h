@@ -20,7 +20,6 @@ extern "C" void NSLog(CFStringRef _format, ...);
 
 namespace CasaEngine
 {
-
 #if CA_COMPILER_CLANG_ANALYZER
 	inline __attribute__((analyzer_noreturn)) void debugBreak();
 #endif // CA_COMPILER_CLANG_ANALYZER
@@ -58,7 +57,6 @@ namespace CasaEngine
 		fflush(stdout);
 #endif // CA_PLATFORM_WINDOWS
 	}
-
 }
 
 #endif

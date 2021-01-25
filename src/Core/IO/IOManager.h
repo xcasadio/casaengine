@@ -13,7 +13,6 @@
 
 #endif
 
-
 namespace CasaEngine
 {
 	/**

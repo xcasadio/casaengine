@@ -14,16 +14,16 @@ namespace CasaEngine
 	//TODO : when the container is deleted : remove from the physics world ?
 
 	/**
-	 * 
+	 *
 	 */
 	class CA_EXPORT BulletRigidBodyContainer :
 		public IRigidBodyContainer
 	{
 	public:
-		BulletRigidBodyContainer(btRigidBody *pRB_);
+		BulletRigidBodyContainer(btRigidBody* pRB_);
 		~BulletRigidBodyContainer();
 
-		btRigidBody *GetRigidBody() const;
+		btRigidBody* GetRigidBody() const;
 
 #if defined(CA_DEBUG)
 
@@ -44,27 +44,26 @@ namespace CasaEngine
 		void setRotation(const Quaternion& rot) override;
 
 	private:
-		btRigidBody *m_pRigidBody;
+		btRigidBody* m_pRigidBody;
 	};
 
 	//////////////////////////////////////////////////////////////////////////
 
 	/**
-	 * 
+	 *
 	 */
 	class CA_EXPORT BulletCollisionObjectContainer :
 		public ICollisionObjectContainer
 	{
 	public:
-		BulletCollisionObjectContainer(btCollisionObject *pObj_);
+		BulletCollisionObjectContainer(btCollisionObject* pObj_);
 		~BulletCollisionObjectContainer();
 
-		btCollisionObject * GetCollisionObject() const;
+		btCollisionObject* GetCollisionObject() const;
 
 	private:
-		btCollisionObject *m_pCollisionObject;
+		btCollisionObject* m_pCollisionObject;
 	};
-
 }
 
 #endif // BULLETOBJECTSCONTAINER_H_

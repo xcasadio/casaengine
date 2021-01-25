@@ -15,7 +15,6 @@ namespace CasaEngine
 
 	IShape::~IShape()
 	{
-
 	}
 
 	ShapeType IShape::Type() const

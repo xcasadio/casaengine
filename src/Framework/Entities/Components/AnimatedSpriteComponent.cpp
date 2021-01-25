@@ -101,7 +101,7 @@ namespace CasaEngine
 		// if the animation is already set we do nothing
 		if (m_pCurrentAnim != nullptr
 			/*&& m_pCurrentAnim->ID() == m_AnimationList[index_]->ID()*/
-			&& m_pCurrentAnim->GetName() == m_AnimationList[index_]->GetName())
+			&& m_pCurrentAnim->GetAnimationData()->GetName() == m_AnimationList[index_]->GetAnimationData()->GetName())
 		{
 			return;
 		}
@@ -125,7 +125,7 @@ namespace CasaEngine
 	{
 		for (unsigned int i = 0; i < m_AnimationList.size(); i++)
 		{
-			if (m_AnimationList[i]->GetName() == name_)
+			if (m_AnimationList[i]->GetAnimationData()->GetName() == name_)
 			{
 				SetCurrentAnimation(i);
 				return true;

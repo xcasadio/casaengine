@@ -2,7 +2,6 @@
 
 #include "MediaManager.h"
 
-
 #include "IO/IOManager.h"
 #include "IO/IFile.h"
 
@@ -68,5 +67,4 @@ namespace CasaEngine
 
 		return nullptr;
 	}
-
 }

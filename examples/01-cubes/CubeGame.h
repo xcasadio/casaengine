@@ -7,7 +7,7 @@
 using namespace CasaEngine;
 
 /**
- * 
+ *
  */
 class CubeGame :
 	public Game
@@ -22,7 +22,7 @@ public:
 	virtual void Update(const GameTime& gameTime_);
 
 private:
-	Program *m_pProgram;
+	Program* m_pProgram;
 };
 
 #endif // HELLOWORLDGAME_H_

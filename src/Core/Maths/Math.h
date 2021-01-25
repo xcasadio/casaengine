@@ -26,7 +26,6 @@ namespace CasaEngine
 	constexpr float   MaxFloat = (std::numeric_limits<float>::max)();
 	constexpr float   MinFloat = (std::numeric_limits<float>::min)();
 
-
 	inline float ToRadian(float degree)
 	{
 		return degree * (Pi / 180.0f);
@@ -125,7 +124,7 @@ namespace CasaEngine
 		return integral + 1;
 	}
 
-	//rounds a double up or down depending on whether its 
+	//rounds a double up or down depending on whether its
 	//mantissa is higher or lower than offset
 	inline int RoundUnderOffset(double val, double offset)
 	{
@@ -139,7 +138,7 @@ namespace CasaEngine
 		return integral + 1;
 	}
 
-	//rounds a double up or down depending on whether its 
+	//rounds a double up or down depending on whether its
 	//mantissa is higher or lower than offset
 	inline int RoundUnderOffset(float val, float offset)
 	{
@@ -173,7 +172,6 @@ namespace CasaEngine
 
 		return false;
 	}
-
 
 	/**
 	 * returns true if the value is a NaN
@@ -242,7 +240,6 @@ namespace CasaEngine
 
 		return Retval == Value ? Retval : Retval << 1;
 	}
-
 }
 
 #endif // MATH_H_

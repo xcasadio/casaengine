@@ -612,9 +612,6 @@
     <ClInclude Include="..\..\src\Framework\Animations\Animation2DPlayer.h">
       <Filter>Framework\Animations</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Animations\Animation2DTypes.h">
-      <Filter>Framework\Animations</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Framework\Animations\AnimationEvent.h">
       <Filter>Framework\Animations</Filter>
     </ClInclude>
@@ -977,6 +974,12 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Framework\Sprite\Collision.h">
       <Filter>Framework\Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Framework\Animations\AnimationType.h">
+      <Filter>Framework\Animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Framework\Datas\AnimationData.h">
+      <Filter>Framework\Datas</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1453,6 +1456,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Framework\Sprite\Collision.cpp">
       <Filter>Framework\Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Framework\Datas\AnimationData.cpp">
+      <Filter>Framework\Datas</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -11,7 +11,6 @@
 #include "BulletCollision\BroadphaseCollision\btBroadphaseInterface.h"
 #include "BulletDynamics\ConstraintSolver\btSequentialImpulseConstraintSolver.h"
 
-
 namespace CasaEngine
 {
 	class CA_EXPORT PhysicsEngine
@@ -27,7 +26,6 @@ namespace CasaEngine
 	private:
 		IPhysicsEngine* m_pPhysicsEngine;
 	};
-
 }
 
 #endif

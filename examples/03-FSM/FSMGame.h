@@ -10,7 +10,7 @@
 using namespace CasaEngine;
 
 /**
- * 
+ *
  */
 class FSMGame :
 	public Game
@@ -18,11 +18,11 @@ class FSMGame :
 public:
 	FSMGame();
 	~FSMGame();
-	
+
 	void Initialize() override;
 
-private :
-	BaseEntity* m_pBob, *m_pElsa;
+private:
+	BaseEntity* m_pBob, * m_pElsa;
 };
 
 #endif // FSMGAME_H_

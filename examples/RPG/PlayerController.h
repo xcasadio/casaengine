@@ -18,13 +18,13 @@ class PlayerController :
 	public IController
 {
 public:
-	PlayerController(Hero *pHero, PlayerIndex index_);
+	PlayerController(Hero* pHero, PlayerIndex index_);
 	~PlayerController();
 
 	void Initialize() override;
-	void Update( const GameTime elapsedTime_ ) override;
+	void Update(const GameTime elapsedTime_) override;
 
-	Hero *GetHero() const;
+	Hero* GetHero() const;
 
 	bool IsAttackButtonJustPressed();
 	bool IsAttackButtonPressed();
@@ -33,7 +33,7 @@ public:
 
 private:
 	PlayerIndex m_PlayerIndex;
-	Hero *m_pHero;
+	Hero* m_pHero;
 };
 
 #endif

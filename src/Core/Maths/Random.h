@@ -38,7 +38,6 @@ namespace CasaEngine
 		return RandFloat() - RandFloat();
 	}
 
-
 	//returns a random number with a normal distribution. See method at
 	//http://www.taygeta.com/random/gaussian.html
 	inline float RandGaussian(float mean = 0.0f, float standard_deviation = 1.0)
@@ -69,7 +68,6 @@ namespace CasaEngine
 
 		return mean + y1 * standard_deviation;
 	}
-
 }
 
 #endif // RANDOM_H

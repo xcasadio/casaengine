@@ -51,7 +51,6 @@ namespace CasaEngine
 
 	std::istream& operator >>(std::istream& Stream, Quaternion& Quaternion);
 	std::ostream& operator <<(std::ostream& Stream, const Quaternion& Quaternion);
-
 }
 
 #endif // QUATERNION_H

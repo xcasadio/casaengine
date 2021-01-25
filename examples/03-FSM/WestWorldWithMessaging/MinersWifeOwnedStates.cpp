@@ -28,7 +28,6 @@ WifesGlobalState* WifesGlobalState::Instance()
 	return &instance;
 }
 
-
 void WifesGlobalState::Execute(MinersWifeComponent* wife, const GameTime& elapsedTime_)
 {
 	//1 in 10 chance of needing the bathroom (provided she is not already
@@ -39,8 +38,6 @@ void WifesGlobalState::Execute(MinersWifeComponent* wife, const GameTime& elapse
 		wife->GetFSM()->ChangeState(VisitBathroom::Instance());
 	}
 }
-
-
 
 bool WifesGlobalState::OnMessage(MinersWifeComponent* wife, const Telegram& msg)
 {
@@ -57,7 +54,6 @@ bool WifesGlobalState::OnMessage(MinersWifeComponent* wife, const Telegram& msg)
 	}
 
 	return true;
-
 	}//end switch
 
 	return false;
@@ -72,12 +68,10 @@ DoHouseWork* DoHouseWork::Instance()
 	return &instance;
 }
 
-
 void DoHouseWork::Enter(MinersWifeComponent* wife)
 {
 	LogWife(wife->GetEntity()->GetName(), "Time to do some more housework!");
 }
-
 
 void DoHouseWork::Execute(MinersWifeComponent* wife, const GameTime& elapsedTime_)
 {
@@ -115,12 +109,10 @@ VisitBathroom* VisitBathroom::Instance()
 	return &instance;
 }
 
-
 void VisitBathroom::Enter(MinersWifeComponent* wife)
 {
 	LogWife(wife->GetEntity()->GetName(), "Walkin' to the can. Need to powda mah pretty li'lle nose");
 }
-
 
 void VisitBathroom::Execute(MinersWifeComponent* wife, const GameTime& elapsedTime_)
 {
@@ -134,12 +126,10 @@ void VisitBathroom::Exit(MinersWifeComponent* wife)
 	LogWife(wife->GetEntity()->GetName(), "Leavin' the Jon");
 }
 
-
 bool VisitBathroom::OnMessage(MinersWifeComponent* wife, const Telegram& msg)
 {
 	return false;
 }
-
 
 //------------------------------------------------------------------------CookStew
 
@@ -149,7 +139,6 @@ CookStew* CookStew::Instance()
 
 	return &instance;
 }
-
 
 void CookStew::Enter(MinersWifeComponent* wife)
 {
@@ -170,7 +159,6 @@ void CookStew::Enter(MinersWifeComponent* wife)
 	}
 }
 
-
 void CookStew::Execute(MinersWifeComponent* wife, const GameTime& elapsedTime_)
 {
 	LogWife(wife->GetEntity()->GetName(), "Fussin' over food");
@@ -180,7 +168,6 @@ void CookStew::Exit(MinersWifeComponent* wife)
 {
 	LogWife(wife->GetEntity()->GetName(), "Puttin' the stew on the table");
 }
-
 
 bool CookStew::OnMessage(MinersWifeComponent* wife, const Telegram& msg)
 {
@@ -207,7 +194,6 @@ bool CookStew::OnMessage(MinersWifeComponent* wife, const Telegram& msg)
 	}
 
 	return true;
-
 	}//end switch
 
 	return false;

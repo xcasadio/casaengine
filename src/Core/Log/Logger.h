@@ -9,7 +9,6 @@
 #include "LogVerbose.h"
 #include "Memory\MemoryAllocation.h"
 
-
 namespace CasaEngine
 {
 	class CA_EXPORT ILogger :

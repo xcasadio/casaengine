@@ -76,5 +76,4 @@ namespace CasaEngine
 		m_Resources[newName_] = Resource;
 		Resource->m_Name = newName_;
 	}
-
 }

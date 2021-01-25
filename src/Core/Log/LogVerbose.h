@@ -28,7 +28,7 @@ namespace CasaEngine
 		Error,
 		Fatal,
 		None
-#endif		
+#endif
 	};
 }
 

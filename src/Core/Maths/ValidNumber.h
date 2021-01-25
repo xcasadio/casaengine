@@ -3,7 +3,6 @@
 
 namespace CasaEngine
 {
-
 	//--------------------------------------------------------------------------------
 
 	// http://www.psc.edu/general/software/packages/ieee/ieee.html
@@ -34,8 +33,6 @@ namespace CasaEngine
 		* If E=0 and F is zero and S is 1, then V=-0
 		* If E=0 and F is zero and S is 0, then V=0
 
-
-
 		Double Precision
 		"""""""""""""""""
 
@@ -61,9 +58,9 @@ namespace CasaEngine
 	*/
 
 	//--------------------------------------------------------------------------------
-template<typename DestinationType, typename SourceType>
-inline DestinationType alias_cast(SourceType pPtr);
-	
+	template<typename DestinationType, typename SourceType>
+	inline DestinationType alias_cast(SourceType pPtr);
+
 #define FloatU32(x)						(alias_cast<unsigned int, float>(x))
 #define FloatU32ExpMask				(0xFF << 23)
 #define FloatU32FracMask			((1 << 23) - 1)
@@ -82,7 +79,7 @@ inline DestinationType alias_cast(SourceType pPtr);
 #endif
 #define F64NAN_SAFE						(DoubleU64ExpMask | DoubleU64FracMask)  // This one is not triggering an fp-exception.
 
-//--------------------------------------------------------------------------------
+	//--------------------------------------------------------------------------------
 
 	inline bool NumberValid(const float& x)
 	{
@@ -153,7 +150,6 @@ inline DestinationType alias_cast(SourceType pPtr);
 
 	//--------------------------------------------------------------------------------
 
-
 	inline bool NumberValid(const char /*x*/)
 	{
 		return true; //integers are always valid
@@ -212,7 +208,6 @@ inline DestinationType alias_cast(SourceType pPtr);
 		return *reinterpret_cast<uint32*>(&pPtr);
 	}
 #endif
-	
 }
 
 #endif // VALIDNUMBER_H_

@@ -30,7 +30,7 @@ namespace CasaEngine
 			m_sInstance = nullptr;
 		}
 	}
-	
+
 	LogManager::LogManager()
 	{
 		m_Verbosity = Trace;
@@ -91,5 +91,4 @@ namespace CasaEngine
 	{
 		m_Verbosity = val;
 	}
-
 }

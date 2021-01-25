@@ -1,8 +1,7 @@
-
 #include "Memory/MemoryAllocation.h"
 
 /**
- * 
+ *
  */
 template <class T>
 std::vector<T* >& ObjectPool<T>::get_list()
@@ -15,11 +14,11 @@ std::vector<T* >& ObjectPool<T>::get_list()
  *
  */
 template <class T >
-inline void *ObjectPool<T>::operator new( size_t /*stAllocateBlock*/)
+inline void* ObjectPool<T>::operator new(size_t /*stAllocateBlock*/)
 {
-	#ifdef ___USE_MT___
+#ifdef ___USE_MT___
 	EnterCriticalSection(get_cs());
-	#endif
+#endif
 
 	if (T::get_list().size() <= 0)
 	{
@@ -29,43 +28,42 @@ inline void *ObjectPool<T>::operator new( size_t /*stAllocateBlock*/)
 	T* p = T::get_list().back();
 	T::get_list().pop_back();
 
-	#ifdef ___USE_MT___
+#ifdef ___USE_MT___
 	LeaveCriticalSection(get_cs());
-	#endif
+#endif
 
 	return p;
-}	
+}
 
 /**
  *
  */
 template <class T >
-inline void ObjectPool<T>::operator delete( void *p )
+inline void ObjectPool<T>::operator delete(void* p)
 {
-	#ifdef ___USE_MT___
+#ifdef ___USE_MT___
 	EnterCriticalSection(get_cs());
-	#endif
+#endif
 
 	T::get_list().push_back(static_cast<T*>(p));
 
-	#ifdef ___USE_MT___
+#ifdef ___USE_MT___
 	LeaveCriticalSection(get_cs());
-	#endif
+#endif
 }
-
 
 /**
 	*
 	*/
 template <class T >
 ObjectPool<T>::ObjectPool() {}
-	
+
 /**
 	*
 	*/
 template <class T >
 ObjectPool<T>::~ObjectPool() {}
-	
+
 /**
 	*
 	*/
@@ -76,28 +74,28 @@ inline ObjectPool<T>::CRITICAL_SECTION* get_cs()
 	return &__m_cs;
 }
 #endif
-	
+
 /**
 	*
 	*/
 template <class T >
 void ObjectPool<T>::__op_initialize()
 {
-	#ifdef ___USE_MT___
+#ifdef ___USE_MT___
 	InitializeCriticalSection(get_cs());
-	#endif
+#endif
 	addElement();
 }
-	
+
 /**
 	*
 	*/
 template <class T >
 void ObjectPool<T>::__op_finalize()
 {
-	#ifdef ___USE_MT___
+#ifdef ___USE_MT___
 	DeleteCriticalSection(get_cs());
-	#endif
+#endif
 	destroy();
 }
 
@@ -111,7 +109,7 @@ void ObjectPool<T>::capacity(size_t capacity_)
 
 	if (capacity_ < nbElement)
 	{
-		//destroy 
+		//destroy
 		typename std::vector<T* >::iterator first = T::get_list().begin() + capacity_;
 		typename std::vector<T* >::iterator last = T::get_list().end();
 		while (first != last)
@@ -129,8 +127,6 @@ void ObjectPool<T>::capacity(size_t capacity_)
 		}
 	}
 }
-
-	
 
 /**
 	*

@@ -1,4 +1,3 @@
-
 #ifndef BTDYNAMICSWORLDEXT_H_
 #define BTDYNAMICSWORLDEXT_H_
 
@@ -6,7 +5,6 @@
 
 #include "BulletDynamics\Dynamics\btDynamicsWorld.h"
 #include "BulletDynamics\Dynamics\btDiscreteDynamicsWorld.h"
-
 
 namespace CasaEngine
 {
@@ -20,9 +18,8 @@ namespace CasaEngine
 	public:
 		btDynamicsWorldExt(btDispatcher* dispatcher, btBroadphaseInterface* broadphase, btConstraintSolver* constraintSolver, btCollisionConfiguration* collisionConfiguration);
 
-		void debugDrawObject( const btTransform& worldTransform, const btCollisionShape* shape, const btVector3& color );
+		void debugDrawObject(const btTransform& worldTransform, const btCollisionShape* shape, const btVector3& color);
 	};
-
 }
 
 #endif // BTDYNAMICSWORLDEXT_H_

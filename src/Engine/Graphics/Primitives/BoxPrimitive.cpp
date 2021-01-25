@@ -7,11 +7,10 @@
 #include "Graphics/Renderer/Renderer.h"
 #include "Graphics/Mesh/Mesh.h"
 
-
 namespace CasaEngine
 {
 	/**
-	 * 
+	 *
 	 */
 	BoxPrimitive::BoxPrimitive(float width_, float height_, float length_) :
 		IPrimitive3D(IPrimitive3D::BOX)
@@ -24,10 +23,10 @@ namespace CasaEngine
 
 		//front
 		AddIndex(false);
-		IPrimitive3D::AddVertex((Vector3F::UnitZ() * length_ - Vector3F::UnitY() * height_ - Vector3F::UnitX() * width_) / 2.0f,  Vector3F::UnitZ(), Vector2F::Zero());
-		IPrimitive3D::AddVertex((Vector3F::UnitZ() * length_ - Vector3F::UnitY() * height_ + Vector3F::UnitX() * width_) / 2.0f,  Vector3F::UnitZ(), Vector2F::UnitX());
-		IPrimitive3D::AddVertex((Vector3F::UnitZ() * length_ + Vector3F::UnitY() * height_ - Vector3F::UnitX() * width_) / 2.0f,  Vector3F::UnitZ(), Vector2F::UnitY());
-		IPrimitive3D::AddVertex((Vector3F::UnitZ() * length_ + Vector3F::UnitY() * height_ + Vector3F::UnitX() * width_) / 2.0f,  Vector3F::UnitZ(), Vector2F::One());
+		IPrimitive3D::AddVertex((Vector3F::UnitZ() * length_ - Vector3F::UnitY() * height_ - Vector3F::UnitX() * width_) / 2.0f, Vector3F::UnitZ(), Vector2F::Zero());
+		IPrimitive3D::AddVertex((Vector3F::UnitZ() * length_ - Vector3F::UnitY() * height_ + Vector3F::UnitX() * width_) / 2.0f, Vector3F::UnitZ(), Vector2F::UnitX());
+		IPrimitive3D::AddVertex((Vector3F::UnitZ() * length_ + Vector3F::UnitY() * height_ - Vector3F::UnitX() * width_) / 2.0f, Vector3F::UnitZ(), Vector2F::UnitY());
+		IPrimitive3D::AddVertex((Vector3F::UnitZ() * length_ + Vector3F::UnitY() * height_ + Vector3F::UnitX() * width_) / 2.0f, Vector3F::UnitZ(), Vector2F::One());
 
 		//back
 		AddIndex(true);
@@ -35,48 +34,47 @@ namespace CasaEngine
 		IPrimitive3D::AddVertex((-Vector3F::UnitZ() * length_ - Vector3F::UnitY() * height_ + Vector3F::UnitX() * width_) / 2.0f, -Vector3F::UnitZ(), Vector2F::UnitX());
 		IPrimitive3D::AddVertex((-Vector3F::UnitZ() * length_ + Vector3F::UnitY() * height_ - Vector3F::UnitX() * width_) / 2.0f, -Vector3F::UnitZ(), Vector2F::UnitY());
 		IPrimitive3D::AddVertex((-Vector3F::UnitZ() * length_ + Vector3F::UnitY() * height_ + Vector3F::UnitX() * width_) / 2.0f, -Vector3F::UnitZ(), Vector2F::One());
-		
+
 		//up
 		AddIndex(true);
-		IPrimitive3D::AddVertex((-Vector3F::UnitZ() * length_ + Vector3F::UnitY() * height_ - Vector3F::UnitX() * width_) / 2.0f,  Vector3F::UnitY(), Vector2F::Zero());
-		IPrimitive3D::AddVertex((-Vector3F::UnitZ() * length_ + Vector3F::UnitY() * height_ + Vector3F::UnitX() * width_) / 2.0f,  Vector3F::UnitY(), Vector2F::UnitX());
-		IPrimitive3D::AddVertex(( Vector3F::UnitZ() * length_ + Vector3F::UnitY() * height_ - Vector3F::UnitX() * width_) / 2.0f,  Vector3F::UnitY(), Vector2F::UnitY());
-		IPrimitive3D::AddVertex(( Vector3F::UnitZ() * length_ + Vector3F::UnitY() * height_ + Vector3F::UnitX() * width_) / 2.0f,  Vector3F::UnitY(), Vector2F::One());
+		IPrimitive3D::AddVertex((-Vector3F::UnitZ() * length_ + Vector3F::UnitY() * height_ - Vector3F::UnitX() * width_) / 2.0f, Vector3F::UnitY(), Vector2F::Zero());
+		IPrimitive3D::AddVertex((-Vector3F::UnitZ() * length_ + Vector3F::UnitY() * height_ + Vector3F::UnitX() * width_) / 2.0f, Vector3F::UnitY(), Vector2F::UnitX());
+		IPrimitive3D::AddVertex((Vector3F::UnitZ() * length_ + Vector3F::UnitY() * height_ - Vector3F::UnitX() * width_) / 2.0f, Vector3F::UnitY(), Vector2F::UnitY());
+		IPrimitive3D::AddVertex((Vector3F::UnitZ() * length_ + Vector3F::UnitY() * height_ + Vector3F::UnitX() * width_) / 2.0f, Vector3F::UnitY(), Vector2F::One());
 
 		//bottom
 		AddIndex(false);
 		IPrimitive3D::AddVertex((-Vector3F::UnitZ() * length_ - Vector3F::UnitY() * height_ - Vector3F::UnitX() * width_) / 2.0f, -Vector3F::UnitY(), Vector2F::Zero());
 		IPrimitive3D::AddVertex((-Vector3F::UnitZ() * length_ - Vector3F::UnitY() * height_ + Vector3F::UnitX() * width_) / 2.0f, -Vector3F::UnitY(), Vector2F::UnitX());
-		IPrimitive3D::AddVertex(( Vector3F::UnitZ() * length_ - Vector3F::UnitY() * height_ - Vector3F::UnitX() * width_) / 2.0f, -Vector3F::UnitY(), Vector2F::UnitY());
-		IPrimitive3D::AddVertex(( Vector3F::UnitZ() * length_ - Vector3F::UnitY() * height_ + Vector3F::UnitX() * width_) / 2.0f, -Vector3F::UnitY(), Vector2F::One());
+		IPrimitive3D::AddVertex((Vector3F::UnitZ() * length_ - Vector3F::UnitY() * height_ - Vector3F::UnitX() * width_) / 2.0f, -Vector3F::UnitY(), Vector2F::UnitY());
+		IPrimitive3D::AddVertex((Vector3F::UnitZ() * length_ - Vector3F::UnitY() * height_ + Vector3F::UnitX() * width_) / 2.0f, -Vector3F::UnitY(), Vector2F::One());
 
 		//right
 		AddIndex(true);
-		IPrimitive3D::AddVertex((-Vector3F::UnitZ() * length_ - Vector3F::UnitY() * height_ + Vector3F::UnitX() * width_) / 2.0f,  Vector3F::UnitX(), Vector2F::Zero());
-		IPrimitive3D::AddVertex(( Vector3F::UnitZ() * length_ - Vector3F::UnitY() * height_ + Vector3F::UnitX() * width_) / 2.0f,  Vector3F::UnitX(), Vector2F::UnitX());
-		IPrimitive3D::AddVertex((-Vector3F::UnitZ() * length_ + Vector3F::UnitY() * height_ + Vector3F::UnitX() * width_) / 2.0f,  Vector3F::UnitX(), Vector2F::UnitY());
-		IPrimitive3D::AddVertex(( Vector3F::UnitZ() * length_ + Vector3F::UnitY() * height_ + Vector3F::UnitX() * width_) / 2.0f,  Vector3F::UnitX(), Vector2F::One());
-		
+		IPrimitive3D::AddVertex((-Vector3F::UnitZ() * length_ - Vector3F::UnitY() * height_ + Vector3F::UnitX() * width_) / 2.0f, Vector3F::UnitX(), Vector2F::Zero());
+		IPrimitive3D::AddVertex((Vector3F::UnitZ() * length_ - Vector3F::UnitY() * height_ + Vector3F::UnitX() * width_) / 2.0f, Vector3F::UnitX(), Vector2F::UnitX());
+		IPrimitive3D::AddVertex((-Vector3F::UnitZ() * length_ + Vector3F::UnitY() * height_ + Vector3F::UnitX() * width_) / 2.0f, Vector3F::UnitX(), Vector2F::UnitY());
+		IPrimitive3D::AddVertex((Vector3F::UnitZ() * length_ + Vector3F::UnitY() * height_ + Vector3F::UnitX() * width_) / 2.0f, Vector3F::UnitX(), Vector2F::One());
+
 		//left
 		AddIndex(false);
 		IPrimitive3D::AddVertex((-Vector3F::UnitZ() * length_ - Vector3F::UnitY() * height_ - Vector3F::UnitX() * width_) / 2.0f, -Vector3F::UnitX(), Vector2F::Zero());
 		IPrimitive3D::AddVertex((Vector3F::UnitZ() * length_ - Vector3F::UnitY() * height_ - Vector3F::UnitX() * width_) / 2.0f, -Vector3F::UnitX(), Vector2F::UnitX());
 		IPrimitive3D::AddVertex((-Vector3F::UnitZ() * length_ + Vector3F::UnitY() * height_ - Vector3F::UnitX() * width_) / 2.0f, -Vector3F::UnitX(), Vector2F::UnitY());
 		IPrimitive3D::AddVertex((Vector3F::UnitZ() * length_ + Vector3F::UnitY() * height_ - Vector3F::UnitX() * width_) / 2.0f, -Vector3F::UnitX(), Vector2F::One());
-	
+
 		m_nbPrimitives = 12;
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	BoxPrimitive::~BoxPrimitive()
 	{
-
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	void BoxPrimitive::AddIndex(bool dir_)
 	{
@@ -85,7 +83,7 @@ namespace CasaEngine
 			IPrimitive3D::AddIndex(GetCurrentVertex() + 0);
 			IPrimitive3D::AddIndex(GetCurrentVertex() + 1);
 			IPrimitive3D::AddIndex(GetCurrentVertex() + 2);
-			
+
 			IPrimitive3D::AddIndex(GetCurrentVertex() + 1);
 			IPrimitive3D::AddIndex(GetCurrentVertex() + 3);
 			IPrimitive3D::AddIndex(GetCurrentVertex() + 2);
@@ -95,11 +93,10 @@ namespace CasaEngine
 			IPrimitive3D::AddIndex(GetCurrentVertex() + 0);
 			IPrimitive3D::AddIndex(GetCurrentVertex() + 2);
 			IPrimitive3D::AddIndex(GetCurrentVertex() + 1);
-			
+
 			IPrimitive3D::AddIndex(GetCurrentVertex() + 1);
 			IPrimitive3D::AddIndex(GetCurrentVertex() + 2);
 			IPrimitive3D::AddIndex(GetCurrentVertex() + 3);
 		}
 	}
-
 }

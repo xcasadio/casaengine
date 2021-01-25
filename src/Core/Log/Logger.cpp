@@ -10,6 +10,5 @@ namespace CasaEngine
 {
 	ILogger::~ILogger()
 	{
-
 	}
 }

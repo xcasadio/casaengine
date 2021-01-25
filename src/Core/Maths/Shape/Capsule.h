@@ -8,17 +8,15 @@
 #include "IShape.h"
 #include "Parsers/Xml/tinyxml2.h"
 
-
 namespace CasaEngine
 {
 	class CA_EXPORT Capsule :
 		public IShape, public virtual AllocatedObject<Capsule>
-    {
-    public :
-        Capsule();
+	{
+	public:
+		Capsule();
 		~Capsule();
-    };
+	};
 }
-
 
 #endif // CAPSULE_H

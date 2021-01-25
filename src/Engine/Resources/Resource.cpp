@@ -11,7 +11,6 @@ namespace CasaEngine
 		m_Name(""),
 		m_RefCount(1)
 	{
-
 	}
 
 	IResource::~IResource()
@@ -19,7 +18,7 @@ namespace CasaEngine
 		if (m_Name != "")
 			Game::Instance().GetResourceManager().Remove(m_Name);
 	}
-	
+
 	const std::string& IResource::GetName() const
 	{
 		return m_Name;
@@ -39,5 +38,4 @@ namespace CasaEngine
 
 		return RefCount;
 	}
-
 }

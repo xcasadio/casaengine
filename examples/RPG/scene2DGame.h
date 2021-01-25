@@ -26,7 +26,7 @@ using namespace CasaEngine;
 class Scene2DGame :
 	public Game
 {
-public :
+public:
 
 	Scene2DGame();
 	~Scene2DGame();
@@ -41,24 +41,24 @@ private:
 	void CreateEntities();
 	void CreatePlayer();
 	void LoadAssets();
-	
+
 	void CreateMap(World* pWorld);
 	void CreateAssets(Vector2I tileSize);
 	void CreateEnnemies(World* pWorld);
 	void CreateSwordman(World* pWorld);
 
 private:
-	Texture *m_pGroundTexture;
-	
-	MeshRendererGameComponent *m_pModelRenderer;
-	SpriteRenderer*	m_pSpriteRenderer;
-	Line2DRendererComponent *m_pLine2DRenderer;
-	Line3DRendererComponent *m_pLine3DRenderer;
+	Texture* m_pGroundTexture;
 
-	BaseEntity * m_pEntity;
-	AnimatedSpriteComponent *m_pAnimatedSprite;
-	Camera3DComponent *m_pCamera3D;
-	World *m_pWorld;
+	MeshRendererGameComponent* m_pModelRenderer;
+	SpriteRenderer* m_pSpriteRenderer;
+	Line2DRendererComponent* m_pLine2DRenderer;
+	Line3DRendererComponent* m_pLine3DRenderer;
+
+	BaseEntity* m_pEntity;
+	AnimatedSpriteComponent* m_pAnimatedSprite;
+	Camera3DComponent* m_pCamera3D;
+	World* m_pWorld;
 };
 
 #endif

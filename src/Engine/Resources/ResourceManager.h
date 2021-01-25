@@ -12,15 +12,15 @@ namespace CasaEngine
 	{
 	public:
 		~ResourceManager();
-		
+
 		template <class T> T* Get(const char* pName_) const;
 		void Add(const char* pName, IResource* Resource);
 		void Remove(const std::string& Name);
 		void Clear();
 
-//#ifdef EDITOR
+		//#ifdef EDITOR
 		void Rename(const std::string& newName_, IResource* Resource);
-//#endif // EDITOR
+		//#endif // EDITOR
 
 	private:
 		typedef std::map<std::string, IResource*> TResourcesMap;
@@ -30,4 +30,4 @@ namespace CasaEngine
 #include "ResourceManager.inl"
 }
 
-#endif 
+#endif

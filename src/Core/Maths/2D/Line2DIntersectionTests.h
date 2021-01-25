@@ -16,7 +16,6 @@
 
 namespace CasaEngine
 {
-
 	//----------------------- doWallsObstructLineSegment --------------------------
 	//
 	//  given a line segment defined by the points from and to, iterate through all
@@ -25,8 +24,8 @@ namespace CasaEngine
 	//-----------------------------------------------------------------------------
 	template <class ContWall>
 	bool doWallsObstructLineSegment(Vector2F from,
-	                                Vector2F to,
-	                                const ContWall& walls)
+		Vector2F to,
+		const ContWall& walls)
 	{
 		//test against the walls
 		typename ContWall::const_iterator curWall = walls.cbegin();
@@ -43,7 +42,6 @@ namespace CasaEngine
 		return false;
 	}
 
-
 	//----------------------- doWallsObstructCylinderSides -------------------------
 	//
 	//  similar to above except this version checks to see if the sides described
@@ -53,9 +51,9 @@ namespace CasaEngine
 	//-----------------------------------------------------------------------------
 	template <class ContWall>
 	bool doWallsObstructCylinderSides(Vector2F        A,
-	                                  Vector2F        B,
-	                                  float           BoundingRadius,
-	                                  const ContWall& walls)
+		Vector2F        B,
+		float           BoundingRadius,
+		const ContWall& walls)
 	{
 		//the line segments that make up the sides of the cylinder must be created
 		Vector2F toB = B - A;
@@ -93,10 +91,10 @@ namespace CasaEngine
 
 	template <class ContWall>
 	bool FindClosestPointOfIntersectionWithWalls(Vector2F        A,
-	                                             Vector2F        B,
-	                                             float& distance,
-	                                             Vector2F& ip,
-	                                             const ContWall& walls)
+		Vector2F        B,
+		float& distance,
+		Vector2F& ip,
+		const ContWall& walls)
 	{
 		distance = MaxFloat;
 
@@ -142,7 +140,6 @@ namespace CasaEngine
 
 		return false;
 	}
-
 }
 
 #endif // LINE2DINTERSECTIONTESTS_H

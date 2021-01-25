@@ -1,57 +1,55 @@
 #ifndef EXCEPTION_H
 #define EXCEPTION_H
 
-
 #include "CA_Export.h"
 #include <exception>
 #include <string>
 #include "Memory\MemoryAllocation.h"
 
-
 namespace CasaEngine
 {
-    class CA_EXPORT CException : 
+	class CA_EXPORT CException :
 		public std::exception,
 		public AllocatedObject<CException>
-    {
-    public :
-        CException(const std::string& Message = "");
-        virtual ~CException() throw();
-        const char* what() const throw() override;
+	{
+	public:
+		CException(const std::string& Message = "");
+		virtual ~CException() throw();
+		const char* what() const throw() override;
 
-    private :
-        std::string m_Message;
-    };
+	private:
+		std::string m_Message;
+	};
 
-    struct CA_EXPORT CAssertException : public CException
-    {
-        CAssertException(const std::string& File, int Line, const std::string& Message);
-    };
+	struct CA_EXPORT CAssertException : public CException
+	{
+		CAssertException(const std::string& File, int Line, const std::string& Message);
+	};
 
-    struct CA_EXPORT CBadDelete : public CException
-    {
-        CBadDelete(const void* Ptr, const std::string& File, int Line, bool NewArray);
-    };
+	struct CA_EXPORT CBadDelete : public CException
+	{
+		CBadDelete(const void* Ptr, const std::string& File, int Line, bool NewArray);
+	};
 
-    struct CA_EXPORT CLoadingFailed : public CException
-    {
-        CLoadingFailed(const std::string& File, const std::string& Message);
-    };
+	struct CA_EXPORT CLoadingFailed : public CException
+	{
+		CLoadingFailed(const std::string& File, const std::string& Message);
+	};
 
-    struct CA_EXPORT COutOfMemory : public CException
-    {
-        COutOfMemory(const std::string& Message);
-    };
+	struct CA_EXPORT COutOfMemory : public CException
+	{
+		COutOfMemory(const std::string& Message);
+	};
 
-    struct CA_EXPORT CUnsupported : public CException
-    {
-        CUnsupported(const std::string& Feature);
-    };
-	
-    struct CA_EXPORT CBadConversion : public CException
-    {
-        CBadConversion(const std::string& Error);
-    };
+	struct CA_EXPORT CUnsupported : public CException
+	{
+		CUnsupported(const std::string& Feature);
+	};
+
+	struct CA_EXPORT CBadConversion : public CException
+	{
+		CBadConversion(const std::string& Error);
+	};
 
 	struct CA_EXPORT CArgumentNullException : public CException
 	{

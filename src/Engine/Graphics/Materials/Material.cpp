@@ -1,4 +1,3 @@
-
 #include "Base.h"
 
 #include "Material.h"
@@ -7,9 +6,9 @@
 namespace CasaEngine
 {
 	/**
-	 * 
+	 *
 	 */
-	Material::Material()		
+	Material::Material()
 	{
 		m_Texture0Repeat = Vector2F::One();
 		m_pTexture0 = nullptr;
@@ -18,36 +17,35 @@ namespace CasaEngine
 		m_pTexture3 = nullptr;
 	}
 	/**
-	 * 
+	 *
 	 */
-	Material &Material::operator=(const Material &rsh_)
+	Material& Material::operator=(const Material& rsh_)
 	{
 		m_pTexture0 = rsh_.m_pTexture0;
 		m_pTexture1 = rsh_.m_pTexture1;
 		m_pTexture2 = rsh_.m_pTexture2;
 		m_pTexture3 = rsh_.m_pTexture3;
 		m_Texture0Repeat = rsh_.m_Texture0Repeat;
- 		return *this;
+		return *this;
 	}
 
 	/**
-	 * 
+	 *
 	 */
-	Material::Material(const Material &rsh_)
+	Material::Material(const Material& rsh_)
 	{
 		*this = rsh_;
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	Material::~Material()
 	{
-
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	Material* Material::Clone() const
 	{
@@ -56,12 +54,12 @@ namespace CasaEngine
 		return pRes;
 	}
 
-	Texture *Material::Texture0() const
+	Texture* Material::Texture0() const
 	{
 		return m_pTexture0;
 	}
 
-	void Material::Texture0(Texture *pVal_)
+	void Material::Texture0(Texture* pVal_)
 	{
 		m_pTexture0 = pVal_;
 	}
@@ -75,5 +73,4 @@ namespace CasaEngine
 	{
 		m_Texture0Repeat = val_;
 	}
-
 }

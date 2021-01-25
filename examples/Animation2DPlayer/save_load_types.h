@@ -7,10 +7,10 @@
 #include <vector>
 #include <string>
 
-enum ClsnType 
+enum ClsnType
 {
-	None, 
-	Type1Attack, 
+	None,
+	Type1Attack,
 	Type2Normal
 };
 

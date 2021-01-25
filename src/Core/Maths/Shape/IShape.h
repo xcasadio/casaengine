@@ -13,17 +13,17 @@ namespace CasaEngine
 {
 	class CA_EXPORT IShape :
 		public AllocatedObject<IShape>
-    {
-    public :
-        virtual ~IShape();
+	{
+	public:
+		virtual ~IShape();
 		ShapeType Type() const;
 
 	protected:
-        IShape(ShapeType type_);
+		IShape(ShapeType type_);
 
 	private:
 		ShapeType m_ShapeType;
-    };
+	};
 }
 
 #endif

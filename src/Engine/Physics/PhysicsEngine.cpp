@@ -12,7 +12,6 @@
 
 #include "Memory\MemoryAllocation.h"
 
-
 namespace CasaEngine
 {
 	PhysicsEngine::PhysicsEngine()
@@ -51,5 +50,4 @@ namespace CasaEngine
 		CA_ASSERT(m_pPhysicsEngine != nullptr, "Call PhysicsEngine::Initialize() before this function");
 		return m_pPhysicsEngine;
 	}
-
 }

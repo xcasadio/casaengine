@@ -12,9 +12,9 @@ namespace CasaEngine
 {
 	class CA_EXPORT Circle :
 		public IShape
-    {
-    public :
-        Circle(float radius_ = 1.0f, Vector3F center_ = Vector3F::Zero());
+	{
+	public:
+		Circle(float radius_ = 1.0f, Vector3F center_ = Vector3F::Zero());
 		~Circle();
 
 		Vector3F Center() const;
@@ -27,6 +27,5 @@ namespace CasaEngine
 		float m_Radius;
 	};
 }
-
 
 #endif // CIRCLE_H_

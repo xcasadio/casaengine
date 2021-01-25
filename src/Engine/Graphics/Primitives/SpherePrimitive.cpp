@@ -1,4 +1,3 @@
-
 #include "Base.h"
 
 #include "SpherePrimitive.h"
@@ -8,12 +7,10 @@
 #include "Graphics/Renderer/Renderer.h"
 #include "Graphics/Mesh/Mesh.h"
 
-
-
 namespace CasaEngine
 {
 	/**
-	 * 
+	 *
 	 */
 	SpherePrimitive::SpherePrimitive(float diameter_, unsigned int tessellation_) :
 		IPrimitive3D(SPHERE)
@@ -48,7 +45,7 @@ namespace CasaEngine
 				float dz = static_cast<float>(sinf(longitude)) * dxz;
 
 				Vector3F normal(dx, dy, dz);
-				AddVertex(normal * radius, normal, Vector2F(static_cast<float>(j) / static_cast<float>(horizontalSegments), static_cast<float>(i) / static_cast<float>(verticalSegments)) );
+				AddVertex(normal * radius, normal, Vector2F(static_cast<float>(j) / static_cast<float>(horizontalSegments), static_cast<float>(i) / static_cast<float>(verticalSegments)));
 			}
 		}
 
@@ -77,11 +74,9 @@ namespace CasaEngine
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	SpherePrimitive::~SpherePrimitive()
 	{
-
 	}
-
 }

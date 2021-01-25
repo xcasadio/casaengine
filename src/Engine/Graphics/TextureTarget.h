@@ -1,4 +1,3 @@
-
 #ifndef _RenderTargetTexture_H_
 #define _RenderTargetTexture_H_
 
@@ -20,14 +19,13 @@ namespace CasaEngine
 		/**
 		 *
 		 */
-		//virtual void Create(const Vector2I& Size, PixelFormat::TPixelFormat Format) = 0;
+		 //virtual void Create(const Vector2I& Size, PixelFormat::TPixelFormat Format) = 0;
 
-		/**
-		 * 
-		 */
-		virtual Texture *GetTexture() = 0;
+		 /**
+		  *
+		  */
+		virtual Texture* GetTexture() = 0;
 	};
-
-} 
+}
 
 #endif //_RenderTargetTexture_H_

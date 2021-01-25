@@ -24,6 +24,6 @@ namespace CasaEngine
 		bool IsImageryCache() const;
 		bool IsRenderingInverted() const;
 	};
-} 
+}
 
 #endif

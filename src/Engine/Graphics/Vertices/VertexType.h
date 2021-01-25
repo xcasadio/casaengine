@@ -22,7 +22,7 @@ namespace CasaEngine
 		static void init();
 		static bgfx::VertexLayout ms_layout;
 	};
-	
+
 	/**
 	 *
 	 */
@@ -42,14 +42,14 @@ namespace CasaEngine
 	struct CA_EXPORT VertexPositionColorTexture :
 		public AllocatedObject<VertexPositionColorTexture>
 	{
-		Vector3F     Position;  ///< Position		
+		Vector3F     Position;  ///< Position
 		Vector2F     TexCoords; ///< Coordonnées de texture
 		unsigned int Color;     ///< ABGR
 
 		static void init();
 		static bgfx::VertexLayout ms_layout;
 	};
-	
+
 	/**
 	 *
 	 */
@@ -63,7 +63,7 @@ namespace CasaEngine
 		static void init();
 		static bgfx::VertexLayout ms_layout;
 	};
-	
+
 	/**
 	 *
 	 */
@@ -71,14 +71,13 @@ namespace CasaEngine
 		public AllocatedObject<VertexPositionColorNormalTexture>
 	{
 		Vector3F     Position;  ///< Position
-		Vector3F     Normal;    ///< Vecteur normal		
+		Vector3F     Normal;    ///< Vecteur normal
 		Vector2F     TexCoords; ///< Coordonnées de texture
 		unsigned int Color;     ///< ABGR
 
 		static void init();
 		static bgfx::VertexLayout ms_layout;
 	};
-
 }
 
 #endif // VERTEXTYPE_H_

@@ -32,7 +32,6 @@ namespace CasaEngine
 	private:
 		std::fstream m_Stream;
 	};
-
 }
 
 #endif // FILE_H

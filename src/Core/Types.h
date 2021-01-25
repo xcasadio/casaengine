@@ -1,4 +1,3 @@
-
 #ifndef TYPES_H_
 #define TYPES_H_
 
@@ -167,7 +166,6 @@ namespace CasaEngine
 #else
 #error No 32 bits integer type for this platform
 #endif
-
 }
 
 #endif // TYPES_H_

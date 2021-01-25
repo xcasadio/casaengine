@@ -1,4 +1,3 @@
-
 template <class T>
 inline CVector3<T> CVector3<T>::Zero()
 {
@@ -65,7 +64,6 @@ inline CVector3<T> CVector3<T>::Backward()
 	return CVector3<T>(0, 0, -1);
 }
 
-
 /////////////////////////////////////////////////////////////
 /// Constructeur par défaut
 ///
@@ -76,13 +74,11 @@ inline CVector3<T> CVector3<T>::Backward()
 ////////////////////////////////////////////////////////////
 template <class T>
 inline CVector3<T>::CVector3(T X, T Y, T Z) :
-x(X),
-y(Y),
-z(Z)
+	x(X),
+	y(Y),
+	z(Z)
 {
-
 }
-
 
 /////////////////////////////////////////////////////////////
 /// Réinitialise le vecteur
@@ -95,9 +91,9 @@ z(Z)
 template <class T>
 inline void CVector3<T>::Set(T X, T Y, T Z)
 {
-    x = X;
-    y = Y;
-    z = Z;
+	x = X;
+	y = Y;
+	z = Z;
 }
 
 template <class T>
@@ -118,12 +114,11 @@ inline T CVector3<T>::getZ() const
 	return z;
 }
 
-
 //returns true if both x and y are zero
 template <class T>
 inline bool CVector3<T>::IsZero()const
 {
-	return LengthSquared() < MinDouble; 
+	return LengthSquared() < MinDouble;
 }
 
 /////////////////////////////////////////////////////////////
@@ -135,9 +130,8 @@ inline bool CVector3<T>::IsZero()const
 template <class T>
 inline T CVector3<T>::Length() const
 {
-    return std::sqrt(static_cast<float>(LengthSquared()));
+	return std::sqrt(static_cast<float>(LengthSquared()));
 }
-
 
 /////////////////////////////////////////////////////////////
 /// Renvoie la norme au carré du vecteur
@@ -148,9 +142,8 @@ inline T CVector3<T>::Length() const
 template <class T>
 inline T CVector3<T>::LengthSquared() const
 {
-    return x * x + y * y + z * z;
+	return x * x + y * y + z * z;
 }
-
 
 /////////////////////////////////////////////////////////////
 /// Normalise le vecteur
@@ -159,14 +152,14 @@ inline T CVector3<T>::LengthSquared() const
 template <class T>
 inline void CVector3<T>::Normalize()
 {
-    T Norm = Length();
+	T Norm = Length();
 
-    if (std::abs(Norm) > std::numeric_limits<T>::epsilon())
-    {
-        x /= Norm;
-        y /= Norm;
-        z /= Norm;
-    }
+	if (std::abs(Norm) > std::numeric_limits<T>::epsilon())
+	{
+		x /= Norm;
+		y /= Norm;
+		z /= Norm;
+	}
 }
 
 template <class T>
@@ -180,19 +173,19 @@ inline CVector3<T> CVector3<T>::GetNormalized()
 //! check for min bounds
 template <class T>
 inline void CVector3<T>::CheckMin(const CVector3<T>& other)
-{ 
-	x = std::min(other.x,x);
-	y = std::min(other.y,y);
-	z = std::min(other.z,z);
+{
+	x = std::min(other.x, x);
+	y = std::min(other.y, y);
+	z = std::min(other.z, z);
 }
 
 //! check for max bounds
 template <class T>
 inline void CVector3<T>::CheckMax(const CVector3<T>& other)
 {
-	x = std::max(other.x,x);
-	y = std::max(other.y,y);
-	z = std::max(other.z,z);
+	x = std::max(other.x, x);
+	y = std::max(other.y, y);
+	z = std::max(other.z, z);
 }
 
 template <class T>
@@ -210,18 +203,18 @@ inline bool CVector3<T>::IsValid() const
 	return true;
 }
 
-template<class F> inline F sqr(const F &op) { return op*op; }
+template<class F> inline F sqr(const F& op) { return op * op; }
 
 template <class T>
-inline void CVector3<T>::SetOrthogonal( const CVector3<T>& v )
+inline void CVector3<T>::SetOrthogonal(const CVector3<T>& v)
 {
-	sqr(T(0.9))*(v|v)-v.x*v.x<0 ? (x=-v.z,y=0,z=v.x) : (x=0,y=v.z,z=-v.y);
+	sqr(T(0.9))* (v | v) - v.x * v.x < 0 ? (x = -v.z, y = 0, z = v.x) : (x = 0, y = v.z, z = -v.y);
 }
 
 template <class T>
 inline CVector3<T> CVector3<T>::GetOrthogonal() const
 {
-	return sqr(T(0.9))*(x*x+y*y+z*z)-x*x<0 ? CVector3<T>(-z,0,x) : CVector3<T>(0,z,-y);
+	return sqr(T(0.9)) * (x * x + y * y + z * z) - x * x < 0 ? CVector3<T>(-z, 0, x) : CVector3<T>(0, z, -y);
 }
 
 /////////////////////////////////////////////////////////////
@@ -233,9 +226,8 @@ inline CVector3<T> CVector3<T>::GetOrthogonal() const
 template <class T>
 inline CVector3<T> CVector3<T>::operator +() const
 {
-    return this;
+	return this;
 }
-
 
 /////////////////////////////////////////////////////////////
 /// Opérateur unaire -
@@ -246,9 +238,8 @@ inline CVector3<T> CVector3<T>::operator +() const
 template <class T>
 inline CVector3<T> CVector3<T>::operator -() const
 {
-    return CVector3<T>(-x, -y, -z);
+	return CVector3<T>(-x, -y, -z);
 }
-
 
 /////////////////////////////////////////////////////////////
 /// Opérateur binaire +
@@ -261,9 +252,8 @@ inline CVector3<T> CVector3<T>::operator -() const
 template <class T>
 inline CVector3<T> CVector3<T>::operator +(const CVector3<T>& v) const
 {
-    return CVector3<T>(x + v.x, y + v.y, z + v.z);
+	return CVector3<T>(x + v.x, y + v.y, z + v.z);
 }
-
 
 /////////////////////////////////////////////////////////////
 /// Opérateur binaire -
@@ -276,7 +266,7 @@ inline CVector3<T> CVector3<T>::operator +(const CVector3<T>& v) const
 template <class T>
 inline CVector3<T> CVector3<T>::operator -(const CVector3<T>& v) const
 {
-    return CVector3<T>(x - v.x, y - v.y, z - v.z);
+	return CVector3<T>(x - v.x, y - v.y, z - v.z);
 }
 
 /////////////////////////////////////////////////////////////
@@ -290,13 +280,12 @@ inline CVector3<T> CVector3<T>::operator -(const CVector3<T>& v) const
 template <class T>
 inline const CVector3<T>& CVector3<T>::operator +=(const CVector3<T>& v)
 {
-    x += v.x;
-    y += v.y;
-    z += v.z;
+	x += v.x;
+	y += v.y;
+	z += v.z;
 
-    return *this;
+	return *this;
 }
-
 
 /////////////////////////////////////////////////////////////
 /// Opérateur -=
@@ -309,13 +298,12 @@ inline const CVector3<T>& CVector3<T>::operator +=(const CVector3<T>& v)
 template <class T>
 inline const CVector3<T>& CVector3<T>::operator -=(const CVector3<T>& v)
 {
-    x -= v.x;
-    y -= v.y;
-    z -= v.z;
+	x -= v.x;
+	y -= v.y;
+	z -= v.z;
 
-    return *this;
+	return *this;
 }
-
 
 /////////////////////////////////////////////////////////////
 /// Opérateur *= avec un scalaire
@@ -328,13 +316,12 @@ inline const CVector3<T>& CVector3<T>::operator -=(const CVector3<T>& v)
 template <class T>
 inline const CVector3<T>& CVector3<T>::operator *=(T t)
 {
-    x *= t;
-    y *= t;
-    z *= t;
+	x *= t;
+	y *= t;
+	z *= t;
 
-    return *this;
+	return *this;
 }
-
 
 /////////////////////////////////////////////////////////////
 /// Opérateur /= avec un scalaire
@@ -347,13 +334,12 @@ inline const CVector3<T>& CVector3<T>::operator *=(T t)
 template <class T>
 inline const CVector3<T>& CVector3<T>::operator /=(T t)
 {
-    x /= t;
-    y /= t;
-    z /= t;
+	x /= t;
+	y /= t;
+	z /= t;
 
-    return *this;
+	return *this;
 }
-
 
 /////////////////////////////////////////////////////////////
 /// Opérateur de comparaison ==
@@ -366,11 +352,10 @@ inline const CVector3<T>& CVector3<T>::operator /=(T t)
 template <class T>
 inline bool CVector3<T>::operator ==(const CVector3<T>& v) const
 {
-    return ((std::abs(x - v.x) <= std::numeric_limits<T>::epsilon()) &&
-            (std::abs(y - v.y) <= std::numeric_limits<T>::epsilon()) &&
-            (std::abs(z - v.z) <= std::numeric_limits<T>::epsilon()));
+	return ((std::abs(x - v.x) <= std::numeric_limits<T>::epsilon()) &&
+		(std::abs(y - v.y) <= std::numeric_limits<T>::epsilon()) &&
+		(std::abs(z - v.z) <= std::numeric_limits<T>::epsilon()));
 }
-
 
 /////////////////////////////////////////////////////////////
 /// Opérateur de comparaison !=
@@ -383,9 +368,8 @@ inline bool CVector3<T>::operator ==(const CVector3<T>& v) const
 template <class T>
 inline bool CVector3<T>::operator !=(const CVector3<T>& v) const
 {
-    return !(*this == v);
+	return !(*this == v);
 }
-
 
 /////////////////////////////////////////////////////////////
 /// Opérateur de cast en T*
@@ -394,9 +378,9 @@ inline bool CVector3<T>::operator !=(const CVector3<T>& v) const
 ///
 ////////////////////////////////////////////////////////////
 template <class T>
-inline CVector3<T>::operator T*()
+inline CVector3<T>::operator T* ()
 {
-    return &x;
+	return &x;
 }
 
 /////////////////////////////////////////////////////////////
@@ -429,7 +413,6 @@ inline CVector3<T> CVector3<T>::Cross(const CVector3<T>& v1, const CVector3<T>& 
 	return CVector3<T>(v1.y * v2.z - v1.z * v2.y, v1.z * v2.x - v1.x * v2.z, v1.x * v2.y - v1.y * v2.x);
 }
 
-
 /////////////////////////////////////////////////////////////
 /// Opérateurs de multiplication avec un scalaire
 ///
@@ -442,9 +425,8 @@ inline CVector3<T> CVector3<T>::Cross(const CVector3<T>& v1, const CVector3<T>& 
 template <class T>
 inline CVector3<T> operator *(const CVector3<T>& v, T t)
 {
-    return CVector3<T>(v.x * t, v.y * t, v.z * t);
+	return CVector3<T>(v.x * t, v.y * t, v.z * t);
 }
-
 
 /////////////////////////////////////////////////////////////
 /// Opérateurs de division par un scalaire
@@ -458,9 +440,8 @@ inline CVector3<T> operator *(const CVector3<T>& v, T t)
 template <class T>
 inline CVector3<T> operator /(const CVector3<T>& v, T t)
 {
-    return CVector3<T>(v.x / t, v.y / t, v.z / t);
+	return CVector3<T>(v.x / t, v.y / t, v.z / t);
 }
-
 
 /////////////////////////////////////////////////////////////
 /// Opérateurs de multiplication avec un scalaire
@@ -474,7 +455,7 @@ inline CVector3<T> operator /(const CVector3<T>& v, T t)
 template <class T>
 inline CVector3<T> operator *(T t, const CVector3<T>& v)
 {
-    return v * t;
+	return v * t;
 }
 
 /////////////////////////////////////////////////////////////
@@ -489,9 +470,8 @@ inline CVector3<T> operator *(T t, const CVector3<T>& v)
 template <class T>
 inline std::istream& operator >>(std::istream& Stream, CVector3<T>& Vector)
 {
-    return Stream >> Vector.x >> Vector.y >> Vector.z;
+	return Stream >> Vector.x >> Vector.y >> Vector.z;
 }
-
 
 /////////////////////////////////////////////////////////////
 /// Surcharge de l'opérateur << entre un flux et un vecteur
@@ -505,5 +485,5 @@ inline std::istream& operator >>(std::istream& Stream, CVector3<T>& Vector)
 template <class T>
 inline std::ostream& operator <<(std::ostream& Stream, const CVector3<T>& Vector)
 {
-    return Stream << Vector.x << " " << Vector.y << " " << Vector.z;
+	return Stream << Vector.x << " " << Vector.y << " " << Vector.z;
 }

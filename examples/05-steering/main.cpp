@@ -3,7 +3,7 @@
 #include <exception>
 
 /**
- * 
+ *
  */
 INT WINAPI WinMain(HINSTANCE Instance, HINSTANCE PrevInst, LPSTR CmdLine, INT NbCmd)
 {
@@ -19,4 +19,3 @@ INT WINAPI WinMain(HINSTANCE Instance, HINSTANCE PrevInst, LPSTR CmdLine, INT Nb
 
 	return EXIT_SUCCESS;
 }
-

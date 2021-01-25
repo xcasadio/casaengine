@@ -7,13 +7,11 @@
 
 namespace CasaEngine
 {
-    class CA_EXPORT CLoggerDebug : public ILogger
-    {
-    private :
-        void Write(TLogVerbosity verbose_, const std::string& Message) override;
-    };
-
+	class CA_EXPORT CLoggerDebug : public ILogger
+	{
+	private:
+		void Write(TLogVerbosity verbose_, const std::string& Message) override;
+	};
 }
-
 
 #endif // LOGGERDEBUG_H

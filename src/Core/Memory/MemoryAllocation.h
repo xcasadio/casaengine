@@ -1,4 +1,3 @@
-
 #ifndef _CASAENGINEMemoryAllocation_h_
 #define _CASAENGINEMemoryAllocation_h_
 
@@ -10,14 +9,14 @@
 template<typename T> \
 struct AllocatorConfig \
 { \
-    typedef A Allocator; \
+	typedef A Allocator; \
 };
 
 #define CA_SET_ALLOCATOR(Class, A) \
 template<> \
 struct AllocatorConfig<Class> \
 { \
-    typedef A Allocator; \
+	typedef A Allocator; \
 };
 */
 
@@ -30,34 +29,32 @@ struct AllocatorConfig<Class> \
 
 namespace CasaEngine
 {
+	// stub classes uses for allocator configuration
+	class STLAllocator {};
+	class BufferAllocator {};
 
-// stub classes uses for allocator configuration
-class STLAllocator {};
-class BufferAllocator {};
-
-// borrowed from Ogre, used to construct arrays
-template<typename T>
-T* constructN(T* basePtr, size_t count)
-{
-	for (size_t i = 0; i < count; ++i)
+	// borrowed from Ogre, used to construct arrays
+	template<typename T>
+	T* constructN(T* basePtr, size_t count)
 	{
-		new ((void*)(basePtr+i)) T();
+		for (size_t i = 0; i < count; ++i)
+		{
+			new ((void*)(basePtr + i)) T();
+		}
+		return basePtr;
 	}
-	return basePtr;
-}
 
-// ogre doesn't do this template but I added it because it works even for types without
-// destructors where I was getting syntax errors with just the macro
-template<typename T>
-void destructN(T* basePtr, size_t count)
-{
-    // iterate in reverse for consistency with delete []
-	for (size_t i = count - 1; i-- > 0;)
+	// ogre doesn't do this template but I added it because it works even for types without
+	// destructors where I was getting syntax errors with just the macro
+	template<typename T>
+	void destructN(T* basePtr, size_t count)
 	{
-		basePtr[i].~T();
-    }
-}
-
+		// iterate in reverse for consistency with delete []
+		for (size_t i = count - 1; i-- > 0;)
+		{
+			basePtr[i].~T();
+		}
+	}
 }
 
 #ifndef CA_CUSTOM_ALLOCATORS_DEBUG

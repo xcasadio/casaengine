@@ -1,4 +1,3 @@
-
 #ifndef SYSTEMPLATFORM_H_
 #define SYSTEMPLATFORM_H_
 
@@ -266,7 +265,6 @@
 #	pragma warning(error:4189) // ENABLE warning C4189: '' : local variable is initialized but not referenced
 #	pragma warning(error:4505) // ENABLE warning C4505: '' : unreferenced local function has been removed
 #endif // CA_CONFIG_ENABLE_MSVC_LEVEL4_WARNINGS && CA_COMPILER_MSVC
-
 
 // shorcut in order to detect if we are on desktop or not
 #if CA_PLATFORM_ANDROID || CA_PLATFORM_IOS

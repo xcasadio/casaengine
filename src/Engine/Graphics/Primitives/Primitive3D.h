@@ -14,12 +14,12 @@
 
 namespace CasaEngine
 {
-    class CA_EXPORT IPrimitive3D :
+	class CA_EXPORT IPrimitive3D :
 		public AllocatedObject<IPrimitive3D>
-    {
-	public :
+	{
+	public:
 		/**
-		 * 
+		 *
 		 */
 		enum Primitive3DType
 		{
@@ -32,10 +32,10 @@ namespace CasaEngine
 			//BEZIER_CURVE
 		};
 
-    public :		     
-        virtual ~IPrimitive3D();
+	public:
+		virtual ~IPrimitive3D();
 
-		Mesh *CreateModel();
+		Mesh* CreateModel();
 
 	protected:
 		IPrimitive3D(Primitive3DType type_);
@@ -65,9 +65,7 @@ namespace CasaEngine
 		Primitive3DType m_PrimitiveType;
 		std::vector<VertexPositionNormalTexture> m_Vertices;
 		std::vector<unsigned short> m_Indices;
-		
-    };
-
+	};
 }
 
 #endif // PRIMITIVE3D_H

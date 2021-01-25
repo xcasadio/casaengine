@@ -316,7 +316,7 @@
     <ClInclude Include="..\..\src\Framework\Animations\Animation.h" />
     <ClInclude Include="..\..\src\Framework\Animations\Animation2D.h" />
     <ClInclude Include="..\..\src\Framework\Animations\Animation2DPlayer.h" />
-    <ClInclude Include="..\..\src\Framework\Animations\Animation2DTypes.h" />
+    <ClInclude Include="..\..\src\Framework\Animations\AnimationType.h" />
     <ClInclude Include="..\..\src\Framework\Animations\AnimationEndEvent.h" />
     <ClInclude Include="..\..\src\Framework\Animations\AnimationEvent.h" />
     <ClInclude Include="..\..\src\Framework\Animations\IAnimationEventListener.h" />
@@ -325,6 +325,7 @@
     <ClInclude Include="..\..\src\Framework\Assets\Assetable.h" />
     <ClInclude Include="..\..\src\Framework\Assets\AssetManager.h" />
     <ClInclude Include="..\..\src\Framework\Datas\Animation2DData.h" />
+    <ClInclude Include="..\..\src\Framework\Datas\AnimationData.h" />
     <ClInclude Include="..\..\src\Framework\Datas\FrameData.h" />
     <ClInclude Include="..\..\src\Framework\Datas\SpriteData.h" />
     <ClInclude Include="..\..\src\Framework\GameDatas\GameDataFactory.h" />
@@ -507,6 +508,7 @@
     <ClCompile Include="..\..\src\Framework\Assets\Assetable.cpp" />
     <ClCompile Include="..\..\src\Framework\Assets\AssetManager.cpp" />
     <ClCompile Include="..\..\src\Framework\Datas\Animation2DData.cpp" />
+    <ClCompile Include="..\..\src\Framework\Datas\AnimationData.cpp" />
     <ClCompile Include="..\..\src\Framework\Datas\FrameData.cpp" />
     <ClCompile Include="..\..\src\Framework\Datas\SpriteData.cpp" />
     <ClCompile Include="..\..\src\Framework\GameDatas\GameDataFactory.cpp" />

@@ -1,4 +1,3 @@
-
 #include "Base.h"
 #include "Maths/Math.h"
 #include "Maths/Vector2.h"
@@ -9,8 +8,7 @@
 
 namespace CasaEngine
 {
-
-	//given a plane and a ray this function determins how far along the ray 
+	//given a plane and a ray this function determins how far along the ray
 	//an interestion occurs. Returns negative if the ray is parallel
 	float Geometry::DistanceToRayPlaneIntersection(Vector2F RayOrigin,
 		Vector2F RayHeading,
@@ -84,10 +82,9 @@ namespace CasaEngine
 		return d < 0.0;
 	}
 
-
 	//------------------------------------------------------------------------
 	//  Given a point P and a circle of radius R centered at C this function
-	//  determines the two points on the circle that intersect with the 
+	//  determines the two points on the circle that intersect with the
 	//  tangents from P to the circle. Returns false if P is within the circle.
 	//
 	//  thanks to Dave Eberly for this one.
@@ -114,10 +111,9 @@ namespace CasaEngine
 		return true;
 	}
 
-
 	//------------------------- DistToLineSegment ----------------------------
 	//
-	//  given a line segment AB and a point P, this function calculates the 
+	//  given a line segment AB and a point P, this function calculates the
 	//  perpendicular distance between them
 	//------------------------------------------------------------------------
 	float Geometry::DistToLineSegment(Vector2F A,
@@ -170,13 +166,12 @@ namespace CasaEngine
 		return (P - Point).LengthSquared();//Vec2DDistanceSq(P,Point);
 	}
 
-
 	//--------------------LineIntersection2D-------------------------
 	//
-	//	Given 2 lines in 2D space AB, CD this returns true if an 
+	//	Given 2 lines in 2D space AB, CD this returns true if an
 	//	intersection occurs.
 	//
-	//----------------------------------------------------------------- 
+	//-----------------------------------------------------------------
 
 	bool Geometry::LineIntersection2D(Vector2F A,
 		Vector2F B,
@@ -209,11 +204,11 @@ namespace CasaEngine
 
 	//--------------------LineIntersection2D-------------------------
 	//
-	//	Given 2 lines in 2D space AB, CD this returns true if an 
+	//	Given 2 lines in 2D space AB, CD this returns true if an
 	//	intersection occurs and sets dist to the distance the intersection
 	//  occurs along AB
 	//
-	//----------------------------------------------------------------- 
+	//-----------------------------------------------------------------
 
 	bool Geometry::LineIntersection2D(Vector2F A,
 		Vector2F B,
@@ -221,12 +216,10 @@ namespace CasaEngine
 		Vector2F D,
 		float& dist)
 	{
-
 		float rTop = (A.y - C.y) * (D.x - C.x) - (A.x - C.x) * (D.y - C.y);
 		float sTop = (A.y - C.y) * (B.x - A.x) - (A.x - C.x) * (B.y - A.y);
 
 		float Bot = (B.x - A.x) * (D.y - C.y) - (B.y - A.y) * (D.x - C.x);
-
 
 		if (Bot == 0)//parallel
 		{
@@ -253,11 +246,11 @@ namespace CasaEngine
 
 	//-------------------- LineIntersection2D-------------------------
 	//
-	//	Given 2 lines in 2D space AB, CD this returns true if an 
+	//	Given 2 lines in 2D space AB, CD this returns true if an
 	//	intersection occurs and sets dist to the distance the intersection
 	//  occurs along AB. Also sets the 2d vector point to the point of
 	//  intersection
-	//----------------------------------------------------------------- 
+	//-----------------------------------------------------------------
 	bool Geometry::LineIntersection2D(Vector2F   A,
 		Vector2F   B,
 		Vector2F   C,
@@ -265,7 +258,6 @@ namespace CasaEngine
 		float& dist,
 		Vector2F& point)
 	{
-
 		float rTop = (A.y - C.y) * (D.x - C.x) - (A.x - C.x) * (D.y - C.y);
 		float rBot = (B.x - A.x) * (D.y - C.y) - (B.y - A.y) * (D.x - C.x);
 
@@ -340,7 +332,6 @@ namespace CasaEngine
 		return false;
 	}
 
-
 	//----------------------------- TwoCirclesOverlapped ---------------------
 	//
 	//  Returns true if the two circles overlap
@@ -403,7 +394,7 @@ namespace CasaEngine
 	//  returns false if no overlap found
 	//
 	// see http://astronomy.swin.edu.au/~pbourke/geometry/2circle/
-	//------------------------------------------------------------------------ 
+	//------------------------------------------------------------------------
 	bool Geometry::TwoCirclesIntersectionPoints(float x1, float y1, float r1,
 		float x2, float y2, float r2,
 		float& p3X, float& p3Y,
@@ -423,10 +414,9 @@ namespace CasaEngine
 		float a = (r1 - r2 + d * d) / (2 * d);
 		//float b = (r2 - r1 + (d * d)) / (2 * d);
 
+		//MAYBE A TEST FOR EXACT OVERLAP?
 
-		//MAYBE A TEST FOR EXACT OVERLAP? 
-
-		//calculate the point P2 which is the center of the line which 
+		//calculate the point P2 which is the center of the line which
 		//connects the intersection points
 		float p2X, p2Y;
 
@@ -438,7 +428,6 @@ namespace CasaEngine
 
 		p3X = p2X - h1 * (y2 - y1) / d;
 		p3Y = p2Y + h1 * (x2 - x1) / d;
-
 
 		//calculate second point
 		float h2 = sqrt(r2 * r2 - a * a);
@@ -476,8 +465,7 @@ namespace CasaEngine
 
 		float CAD = 2 * acos((r1 * r1 + d * d - r2 * r2) / (r1 * d * 2));
 
-
-		//Then we find the segment of each of the circles cut off by the 
+		//Then we find the segment of each of the circles cut off by the
 		//chord CD, by taking the area of the sector of the circle BCD and
 		//subtracting the area of triangle BCD. Similarly we find the area
 		//of the sector ACD and subtract the area of triangle ACD.
@@ -496,7 +484,6 @@ namespace CasaEngine
 	{
 		return Pi * radius * radius;
 	}
-
 
 	//----------------------- PointInCircle ----------------------------------
 	//
@@ -540,7 +527,7 @@ namespace CasaEngine
 	//------------------- GetLineSegmentCircleClosestIntersectionPoint ------------
 	//
 	//  given a line segment AB and a circle position and radius, this function
-	//  determines if there is an intersection and stores the position of the 
+	//  determines if there is an intersection and stores the position of the
 	//  closest intersection in the reference IntersectionPoint
 	//
 	//  returns false if no intersection point is found
@@ -562,8 +549,8 @@ namespace CasaEngine
 		bool ipFound = false;
 
 		//if the local position + the radius is negative then the circle lays behind
-		//point A so there is no intersection possible. If the local x pos minus the 
-		//radius is greater than length A-B then the circle cannot intersect the 
+		//point A so there is no intersection possible. If the local x pos minus the
+		//radius is greater than length A-B then the circle cannot intersect the
 		//line segment
 		if (LocalPos.x + radius >= 0 &&
 			(LocalPos.x - radius) * (LocalPos.x - radius) <= (B - A).LengthSquared())//Vec2DDistanceSq(B, A)) )
@@ -572,9 +559,9 @@ namespace CasaEngine
 			//than its radius then there is a potential intersection.
 			if (fabs(LocalPos.y) < radius)
 			{
-				//now to do a line/circle intersection test. The center of the 
-				//circle is represented by A, B. The intersection points are 
-				//given by the formulae x = A +/-sqrt(r^2-B^2), y=0. We only 
+				//now to do a line/circle intersection test. The center of the
+				//circle is represented by A, B. The intersection points are
+				//given by the formulae x = A +/-sqrt(r^2-B^2), y=0. We only
 				//need to look at the smallest positive value of x.
 				float a = LocalPos.x;
 				float b = LocalPos.y;
@@ -594,5 +581,4 @@ namespace CasaEngine
 
 		return ipFound;
 	}
-
 }

@@ -9,7 +9,6 @@ namespace CasaEngine
 		m_BufferSize(0),
 		m_pBuffer(nullptr)
 	{
-
 	}
 
 	IFile::IFile(const IFile& rsh) :
@@ -104,5 +103,4 @@ namespace CasaEngine
 			return m_Name.substr(Pos + 1, std::string::npos);
 		return "";
 	}
-
 }

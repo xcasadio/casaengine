@@ -20,7 +20,6 @@
 
 namespace CasaEngine
 {
-
 	template <class T>
 	class Smoother :
 		public AllocatedObject<Smoother<T> >
@@ -52,7 +51,7 @@ namespace CasaEngine
 			//overwrite the oldest value with the newest
 			m_History[m_iNextUpdateSlot++] = MostRecentValue;
 
-			//make sure m_iNextUpdateSlot wraps around. 
+			//make sure m_iNextUpdateSlot wraps around.
 			if (m_iNextUpdateSlot == m_History.size()) m_iNextUpdateSlot = 0;
 
 			//now to calculate the average of the history list
@@ -68,7 +67,6 @@ namespace CasaEngine
 			return sum / static_cast<float>(m_History.size());
 		}
 	};
-
 }
 
 #endif

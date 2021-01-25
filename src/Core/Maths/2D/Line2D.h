@@ -45,9 +45,7 @@ namespace CasaEngine
 			m_vN;
 
 		void CalculateNormal();
-
 	};
-
 }
 
 #endif // LINE2D_H

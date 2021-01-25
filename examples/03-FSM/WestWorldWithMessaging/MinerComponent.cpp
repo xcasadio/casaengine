@@ -1,4 +1,3 @@
-
 #include "Entities/BaseEntity.h"
 
 #include "MinerComponent.h"
@@ -13,7 +12,7 @@
 using namespace CasaEngine;
 
 /**
- * 
+ *
  */
 MinerComponent::MinerComponent(BaseEntity* pEntity_) :
 	Component(pEntity_, CUSTOM_COMPONENT + 1),
@@ -30,7 +29,7 @@ MinerComponent::MinerComponent(BaseEntity* pEntity_) :
 }
 
 /**
- * 
+ *
  */
 MinerComponent::~MinerComponent()
 {
@@ -38,23 +37,22 @@ MinerComponent::~MinerComponent()
 }
 
 /**
- * 
+ *
  */
 StateMachine<MinerComponent>* MinerComponent::GetFSM() const
-{ 
-	return m_pStateMachine; 
+{
+	return m_pStateMachine;
 }
 
 /**
- * 
+ *
  */
 void MinerComponent::Initialize()
 {
-	
 }
 
 /**
- * 
+ *
  */
 void MinerComponent::Update(const GameTime& gameTime_)
 {
@@ -70,15 +68,15 @@ void MinerComponent::Update(const GameTime& gameTime_)
 }
 
 /**
- * 
+ *
  */
-bool MinerComponent::HandleMessage( const Telegram& msg )
+bool MinerComponent::HandleMessage(const Telegram& msg)
 {
 	return m_pStateMachine->HandleMessage(msg);
 }
 
 /**
- * 
+ *
  */
 void MinerComponent::AddToGoldCarried(const int val)
 {
@@ -96,7 +94,7 @@ void MinerComponent::AddToWealth(const int val)
 
 bool MinerComponent::Thirsty()const
 {
-	if (m_iThirst >= ThirstLevel){return true;}
+	if (m_iThirst >= ThirstLevel) { return true; }
 
 	return false;
 }
@@ -112,26 +110,22 @@ bool MinerComponent::Fatigued()const
 }
 
 /**
- * 
+ *
  */
-/*void MinerComponent::HandleEvent(const Event* pEvent_)
+ /*void MinerComponent::HandleEvent(const Event* pEvent_)
+ {
+ }*/
+
+ /**
+  *
+  */
+void MinerComponent::Write(std::ostream& os) const
 {
-
-}*/
-
-/**
- * 
- */
-void MinerComponent::Write(std::ostream&  os) const
-{
-
 }
 
 /**
- * 
+ *
  */
-void MinerComponent::Read (std::ifstream& is)
+void MinerComponent::Read(std::ifstream& is)
 {
-
 }
-

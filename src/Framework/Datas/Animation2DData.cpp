@@ -12,7 +12,7 @@ namespace CasaEngine
 	{
 	}
 
-	std::vector<FrameData*> Animation2DData::GetFrames()
+	std::vector<FrameData*>& Animation2DData::GetFrames()
 	{
 		return m_Frames;
 	}

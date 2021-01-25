@@ -27,7 +27,6 @@ EnterMineAndDigForNugget* EnterMineAndDigForNugget::Instance()
 	return &instance;
 }
 
-
 void EnterMineAndDigForNugget::Enter(MinerComponent* pMiner)
 {
 	//if the miner is not already located at the goldmine, he must
@@ -38,7 +37,6 @@ void EnterMineAndDigForNugget::Enter(MinerComponent* pMiner)
 		pMiner->ChangeLocation(goldmine);
 	}
 }
-
 
 void EnterMineAndDigForNugget::Execute(MinerComponent* pMiner, const GameTime& elapsedTime_)
 {
@@ -64,12 +62,10 @@ void EnterMineAndDigForNugget::Execute(MinerComponent* pMiner, const GameTime& e
 	}
 }
 
-
 void EnterMineAndDigForNugget::Exit(MinerComponent* pMiner)
 {
 	Log(pMiner->GetEntity()->GetName(), "Ah'm leavin' the goldmine with mah pockets full o' sweet gold");
 }
-
 
 bool EnterMineAndDigForNugget::OnMessage(MinerComponent* pMiner, const Telegram& msg)
 {
@@ -97,7 +93,6 @@ void VisitBankAndDepositGold::Enter(MinerComponent* pMiner)
 	}
 }
 
-
 void VisitBankAndDepositGold::Execute(MinerComponent* pMiner, const GameTime& elapsedTime_)
 {
 	//deposit the gold
@@ -121,12 +116,10 @@ void VisitBankAndDepositGold::Execute(MinerComponent* pMiner, const GameTime& el
 	}
 }
 
-
 void VisitBankAndDepositGold::Exit(MinerComponent* pMiner)
 {
 	Log(pMiner->GetEntity()->GetName(), "Leavin' the bank");
 }
-
 
 bool VisitBankAndDepositGold::OnMessage(MinerComponent* pMiner, const Telegram& msg)
 {
@@ -179,7 +172,6 @@ void GoHomeAndSleepTilRested::Exit(MinerComponent* pMiner)
 {
 }
 
-
 bool GoHomeAndSleepTilRested::OnMessage(MinerComponent* pMiner, const Telegram& msg)
 {
 	//SetTextColor(BACKGROUND_RED|FOREGROUND_RED|FOREGROUND_GREEN|FOREGROUND_BLUE);
@@ -197,7 +189,6 @@ bool GoHomeAndSleepTilRested::OnMessage(MinerComponent* pMiner, const Telegram& 
 		pMiner->GetFSM()->ChangeState(EatStew::Instance());
 
 		return true;
-
 	}//end switch
 
 	return false; //send message to global message handler
@@ -228,12 +219,10 @@ void QuenchThirst::Execute(MinerComponent* pMiner, const GameTime& elapsedTime_)
 	pMiner->GetFSM()->ChangeState(EnterMineAndDigForNugget::Instance());
 }
 
-
 void QuenchThirst::Exit(MinerComponent* pMiner)
 {
 	Log(pMiner->GetEntity()->GetName(), "Leaving the saloon, feelin' good");
 }
-
 
 bool QuenchThirst::OnMessage(MinerComponent* pMiner, const Telegram& msg)
 {
@@ -249,7 +238,6 @@ EatStew* EatStew::Instance()
 
 	return &instance;
 }
-
 
 void EatStew::Enter(MinerComponent* pMiner)
 {
@@ -268,11 +256,8 @@ void EatStew::Exit(MinerComponent* pMiner)
 	Log(pMiner->GetEntity()->GetName(), "Thankya li'lle lady. Ah better get back to whatever ah wuz doin'");
 }
 
-
 bool EatStew::OnMessage(MinerComponent* pMiner, const Telegram& msg)
 {
 	//send msg to global message handler
 	return false;
 }
-
-

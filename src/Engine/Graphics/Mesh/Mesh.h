@@ -15,50 +15,47 @@
 
 namespace CasaEngine
 {
-    class CA_EXPORT Mesh :
+	class CA_EXPORT Mesh :
 		public IResource
-    {
-    public :
+	{
+	public:
 
-        /**
-         * 
-         */
-        Mesh(const VertexPositionNormalTexture* Vertices, unsigned long VerticesCount, 
+		/**
+		 *
+		 */
+		Mesh(const VertexPositionNormalTexture* Vertices, unsigned long VerticesCount,
 			const unsigned short* Indices = nullptr, unsigned long IndicesCount = 0);
 
 		/**
-		 * 
+		 *
 		 */
 		~Mesh();
 
 		/**
-		 * 
+		 *
 		 */
 		Material* GetMaterial() const;
 
 		/**
-		 * 
+		 *
 		 */
 		void SetMaterial(Material* val);
 
-        /**
-         * 
-         */
-        void Render(bgfx::ProgramHandle handle_, Matrix4 &matWorld_) const;
+		/**
+		 *
+		 */
+		void Render(bgfx::ProgramHandle handle_, Matrix4& matWorld_) const;
 
-    private :
-		static Texture *m_pDefaultTexture; // default texture if no material
+	private:
+		static Texture* m_pDefaultTexture; // default texture if no material
 
 		bgfx::ProgramHandle m_Program;
 		bgfx::UniformHandle m_TextureUniform;
-        bgfx::VertexBufferHandle m_VertexBuffer;
-        bgfx::IndexBufferHandle m_IndexBuffer;
+		bgfx::VertexBufferHandle m_VertexBuffer;
+		bgfx::IndexBufferHandle m_IndexBuffer;
 		bgfx::UniformHandle m_TextureRepitionUniform;
 		Material* m_pMaterial;
-
 	};
-
 }
-
 
 #endif // MESH_H

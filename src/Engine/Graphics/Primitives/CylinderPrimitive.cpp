@@ -7,7 +7,6 @@
 #include "Graphics/Renderer/Renderer.h"
 #include "Graphics/Mesh/Mesh.h"
 
-
 namespace CasaEngine
 {
 	/// <summary>
@@ -24,7 +23,7 @@ namespace CasaEngine
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	CylinderPrimitive::CylinderPrimitive(float diameter_, float height_, unsigned int tessellation_) :
 		IPrimitive3D(CYLINDER)
@@ -49,7 +48,7 @@ namespace CasaEngine
 			AddVertex(normal * radius + Vector3F::Up() * heightDiv2, normal, Vector2F(1.0f, static_cast<float>(i) / static_cast<float>(m_Tessellation)));
 			AddVertex(normal * radius + Vector3F::Down() * heightDiv2, normal, Vector2F(0.0f, static_cast<float>(i) / static_cast<float>(m_Tessellation)));
 
-			AddIndex(i * 2    );
+			AddIndex(i * 2);
 			AddIndex(i * 2 + 1);
 			AddIndex(i * 2 + 2);
 
@@ -99,11 +98,9 @@ namespace CasaEngine
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	CylinderPrimitive::~CylinderPrimitive()
 	{
-
 	}
-
 }

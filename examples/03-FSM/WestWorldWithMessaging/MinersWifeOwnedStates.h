@@ -18,35 +18,33 @@ using namespace CasaEngine;
 
 class MinersWifeComponent;
 
-
 //------------------------------------------------------------------------
 //
 
 //------------------------------------------------------------------------
 class WifesGlobalState : public IState<MinersWifeComponent>
-{  
+{
 private:
-  
-  WifesGlobalState(){}
 
-  //copy ctor and assignment should be private
-  WifesGlobalState(const WifesGlobalState&);
-  WifesGlobalState& operator=(const WifesGlobalState&);
- 
+	WifesGlobalState() {}
+
+	//copy ctor and assignment should be private
+	WifesGlobalState(const WifesGlobalState&);
+	WifesGlobalState& operator=(const WifesGlobalState&);
+
 public:
 
-  //this is a singleton
-  static WifesGlobalState* Instance();
-  
-  virtual void Enter(MinersWifeComponent* wife){}
+	//this is a singleton
+	static WifesGlobalState* Instance();
 
-  virtual void Execute(MinersWifeComponent* wife, const GameTime &elapsedTime_);
+	virtual void Enter(MinersWifeComponent* wife) {}
 
-  virtual void Exit(MinersWifeComponent* wife){}
+	virtual void Execute(MinersWifeComponent* wife, const GameTime& elapsedTime_);
 
-  virtual bool OnMessage(MinersWifeComponent* wife, const Telegram& msg);
+	virtual void Exit(MinersWifeComponent* wife) {}
+
+	virtual bool OnMessage(MinersWifeComponent* wife, const Telegram& msg);
 };
-
 
 //------------------------------------------------------------------------
 //
@@ -56,28 +54,25 @@ class DoHouseWork : public IState<MinersWifeComponent>
 {
 private:
 
-  DoHouseWork(){}
-  
-  //copy ctor and assignment should be private
-  DoHouseWork(const DoHouseWork&);
-  DoHouseWork& operator=(const DoHouseWork&);
+	DoHouseWork() {}
+
+	//copy ctor and assignment should be private
+	DoHouseWork(const DoHouseWork&);
+	DoHouseWork& operator=(const DoHouseWork&);
 
 public:
 
-  //this is a singleton
-  static DoHouseWork* Instance();
-  
-  virtual void Enter(MinersWifeComponent* wife);
+	//this is a singleton
+	static DoHouseWork* Instance();
 
-  virtual void Execute(MinersWifeComponent* wife, const GameTime &elapsedTime_);
+	virtual void Enter(MinersWifeComponent* wife);
 
-  virtual void Exit(MinersWifeComponent* wife);
-  
-  virtual bool OnMessage(MinersWifeComponent* wife, const Telegram& msg);
+	virtual void Execute(MinersWifeComponent* wife, const GameTime& elapsedTime_);
 
+	virtual void Exit(MinersWifeComponent* wife);
+
+	virtual bool OnMessage(MinersWifeComponent* wife, const Telegram& msg);
 };
-
-
 
 //------------------------------------------------------------------------
 //
@@ -86,28 +81,26 @@ public:
 class VisitBathroom : public IState<MinersWifeComponent>
 {
 private:
-  
-  VisitBathroom(){}
 
-  //copy ctor and assignment should be private
-  VisitBathroom(const VisitBathroom&);
-  VisitBathroom& operator=(const VisitBathroom&);
- 
+	VisitBathroom() {}
+
+	//copy ctor and assignment should be private
+	VisitBathroom(const VisitBathroom&);
+	VisitBathroom& operator=(const VisitBathroom&);
+
 public:
 
-  //this is a singleton
-  static VisitBathroom* Instance();
-  
-  virtual void Enter(MinersWifeComponent* wife);
+	//this is a singleton
+	static VisitBathroom* Instance();
 
-  virtual void Execute(MinersWifeComponent* wife, const GameTime &elapsedTime_);
+	virtual void Enter(MinersWifeComponent* wife);
 
-  virtual void Exit(MinersWifeComponent* wife);
+	virtual void Execute(MinersWifeComponent* wife, const GameTime& elapsedTime_);
 
-  virtual bool OnMessage(MinersWifeComponent* wife, const Telegram& msg);
+	virtual void Exit(MinersWifeComponent* wife);
 
+	virtual bool OnMessage(MinersWifeComponent* wife, const Telegram& msg);
 };
-
 
 //------------------------------------------------------------------------
 //
@@ -116,26 +109,25 @@ public:
 class CookStew : public IState<MinersWifeComponent>
 {
 private:
-  
-  CookStew(){}
 
-  //copy ctor and assignment should be private
-  CookStew(const CookStew&);
-  CookStew& operator=(const CookStew&);
- 
+	CookStew() {}
+
+	//copy ctor and assignment should be private
+	CookStew(const CookStew&);
+	CookStew& operator=(const CookStew&);
+
 public:
 
-  //this is a singleton
-  static CookStew* Instance();
-  
-  virtual void Enter(MinersWifeComponent* wife);
+	//this is a singleton
+	static CookStew* Instance();
 
-  virtual void Execute(MinersWifeComponent* wife, const GameTime &elapsedTime_);
+	virtual void Enter(MinersWifeComponent* wife);
 
-  virtual void Exit(MinersWifeComponent* wife);
+	virtual void Execute(MinersWifeComponent* wife, const GameTime& elapsedTime_);
 
-  virtual bool OnMessage(MinersWifeComponent* wife, const Telegram& msg);
+	virtual void Exit(MinersWifeComponent* wife);
+
+	virtual bool OnMessage(MinersWifeComponent* wife, const Telegram& msg);
 };
-
 
 #endif

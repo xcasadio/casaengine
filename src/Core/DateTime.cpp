@@ -10,7 +10,7 @@ namespace CasaEngine
 	static DateTime m_sNow;
 
 	/**
-	 * 
+	 *
 	 */
 	DateTime::DateTime()
 	{
@@ -18,23 +18,22 @@ namespace CasaEngine
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	DateTime::~DateTime()
 	{
-
 	}
 
 	/**
-	 * 
+	 *
 	 */
-	DateTime::DateTime(const DateTime &rsh)
+	DateTime::DateTime(const DateTime& rsh)
 	{
 		*this = rsh;
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	const DateTime& DateTime::operator = (const DateTime& rsh)
 	{
@@ -44,7 +43,7 @@ namespace CasaEngine
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	const DateTime& DateTime::Now()
 	{
@@ -53,7 +52,7 @@ namespace CasaEngine
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	std::string DateTime::GetCurrentDate() const
 	{
@@ -64,9 +63,8 @@ namespace CasaEngine
 		return sTime;
 	}
 
-
 	/**
-	 * 
+	 *
 	 */
 	std::string DateTime::GetCurrentTime() const
 	{
@@ -77,12 +75,11 @@ namespace CasaEngine
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	void DateTime::Update()
 	{
 		m_CurrentTime = time(nullptr);
 		m_pTm = localtime(&m_CurrentTime);
 	}
-
 }

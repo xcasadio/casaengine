@@ -5,7 +5,7 @@
 //  Name:   Path.h
 //
 //  Desc:   class to define, manage, and traverse a path (defined by a series of 2D vectors)
-//          
+//
 //
 //  Author: Mat Buckland 2003 (fup@ai-junkie.com)
 //
@@ -63,7 +63,6 @@ namespace CasaEngine
 		void Set(std::list<Vector2F> new_path);
 		void Set(const Path& path);
 
-
 		void Clear();
 
 		std::list<Vector2F> GetPath() const;
@@ -71,7 +70,6 @@ namespace CasaEngine
 		//renders the path in orange
 		void Render()const;
 	};
-
 }
 
 #endif // PATH_H

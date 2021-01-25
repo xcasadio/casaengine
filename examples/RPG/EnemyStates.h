@@ -21,17 +21,17 @@ enum class EnemyControllerState
 	DEAD = 8,
 };
 
-class EnemyStateIdle : 
+class EnemyStateIdle :
 	public IState<IController>
 {
 public:
 	EnemyStateIdle();
 	~EnemyStateIdle();
 
-	void Enter(IController *pController_) override;
-	void Execute(IController *pController_, const GameTime& elpasedTime_);
-	void Exit(IController *pController_) override;
-	bool OnMessage(IController *pController_, const Telegram& msg) override;
+	void Enter(IController* pController_) override;
+	void Execute(IController* pController_, const GameTime& elpasedTime_);
+	void Exit(IController* pController_) override;
+	bool OnMessage(IController* pController_, const Telegram& msg) override;
 };
 
 class EnemyStateWalking :

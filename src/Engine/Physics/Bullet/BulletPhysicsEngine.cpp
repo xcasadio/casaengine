@@ -16,15 +16,14 @@
 #include "Bullet3Common/b3Logging.h"
 #include "BulletPhysicsWorld.h"
 
-
 namespace CasaEngine
 {
-	void b3CustomPrintf (const char* msg);
-	void b3CustomWarning (const char* msg);
-	void b3CustomError (const char* msg);
-	
+	void b3CustomPrintf(const char* msg);
+	void b3CustomWarning(const char* msg);
+	void b3CustomError(const char* msg);
+
 	/**
-	 * 
+	 *
 	 */
 	BulletPhysicsEngine::BulletPhysicsEngine()
 	{
@@ -36,7 +35,7 @@ namespace CasaEngine
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	BulletPhysicsEngine::~BulletPhysicsEngine()
 	{
@@ -44,17 +43,17 @@ namespace CasaEngine
 		{
 			delete m_pCollisionConfig;
 		}
-		
+
 		if (m_pDispatcher != nullptr)
 		{
 			delete m_pDispatcher;
 		}
-		
+
 		if (m_pOverlappingPairCache != nullptr)
 		{
 			delete m_pOverlappingPairCache;
 		}
-		
+
 		if (m_pConstraintSolver != nullptr)
 		{
 			delete m_pConstraintSolver;
@@ -65,7 +64,7 @@ namespace CasaEngine
 			delete m_pIDebugDraw;
 		}
 	}
-	
+
 	/**
 	 *
 	 */
@@ -90,58 +89,57 @@ namespace CasaEngine
 		//TODO : create function to activate 2D
 		btVoronoiSimplexSolver* simplex = new btVoronoiSimplexSolver();
 		btMinkowskiPenetrationDepthSolver* pdSolver = new btMinkowskiPenetrationDepthSolver();
-		btConvex2dConvex2dAlgorithm::CreateFunc* convexAlgo2d = new btConvex2dConvex2dAlgorithm::CreateFunc(simplex,pdSolver);
-		m_pDispatcher->registerCollisionCreateFunc(CONVEX_2D_SHAPE_PROXYTYPE,CONVEX_2D_SHAPE_PROXYTYPE, convexAlgo2d);
-		m_pDispatcher->registerCollisionCreateFunc(BOX_2D_SHAPE_PROXYTYPE,CONVEX_2D_SHAPE_PROXYTYPE, convexAlgo2d);
-		m_pDispatcher->registerCollisionCreateFunc(CONVEX_2D_SHAPE_PROXYTYPE,BOX_2D_SHAPE_PROXYTYPE, convexAlgo2d);
-		m_pDispatcher->registerCollisionCreateFunc(BOX_2D_SHAPE_PROXYTYPE,BOX_2D_SHAPE_PROXYTYPE, new btBox2dBox2dCollisionAlgorithm::CreateFunc());
+		btConvex2dConvex2dAlgorithm::CreateFunc* convexAlgo2d = new btConvex2dConvex2dAlgorithm::CreateFunc(simplex, pdSolver);
+		m_pDispatcher->registerCollisionCreateFunc(CONVEX_2D_SHAPE_PROXYTYPE, CONVEX_2D_SHAPE_PROXYTYPE, convexAlgo2d);
+		m_pDispatcher->registerCollisionCreateFunc(BOX_2D_SHAPE_PROXYTYPE, CONVEX_2D_SHAPE_PROXYTYPE, convexAlgo2d);
+		m_pDispatcher->registerCollisionCreateFunc(CONVEX_2D_SHAPE_PROXYTYPE, BOX_2D_SHAPE_PROXYTYPE, convexAlgo2d);
+		m_pDispatcher->registerCollisionCreateFunc(BOX_2D_SHAPE_PROXYTYPE, BOX_2D_SHAPE_PROXYTYPE, new btBox2dBox2dCollisionAlgorithm::CreateFunc());
 	}
-	
+
 	/**
 	 *
 	 */
 	IPhysicsWorld* BulletPhysicsEngine::CreateWorld() const
 	{
-		CA_ASSERT(m_pCollisionConfig != nullptr 
+		CA_ASSERT(m_pCollisionConfig != nullptr
 			&& m_pDispatcher != nullptr
 			&& m_pDispatcher != nullptr
-			&& m_pConstraintSolver != nullptr, 
+			&& m_pConstraintSolver != nullptr,
 			"PhysicsEngine::CreateWorld() : Please call Initialize() before");
 
-		BulletPhysicsWorld *pWorld = NEW_AO BulletPhysicsWorld(m_pCollisionConfig, m_pDispatcher, m_pOverlappingPairCache, m_pConstraintSolver);
+		BulletPhysicsWorld* pWorld = NEW_AO BulletPhysicsWorld(m_pCollisionConfig, m_pDispatcher, m_pOverlappingPairCache, m_pConstraintSolver);
 		pWorld->setDebugDraw(m_pIDebugDraw);
 		return pWorld;
 	}
 
-	void BulletPhysicsEngine::SetPhysicsDebugDraw(btIDebugDraw *pDebugDraw_)
+	void BulletPhysicsEngine::SetPhysicsDebugDraw(btIDebugDraw* pDebugDraw_)
 	{
 		m_pIDebugDraw = pDebugDraw_;
 	}
 
 	/**
-	 * 
+	 *
 	 */
-	void b3CustomPrintf (const char* msg)
+	void b3CustomPrintf(const char* msg)
 	{
 		CA_INFO("[BULLET] %s\n", msg);
 	}
 
 	/**
-	 * 
+	 *
 	 */
-	void b3CustomWarning (const char* msg)
+	void b3CustomWarning(const char* msg)
 	{
 		CA_WARN("[BULLET] %s\n", msg);
 	}
 
 	/**
-	 * 
+	 *
 	 */
-	void b3CustomError (const char* msg)
+	void b3CustomError(const char* msg)
 	{
 		CA_ERROR("[BULLET] %s\n", msg);
 	}
-
 }
 
 #endif // USE_BULLET_PHYSICS

@@ -7,7 +7,6 @@
 #include <set>
 #include <string>
 
-
 #include "GenHierarchies.h"
 #include "IO/IFile.h"
 #include "StringUtils.h"
@@ -36,7 +35,7 @@ namespace CasaEngine
 	{
 	public:
 		MediaManager();
-		
+
 		void AddSearchPath(const char* path_);
 		template <class T> void RegisterLoader(ILoader<T>* Loader, const char* Extensions);
 		template <class T> void UnregisterLoader(const std::string& Extensions);

@@ -5,7 +5,7 @@
 namespace CasaEngine
 {
 	/**
-	 * 
+	 *
 	 */
 	Console::Console()
 	{
@@ -13,7 +13,7 @@ namespace CasaEngine
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	Console::~Console()
 	{
@@ -23,19 +23,19 @@ namespace CasaEngine
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	void Console::Initialize()
 	{
-		typedef void (DebugOptions::*T1)(std::string&, bool);
+		typedef void (DebugOptions::* T1)(std::string&, bool);
 
-		RegisterCommand("clear",		Bind(&Console::ClearLog, *this));
-		RegisterCommand("close",		Bind(&Console::VisibilityToggle, *this));
-		RegisterCommand("help",			Bind(&Console::GetCommands, *this));
+		RegisterCommand("clear", Bind(&Console::ClearLog, *this));
+		RegisterCommand("close", Bind(&Console::VisibilityToggle, *this));
+		RegisterCommand("help", Bind(&Console::GetCommands, *this));
 
-		RegisterCommand("exit",			Bind(&Game::Exit, Game::Instance()));
-		RegisterCommand("activate",		Bind(static_cast<T1>(&DebugOptions::Activate), Game::Instance().GetDebugOptions()));
-		RegisterCommand("show",			Bind(static_cast<T1>(&DebugOptions::Show), Game::Instance().GetDebugOptions()));
+		RegisterCommand("exit", Bind(&Game::Exit, Game::Instance()));
+		RegisterCommand("activate", Bind(static_cast<T1>(&DebugOptions::Activate), Game::Instance().GetDebugOptions()));
+		RegisterCommand("show", Bind(static_cast<T1>(&DebugOptions::Show), Game::Instance().GetDebugOptions()));
 
 		// 		Console::Instance().RegisterCommand("vsparam1", Bind(static_cast<T1>(&Shader::SetParameter), m_VertexShader));
 		// 		Console::Instance().RegisterCommand("psparam1", Bind(static_cast<T1>(&Shader::SetParameter), m_VertexShader));
@@ -49,7 +49,7 @@ namespace CasaEngine
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	void Console::ClearLog()
 	{
@@ -60,7 +60,7 @@ namespace CasaEngine
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	void Console::AddLog(const char* fmt, ...)
 	{
@@ -68,7 +68,7 @@ namespace CasaEngine
 		va_list args;
 		va_start(args, fmt);
 		vsnprintf(buf, 1024, fmt, args);
-		buf[1024-1] = 0;
+		buf[1024 - 1] = 0;
 		va_end(args);
 		m_Items.push_back(strdup(buf));
 		//ScrollToBottom = true;
@@ -76,13 +76,13 @@ namespace CasaEngine
 
 	/*
 	static int TextEditCallback(ImGuiTextEditCallbackData* data)
-	{ 
+	{
 		Console* console = (Console*)data->UserData;
-		return 0;//console->TextEditCallback(data); 
+		return 0;//console->TextEditCallback(data);
 	}*/
 
 	/**
-	 * 
+	 *
 	 */
 	void Console::Draw()
 	{
@@ -110,7 +110,7 @@ namespace CasaEngine
 			ImGui::EndPopup();
 		}
 		ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(4,1)); // Tighten spacing
-		
+
 		for (int i = 0; i < m_Items.size(); i++)
 		{
 			const char* item = m_Items[i];
@@ -133,8 +133,8 @@ namespace CasaEngine
 		ImGui::Separator();
 
 		// Command-line
-		if (ImGui::InputText("Input", m_InputBuf, 256, 
-			ImGuiInputTextFlags_EnterReturnsTrue|ImGuiInputTextFlags_CallbackCompletion|ImGuiInputTextFlags_CallbackHistory, 
+		if (ImGui::InputText("Input", m_InputBuf, 256,
+			ImGuiInputTextFlags_EnterReturnsTrue|ImGuiInputTextFlags_CallbackCompletion|ImGuiInputTextFlags_CallbackHistory,
 			TextEditCallback, (void*)this))
 		{
 			char* input_end = m_InputBuf + strlen(m_InputBuf);
@@ -153,126 +153,126 @@ namespace CasaEngine
 	}
 
 	/**
-	 * 
+	 *
 	 */
-/*	int TextEditCallback(ImGuiTextEditCallbackData* data)
-	{
-		//AddLog("cursor: %d, selection: %d-%d", data->CursorPos, data->SelectionStart, data->SelectionEnd);
-		switch (data->EventFlag)
-		{
-		case ImGuiInputTextFlags_CallbackCompletion:
-			{
-				// Example of TEXT COMPLETION
+	 /*	int TextEditCallback(ImGuiTextEditCallbackData* data)
+		 {
+			 //AddLog("cursor: %d, selection: %d-%d", data->CursorPos, data->SelectionStart, data->SelectionEnd);
+			 switch (data->EventFlag)
+			 {
+			 case ImGuiInputTextFlags_CallbackCompletion:
+				 {
+					 // Example of TEXT COMPLETION
 
-				// Locate beginning of current word
-				const char* word_end = data->Buf + data->CursorPos;
-				const char* word_start = word_end;
-				while (word_start > data->Buf)
-				{
-					const char c = word_start[-1];
-					if (c == ' ' || c == '\t' || c == ',' || c == ';')
-						break;
-					word_start--;
-				}
+					 // Locate beginning of current word
+					 const char* word_end = data->Buf + data->CursorPos;
+					 const char* word_start = word_end;
+					 while (word_start > data->Buf)
+					 {
+						 const char c = word_start[-1];
+						 if (c == ' ' || c == '\t' || c == ',' || c == ';')
+							 break;
+						 word_start--;
+					 }
 
-				// Build a list of candidates
-				ImVector<const char*> candidates;
-				for (int i = 0; i < Commands.Size; i++)
-					if (Strnicmp(Commands[i], word_start, (int)(word_end-word_start)) == 0)
-						candidates.push_back(Commands[i]);
+					 // Build a list of candidates
+					 ImVector<const char*> candidates;
+					 for (int i = 0; i < Commands.Size; i++)
+						 if (Strnicmp(Commands[i], word_start, (int)(word_end-word_start)) == 0)
+							 candidates.push_back(Commands[i]);
 
-				if (candidates.Size == 0)
-				{
-					// No match
-					AddLog("No match for \"%.*s\"!\n", (int)(word_end-word_start), word_start);
-				}
-				else if (candidates.Size == 1)
-				{
-					// Single match. Delete the beginning of the word and replace it entirely so we've got nice casing
-					data->DeleteChars((int)(word_start-data->Buf), (int)(word_end-word_start));
-					data->InsertChars(data->CursorPos, candidates[0]);
-					data->InsertChars(data->CursorPos, " ");
-				}
-				else
-				{
-					// Multiple matches. Complete as much as we can, so inputing "C" will complete to "CL" and display "CLEAR" and "CLASSIFY"
-					int match_len = (int)(word_end - word_start);
-					for (;;)
-					{
-						int c = 0;
-						bool all_candidates_matches = true;
-						for (int i = 0; i < candidates.Size && all_candidates_matches; i++)
-							if (i == 0)
-								c = toupper(candidates[i][match_len]);
-							else if (c != toupper(candidates[i][match_len]))
-								all_candidates_matches = false;
-						if (!all_candidates_matches)
-							break;
-						match_len++;
-					}
+					 if (candidates.Size == 0)
+					 {
+						 // No match
+						 AddLog("No match for \"%.*s\"!\n", (int)(word_end-word_start), word_start);
+					 }
+					 else if (candidates.Size == 1)
+					 {
+						 // Single match. Delete the beginning of the word and replace it entirely so we've got nice casing
+						 data->DeleteChars((int)(word_start-data->Buf), (int)(word_end-word_start));
+						 data->InsertChars(data->CursorPos, candidates[0]);
+						 data->InsertChars(data->CursorPos, " ");
+					 }
+					 else
+					 {
+						 // Multiple matches. Complete as much as we can, so inputing "C" will complete to "CL" and display "CLEAR" and "CLASSIFY"
+						 int match_len = (int)(word_end - word_start);
+						 for (;;)
+						 {
+							 int c = 0;
+							 bool all_candidates_matches = true;
+							 for (int i = 0; i < candidates.Size && all_candidates_matches; i++)
+								 if (i == 0)
+									 c = toupper(candidates[i][match_len]);
+								 else if (c != toupper(candidates[i][match_len]))
+									 all_candidates_matches = false;
+							 if (!all_candidates_matches)
+								 break;
+							 match_len++;
+						 }
 
-					if (match_len > 0)
-					{
-						data->DeleteChars((int)(word_start - data->Buf), (int)(word_end-word_start));
-						data->InsertChars(data->CursorPos, candidates[0], candidates[0] + match_len);
-					}
+						 if (match_len > 0)
+						 {
+							 data->DeleteChars((int)(word_start - data->Buf), (int)(word_end-word_start));
+							 data->InsertChars(data->CursorPos, candidates[0], candidates[0] + match_len);
+						 }
 
-					// List matches
-					AddLog("Possible matches:\n");
-					for (int i = 0; i < candidates.Size; i++)
-						AddLog("- %s\n", candidates[i]);
-				}
+						 // List matches
+						 AddLog("Possible matches:\n");
+						 for (int i = 0; i < candidates.Size; i++)
+							 AddLog("- %s\n", candidates[i]);
+					 }
 
-				break;
-			}
-		case ImGuiInputTextFlags_CallbackHistory:
-			{
-				// Example of HISTORY
-				const int prev_history_pos = HistoryPos;
-				if (data->EventKey == ImGuiKey_UpArrow)
-				{
-					if (HistoryPos == -1)
-						HistoryPos = History.Size - 1;
-					else if (HistoryPos > 0)
-						HistoryPos--;
-				}
-				else if (data->EventKey == ImGuiKey_DownArrow)
-				{
-					if (HistoryPos != -1)
-						if (++HistoryPos >= History.Size)
-							HistoryPos = -1;
-				}
+					 break;
+				 }
+			 case ImGuiInputTextFlags_CallbackHistory:
+				 {
+					 // Example of HISTORY
+					 const int prev_history_pos = HistoryPos;
+					 if (data->EventKey == ImGuiKey_UpArrow)
+					 {
+						 if (HistoryPos == -1)
+							 HistoryPos = History.Size - 1;
+						 else if (HistoryPos > 0)
+							 HistoryPos--;
+					 }
+					 else if (data->EventKey == ImGuiKey_DownArrow)
+					 {
+						 if (HistoryPos != -1)
+							 if (++HistoryPos >= History.Size)
+								 HistoryPos = -1;
+					 }
 
-				// A better implementation would preserve the data on the current input line along with cursor position.
-				if (prev_history_pos != HistoryPos)
-				{
-					snprintf(data->Buf, data->BufSize, "%s", (HistoryPos >= 0) ? History[HistoryPos] : "");
-					data->BufDirty = true;
-					data->CursorPos = data->SelectionStart = data->SelectionEnd = (int)strlen(data->Buf);
-				}
-			}
-		}
-		return 0;
-	}*/
-	
-	/**
-	 * 
-	 */
+					 // A better implementation would preserve the data on the current input line along with cursor position.
+					 if (prev_history_pos != HistoryPos)
+					 {
+						 snprintf(data->Buf, data->BufSize, "%s", (HistoryPos >= 0) ? History[HistoryPos] : "");
+						 data->BufDirty = true;
+						 data->CursorPos = data->SelectionStart = data->SelectionEnd = (int)strlen(data->Buf);
+					 }
+				 }
+			 }
+			 return 0;
+		 }*/
+
+		 /**
+		  *
+		  */
 	void Console::VisibilityToggle()
 	{
 		m_IsVisible = !m_IsVisible;
 	}
 
 	/**
-	 * 
+	 *
 	 */
-	void Console::RegisterCommand(const char *pName, const Functor& function_)
+	void Console::RegisterCommand(const char* pName, const Functor& function_)
 	{
 		m_Commands[std::string(pName)] = function_;
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	std::string Console::GetCommands() const
 	{
@@ -284,9 +284,9 @@ namespace CasaEngine
 	}
 
 	/**
-	 * 
+	 *
 	 */
-	void Console::ExecCommand(const char *pCommand_)
+	void Console::ExecCommand(const char* pCommand_)
 	{
 		std::string Command;
 		std::istringstream iss(pCommand_);
@@ -308,5 +308,4 @@ namespace CasaEngine
 			//m_Look->Error("Unknown command '" + Command + "'");
 		}
 	}
-
 }

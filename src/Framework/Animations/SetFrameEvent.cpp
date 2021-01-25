@@ -76,8 +76,7 @@ namespace CasaEngine
 		}
 		else
 		{
-			CA_ERROR("SetFrameEvent.Activate() : Animation(%d - %s) is not a Animation2D\n",
-				pAnim_->ID(), pAnim_->GetName().c_str());
+			CA_ERROR("SetFrameEvent.Activate() : Animation(%s) is not a Animation2D\n", pAnim_->GetAnimationData()->GetName().c_str());
 		}
 	}
 

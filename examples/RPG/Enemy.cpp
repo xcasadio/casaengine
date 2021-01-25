@@ -5,7 +5,7 @@
 #include "EnemyController.h"
 
 /**
- * 
+ *
  */
 Enemy::Enemy(BaseEntity* pEntity) :
 	Character(pEntity)
@@ -13,11 +13,10 @@ Enemy::Enemy(BaseEntity* pEntity) :
 }
 
 /**
- * 
+ *
  */
 Enemy::~Enemy()
 {
-
 }
 
 void Enemy::Initialize()

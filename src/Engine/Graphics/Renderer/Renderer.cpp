@@ -44,7 +44,7 @@ namespace CasaEngine
 		//bgfx::reset(settings_.WindowWidth, settings_.WindowHeight, BGFX_RESET_NONE);
 		m_debugFlag = BGFX_DEBUG_TEXT;
 		SetDebugFlag();
-		
+
 		bgfx::setViewClear(0
 			, BGFX_CLEAR_COLOR | BGFX_CLEAR_DEPTH | BGFX_CLEAR_STENCIL
 			, CColor::CornflowerBlue.ToRGBA()
@@ -90,12 +90,10 @@ namespace CasaEngine
 #if CA_PLATFORM_MOBILE
 	void IRenderer::Setup()
 	{
-		
 	}
 #else
 	void IRenderer::Setup(sf::Window* pWindow_)
 	{
-		
 	}
 #endif
 
@@ -108,5 +106,4 @@ namespace CasaEngine
 	{
 		//TODO
 	}
-
 }

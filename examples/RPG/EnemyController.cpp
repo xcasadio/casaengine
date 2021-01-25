@@ -5,11 +5,10 @@
 #include "EnemyController.h"
 #include "EnemyStates.h"
 
-
 /**
  *
  */
-EnemyController::EnemyController(Character* pCharacter):
+EnemyController::EnemyController(Character* pCharacter) :
 	IController(pCharacter)
 {
 }
@@ -19,7 +18,6 @@ EnemyController::EnemyController(Character* pCharacter):
  */
 EnemyController::~EnemyController()
 {
-
 }
 
 /**
@@ -30,7 +28,7 @@ void EnemyController::Initialize()
 	auto state_idle = NEW_AO EnemyStateIdle();
 	auto state_walking = NEW_AO EnemyStateWalking();
 	//auto state_attack = NEW_AO PlayerStateAttack();
-	
+
 	AddState(static_cast<int>(EnemyControllerState::IDLE), state_idle);
 	AddState(static_cast<int>(EnemyControllerState::MOVING), state_walking);
 	//AddState((int)EnemyControllerState::ATTACK_1, state_attack);

@@ -1,4 +1,3 @@
-
 #include "Entities/BaseEntity.h"
 
 #include "MinersWifeComponent.h"
@@ -13,13 +12,13 @@
 using namespace CasaEngine;
 
 /**
- * 
+ *
  */
 MinersWifeComponent::MinersWifeComponent(BaseEntity* pEntity_) :
 	Component(pEntity_, CUSTOM_COMPONENT + 2),
-		m_Location(shack),
-		m_bCooking(false),
-		m_Delay(0.0f)
+	m_Location(shack),
+	m_bCooking(false),
+	m_Delay(0.0f)
 {
 	m_pStateMachine = ::new StateMachine<MinersWifeComponent>(this);
 	m_pStateMachine->SetCurrentState(DoHouseWork::Instance());
@@ -27,7 +26,7 @@ MinersWifeComponent::MinersWifeComponent(BaseEntity* pEntity_) :
 }
 
 /**
- * 
+ *
  */
 MinersWifeComponent::~MinersWifeComponent()
 {
@@ -35,23 +34,22 @@ MinersWifeComponent::~MinersWifeComponent()
 }
 
 /**
- * 
+ *
  */
 StateMachine<MinersWifeComponent>* MinersWifeComponent::GetFSM() const
-{ 
-	return m_pStateMachine; 
+{
+	return m_pStateMachine;
 }
 
 /**
- * 
+ *
  */
 void MinersWifeComponent::Initialize()
 {
-	
 }
 
 /**
- * 
+ *
  */
 void MinersWifeComponent::Update(const GameTime& gameTime_)
 {
@@ -66,34 +64,30 @@ void MinersWifeComponent::Update(const GameTime& gameTime_)
 }
 
 /**
- * 
+ *
  */
-bool MinersWifeComponent::HandleMessage( const Telegram& msg )
+bool MinersWifeComponent::HandleMessage(const Telegram& msg)
 {
 	return m_pStateMachine->HandleMessage(msg);
 }
 
 /**
- * 
+ *
  */
-/*void MinersWifeComponent::HandleEvent(const Event* pEvent_)
+ /*void MinersWifeComponent::HandleEvent(const Event* pEvent_)
+ {
+ }*/
+
+ /**
+  *
+  */
+void MinersWifeComponent::Write(std::ostream& os) const
 {
-
-}*/
-
-/**
- * 
- */
-void MinersWifeComponent::Write(std::ostream&  os) const
-{
-
 }
 
 /**
- * 
+ *
  */
-void MinersWifeComponent::Read (std::ifstream& is)
+void MinersWifeComponent::Read(std::ifstream& is)
 {
-
 }
-

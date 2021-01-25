@@ -18,7 +18,7 @@
 Character::Character(BaseEntity* pEntity)
 {
 	AnimatedSpriteComponent* pAnimatedSprite = pEntity->GetComponentMgr()->GetComponent<AnimatedSpriteComponent>();
-	
+
 	CA_ASSERT(pAnimatedSprite != nullptr, "Character() : AnimatedSpriteComponent is null");
 	m_pAnimatedSprite = pAnimatedSprite;
 
@@ -118,7 +118,6 @@ void Character::Update(const GameTime& gameTime_)
  */
 void Character::Draw()
 {
-
 }
 
 /**
@@ -145,7 +144,6 @@ bool Character::HandleMessage(const Telegram& msg)
 {
 	return m_pController->FSM()->HandleMessage(msg);
 }
-
 
 /**
  *
@@ -222,12 +220,12 @@ void Character::Move(Vector2F& dir)
 
 		PhysicalEntity& physicalEntity = m_pEntity->GetPhysicalEntity();
 		// 		physicalEntity.MoveRequest(MOVE, dir_, m_Speed + m_SpeedOffSet);
-		// 
+		//
 		// 		MovementStyle mvtStyle;
 		// 		mvtStyle.Stance = STAND;
 		// 		mvtStyle.Speed = Run;
-		// 
-		// 
+		//
+		//
 		// 		MovementRequest request;
 		// 		request.MoveType = MOVETO;
 		// 		request.Destination = pos + dir_ * 10.0f;

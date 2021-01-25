@@ -7,7 +7,6 @@
 
 namespace CasaEngine
 {
-
 	class CA_EXPORT InvertedAABBox2D :
 		public AllocatedObject<InvertedAABBox2D>
 	{
@@ -25,7 +24,6 @@ namespace CasaEngine
 		//returns true if the bbox described by other intersects with this one
 		bool isOverlappedWith(const InvertedAABBox2D& other)const;
 
-
 		Vector2F TopLeft()const;
 		Vector2F BottomRight()const;
 
@@ -37,7 +35,6 @@ namespace CasaEngine
 
 		void     Render(bool RenderCenter = false) const;
 	};
-
 }
 
 #endif // INVAABBOX2D_H

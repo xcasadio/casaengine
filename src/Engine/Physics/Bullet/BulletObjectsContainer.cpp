@@ -11,9 +11,9 @@
 
 namespace CasaEngine
 {
-	BulletRigidBodyContainer::BulletRigidBodyContainer(btRigidBody *pRB_)
+	BulletRigidBodyContainer::BulletRigidBodyContainer(btRigidBody* pRB_)
 	{
-		CA_ASSERT(pRB_ != nullptr, "BulletRigidBodyContainer : btRigidBody is null" );
+		CA_ASSERT(pRB_ != nullptr, "BulletRigidBodyContainer : btRigidBody is null");
 		m_pRigidBody = pRB_;
 	}
 
@@ -22,7 +22,7 @@ namespace CasaEngine
 		//TODO : remove object from world here ?
 	}
 
-	btRigidBody * BulletRigidBodyContainer::GetRigidBody() const
+	btRigidBody* BulletRigidBodyContainer::GetRigidBody() const
 	{
 		return m_pRigidBody;
 	}
@@ -30,7 +30,7 @@ namespace CasaEngine
 #if defined(CA_DEBUG)
 
 	/**
-	 * 
+	 *
 	 */
 	void BulletRigidBodyContainer::logInfo()
 	{
@@ -39,7 +39,7 @@ namespace CasaEngine
 			btVector3 vec = m_pRigidBody->getWorldTransform().getOrigin();
 			btVector3 linVel = m_pRigidBody->getLinearVelocity();
 			btQuaternion q = m_pRigidBody->getWorldTransform().getRotation();
-			CA_INFO("pos %f %f %f  rot %f %f %f %f linearVelocity %f %f %f\n", 
+			CA_INFO("pos %f %f %f  rot %f %f %f %f linearVelocity %f %f %f\n",
 				vec.x(), vec.y(), vec.z(), q.x(), q.y(), q.z(), q.w(),
 				linVel.x(), linVel.y(), linVel.z());
 		}
@@ -48,7 +48,7 @@ namespace CasaEngine
 #endif // #if defined(CA_DEBUG)
 
 	/**
-	 * 
+	 *
 	 */
 	const Vector3F& BulletRigidBodyContainer::getLinearVelocity() const
 	{
@@ -58,7 +58,7 @@ namespace CasaEngine
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	Vector3F& BulletRigidBodyContainer::getAngularVelocity() const
 	{
@@ -68,7 +68,7 @@ namespace CasaEngine
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	void BulletRigidBodyContainer::setLinearVelocity(const Vector3F& lin_vel)
 	{
@@ -79,7 +79,7 @@ namespace CasaEngine
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	void BulletRigidBodyContainer::setAngularVelocity(const Vector3F& ang_vel)
 	{
@@ -87,9 +87,8 @@ namespace CasaEngine
 		m_pRigidBody->setAngularVelocity(btVector3(ang_vel.x, ang_vel.y, ang_vel.z));
 	}
 
-	
 	/**
-	 * 
+	 *
 	 */
 	Vector3F& BulletRigidBodyContainer::getTranslation() const
 	{
@@ -99,7 +98,7 @@ namespace CasaEngine
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	void BulletRigidBodyContainer::setTranslation(const Vector3F& vec_)
 	{
@@ -108,7 +107,7 @@ namespace CasaEngine
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	Quaternion& BulletRigidBodyContainer::getRotation() const
 	{
@@ -118,7 +117,7 @@ namespace CasaEngine
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	void BulletRigidBodyContainer::setRotation(const Quaternion& rot)
 	{
@@ -129,9 +128,9 @@ namespace CasaEngine
 	//////////////////////////////////////////////////////////////////////////
 
 	/**
-	 * 
+	 *
 	 */
-	BulletCollisionObjectContainer::BulletCollisionObjectContainer(btCollisionObject *pObj_)
+	BulletCollisionObjectContainer::BulletCollisionObjectContainer(btCollisionObject* pObj_)
 	{
 		CA_ASSERT(pObj_ != nullptr, "BulletCollisionObjectContainer : btCollisionObject is null");
 		m_pCollisionObject = pObj_;
@@ -142,12 +141,10 @@ namespace CasaEngine
 		//TODO : remove object from world here ?
 	}
 
-	btCollisionObject * BulletCollisionObjectContainer::GetCollisionObject() const
+	btCollisionObject* BulletCollisionObjectContainer::GetCollisionObject() const
 	{
 		return m_pCollisionObject;
 	}
-
-
 }
 
 #endif // USE_BULLET_PHYSICS

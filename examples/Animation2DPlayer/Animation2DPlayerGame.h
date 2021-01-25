@@ -26,7 +26,7 @@ using namespace CasaEngine;
 class Animation2DPlayerGame :
 	public Game
 {
-public :
+public:
 
 	Animation2DPlayerGame();
 	~Animation2DPlayerGame();
@@ -46,12 +46,12 @@ private:
 	void DisplayUI();
 
 private:
-	SpriteRenderer*	m_pSpriteRenderer;
+	SpriteRenderer* m_pSpriteRenderer;
 
-	BaseEntity * m_pEntity;
-	AnimatedSpriteComponent *m_pAnimatedSprite;
-	Camera3DComponent *m_pCamera3D;
-	World *m_pWorld;
+	BaseEntity* m_pEntity;
+	AnimatedSpriteComponent* m_pAnimatedSprite;
+	Camera3DComponent* m_pCamera3D;
+	World* m_pWorld;
 
 	int m_AnimationIndexSelected, m_LastAnimationIndexSelected;
 	int m_FrameIndexSelected, m_LastFrameIndexSelected;

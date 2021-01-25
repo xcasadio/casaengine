@@ -10,11 +10,10 @@
 #include "WestWorldWithMessaging/MinerComponent.h"
 #include "WestWorldWithMessaging/MinersWifeComponent.h"
 
-
 using namespace CasaEngine;
 
 /**
- * 
+ *
  */
 FSMGame::FSMGame()
 {
@@ -22,14 +21,14 @@ FSMGame::FSMGame()
 }
 
 /**
- * 
+ *
  */
 FSMGame::~FSMGame()
 {
 }
 
 /**
- * 
+ *
  */
 void FSMGame::Initialize()
 {

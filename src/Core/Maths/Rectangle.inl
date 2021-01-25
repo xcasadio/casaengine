@@ -1,7 +1,6 @@
 template <class T>
 CRectangle<T>::CRectangle() : IShape(ShapeType::RECTANGLE)
 {
-
 }
 
 template <class T>

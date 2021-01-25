@@ -10,7 +10,7 @@
 namespace CasaEngine
 {
 	/**
-	 * 
+	 *
 	 */
 	class CA_EXPORT IRigidBodyContainer :
 		public AllocatedObject<IRigidBodyContainer>
@@ -36,7 +36,7 @@ namespace CasaEngine
 	};
 
 	/**
-	 * 
+	 *
 	 */
 	class CA_EXPORT ICollisionObjectContainer :
 		public AllocatedObject<ICollisionObjectContainer>
@@ -44,7 +44,6 @@ namespace CasaEngine
 	public:
 		virtual ~ICollisionObjectContainer() {}
 	};
-
 }
 
 #endif // PHYSICSOBJECTCONTAINER_H_

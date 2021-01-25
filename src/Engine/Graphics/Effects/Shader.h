@@ -25,7 +25,6 @@
 #ifndef SHADER_H
 #define SHADER_H
 
-
 #include "Maths/Vector2.h"
 #include "Maths/Vector3.h"
 #include "Maths/Vector4.h"
@@ -37,46 +36,42 @@
 #include "Graphics/Textures/Texture.h"
 #include <bgfx/bgfx.h>
 
-
 namespace CasaEngine
 {
-    /**
-     * 
-     */
-    class CA_EXPORT Shader :
+	/**
+	 *
+	 */
+	class CA_EXPORT Shader :
 		public AllocatedObject<Shader>
-    {
-    public :
+	{
+	public:
 
 		/**
-		 * 
+		 *
 		 */
-		static Shader *loadShader(const char* name_);
+		static Shader* loadShader(const char* name_);
 
 	public:
 
 		/**
-         * 
-         */
-        Shader(bgfx::ShaderHandle handle_);
-
-		/**
-		 * 
+		 *
 		 */
-        virtual ~Shader();
+		Shader(bgfx::ShaderHandle handle_);
 
 		/**
-		 * 
+		 *
+		 */
+		virtual ~Shader();
+
+		/**
+		 *
 		 */
 		bgfx::ShaderHandle Handle() const;
 
-
-    private :
+	private:
 
 		bgfx::ShaderHandle m_Handle;
 	};
-
 }
-
 
 #endif // SHADER_H

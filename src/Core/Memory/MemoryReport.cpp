@@ -9,10 +9,10 @@
 
 namespace CasaEngine
 {
-	MemoryReport *MemoryReport::m_pInstance(nullptr);
+	MemoryReport* MemoryReport::m_pInstance(nullptr);
 
 	/**
-	 * 
+	 *
 	 */
 	MemoryReport& MemoryReport::Instance()
 	{
@@ -25,7 +25,7 @@ namespace CasaEngine
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	void MemoryReport::Destroy()
 	{
@@ -37,18 +37,17 @@ namespace CasaEngine
 	}
 
 	/**
-	 * 
+	 *
 	 */
-	MemoryReport::MemoryReport() 
+	MemoryReport::MemoryReport()
 #if CA_PLATFORM_DESKTOP
 		: m_File("Memory monitor.log")
 #endif // CA_PLATFORM_DESKTOP
 	{
-		
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	void MemoryReport::Allocate(void* ptr, const size_t size, const char* file, const int line)
 	{
@@ -68,7 +67,7 @@ namespace CasaEngine
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	void MemoryReport::Deallocate(void* ptr)
 	{
@@ -78,7 +77,7 @@ namespace CasaEngine
 		if (It != m_Blocks.end())
 		{
 			oss << "-- 0x" << ptr
-				<< " | " << std::setw(7) << std::setfill(' ') << static_cast<int>(It->second.Size) << " octets" 
+				<< " | " << std::setw(7) << std::setfill(' ') << static_cast<int>(It->second.Size) << " octets"
 				<< " | " << It->second.File << " (" << It->second.Line << ")" << std::endl;
 			m_Blocks.erase(It);
 		}
@@ -91,9 +90,9 @@ namespace CasaEngine
 		m_File << oss.str().c_str();
 #endif // CA_PLATFORM_DESKTOP
 	}
-	
+
 	/**
-	 * 
+	 *
 	 */
 	MemoryReport::~MemoryReport()
 	{
@@ -101,7 +100,7 @@ namespace CasaEngine
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	void MemoryReport::ReportLeak()
 	{
@@ -113,9 +112,8 @@ namespace CasaEngine
 			oss << "========================================" << std::endl;
 			oss << "   Memory leak tracker " << std::endl;
 			oss << "========================================" << std::endl << std::endl;
-			
+
 			std::size_t TotalSize = 0;
-			
 
 			for (TBlockMap::iterator i = m_Blocks.begin(); i != m_Blocks.end(); ++i)
 			{
@@ -123,8 +121,8 @@ namespace CasaEngine
 
 				// log
 				oss << "-> 0x" << i->first
-					<< " | "   << std::setw(7) << std::setfill(' ') << static_cast<int>(i->second.Size) << " octets"
-					<< " | "   << i->second.File << " (" << i->second.Line << ")" << std::endl;
+					<< " | " << std::setw(7) << std::setfill(' ') << static_cast<int>(i->second.Size) << " octets"
+					<< " | " << i->second.File << " (" << i->second.Line << ")" << std::endl;
 
 				// free memory block
 				//free(i->first);
@@ -132,7 +130,7 @@ namespace CasaEngine
 
 			oss << std::endl << "-- "
 				<< static_cast<int>(m_Blocks.size()) << " blocks not released, "
-				<< static_cast<int>(TotalSize)       << " octets --"
+				<< static_cast<int>(TotalSize) << " octets --"
 				<< std::endl;
 		}
 		else
@@ -145,5 +143,4 @@ namespace CasaEngine
 		m_File << oss.str().c_str();
 #endif // CA_PLATFORM_DESKTOP
 	}
-
 }

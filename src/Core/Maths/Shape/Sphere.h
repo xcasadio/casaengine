@@ -7,20 +7,19 @@
 
 #include "IShape.h"
 
-
 namespace CasaEngine
 {
 	class CA_EXPORT Sphere :
 		public IShape, public virtual AllocatedObject<Sphere>
-    {
-    public :
+	{
+	public:
 		Sphere(Vector3F center_, float radius_);
 		~Sphere();
-		
+
 	private:
 		Vector3F m_Center;
 		float m_Radius;
-    };
+	};
 }
 
 #endif // SPHERE_H

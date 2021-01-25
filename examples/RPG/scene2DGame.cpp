@@ -142,7 +142,6 @@ void Scene2DGame::Draw()
 	Game::Draw();
 }
 
-
 /**
  *
  */
@@ -165,7 +164,6 @@ void Scene2DGame::AddGameComponent()
  */
 void Scene2DGame::LoadAssets()
 {
-
 }
 
 /**
@@ -376,7 +374,7 @@ void Scene2DGame::CreatePlayer()
 	m_pWorld->AddEntity(pEntity);
 }
 
-void Scene2DGame::CreateMap(World *pWorld)
+void Scene2DGame::CreateMap(World* pWorld)
 {
 	auto* pEntity = NEW_AO BaseEntity();
 	pEntity->SetName("tiled map");
@@ -384,7 +382,7 @@ void Scene2DGame::CreateMap(World *pWorld)
 	pTrans3D->SetLocalPosition(Vector3F(0.0f, 0.0f, 1.0f));
 	pTrans3D->SetLocalRotation(0.0f);
 	//pTrans3D->SetLocalScale(Vector3F(48, 48, 1.0));
-	
+
 	auto* pMap = NEW_AO TiledMapComponent(pEntity);
 	pMap->SetMapSize(Vector2I(30, 11));
 	pMap->SetTileSize(Vector2I(48, 48));
@@ -429,11 +427,11 @@ void Scene2DGame::CreateMap(World *pWorld)
 			{
 				auto* tile = new AutoTile(layer, x, y);
 				tile->setTiles(autoTiles);
-				tiles.push_back(tile);				
+				tiles.push_back(tile);
 			}
 			else
 			{
-				tiles.push_back(nullptr);				
+				tiles.push_back(nullptr);
 			}
 		}
 	}
@@ -449,7 +447,6 @@ void Scene2DGame::CreateMap(World *pWorld)
 	pEntity->GetComponentMgr()->AddComponent(pMap);
 	pWorld->AddEntity(pEntity);
 }
-
 
 void Scene2DGame::CreateAssets(Vector2I tileSize)
 {
@@ -509,44 +506,39 @@ void Scene2DGame::CreateEnnemies(World* pWorld)
 		pSprite->SetAssetFileName(ennemi_datas.tile_set.c_str());
 		GetAssetManager().AddAsset(new Asset(name.str(), pSprite));
 	}
-	
+
 	auto pAnimatedComponent = NEW_AO AnimatedSpriteComponent(pEntity);
 	//load anim
 	for (auto& anim : ennemi_datas.animations)
 	{
-		Animation2D* pAnim = new Animation2D();
-		pAnim->SetType(Animation2DType::Loop);
+		auto pAnim = NEW_AO Animation2DData();
+		pAnim->SetAnimationType(AnimationType::Loop);
 		pAnim->SetName(anim.name);
-		int i = 0;
 		const auto frame_delay = 0.64f;
 
 		for (auto& frame : anim.frames)
 		{
-			SetFrameEvent* pFrameEvent = new SetFrameEvent();
+			auto frameData = NEW_AO FrameData(); 
 			std::ostringstream spriteName;
 			spriteName << "octopus_" << frame.sprite_id;
-			pFrameEvent->FrameID(spriteName.str().c_str());
-			pFrameEvent->Time(frame_delay * i);
-			pAnim->AddEvent(pFrameEvent);
-			i++;
+			frameData->SetSpriteId(spriteName.str());
+			frameData->SetDuration(frame_delay);
+			pAnim->AddFrame(frameData);
 		}
-		auto* end_event = new AnimationEndEvent();
-		end_event->Time(anim.frames.size() * frame_delay);
-		pAnim->AddEvent(end_event);
 
 		GetAssetManager().AddAsset(new Asset(pAnim->GetName(), pAnim));
-		pAnimatedComponent->AddAnimation(pAnim->Copy());
+		pAnimatedComponent->AddAnimation(NEW_AO Animation2D(*pAnim));
 	}
-	
+
 	pEntity->GetComponentMgr()->AddComponent(pAnimatedComponent);
 	//pAnimatedComponent->SetCurrentAnimation(0);
 
 	auto scriptComponent = new ScriptComponent(pEntity);
 	auto* pScriptCharacter = new ScriptCharacter(pEntity, new Enemy(pEntity));
-	scriptComponent->SetScriptObject(pScriptCharacter);	
+	scriptComponent->SetScriptObject(pScriptCharacter);
 	pEntity->GetComponentMgr()->AddComponent(scriptComponent);
 
-	pWorld->AddEntity(pEntity);	
+	pWorld->AddEntity(pEntity);
 }
 
 void Scene2DGame::CreateSwordman(World* pWorld)
@@ -567,7 +559,7 @@ void Scene2DGame::CreateSwordman(World* pWorld)
 	cereal::JSONInputArchive ar(is);
 	_joueur player_datas;
 	ar(cereal::make_nvp("swordman", player_datas));
-	
+
 	//create sprite
 	//auto texture = Texture::loadTexture(player_datas.tile_set.c_str());
 	//load sprite
@@ -589,28 +581,23 @@ void Scene2DGame::CreateSwordman(World* pWorld)
 	auto pAnimatedComponent = NEW_AO AnimatedSpriteComponent(pPlayerEntity);
 	for (auto& anim : player_datas.animations)
 	{
-		Animation2D* pAnim = new Animation2D();
-		pAnim->SetType(Animation2DType::Loop);
+		auto pAnim = NEW_AO Animation2DData();
+		pAnim->SetAnimationType(AnimationType::Loop);
 		pAnim->SetName(anim.name);
-		int i = 0;
 		const auto frame_delay = 0.64f;
 
 		for (auto& frame : anim.frames)
 		{
-			SetFrameEvent* pFrameEvent = new SetFrameEvent();
+			auto frameData = NEW_AO FrameData();
 			std::ostringstream spriteName;
 			spriteName << "player_" << frame.sprite_id;
-			pFrameEvent->FrameID(spriteName.str().c_str());
-			pFrameEvent->Time(frame_delay * i);
-			pAnim->AddEvent(pFrameEvent);
-			i++;
+			frameData->SetSpriteId(spriteName.str());
+			frameData->SetDuration(frame_delay);
+			pAnim->AddFrame(frameData);
 		}
-		auto* end_event = new AnimationEndEvent();
-		end_event->Time(anim.frames.size() * frame_delay);
-		pAnim->AddEvent(end_event);
 
 		GetAssetManager().AddAsset(new Asset(pAnim->GetName(), pAnim));
-		pAnimatedComponent->AddAnimation(pAnim->Copy());
+		pAnimatedComponent->AddAnimation(NEW_AO Animation2D(*pAnim));
 	}
 
 	pPlayerEntity->GetComponentMgr()->AddComponent(pAnimatedComponent);

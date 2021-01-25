@@ -14,39 +14,39 @@
 
 namespace CasaEngine
 {
-    void Split(const std::string& String, std::vector<std::string>& Tokens, const std::string& Delim = " \t\n");
-    unsigned long StringHash(const std::string& String);
-    std::string ToLower(const std::string& Text);
-    std::string ToUpper(const std::string& Text);
+	void Split(const std::string& String, std::vector<std::string>& Tokens, const std::string& Delim = " \t\n");
+	unsigned long StringHash(const std::string& String);
+	std::string ToLower(const std::string& Text);
+	std::string ToUpper(const std::string& Text);
 
-    class CStringBuilder : 
+	class CStringBuilder :
 		public AllocatedObject<CStringBuilder>
-    {
-    public :
-        CStringBuilder();
-        template <typename T> CStringBuilder(const T& Value);
-        template <typename T> CStringBuilder& operator ()(const T& Value);
+	{
+	public:
+		CStringBuilder();
+		template <typename T> CStringBuilder(const T& Value);
+		template <typename T> CStringBuilder& operator ()(const T& Value);
 
-        operator std::string();
+		operator std::string();
 		const char* c_str();
 
-    private :
-        std::ostringstream m_OutStream;
-    };
+	private:
+		std::ostringstream m_OutStream;
+	};
 
-    class CStringExtractor :
+	class CStringExtractor :
 		public AllocatedObject<CStringBuilder>
-    {
-    public :
-        CStringExtractor(const std::string& Text);
-        template <typename T> CStringExtractor& operator ()(T& Value);
-        void ThrowIfEOF();
+	{
+	public:
+		CStringExtractor(const std::string& Text);
+		template <typename T> CStringExtractor& operator ()(T& Value);
+		void ThrowIfEOF();
 
-    private :
-        std::istringstream m_InStream;
-    };
+	private:
+		std::istringstream m_InStream;
+	};
 
-    #include "StringUtils.inl"
+#include "StringUtils.inl"
 }
 
 #endif

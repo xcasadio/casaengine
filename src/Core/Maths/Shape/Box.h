@@ -14,10 +14,10 @@ namespace CasaEngine
 {
 	class CA_EXPORT Box :
 		public IShape, public virtual AllocatedObject<Box>
-    {
-    public :
-        Box(Vector3F size_ = Vector3F::One(), Vector3F center_ = Vector3F::Zero());
-        ~Box();
+	{
+	public:
+		Box(Vector3F size_ = Vector3F::One(), Vector3F center_ = Vector3F::Zero());
+		~Box();
 
 		Vector3F Size() const;
 		void Size(Vector3F val);

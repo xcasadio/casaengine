@@ -1,5 +1,3 @@
-
-
 #ifndef WIN32MACRO_H__
 #define WIN32MACRO_H__
 
@@ -9,7 +7,6 @@
 
 namespace CasaEngine
 {
-
 #if defined(DEBUG) || defined(_DEBUG)
 #define Win32Check(Func) (OnWin32Error((BOOL)(Func), #Func, __FILE__, __LINE__))
 #else
@@ -21,13 +18,12 @@ namespace CasaEngine
 		if (res == false && GetLastError() != 0)
 		{
 			Win32Exception win32Error;
-			CA_ERROR("Win32 function (%s) error (%d) %s : (%d) %s\n", 
-				functionName_, win32Error.ErrorCode(),  win32Error.Description(), Line, file);
+			CA_ERROR("Win32 function (%s) error (%d) %s : (%d) %s\n",
+				functionName_, win32Error.ErrorCode(), win32Error.Description(), Line, file);
 
 			throw win32Error;
 		}
 	}
 }
-	
-#endif // #ifndef WIN32MACRO_H__
 
+#endif // #ifndef WIN32MACRO_H__

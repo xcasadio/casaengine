@@ -12,14 +12,14 @@ namespace CasaEngine
 {
 	class CA_EXPORT Polygon :
 		public IShape, public virtual AllocatedObject<Polygon>
-    {
-    public :
-        Polygon();
+	{
+	public:
+		Polygon();
 		~Polygon();
 
 	private:
 		std::vector<Vector2F> m_PointList;
-    };
+	};
 }
 
 #endif // POLYGON_H

@@ -11,7 +11,6 @@ namespace CasaEngine
 {
 	RenderTarget::RenderTarget()
 	{
-
 	}
 
 	const RenderTarget& RenderTarget::operator=(const RenderTarget& rsh_)

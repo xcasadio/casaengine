@@ -1,7 +1,6 @@
 #ifndef MYAPPLICATION_H
 #define MYAPPLICATION_H
 
-
 #include <Graphics/Effects/Shader.h>
 #include <Graphics/Textures/Texture.h>
 #include "GameTime.h"

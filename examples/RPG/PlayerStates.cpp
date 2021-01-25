@@ -6,7 +6,6 @@
 #include "CharacterEnum.h"
 #include "MessageType.h"
 
-
 //////////////////////////////////////////////////////////////////////////
 
 /**
@@ -21,7 +20,6 @@ PlayerStateIdle::PlayerStateIdle()
  */
 PlayerStateIdle::~PlayerStateIdle()
 {
-
 }
 
 /**
@@ -95,7 +93,6 @@ void PlayerStateIdle::Execute(IController* pController_, const GameTime& elpased
 		//pPlayerController->GetHero()->SetCurrentAnimation(static_cast<int>(Character::AnimationIndices::RUN));
 		pPlayerController->GetHero()->SetCurrentAnimationByName("swordman_walk");
 		//}
-
 	}
 	else // used to immobilized the character
 	{
@@ -112,7 +109,6 @@ void PlayerStateIdle::Execute(IController* pController_, const GameTime& elpased
  */
 void PlayerStateIdle::Exit(IController* pController_)
 {
-
 }
 
 /**
@@ -137,7 +133,6 @@ PlayerStateAttack::PlayerStateAttack()
  */
 PlayerStateAttack::~PlayerStateAttack()
 {
-
 }
 
 /**
@@ -210,7 +205,6 @@ void PlayerStateAttack::Execute(IController* pController_, const GameTime& elpas
  */
 void PlayerStateAttack::Exit(IController* pController_)
 {
-
 }
 
 /**
@@ -242,7 +236,7 @@ bool PlayerStateAttack::OnMessage(IController* pController_, const Telegram& msg
 		// 			//else
 		// 			//{
 		// 			pPlayerController->GetHero()->IsAttackCharging(true);
-		// 			//}                    
+		// 			//}
 		// 		}
 
 		return true;

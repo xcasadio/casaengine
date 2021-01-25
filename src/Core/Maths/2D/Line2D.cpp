@@ -74,5 +74,4 @@ namespace CasaEngine
 		in >> x >> y;
 		SetNormal(Vector2F(x, y));
 	}
-
 }

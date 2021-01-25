@@ -14,7 +14,6 @@ namespace CasaEngine
 		z(Z),
 		w(W)
 	{
-
 	}
 
 	Quaternion::Quaternion(const Matrix4& Matrix)
@@ -26,7 +25,6 @@ namespace CasaEngine
 	{
 		FromAxisAngle(Axis, Angle);
 	}
-
 
 	float Quaternion::getX() const
 	{
@@ -58,7 +56,6 @@ namespace CasaEngine
 		w = 1.0f;
 	}
 
-
 	/////////////////////////////////////////////////////////////
 	/// Normalise le quaternion
 	///
@@ -75,7 +72,6 @@ namespace CasaEngine
 			w /= Norm;
 		}
 	}
-
 
 	/////////////////////////////////////////////////////////////
 	/// Renvoie le conjugué
@@ -143,7 +139,6 @@ namespace CasaEngine
 			0, 0, 0, 1);
 	}
 
-
 	/////////////////////////////////////////////////////////////
 	/// Construit le quaternion à partir d'une matrice de rotation
 	///
@@ -191,7 +186,6 @@ namespace CasaEngine
 		}
 	}
 
-
 	/////////////////////////////////////////////////////////////
 	/// Construit le quaternion à partir d'un axe et d'un angle
 	///
@@ -211,7 +205,6 @@ namespace CasaEngine
 
 		Normalize();
 	}
-
 
 	/////////////////////////////////////////////////////////////
 	/// Transforme le quaternion en axe & angle de rotation
@@ -288,7 +281,6 @@ namespace CasaEngine
 		}
 	}
 
-
 	/////////////////////////////////////////////////////////////
 	/// Construit le quaternion à partir de 3 angles d'Euler
 	///
@@ -306,7 +298,6 @@ namespace CasaEngine
 		*this = Qx * Qy * Qz;
 	}
 
-
 	/////////////////////////////////////////////////////////////
 	/// Opérateur de multiplication
 	///
@@ -323,7 +314,6 @@ namespace CasaEngine
 			w * quat_.w - x * quat_.x - y * quat_.y - z * quat_.z);
 	}
 
-
 	/////////////////////////////////////////////////////////////
 	/// opérateur de multiplication - affectation
 	///
@@ -339,7 +329,6 @@ namespace CasaEngine
 		return *this;
 	}
 
-
 	/////////////////////////////////////////////////////////////
 	/// Surcharge de l'opérateur >> entre un flux et un quaternion
 	///
@@ -354,7 +343,6 @@ namespace CasaEngine
 		return Stream >> q_.x >> q_.y >> q_.z >> q_.w;
 	}
 
-
 	/////////////////////////////////////////////////////////////
 	/// Surcharge de l'opérateur << entre un flux et un quaternion
 	///
@@ -368,5 +356,4 @@ namespace CasaEngine
 	{
 		return Stream << Quaternion.x << " " << Quaternion.y << " " << Quaternion.z << " " << Quaternion.w;
 	}
-
 }

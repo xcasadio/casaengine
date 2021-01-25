@@ -1,4 +1,3 @@
-
 #ifndef BULLETPHYSICSWORLD_H_
 #define BULLETPHYSICSWORLD_H_
 
@@ -32,13 +31,13 @@ namespace CasaEngine
 		public IPhysicsWorld
 	{
 	public:
-	
+
 		/// @param[in]: btDefaultCollisionConfiguration * pConfig_
 		/// @param[in]: btCollisionDispatcher * pDispatcher_
 		/// @param[in]: btBroadphaseInterface * pOverlappingPairCache_
 		/// @param[in]: btSequentialImpulseConstraintSolver * pConstraintSolver_
-		/// 
-		/// @return 
+		///
+		/// @return
 		BulletPhysicsWorld(
 			btDefaultCollisionConfiguration* pConfig_,
 			btCollisionDispatcher* pDispatcher_,
@@ -46,7 +45,7 @@ namespace CasaEngine
 			btSequentialImpulseConstraintSolver* pConstraintSolver_);
 
 		/**
-		 * 
+		 *
 		 */
 		~BulletPhysicsWorld();
 
@@ -54,30 +53,29 @@ namespace CasaEngine
 
 		void SetGravity(const Vector3F& gravity_) override;
 		Vector3F GetGravity() const override;
-		
-		void setDebugDraw(btIDebugDraw *pIDebugDraw_);
 
-		IRigidBodyContainer *AddRigidBody(const RigidBody *pRigidBody_) override;
-		void RemoveRigidBody(IRigidBodyContainer *pObj_) override;
+		void setDebugDraw(btIDebugDraw* pIDebugDraw_);
 
-		void AddCollisionObject(ICollisionObjectContainer *pObj_) override;
-		void RemoveCollisionObject(ICollisionObjectContainer *pObj_) override;
+		IRigidBodyContainer* AddRigidBody(const RigidBody* pRigidBody_) override;
+		void RemoveRigidBody(IRigidBodyContainer* pObj_) override;
 
-		ICollisionObjectContainer *AddCollisionShape(const IShape *pShape_, const Vector3F &origin_) override;
+		void AddCollisionObject(ICollisionObjectContainer* pObj_) override;
+		void RemoveCollisionObject(ICollisionObjectContainer* pObj_) override;
+
+		ICollisionObjectContainer* AddCollisionShape(const IShape* pShape_, const Vector3F& origin_) override;
 
 	private:
-		void AddCollisionObject(btCollisionObject *pColObj_);
+		void AddCollisionObject(btCollisionObject* pColObj_);
 		//btCollisionShape *CreateCollisionShape(const MeshComponentColliper *pMeshCollider_);
-		btCollisionShape *CreateCollisionShape(const IShape *pShape_, Vector3F &origin_);
-		void RemoveCollisionObject(btCollisionObject  *pShape_);
+		btCollisionShape* CreateCollisionShape(const IShape* pShape_, Vector3F& origin_);
+		void RemoveCollisionObject(btCollisionObject* pShape_);
 
-		btCollisionObject* CreateCollisionObjectFromShape(IShape *pShape_);
-		btCollisionObject* CreateCollisionObjectFromShape(btCollisionShape *pshape_, Vector3F center_);
+		btCollisionObject* CreateCollisionObjectFromShape(IShape* pShape_);
+		btCollisionObject* CreateCollisionObjectFromShape(btCollisionShape* pshape_, Vector3F center_);
 
 		//btDiscreteDynamicsWorld* m_pBulletWorld;
-		btDynamicsWorldExt * m_pBulletWorld;
+		btDynamicsWorldExt* m_pBulletWorld;
 	};
-
 }
 
 #endif // BULLETPHYSICSWORLD_H_

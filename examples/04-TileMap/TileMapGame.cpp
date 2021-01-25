@@ -73,7 +73,6 @@ void TileMapGame::CreateBackground(World* pWorld)
 	pTrans3D->SetLocalPosition(Vector3F(0.0f, 0.0f, 1.0f));
 	pTrans3D->SetLocalRotation(0.0f);
 
-
 	//Texture* texture = Texture::loadTexture("Outside_A2.png");
 	const int size = 48; // 32
 	SpriteData* pSprite = NEW_AO SpriteData();
@@ -102,37 +101,35 @@ void TileMapGame::CreateBackground(World* pWorld)
 	pMap->SetMapSize(Vector2I(30, 11));
 	pMap->SetTileSize(Vector2I(size, size));
 	//create anim
-	Animation2D* pAnim = NEW_AO Animation2D();
-	SetFrameEvent* pFrameEvent = NEW_AO SetFrameEvent();
-	pFrameEvent->FrameID("tile0");
-	pFrameEvent->Time(0.0f);
-	pAnim->AddEvent(pFrameEvent);
-	pFrameEvent = NEW_AO SetFrameEvent();
-	pFrameEvent->FrameID("tile1");
-	pFrameEvent->Time(2.0f);
-	pAnim->AddEvent(pFrameEvent);
-	AnimationEndEvent* pEndEvent = NEW_AO AnimationEndEvent();
-	pEndEvent->Time(4.0f);
-	pAnim->AddEvent(pEndEvent);
-	pAnim->SetName("anim2D_tile1");
-	pAnim->SetType(Animation2DType::TAnimation2DType::Loop);
-	Game::Instance().GetAssetManager().AddAsset(new Asset(pAnim->GetName(), pAnim));
+	Animation2DData* pAnim2DData = NEW_AO Animation2DData();
+	pAnim2DData->SetName("anim2D_tile1");
+	auto pFrameData = NEW_AO FrameData();
+	pFrameData->SetSpriteId("tile0");
+	pFrameData->SetDuration(2.0f);
+	pAnim2DData->GetFrames().push_back(pFrameData);
+	pFrameData = NEW_AO FrameData();
+	pFrameData->SetSpriteId("tile1");
+	pFrameData->SetDuration(2.0f);
+	pAnim2DData->GetFrames().push_back(pFrameData);
+	pFrameData = NEW_AO FrameData();
+	pFrameData->SetSpriteId("tile2");
+	pFrameData->SetDuration(2.0f);
+	pAnim2DData->GetFrames().push_back(pFrameData);
+	pAnim2DData->SetAnimationType(AnimationType::Loop);
+	Game::Instance().GetAssetManager().AddAsset(new Asset(pAnim2DData->GetName(), pAnim2DData));
 	//
-	pAnim = NEW_AO Animation2D();
-	pFrameEvent = NEW_AO SetFrameEvent();
-	pFrameEvent->FrameID("tile1");
-	pFrameEvent->Time(0.0f);
-	pAnim->AddEvent(pFrameEvent);
-	pFrameEvent = NEW_AO SetFrameEvent();
-	pFrameEvent->FrameID("tile0");
-	pFrameEvent->Time(2.0f);
-	pAnim->AddEvent(pFrameEvent);
-	pEndEvent = NEW_AO AnimationEndEvent();
-	pEndEvent->Time(4.0f);
-	pAnim->AddEvent(pEndEvent);
-	pAnim->SetName("anim2D_tile0");
-	pAnim->SetType(Animation2DType::TAnimation2DType::Loop);
-	GetAssetManager().AddAsset(new Asset(pAnim->GetName(), pAnim));
+	pAnim2DData = NEW_AO Animation2DData();
+	pAnim2DData->SetName("anim2D_tile0");
+	pFrameData = NEW_AO FrameData();
+	pFrameData->SetSpriteId("tile1");
+	pFrameData->SetDuration(2.0f);
+	pAnim2DData->GetFrames().push_back(pFrameData);
+	pFrameData = NEW_AO FrameData();
+	pFrameData->SetSpriteId("tile0");
+	pFrameData->SetDuration(2.0f);
+	pAnim2DData->GetFrames().push_back(pFrameData);
+	pAnim2DData->SetAnimationType(AnimationType::Loop);
+	Game::Instance().GetAssetManager().AddAsset(new Asset(pAnim2DData->GetName(), pAnim2DData));
 
 	std::vector<ITile*> tiles4AutoTile;
 	for (int y = 0; y < 3; ++y)
@@ -147,7 +144,7 @@ void TileMapGame::CreateBackground(World* pWorld)
 	}
 
 	auto* layer = new TiledMapLayer();
-	
+
 	std::vector<ITile*> tiles;
 	for (int y = 0; y < 11; ++y)
 	{
@@ -168,7 +165,7 @@ void TileMapGame::CreateBackground(World* pWorld)
 			}
 		}
 	}
-	
+
 	layer->SetTiles(tiles);
 	pMap->AddLayer(layer);
 
@@ -221,7 +218,6 @@ void TileMapGame::LoadContent()
 	p_world->AddEntity(pCamera);
 	GetGameInfo().SetActiveCamera(m_pCamera2D);
 
-
 	CreateBackground(p_world);
 
 	p_world->Initialize();
@@ -261,4 +257,3 @@ void TileMapGame::Draw()
 
 	Game::Draw();
 }
-

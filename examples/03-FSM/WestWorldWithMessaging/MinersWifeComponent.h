@@ -78,5 +78,3 @@ public:
 };
 
 #endif // MinersWifeComponent_H_
-
-

@@ -20,18 +20,18 @@ namespace CasaEngine
 	/*class Matrix4;
 	class Quaternion;*/
 
-    /**
-     * 
-     */
-    template <class T>
+	/**
+	 *
+	 */
+	template <class T>
 	class CVector3 :
 		public AllocatedObject<CVector3<T> >
-    {
-    public :
+	{
+	public:
 		T x, y, z;
 
 		/**
-		 * 
+		 *
 		 */
 		static CVector3<T> Zero();
 		static CVector3<T> One();
@@ -46,7 +46,7 @@ namespace CasaEngine
 		static CVector3<T> Forward();
 		static CVector3<T> Backward();
 
-		static T Dot (const CVector3<T>& v1, const CVector3<T>& v2);
+		static T Dot(const CVector3<T>& v1, const CVector3<T>& v2);
 		static CVector3<T> Cross(const CVector3<T>& v1, const CVector3<T>& v2);
 
 		/*static void Transform(const CVector3<T> &position, const Matrix4 &matrix, CVector3<T> &result);
@@ -70,25 +70,25 @@ namespace CasaEngine
 
 		static void TransformNormal(const CVector3<T> &normal, const Matrix4 &matrix, CVector3<T> &result);*/
 
-        /**
-         * 
-         */
-        CVector3(T X = 0, T Y = 0, T Z = 0);
+		/**
+		 *
+		 */
+		CVector3(T X = 0, T Y = 0, T Z = 0);
 
-        /**
-         * 
-         */
-        void Set(T X, T Y, T Z);
+		/**
+		 *
+		 */
+		void Set(T X, T Y, T Z);
 		T getX() const;
 		T getY() const;
 		T getZ() const;
 
 		bool IsZero() const;
 
-        T Length() const;
-        T LengthSquared() const;
+		T Length() const;
+		T LengthSquared() const;
 
-        void Normalize();
+		void Normalize();
 		CVector3<T> GetNormalized();
 
 		//! check for min bounds
@@ -101,57 +101,55 @@ namespace CasaEngine
 
 		inline bool IsValid() const;
 
-
 		/**
-		 * sets a vector orthogonal to the input vector 
-		 * 
+		 * sets a vector orthogonal to the input vector
+		 *
 		 * Example:
 		 *  Vec3 v;
 		 *  v.SetOrthogonal( i );
 		 */
-		inline void SetOrthogonal( const CVector3<T>& v );
+		inline void SetOrthogonal(const CVector3<T>& v);
 		inline CVector3<T> GetOrthogonal() const;
 
-        CVector3<T> operator +() const;
-        CVector3<T> operator -() const;
+		CVector3<T> operator +() const;
+		CVector3<T> operator -() const;
 
-        //----------------------------------------------------------
-        CVector3<T> operator +(const CVector3<T>& v) const;
-        CVector3<T> operator -(const CVector3<T>& v) const;
+		//----------------------------------------------------------
+		CVector3<T> operator +(const CVector3<T>& v) const;
+		CVector3<T> operator -(const CVector3<T>& v) const;
 
-        const CVector3<T>& operator +=(const CVector3<T>& v);
-        const CVector3<T>& operator -=(const CVector3<T>& v);
+		const CVector3<T>& operator +=(const CVector3<T>& v);
+		const CVector3<T>& operator -=(const CVector3<T>& v);
 
-        const CVector3<T>& operator *=(T t);
-        const CVector3<T>& operator /=(T t);
+		const CVector3<T>& operator *=(T t);
+		const CVector3<T>& operator /=(T t);
 
-        bool operator ==(const CVector3<T>& v) const;
-        bool operator !=(const CVector3<T>& v) const;
+		bool operator ==(const CVector3<T>& v) const;
+		bool operator !=(const CVector3<T>& v) const;
 
-        operator T*();
+		operator T* ();
 
-		inline T &operator [] (int index)	   { CA_ASSERT(index>=0 && index<=2, "Vector3 operator[]"); return ((T*)this)[index]; }
-		inline T operator [] (int index) const { CA_ASSERT(index>=0 && index<=2, "Vector3 operator[]"); return ((T*)this)[index]; }
-    };
+		inline T& operator [] (int index) { CA_ASSERT(index >= 0 && index <= 2, "Vector3 operator[]"); return ((T*)this)[index]; }
+		inline T operator [] (int index) const { CA_ASSERT(index >= 0 && index <= 2, "Vector3 operator[]"); return ((T*)this)[index]; }
+	};
 
-    //
-    template <class T> CVector3<T>   operator * (const CVector3<T>& v, T t);
-    template <class T> CVector3<T>   operator / (const CVector3<T>& v, T t);
-    template <class T> CVector3<T>   operator * (T t, const CVector3<T>& v);    
-    template <class T> std::istream& operator >>(std::istream& Stream, CVector3<T>& Vector);
-    template <class T> std::ostream& operator <<(std::ostream& Stream, const CVector3<T>& Vector);
+	//
+	template <class T> CVector3<T>   operator * (const CVector3<T>& v, T t);
+	template <class T> CVector3<T>   operator / (const CVector3<T>& v, T t);
+	template <class T> CVector3<T>   operator * (T t, const CVector3<T>& v);
+	template <class T> std::istream& operator >>(std::istream& Stream, CVector3<T>& Vector);
+	template <class T> std::ostream& operator <<(std::ostream& Stream, const CVector3<T>& Vector);
 
-	template <class T> bool IsEquivalent(const CVector3<T> &v0, const CVector3<T> &v1, float epsilon=Epsilon) 
+	template <class T> bool IsEquivalent(const CVector3<T>& v0, const CVector3<T>& v1, float epsilon = Epsilon)
 	{
-		return  ((fabs(v0.x-v1.x) <= epsilon) && (fabs(v0.y-v1.y) <= epsilon) && (fabs(v0.z-v1.z) <= epsilon));	
+		return  ((fabs(v0.x - v1.x) <= epsilon) && (fabs(v0.y - v1.y) <= epsilon) && (fabs(v0.z - v1.z) <= epsilon));
 	}
 
 	//
-    typedef CVector3<int>   TVector3I;
-    typedef CVector3<float> Vector3F;
+	typedef CVector3<int>   TVector3I;
+	typedef CVector3<float> Vector3F;
 
-    #include "Vector3.inl"
-
+#include "Vector3.inl"
 }
 
 #endif // VECTOR3_H

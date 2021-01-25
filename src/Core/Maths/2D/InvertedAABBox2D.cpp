@@ -3,7 +3,6 @@
 
 namespace CasaEngine
 {
-
 	InvertedAABBox2D::InvertedAABBox2D(Vector2F tl,
 		Vector2F br) :m_vTopLeft(tl),
 		m_vBottomRight(br),
@@ -18,7 +17,6 @@ namespace CasaEngine
 			other.Left() > this->Right() ||
 			other.Right() < this->Left());
 	}
-
 
 	Vector2F InvertedAABBox2D::TopLeft() const { return m_vTopLeft; }
 	Vector2F InvertedAABBox2D::BottomRight() const
@@ -47,11 +45,9 @@ namespace CasaEngine
 		gdi->Line((int)Left(), (int)Top(), (int)Left(), (int)Bottom() );
 		gdi->Line((int)Right(), (int)Top(), (int)Right(), (int)Bottom() );
 
-
 		if (RenderCenter)
 		{
 		  gdi->Circle(m_vCenter, 5);
 		}*/
 	}
-
 }

@@ -15,7 +15,6 @@ typedef int64_t TimeVal;
 
 #endif // defined(CA_PLATFORM_WINDOWS)
 
-
 namespace CasaEngine
 {
 	///
@@ -29,16 +28,16 @@ namespace CasaEngine
 		/// Start the timer
 		void Start();
 
-		/// 
+		///
 		///  @note call Start before use End()
 		/// @return the elapsed time
 		void End();
 
-		/// 
+		///
 		/// @return the total elapsed time
 		float FrameTime() const;
 
-		/// 
+		///
 		/// @return the total elapsed time
 		float TotalTime() const;
 
@@ -48,7 +47,6 @@ namespace CasaEngine
 		float m_ElapsedTime; ///< last frame elapsed time
 		float m_TotalElapsedTime; ///< last frame elapsed time
 	};
-
-} 
+}
 
 #endif //GAMETIME_H

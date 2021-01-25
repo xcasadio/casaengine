@@ -2,7 +2,7 @@
 #define MESSAGETYPE_H_
 
 /**
- * 
+ *
  */
 enum MessageType
 {

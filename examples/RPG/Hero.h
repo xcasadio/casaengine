@@ -7,11 +7,10 @@
 #include "Animations\Animation2D.h"
 #include "Entities\Components\AnimatedSpriteComponent.h"
 
-
 using namespace CasaEngine;
 
 /**
- * 
+ *
  */
 class Hero :
 	public Character
@@ -19,7 +18,7 @@ class Hero :
 public:
 	Hero(BaseEntity* pEntity);
 	virtual ~Hero();
-	
+
 	void Initialize() override;
 
 	//////////////////////////////////////////////////////////////////////////
@@ -55,7 +54,7 @@ public:
 
 private:
 	int m_FuryPoint;
-    float m_FuryPointDecrease;
+	float m_FuryPointDecrease;
 	bool m_InBleedingMode;
 	int m_FuryForce;
 	int m_FuryDef;
