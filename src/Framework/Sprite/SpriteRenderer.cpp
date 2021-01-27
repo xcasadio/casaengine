@@ -201,12 +201,30 @@ namespace CasaEngine
 
 		const unsigned int color = color_.ToABGR();
 
+		auto top = static_cast<float>(posInTex.Top());
+		auto bottom = static_cast<float>(posInTex.Bottom());
+		auto left = static_cast<float>(posInTex.Left());
+		auto right = static_cast<float>(posInTex.Right());
+
+		if (effects_ == eSpriteEffects::SPRITE_EFFECT_FLIP_HORIZONTALLY)
+		{
+			auto tmp = left;
+			left = right;
+			right = tmp;
+		}
+		if (effects_ == eSpriteEffects::SPRITE_EFFECT_FLIP_VERTICALLY)
+		{
+			auto tmp = top;
+			top = bottom;
+			bottom = tmp;
+		}
+
 		const float texW = tex_->TextureInfo()->width;
 		const float texH = tex_->TextureInfo()->height;
-		const float texTop = static_cast<float>(posInTex.Top()) / texH;
-		const float texBottom = static_cast<float>(posInTex.Bottom()) / texH;
-		const float texLeft = static_cast<float>(posInTex.Left()) / texW;
-		const float texRight = static_cast<float>(posInTex.Right()) / texW;
+		const float texTop = top / texH;
+		const float texBottom = bottom / texH;
+		const float texLeft = left / texW;
+		const float texRight = right / texW;
 
 		SpriteDisplayData spriteData;
 
