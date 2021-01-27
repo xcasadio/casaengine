@@ -43,27 +43,11 @@ namespace CasaEngine
 		return m_Color == c.m_Color;
 	}
 
-	/////////////////////////////////////////////////////////////
-	/// Surcharge de l'opérateur != pour comparer deux couleurs
-	///
-	/// \param c : Couleur à comparer
-	///
-	/// \return True si les deux couleurs sont différentes
-	///
-	////////////////////////////////////////////////////////////
 	bool CColor::operator!=(const CColor& c) const
 	{
 		return !(*this == c);
 	}
 
-	/////////////////////////////////////////////////////////////
-	/// Surcharge de l'opérateur +=
-	///
-	/// \param c : Couleur à ajouter
-	///
-	/// \return Nouvelle couleur
-	///
-	////////////////////////////////////////////////////////////
 	const CColor& CColor::operator +=(const CColor& c)
 	{
 		int R = GetRed() + c.GetRed();
@@ -76,14 +60,6 @@ namespace CasaEngine
 		return *this;
 	}
 
-	/////////////////////////////////////////////////////////////
-	/// Surcharge de l'opérateur -=
-	///
-	/// \param c : Couleur à soustraire
-	///
-	/// \return Nouvelle couleur
-	///
-	////////////////////////////////////////////////////////////
 	const CColor& CColor::operator -=(const CColor& c)
 	{
 		int R = GetRed() - c.GetRed();
@@ -96,14 +72,6 @@ namespace CasaEngine
 		return *this;
 	}
 
-	/////////////////////////////////////////////////////////////
-	/// Surcharge de l'opérateur +
-	///
-	/// \param c : Couleur à ajouter
-	///
-	/// \return Nouvelle couleur
-	///
-	////////////////////////////////////////////////////////////
 	CColor CColor::operator +(const CColor& c) const
 	{
 		int R = GetRed() + c.GetRed();
@@ -117,14 +85,6 @@ namespace CasaEngine
 		return Ret;
 	}
 
-	/////////////////////////////////////////////////////////////
-	/// Surcharge de l'opérateur -
-	///
-	/// \param c : Couleur à soustraire
-	///
-	/// \return Nouvelle couleur
-	///
-	////////////////////////////////////////////////////////////
 	CColor CColor::operator -(const CColor& c) const
 	{
 		int R = GetRed() - c.GetRed();
@@ -138,14 +98,6 @@ namespace CasaEngine
 		return Ret;
 	}
 
-	/////////////////////////////////////////////////////////////
-	/// Surcharge de l'opérateur *
-	///
-	/// \param v : Multiplicateur
-	///
-	/// \return Nouvelle couleur
-	///
-	////////////////////////////////////////////////////////////
 	CColor CColor::operator *(float v) const
 	{
 		int R = static_cast<int>(GetRed() * v);
@@ -159,14 +111,6 @@ namespace CasaEngine
 		return Ret;
 	}
 
-	/////////////////////////////////////////////////////////////
-	/// Surcharge de l'opérateur *=
-	///
-	/// \param v : Multiplicateur
-	///
-	/// \return Nouvelle couleur
-	///
-	////////////////////////////////////////////////////////////
 	const CColor& CColor::operator *=(float v)
 	{
 		int R = static_cast<int>(GetRed() * v);
@@ -179,53 +123,21 @@ namespace CasaEngine
 		return *this;
 	}
 
-	/////////////////////////////////////////////////////////////
-	/// Surcharge de l'opérateur /
-	///
-	/// \param v : Diviseur
-	///
-	/// \return Nouvelle couleur
-	///
-	////////////////////////////////////////////////////////////
 	CColor CColor::operator /(float v) const
 	{
 		return *this * (1.0f / v);
 	}
 
-	/////////////////////////////////////////////////////////////
-	/// Surcharge de l'opérateur /=
-	///
-	/// \param v : Diviseur
-	///
-	/// \return Nouvelle couleur
-	///
-	////////////////////////////////////////////////////////////
 	const CColor& CColor::operator /=(float v)
 	{
 		return *this *= (1.0f / v);
 	}
 
-	/////////////////////////////////////////////////////////////
-	/// Ajoute deux couleurs
-	///
-	/// \param c : Couleur à ajouter
-	///
-	/// \return Somme des deux couleurs
-	///
-	////////////////////////////////////////////////////////////
 	CColor CColor::Add(const CColor& c) const
 	{
 		return *this + c;
 	}
 
-	/////////////////////////////////////////////////////////////
-	/// Module deux couleurs
-	///
-	/// \param c : Couleur à moduler
-	///
-	/// \return Modulation des deux couleurs
-	///
-	////////////////////////////////////////////////////////////
 	CColor CColor::Modulate(const CColor& c) const
 	{
 		unsigned char R = static_cast<unsigned char>(GetRed() * c.GetRed() / 255);
@@ -236,56 +148,26 @@ namespace CasaEngine
 		return CColor(R, G, B, A);
 	}
 
-	/////////////////////////////////////////////////////////////
-	/// Récupère le canal alpha
-	///
-	/// \return Valeur du canal alpha
-	///
-	////////////////////////////////////////////////////////////
 	unsigned char CColor::GetAlpha() const
 	{
 		return static_cast<unsigned char>((m_Color & 0xFF000000) >> 24);
 	}
 
-	/////////////////////////////////////////////////////////////
-	/// Récupère le canal rouge
-	///
-	/// \return Valeur du canal rouge
-	///
-	////////////////////////////////////////////////////////////
 	unsigned char CColor::GetRed() const
 	{
 		return static_cast<unsigned char>((m_Color & 0x00FF0000) >> 16);
 	}
 
-	/////////////////////////////////////////////////////////////
-	/// Récupère le canal vert
-	///
-	/// \return Valeur du canal vert
-	///
-	////////////////////////////////////////////////////////////
 	unsigned char CColor::GetGreen() const
 	{
 		return static_cast<unsigned char>((m_Color & 0x0000FF00) >> 8);
 	}
 
-	/////////////////////////////////////////////////////////////
-	/// Récupère le canal bleu
-	///
-	/// \return Valeur du canal bleu
-	///
-	////////////////////////////////////////////////////////////
 	unsigned char CColor::GetBlue() const
 	{
 		return static_cast<unsigned char>((m_Color & 0x000000FF) >> 0);
 	}
 
-	/////////////////////////////////////////////////////////////
-	/// Convertit en 4 floats RGBA
-	///
-	/// \param Dest : Tableau de destination
-	///
-	////////////////////////////////////////////////////////////
 	void CColor::ToFloat(float Dest[]) const
 	{
 		Dest[0] = GetRed() / 255.0f;
@@ -294,20 +176,11 @@ namespace CasaEngine
 		Dest[3] = GetAlpha() / 255.0f;
 	}
 
-	/////////////////////////////////////////////////////////////
-	/// Renvoie la couleur en nuance de gris
-	///
-	/// \return Octet représentant le niveau de gris associé
-	///
-	////////////////////////////////////////////////////////////
 	unsigned char CColor::ToGrey() const
 	{
 		return static_cast<unsigned char>(GetRed() * 0.30f + GetGreen() * 0.59f + GetBlue() * 0.11f);
 	}
 
-	/**
-	 *
-	 */
 	unsigned int CColor::ToABGR() const
 	{
 		return ((GetRed() << 0)
@@ -316,9 +189,6 @@ namespace CasaEngine
 			| (GetAlpha() << 24));
 	}
 
-	/**
-	 *
-	 */
 	unsigned int CColor::ToRGBA() const
 	{
 		return ((GetAlpha() << 0)
@@ -327,23 +197,11 @@ namespace CasaEngine
 			| (GetRed() << 24));
 	}
 
-	/**
-	 * used for vertex
-	 */
 	unsigned int CColor::ToARGB() const
 	{
 		return m_Color;
 	}
 
-	/////////////////////////////////////////////////////////////
-	/// Surcharge de l'opérateur >> entre un flux et une couleur
-	///
-	/// \param Stream : Flux d'entrée
-	/// \param Color :  Couleur
-	///
-	/// \return Référence sur le flux d'entrée
-	///
-	////////////////////////////////////////////////////////////
 	std::istream& operator >>(std::istream& Stream, CColor& Color)
 	{
 		int R, G, B, A;
@@ -353,15 +211,6 @@ namespace CasaEngine
 		return Stream;
 	}
 
-	/////////////////////////////////////////////////////////////
-	/// Surcharge de l'opérateur << entre un flux et une couleur
-	///
-	/// \param Stream : Flux de sortie
-	/// \param Color :  Couleur
-	///
-	/// \return Référence sur le flux de sortie
-	///
-	////////////////////////////////////////////////////////////
 	std::ostream& operator <<(std::ostream& Stream, const CColor& Color)
 	{
 		return Stream << static_cast<int>(Color.GetRed()) << " "
@@ -370,9 +219,6 @@ namespace CasaEngine
 			<< static_cast<int>(Color.GetAlpha());
 	}
 
-	/////////////////////////////////////////////////////////////
-	// Données membres statiques
-	/////////////////////////////////////////////////////////////
 	const CColor CColor::ActiveBorder(180, 180, 180, 255);
 	const CColor CColor::ActiveCaption(153, 180, 209, 255);
 	const CColor CColor::ActiveCaptionText(0, 0, 0, 255);
