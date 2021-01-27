@@ -9,10 +9,11 @@
 #include "Assets/Assetable.h"
 #include <iosfwd>
 #include "Maths/Shape/IShape.h"
+#include <Sprite/Collision.h>
 
 #include <cereal/access.hpp>
 #include <cereal/types/vector.hpp>
-#include <Sprite/Collision.h>
+#include <cereal/types/polymorphic.hpp>
 
 namespace CasaEngine
 {
@@ -21,6 +22,8 @@ namespace CasaEngine
 	{
 	public:
 		SpriteData();
+		SpriteData(const SpriteData& rsh);
+		SpriteData& operator=(const SpriteData& rsh);
 		~SpriteData();
 
 		RectangleI GetPositionInTexture() const;
@@ -29,6 +32,8 @@ namespace CasaEngine
 		void Clear();
 
 		std::vector<Collision>& GetCollisions();
+
+		SpriteData* Copy();
 
 		//#if EDITOR
 		void SetPositionInTexture(RectangleI val);
@@ -49,9 +54,9 @@ namespace CasaEngine
 		template <class Archive>
 		void load(Archive& ar)
 		{
-			ar(cereal::base_class<IAssetable>(this));
-			ar(cereal::make_nvp("texture_name", m_AssetFileName));
-			ar(cereal::make_nvp("uv", m_PositionInTexture));
+			ar(cereal::make_nvp("asset", cereal::base_class<IAssetable>(this)));
+			ar(cereal::make_nvp("sprite_sheet", m_AssetFileName));
+			ar(cereal::make_nvp("location", m_PositionInTexture));
 			ar(cereal::make_nvp("hotspot", m_Origin));
 			//ar(cereal::make_nvp("collisions", m_CollisionShapes));
 		}
@@ -59,13 +64,17 @@ namespace CasaEngine
 		template <class Archive>
 		void save(Archive& ar) const
 		{
-			ar(cereal::base_class<IAssetable>(this));
-			ar(cereal::make_nvp("texture_name", m_AssetFileName));
-			ar(cereal::make_nvp("uv", m_PositionInTexture));
+			ar(cereal::make_nvp("asset", cereal::base_class<IAssetable>(this)));
+			ar(cereal::make_nvp("sprite_sheet", m_AssetFileName));
+			ar(cereal::make_nvp("location", m_PositionInTexture));
 			ar(cereal::make_nvp("hotspot", m_Origin));
 			//ar(cereal::make_nvp("collisions", m_CollisionShapes));
 		}
 	};
 }
-
+/*
+CEREAL_REGISTER_TYPE_WITH_NAME(CasaEngine::SpriteData, "sprite_data");
+CEREAL_REGISTER_TYPE(CasaEngine::SpriteData);
+CEREAL_REGISTER_POLYMORPHIC_RELATION(CasaEngine::IAssetable, CasaEngine::SpriteData);
+*/
 #endif

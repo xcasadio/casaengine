@@ -8,6 +8,7 @@
 
 #include <cereal/access.hpp>
 #include <cereal/types/vector.hpp>
+#include <cereal/types/polymorphic.hpp>
 
 namespace CasaEngine
 {
@@ -21,6 +22,10 @@ namespace CasaEngine
 		AnimationType GetAnimationType() const;
 		void SetAnimationType(AnimationType type);
 
+	protected:
+		AnimationData(const AnimationData& rsh);
+		AnimationData& operator=(const AnimationData& rsh);
+
 	private:
 		AnimationType m_AnimationType;
 
@@ -30,14 +35,14 @@ namespace CasaEngine
 		template <class Archive>
 		void load(Archive& ar)
 		{
-			ar(cereal::base_class<IAssetable>(this));
+			ar(cereal::make_nvp("asset", cereal::base_class<IAssetable>(this)));
 			ar(cereal::make_nvp("animation_type", m_AnimationType));
 		}
 
 		template <class Archive>
 		void save(Archive& ar) const
 		{
-			ar(cereal::base_class<IAssetable>(this));
+			ar(cereal::make_nvp("asset", cereal::base_class<IAssetable>(this)));
 			ar(cereal::make_nvp("animation_type", m_AnimationType));
 		}
 	};

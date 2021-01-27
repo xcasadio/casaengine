@@ -54,13 +54,19 @@ namespace CasaEngine
 		template <class Archive>
 		void load(Archive& ar)
 		{
-			ar(x, y, w, h);
+			ar(cereal::make_nvp("x", x));
+			ar(cereal::make_nvp("y", y));
+			ar(cereal::make_nvp("w", w));
+			ar(cereal::make_nvp("h", h));
 		}
 
 		template <class Archive>
 		void save(Archive& ar) const
 		{
-			ar(x, y, w, h);
+			ar(cereal::make_nvp("x", x));
+			ar(cereal::make_nvp("y", y));
+			ar(cereal::make_nvp("w", w));
+			ar(cereal::make_nvp("h", h));
 		}
 	};
 

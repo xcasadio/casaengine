@@ -8,6 +8,19 @@ namespace CasaEngine
 	{
 	}
 
+
+	AnimationData::AnimationData(const AnimationData& rsh)
+	{
+		*this = rsh;
+	}
+
+	AnimationData& AnimationData::operator=(const AnimationData& rsh)
+	{
+		m_AnimationType = rsh.m_AnimationType;
+		IAssetable::operator=(rsh);
+		return *this;
+	}
+
 	AnimationData::~AnimationData()
 	{
 	}

@@ -106,15 +106,15 @@ void TileMapGame::CreateBackground(World* pWorld)
 	auto pFrameData = NEW_AO FrameData();
 	pFrameData->SetSpriteId("tile0");
 	pFrameData->SetDuration(2.0f);
-	pAnim2DData->GetFrames().push_back(pFrameData);
+	pAnim2DData->GetFrames().push_back(*pFrameData);
 	pFrameData = NEW_AO FrameData();
 	pFrameData->SetSpriteId("tile1");
 	pFrameData->SetDuration(2.0f);
-	pAnim2DData->GetFrames().push_back(pFrameData);
+	pAnim2DData->GetFrames().push_back(*pFrameData);
 	pFrameData = NEW_AO FrameData();
 	pFrameData->SetSpriteId("tile2");
 	pFrameData->SetDuration(2.0f);
-	pAnim2DData->GetFrames().push_back(pFrameData);
+	pAnim2DData->GetFrames().push_back(*pFrameData);
 	pAnim2DData->SetAnimationType(AnimationType::Loop);
 	Game::Instance().GetAssetManager().AddAsset(new Asset(pAnim2DData->GetName(), pAnim2DData));
 	//
@@ -123,11 +123,11 @@ void TileMapGame::CreateBackground(World* pWorld)
 	pFrameData = NEW_AO FrameData();
 	pFrameData->SetSpriteId("tile1");
 	pFrameData->SetDuration(2.0f);
-	pAnim2DData->GetFrames().push_back(pFrameData);
+	pAnim2DData->GetFrames().push_back(*pFrameData);
 	pFrameData = NEW_AO FrameData();
 	pFrameData->SetSpriteId("tile0");
 	pFrameData->SetDuration(2.0f);
-	pAnim2DData->GetFrames().push_back(pFrameData);
+	pAnim2DData->GetFrames().push_back(*pFrameData);
 	pAnim2DData->SetAnimationType(AnimationType::Loop);
 	Game::Instance().GetAssetManager().AddAsset(new Asset(pAnim2DData->GetName(), pAnim2DData));
 

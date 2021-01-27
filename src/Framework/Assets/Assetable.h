@@ -8,10 +8,10 @@
 #include <cereal/cereal.hpp>
 #include <cereal/details/helpers.hpp>
 #include <cereal/types/string.hpp>
+#include <cereal/types/polymorphic.hpp>
 
 namespace CasaEngine
 {
-	//Each object can be stored inherit from this class
 	class CA_EXPORT IAssetable :
 		public AllocatedObject<IAssetable>
 	{
@@ -36,15 +36,17 @@ namespace CasaEngine
 		template <class Archive>
 		void load(Archive& ar)
 		{
-			ar(CEREAL_NVP(m_Name));
+			ar(cereal::make_nvp("asset_name", m_Name));
 		}
 
 		template <class Archive>
 		void save(Archive& ar) const
 		{
-			ar(CEREAL_NVP(m_Name));
+			ar(cereal::make_nvp("asset_name", m_Name));
 		}
 	};
 }
+
+//CEREAL_REGISTER_TYPE_WITH_NAME(CasaEngine::IAssetable, "asset");
 
 #endif

@@ -9,6 +9,7 @@
 
 #include <cereal/access.hpp>
 #include <cereal/types/vector.hpp>
+#include <cereal/types/polymorphic.hpp>
 
 namespace CasaEngine
 {
@@ -17,13 +18,18 @@ namespace CasaEngine
 	{
 	public:
 		Animation2DData();
+		Animation2DData(const Animation2DData& rsh);
+		Animation2DData& operator=(const Animation2DData& rsh);
 		~Animation2DData();
 
-		std::vector<FrameData *>& GetFrames();
-		void AddFrame(FrameData* frame);
+		std::vector<FrameData>& GetFrames();
+		void AddFrame(FrameData& frame);
+
+		Animation2DData* Copy() const;
 
 	private:
-		std::vector<FrameData*> m_Frames;
+
+		std::vector<FrameData> m_Frames;
 
 	private:
 		friend class cereal::access;
@@ -31,14 +37,14 @@ namespace CasaEngine
 		template <class Archive>
 		void load(Archive& ar)
 		{
-			ar(cereal::base_class<AnimationData>(this));
+			ar(cereal::make_nvp("anim", cereal::base_class<AnimationData>(this)));
 			ar(cereal::make_nvp("frames", m_Frames));
 		}
 
 		template <class Archive>
 		void save(Archive& ar) const
 		{
-			ar(cereal::base_class<AnimationData>(this));
+			ar(cereal::make_nvp("anim", cereal::base_class<AnimationData>(this)));
 			ar(cereal::make_nvp("frames", m_Frames));
 		}
 	};

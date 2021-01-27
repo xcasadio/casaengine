@@ -7,8 +7,22 @@ namespace CasaEngine
 {
 	FrameData::FrameData()
 	{
-
 	}
+
+	FrameData::FrameData(const FrameData& rsh)
+	{
+		*this = rsh;
+	}
+
+	FrameData& FrameData::operator=(const FrameData& rsh)
+	{
+		m_Duration = rsh.m_Duration;
+		m_SpriteId = rsh.m_SpriteId;
+		IAssetable::operator=(rsh);
+
+		return *this;
+	}
+
 
 	FrameData::~FrameData()
 	{

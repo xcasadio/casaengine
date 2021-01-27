@@ -20,9 +20,9 @@ namespace CasaEngine
 		for (auto frame : data.GetFrames())
 		{
 			SetFrameEvent* pFrameEvent = new SetFrameEvent();
-			pFrameEvent->FrameID(frame->GetSpriteId().c_str());
+			pFrameEvent->FrameID(frame.GetSpriteId().c_str());
 			pFrameEvent->Time(timeEventFired);
-			timeEventFired += frame->GetDuration();
+			timeEventFired += frame.GetDuration();
 			AddEvent(pFrameEvent);
 		}
 

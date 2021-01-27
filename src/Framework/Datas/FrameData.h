@@ -15,6 +15,8 @@ namespace CasaEngine
 	{
 	public:
 		FrameData();
+		FrameData(const FrameData& rsh);
+		FrameData& operator=(const FrameData& rsh);
 		~FrameData();
 
 		float GetDuration();
@@ -34,7 +36,7 @@ namespace CasaEngine
 		template <class Archive>
 		void load(Archive& ar)
 		{
-			ar(cereal::base_class<IAssetable>(this));
+			ar(cereal::make_nvp("asset", cereal::base_class<IAssetable>(this)));
 			ar(cereal::make_nvp("duration", m_Duration));
 			ar(cereal::make_nvp("sprite_id", m_SpriteId));
 		}
@@ -42,7 +44,7 @@ namespace CasaEngine
 		template <class Archive>
 		void save(Archive& ar) const
 		{
-			ar(cereal::base_class<IAssetable>(this));
+			ar(cereal::make_nvp("asset", cereal::base_class<IAssetable>(this)));
 			ar(cereal::make_nvp("duration", m_Duration));
 			ar(cereal::make_nvp("sprite_id", m_SpriteId));
 		}

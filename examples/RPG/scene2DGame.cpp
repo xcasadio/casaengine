@@ -523,7 +523,7 @@ void Scene2DGame::CreateEnnemies(World* pWorld)
 			spriteName << "octopus_" << frame.sprite_id;
 			frameData->SetSpriteId(spriteName.str());
 			frameData->SetDuration(frame_delay);
-			pAnim->AddFrame(frameData);
+			pAnim->AddFrame(*frameData);
 		}
 
 		GetAssetManager().AddAsset(new Asset(pAnim->GetName(), pAnim));
@@ -593,7 +593,7 @@ void Scene2DGame::CreateSwordman(World* pWorld)
 			spriteName << "player_" << frame.sprite_id;
 			frameData->SetSpriteId(spriteName.str());
 			frameData->SetDuration(frame_delay);
-			pAnim->AddFrame(frameData);
+			pAnim->AddFrame(*frameData);
 		}
 
 		GetAssetManager().AddAsset(new Asset(pAnim->GetName(), pAnim));

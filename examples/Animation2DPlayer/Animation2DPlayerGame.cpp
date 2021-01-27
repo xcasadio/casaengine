@@ -148,11 +148,13 @@ void Animation2DPlayerGame::LoadContent()
 
 void Animation2DPlayerGame::LoadAnimations(AnimatedSpriteComponent* pAnimatedComponent)
 {
-	auto pFile = GetMediaManager().FindMedia("animations.json", true);
+	auto pFile = GetMediaManager().FindMedia("ryu_animations.json", true);
 	std::ifstream is(pFile->Fullname());
 	cereal::JSONInputArchive ar(is);
 	animations animations;
 	ar(cereal::make_nvp("animations", animations));
+
+	std::vector<Animation2DData> anims;
 
 	for (auto animation : animations.animations)
 	{
@@ -181,32 +183,45 @@ void Animation2DPlayerGame::LoadAnimations(AnimatedSpriteComponent* pAnimatedCom
 			auto frameData = NEW_AO FrameData();
 			frameData->SetSpriteId(frame.SpriteId.c_str());
 			frameData->SetDuration(frame.GameTick * 0.16f); // 0.048f;
-			animation2D->AddFrame(frameData);
+			animation2D->AddFrame(*frameData);
 		}
 
 		GetAssetManager().AddAsset(new Asset(animation2D->GetName(), animation2D));
 		pAnimatedComponent->AddAnimation(NEW_AO Animation2D(*animation2D));
+
+		anims.push_back(*animation2D);
 	}
+
+	std::ofstream os("C:\\Users\\casad\\dev\\repo\\casaengine\\examples\\resources\\datas\\animations.json");
+	cereal::JSONOutputArchive ar2(os);
+	ar2(cereal::make_nvp("animations", anims));
 }
 
 void Animation2DPlayerGame::LoadSprites()
 {
-	auto pFile = GetMediaManager().FindMedia("sprites.json", true);
+	auto pFile = GetMediaManager().FindMedia("ryu_sprites.json", true);
 	std::ifstream is(pFile->Fullname());
 	cereal::JSONInputArchive ar(is);
 	sprites sprites;
 	ar(cereal::make_nvp("sprites", sprites));
 
+	std::vector<SpriteData> spriteDatas;
+
 	for (auto sprite : sprites.sprites)
 	{
-		auto spritData = NEW_AO SpriteData();
-		spritData->SetOrigin(Vector2I(sprite.X, sprite.Y));
-		spritData->SetPositionInTexture(RectangleI(0, 0, sprite.SpriteSizeX, sprite.SpriteSizeY));
-		std::ostringstream assetName;
-		assetName << sprite.Id << ".png";
-		spritData->SetAssetFileName(assetName.str());
-		GetAssetManager().AddAsset(new Asset(sprite.Id, spritData));
+		auto spriteData = NEW_AO SpriteData();
+		spriteData->SetOrigin(Vector2I(sprite.X, sprite.Y));
+		spriteData->SetPositionInTexture(RectangleI(sprite.posInTextureX, sprite.posInTextureY, sprite.SpriteSizeX, sprite.SpriteSizeY));
+		spriteData->SetAssetFileName("ryu.png"); // TODO : read from file
+		spriteData->SetName(sprite.Id);
+		GetAssetManager().AddAsset(new Asset(sprite.Id, spriteData));
+
+		spriteDatas.push_back(*spriteData);
 	}
+
+	std::ofstream os("C:\\Users\\casad\\dev\\repo\\casaengine\\examples\\resources\\datas\\sprites.json");
+	cereal::JSONOutputArchive ar2(os);
+	ar2(cereal::make_nvp("sprites", spriteDatas));
 }
 
 void Animation2DPlayerGame::Update(const GameTime& gameTime_)

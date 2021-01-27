@@ -17,6 +17,21 @@ namespace CasaEngine
 
 	}
 
+	SpriteData::SpriteData(const SpriteData& rsh)
+	{
+		*this = rsh;
+	}
+
+	SpriteData& SpriteData::operator=(const SpriteData& rsh)
+	{
+		m_AssetFileName = rsh.m_AssetFileName;
+		m_PositionInTexture = rsh.m_PositionInTexture;
+		m_Origin = rsh.m_Origin;
+		IAssetable::operator=(rsh);
+
+		return *this;
+	}
+
 	SpriteData::~SpriteData()
 	{
 		Clear();
@@ -47,6 +62,11 @@ namespace CasaEngine
 		}
 
 		m_CollisionShapes.clear();
+	}
+
+	SpriteData* SpriteData::Copy()
+	{
+		return NEW_AO SpriteData(*this);
 	}
 
 //#ifdef EDITOR

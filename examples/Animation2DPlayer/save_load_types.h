@@ -18,6 +18,7 @@ struct sprite
 {
 	int X, Y;
 	int SpriteSizeX, SpriteSizeY;
+	int posInTextureX, posInTextureY;
 	std::string Id;
 
 private:
@@ -30,6 +31,8 @@ private:
 		ar(CEREAL_NVP(Y));
 		ar(CEREAL_NVP(SpriteSizeX));
 		ar(CEREAL_NVP(SpriteSizeY));
+		ar(CEREAL_NVP(posInTextureX));
+		ar(CEREAL_NVP(posInTextureY));
 		ar(CEREAL_NVP(Id));
 	}
 
@@ -40,6 +43,8 @@ private:
 		ar(CEREAL_NVP(Y));
 		ar(CEREAL_NVP(SpriteSizeX));
 		ar(CEREAL_NVP(SpriteSizeY));
+		ar(CEREAL_NVP(posInTextureX));
+		ar(CEREAL_NVP(posInTextureY));
 		ar(CEREAL_NVP(Id));
 	}
 };
