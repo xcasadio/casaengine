@@ -195,6 +195,15 @@ void Animation2DPlayerGame::LoadAnimations(AnimatedSpriteComponent* pAnimatedCom
 	std::ofstream os("C:\\Users\\casad\\dev\\repo\\casaengine\\examples\\resources\\datas\\animations.json");
 	cereal::JSONOutputArchive ar2(os);
 	ar2(cereal::make_nvp("animations", anims));
+
+
+	auto spriteDatasPtr = GetAssetManager().GetAssets<SpriteData>();
+	std::vector<SpriteData> spriteDatas;
+	spriteDatas.resize(spriteDatasPtr.size());
+	std::transform(spriteDatasPtr.begin(), spriteDatasPtr.end(), spriteDatas.begin(), [](SpriteData* x) { return *x; });
+	std::ofstream spritesStream("C:\\Users\\casad\\dev\\repo\\casaengine\\examples\\resources\\datas\\sprites.json");
+	cereal::JSONOutputArchive arSprites(spritesStream);
+	arSprites(cereal::make_nvp("sprites", spriteDatas));
 }
 
 void Animation2DPlayerGame::LoadSprites()
@@ -218,10 +227,6 @@ void Animation2DPlayerGame::LoadSprites()
 
 		spriteDatas.push_back(*spriteData);
 	}
-
-	std::ofstream os("C:\\Users\\casad\\dev\\repo\\casaengine\\examples\\resources\\datas\\sprites.json");
-	cereal::JSONOutputArchive ar2(os);
-	ar2(cereal::make_nvp("sprites", spriteDatas));
 }
 
 void Animation2DPlayerGame::Update(const GameTime& gameTime_)

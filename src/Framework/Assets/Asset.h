@@ -27,6 +27,9 @@ namespace CasaEngine
 		template<class T>
 		T* GetAsset();
 
+		template<class T>
+		bool IsTypeOf();
+
 	private:
 		IAssetable* m_pObject;
 		std::string m_Name;
@@ -46,6 +49,19 @@ namespace CasaEngine
 		T* val = dynamic_cast<T*>(m_pObject);
 		CA_ASSERT(val != nullptr, "Asset::GetAsset() : the asset '%s' is not type of ", GetName().c_str(), typeid(T).name());
 		return val;
+	}
+
+	template<class T>
+	bool Asset::IsTypeOf()
+	{
+		if (m_pObject == nullptr)
+		{
+			LoadAsset();
+		}
+
+		CA_ASSERT(m_pObject != nullptr, "Asset::GetAsset() : can't load the asset %s", GetName().c_str());
+		T* val = dynamic_cast<T*>(m_pObject);
+		return val != nullptr;
 	}
 }
 

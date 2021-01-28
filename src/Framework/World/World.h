@@ -15,9 +15,6 @@ namespace CasaEngine
 {
 	class PhysicsWorld;
 
-	/**
-	 *	
-	 */
 	class CA_EXPORT World :
 		public BaseEntity
 	{
@@ -25,6 +22,7 @@ namespace CasaEngine
 		World();
 		~World();
 		const std::vector<BaseEntity*>& GetEntities();
+		BaseEntity* GetEntityByName(std::string name);
 
 		void AddEntity(BaseEntity* pEntity);
 		void RemoveEntity(BaseEntity* pEntity);
@@ -33,8 +31,6 @@ namespace CasaEngine
 		IPhysicsWorld *GetPhysicsWorld() const;
 
 		CellSpacePartition<BaseEntity *> &GetSpacePartition();
-
-		 
 
 		virtual void Write(std::ostream& os) override;
 		virtual void Read(std::ifstream& is) override;
@@ -47,10 +43,6 @@ namespace CasaEngine
 		CellSpacePartition<BaseEntity *> m_CellSpacePartition;
 
 	private:
-
-		/**
-		 * 
-		 */
 		class WorldComponent : public Component
 		{
 		public:
@@ -64,7 +56,6 @@ namespace CasaEngine
 			World *m_pWorld;
 		};
 	};
-
 }
 
 #endif // WORLD_H_

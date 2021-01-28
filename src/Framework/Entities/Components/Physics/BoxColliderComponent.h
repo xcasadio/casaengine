@@ -12,9 +12,6 @@
 
 namespace CasaEngine
 {
-	/*
-	 *	
-	 */
 	class CA_EXPORT BoxColliderComponent :
 		public ColliderComponent
 	{
@@ -27,13 +24,7 @@ namespace CasaEngine
 
 		//all entities must implement an Initialize function
 		void Initialize();
-
-		/**
-		 * 
-		 */
 		void Draw();
-
-
 		Box Shape() const;
 
 		//all entities can communicate using messages. They are sent

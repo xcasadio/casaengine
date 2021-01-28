@@ -33,6 +33,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "04-TileMap", "04-TileMap.vc
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Animation2DPlayer", "Animation2DPlayer.vcxproj", "{EEC26E1A-75E9-469D-858E-4B0D6BECD730}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FightingGame2D", "FightingGame2D.vcxproj", "{84B14781-653E-4B05-8580-EB8B9B157B5B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Mixed Platforms = Debug|Mixed Platforms
@@ -227,6 +229,30 @@ Global
 		{EEC26E1A-75E9-469D-858E-4B0D6BECD730}.Release|x64.Build.0 = Release|x64
 		{EEC26E1A-75E9-469D-858E-4B0D6BECD730}.Release|x86.ActiveCfg = Release|Win32
 		{EEC26E1A-75E9-469D-858E-4B0D6BECD730}.Release|x86.Build.0 = Release|Win32
+		{84B14781-653E-4B05-8580-EB8B9B157B5B}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
+		{84B14781-653E-4B05-8580-EB8B9B157B5B}.Debug|Mixed Platforms.Build.0 = Debug|Win32
+		{84B14781-653E-4B05-8580-EB8B9B157B5B}.Debug|x64.ActiveCfg = Debug|x64
+		{84B14781-653E-4B05-8580-EB8B9B157B5B}.Debug|x64.Build.0 = Debug|x64
+		{84B14781-653E-4B05-8580-EB8B9B157B5B}.Debug|x86.ActiveCfg = Debug|Win32
+		{84B14781-653E-4B05-8580-EB8B9B157B5B}.Debug|x86.Build.0 = Debug|Win32
+		{84B14781-653E-4B05-8580-EB8B9B157B5B}.Editor Debug|Mixed Platforms.ActiveCfg = Debug|Win32
+		{84B14781-653E-4B05-8580-EB8B9B157B5B}.Editor Debug|Mixed Platforms.Build.0 = Debug|Win32
+		{84B14781-653E-4B05-8580-EB8B9B157B5B}.Editor Debug|x64.ActiveCfg = Debug|x64
+		{84B14781-653E-4B05-8580-EB8B9B157B5B}.Editor Debug|x64.Build.0 = Debug|x64
+		{84B14781-653E-4B05-8580-EB8B9B157B5B}.Editor Debug|x86.ActiveCfg = Debug|Win32
+		{84B14781-653E-4B05-8580-EB8B9B157B5B}.Editor Debug|x86.Build.0 = Debug|Win32
+		{84B14781-653E-4B05-8580-EB8B9B157B5B}.Editor Release|Mixed Platforms.ActiveCfg = Release|Win32
+		{84B14781-653E-4B05-8580-EB8B9B157B5B}.Editor Release|Mixed Platforms.Build.0 = Release|Win32
+		{84B14781-653E-4B05-8580-EB8B9B157B5B}.Editor Release|x64.ActiveCfg = Release|x64
+		{84B14781-653E-4B05-8580-EB8B9B157B5B}.Editor Release|x64.Build.0 = Release|x64
+		{84B14781-653E-4B05-8580-EB8B9B157B5B}.Editor Release|x86.ActiveCfg = Release|Win32
+		{84B14781-653E-4B05-8580-EB8B9B157B5B}.Editor Release|x86.Build.0 = Release|Win32
+		{84B14781-653E-4B05-8580-EB8B9B157B5B}.Release|Mixed Platforms.ActiveCfg = Release|Win32
+		{84B14781-653E-4B05-8580-EB8B9B157B5B}.Release|Mixed Platforms.Build.0 = Release|Win32
+		{84B14781-653E-4B05-8580-EB8B9B157B5B}.Release|x64.ActiveCfg = Release|x64
+		{84B14781-653E-4B05-8580-EB8B9B157B5B}.Release|x64.Build.0 = Release|x64
+		{84B14781-653E-4B05-8580-EB8B9B157B5B}.Release|x86.ActiveCfg = Release|Win32
+		{84B14781-653E-4B05-8580-EB8B9B157B5B}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -239,6 +265,7 @@ Global
 		{DD8D7CFA-345C-463C-B67C-9465066E1C45} = {22AD385B-EBCA-4092-AE58-F5C3D7735B5D}
 		{591FF8F9-F97D-40FC-BAF5-47AAEEC33BB9} = {22AD385B-EBCA-4092-AE58-F5C3D7735B5D}
 		{EEC26E1A-75E9-469D-858E-4B0D6BECD730} = {22AD385B-EBCA-4092-AE58-F5C3D7735B5D}
+		{84B14781-653E-4B05-8580-EB8B9B157B5B} = {22AD385B-EBCA-4092-AE58-F5C3D7735B5D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {26BB2917-7003-4AE8-AB8B-43DBE1635F44}

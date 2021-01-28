@@ -4,9 +4,33 @@ CRectangle<T>::CRectangle() : IShape(ShapeType::RECTANGLE)
 }
 
 template <class T>
+CRectangle<T>::CRectangle(const CRectangle<T>& rsh) : IShape(ShapeType::RECTANGLE)
+{
+	*this = rsh;
+}
+
+template <class T>
+CRectangle<T>& CRectangle<T>::operator=(const CRectangle<T>& rsh)
+{
+	x = rsh.x;
+	y = rsh.y;
+	w = rsh.w;
+	h = rsh.h;
+	IShape::operator=(rsh);
+
+	return *this;
+}
+
+template <class T>
 CRectangle<T>::CRectangle(T Left, T Top, T Width, T Height) : CRectangle()
 {
 	Set(Left, Top, Width, Height);
+}
+
+template <class T>
+IShape* CRectangle<T>::Copy()
+{
+	return NEW_AO CRectangle<T>(*this);
 }
 
 template <class T>

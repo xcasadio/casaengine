@@ -1,10 +1,7 @@
-#ifndef HELLOWORLDGAME_H_
-#define HELLOWORLDGAME_H_
+#ifndef TILEMAPGAME_H_
+#define TILEMAPGAME_H_
 
-#include "Entities/Components/StaticSpriteComponent.h"
-#include "Entities/Components/CameraControllers/CameraController.h"
 #include "Game/Game.h"
-#include "Graphics/Effects/Program.h"
 #include "Sprite/SpriteRenderer.h"
 #include "World/World.h"
 
@@ -30,4 +27,4 @@ private:
 	SpriteRenderer* m_pSpriteRenderer;
 };
 
-#endif // HELLOWORLDGAME_H_
+#endif // TILEMAPGAME_H_

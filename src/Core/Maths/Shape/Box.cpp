@@ -11,8 +11,29 @@ namespace CasaEngine
 		m_Size = size_;
 	}
 
+	Box::Box(const Box& rsh) :
+		IShape(BOX)
+	{
+		*this = rsh;
+	}
+
+	Box& Box::operator=(const Box& rsh)
+	{
+		m_Center = rsh.m_Center;
+		m_Size = rsh.m_Size;
+
+		IShape::operator=(rsh);
+
+		return *this;
+	}
+
 	Box::~Box()
 	{
+	}
+
+	IShape* Box::Copy()
+	{
+		return NEW_AO Box(*this);
 	}
 
 	Vector3F Box::Size() const

@@ -17,7 +17,11 @@ namespace CasaEngine
 	{
 	public:
 		Box(Vector3F size_ = Vector3F::One(), Vector3F center_ = Vector3F::Zero());
+		Box(const Box& rsh);
+		Box& operator=(const Box& rsh);
 		~Box();
+
+		virtual IShape* Copy() override;
 
 		Vector3F Size() const;
 		void Size(Vector3F val);
@@ -28,5 +32,11 @@ namespace CasaEngine
 		Vector3F m_Center, m_Size;
 	};
 }
+/*
+#include <cereal/types/polymorphic.hpp>
 
+CEREAL_REGISTER_TYPE_WITH_NAME(CasaEngine::Box, "box");
+
+CEREAL_REGISTER_POLYMORPHIC_RELATION(CasaEngine::IShape, CasaEngine::Box);
+*/
 #endif

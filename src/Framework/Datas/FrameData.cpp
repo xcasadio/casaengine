@@ -30,7 +30,7 @@ namespace CasaEngine
 
 
 
-	float FrameData::GetDuration()
+	float FrameData::GetDuration() const
 	{
 		return m_Duration;
 	}
@@ -40,7 +40,7 @@ namespace CasaEngine
 		m_Duration = duration;
 	}
 
-	std::string FrameData::GetSpriteId()
+	std::string FrameData::GetSpriteId() const
 	{
 		return m_SpriteId;
 	}

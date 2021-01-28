@@ -25,6 +25,9 @@ namespace CasaEngine
 		template<class T>
 		T* GetAsset(std::string name_);
 
+		template<class T>
+		std::vector<T*> GetAssets();
+
 		void AddAsset(Asset* asset_);
 		bool Contains(std::string name);
 		void Clear();
@@ -46,7 +49,7 @@ namespace CasaEngine
 			(CStringBuilder("AssetManager::GetAsset(): can't find the asset '")(name_)("'")).c_str());
 		return asset->second->GetAsset<T>();
 	}
-	/*
+	
 	template<class T>
 	std::vector<T*> AssetManager::GetAssets()
 	{
@@ -54,12 +57,14 @@ namespace CasaEngine
 
 		for (auto pair : m_Assets)
 		{
-			pair.
+			if (pair.second->IsTypeOf<T>())
+			{
+				assets.push_back(pair.second->GetAsset<T>());
+			}
 		}
 		
 		return assets;
 	}
-	*/
 }
 
 #endif

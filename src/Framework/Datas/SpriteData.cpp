@@ -27,6 +27,12 @@ namespace CasaEngine
 		m_AssetFileName = rsh.m_AssetFileName;
 		m_PositionInTexture = rsh.m_PositionInTexture;
 		m_Origin = rsh.m_Origin;
+		m_CollisionShapes.clear();
+		for (auto coll : rsh.m_CollisionShapes)
+		{
+			m_CollisionShapes.push_back(*coll.Copy());
+		}
+
 		IAssetable::operator=(rsh);
 
 		return *this;
@@ -53,7 +59,7 @@ namespace CasaEngine
 	}
 
 	void SpriteData::Clear()
-	{
+	{/*
 		for (auto it = m_CollisionShapes.begin();
 			it != m_CollisionShapes.end();
 			it++)
@@ -61,7 +67,7 @@ namespace CasaEngine
 			DELETE_AO it->GetShape();
 		}
 
-		m_CollisionShapes.clear();
+		m_CollisionShapes.clear();*/
 	}
 
 	SpriteData* SpriteData::Copy()

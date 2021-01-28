@@ -17,11 +17,11 @@ namespace CasaEngine
 		FrameData();
 		FrameData(const FrameData& rsh);
 		FrameData& operator=(const FrameData& rsh);
-		~FrameData();
+		virtual ~FrameData();
 
-		float GetDuration();
+		float GetDuration() const;
 		void SetDuration(float duration);
-		std::string GetSpriteId();
+		std::string GetSpriteId() const;
 		void SetSpriteId(std::string spriteId);
 
 	private:

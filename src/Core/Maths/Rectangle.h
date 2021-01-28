@@ -22,23 +22,23 @@ namespace CasaEngine
 
 	template<class T>
 	class CA_EXPORT CRectangle :
-		public IShape, public virtual AllocatedObject<CRectangle<T>>
+		public IShape/*, public virtual AllocatedObject<CRectangle<T>>*/
 	{
 	public:
 		CRectangle();
+		CRectangle(const CRectangle<T>& rsh);
+		CRectangle<T>& operator=(const CRectangle<T>& rsh);
 		CRectangle(T Left, T Top, T Width, T Height);
 
 		void Set(T Left, T Top, T Width, T Height);
 
 		T Left() const;
-
 		T Right() const;
-
 		T Top() const;
-
 		T Bottom() const;
-
 		CVector2<T> Size() const;
+
+		virtual IShape* Copy() override;
 
 		TIntersection Intersects(const CVector2<T>& Point) const;
 		TIntersection Intersects(const CRectangle<T>& Rect) const;
@@ -54,6 +54,7 @@ namespace CasaEngine
 		template <class Archive>
 		void load(Archive& ar)
 		{
+			ar(cereal::make_nvp("shape", cereal::base_class<IShape>(this)));
 			ar(cereal::make_nvp("x", x));
 			ar(cereal::make_nvp("y", y));
 			ar(cereal::make_nvp("w", w));
@@ -63,6 +64,7 @@ namespace CasaEngine
 		template <class Archive>
 		void save(Archive& ar) const
 		{
+			ar(cereal::make_nvp("shape", cereal::base_class<IShape>(this)));
 			ar(cereal::make_nvp("x", x));
 			ar(cereal::make_nvp("y", y));
 			ar(cereal::make_nvp("w", w));
@@ -78,5 +80,13 @@ namespace CasaEngine
 
 #include "Rectangle.inl"
 }
+/*
+#include <cereal/types/polymorphic.hpp>
 
+CEREAL_REGISTER_TYPE_WITH_NAME(CasaEngine::RectangleI, "rectangleI");
+CEREAL_REGISTER_TYPE_WITH_NAME(CasaEngine::RectangleF, "rectangleF");
+
+CEREAL_REGISTER_POLYMORPHIC_RELATION(CasaEngine::IShape, CasaEngine::RectangleI);
+CEREAL_REGISTER_POLYMORPHIC_RELATION(CasaEngine::IShape, CasaEngine::RectangleF);
+*/
 #endif // RECTANGLE_H

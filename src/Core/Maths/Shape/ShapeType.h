@@ -3,13 +3,8 @@
 
 #include "CA_Export.h"
 
-#include "Memory/MemoryAllocation.h"
-
 namespace CasaEngine
 {
-	/**
-	 *
-	 */
 	enum ShapeType
 	{
 		//3D

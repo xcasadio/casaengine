@@ -7,7 +7,9 @@
 #include "ShapeType.h"
 
 #include "Memory/MemoryAllocation.h"
-#include "Parsers/Xml/tinyxml2.h"
+
+#include <cereal/access.hpp>
+#include <cereal/types/polymorphic.hpp>
 
 namespace CasaEngine
 {
@@ -18,11 +20,30 @@ namespace CasaEngine
 		virtual ~IShape();
 		ShapeType Type() const;
 
+		virtual IShape* Copy() = 0;
+
 	protected:
+		//IShape(const IShape& rsh);
+		IShape& operator=(const IShape& rsh);
 		IShape(ShapeType type_);
 
 	private:
 		ShapeType m_ShapeType;
+
+	private:
+		friend class cereal::access;
+
+		template <class Archive>
+		void load(Archive& ar)
+		{
+			ar(cereal::make_nvp("shape_type", m_ShapeType));
+		}
+
+		template <class Archive>
+		void save(Archive& ar) const
+		{
+			ar(cereal::make_nvp("shape_type", m_ShapeType));
+		}
 	};
 }
 

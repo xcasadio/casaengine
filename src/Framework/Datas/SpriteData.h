@@ -58,7 +58,7 @@ namespace CasaEngine
 			ar(cereal::make_nvp("sprite_sheet", m_AssetFileName));
 			ar(cereal::make_nvp("location", m_PositionInTexture));
 			ar(cereal::make_nvp("hotspot", m_Origin));
-			//ar(cereal::make_nvp("collisions", m_CollisionShapes));
+			ar(cereal::make_nvp("collisions", m_CollisionShapes));
 		}
 
 		template <class Archive>
@@ -68,7 +68,7 @@ namespace CasaEngine
 			ar(cereal::make_nvp("sprite_sheet", m_AssetFileName));
 			ar(cereal::make_nvp("location", m_PositionInTexture));
 			ar(cereal::make_nvp("hotspot", m_Origin));
-			//ar(cereal::make_nvp("collisions", m_CollisionShapes));
+			ar(cereal::make_nvp("collisions", m_CollisionShapes));
 		}
 	};
 }

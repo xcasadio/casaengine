@@ -13,6 +13,12 @@ namespace CasaEngine
 		m_ShapeType = type_;
 	}
 
+	IShape& IShape::operator=(const IShape& rsh)
+	{
+		m_ShapeType = rsh.m_ShapeType;
+		return *this;
+	}
+
 	IShape::~IShape()
 	{
 	}
