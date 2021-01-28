@@ -1,7 +1,6 @@
 #ifndef ISCRIPTOBJECT_H_
 #define ISCRIPTOBJECT_H_
 
-#include "Log\LogManager.h"
 #include "CA_Export.h"
 #include "Memory\MemoryAllocation.h"
 #include "Entities\BaseEntity.h"

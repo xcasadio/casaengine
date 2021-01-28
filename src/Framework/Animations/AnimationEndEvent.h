@@ -1,12 +1,8 @@
 #ifndef _ANIMATIONENDEVENT_H_
 #define _ANIMATIONENDEVENT_H_
 
-#include <string>
-
 #include "CA_Export.h"
-#include <vector>
 #include "AnimationEvent.h"
-#include "Parsers\Xml\tinyxml2.h"
 
 namespace CasaEngine
 {

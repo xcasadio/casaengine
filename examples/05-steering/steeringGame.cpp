@@ -1,22 +1,15 @@
 #include <string>
-#include <iosfwd>
 
 #include "steeringGame.h"
 
 #include <bgfx/defines.h>
 
-#include "Assets/AssetManager.h"
-
 #include "Entities/Components/AnimatedSpriteComponent.h"
 #include "Entities/Components/Camera3DComponent.h"
 #include "Entities/Components/CameraControllers/ArcBallCameraController.h"
 #include "Entities/Components/MeshComponent.h"
-#include "Entities/Components/Physics/Box2DColliderComponent.h"
 #include "Entities/Components/Physics/RigidBodyComponent.h"
-#include "Entities/Components/ScriptComponent.h"
-#include "Entities/Components/StaticSpriteComponent.h"
 #include "Entities/Components/Transform3DComponent.h"
-#include "Entities/EntityManager.h"
 #include "Game/Game.h"
 #include "Game/GameInfo.h"
 #include "Game/Input.h"
@@ -25,16 +18,10 @@
 #include "Graphics/Mesh/Mesh.h"
 #include "Graphics/Primitives/BoxPrimitive.h"
 #include "Graphics/Primitives/PlanePrimitive.h"
-#include "Graphics/Renderer/Enums.h"
-#include "Graphics/Renderer/Renderer.h"
 #include "Graphics/Textures/Texture.h"
 #include "Log/LoggerFile.h"
-#include "Maths/Math.h"
 #include "Maths/Vector3.h"
-#include "Maths/Vector4.h"
 #include "Memory/MemoryAllocation.h"
-#include "Physics/PhysicsEngine.h"
-#include "Resources/ResourceManager.h"
 #include "Entities/Components/MovingEntity2DComponent.h"
 #include "Entities/Components/SteeringBehaviorComponent.h"
 

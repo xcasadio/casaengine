@@ -3,24 +3,15 @@
 #include "Entities/ComponentTypeEnum.h"
 #include "Base.h"
 #include "Game/Game.h"
-#include "Sprite/SpriteRenderer.h"
-#include "Sprite/SpriteTypes.h"
 #include "Assets/AssetManager.h"
-#include "Maths/Matrix3.h"
 #include "Maths/Matrix4.h"
 #include "MeshComponent.h"
-#include "Resources/ResourceManager.h"
-#include "Graphics/Color.h"
 
 #include "StringUtils.h"
 
 
-#include <string>
-
-
 #include "TransformComponent.h"
 #include "Game/MeshRendererGameComponent.h"
-#include "Game/GameInfo.h"
 
 namespace CasaEngine
 {

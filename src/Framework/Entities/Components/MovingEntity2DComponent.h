@@ -1,17 +1,10 @@
 #ifndef MOVING_ENTITY_2D_COMPONENT_H_
 #define MOVING_ENTITY_2D_COMPONENT_H_
 
-#include <string>
-
 #include "CA_Export.h"
 #include "GameTime.h"
 #include <iosfwd>
 #include "Entities/Component.h"
-#include <string>
-#include "Sprite/SpriteRenderer.h"
-#include "Graphics/Color.h"
-#include "Sprite/SpriteTypes.h"
-#include "Transform2DComponent.h"
 #include "Maths/Vector2.h"
 #include "Maths/Utils/Smoother.h"
 

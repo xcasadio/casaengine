@@ -1,19 +1,13 @@
 #ifndef RIGIDBODYCOMPONENT_H_
 #define RIGIDBODYCOMPONENT_H_
 
-#include <string>
-#include <iosfwd>
 #include <vector>
 
 #include "CA_Export.h"
 #include "GameTime.h"
 #include "Entities/Component.h"
-#include "Sprite/SpriteRenderer.h"
-#include "Graphics/Color.h"
-#include "Sprite/SpriteTypes.h"
 #include "ColliderComponent.h"
 #include "Physics/RigidBody.h"
-#include "Parsers/Xml/tinyxml2.h"
 
 #include "AI/Messaging/Telegram.h"
 

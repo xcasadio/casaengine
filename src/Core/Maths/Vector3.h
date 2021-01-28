@@ -3,26 +3,17 @@
 
 #include "Math.h"
 
-#include <limits>
-#include <iostream>
-#include <vector>
 #include <cmath>
 #include <algorithm>
+#include <cmath>
 
+#include "Maths/ValidNumber.h"
 #include "Memory/MemoryAllocation.h"
-#include <math.h>
-#include "ValidNumber.h"
 #include "CA_Assert.h"
 #include "Log/LogManager.h"
 
 namespace CasaEngine
 {
-	/*class Matrix4;
-	class Quaternion;*/
-
-	/**
-	 *
-	 */
 	template <class T>
 	class CVector3 :
 		public AllocatedObject<CVector3<T> >
@@ -30,9 +21,6 @@ namespace CasaEngine
 	public:
 		T x, y, z;
 
-		/**
-		 *
-		 */
 		static CVector3<T> Zero();
 		static CVector3<T> One();
 		static CVector3<T> UnitX();

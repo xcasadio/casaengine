@@ -1,11 +1,7 @@
 #ifndef _ANIMATIONEVENT_H_
 #define _ANIMATIONEVENT_H_
 
-#include <string>
 #include "CA_Export.h"
-#include <vector>
-#include "Parsers\Xml\tinyxml2.h"
-#include <iosfwd>
 #include <cereal/access.hpp>
 #include <cereal/cereal.hpp>
 

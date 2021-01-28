@@ -2,9 +2,6 @@
 #define _VIEWPORTTARGET_H_
 
 #include "CA_Export.h"
-#include "Maths/Vector3.h"
-#include "Maths/Vector2.h"
-#include "Renderer/Enums.h"
 #include "RenderTarget.h"
 #include "Maths/Rectangle.h"
 

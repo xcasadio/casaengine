@@ -1,5 +1,3 @@
-
-#include "Base.h"
 #include "FuzzySet_RightShoulder.h"
 
 #include "Maths\Math.h"

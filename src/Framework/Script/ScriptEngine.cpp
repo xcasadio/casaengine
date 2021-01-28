@@ -1,7 +1,5 @@
 #include "Base.h"
 #include "ScriptEngine.h"
-#include "Log/LogVerbose.h"
-#include "Log/LogManager.h"
 
 namespace CasaEngine
 {

@@ -3,11 +3,8 @@
 #include "Maths/Matrix4.h"
 #include "Graphics/Mesh/Mesh.h"
 #include "Graphics/Renderer/Renderer.h"
-#include "Exceptions.h"
 
-#include <string>
 
-#include "Resources/ResourceManager.h"
 #include "Log/LogManager.h"
 #include "Log/LogVerbose.h"
 #include "CA_Assert.h"
@@ -64,45 +61,33 @@ namespace CasaEngine
 		m_IndexBuffer = bgfx::createIndexBuffer(
 			bgfx::makeRef(Indices, IndicesCount * sizeof(short)));
 
-		m_TextureRepitionUniform = bgfx::createUniform("u_texcoord0rep", bgfx::UniformType::Vec4);
+		m_TextureRepetitionUniform = bgfx::createUniform("u_texcoord0rep", bgfx::UniformType::Vec4);
 		m_TextureUniform = bgfx::createUniform("s_texColor", bgfx::UniformType::Sampler);
 
 		const char* materialName = "internal_default_material";
-		m_pMaterial = Game::Instance().GetResourceManager().Get<Material>(materialName);
-
-		if (nullptr == m_pMaterial)
+		
+		if (nullptr == m_pMaterial
+			&& !Game::Instance().GetAssetManager().Contains(materialName))
 		{
 			m_pMaterial = NEW_AO Material();
 			m_pMaterial->Texture0(m_pDefaultTexture);
-			Game::Instance().GetResourceManager().Add(materialName, m_pMaterial);
+			Game::Instance().GetAssetManager().AddAsset(materialName, m_pMaterial);
 		}
+
+		m_pMaterial = Game::Instance().GetAssetManager().GetAsset<Material>(materialName);
 	}
 
-	/**
-	 *
-	 */
 	Mesh::~Mesh()
 	{
-		if (nullptr != m_pMaterial)
-		{
-			m_pMaterial->Release();
-		}
-
 		bgfx::destroy(m_IndexBuffer);
 		bgfx::destroy(m_VertexBuffer);
 	}
 
-	/**
-	 *
-	 */
 	Material* Mesh::GetMaterial() const
 	{
 		return m_pMaterial;
 	}
 
-	/**
-	 *
-	 */
 	void Mesh::SetMaterial(Material* val)
 	{
 		// 	if (nullptr != m_pMaterial)
@@ -113,9 +98,6 @@ namespace CasaEngine
 		m_pMaterial = val;
 	}
 
-	/**
-	 *
-	 */
 	void Mesh::Render(bgfx::ProgramHandle handle_, Matrix4& matWorld_) const
 	{
 		bgfx::setTransform(matWorld_);
@@ -126,7 +108,7 @@ namespace CasaEngine
 		bgfx::TextureHandle texture = m_pMaterial->Texture0() != nullptr ? m_pMaterial->Texture0()->Handle() : m_pDefaultTexture->Handle();
 		bgfx::setTexture(0, m_TextureUniform, bgfx::isValid(texture) ? texture : m_pDefaultTexture->Handle());
 
-		bgfx::setUniform(m_TextureRepitionUniform, Vector4F(m_pMaterial->Texture0Repeat().x, m_pMaterial->Texture0Repeat().y, 1.0f, 1.0f));
+		bgfx::setUniform(m_TextureRepetitionUniform, Vector4F(m_pMaterial->Texture0Repeat().x, m_pMaterial->Texture0Repeat().y, 1.0f, 1.0f));
 
 		bgfx::setState(BGFX_STATE_WRITE_RGB
 			| BGFX_STATE_WRITE_A

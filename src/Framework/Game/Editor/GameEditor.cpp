@@ -1,7 +1,7 @@
 #include "Base.h"
 #include "GameEditor.h"
 #include "Game/Game.h"
-#include "Resources/MediaManager.h"
+
 #include "Entities/BaseEntity.h"
 #include "Entities/Components/Camera3DComponent.h"
 #include "Entities/Components/CameraControllers/ArcBallCameraController.h"
@@ -14,39 +14,18 @@
 
 namespace CasaEngine
 {
-    //Used by the C++/Cli Wrapper
-	/*extern "C" __declspec(dllexport) GameEditor* Game_New(sf::WindowHandle handle_)
-	{
-		return new GameEditor(handle_);
-	}
-
-	extern "C" __declspec(dllexport) void Game_Delete(GameEditor* pGame_)
-	{
-		delete pGame_;
-	}*/
-	///////////////////////////////////////////////////////////
-
-	/**
-	 * 
-	 */
 	GameEditor::GameEditor(sf::WindowHandle handle_) :
 		Game(handle_)
 	{
 		Logging.AddLogger(NEW_AO LoggerFile("Out.log"));
 	}
 
-	/**
-	 * 
-	 */
 	GameEditor::~GameEditor()
 	{
 		if (nullptr != m_pLineRenderer) DELETE_AO m_pLineRenderer;
 		if (nullptr != m_SpriteRenderer) DELETE_AO m_SpriteRenderer;
 	}
 
-	/**
-	 * 
-	 */
 	void GameEditor::Initialize()
 	{
 		m_pLineRenderer = NEW_AO Line3DRendererComponent(this);
@@ -76,9 +55,6 @@ namespace CasaEngine
 		Game::Initialize();
 	}
 
-	/**
-	 * 
-	 */
 	void GameEditor::LoadContent()
 	{
 		Game::LoadContent();
@@ -97,17 +73,11 @@ namespace CasaEngine
 		Game::Instance().GetGameInfo().SetActiveCamera(m_pCamera3D);
 	}
 
-	/**
-	 * 
-	 */
 	void GameEditor::Update( const GameTime& gameTime_)
 	{
 		Game::Update(gameTime_);
 	}
 
-	/**
-	 * 
-	 */
 	void GameEditor::Draw()
 	{
 		Game::Draw();

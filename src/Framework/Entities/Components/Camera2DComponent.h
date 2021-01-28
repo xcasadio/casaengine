@@ -1,13 +1,8 @@
 #ifndef CAMERA2DCOMPONENT_H_
 #define CAMERA2DCOMPONENT_H_
 
-#include <string>
-
 #include "CA_Export.h"
-#include "GameTime.h"
-#include <iosfwd>
 #include "Entities/Components/CameraComponent.h"
-#include <string>
 #include "Transform2DComponent.h"
 
 

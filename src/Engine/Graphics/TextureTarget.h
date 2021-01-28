@@ -2,13 +2,8 @@
 #define _RenderTargetTexture_H_
 
 #include "CA_Export.h"
-#include "Maths/Vector3.h"
-#include "Maths/Matrix4.h"
-#include "Maths/Vector2.h"
-#include "Renderer/Enums.h"
 #include "Textures/Texture.h"
 #include "RenderTarget.h"
-#include "Graphics/Textures/Texture.h"
 
 namespace CasaEngine
 {

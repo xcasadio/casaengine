@@ -1,5 +1,4 @@
 #include "Base.h"
-#include "CA_Assert.h"
 #include "Box.h"
 
 namespace CasaEngine

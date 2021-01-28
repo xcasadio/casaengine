@@ -1,6 +1,3 @@
-#include "Base.h"
-#include "CA_Assert.h"
-
 #include "Sphere.h"
 
 namespace CasaEngine

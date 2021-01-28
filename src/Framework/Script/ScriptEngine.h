@@ -2,11 +2,9 @@
 #define SCRIPTENGINE_H_
 
 #include "CA_Export.h"
-#include <string>
 #include "IScriptObject.h"
 #include "IScriptObjectFactory.h"
 #include <map>
-#include "Memory\MemoryAllocation.h"
 
 #include "Entities\BaseEntity.h"
 

@@ -5,11 +5,6 @@
 
 #include "IPhysicsWorld.h"
 #include "IPhysicsEngine.h"
-#include "BulletCollision\CollisionDispatch\btCollisionDispatcher.h"
-#include "BulletCollision\BroadphaseCollision\btDispatcher.h"
-#include "BulletCollision\CollisionDispatch\btDefaultCollisionConfiguration.h"
-#include "BulletCollision\BroadphaseCollision\btBroadphaseInterface.h"
-#include "BulletDynamics\ConstraintSolver\btSequentialImpulseConstraintSolver.h"
 
 namespace CasaEngine
 {

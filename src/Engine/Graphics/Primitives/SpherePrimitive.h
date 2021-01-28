@@ -1,15 +1,8 @@
 #ifndef SPHEREPRIMITIVE_H
 #define SPHEREPRIMITIVE_H
 
-#include <sstream>
-#include <string>
-#include <vector>
-
 #include "CA_Export.h"
 
-#include "Graphics/Mesh/Mesh.h"
-#include "Maths/Vector3.h"
-#include "Maths/Vector2.h"
 #include "Primitive3D.h"
 
 namespace CasaEngine

@@ -17,12 +17,9 @@
 #include <iosfwd>
 
 #include "CA_Export.h"
-#include "FuzzySet.h"
 #include "FuzzyVariable.h"
 #include "FuzzyRule.h"
-#include "FuzzyOperators.h"
 #include "FzSet.h"
-#include "FuzzyHedges.h"
 
 namespace CasaEngine
 {

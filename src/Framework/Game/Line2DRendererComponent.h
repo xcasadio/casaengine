@@ -9,13 +9,12 @@
 #include "GameTime.h"
 #include "DrawableGameComponent.h"
 #include "Maths/Vector2.h"
-#include "Maths/Matrix4.h"
 
 #include "Graphics/Color.h"
 #include "Memory/ObjectPool.h"
-#include "Graphics/Vertices/VertexType.h"
 
 #include <vector>
+#include <bgfx/bgfx.h>
 
 
 namespace CasaEngine

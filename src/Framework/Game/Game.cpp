@@ -8,18 +8,14 @@
 #include "Game/GameInfo.h"
 #include "GameTime.h"
 
-#include "Graphics/Renderer/Enums.h"
 #include "Graphics/Renderer/Renderer.h"
-#include "Graphics/Viewport.h"
 #include "Log/LogManager.h"
 #include "Log/LoggerFile.h"
-#include "Parsers/Ini/INIReader.h"
-#include "Resources/MediaManager.h"
-#include "Resources/ResourceManager.h"
+
+
 #include "SFML/Window/Window.hpp"
 #include "SFML/Window/Event.hpp"
 
-#include "bx/thread.h"
 // #include <bx/mutex.h>
 // #include <bx/handlealloc.h>
 
@@ -35,7 +31,6 @@
 // #include "CEGUI/CEGUILogger.h"
 
 #include <algorithm>
-#include <string>
 
 #if CA_PLATFORM_WINDOWS
 
@@ -61,9 +56,7 @@
 
 #include "Memory/MemoryReport.h"
 #include "bgfx/platform.h"
-#include "Graphics/Effects/Shader.h"
 #include "bx/math.h"
-#include "Maths/Vector4.h"
 #include "Tools/InGameLogger.h"
 #include "UI/imguiAdapter.h"
 
@@ -85,9 +78,6 @@ Game& Game::Instance()
 	return *s_Application;
 }
 
-/**
- * 
- */
 #if CA_PLATFORM_DESKTOP
 Game::Game(sf::WindowHandle handle_) :
 	m_pWindow(nullptr),
@@ -105,9 +95,7 @@ Game::Game() :
 // 	m_pCEGUILogger = nullptr;
 // 	m_pCEGUIImageCodec = nullptr;
 	m_NeedResize = false;
-    s_Application = this;	
-
-    RegisterLoaders();
+    s_Application = this;
 
 #if CA_PLATFORM_DESKTOP
 
@@ -125,9 +113,6 @@ Game::Game() :
 	//sf::err().rdbuf(previous);
 }
 
-/**
- * 
- */
 Game::~Game()
 {
 	DELETE_AO m_pGamePlayDLL;
@@ -502,16 +487,10 @@ void Game::RenderThreadloop()
 	}
 }
 
-/**
- * 
- */
 void Game::BeginRun()
 {
 }
 
-/**
- * 
- */
 void Game::EndRun()
 {
 	imguiAdapter::imguiDestroy();
@@ -628,9 +607,6 @@ void Game::Update(const GameTime& gameTime_)
 	m_DisplayDebugInfo.Update(gameTime_);
 }
 
-/**
- * 
- */
 void Game::BeginDraw()
 {
 	bgfx::setViewRect(0, 0, 0, GetWindowSize().x, GetWindowSize().y);
@@ -640,9 +616,6 @@ void Game::BeginDraw()
 	bgfx::touch(0);
 }
 
-/**
- * 
- */
 void Game::Draw()
 {
 	int width = GetEngineSettings().WindowWidth;
@@ -661,9 +634,6 @@ void Game::Draw()
 	}
 }
 
-/**
- * 
- */
 void Game::EndDraw()
 {
 	m_DisplayDebugInfo.Draw();
@@ -680,13 +650,6 @@ void Game::EndDraw()
 	bgfx::frame();
 }
 
-
-////////////////////////////////////////////////////////////
-/// Charge un plugin
-///
-/// \param Filename : Nom de fichier de la DLL
-///
-////////////////////////////////////////////////////////////
 /*void Game::LoadPlugin(const std::string& Filename)
 {
     // Si la DLL est déjà chargée on lance une exception
@@ -697,13 +660,6 @@ void Game::EndDraw()
     m_Plugins[Filename] = NEW_AO Plugin(Filename);
 }
 
-
-////////////////////////////////////////////////////////////
-/// Décharge un plugin
-///
-/// \param Filename : Nom de fichier de la DLL
-///
-////////////////////////////////////////////////////////////
 void Game::UnloadPlugin(const std::string& Filename)
 {
     // Si la DLL n'est pas chargée on lève une exception
@@ -714,10 +670,6 @@ void Game::UnloadPlugin(const std::string& Filename)
     m_Plugins.erase(Filename);
 }*/
 
-
-/**
- * 
- */
 void Game::Exit()
 {
     m_IsRunning = false;
@@ -734,9 +686,6 @@ bool sortDrawableGameComponent (DrawableGameComponent* i, DrawableGameComponent*
 	return i->DrawOrder() < j->DrawOrder(); 
 }
 
-//----------------------------------------------------------
-// 
-//----------------------------------------------------------
 void Game::AddComponent(IGameComponent *component_)
 {
 	m_Components.push_back(component_);
@@ -757,9 +706,6 @@ void Game::AddComponent(IGameComponent *component_)
 
 }
 
-//----------------------------------------------------------
-// 
-//----------------------------------------------------------
 void Game::RemoveComponent(IGameComponent *component_)
 {
 	for (std::vector<IGameComponent *>::iterator it = m_Components.begin();
@@ -789,35 +735,16 @@ void Game::RemoveComponent(IGameComponent *component_)
 	}
 }
 
-//----------------------------------------------------------
-// Get input
-//----------------------------------------------------------
 Input &Game::GetInput()
 {
 	return m_Input;
 }
 
-/**
- * 
- */
 Vector2I Game::GetWindowSize() const
 {
 	return Vector2I(m_pWindow->getSize().x, m_pWindow->getSize().y);
 }
 
-/**
- * 
- */
-void Game::RegisterLoaders()
-{
-// 	m_MediaManager.RegisterLoader(NEW_AO CImagesLoader, "bmp, dds, jpg, pcx, png, pnm, raw, sgi, tga, tif");
-// 	m_MediaManager.RegisterLoader(NEW_AO CShadersLoader(), "vert, fx");
-//	m_MediaManager.RegisterLoader(NEW_AO XmlLoader, "xml");
-}
-
-/**
- * 
- */
 void Game::OnWindowResized(unsigned int width_, unsigned int height_)
 {
 	m_NeedResize = true;
@@ -825,9 +752,6 @@ void Game::OnWindowResized(unsigned int width_, unsigned int height_)
 	m_NewSize.y = height_;
 }
 
-/**
- * 
- */
 void Game::Resize()
 {
 	m_Renderer.Resize(m_NewSize.x, m_NewSize.y);
@@ -841,18 +765,12 @@ void Game::Resize()
 		m_GameInfo.SetActiveCamera(m_GameInfo.GetActiveCamera());
 	}
 }
-    
-/**
- * 
- */
+
 // CEGUIRenderer* Game::GetCEGUIRenderer() const
 // {
 // 	return m_pCEGUIRenderer;
 // }
 
-/**
- * 
- */
 bool Game::LoadGamePlayDLL( const char *pFileName_ )
 {
 	//TODO create release method ??
@@ -861,9 +779,6 @@ bool Game::LoadGamePlayDLL( const char *pFileName_ )
 	return m_pGamePlayDLL != nullptr;
 }
 
-/**
- * 
- */
 DebugOptions &Game::GetDebugOptions()
 {
 	return m_DebugOptions;
@@ -905,11 +820,6 @@ MediaManager& Game::GetMediaManager()
 AssetManager& Game::GetAssetManager()
 {
 	return m_AssetManager;
-}
-
-ResourceManager& Game::GetResourceManager()
-{
-	return m_ResourceManager;
 }
 
 IRenderer& Game::GetRenderer()

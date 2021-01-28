@@ -1,7 +1,6 @@
 #include <vector>
 #include <string>
 
-#include "Base.h"
 #include "XMLHelper.h"
 #include "tinyxml2.h"
 

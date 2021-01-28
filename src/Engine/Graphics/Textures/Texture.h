@@ -3,7 +3,6 @@
 
 #include "CA_Export.h"
 
-#include "Resources/Resource.h"
 #include "IO\IFile.h"
 #include <bgfx/bgfx.h>
 #include <map>
@@ -13,8 +12,7 @@ namespace CasaEngine
 	/**
 	 *
 	 */
-	class CA_EXPORT Texture :
-		public IResource
+	class CA_EXPORT Texture
 	{
 	public:
 

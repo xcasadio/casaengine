@@ -1,15 +1,10 @@
 #ifndef CAPSULECOLLIDERCOMPONENT_H_
 #define CAPSULECOLLIDERCOMPONENT_H_
 
-#include <string>
 #include <iosfwd>
 
 #include "CA_Export.h"
-#include "GameTime.h"
 #include "ColliderComponent.h"
-#include "Sprite/SpriteRenderer.h"
-#include "Graphics/Color.h"
-#include "Sprite/SpriteTypes.h"
 
 namespace CasaEngine
 {

@@ -9,7 +9,6 @@
 #include "GameTime.h"
 #include "DrawableGameComponent.h"
 #include "Maths/Vector3.h"
-#include "Maths/Matrix4.h"
 
 #include "Graphics/Color.h"
 #include "Memory/ObjectPool.h"

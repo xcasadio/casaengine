@@ -2,7 +2,6 @@
 #define ISCRIPTOBJECTFACTORY_H_
 
 #include "CA_Export.h"
-#include <string>
 #include "IScriptObject.h"
 
 #include "Memory\MemoryAllocation.h"

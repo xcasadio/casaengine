@@ -1,9 +1,6 @@
-#include "Base.h"
-
 #include "Tools/DebugSystem.h"
 #include "Game/Game.h"
 #include "GameTime.h"
-#include "Entities/BaseEntity.h"
 #include "Entities/Events/DebugToolEvents.h"
 #include "EventHandler/GlobalEventSet.h"
 

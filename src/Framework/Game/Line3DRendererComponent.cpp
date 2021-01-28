@@ -4,9 +4,6 @@
 #include "Game/Game.h"
 #include "GameTime.h"
 #include "Maths/Matrix4.h"
-#include "Graphics/Renderer/Renderer.h"
-#include "Graphics/Renderer/Enums.h"
-
 
 
 #include "Entities/Components/CameraComponent.h"
@@ -95,7 +92,7 @@ namespace CasaEngine
 
 		Matrix4 id;
 		bgfx::setTransform(id);
-		//bgfx::setUniform(m_TextureRepitionUniform,  Vector4F(m_pMaterial->GetTexture0Repeat().x, m_pMaterial->GetTexture0Repeat().y, 1.0f, 1.0f));
+		//bgfx::setUniform(m_TextureRepetitionUniform,  Vector4F(m_pMaterial->GetTexture0Repeat().x, m_pMaterial->GetTexture0Repeat().y, 1.0f, 1.0f));
 		bgfx::setState(BGFX_STATE_WRITE_RGB // depth always ??
 			| BGFX_STATE_WRITE_A
 			| BGFX_STATE_BLEND_ALPHA

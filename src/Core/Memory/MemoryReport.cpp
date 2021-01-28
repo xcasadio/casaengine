@@ -1,7 +1,6 @@
 #include "Base.h"
 #include "MemoryReport.h"
 #include "Log\LogManager.h"
-#include "Memory\MemoryReport.h"
 
 #include <iosfwd>
 #include <iomanip>

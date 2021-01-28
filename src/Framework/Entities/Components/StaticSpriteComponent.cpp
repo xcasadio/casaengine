@@ -7,8 +7,6 @@
 #include <string>
 #include "Game/Game.h"
 #include "Sprite/SpriteRenderer.h"
-#include "Resources/ResourceManager.h"
-#include "StringUtils.h"
 #include "Sprite/SpriteTypes.h"
 #include "Graphics/Color.h"
 #include "Assets/AssetManager.h"

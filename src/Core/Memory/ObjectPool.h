@@ -1,7 +1,6 @@
 #ifndef _OBJECTPOOL_H_
 #define _OBJECTPOOL_H_
 
-#include <string>
 #include <vector>
 
 namespace CasaEngine

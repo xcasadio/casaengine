@@ -1,10 +1,4 @@
-#include "Base.h"
-#include "CA_Assert.h"
-
 #include "IShape.h"
-#include "Parsers\Xml\tinyxml2.h"
-#include "Memory\MemoryAllocation.h"
-#include "Exceptions.h"
 
 namespace CasaEngine
 {

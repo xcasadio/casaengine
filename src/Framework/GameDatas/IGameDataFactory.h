@@ -2,8 +2,6 @@
 #define IGAMEDATAFACTORY_H_
 
 #include "CA_Export.h"
-#include <string>
-#include "IGameData.h"
 
 #include "Memory\MemoryAllocation.h"
 

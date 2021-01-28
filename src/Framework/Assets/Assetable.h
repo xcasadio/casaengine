@@ -6,8 +6,6 @@
 #include "Memory/MemoryAllocation.h"
 
 #include <cereal/cereal.hpp>
-#include <cereal/details/helpers.hpp>
-#include <cereal/types/string.hpp>
 #include <cereal/types/polymorphic.hpp>
 
 namespace CasaEngine

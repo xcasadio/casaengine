@@ -1,39 +1,10 @@
 #ifndef RENDERER_H
 #define RENDERER_H
 
-#include "Base.h"
-
-#include <string>
-#include <map>
-#include <vector>
-
-#if CA_PLATFORM_WINDOWS || CA_PLATFORM_LINUX || CA_PLATFORM_OSX
-
-#include <windows.h>
-#include "SFML/Window/WindowHandle.hpp"
-
-#endif
-
 #include "CA_Export.h"
-
-#include "Graphics/Color.h"
-
-#include "Graphics/Renderer/Enums.h"
-
-#include "Maths/Vector2.h"
-#include "Maths/Vector3.h"
-#include "Maths/Matrix4.h"
-#include "Maths/Rectangle.h"
-
-#include "SFML/System/NonCopyable.hpp"
-
-#include "Graphics/RenderTarget.h"
-#include "IO/IFile.h"
-#include "Graphics/Viewport.h"
-#include "Graphics/TextureTarget.h"
-#include "SFML/Window/Window.hpp"
 #include "EngineSettings.h"
-#include <bgfx/bgfx.h>
+#include "Graphics/Color.h"
+#include "SFML/Window/Window.hpp"
 
 #define CA_DEFAULT_WIDTH 1280
 #define CA_DEFAULT_HEIGHT 720

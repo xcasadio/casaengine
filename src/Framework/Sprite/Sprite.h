@@ -3,11 +3,8 @@
 
 #include "CA_Export.h"
 #include "Graphics/Textures/Texture.h"
-#include "Maths/Rectangle.h"
-#include "Maths/Vector2.h"
 
 #include <string>
-#include "Maths/Shape/IShape.h"
 #include <Datas/SpriteData.h>
 
 namespace CasaEngine

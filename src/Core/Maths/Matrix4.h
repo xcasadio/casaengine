@@ -4,10 +4,7 @@
 #include "CA_Export.h"
 #include "Maths/Vector3.h"
 #include "Maths/Vector4.h"
-#include "CA_Assert.h"
 #include "Memory/MemoryAllocation.h"
-
-#include <cmath>
 
 namespace CasaEngine
 {

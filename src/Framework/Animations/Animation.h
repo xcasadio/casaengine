@@ -1,17 +1,10 @@
 #ifndef _ANIMATION_H_
 #define _ANIMATION_H_
 
-#include <string>
 #include "CA_Export.h"
 #include <vector>
 #include "AnimationEvent.h"
-#include "Parsers\Xml\tinyxml2.h"
-#include <sstream>
-#include "Memory\MemoryAllocation.h"
-#include "Assets\Assetable.h"
-#include "IAnimationEventListener.h"
 #include "EventHandler\EventSet.h"
-#include <Animations/AnimationType.h>
 #include <Datas/AnimationData.h>
 
 namespace CasaEngine

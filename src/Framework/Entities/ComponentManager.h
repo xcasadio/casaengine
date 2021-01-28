@@ -2,7 +2,6 @@
 #define COMPONENTMANAGER_H_
 
 
-#include <string>
 #include <iosfwd>
 #include <vector>
 
@@ -11,7 +10,6 @@
 #include "AI/Messaging/Telegram.h"
 #include "GameTime.h"
 #include "Entities/Component.h"
-#include "EventHandler/EventArgs.h"
 
 #include "Memory/MemoryAllocation.h"
 

@@ -6,8 +6,6 @@
 #include "CA_Export.h"
 
 #include "Assetable.h"
-#include "Resources\Resource.h"
-#include "StringUtils.h"
 #include "CA_Assert.h"
 
 namespace CasaEngine

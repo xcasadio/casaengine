@@ -1,4 +1,3 @@
-#include "Base.h"
 #include "InvertedAABBox2D.h"
 
 namespace CasaEngine

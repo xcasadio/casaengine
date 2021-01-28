@@ -3,8 +3,6 @@
 
 #include "CA_Export.h"
 
-#include <sstream>
-#include <string>
 #include <vector>
 
 #include "Graphics/Mesh/Mesh.h"

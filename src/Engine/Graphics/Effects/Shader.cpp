@@ -4,8 +4,8 @@
 
 #include "Game/Game.h"
 #include "Graphics/Renderer/Renderer.h"
-#include "Resources/ResourceManager.h"
-#include "Resources/MediaManager.h"
+
+
 
 namespace CasaEngine
 {

@@ -10,9 +10,6 @@
 
 namespace CasaEngine
 {
-	/**
-	 * 
-	 */
 	class CA_EXPORT Console
 	{
 	public:
@@ -36,9 +33,9 @@ namespace CasaEngine
 		char          m_InputBuf[256];
 		std::vector<char*> m_Items;
 		bool		  m_IsVisible;
-		TCommandTable m_Commands; ///< Table des commandes enregistrées
+		TCommandTable m_Commands;
 		std::string   m_LastLine;
-	}; // class Console
+	};
 }
 
-#endif // CONSOLE_H_
+#endif

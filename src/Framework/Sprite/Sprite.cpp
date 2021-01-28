@@ -1,13 +1,7 @@
-#include "Base.h"
-
 #include "Sprite/Sprite.h"
-#include <iosfwd>
 
 #include "Game/Game.h"
-#include "Maths/Vector2.h"
-#include "Maths/Rectangle.h"
 #include "Graphics/Textures/Texture.h"
-#include "Resources/ResourceManager.h"
 
 
 namespace CasaEngine

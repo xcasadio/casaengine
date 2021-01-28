@@ -3,11 +3,6 @@
 
 #include "CA_Export.h"
 
-#include <stdlib.h>
-#include <limits>
-#include <iomanip>
-#include <iostream>
-
 namespace CasaEngine
 {
 	class CA_EXPORT DebugAllocator

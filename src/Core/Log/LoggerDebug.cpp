@@ -1,6 +1,5 @@
 #include <windows.h>
 
-#include "Base.h"
 #include <Log/LoggerDebug.h>
 
 namespace CasaEngine

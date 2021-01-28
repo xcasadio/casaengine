@@ -5,7 +5,6 @@
 
 #include "Maths/Vector2.h"
 #include "Maths/Vector3.h"
-#include <cmath>
 #include "Memory/MemoryAllocation.h"
 
 namespace CasaEngine

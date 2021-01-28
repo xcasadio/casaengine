@@ -25,15 +25,8 @@
 #ifndef SHADER_H
 #define SHADER_H
 
-#include "Maths/Vector2.h"
-#include "Maths/Vector3.h"
-#include "Maths/Vector4.h"
-#include <string>
-#include "Graphics/Color.h"
 #include "CA_Export.h"
 #include "Memory/MemoryAllocation.h"
-#include "Maths/Matrix4.h"
-#include "Graphics/Textures/Texture.h"
 #include <bgfx/bgfx.h>
 
 namespace CasaEngine

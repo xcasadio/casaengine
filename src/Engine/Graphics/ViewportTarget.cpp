@@ -1,11 +1,11 @@
 #include "Base.h"
 
 #include "ViewportTarget.h"
-#include "Maths\Matrix4.h"
-#include "Maths\Vector3.h"
 
-#include "Viewport.h"
-#include "Renderer/Renderer.h"
+#include <bgfx/bgfx.h>
+
+#include "Maths\Matrix4.h"
+
 #include "Log/LogManager.h"
 
 namespace CasaEngine

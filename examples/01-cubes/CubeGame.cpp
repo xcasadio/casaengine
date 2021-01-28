@@ -8,14 +8,12 @@
 #include "GameTime.h"
 #include "Game\GameInfo.h"
 #include "Game\MeshRendererGameComponent.h"
-#include "Graphics\Effects\Shader.h"
 #include "Graphics\Primitives\BoxPrimitive.h"
 #include "Graphics\Primitives\CylinderPrimitive.h"
 #include "Graphics\Primitives\PlanePrimitive.h"
 #include "Graphics\Primitives\SpherePrimitive.h"
 #include "Log\LoggerFile.h"
 #include "Log\LogManager.h"
-#include "Tools\DebugSystem.h"
 #include "World\World.h"
 
 /**

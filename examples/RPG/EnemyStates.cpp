@@ -1,7 +1,7 @@
-#include "Base.h"
 #include "EnemyStates.h"
+
+#include "CharacterEnum.h"
 #include "Game\Game.h"
-#include "CA_Assert.h"
 
 /**
  *

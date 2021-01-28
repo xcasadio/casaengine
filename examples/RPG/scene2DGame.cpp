@@ -3,8 +3,6 @@
 
 #include <cereal/cereal.hpp>
 #include <cereal/archives/json.hpp>
-#include <cereal/details/helpers.hpp>
-#include <cereal/types/vector.hpp>
 
 #include "scene2DGame.h"
 
@@ -20,43 +18,27 @@
 #include "Entities/Components/CameraControllers/Camera2DController.h"
 #include "Entities/Components/GridComponent.h"
 #include "Entities/Components/MeshComponent.h"
-#include "Entities/Components/Physics/Box2DColliderComponent.h"
 #include "Entities/Components/ScriptComponent.h"
 #include "Entities/Components/StaticSpriteComponent.h"
 #include "Entities/Components/Transform3DComponent.h"
-#include "Entities/EntityManager.h"
 #include "Game/Game.h"
 #include "Game/GameInfo.h"
 #include "Game/Input.h"
 #include "GameTime.h"
 #include "ScriptCharacter.h"
-#include "Animations/AnimationEndEvent.h"
-#include "Animations/SetFrameEvent.h"
 
-#include "Graphics/Materials/Material.h"
-#include "Graphics/Mesh/Mesh.h"
-#include "Graphics/Primitives/BoxPrimitive.h"
-#include "Graphics/Primitives/PlanePrimitive.h"
-#include "Graphics/Renderer/Enums.h"
-#include "Graphics/Renderer/Renderer.h"
 #include "Graphics/Textures/Texture.h"
 #include "Log/LoggerFile.h"
-#include "Maths/Math.h"
 #include "Maths/Vector3.h"
-#include "Maths/Vector4.h"
 #include "Memory/MemoryAllocation.h"
 #include "Parsers/Xml/tinyxml2.h"
-#include "Physics/PhysicsEngine.h"
-#include "Resources/ResourceManager.h"
-#include "SFML/Window/Mouse.hpp"
-#include "Sprite/SpriteTypes.h"
-#include "Entities/Components/Physics/RigidBodyComponent.h"
 #include "Map2D/AutoTile.h"
 #include "Map2D/StaticTile.h"
 #include "Map2D/TiledMapComponent.h"
-#include "Tools/InGameLogger.h"
 
 #include "load_save_types.h"
+#include "Entities/Components/Camera2DComponent.h"
+#include "Entities/Components/CameraControllers/Camera2DTargetedController.h"
 
 using namespace CasaEngine;
 

@@ -1,11 +1,7 @@
 #ifndef VECTOR2_H
 #define VECTOR2_H
 
-#include "Math.h"
-
-#include <limits>
 #include <iostream>
-#include <cmath>
 
 #include "Memory/MemoryAllocation.h"
 

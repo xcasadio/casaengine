@@ -3,18 +3,15 @@
 
 #include "CA_Export.h"
 #include "Resources/MediaManager.h"
-#include "Resources/ResourceManager.h"
+
+
 
 #include "GameTime.h"
 #include "Game/GameComponent.h"
 #include "Game/DrawableGameComponent.h"
-#include "Log/Logger.h"
 #include "EngineSettings.h"
-#include <map>
 #include "Graphics/Renderer/Renderer.h"
-#include "Graphics/Color.h"
 #include "SFML/Window/Window.hpp"
-#include "SFML/Window/Event.hpp"
 // #include "CEGUI/CEGUIRenderer.h"
 // #include "CEGUI/CEGUIResourceProvider.h"
 // #include "CEGUI/CEGUIXMLParser.h"
@@ -74,7 +71,6 @@ namespace CasaEngine
 		EntityManager& GetEntityManager();
 		MediaManager& GetMediaManager();
 		AssetManager& GetAssetManager();
-		ResourceManager& GetResourceManager();
 		IRenderer& GetRenderer();
 		InGameLogger& GetInGameLogger();
 		GameDataFactory& GetGameDataFactory();
@@ -134,8 +130,6 @@ namespace CasaEngine
 		void OnWindowResized(unsigned int height_, unsigned int width_);
 		void HandleWindowEvents();
 
-		void RegisterLoaders();
-
 	private:
 		static Game* s_Application;
 
@@ -168,7 +162,6 @@ namespace CasaEngine
 		EntityManager m_EntityManager;
 		MediaManager m_MediaManager;
 		AssetManager m_AssetManager;
-		ResourceManager m_ResourceManager;
 		IRenderer m_Renderer;
 		InGameLogger m_InGameLogger;
 		GameDataFactory m_GameDataFactory;

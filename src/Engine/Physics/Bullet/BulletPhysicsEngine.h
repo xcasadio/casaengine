@@ -11,7 +11,6 @@
 #include "BulletCollision\CollisionDispatch\btDefaultCollisionConfiguration.h"
 #include "BulletCollision\BroadphaseCollision\btBroadphaseInterface.h"
 #include "BulletDynamics\ConstraintSolver\btSequentialImpulseConstraintSolver.h"
-#include "LinearMath\btIDebugDraw.h"
 
 namespace CasaEngine
 {

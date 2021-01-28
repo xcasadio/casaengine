@@ -5,9 +5,7 @@
 #include "GameTime.h"
 #include <iosfwd>
 #include "Entities/Components/CameraComponent.h"
-#include <string>
 #include "Maths/Matrix4.h"
-#include "Entities/Events/BaseEntityEvents.h"
 #include "Memory/MemoryAllocation.h"
 
 namespace CasaEngine

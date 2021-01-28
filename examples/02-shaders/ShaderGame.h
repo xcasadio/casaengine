@@ -1,22 +1,22 @@
 #ifndef MYAPPLICATION_H
 #define MYAPPLICATION_H
 
-#include <Graphics/Effects/Shader.h>
 #include <Graphics/Textures/Texture.h>
 #include "GameTime.h"
 #include <Game/Game.h>
 #include <Maths/Matrix4.h>
 #include <map>
-#include "Entities/BaseEntity.h"
 #include "World/World.h"
 
 #include "Entities/Components/Camera3DComponent.h"
 #include "Entities/Components/Camera2DComponent.h"
+#include "Entities/Components/Transform3DComponent.h"
 #include "Tools/DebugSystem.h"
 #include "Game/Line2DRendererComponent.h"
 #include "Game/Line3DRendererComponent.h"
-#include "bgfx\bgfx.h"
 #include "Graphics/Effects/Program.h"
+#include "Graphics/Materials/Material.h"
+#include "Graphics/Mesh/Mesh.h"
 
 using namespace CasaEngine;
 

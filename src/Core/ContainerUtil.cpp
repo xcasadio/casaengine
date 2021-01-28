@@ -1,8 +1,5 @@
-#include "Base.h"
 #include "ContainerUtil.h"
 #include <vector>
-#include <map>
-#include <iomanip>
 #include <cmath>
 
 namespace CasaEngine

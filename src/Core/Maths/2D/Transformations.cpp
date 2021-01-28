@@ -1,4 +1,3 @@
-#include "Base.h"
 #include "Transformations.h"
 #include "Maths/Vector2.h"
 #include "Maths/Matrix3.h"

@@ -12,7 +12,6 @@
 #include <queue>
 
 #include "Sprite\Sprite.h"
-#include "Entities\BaseEntity.h"
 
 using namespace CasaEngine;
 

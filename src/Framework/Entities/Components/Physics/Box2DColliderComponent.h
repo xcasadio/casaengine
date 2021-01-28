@@ -5,7 +5,6 @@
 #include <iosfwd>
 
 #include "CA_Export.h"
-#include "GameTime.h"
 #include "ColliderComponent.h"
 
 

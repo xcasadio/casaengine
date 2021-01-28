@@ -1,11 +1,7 @@
 #ifndef VECTOR4_H
 #define VECTOR4_H
 
-#include "Math.h"
-
-#include <limits>
 #include <iostream>
-#include <cmath>
 
 #include "Memory/MemoryAllocation.h"
 

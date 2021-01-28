@@ -3,7 +3,6 @@
 #include "Entities/BaseEntity.h"
 #include "Entities/ComponentTypeEnum.h"
 #include "Game/Game.h"
-#include "Maths/Matrix4.h"
 #include "MovingEntity2DComponent.h"
 #include "SteeringBehaviorComponent.h"
 #include "StringUtils.h"

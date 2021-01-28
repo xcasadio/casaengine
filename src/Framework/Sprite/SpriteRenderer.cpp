@@ -2,7 +2,6 @@
 
 #include "Game/DrawableGameComponent.h"
 #include "Game/Game.h"
-#include "Graphics/Renderer/Renderer.h"
 #include "Sprite/Sprite.h"
 #include "Sprite/SpriteRenderer.h"
 #include "Sprite/SpriteTypes.h"

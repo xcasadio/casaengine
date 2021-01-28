@@ -1,12 +1,8 @@
 #ifndef _ANIMATION2D_H_
 #define _ANIMATION2D_H_
 
-#include <string>
 #include "CA_Export.h"
-#include <vector>
 #include "Animation.h"
-#include "Entities\Events\BaseEntityEvents.h"
-#include "EventHandler\EventSet.h"
 #include <Datas/Animation2DData.h>
 
 namespace CasaEngine

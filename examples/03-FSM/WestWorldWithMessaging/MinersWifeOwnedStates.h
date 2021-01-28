@@ -12,7 +12,6 @@
 #define MINERSWIFE_OWNED_STATES_H
 
 #include "AI\FSM\IState.h"
-#include "AI\Messaging\Telegram.h"
 
 using namespace CasaEngine;
 

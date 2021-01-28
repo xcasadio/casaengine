@@ -7,12 +7,9 @@
 #include "Asset.h"
 #include "StringUtils.h"
 
-#include "Parsers/Xml/tinyxml2.h"
-
 
 #include <string>
 #include <map>
-#include <iosfwd>
 
 namespace CasaEngine
 {
@@ -28,6 +25,7 @@ namespace CasaEngine
 		template<class T>
 		std::vector<T*> GetAssets();
 
+		void AddAsset(std::string name, IAssetable *assetable);
 		void AddAsset(Asset* asset_);
 		bool Contains(std::string name);
 		void Clear();

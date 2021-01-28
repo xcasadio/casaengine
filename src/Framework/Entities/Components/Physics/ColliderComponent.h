@@ -1,7 +1,6 @@
 #ifndef COLLIDERCOMPONENT_H_
 #define COLLIDERCOMPONENT_H_
 
-#include <string>
 #include <iosfwd>
 
 #include "CA_Export.h"
@@ -9,8 +8,6 @@
 #include "GameTime.h"
 #include "Entities/Component.h"
 #include "Sprite/SpriteRenderer.h"
-#include "Graphics/Color.h"
-#include "Sprite/SpriteTypes.h"
 #include "Physics/PhysicsObjectContainer.h"
 
 namespace CasaEngine

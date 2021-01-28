@@ -3,7 +3,6 @@
 
 #include "CA_Export.h"
 #include "IO/IFile.h"
-#include <string>
 #include <iosfwd>
 #include <fstream>
 

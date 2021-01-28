@@ -11,7 +11,6 @@
 #ifndef LINE2DINTERSECTIONTESTS_H
 #define LINE2DINTERSECTIONTESTS_H
 
-#include "Line2D.h"
 #include "Maths/Vector2.h"
 
 namespace CasaEngine

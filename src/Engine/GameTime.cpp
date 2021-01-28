@@ -1,4 +1,3 @@
-#include "Base.h"
 #include "GameTime.h"
 
 #if defined(CA_PLATFORM_WINDOWS)

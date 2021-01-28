@@ -1,15 +1,10 @@
 #ifndef SPHERECOLLIDERCOMPONENT_H_
 #define SPHERECOLLIDERCOMPONENT_H_
 
-#include <string>
 #include <iosfwd>
 
 #include "CA_Export.h"
-#include "GameTime.h"
 #include "ColliderComponent.h"
-#include "Sprite/SpriteRenderer.h"
-#include "Graphics/Color.h"
-#include "Sprite/SpriteTypes.h"
 
 namespace CasaEngine
 {

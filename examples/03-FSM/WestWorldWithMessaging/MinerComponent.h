@@ -11,7 +11,6 @@
 #ifndef MINERCOMPONENT_H_
 #define MINERCOMPONENT_H_
 
-#include <string>
 #include <iosfwd>
 
 #include "Entities/Component.h"

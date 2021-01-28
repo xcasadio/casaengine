@@ -4,7 +4,6 @@
 #include "BaseEntity.h"
 
 #include "CA_Assert.h"
-#include <iosfwd>
 
 namespace CasaEngine
 {

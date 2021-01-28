@@ -8,13 +8,7 @@
 #include "Entities/BaseEntity.h"
 #include "Maths/Matrix4.h"
 #include "Graphics/Viewport.h"
-#include "Entities/Events/BaseEntityEvents.h"
 #include "EventHandler/EventArgs.h"
-
-#include <iosfwd>
-#include <string>
-#include "Parsers/Xml/tinyxml2.h"
-
 
 
 namespace CasaEngine

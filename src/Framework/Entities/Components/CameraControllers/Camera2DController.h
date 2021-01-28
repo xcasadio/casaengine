@@ -2,7 +2,6 @@
 #define CAMERA2DCONTROLLER_H_
 
 #include <iosfwd>
-#include <string>
 
 #include "CA_Export.h"
 #include "CameraController.h"

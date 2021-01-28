@@ -6,7 +6,6 @@
 #include "GameTime.h"
 
 #include <set>
-#include <string>
 
 namespace CasaEngine
 {

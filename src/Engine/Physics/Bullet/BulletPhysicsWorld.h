@@ -8,18 +8,13 @@
 #include "BulletCollision\CollisionDispatch\btCollisionDispatcher.h"
 #include "BulletCollision\BroadphaseCollision\btDispatcher.h"
 #include "BulletCollision\CollisionDispatch\btDefaultCollisionConfiguration.h"
-#include "BulletCollision\BroadphaseCollision\btBroadphaseInterface.h"
-#include "LinearMath\btVector3.h"
 
 #include "Maths\Shape\IShape.h"
 #include "Maths\Vector3.h"
 #include "Physics\IPhysicsWorld.h"
 #include "btDynamicsWorldExt.h"
 
-#include "Memory\MemoryAllocation.h"
 #include "Physics\PhysicsObjectContainer.h"
-
-#include "Log\LogManager.h"
 
 namespace CasaEngine
 {

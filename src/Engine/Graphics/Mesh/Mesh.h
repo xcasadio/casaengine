@@ -3,10 +3,7 @@
 
 #include "CA_Export.h"
 
-#include "Resources/Resource.h"
 #include "Graphics/Textures/Texture.h"
-#include "Maths/Vector2.h"
-#include "Maths/Vector3.h"
 #include "Graphics/Materials/Material.h"
 #include "Graphics/Vertices/VertexType.h"
 #include "Maths/Matrix4.h"
@@ -15,35 +12,16 @@
 
 namespace CasaEngine
 {
-	class CA_EXPORT Mesh :
-		public IResource
+	class CA_EXPORT Mesh
 	{
 	public:
-
-		/**
-		 *
-		 */
 		Mesh(const VertexPositionNormalTexture* Vertices, unsigned long VerticesCount,
 			const unsigned short* Indices = nullptr, unsigned long IndicesCount = 0);
-
-		/**
-		 *
-		 */
 		~Mesh();
 
-		/**
-		 *
-		 */
 		Material* GetMaterial() const;
-
-		/**
-		 *
-		 */
 		void SetMaterial(Material* val);
 
-		/**
-		 *
-		 */
 		void Render(bgfx::ProgramHandle handle_, Matrix4& matWorld_) const;
 
 	private:
@@ -53,9 +31,9 @@ namespace CasaEngine
 		bgfx::UniformHandle m_TextureUniform;
 		bgfx::VertexBufferHandle m_VertexBuffer;
 		bgfx::IndexBufferHandle m_IndexBuffer;
-		bgfx::UniformHandle m_TextureRepitionUniform;
+		bgfx::UniformHandle m_TextureRepetitionUniform;
 		Material* m_pMaterial;
 	};
 }
 
-#endif // MESH_H
+#endif

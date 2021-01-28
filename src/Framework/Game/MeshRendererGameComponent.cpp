@@ -8,8 +8,6 @@
 #include "GameTime.h"
 #include "Graphics/Mesh/Mesh.h"
 #include "Maths/Matrix4.h"
-#include "Graphics/Renderer/Renderer.h"
-#include "Graphics/Renderer/Enums.h"
 #include "GameInfo.h"
 #include "Entities/Components/CameraComponent.h"
 

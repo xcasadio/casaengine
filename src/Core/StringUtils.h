@@ -1,16 +1,14 @@
 #ifndef STRINGUTILS_H
 #define STRINGUTILS_H
 
-#include <algorithm>
-#include <cctype>
 #include <sstream>
-#include <fstream>
 #include <string>
 #include <vector>
 #include <ios>
-#include "Exceptions.h"
+#include <algorithm>
 
 #include "Memory\MemoryAllocation.h"
+#include "Exceptions.h"
 
 namespace CasaEngine
 {

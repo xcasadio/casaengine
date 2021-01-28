@@ -11,14 +11,11 @@
 #ifndef MINERSWIFECOMPONENT_H_
 #define MINERSWIFECOMPONENT_H_
 
-#include <string>
-
 #include "AI/FSM/StateMachine.h"
 #include "Entities/Component.h"
 #include "GameTime.h"
 #include "Locations.h"
 #include <iosfwd>
-#include <string>
 
 using namespace CasaEngine;
 

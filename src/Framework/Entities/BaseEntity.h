@@ -12,7 +12,6 @@
 
 #include "CA_Export.h"
 
-#include <string>
 #include <iosfwd>
 
 #include "AI/Messaging/Telegram.h"

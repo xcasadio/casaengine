@@ -5,9 +5,6 @@
 #include "GameTime.h"
 #include "Memory/MemoryAllocation.h"
 
-#include <string>
-#include <vector>
-
 namespace CasaEngine
 {
     /**

@@ -15,12 +15,10 @@
 #include "Graphics/Vertices/VertexType.h"
 #include "Maths/Rectangle.h"
 #include "Maths/Vector2.h"
-#include "Memory/ObjectPool.h"
 #include "Sprite/Sprite.h"
 #include "Sprite/SpriteTypes.h"
 #include "Memory/MemoryAllocatedObject.h"
 
-#include <string>
 #include <vector>
 
 

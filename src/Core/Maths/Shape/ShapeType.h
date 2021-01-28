@@ -1,8 +1,6 @@
 #ifndef SHAPETYPE_H
 #define SHAPETYPE_H
 
-#include "CA_Export.h"
-
 namespace CasaEngine
 {
 	enum ShapeType

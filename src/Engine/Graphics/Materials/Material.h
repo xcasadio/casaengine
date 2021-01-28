@@ -1,20 +1,15 @@
 #ifndef MATERIAL_H
 #define MATERIAL_H
 
-#include "Resources\Resource.h"
 #include "CA_Export.h"
+#include "Assets/Assetable.h"
 #include "Graphics\Textures\Texture.h"
 #include "Maths\Vector2.h"
-#include "Memory/MemoryAllocation.h"
-#include <bgfx/bgfx.h>
 
 namespace CasaEngine
 {
-	/**
-	 *
-	 */
 	class CA_EXPORT Material :
-		public IResource
+		public IAssetable
 	{
 	public:
 		Material();
@@ -42,4 +37,4 @@ namespace CasaEngine
 	};
 }
 
-#endif // MATERIAL_H
+#endif

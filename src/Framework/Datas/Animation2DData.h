@@ -2,14 +2,10 @@
 #define _ANIMATION2DDATA_H_
 
 #include "CA_Export.h"
-#include <string>
-#include "Assets/Assetable.h"
 #include "Datas/FrameData.h"
 #include "Datas/AnimationData.h"
 
 #include <cereal/access.hpp>
-#include <cereal/types/vector.hpp>
-#include <cereal/types/polymorphic.hpp>
 
 namespace CasaEngine
 {

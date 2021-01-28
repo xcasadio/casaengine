@@ -3,9 +3,6 @@
 
 #include "IController.h"
 #include "GameTime.h"
-#include "AI\FSM\StateMachine.h"
-#include "AI\FSM\IState.h"
-#include <map>
 #include "CharacterEnum.h"
 #include "Maths\Vector2.h"
 #include "Hero.h"

@@ -6,7 +6,6 @@
 #include "Entities/Component.h"
 #include "Entities\BaseEntity.h"
 #include "Physics/IPhysicsWorld.h"
-#include "Script/IScriptObject.h"
 #include "SpacePartitioning/CellSpacePartition.h"
 
 #include <vector>

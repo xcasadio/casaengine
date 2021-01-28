@@ -1,9 +1,7 @@
 #include "Entities/BaseEntity.h"
 
 #include "MinerComponent.h"
-#include "Maths/Matrix4.h"
 #include "Entities/ComponentTypeEnum.h"
-#include <string>
 #include "Game/Game.h"
 #include "AI/FSM/StateMachine.h"
 #include "MinerOwnedStates.h"

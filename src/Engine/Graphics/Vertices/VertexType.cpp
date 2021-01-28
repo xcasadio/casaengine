@@ -1,4 +1,3 @@
-#include "Base.h"
 #include "VertexType.h"
 
 namespace CasaEngine

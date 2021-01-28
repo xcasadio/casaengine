@@ -2,9 +2,6 @@
 #define HERO_H_
 
 #include "Character.h"
-#include <map>
-#include "CharacterEnum.h"
-#include "Animations\Animation2D.h"
 #include "Entities\Components\AnimatedSpriteComponent.h"
 
 using namespace CasaEngine;

@@ -2,7 +2,6 @@
 #define LOGGERDEBUG_H
 
 #include <Log/Logger.h>
-#include "Logger.h"
 #include "LogVerbose.h"
 
 namespace CasaEngine

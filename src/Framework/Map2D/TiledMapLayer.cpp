@@ -1,7 +1,5 @@
 #include "TiledMapLayer.h"
 #include "TiledMapComponent.h"
-#include "Assets/AssetManager.h"
-#include "Entities/ComponentTypeEnum.h"
 #include "Entities/Components/Transform3DComponent.h"
 #include "Game/Game.h"
 #include "Sprite/SpriteRenderer.h"

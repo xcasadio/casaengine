@@ -4,7 +4,6 @@
 #include "Maths/Vector2.h"
 #include "Maths/Vector3.h"
 #include "Maths/Vector4.h"
-#include <string>
 #include "Graphics/Color.h"
 #include "CA_Export.h"
 #include "Memory/MemoryAllocation.h"

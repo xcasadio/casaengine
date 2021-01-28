@@ -1,6 +1,5 @@
 #include "MemoryDebugAllocator.h"
 #include <iomanip>
-#include <iostream>
 #include "MemoryReport.h"
 #include <limits>
 

@@ -1,11 +1,9 @@
 #ifndef BOXCOLLIDERCOMPONENT_H_
 #define BOXCOLLIDERCOMPONENT_H_
 
-#include <string>
 #include <iosfwd>
 
 #include "CA_Export.h"
-#include "GameTime.h"
 #include "ColliderComponent.h"
 #include "Maths/Shape/Box.h"
 

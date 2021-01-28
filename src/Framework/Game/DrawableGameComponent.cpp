@@ -1,7 +1,6 @@
 //==========================================================
 // En-têtes
 //==========================================================
-#include "Base.h"
 
 #include "Game/DrawableGameComponent.h"
 #include "Game/GameComponent.h"

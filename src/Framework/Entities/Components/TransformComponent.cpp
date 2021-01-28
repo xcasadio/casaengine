@@ -1,5 +1,3 @@
-
-#include "Base.h"
 #include "Entities/BaseEntity.h"
 
 #include "TransformComponent.h"

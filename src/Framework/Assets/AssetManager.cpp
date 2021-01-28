@@ -5,7 +5,6 @@
 #include "Parsers/Xml/tinyxml2.h"
 #include "Parsers/Xml/XMLHelper.h"
 #include "StringUtils.h"
-#include <iosfwd>
 #include <string>
 #include <map>
 #include <string>
@@ -17,9 +16,12 @@ namespace CasaEngine
 		Clear();
 	}
 
-	/**
-	 *
-	 */
+	void AssetManager::AddAsset(std::string name, IAssetable* assetable)
+	{
+		CA_ASSERT(m_Assets.find(name) == m_Assets.end(), "AssetManager::AddAsset(): asset '%s' already exist", name.c_str());
+		m_Assets.insert(std::make_pair(name, new Asset(name, assetable)));
+	}
+	
 	void AssetManager::AddAsset(Asset* asset_)
 	{
 		CA_ASSERT(m_Assets.find(asset_->GetName()) == m_Assets.end(), "AssetManager::AddAsset(): asset '%s' already exist", asset_->GetName().c_str());

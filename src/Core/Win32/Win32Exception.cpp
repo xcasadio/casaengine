@@ -1,7 +1,6 @@
 #include <TCHAR.H>
 #include <Windows.h>
 
-#include "Base.h"
 #include "Win32Exception.h"
 
 namespace CasaEngine

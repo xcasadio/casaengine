@@ -35,7 +35,6 @@ distribution.
 #   include <cctype>
 #   include <climits>
 #   include <cstdio>
-#   include <cstdlib>
 #   include <cstring>
 #   include <cstdarg>
 #endif

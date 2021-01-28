@@ -3,7 +3,6 @@
 
 #include "CA_Export.h"
 #include "Entities\Component.h"
-#include "Entities\BaseEntity.h"
 #include "Script\IScriptObject.h"
 
 namespace CasaEngine

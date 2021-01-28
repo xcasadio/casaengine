@@ -2,9 +2,7 @@
 
 #include "RenderTarget.h"
 #include "Maths\Matrix4.h"
-#include "Maths\Vector3.h"
 
-#include "Viewport.h"
 #include "Log/LogManager.h"
 
 namespace CasaEngine

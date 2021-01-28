@@ -1,5 +1,3 @@
-#include "Base.h"
-
 #ifdef USE_BULLET_PHYSICS
 
 #include "Log/LogManager.h"

@@ -33,8 +33,6 @@
 #include "Maths/Vector2.h"
 #include "Graphics/Renderer/Renderer.h"
 #include "Graphics/Mesh/Mesh.h"
-#include "Log/LogManager.h"
-#include "Log/LogVerbose.h"
 
 namespace CasaEngine
 {

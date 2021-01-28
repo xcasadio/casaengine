@@ -1,4 +1,3 @@
-#include "Base.h"
 #include "IPhysicsWorld.h"
 
 namespace CasaEngine

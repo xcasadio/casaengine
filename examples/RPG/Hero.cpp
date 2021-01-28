@@ -1,7 +1,5 @@
 #include "Base.h"
 #include "Hero.h"
-#include "CharacterEnum.h"
-#include "CustomComponentType.h"
 #include "PlayerController.h"
 
 /**

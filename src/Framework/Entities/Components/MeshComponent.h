@@ -1,18 +1,11 @@
 #ifndef MeshComponent_H_
 #define MeshComponent_H_
 
-#include <string>
-
 
 #include "CA_Export.h"
 #include "GameTime.h"
 #include <iosfwd>
 #include "Entities/Component.h"
-#include <string>
-#include "Sprite/SpriteRenderer.h"
-#include "Graphics/Color.h"
-#include "Sprite/SpriteTypes.h"
-#include "Transform2DComponent.h"
 #include "TransformComponent.h"
 #include "Graphics/Mesh/Mesh.h"
 #include "Game/MeshRendererGameComponent.h"

@@ -4,7 +4,6 @@
 #include "Log/LogManager.h"
 #include "Entities/ComponentTypeEnum.h"
 #include "Game/Game.h"
-#include "IO/IOManager.h"
 
 namespace CasaEngine
 {

@@ -1,5 +1,3 @@
-#include "Base.h"
-
 #include "Maths/Matrix3.h"
 #include "Maths/Vector2.h"
 #include "Maths/Vector3.h"

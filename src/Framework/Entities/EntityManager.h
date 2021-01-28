@@ -3,10 +3,7 @@
 
 #include <map>
 
-#include <string>
 #include "CA_Export.h"
-
-#include "EventHandler\EventArgs.h"
 
 namespace CasaEngine
 {

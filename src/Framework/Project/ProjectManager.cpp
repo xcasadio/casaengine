@@ -1,10 +1,8 @@
 
 #include "Base.h"
 #include "ProjectManager.h"
-#include "Log/LogVerbose.h"
 #include "Log/LogManager.h"
 
-#include <iosfwd>
 #include <string>
 #include "Parsers/Xml/tinyxml2.h"
 #include "Parsers/Xml/XMLHelper.h"

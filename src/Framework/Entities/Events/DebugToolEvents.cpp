@@ -1,5 +1,3 @@
-
-#include "Base.h"
 #include "DebugToolEvents.h"
 
 namespace CasaEngine

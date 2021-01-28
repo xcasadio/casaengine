@@ -2,8 +2,9 @@
 #define LINE2D_H
 
 #include <fstream>
+
+#include "Base.h"
 #include "Maths\Vector2.h"
-#include "CA_Export.h"
 #include "Memory/MemoryAllocation.h"
 
 namespace CasaEngine
@@ -12,13 +13,9 @@ namespace CasaEngine
 		public AllocatedObject<Line2D>
 	{
 	public:
-
 		Line2D();
-
 		Line2D(Vector2F A, Vector2F B);
-
 		Line2D(Vector2F A, Vector2F B, Vector2F N);
-
 		Line2D(std::ifstream& in);
 
 		virtual void Render(bool RenderNormals = false) const;
@@ -33,17 +30,13 @@ namespace CasaEngine
 		void     SetNormal(Vector2F n);
 
 		Vector2F Center() const;
-
+		
 		std::ostream& Write(std::ostream& os) const;
-
 		void Read(std::ifstream& in);
 
 	protected:
 
-		Vector2F    m_vA,
-			m_vB,
-			m_vN;
-
+		Vector2F m_vA, m_vB, m_vN;
 		void CalculateNormal();
 	};
 }

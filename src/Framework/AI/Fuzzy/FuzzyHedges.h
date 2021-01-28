@@ -9,8 +9,6 @@
 //  Desc:   classes to implement fuzzy hedges 
 //-----------------------------------------------------------------------------
 
-#include <math.h>
-
 #include "CA_Export.h"
 #include "FuzzySet.h"
 #include "FuzzyTerm.h"

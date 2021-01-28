@@ -3,7 +3,6 @@
 
 #include "Path.h"
 #include "Transformations.h"
-#include "Maths\Math.h"
 #include "Maths\Random.h"
 #include "CA_Assert.h"
 

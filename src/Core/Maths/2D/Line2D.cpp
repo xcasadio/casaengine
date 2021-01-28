@@ -1,4 +1,3 @@
-#include "Base.h"
 #include "Line2D.h"
 
 namespace CasaEngine

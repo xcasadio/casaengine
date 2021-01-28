@@ -3,16 +3,11 @@
 #include "Base.h"
 
 #include "Entities/BaseEntity.h"
-#include "Entities/ComponentTypeEnum.h"
 #include "CameraComponent.h"
 
 #include "Game/Game.h"
 #include "Maths/Matrix4.h"
-#include "Resources/ResourceManager.h"
 #include "Transform2DComponent.h"
-
-#include "StringUtils.h"
-#include "Maths/Math.h"
 
 #include "Entities/Components/CameraControllers/CameraController.h"
 #include "EventHandler/GlobalEventSet.h"

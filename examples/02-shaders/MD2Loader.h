@@ -28,7 +28,6 @@
 //==========================================================
 // En-têtes
 //==========================================================
-#include <Loaders/Loader.h>
 #include <Graphics/Mesh/Mesh.h>
 #include <vector>
 #include "IO/IFile.h"

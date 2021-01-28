@@ -2,14 +2,12 @@
 #include "BaseEntity.h"
 
 //#include "Utilities/EventHandler.h"
-#include "ComponentMessageEnum.h"
 #include "Events/BaseEntityEvents.h"
 #include "EntityManager.h"
 #include <sstream>
 
 #include "Game/Game.h"
 #include "Memory/MemoryAllocation.h"
-#include "Log/LogManager.h"
 
 
 namespace CasaEngine

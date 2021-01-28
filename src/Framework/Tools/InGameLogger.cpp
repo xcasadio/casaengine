@@ -1,15 +1,11 @@
-#include "Base.h"
 #include "InGameLogger.h"
 
 #if defined(CA_IN_GAME_LOGGER)
 
 #include "UI/imgui/bgfx-imgui.h"
-#include <bgfx/bgfx.h>
 
 #include "Game/Game.h"
 #include <stdarg.h>
-#include <stdlib.h>
-#include "Log/LogManager.h"
 
 namespace CasaEngine
 {

@@ -2,6 +2,7 @@
 #include "IController.h"
 #include "Game\Game.h"
 #include "CA_Assert.h"
+#include "Character.h"
 
 /**
  *

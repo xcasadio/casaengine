@@ -7,13 +7,10 @@
 
 #include <string>
 #include "Assets/Assetable.h"
-#include <iosfwd>
-#include "Maths/Shape/IShape.h"
 #include <Sprite/Collision.h>
 
 #include <cereal/access.hpp>
 #include <cereal/types/vector.hpp>
-#include <cereal/types/polymorphic.hpp>
 
 namespace CasaEngine
 {

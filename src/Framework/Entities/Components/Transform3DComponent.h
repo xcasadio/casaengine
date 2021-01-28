@@ -1,16 +1,12 @@
 #ifndef Transform3DComponent_H_
 #define Transform3DComponent_H_
 
-#include <string>
-
 #include "CA_Export.h"
 #include "GameTime.h"
 #include <iosfwd>
 #include "Entities/Components/TransformComponent.h"
-#include "Maths/Vector2.h"
 #include "Maths/Matrix4.h"
 #include "Entities/BaseEntity.h"
-#include "Entities/Events/BaseEntityEvents.h"
 #include "Maths/Quaternion.h"
 
 namespace CasaEngine

@@ -1,16 +1,12 @@
 #include "Base.h"
 
 #include "Animations/AnimationEndEvent.h"
-#include <string>
 #include "Animation.h"
 #include "Animation2D.h"
 #include "Log/LogManager.h"
 #include "Parsers/Xml/tinyxml2.h"
 #include <ostream>
-#include <sstream>
 #include <fstream>
-
-#include "CA_Assert.h"
 
 namespace CasaEngine
 {

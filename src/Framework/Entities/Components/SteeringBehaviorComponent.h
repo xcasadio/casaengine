@@ -1,7 +1,6 @@
 #ifndef STEERING_BEHAVIOUR_COMPONENT_H_
 #define STEERING_BEHAVIOUR_COMPONENT_H_
 
-#include <string>
 #include <list>
 #include <vector>
 #include <iosfwd>
@@ -11,7 +10,6 @@
 #include "Entities/BaseEntity.h"
 #include "Entities/Component.h"
 #include "GameTime.h"
-#include "Graphics/Color.h"
 #include "Maths/2D/Line2D.h"
 #include "Maths/2D/Path.h"
 #include "MovingEntity2DComponent.h"

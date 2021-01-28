@@ -5,8 +5,6 @@
 #include "Parsers/Xml/XMLHelper.h"
 #include <string>
 #include "Assetable.h"
-#include <iosfwd>
-#include "Resources/ResourceManager.h"
 #include "Exceptions.h"
 #include "CA_Assert.h"
 #include "Memory/MemoryAllocation.h"

@@ -41,9 +41,6 @@ namespace CasaEngine
 			m_Paths.insert(Path + "\\");
 	}
 
-	/**
-	 *
-	 */
 	IFile* MediaManager::FindMedia(const std::string& fileName_, bool isBinary_) const
 	{
 		return FindMedia(fileName_.c_str(), isBinary_);

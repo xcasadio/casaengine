@@ -2,18 +2,14 @@
 #define ANIMATED_SPRITECOMPONENT_H
 
 #include <string>
-#include <iosfwd>
 #include <vector>
 
 #include "CA_Export.h"
-#include "Animations/IAnimationEventListener.h"
 #include "Entities/Component.h"
 #include "GameTime.h"
 #include "Graphics/Color.h"
-#include "Parsers/Xml/tinyxml2.h"
 #include "Sprite/SpriteRenderer.h"
 #include "Sprite/SpriteTypes.h"
-#include "Transform2DComponent.h"
 #include "Transform3DComponent.h"
 #include "Animations/Animation2D.h"
 #include "EventHandler\EventSet.h"

@@ -8,7 +8,6 @@
 #include <string>
 #include "Maths/Quaternion.h"
 #include "Maths/Vector3.h"
-#include "Game/Input.h"
 #include "Maths/Matrix4.h"
 
 namespace CasaEngine

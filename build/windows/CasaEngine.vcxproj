@@ -195,7 +195,6 @@
     <ClInclude Include="..\..\src\Core\EventHandler\SubscriberSlot.h" />
     <ClInclude Include="..\..\src\Core\Exceptions.h" />
     <ClInclude Include="..\..\src\Core\Functor.h" />
-    <ClInclude Include="..\..\src\Core\GenHierarchies.h" />
     <ClInclude Include="..\..\src\Core\IO\File.h" />
     <ClInclude Include="..\..\src\Core\IO\IFile.h" />
     <ClInclude Include="..\..\src\Core\IO\IOManager.h" />
@@ -243,8 +242,6 @@
     <ClInclude Include="..\..\src\Core\Parsers\Xml\XMLHelper.h" />
     <ClInclude Include="..\..\src\Core\StringUtils.h" />
     <ClInclude Include="..\..\src\Core\SystemPlatform.h" />
-    <ClInclude Include="..\..\src\Core\Typelist.h" />
-    <ClInclude Include="..\..\src\Core\Types.h" />
     <ClInclude Include="..\..\src\Core\Version.h" />
     <ClInclude Include="..\..\src\Core\Win32\Win32Exception.h" />
     <ClInclude Include="..\..\src\Core\Win32\Win32Macro.h" />
@@ -280,8 +277,6 @@
     <ClInclude Include="..\..\src\Engine\Physics\PhysicsObjectContainer.h" />
     <ClInclude Include="..\..\src\Engine\Physics\RigidBody.h" />
     <ClInclude Include="..\..\src\Engine\Resources\MediaManager.h" />
-    <ClInclude Include="..\..\src\Engine\Resources\Resource.h" />
-    <ClInclude Include="..\..\src\Engine\Resources\ResourceManager.h" />
     <ClInclude Include="..\..\src\Framework\AI\FSM\IState.h" />
     <ClInclude Include="..\..\src\Framework\AI\FSM\StateMachine.h" />
     <ClInclude Include="..\..\src\Framework\AI\Fuzzy\FuzzyHedges.h" />
@@ -487,8 +482,6 @@
     <ClCompile Include="..\..\src\Engine\Physics\IPhysicsWorld.cpp" />
     <ClCompile Include="..\..\src\Engine\Physics\PhysicsEngine.cpp" />
     <ClCompile Include="..\..\src\Engine\Resources\MediaManager.cpp" />
-    <ClCompile Include="..\..\src\Engine\Resources\Resource.cpp" />
-    <ClCompile Include="..\..\src\Engine\Resources\ResourceManager.cpp" />
     <ClCompile Include="..\..\src\Framework\AI\Fuzzy\FuzzyModule.cpp" />
     <ClCompile Include="..\..\src\Framework\AI\Fuzzy\FuzzyOperators.cpp" />
     <ClCompile Include="..\..\src\Framework\AI\Fuzzy\FuzzySet.cpp" />
@@ -597,9 +590,6 @@
     <None Include="..\..\src\Core\Maths\Rectangle.inl" />
     <None Include="..\..\src\Core\Memory\ObjectPool.inl" />
     <None Include="..\..\src\Core\StringUtils.inl" />
-    <None Include="..\..\src\Core\Typelist.inl" />
-    <None Include="..\..\src\Engine\Resources\MediaManager.inl" />
-    <None Include="..\..\src\Engine\Resources\ResourceManager.inl" />
     <None Include="..\..\src\Framework\Game\Game.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

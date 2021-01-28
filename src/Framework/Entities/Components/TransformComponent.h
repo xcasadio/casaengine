@@ -1,8 +1,6 @@
 #ifndef TRANSFORMCOMPONENT_H_
 #define TRANSFORMCOMPONENT_H_
 
-#include <string>
-
 #include "CA_Export.h"
 #include "GameTime.h"
 #include <iosfwd>

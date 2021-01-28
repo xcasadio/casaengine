@@ -1,8 +1,4 @@
-
-#include "Base.h"
 #include "Game/Input.h"
-#include "Maths/Math.h"
-#include <string.h>
 #include "SFML/Window/Event.hpp"
 #include "Game.h"
 

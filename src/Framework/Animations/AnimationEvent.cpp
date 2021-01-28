@@ -1,12 +1,8 @@
 //==========================================================
 // En-têtes
 //==========================================================
-#include "Base.h"
 
 #include "Animations/AnimationEvent.h"
-#include <string>
-#include "Parsers/Xml/tinyxml2.h"
-#include <iosfwd>
 
 
 namespace CasaEngine

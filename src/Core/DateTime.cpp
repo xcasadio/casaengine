@@ -1,4 +1,3 @@
-#include <sys\types.h>
 #include <time.h>
 #include <stdio.h>
 

@@ -8,7 +8,6 @@
 //
 //  Desc:   Node classes to be used with graphs
 //-----------------------------------------------------------------------------
-#include <list>
 #include <ostream>
 #include <fstream>
 

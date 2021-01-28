@@ -1,4 +1,3 @@
-#include "Base.h"
 #include "Datas/AnimationData.h"
 
 namespace CasaEngine

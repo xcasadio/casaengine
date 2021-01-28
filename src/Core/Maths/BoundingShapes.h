@@ -1,11 +1,8 @@
 #ifndef BOUNDINGSHAPE_H
 #define BOUNDINGSHAPE_H
 
-#include <math.h>
 #include "Matrix3.h"
 #include "Vector3.h"
-#include "CA_Assert.h"
-#include "Log\LogManager.h"
 #include "Quaternion.h"
 
 namespace CasaEngine

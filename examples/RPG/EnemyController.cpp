@@ -1,6 +1,5 @@
 #include "Base.h"
 #include "Game\Game.h"
-#include "CharacterEnum.h"
 #include "Character.h"
 #include "EnemyController.h"
 #include "EnemyStates.h"

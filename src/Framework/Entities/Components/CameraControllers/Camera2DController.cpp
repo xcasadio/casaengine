@@ -1,7 +1,3 @@
-#include "Base.h"
-
-#include <string>
-
 #include "Camera2DController.h"
 #include "Maths/Matrix4.h"
 #include "Game/Game.h"

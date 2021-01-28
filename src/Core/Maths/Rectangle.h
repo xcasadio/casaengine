@@ -3,11 +3,7 @@
 
 #include "CA_Export.h"
 #include "Maths/Vector2.h"
-#include "Memory/MemoryAllocation.h"
 #include "Maths/Shape/IShape.h"
-
-#include <algorithm>
-#include <iostream>
 
 #include <cereal/access.hpp>
 

@@ -1,6 +1,5 @@
 
 #include "Base.h"
-#include "Types.h"
 #include "Animation2DPlayer.h"
 
 

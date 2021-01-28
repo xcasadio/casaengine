@@ -2,12 +2,10 @@
 
 #include "Datas/SpriteData.h"
 #include "Parsers/Xml/tinyxml2.h"
-#include <iosfwd>
 
 #include "Game/Game.h"
 #include "Maths/Vector2.h"
 #include "Maths/Rectangle.h"
-#include "Resources/ResourceManager.h"
 
 
 namespace CasaEngine

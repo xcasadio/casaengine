@@ -1,9 +1,7 @@
-#include "Base.h"
 #include "Maths/Math.h"
 #include "Maths/Vector2.h"
 #include "Geometry.h"
 #include "Transformations.h"
-#include <math.h>
 #include <vector>
 
 namespace CasaEngine

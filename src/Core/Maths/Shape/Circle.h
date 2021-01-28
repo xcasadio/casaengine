@@ -2,11 +2,9 @@
 #define CIRCLE_H_
 
 #include "CA_Export.h"
-#include "Maths/Matrix4.h"
 #include "Maths/Vector3.h"
 
 #include "IShape.h"
-#include "Parsers/Xml/tinyxml2.h"
 
 namespace CasaEngine
 {

@@ -9,7 +9,6 @@
 //
 //  Desc:   class to define an interface for a fuzzy set
 //-----------------------------------------------------------------------------
-#include <string>
 
 #include "CA_Export.h"
 #include "Memory/MemoryAllocation.h"

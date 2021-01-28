@@ -76,9 +76,6 @@
     <Filter Include="Engine\Physics\Bullet">
       <UniqueIdentifier>{afac9801-36ce-426b-b4ed-b548960a2cf0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Resources">
-      <UniqueIdentifier>{05df07c1-9b1c-4eea-a073-a421b06f5a4a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Framework\AI">
       <UniqueIdentifier>{4ef99e36-d1c8-419e-a2a5-8a88e403e8d1}</UniqueIdentifier>
     </Filter>
@@ -184,6 +181,9 @@
     <Filter Include="Framework\Datas">
       <UniqueIdentifier>{c7c972b1-ba77-4e88-a25a-be179b309cad}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Resources">
+      <UniqueIdentifier>{269f16ae-b2b5-410d-877a-62d2dc2fe94e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Core\Base.h">
@@ -210,19 +210,10 @@
     <ClInclude Include="..\..\src\Core\Exceptions.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\GenHierarchies.h">
-      <Filter>Core</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Core\StringUtils.h">
       <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Core\SystemPlatform.h">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Core\Typelist.h">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Core\Types.h">
       <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Core\Version.h">
@@ -494,15 +485,6 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Engine\Physics\Bullet\BulletPhysicsWorld.h">
       <Filter>Engine\Physics\Bullet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Resources\MediaManager.h">
-      <Filter>Engine\Resources</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Resources\Resource.h">
-      <Filter>Engine\Resources</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Resources\ResourceManager.h">
-      <Filter>Engine\Resources</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Engine\EngineSettings.h">
       <Filter>Engine</Filter>
@@ -804,9 +786,6 @@
     <ClInclude Include="..\..\src\Framework\UI\Console.h">
       <Filter>Framework\UI</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\Functor.h">
-      <Filter>Core</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Framework\Tools\DisplayDebugInfo.h">
       <Filter>Framework\Tools</Filter>
     </ClInclude>
@@ -981,6 +960,12 @@
     <ClInclude Include="..\..\src\Framework\Datas\AnimationData.h">
       <Filter>Framework\Datas</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Core\Functor.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Resources\MediaManager.h">
+      <Filter>Engine\Resources</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Core\DateTime.cpp">
@@ -1153,15 +1138,6 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Physics\Bullet\BulletPhysicsWorld.cpp">
       <Filter>Engine\Physics\Bullet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Resources\MediaManager.cpp">
-      <Filter>Engine\Resources</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Resources\Resource.cpp">
-      <Filter>Engine\Resources</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Resources\ResourceManager.cpp">
-      <Filter>Engine\Resources</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\GameTime.cpp">
       <Filter>Engine</Filter>
@@ -1460,12 +1436,12 @@
     <ClCompile Include="..\..\src\Framework\Datas\AnimationData.cpp">
       <Filter>Framework\Datas</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Resources\MediaManager.cpp">
+      <Filter>Engine\Resources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\src\Core\StringUtils.inl">
-      <Filter>Core</Filter>
-    </None>
-    <None Include="..\..\src\Core\Typelist.inl">
       <Filter>Core</Filter>
     </None>
     <None Include="..\..\src\Core\Maths\Plane.inl">
@@ -1483,17 +1459,8 @@
     <None Include="..\..\src\Core\Memory\ObjectPool.inl">
       <Filter>Core\Memory</Filter>
     </None>
-    <None Include="..\..\src\Engine\Resources\MediaManager.inl">
-      <Filter>Engine\Resources</Filter>
-    </None>
-    <None Include="..\..\src\Engine\Resources\ResourceManager.inl">
-      <Filter>Engine\Resources</Filter>
-    </None>
     <None Include="..\..\src\Framework\Game\Game.inl">
       <Filter>Framework\Game</Filter>
-    </None>
-    <None Include="..\..\src\Core\Functor.inl">
-      <Filter>Core</Filter>
     </None>
     <None Include="..\..\src\Core\Maths\Rectangle.inl">
       <Filter>Core\Maths</Filter>
@@ -1524,6 +1491,9 @@
     </None>
     <None Include="..\..\external\dear-imgui\widgets\range_slider.inl">
       <Filter>3rdparty\dear-imgui\widgets</Filter>
+    </None>
+    <None Include="..\..\src\Core\Functor.inl">
+      <Filter>Core</Filter>
     </None>
   </ItemGroup>
 </Project>

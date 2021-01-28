@@ -1,7 +1,6 @@
 #ifndef DATETIME_H
 #define DATETIME_H
 
-#include <sys\types.h>
 #include <string>
 
 #include "CA_Export.h"

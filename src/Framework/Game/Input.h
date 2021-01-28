@@ -2,13 +2,12 @@
 #ifndef INPUT_H_
 #define INPUT_H_
 
+#include <SFML/Window/Event.hpp>
+
 #include "SFML/Window/Mouse.hpp"
 #include "SFML/Window/Joystick.hpp"
-#include "Maths/Vector2.h"
-#include <vector>
 #include "CA_Export.h"
 #include "SFML/Window/Keyboard.hpp"
-#include "SFML/Window/Event.hpp"
 
 namespace CasaEngine
 {

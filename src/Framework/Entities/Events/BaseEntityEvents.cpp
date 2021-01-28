@@ -1,5 +1,3 @@
-
-#include "Base.h"
 #include "BaseEntityEvents.h"
 
 namespace CasaEngine

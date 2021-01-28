@@ -13,7 +13,6 @@
 
 #include "Maths/Vector2.h"
 #include "CA_Export.h"
-#include <math.h>
 #include <vector>
 
 #include "Memory/MemoryAllocation.h"

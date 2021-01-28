@@ -1,8 +1,6 @@
 #ifndef LOAD_SAVE_TYPES_H_
 #define LOAD_SAVE_TYPES_H_
 
-#include "Character.h"
-
 using namespace CasaEngine;
 
 struct frame

@@ -3,14 +3,11 @@
 
 #include <vector>
 
-#include "Tile.h"
 #include "TiledMapLayer.h"
 #include "Animations/Animation2D.h"
 #include "Entities/Component.h"
 #include "Entities/Components/Transform3DComponent.h"
 #include "Maths/Vector2.h"
-#include "Sprite/Sprite.h"
-#include "Sprite/SpriteRenderer.h"
 
 namespace CasaEngine
 {

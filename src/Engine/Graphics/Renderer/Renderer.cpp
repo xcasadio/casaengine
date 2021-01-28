@@ -1,20 +1,12 @@
-#include <string>
+#include <cstdint>
+
 #include <bgfx/bgfx.h>
 
 #include "Graphics/Renderer/Renderer.h"
-
 #include "Maths/Matrix4.h"
-#include "Log/Logger.h"
-#include "Exceptions.h"
-#include "Log/LogManager.h"
-#include "Parsers/Ini/INIReader.h"
 
-#include "Resources/ResourceManager.h"
-#include "Resources/MediaManager.h"
-#include "StringUtils.h"
-#include <stdint.h>
-#include "bx/string.h"
 #include "EngineSettings.h"
+#include "Graphics/Vertices/VertexType.h"
 
 namespace CasaEngine
 {

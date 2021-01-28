@@ -5,7 +5,6 @@
 #include "Maths/Math.h"
 #include "Base.h"
 #include "fuzzyvariable.h"
-#include "fuzzyoperators.h"
 #include "FuzzySet_triangle.h"
 #include "FuzzySet_LeftShoulder.h"
 #include "FuzzySet_RightShoulder.h"

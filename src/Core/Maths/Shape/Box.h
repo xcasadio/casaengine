@@ -2,13 +2,9 @@
 #define BOX_H
 
 #include "CA_Export.h"
-#include "Maths/Matrix4.h"
 #include "Maths/Vector3.h"
 #include "IShape.h"
 #include "Memory/MemoryAllocation.h"
-#include "Parsers/Xml/tinyxml2.h"
-
-#include <iosfwd>
 
 namespace CasaEngine
 {

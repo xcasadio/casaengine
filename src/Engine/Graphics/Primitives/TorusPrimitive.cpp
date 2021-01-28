@@ -5,7 +5,6 @@
 #include "Maths/Vector3.h"
 #include "Maths/Vector2.h"
 #include "Graphics/Renderer/Renderer.h"
-#include "Graphics/Mesh/Mesh.h"
 #include "Maths/Matrix4.h"
 
 namespace CasaEngine

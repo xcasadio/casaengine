@@ -2,8 +2,8 @@
 #define BASE_H_
 
 #include "SystemPlatform.h"
-#include "Types.h"
 #include "CA_Assert.h"
+#include "CA_Export.h"
 
 #if CA_PLATFORM_ANDROID
 

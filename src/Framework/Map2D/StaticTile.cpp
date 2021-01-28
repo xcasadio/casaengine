@@ -1,7 +1,5 @@
 #include "StaticTile.h"
 
-#include "Graphics/Color.h"
-
 namespace CasaEngine
 {
 	StaticTile::StaticTile(Sprite* pSprite) :

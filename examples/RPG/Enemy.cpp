@@ -1,7 +1,5 @@
 #include "Base.h"
 #include "Enemy.h"
-#include "CharacterEnum.h"
-#include "CustomComponentType.h"
 #include "EnemyController.h"
 
 /**

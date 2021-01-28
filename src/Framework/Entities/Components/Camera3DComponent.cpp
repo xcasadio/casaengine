@@ -1,16 +1,10 @@
-
-#include "Base.h"
 #include "Entities/BaseEntity.h"
 
 #include "Camera3DComponent.h"
 #include "Maths/Matrix4.h"
 #include "Entities/ComponentTypeEnum.h"
-#include <string>
 #include "Game/Game.h"
-#include "Resources/ResourceManager.h"
 #include "StringUtils.h"
-
-#include "Transform3DComponent.h"
 
 
 namespace CasaEngine

@@ -12,10 +12,8 @@
 //          For the function templates, make sure your graph interface complies
 //          with the SparseGraph class
 //-----------------------------------------------------------------------------
-#include <iostream>
 
 #include "GraphAlgorithms.h"
-#include "AStarHeuristicPolicies.h"
 
 
 namespace CasaEngine

@@ -1,7 +1,6 @@
 #include "Base.h"
 
 #include <iosfwd>
-#include <string>
 #include <math.h>
 
 #include "ArcBallCameraController.h"
@@ -12,7 +11,6 @@
 #include "Entities/Components/Camera3DComponent.h"
 #include "Maths/Math.h"
 #include "Maths/Quaternion.h"
-#include "Game/GameInfo.h"
 #include "Game/Input.h"
 
 namespace CasaEngine

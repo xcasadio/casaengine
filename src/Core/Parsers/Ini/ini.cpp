@@ -9,8 +9,6 @@ http://code.google.com/p/inih/
 
 #include "ini.h"
 
-#include "Base.h"
-
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>

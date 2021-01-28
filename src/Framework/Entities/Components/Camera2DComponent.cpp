@@ -1,13 +1,9 @@
-#include "Base.h"
 #include "Entities/BaseEntity.h"
 
 #include "Camera2DComponent.h"
 #include "Maths/Matrix4.h"
 #include "Entities/ComponentTypeEnum.h"
-#include <string>
 #include "Game/Game.h"
-#include "Resources/ResourceManager.h"
-#include "StringUtils.h"
 
 #include "Transform2DComponent.h"
 

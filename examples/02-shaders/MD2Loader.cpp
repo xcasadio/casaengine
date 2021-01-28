@@ -1,6 +1,5 @@
 #include "MD2Loader.h"
 #include <fstream>
-#include <Graphics/Renderer/Renderer.h>
 
 #include "Graphics/Vertices/VertexType.h"
 #include "Game/Game.h"

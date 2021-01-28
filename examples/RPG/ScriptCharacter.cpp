@@ -1,4 +1,3 @@
-#include "Base.h"
 #include "ScriptCharacter.h"
 
 const ScriptObjectClassID ScriptCharacter::ClassID(0xC299A4EE);

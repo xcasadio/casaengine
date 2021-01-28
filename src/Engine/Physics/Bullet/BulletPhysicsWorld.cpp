@@ -1,5 +1,3 @@
-#include "Base.h"
-
 #ifdef USE_BULLET_PHYSICS
 
 #include "BulletCollision\CollisionDispatch\btCollisionWorld.h"

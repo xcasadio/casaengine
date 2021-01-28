@@ -10,10 +10,8 @@
 #include "Game/GameInfo.h"
 #include "Graphics/Color.h"
 #include "Maths/Matrix4.h"
-#include "Resources/ResourceManager.h"
 #include "Sprite/SpriteRenderer.h"
 #include "Sprite/SpriteTypes.h"
-#include "StringUtils.h"
 #include "Transform3DComponent.h"
 #include "EventHandler/Event.h"
 

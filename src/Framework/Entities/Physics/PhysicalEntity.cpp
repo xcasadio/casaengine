@@ -1,8 +1,6 @@
 
 #include "Base.h"
 #include "PhysicalEntity.h"
-#include "Maths/Matrix3.h"
-#include "Maths/Matrix4.h"
 #include <string>
 #include "CA_Assert.h"
 #include "Log\LogManager.h"

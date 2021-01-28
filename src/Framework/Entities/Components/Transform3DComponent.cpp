@@ -1,10 +1,6 @@
-
-#include "Base.h"
 #include "Entities/BaseEntity.h"
 
 #include "Transform3DComponent.h"
-#include "Entities/Component.h"
-#include "Entities/ComponentMessageEnum.h"
 #include "../ComponentTypeEnum.h"
 #include "../Events/BaseEntityEvents.h"
 #include "EventHandler/Event.h"
