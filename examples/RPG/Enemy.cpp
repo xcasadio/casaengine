@@ -19,6 +19,6 @@ Enemy::~Enemy()
 
 void Enemy::Initialize()
 {
-	m_pController = ::new EnemyController(this);
+	SetController(::new EnemyController(this));
 	Character::Initialize();
 }

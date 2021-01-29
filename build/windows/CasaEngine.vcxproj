@@ -323,7 +323,10 @@
     <ClInclude Include="..\..\src\Framework\Datas\AnimationData.h" />
     <ClInclude Include="..\..\src\Framework\Datas\FrameData.h" />
     <ClInclude Include="..\..\src\Framework\Datas\SpriteData.h" />
+    <ClInclude Include="..\..\src\Framework\GameDatas\CharacterBase.h" />
+    <ClInclude Include="..\..\src\Framework\GameDatas\CharacterTypes.h" />
     <ClInclude Include="..\..\src\Framework\GameDatas\GameDataFactory.h" />
+    <ClInclude Include="..\..\src\Framework\GameDatas\IController.h" />
     <ClInclude Include="..\..\src\Framework\GameDatas\IGameData.h" />
     <ClInclude Include="..\..\src\Framework\GameDatas\IGameDataFactory.h" />
     <ClInclude Include="..\..\src\Framework\Entities\BaseEntity.h" />
@@ -504,7 +507,9 @@
     <ClCompile Include="..\..\src\Framework\Datas\AnimationData.cpp" />
     <ClCompile Include="..\..\src\Framework\Datas\FrameData.cpp" />
     <ClCompile Include="..\..\src\Framework\Datas\SpriteData.cpp" />
+    <ClCompile Include="..\..\src\Framework\GameDatas\CharacterBase.cpp" />
     <ClCompile Include="..\..\src\Framework\GameDatas\GameDataFactory.cpp" />
+    <ClCompile Include="..\..\src\Framework\GameDatas\IController.cpp" />
     <ClCompile Include="..\..\src\Framework\GameDatas\IGameData.cpp" />
     <ClCompile Include="..\..\src\Framework\GameDatas\IGameDataFactory.cpp" />
     <ClCompile Include="..\..\src\Framework\Entities\BaseEntity.cpp" />

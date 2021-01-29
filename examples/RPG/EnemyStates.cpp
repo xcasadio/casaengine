@@ -28,7 +28,7 @@ void EnemyStateIdle::Enter(IController* pController_)
 	/*orientation dir = (orientation)(1 << (rand() % 4));
 	pController_->GetCharacter()->SetOrientation(dir);*/
 	//pController_->GetCharacter()->SetCurrentAnimation(static_cast<int>(Character::AnimationIndices::IDLE));
-	pController_->GetCharacter()->SetCurrentAnimationByName("octopus_stand");
+	dynamic_cast<Character *>(pController_->GetCharacter())->SetCurrentAnimationByName("octopus_stand");
 }
 
 /**
@@ -47,7 +47,7 @@ void EnemyStateIdle::Execute(IController* pController_, const GameTime& elpasedT
 		orientation dir = (orientation)(1 << (rand() % 4));
 		pController_->GetCharacter()->SetOrientation(dir);
 		//pController_->GetCharacter()->SetCurrentAnimation(static_cast<int>(Character::AnimationIndices::IDLE));
-		pController_->GetCharacter()->SetCurrentAnimationByName("octopus_stand");
+		dynamic_cast<Character*>(pController_->GetCharacter())->SetCurrentAnimationByName("octopus_stand");
 	}
 	else if (rand() % 100 == 8)
 	{
@@ -91,7 +91,7 @@ void EnemyStateWalking::Enter(IController* pController_)
 {
 	//set animation stand
 	//pController_->GetCharacter()->SetCurrentAnimation(static_cast<int>(Character::AnimationIndices::RUN)); // direction
-	pController_->GetCharacter()->SetCurrentAnimationByName("octopus_walk");
+	dynamic_cast<Character*>(pController_->GetCharacter())->SetCurrentAnimationByName("octopus_walk");
 }
 
 /**

@@ -1,7 +1,7 @@
 #ifndef EnemyController_H_
 #define EnemyController_H_
 
-#include "IController.h"
+#include "GameDatas/IController.h"
 #include "GameTime.h"
 #include "AI\FSM\StateMachine.h"
 #include "AI\FSM\IState.h"

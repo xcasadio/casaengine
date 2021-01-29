@@ -1,7 +1,7 @@
 #ifndef PLAYERCONTROLLER_H_
 #define PLAYERCONTROLLER_H_
 
-#include "IController.h"
+#include "GameDatas/IController.h"
 #include "GameTime.h"
 #include "CharacterEnum.h"
 #include "Maths\Vector2.h"

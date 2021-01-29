@@ -24,7 +24,6 @@
     <ClCompile Include="..\..\examples\RPG\EnemyStates.cpp" />
     <ClCompile Include="..\..\examples\RPG\EnemyController.cpp" />
     <ClCompile Include="..\..\examples\RPG\Hero.cpp" />
-    <ClCompile Include="..\..\examples\RPG\IController.cpp" />
     <ClCompile Include="..\..\examples\RPG\PlayerController.cpp" />
     <ClCompile Include="..\..\examples\RPG\PlayerStates.cpp" />
     <ClCompile Include="..\..\examples\RPG\scene2DGame.cpp" />
@@ -40,7 +39,6 @@
     <ClInclude Include="..\..\examples\RPG\EnemyStates.h" />
     <ClInclude Include="..\..\examples\RPG\EnemyController.h" />
     <ClInclude Include="..\..\examples\RPG\Hero.h" />
-    <ClInclude Include="..\..\examples\RPG\IController.h" />
     <ClInclude Include="..\..\examples\RPG\load_save_types.h" />
     <ClInclude Include="..\..\examples\RPG\MessageType.h" />
     <ClInclude Include="..\..\examples\RPG\PlayerController.h" />

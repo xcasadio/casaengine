@@ -1,21 +1,5 @@
-#ifndef CHARACTERANIMATION_H_
-#define CHARACTERANIMATION_H_
-
-/**
- *
- */
-enum orientation
-{
-	UP = 0x1,
-	DOWN = 0x2,
-	LEFT = 0x4,
-	RIGHT = 0x8,
-
-	UP_LEFT = LEFT | UP,
-	DOWN_LEFT = LEFT | DOWN,
-	UP_RIGHT = RIGHT | UP,
-	DOWN_RIGHT = RIGHT | DOWN
-};
+#ifndef CHARACTER_ENUM_H_
+#define CHARACTER_ENUM_H_
 
 /**
  * Define the type of controller for each type of character
@@ -35,7 +19,7 @@ enum class CharacterType
 /**
  * Don't change the order else change characterEditorForm and the project file
  */
-enum AnimationIndex
+enum class AnimationIndex
 {
 	IDLE_RIGHT,
 	IDLE_LEFT,
@@ -145,6 +129,7 @@ enum AnimationIndex
 	TO_NORMAL_UP_LEFT,
 	TO_NORMAL_DOWN_LEFT,
 
+
 	FURY_IDLE_RIGHT,
 	FURY_IDLE_LEFT,
 	FURY_IDLE_UP,
@@ -234,6 +219,19 @@ enum AnimationIndex
 	FURY_DEAD_DOWN_RIGHT,
 	FURY_DEAD_UP_LEFT,
 	FURY_DEAD_DOWN_LEFT,
+};
+
+// Respect the order of the enum CharacterAnimation
+enum class AnimationDirectionOffset
+{
+	RIGHT = 0,
+	LEFT = 1,
+	UP = 2,
+	DOWN = 3,
+	UP_RIGHT = 4,
+	DOWN_RIGHT = 5,
+	UP_LEFT = 6,
+	DOWN_LEFT = 7,
 };
 
 #endif

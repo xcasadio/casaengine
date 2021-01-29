@@ -156,11 +156,11 @@ void PlayerStateAttack::Enter(IController* pController_)
 	Vector2F joyDir = Vector2F::Zero();
 	pPlayerController->GetHero()->Move(joyDir);
 
-	if (pPlayerController->GetHero()->InFuryMode() == true)
+	/*if (pPlayerController->GetHero()->InFuryMode() == true)
 	{
 		pPlayerController->GetHero()->SetCurrentAnimation(static_cast<int>(Character::AnimationIndices::FURY_ATTACK1));
 	}
-	else
+	else*/
 	{
 		//pPlayerController->GetHero()->SetCurrentAnimation(static_cast<int>(Character::AnimationIndices::ATTACK1));
 		pPlayerController->GetHero()->SetCurrentAnimationByName("swordman_attack");

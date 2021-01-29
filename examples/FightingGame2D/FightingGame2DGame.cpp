@@ -22,7 +22,6 @@
 #include "Log/LoggerFile.h"
 #include "Maths/Vector3.h"
 #include "Memory/MemoryAllocation.h"
-#include "Parsers/Xml/tinyxml2.h"
 #include "Physics/PhysicsEngine.h"
 #include "Sprite/SpriteTypes.h"
 #include <IO/File.h>

@@ -22,7 +22,7 @@ Hero::~Hero()
 
 void Hero::Initialize()
 {
-	m_pController = ::new PlayerController(this, 0);
+	SetController(::new PlayerController(this, 0));
 	Character::Initialize();
 }
 

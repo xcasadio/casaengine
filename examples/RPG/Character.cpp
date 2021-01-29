@@ -10,33 +10,24 @@
 #include "Assets\AssetManager.h"
 #include "Entities\Physics\PhysicalEntity.h"
 #include "AI\MovementSystem\MovementRequest.h"
+#include "Entities\Events\BaseEntityEvents.h"
+#include "EventHandler\Event.h"
 
-/**
- *
- */
-Character::Character(BaseEntity* pEntity)
+
+Character::Character(BaseEntity* pEntity) : CasaEngine::CharacterBase(pEntity)
 {
-	AnimatedSpriteComponent* pAnimatedSprite = pEntity->GetComponentMgr()->GetComponent<AnimatedSpriteComponent>();
-
-	CA_ASSERT(pAnimatedSprite != nullptr, "Character() : AnimatedSpriteComponent is null");
-	m_pAnimatedSprite = pAnimatedSprite;
-
-	m_pEntity = pEntity;
-
 	m_pAnimatedSprite->subscribeEvent(
 		AnimationFinishedEvent::GetEventName(),
 		Event::Subscriber(&Character::OnAnimationFinished, this));
 	m_pAnimatedSprite->subscribeEvent(
 		FrameChangeEvent::GetEventName(),
 		Event::Subscriber(&Character::OnFrameChangedEvent, this));
-
+	
 	m_pLastSprite = nullptr;
-	m_pController = nullptr;
 
 	m_NumberOfDirection = 8;
-	m_AnimationDirectioMask = 0;
+	m_AnimationDirectionMask = 0;
 
-	m_SpeedOffSet = 0.0f;
 	int m_HPMaxOffSet = 0.0f;
 	int m_HPOffSet = 0.0f;
 	int m_MPMaxOffSet = 0.0f;
@@ -44,11 +35,6 @@ Character::Character(BaseEntity* pEntity)
 	int m_StrengthOffSet = 0.0f;
 	int m_DefenseOffSet = 0.0f;
 
-	m_Direction = Vector2F::UnitX();
-	//m_Velocity = Vector2F::Zero();
-
-	//TODO set after creation by the level configuration
-	m_Speed = 20.0f;
 	m_Strength = 10;
 	m_HPMax = 100;
 	m_MPMax = 100;
@@ -64,19 +50,13 @@ Character::Character(BaseEntity* pEntity)
 	SetAnimationParameters(4, -1);
 }
 
-/**
- *
- */
 Character::~Character()
 {
-	DELETE_AO m_pController;
 }
 
-/**
- *
- */
 void Character::Initialize()
 {
+	CharacterBase::Initialize();
 	/*foreach (KeyValuePair<int, Animation2D> pair in m_Animations)
 	{
 		//Event
@@ -94,171 +74,30 @@ void Character::Initialize()
 
 	HP = HPMax;
 	MP = MPMax;*/
-
-	m_pController->Initialize();
 }
 
-/**
- *
- */
 void Character::Update(const GameTime& gameTime_)
 {
-	while (m_MessageQueue.empty() == false)
-	{
-		HandleMessage(m_MessageQueue.front());
-		m_MessageQueue.pop();
-	}
-
-	m_pController->Update(gameTime_);
+	CharacterBase::Update(gameTime_);
 }
 
-/**
- *
- */
 void Character::Draw()
 {
 }
 
-/**
- *
- */
 void Character::SetAnimationParameters(unsigned int numberOfDir_, unsigned int animationDirMask_)
 {
 	m_NumberOfDirection = numberOfDir_;
-	m_AnimationDirectioMask = animationDirMask_;
+	m_AnimationDirectionMask = animationDirMask_;
 }
 
-/**
- *
- */
 void Character::SetAnimationDirectionOffset(orientation dir_, int offset_)
 {
 	m_AnimationDirectionOffset[static_cast<int>(dir_)] = offset_;
 }
 
-/**
- *
- */
-bool Character::HandleMessage(const Telegram& msg)
-{
-	return m_pController->FSM()->HandleMessage(msg);
-}
-
-/**
- *
- */
-orientation Character::GetOrientationFromVector2(const Vector2F v)
-{
-	unsigned int dir = 0;
-	const float offset = 0.1f;
-
-	if (v.x < -offset)
-	{
-		dir |= LEFT;
-	}
-	else if (v.x > offset)
-	{
-		dir |= RIGHT;
-	}
-
-	if (v.y < -offset)
-	{
-		dir |= UP;
-	}
-	else if (v.y > offset)
-	{
-		dir |= DOWN;
-	}
-
-	return static_cast<orientation>(dir);
-}
-
-/**
- *
- */
-orientation Character::GetOrientation() const
-{
-	return m_Orientation;
-}
-
-/**
- *
- */
-void Character::SetOrientation(const orientation val)
-{
-	m_Orientation = val;
-}
-
-/**
- *
- */
-IController* Character::GetController() const
-{
-	return m_pController;
-}
-
-/**
- *
- */
-void Character::Move(Vector2F& dir)
-{
-	if (dir == Vector2F::Zero())
-	{
-		//always when Vector2.Zero to stop movement
-		//else if contact the character will continue to move
-		//m_Body.ResetDynamics();
-		PhysicalEntity& physicalEntity = m_pEntity->GetPhysicalEntity();
-		// 		MovementRequest request;
-		// 		request.MoveType = STOP;
-		// 		physicalEntity.MovementSystem.QueueRequest(request);
-		physicalEntity.SetVelocity(Vector3F::Zero());
-	}
-	else
-	{
-		Direction(dir);
-
-		PhysicalEntity& physicalEntity = m_pEntity->GetPhysicalEntity();
-		// 		physicalEntity.MoveRequest(MOVE, dir_, m_Speed + m_SpeedOffSet);
-		//
-		// 		MovementStyle mvtStyle;
-		// 		mvtStyle.Stance = STAND;
-		// 		mvtStyle.Speed = Run;
-		//
-		//
-		// 		MovementRequest request;
-		// 		request.MoveType = MOVETO;
-		// 		request.Destination = pos + dir_ * 10.0f;
-		// 		request.Velocity = m_Speed + m_SpeedOffSet;
-		// 		request.Style = mvtStyle;
-		// 		physicalEntity.MovementSystem.QueueRequest(request);
-		physicalEntity.SetVelocity(Vector3F(dir.x, dir.y, 0.0f) * (m_Speed + m_SpeedOffSet));
-		//physicalEntity->applyCentralImpulse(Vector3F(dir_.x, dir_.y, 0.0f) * (m_Speed + m_SpeedOffSet));
-	}
-}
-
-/**
- *
- */
-int Character::GetAnimationDirectionOffset()
-{
-	//int val = static_cast<int>(m_Orientation) & m_AnimationDirectioMask;
-	return m_AnimationDirectionOffset[static_cast<int>(m_Orientation) & m_AnimationDirectioMask];
-}
-
-/**
- *
- */
-void Character::SetCurrentAnimation(int index_)
-{
-	CA_ASSERT(m_pAnimatedSprite != nullptr, "Character::SetCurrentAnimation() : m_pAnimatedSprite == nullptr");
-
-	m_pAnimatedSprite->SetCurrentAnimation(index_ * m_NumberOfDirection + GetAnimationDirectionOffset());
-}
-
-//AnimationDirectionOffset::RIGHT
 bool Character::SetCurrentAnimationByName(const char* name)
 {
-	CA_ASSERT(m_pAnimatedSprite != nullptr, "Character::SetCurrentAnimation() : m_pAnimatedSprite == nullptr");
 	std::ostringstream name_with_direction;
 	name_with_direction << name;
 
@@ -285,75 +124,37 @@ bool Character::SetCurrentAnimationByName(const char* name)
 		break;
 	}
 
-	return m_pAnimatedSprite->SetCurrentAnimation(name_with_direction.str());
+	return SetCurrentAnimation(name_with_direction.str().c_str());
 }
 
-/**
- *
- */
-void Character::SetCurrentAnimation(const char* name) const
-{
-	CA_ASSERT(m_pAnimatedSprite != nullptr, "Character::SetCurrentAnimation() : m_pAnimatedSprite == nullptr");
-	CA_ASSERT(name != nullptr, "Character::SetCurrentAnimation() : animation name == nullptr");
 
-	m_pAnimatedSprite->SetCurrentAnimation(name);
-}
-
-/**
- *
- */
-Vector2F Character::Direction() const
-{
-	return m_Direction;
-}
-
-/**
- *
- */
-void Character::Direction(Vector2F val)
-{
-	m_Direction = val;
-}
-
-/**
- *
- */
 bool Character::OnAnimationFinished(const EventArgs& e_)
 {
-	const AnimationFinishedEvent& event = static_cast<const AnimationFinishedEvent&>(e_);
+	const auto& event = static_cast<const AnimationFinishedEvent&>(e_);
 
 	//event.ID();
 	Telegram msg;
 	msg.Msg = ANIMATION_FINISHED;
 	msg.ExtraInfo = &event;
-	m_MessageQueue.push(msg);
+	QueueMessage(msg);
 
 	return false;
 }
 
-/**
- *
- */
 bool Character::OnFrameChangedEvent(const EventArgs& e_)
 {
-	const AnimationFinishedEvent& event = static_cast<const AnimationFinishedEvent&>(e_);
+	const auto& event = static_cast<const AnimationFinishedEvent&>(e_);
 
 	//event.ID();
 	Telegram msg;
 	msg.Msg = FRAME_CHANGE_EVENT;
 	msg.ExtraInfo = &event;
-	m_MessageQueue.push(msg);
+	QueueMessage(msg);
 
-	PhysicalEntity& physicalEntity = m_pEntity->GetPhysicalEntity();
-	Sprite* pNewSprite = NEW_AO Sprite(*Game::Instance().GetAssetManager().GetAsset<SpriteData>(event.ID()));
+	//PhysicalEntity& physicalEntity = m_pEntity->GetPhysicalEntity();
+	//Sprite* pNewSprite = NEW_AO Sprite(*Game::Instance().GetAssetManager().GetAsset<SpriteData>(event.ID()));
 
-	if (m_pLastSprite != nullptr)
-	{
-		physicalEntity.RemoveSpritePhysics(m_pLastSprite);
-	}
-
-	physicalEntity.AddSpritePhysics(pNewSprite);
-	m_pLastSprite = pNewSprite;
+	//physicalEntity.AddSpritePhysics(pNewSprite);
 
 	return false;
 }

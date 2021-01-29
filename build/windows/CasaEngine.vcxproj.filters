@@ -966,6 +966,15 @@
     <ClInclude Include="..\..\src\Engine\Resources\MediaManager.h">
       <Filter>Engine\Resources</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Framework\GameDatas\CharacterBase.h">
+      <Filter>Framework\GameDatas</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Framework\GameDatas\IController.h">
+      <Filter>Framework\GameDatas</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Framework\GameDatas\CharacterTypes.h">
+      <Filter>Framework\GameDatas</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Core\DateTime.cpp">
@@ -1438,6 +1447,12 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Resources\MediaManager.cpp">
       <Filter>Engine\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Framework\GameDatas\CharacterBase.cpp">
+      <Filter>Framework\GameDatas</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Framework\GameDatas\IController.cpp">
+      <Filter>Framework\GameDatas</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

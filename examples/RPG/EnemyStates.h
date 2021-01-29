@@ -3,7 +3,7 @@
 
 #include "GameTime.h"
 #include "AI\FSM\IState.h"
-#include "IController.h"
+#include "GameDatas/IController.h"
 #include "Character.h"
 
 using namespace CasaEngine;
