@@ -24,11 +24,28 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\examples\FightingGame2D\Characters\Character.cpp" />
+    <ClCompile Include="..\..\examples\FightingGame2D\Characters\Player.cpp" />
+    <ClCompile Include="..\..\examples\FightingGame2D\Characters\PlayerController.cpp" />
+    <ClCompile Include="..\..\examples\FightingGame2D\Characters\PlayerStates.cpp" />
+    <ClCompile Include="..\..\examples\FightingGame2D\Characters\ScriptCharacter.cpp" />
     <ClCompile Include="..\..\examples\FightingGame2D\FightingGame2DGame.cpp" />
     <ClCompile Include="..\..\examples\FightingGame2D\main.cpp" />
+    <ClCompile Include="..\..\examples\FightingGame2D\Stages\Stage.cpp" />
+    <ClCompile Include="..\..\examples\FightingGame2D\Stages\StageInfo.cpp" />
+    <ClCompile Include="..\..\examples\FightingGame2D\Stages\StageLayer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\examples\FightingGame2D\Characters\Character.h" />
+    <ClInclude Include="..\..\examples\FightingGame2D\Characters\Player.h" />
+    <ClInclude Include="..\..\examples\FightingGame2D\Characters\MessageType.h" />
+    <ClInclude Include="..\..\examples\FightingGame2D\Characters\PlayerController.h" />
+    <ClInclude Include="..\..\examples\FightingGame2D\Characters\PlayerStates.h" />
+    <ClInclude Include="..\..\examples\FightingGame2D\Characters\ScriptCharacter.h" />
     <ClInclude Include="..\..\examples\FightingGame2D\FightingGame2DGame.h" />
+    <ClInclude Include="..\..\examples\FightingGame2D\Stages\Stage.h" />
+    <ClInclude Include="..\..\examples\FightingGame2D\Stages\StageInfo.h" />
+    <ClInclude Include="..\..\examples\FightingGame2D\Stages\StageLayer.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{84b14781-653e-4b05-8580-eb8b9b157b5b}</ProjectGuid>

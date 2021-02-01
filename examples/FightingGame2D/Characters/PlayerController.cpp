@@ -3,7 +3,6 @@
 #include "Game\Game.h"
 #include "CA_Assert.h"
 #include "PlayerStates.h"
-#include "CharacterEnum.h"
 #include "Character.h"
 
 /**
@@ -13,10 +12,9 @@ PlayerController::PlayerController(Player* pHero_, PlayerIndex index_) :
 	IController(pHero_)
 {
 	m_PlayerIndex = index_;
-	m_pHero = pHero_;
-	//pEntity_->IsPlayer(true);
+	m_pPlayer = pHero_;
 
-	CA_ASSERT(m_pHero != nullptr, ":PlayerController() : Player is null");
+	CA_ASSERT(m_pPlayer != nullptr, "PlayerController() : Player is null");
 }
 
 /**
@@ -32,15 +30,11 @@ PlayerController::~PlayerController()
 void PlayerController::Initialize()
 {
 	auto player_state_idle = NEW_AO PlayerStateIdle();
-	auto player_state_attack = NEW_AO PlayerStateAttack();
+	auto player_state_walking = NEW_AO PlayerStateWalking();
 
 	AddState(static_cast<int>(IDLE), player_state_idle);
-	// 	AddState((int)PlayerControllerState::MOVING, new PlayerRunState());
-	AddState(static_cast<int>(ATTACK_1), player_state_attack);
-	// 	AddState((int)PlayerControllerState::ATTACK_2, new PlayerAttack2State());
-	// 	AddState((int)PlayerControllerState::ATTACK_3, new PlayerAttack3State());
-	// 	AddState((int)PlayerControllerState::TO_FURY_MODE, new PlayerToFuryState());
-	// 	AddState((int)PlayerControllerState::TO_NORMAL_MODE, new PlayerToNormalState());
+	AddState(static_cast<int>(MOVING), player_state_walking);
+	//AddState(static_cast<int>(ATTACK_1), player_state_attack);
 
 	GetPlayer()->SetOrientation(RIGHT);
 	//Character.Animation2DPlayer.SetCurrentAnimationByID((int)AnimationIndex.IdleRight);
@@ -98,12 +92,12 @@ orientation PlayerController::GetDirectionFromInput(Vector2F& direction_)
 	if (Game::Instance().GetInput().IsKeyDown(sf::Keyboard::Z) == true
 		|| Game::Instance().GetInput().GetJoystickLeftStickY(0) > Character::Deadzone)
 	{
-		direction_.y = -1.0f;
+		//direction_.y = -1.0f;
 	}
 	else if (Game::Instance().GetInput().IsKeyDown(sf::Keyboard::S) == true
 		|| Game::Instance().GetInput().GetJoystickLeftStickY(0) < -Character::Deadzone)
 	{
-		direction_.y = 1.0f;
+		//direction_.y = 1.0f;
 	}
 
 	if (Game::Instance().GetInput().IsKeyDown(sf::Keyboard::D) == true
@@ -124,10 +118,7 @@ orientation PlayerController::GetDirectionFromInput(Vector2F& direction_)
 	return Character::GetOrientationFromVector2(vec);
 }
 
-/**
- *
- */
 Player* PlayerController::GetPlayer() const
 {
-	return m_pHero;
+	return m_pPlayer;
 }

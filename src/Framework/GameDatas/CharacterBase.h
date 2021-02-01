@@ -47,10 +47,11 @@ namespace CasaEngine
 
 		AnimatedSpriteComponent* m_pAnimatedSprite;
 
-	private:
-		IController* m_pController;
 		float m_Speed;
 		float m_SpeedOffSet;
+	
+	private:
+		IController* m_pController;
 
 		orientation m_Orientation;
 		Vector2F m_Direction;

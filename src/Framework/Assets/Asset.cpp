@@ -30,6 +30,12 @@ namespace CasaEngine
 		return m_Name;
 	}
 
+	void Asset::SetName(std::string name)
+	{
+		m_Name = name;
+		m_pObject->SetName(name);
+	}
+
 	void Asset::LoadAsset()
 	{
 		throw NEW_AO CNotImplementedException("Asset::LoadAsset()");

@@ -4,6 +4,8 @@
 #include <cereal/archives/json.hpp>
 
 #include "FightingGame2DGame.h"
+#include "Characters/ScriptCharacter.h"
+#include "Characters/Player.h"
 
 #include "Animations/Animation2D.h"
 #include "Assets/AssetManager.h"
@@ -27,7 +29,9 @@
 #include <IO/File.h>
 #include "../../external/dear-imgui/imgui.h"
 #include "Entities/Components/Camera2DComponent.h"
+#include "Entities/Components/ScriptComponent.h"
 #include "Entities/Components/CameraControllers/Camera2DTargetedController.h"
+#include "Stages/Stage.h"
 
 using namespace CasaEngine;
 
@@ -54,6 +58,7 @@ void FightingGame2DGame::Initialize()
 	GetMediaManager().AddSearchPath("../../examples/resources/script");
 	GetMediaManager().AddSearchPath("../../examples/resources/fonts");
 	GetMediaManager().AddSearchPath("../../examples/resources/tileset");
+	GetMediaManager().AddSearchPath("../../examples/resources/fighting_game");
 
 	AddGameComponent();
 
@@ -65,8 +70,8 @@ void FightingGame2DGame::Initialize()
 
 void FightingGame2DGame::AddGameComponent()
 {
-	auto line3DRenderer = NEW_AO Line3DRendererComponent(this);
-	auto pSpriteRenderer = NEW_AO SpriteRenderer(this);
+	auto* const line3DRenderer = NEW_AO Line3DRendererComponent(this);
+	auto* const pSpriteRenderer = NEW_AO SpriteRenderer(this);
 
 	AddComponent(pSpriteRenderer);
 	AddComponent(line3DRenderer);
@@ -82,29 +87,34 @@ void FightingGame2DGame::LoadContent()
 	GetGameInfo().SetWorld(m_pWorld);
 
 	//player 1
-	auto pEntity = NEW_AO BaseEntity();
-	pEntity->SetName("player 1");
-	auto pTransform = NEW_AO Transform3DComponent(pEntity);
-	pTransform->SetLocalPosition(Vector3F(520, 400));
+	auto* pPlayer1 = NEW_AO BaseEntity();
+	pPlayer1->SetName("player 1");
+	auto* pTransform = NEW_AO Transform3DComponent(pPlayer1);
+	pTransform->SetLocalPosition(Vector3F(520, 400, 1.0f));
 	auto scale = 1.0f;
 	pTransform->SetLocalScale(Vector3F(scale, scale));
-	pEntity->GetComponentMgr()->AddComponent(pTransform);
+	pPlayer1->GetComponentMgr()->AddComponent(pTransform);
 
-	auto pAnimatedSprite = NEW_AO AnimatedSpriteComponent(pEntity);
-	pEntity->GetComponentMgr()->AddComponent(pAnimatedSprite);
+	auto* pAnimatedSprite = NEW_AO AnimatedSpriteComponent(pPlayer1);
+	pPlayer1->GetComponentMgr()->AddComponent(pAnimatedSprite);
 	for (auto& anim : animations)
 	{
 		pAnimatedSprite->AddAnimation(NEW_AO Animation2D(*anim.Copy()));
 	}
-	pAnimatedSprite->SetCurrentAnimation(1);
+	pAnimatedSprite->SetCurrentAnimation("idle");
 	pAnimatedSprite->SetSpriteEffect(eSpriteEffects::SPRITE_EFFECT_NONE);
-	m_pWorld->AddEntity(pEntity);
+
+	auto* scriptComponent = new ScriptComponent(pPlayer1);
+	auto* pScriptCharacter = new ScriptCharacter(pPlayer1, new Player(pPlayer1));
+	scriptComponent->SetScriptObject(pScriptCharacter);
+	pPlayer1->GetComponentMgr()->AddComponent(scriptComponent);
+	m_pWorld->AddEntity(pPlayer1);
 
 	//player 2
-	auto pPlayer2 = NEW_AO BaseEntity();
+	auto* pPlayer2 = NEW_AO BaseEntity();
 	pPlayer2->SetName("player 2");
 	pTransform = NEW_AO Transform3DComponent(pPlayer2);
-	pTransform->SetLocalPosition(Vector3F(820, 400));
+	pTransform->SetLocalPosition(Vector3F(820, 400, 1.0f));
 	scale = 1.0f;
 	pTransform->SetLocalScale(Vector3F(scale, scale));
 	pPlayer2->GetComponentMgr()->AddComponent(pTransform);
@@ -115,29 +125,43 @@ void FightingGame2DGame::LoadContent()
 	{
 		pAnimatedSprite->AddAnimation(NEW_AO Animation2D(*anim.Copy()));
 	}
-	pAnimatedSprite->SetCurrentAnimation(1);
+	pAnimatedSprite->SetCurrentAnimation("idle");
 	pAnimatedSprite->SetSpriteEffect(eSpriteEffects::SPRITE_EFFECT_FLIP_HORIZONTALLY);
 	m_pWorld->AddEntity(pPlayer2);
 
 	//Camera 2D
-	BaseEntity* pCamera = NEW_AO BaseEntity();
+	auto* pCamera = NEW_AO BaseEntity();
 	pCamera->SetName("camera 2D");
-	Camera2DComponent* m_pCamera2D = NEW_AO Camera2DComponent(pCamera);
-	auto camera_controller = new Camera2DTargetedController(m_pCamera2D);
+	auto* m_pCamera2D = NEW_AO Camera2DComponent(pCamera);
+	auto* camera_controller = new Camera2DTargetedController(m_pCamera2D);
 	m_pCamera2D->CameraController(camera_controller);
 	pCamera->GetComponentMgr()->AddComponent(m_pCamera2D);
 	camera_controller->SetDeadZoneRatio(Vector2F(0.7f, 0.7f));
-	camera_controller->SetTargetedEntity(pEntity);
+	camera_controller->SetTargetedEntity(pPlayer1);
 	camera_controller->SetLimits(RectangleI(0, 0, 1500, 800));
 	m_pWorld->AddEntity(pCamera);
 	GetGameInfo().SetActiveCamera(m_pCamera2D);
 
+	//stage
+	auto* pStage = NEW_AO BaseEntity();
+	pStage->SetName("stage");
+	pTransform = NEW_AO Transform3DComponent(pStage);
+	pTransform->SetLocalPosition(Vector3F(0, 0));
+	pStage->GetComponentMgr()->AddComponent(pTransform);
+	auto* stage = new Stage(pStage);
+	pStage->GetComponentMgr()->AddComponent(stage);
+	m_pWorld->AddEntity(pStage);
+
+	//stage info
+	auto* stageInfo = new StageInfo(stage, pPlayer1, pPlayer2);
+	stage->SetStageInfo(stageInfo);
+	
 	m_pWorld->Initialize();
 }
 
 std::vector<Animation2DData> FightingGame2DGame::LoadAnimations()
 {
-	auto pFile = GetMediaManager().FindMedia("animations.json", true);
+	auto* const pFile = GetMediaManager().FindMedia("animations.json", true);
 	std::ifstream is(pFile->Fullname());
 	cereal::JSONInputArchive ar(is);
 	std::vector<Animation2DData> anim2DDatas;
@@ -154,7 +178,7 @@ std::vector<Animation2DData> FightingGame2DGame::LoadAnimations()
 
 void FightingGame2DGame::LoadSprites()
 {
-	auto pFile = GetMediaManager().FindMedia("sprites.json", true);
+	auto* const pFile = GetMediaManager().FindMedia("sprites.json", true);
 	std::ifstream is(pFile->Fullname());
 	cereal::JSONInputArchive ar(is);
 	std::vector<SpriteData> spriteDatas;
@@ -226,10 +250,10 @@ void FightingGame2DGame::DisplayPositions()
 
 void FightingGame2DGame::DisplayPosition(BaseEntity *pEntity)
 {
-	auto line3DRenderer = this->GetGameComponent<Line3DRendererComponent>();
-	auto position = pEntity->GetComponentMgr()->GetComponent<Transform3DComponent>()->GetLocalPosition();
-	auto color = CColor::Green;
-	auto size = 50 / 2.0f;
+	auto* line3DRenderer = this->GetGameComponent<Line3DRendererComponent>();
+	const auto position = pEntity->GetComponentMgr()->GetComponent<Transform3DComponent>()->GetLocalPosition();
+	const auto color = CColor::Green;
+	const auto size = 50 / 2.0f;
 
 	line3DRenderer->AddLine(Vector3F(position.x + size, position.y), Vector3F(position.x - size, position.y), color);
 	line3DRenderer->AddLine(Vector3F(position.x, position.y + size), Vector3F(position.x, position.y - size), color);

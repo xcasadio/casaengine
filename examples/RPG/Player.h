@@ -9,12 +9,12 @@ using namespace CasaEngine;
 /**
  *
  */
-class Hero :
+class Player :
 	public Character
 {
 public:
-	Hero(BaseEntity* pEntity);
-	virtual ~Hero();
+	Player(BaseEntity* pEntity);
+	virtual ~Player();
 
 	void Initialize() override;
 

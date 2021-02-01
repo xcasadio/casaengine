@@ -3,8 +3,67 @@
   <ItemGroup>
     <ClCompile Include="..\..\examples\FightingGame2D\FightingGame2DGame.cpp" />
     <ClCompile Include="..\..\examples\FightingGame2D\main.cpp" />
+    <ClCompile Include="..\..\examples\FightingGame2D\Characters\Character.cpp">
+      <Filter>Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\examples\FightingGame2D\Characters\PlayerController.cpp">
+      <Filter>Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\examples\FightingGame2D\Characters\PlayerStates.cpp">
+      <Filter>Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\examples\FightingGame2D\Characters\Player.cpp">
+      <Filter>Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\examples\FightingGame2D\Characters\ScriptCharacter.cpp">
+      <Filter>Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\examples\FightingGame2D\Stages\Stage.cpp">
+      <Filter>Stages</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\examples\FightingGame2D\Stages\StageInfo.cpp">
+      <Filter>Stages</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\examples\FightingGame2D\Stages\StageLayer.cpp">
+      <Filter>Stages</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\examples\FightingGame2D\FightingGame2DGame.h" />
+    <ClInclude Include="..\..\examples\FightingGame2D\Characters\Character.h">
+      <Filter>Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\examples\FightingGame2D\Characters\PlayerController.h">
+      <Filter>Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\examples\FightingGame2D\Characters\PlayerStates.h">
+      <Filter>Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\examples\FightingGame2D\Characters\MessageType.h">
+      <Filter>Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\examples\FightingGame2D\Characters\Player.h">
+      <Filter>Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\examples\FightingGame2D\Characters\ScriptCharacter.h">
+      <Filter>Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\examples\FightingGame2D\Stages\Stage.h">
+      <Filter>Stages</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\examples\FightingGame2D\Stages\StageInfo.h">
+      <Filter>Stages</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\examples\FightingGame2D\Stages\StageLayer.h">
+      <Filter>Stages</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Characters">
+      <UniqueIdentifier>{d7e5d89a-e711-4d5e-94d7-8f37520bde7b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Stages">
+      <UniqueIdentifier>{24c579a9-6239-4568-a525-4ae6e135509b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

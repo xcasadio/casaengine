@@ -33,9 +33,16 @@ namespace CasaEngine
 		return m_Assets.find(name) != m_Assets.end();
 	}
 
-	/**
-	 *
-	 */
+	void AssetManager::Rename(const char* old_name, const char* new_name)
+	{
+		auto it = m_Assets.find(old_name);
+		auto asset = it->second;
+		m_Assets.erase(it);
+		
+		asset->SetName(new_name);
+		AddAsset(asset);
+	}
+	
 	void AssetManager::Clear()
 	{
 		std::map<std::string, Asset*>::iterator it;

@@ -3,7 +3,6 @@
   <ItemGroup>
     <ClCompile Include="..\..\examples\RPG\Character.cpp" />
     <ClCompile Include="..\..\examples\RPG\EnemyStates.cpp" />
-    <ClCompile Include="..\..\examples\RPG\Hero.cpp" />
     <ClCompile Include="..\..\examples\RPG\PlayerController.cpp" />
     <ClCompile Include="..\..\examples\RPG\PlayerStates.cpp" />
     <ClCompile Include="..\..\examples\RPG\scene2DGame.cpp" />
@@ -12,13 +11,13 @@
     <ClCompile Include="..\..\examples\RPG\EnemyController.cpp" />
     <ClCompile Include="..\..\examples\RPG\Enemy.cpp" />
     <ClCompile Include="..\..\examples\RPG\ScriptCharacter.cpp" />
+    <ClCompile Include="..\..\examples\RPG\Player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\examples\RPG\Character.h" />
     <ClInclude Include="..\..\examples\RPG\CharacterEnum.h" />
     <ClInclude Include="..\..\examples\RPG\CustomComponentType.h" />
     <ClInclude Include="..\..\examples\RPG\EnemyStates.h" />
-    <ClInclude Include="..\..\examples\RPG\Hero.h" />
     <ClInclude Include="..\..\examples\RPG\MessageType.h" />
     <ClInclude Include="..\..\examples\RPG\PlayerController.h" />
     <ClInclude Include="..\..\examples\RPG\PlayerStates.h" />
@@ -28,5 +27,6 @@
     <ClInclude Include="..\..\examples\RPG\Enemy.h" />
     <ClInclude Include="..\..\examples\RPG\ScriptCharacter.h" />
     <ClInclude Include="..\..\examples\RPG\load_save_types.h" />
+    <ClInclude Include="..\..\examples\RPG\Player.h" />
   </ItemGroup>
 </Project>

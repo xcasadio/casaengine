@@ -28,6 +28,7 @@ namespace CasaEngine
 		void AddAsset(std::string name, IAssetable *assetable);
 		void AddAsset(Asset* asset_);
 		bool Contains(std::string name);
+		void Rename(const char* old_name, const char* new_name);
 		void Clear();
 		
 	private:

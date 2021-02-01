@@ -29,17 +29,17 @@ void PlayerStateIdle::Enter(IController* pController_)
 
 	//TODO selon la direction definir l'animation
 	Vector2F joyDir = Vector2F::Zero();
-	pPlayerController->GetHero()->Move(joyDir);
+	pPlayerController->GetPlayer()->Move(joyDir);
 
-	if (pPlayerController->GetHero()->InFuryMode() == true)
+	if (pPlayerController->GetPlayer()->InFuryMode() == true)
 	{
 		//pPlayerController->GetHero()->SetCurrentAnimation(static_cast<int>(Character::AnimationIndices::FURY_IDLE));
-		pPlayerController->GetHero()->SetCurrentAnimationByName("swordman_stand");
+		pPlayerController->GetPlayer()->SetCurrentAnimationByName("swordman_stand");
 	}
 	else
 	{
 		//pPlayerController->GetHero()->SetCurrentAnimation(static_cast<int>(Character::AnimationIndices::IDLE));
-		pPlayerController->GetHero()->SetCurrentAnimationByName("swordman_stand");
+		pPlayerController->GetPlayer()->SetCurrentAnimationByName("swordman_stand");
 	}
 }
 
@@ -54,12 +54,12 @@ void PlayerStateIdle::Execute(IController* pController_, const GameTime& elpased
 	orientation dir;
 	Vector2F joyDir;
 
-	if (pPlayerController->GetHero()->FuryModeEnabling() == true)
+	if (pPlayerController->GetPlayer()->FuryModeEnabling() == true)
 	{
 		pPlayerController->FSM()->ChangeState(pPlayerController->GetState(static_cast<int>(TO_FURY_MODE)));
 		return;
 	}
-	else if (pPlayerController->GetHero()->FuryModeDesabling() == true)
+	else if (pPlayerController->GetPlayer()->FuryModeDesabling() == true)
 	{
 		pPlayerController->FSM()->ChangeState(pPlayerController->GetState(static_cast<int>(TO_NORMAL_MODE)));
 		return;
@@ -74,7 +74,7 @@ void PlayerStateIdle::Execute(IController* pController_, const GameTime& elpased
 
 	if (dir != 0)
 	{
-		pPlayerController->GetHero()->SetOrientation(dir);
+		pPlayerController->GetPlayer()->SetOrientation(dir);
 	}
 
 	if (joyDir.x != 0.0f || joyDir.y != 0.0f)
@@ -87,18 +87,18 @@ void PlayerStateIdle::Execute(IController* pController_, const GameTime& elpased
 		}
 		else
 		{*/
-		pPlayerController->GetHero()->Move(joyDir);
+		pPlayerController->GetPlayer()->Move(joyDir);
 		//pPlayerController->GetHero()->SetCurrentAnimation(static_cast<int>(Character::AnimationIndices::RUN));
-		pPlayerController->GetHero()->SetCurrentAnimationByName("swordman_walk");
+		pPlayerController->GetPlayer()->SetCurrentAnimationByName("swordman_walk");
 		//}
 	}
 	else // used to immobilized the character
 	{
 		joyDir = Vector2F::Zero();
-		pPlayerController->GetHero()->Move(joyDir);
+		pPlayerController->GetPlayer()->Move(joyDir);
 
 		//pPlayerController->GetHero()->SetCurrentAnimation(static_cast<int>(Character::AnimationIndices::IDLE));
-		pPlayerController->GetHero()->SetCurrentAnimationByName("swordman_stand");
+		pPlayerController->GetPlayer()->SetCurrentAnimationByName("swordman_stand");
 	}
 }
 
@@ -145,7 +145,7 @@ void PlayerStateAttack::Enter(IController* pController_)
 // 	pPlayerController->GetHero()->IsAttackReleasing(false);
 // 	pPlayerController->GetHero()->AttackCharging(false);
 
-	if (pPlayerController->GetHero()->FuryModeDesabling() == true)
+	if (pPlayerController->GetPlayer()->FuryModeDesabling() == true)
 	{
 		pPlayerController->FSM()->ChangeState(pPlayerController->GetState(static_cast<int>(TO_NORMAL_MODE)));
 		return;
@@ -154,7 +154,7 @@ void PlayerStateAttack::Enter(IController* pController_)
 	// 	pPlayerController->GetHero()->DoANewAttack();
 	// 	pPlayerController->GetHero()->SetComboNumber(0);
 	Vector2F joyDir = Vector2F::Zero();
-	pPlayerController->GetHero()->Move(joyDir);
+	pPlayerController->GetPlayer()->Move(joyDir);
 
 	/*if (pPlayerController->GetHero()->InFuryMode() == true)
 	{
@@ -163,7 +163,7 @@ void PlayerStateAttack::Enter(IController* pController_)
 	else*/
 	{
 		//pPlayerController->GetHero()->SetCurrentAnimation(static_cast<int>(Character::AnimationIndices::ATTACK1));
-		pPlayerController->GetHero()->SetCurrentAnimationByName("swordman_attack");
+		pPlayerController->GetPlayer()->SetCurrentAnimationByName("swordman_attack");
 	}
 }
 

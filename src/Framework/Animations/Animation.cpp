@@ -59,14 +59,14 @@ namespace CasaEngine
 	{
 		CA_ASSERT(m_bIsInitialized == true, "Animation::Update() : call Initialize before Update()");
 
-		auto totalTime = TotalTime();
+		const auto totalTime = TotalTime();
 		if (totalTime == 0.0f)
 		{
 			return;
 		}
 
 		bool isFinished = false;
-		float lastTime = m_CurrentTime;
+		const float lastTime = m_CurrentTime;
 		m_CurrentTime += elapsedTime_;
 
 		if (m_pAnimationData->GetAnimationType() == AnimationType::Loop)
@@ -87,7 +87,7 @@ namespace CasaEngine
 		}
 		else
 		{
-			throw new std::exception("animation type is not supported");
+			throw std::exception("animation type is not supported");
 		}
 
 		if (isFinished == true)
@@ -96,7 +96,7 @@ namespace CasaEngine
 		}
 		
 		// m_Events must be sorted by time
-		for (auto event : m_Events)
+		for (auto* event : m_Events)
 		{
 			if (lastTime >= event->Time()
 				&& event->Time() < m_CurrentTime)

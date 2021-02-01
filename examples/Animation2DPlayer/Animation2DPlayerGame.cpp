@@ -33,6 +33,9 @@
 
 using namespace CasaEngine;
 
+std::vector<std::string> last_animation_names;
+std::vector<char*> animation_names;
+
 Animation2DPlayerGame::Animation2DPlayerGame() :
 	m_pSpriteRenderer(nullptr),
 	m_pAnimatedSprite(nullptr),
@@ -40,7 +43,9 @@ Animation2DPlayerGame::Animation2DPlayerGame() :
 	m_AnimationIndexSelected(0),
 	m_LastAnimationIndexSelected(0),
 	m_FrameIndexSelected(0),
-	m_LastFrameIndexSelected(0)
+	m_LastFrameIndexSelected(0),
+	m_CollisionIndexSelected(0),
+	m_LastCollisionIndexSelected(0)
 {
 	Logging.AddLogger(NEW_AO LoggerFile("Out.log"));
 }
@@ -71,6 +76,12 @@ void Animation2DPlayerGame::Initialize()
 	//GetDebugOptions().ShowLogInGame = true;
 }
 
+void Animation2DPlayerGame::copy_animations_name()
+{
+	last_animation_names.resize(animation_names.size());
+	std::copy(animation_names.begin(), animation_names.end(), last_animation_names.begin());
+}
+
 void Animation2DPlayerGame::LoadContent()
 {
 	Game::LoadContent();
@@ -79,11 +90,11 @@ void Animation2DPlayerGame::LoadContent()
 	GetGameInfo().SetWorld(m_pWorld);
 
 	//Entity
-	auto pEntity = NEW_AO BaseEntity();
+	auto* pEntity = NEW_AO BaseEntity();
 	m_pEntity = pEntity;
-	auto pTransform = NEW_AO Transform3DComponent(pEntity);
+	auto* pTransform = NEW_AO Transform3DComponent(pEntity);
 	pTransform->SetLocalPosition(Vector3F(520, 400));
-	auto scale = 1.0f;
+	const auto scale = 1.0f;
 	pTransform->SetLocalScale(Vector3F(scale, scale));
 	pEntity->GetComponentMgr()->AddComponent(pTransform);
 
@@ -95,10 +106,10 @@ void Animation2DPlayerGame::LoadContent()
 	m_pWorld->AddEntity(pEntity);
 
 	//Camera 2D
-	BaseEntity* pCamera = NEW_AO BaseEntity();
+	auto* pCamera = NEW_AO BaseEntity();
 	pCamera->SetName("camera 2D");
-	Camera2DComponent* m_pCamera2D = NEW_AO Camera2DComponent(pCamera);
-	auto camera_controller = new Camera2DTargetedController(m_pCamera2D);
+	auto* m_pCamera2D = NEW_AO Camera2DComponent(pCamera);
+	auto* camera_controller = new Camera2DTargetedController(m_pCamera2D);
 	m_pCamera2D->CameraController(camera_controller);
 	pCamera->GetComponentMgr()->AddComponent(m_pCamera2D);
 	camera_controller->SetDeadZoneRatio(Vector2F(0.7f, 0.7f));
@@ -120,11 +131,28 @@ void Animation2DPlayerGame::LoadContent()
 	GetGameInfo().SetActiveCamera(m_pCamera3D);*/
 
 	m_pWorld->Initialize();
+
+
+
+	auto animation_datas = GetAssetManager().GetAssets<AnimationData>();
+
+	auto* items = new const char* [animation_datas.size()];
+	for (auto* anim : animation_datas)
+	{
+		auto str = anim->GetName();
+		auto* writable = new char[str.size() + 1];
+		std::copy(str.begin(), str.end(), writable);
+		writable[str.size()] = '\0';
+		animation_names.push_back(writable);
+	}
+
+	copy_animations_name();
 }
 
 void Animation2DPlayerGame::LoadAnimations(AnimatedSpriteComponent* pAnimatedComponent)
 {
-	auto pFile = GetMediaManager().FindMedia("ryu_animations.json", true);
+	/*
+	auto* pFile = GetMediaManager().FindMedia("ryu_animations.json", true);
 	std::ifstream is(pFile->Fullname());
 	cereal::JSONInputArchive ar(is);
 	animations animations;
@@ -134,29 +162,28 @@ void Animation2DPlayerGame::LoadAnimations(AnimatedSpriteComponent* pAnimatedCom
 
 	for (auto animation : animations.animations)
 	{
-		auto animation2D = NEW_AO Animation2DData();
+		auto* animation2D = NEW_AO Animation2DData();
 		std::ostringstream number;
 		number << animation.Number;
 		animation2D->SetName(number.str());
 		animation2D->SetAnimationType(AnimationType::Loop);
-		float time = 0.0f;
 
 		for (auto frame : animation.Frames)
 		{
 			if (GetAssetManager().Contains(frame.SpriteId))
 			{
-				auto sprite = GetAssetManager().GetAsset<SpriteData>(frame.SpriteId);
+				auto* sprite = GetAssetManager().GetAsset<SpriteData>(frame.SpriteId);
 				for (auto& coll : frame.Collisions)
 				{
-					auto collision = NEW_AO Collision();
+					auto* collision = NEW_AO Collision();
 					collision->SetType(coll.ClsnType == 1 ? CollisionType::Attack : CollisionType::Defense);
-					auto rect = NEW_AO RectangleI(coll.X, coll.Y, coll.Width, coll.Height);
+					auto* rect = NEW_AO RectangleI(coll.X, coll.Y, coll.Width, coll.Height);
 					collision->SetShape(rect);
 					sprite->GetCollisions().push_back(*collision);
 				}
 			}
 
-			auto frameData = NEW_AO FrameData();
+			auto* frameData = NEW_AO FrameData();
 			frameData->SetSpriteId(frame.SpriteId.c_str());
 			frameData->SetDuration(frame.GameTick * 0.16f); // 0.048f;
 			animation2D->AddFrame(*frameData);
@@ -167,7 +194,10 @@ void Animation2DPlayerGame::LoadAnimations(AnimatedSpriteComponent* pAnimatedCom
 
 		anims.push_back(*animation2D);
 	}
-
+	*/
+	
+	//save sprites and animations
+	/*
 	std::ofstream os("C:\\Users\\casad\\dev\\repo\\casaengine\\examples\\resources\\datas\\animations.json");
 	cereal::JSONOutputArchive ar2(os);
 	ar2(cereal::make_nvp("animations", anims));
@@ -180,11 +210,26 @@ void Animation2DPlayerGame::LoadAnimations(AnimatedSpriteComponent* pAnimatedCom
 	std::ofstream spritesStream("C:\\Users\\casad\\dev\\repo\\casaengine\\examples\\resources\\datas\\sprites.json");
 	cereal::JSONOutputArchive arSprites(spritesStream);
 	arSprites(cereal::make_nvp("sprites", spriteDatas));
+	*/
+
+	auto* const pFile = GetMediaManager().FindMedia("animations.json", true);
+	std::ifstream is(pFile->Fullname());
+	cereal::JSONInputArchive ar(is);
+	std::vector<Animation2DData> anim2DDatas;
+	ar(cereal::make_nvp("animations", anim2DDatas));
+
+	for (auto& data : anim2DDatas)
+	{
+		auto* animation = data.Copy();
+		GetAssetManager().AddAsset(NEW_AO Asset(data.GetName(), animation));
+		pAnimatedComponent->AddAnimation(NEW_AO Animation2D(*animation));
+	}
 }
 
 void Animation2DPlayerGame::LoadSprites()
 {
-	auto pFile = GetMediaManager().FindMedia("ryu_sprites.json", true);
+	/*
+	auto* pFile = GetMediaManager().FindMedia("ryu_sprites.json", true);
 	std::ifstream is(pFile->Fullname());
 	cereal::JSONInputArchive ar(is);
 	sprites sprites;
@@ -194,7 +239,7 @@ void Animation2DPlayerGame::LoadSprites()
 
 	for (auto sprite : sprites.sprites)
 	{
-		auto spriteData = NEW_AO SpriteData();
+		auto* spriteData = NEW_AO SpriteData();
 		spriteData->SetOrigin(Vector2I(sprite.X, sprite.Y));
 		spriteData->SetPositionInTexture(RectangleI(sprite.posInTextureX, sprite.posInTextureY, sprite.SpriteSizeX, sprite.SpriteSizeY));
 		spriteData->SetAssetFileName("ryu.png"); // TODO : read from file
@@ -202,6 +247,18 @@ void Animation2DPlayerGame::LoadSprites()
 		GetAssetManager().AddAsset(new Asset(sprite.Id, spriteData));
 
 		spriteDatas.push_back(*spriteData);
+	}
+	*/
+
+	auto* const pFile = GetMediaManager().FindMedia("sprites.json", true);
+	std::ifstream is(pFile->Fullname());
+	cereal::JSONInputArchive ar(is);
+	std::vector<SpriteData> spriteDatas;
+	ar(cereal::make_nvp("sprites", spriteDatas));
+
+	for (auto& data : spriteDatas)
+	{
+		GetAssetManager().AddAsset(NEW_AO Asset(data.GetName(), data.Copy()));
 	}
 }
 
@@ -212,7 +269,7 @@ void Animation2DPlayerGame::Update(const GameTime& gameTime_)
 	//if (Game::Instance().GetInput().IsKeyJustDown(sf::Keyboard::Space))
 	if (m_LastAnimationIndexSelected != m_AnimationIndexSelected)
 	{
-		m_pAnimatedSprite->SetCurrentAnimation(m_AnimationIndexSelected);
+		m_pAnimatedSprite->SetCurrentAnimation(animation_names[m_AnimationIndexSelected]);
 		m_LastAnimationIndexSelected = m_AnimationIndexSelected;
 	}
 
@@ -223,25 +280,25 @@ void Animation2DPlayerGame::Update(const GameTime& gameTime_)
 
 void Animation2DPlayerGame::DisplayCollisions()
 {
-	auto anim = m_pAnimatedSprite->GetCurrentAnimation();
+	auto* anim = m_pAnimatedSprite->GetCurrentAnimation();
 	if (anim != nullptr)
 	{
 		//anim->GetName()
 		if (GetAssetManager().Contains(anim->CurrentFrame()))
 		{
-			auto spriteData = GetAssetManager().GetAsset<SpriteData>(anim->CurrentFrame());
-			auto line3DRenderer = this->GetGameComponent<Line3DRendererComponent>();
-			auto transform = m_pEntity->GetComponentMgr()->GetComponent<Transform3DComponent>();
+			auto* spriteData = GetAssetManager().GetAsset<SpriteData>(anim->CurrentFrame());
+			auto* line3DRenderer = this->GetGameComponent<Line3DRendererComponent>();
+			auto* transform = m_pEntity->GetComponentMgr()->GetComponent<Transform3DComponent>();
 
 			for (auto coll : spriteData->GetCollisions())
 			{
 				if (coll.GetShape()->Type() == ShapeType::RECTANGLE)
 				{
-					auto rect = dynamic_cast<RectangleI*>(coll.GetShape());
+					auto* rect = dynamic_cast<RectangleI*>(coll.GetShape());
 					auto color = coll.GetType() == CollisionType::Defense ? CColor::Blue : CColor::Red;
 					auto pos = transform->GetLocalPosition();
-					auto scaleX = transform->GetLocalScale().x;
-					auto scaleY = transform->GetLocalScale().y;
+					const auto scaleX = transform->GetLocalScale().x;
+					const auto scaleY = transform->GetLocalScale().y;
 					auto rectScaled = RectangleI(rect->x * scaleX, rect->y * scaleY, rect->w * scaleX, rect->h * scaleY);
 
 					auto leftTop = Vector3F(rectScaled.Left(), rectScaled.Top()) + pos;
@@ -261,13 +318,19 @@ void Animation2DPlayerGame::DisplayCollisions()
 
 void Animation2DPlayerGame::DisplayPosition()
 {
-	auto line3DRenderer = this->GetGameComponent<Line3DRendererComponent>();
-	auto position = m_pEntity->GetComponentMgr()->GetComponent<Transform3DComponent>()->GetLocalPosition();
-	auto color = CColor::Green;
-	auto size = 500 / 2.0f;
+	auto* line3DRenderer = this->GetGameComponent<Line3DRendererComponent>();
+	const auto position = m_pEntity->GetComponentMgr()->GetComponent<Transform3DComponent>()->GetLocalPosition();
+	const auto color = CColor::Green;
+	const auto size = 500 / 2.0f;
 
 	line3DRenderer->AddLine(Vector3F(position.x + size, position.y), Vector3F(position.x - size, position.y), color);
 	line3DRenderer->AddLine(Vector3F(position.x, position.y + size), Vector3F(position.x, position.y - size), color);
+}
+
+void Animation2DPlayerGame::RenameAnimation(const char* old_name, const char* new_name)
+{
+	GetAssetManager().Rename(old_name, new_name);
+	copy_animations_name();
 }
 
 void Animation2DPlayerGame::DisplayUI()
@@ -280,20 +343,29 @@ void Animation2DPlayerGame::DisplayUI()
 		ImGui::BeginChild("Animation List", ImVec2(0, 0));
 
 		ImGui::Button("Play");
+		ImGui::SameLine();
 		ImGui::Button("Stop");
 
-		const char** items = new const char* [m_pAnimatedSprite->GetAnimations().size()];
-		int index = 0;
-		std::vector<const char*> names;
-		for (auto anim : m_pAnimatedSprite->GetAnimations())
+		ImGui::Combo("Animations", &m_AnimationIndexSelected, &animation_names[0], animation_names.size()/*IM_ARRAYSIZE(items)*/);
+		ImGui::SameLine();
+		auto editing_animation = ImGui::Button("edit");
+
+		//if (editing_animation)
 		{
-			std::string str = anim->GetAnimationData()->GetName();
-			char* writable = new char[str.size() + 1];
-			std::copy(str.begin(), str.end(), writable);
-			writable[str.size()] = '\0';
-			names.push_back(writable);
+			if (ImGui::BeginPopupContextItem())
+			{
+				auto* animation_name = animation_names[m_AnimationIndexSelected];
+				ImGui::Text("Edit name:");
+				ImGui::InputText("##edit", animation_name, IM_ARRAYSIZE(animation_name));
+				if (ImGui::Button("Close"))
+				{
+					RenameAnimation(last_animation_names[m_AnimationIndexSelected].c_str(), animation_names[m_AnimationIndexSelected]);
+					ImGui::CloseCurrentPopup();
+				}
+				ImGui::EndPopup();
+			}
 		}
-		ImGui::Combo("Animations", &m_AnimationIndexSelected, &names[0], m_pAnimatedSprite->GetAnimations().size()/*IM_ARRAYSIZE(items)*/);
+		
 
 		/*auto frames = m_pAnimatedSprite->GetCurrentAnimation();
 		GetAssetManager().GetAsset<>(frames->CurrentFrame())
@@ -306,19 +378,19 @@ void Animation2DPlayerGame::DisplayUI()
 			writable[str.size()] = '\0';
 			names.push_back(writable);
 		}*/
-		ImGui::Combo("Frames", &m_AnimationIndexSelected, new const char* [] { "test" }, 1);
+		ImGui::Combo("Frames", &m_FrameIndexSelected, new const char* [] { "test" }, 1);
 
 		std::vector<const char*> collisionNames;
-		auto frames = m_pAnimatedSprite->GetCurrentAnimation();
-		auto spriteData = GetAssetManager().GetAsset<SpriteData>(frames->CurrentFrame());
-		int i = 0;
+		auto* frames = m_pAnimatedSprite->GetCurrentAnimation();
+		auto* spriteData = GetAssetManager().GetAsset<SpriteData>(frames->CurrentFrame());
+		auto i = 0;
 		for (auto collision : spriteData->GetCollisions())
 		{
-			auto rect = dynamic_cast<RectangleI*>(collision.GetShape());
+			auto* rect = dynamic_cast<RectangleI*>(collision.GetShape());
 			std::ostringstream ostr;
 			ostr << rect->x << " " << rect->y << " " << rect->w << " " << rect->h;
-			std::string str = ostr.str();
-			char* writable = new char[str.size() + 1];
+			auto str = ostr.str();
+			auto* writable = new char[str.size() + 1];
 			std::copy(str.begin(), str.end(), writable);
 			writable[str.size()] = '\0';
 			collisionNames.push_back(writable);
@@ -326,14 +398,24 @@ void Animation2DPlayerGame::DisplayUI()
 		ImGui::Combo("Collisions", &m_CollisionIndexSelected, &collisionNames[0], spriteData->GetCollisions().size());
 
 		ImGui::Button("+");
+		ImGui::SameLine();
 		ImGui::Button("-");
 
-		ImGui::ArrowButton("left", ImGuiDir_::ImGuiDir_Left);
-		ImGui::ArrowButton("right", ImGuiDir_::ImGuiDir_Right);
-		ImGui::ArrowButton("up", ImGuiDir_::ImGuiDir_Up);
+		ImGui::ArrowButton("left", ImGuiDir_::ImGuiDir_Left); ImGui::SameLine();
+		ImGui::ArrowButton("right", ImGuiDir_::ImGuiDir_Right); ImGui::SameLine();
+		ImGui::ArrowButton("up", ImGuiDir_::ImGuiDir_Up); ImGui::SameLine();
 		ImGui::ArrowButton("down", ImGuiDir_::ImGuiDir_Down);
 
-		ImGui::Button("Save");
+		if (ImGui::Button("Save"))
+		{
+			auto animationsPtr = GetAssetManager().GetAssets<Animation2DData>();
+			std::vector<Animation2DData> animationsToSave;
+			animationsToSave.resize(animationsPtr.size());
+			std::transform(animationsPtr.begin(), animationsPtr.end(), animationsToSave.begin(), [](Animation2DData* x) { return *x; });
+			std::ofstream os("C:\\Users\\casad\\dev\\repo\\casaengine\\examples\\resources\\datas\\animations.json");
+			cereal::JSONOutputArchive ar2(os);
+			ar2(cereal::make_nvp("animations", animationsToSave));
+		}
 
 		ImGui::EndChild();
 
@@ -343,15 +425,15 @@ void Animation2DPlayerGame::DisplayUI()
 
 void Animation2DPlayerGame::DisplayGrid()
 {
-	auto halfNumberOfLines = 100 >> 1;
-	auto cellWidth = 10.0f;
-	auto halfLength = halfNumberOfLines * cellWidth;
-	auto gridColor = CColor::DimGray;
+	const auto halfNumberOfLines = 100 >> 1;
+	const auto cellWidth = 10.0f;
+	const auto halfLength = halfNumberOfLines * cellWidth;
+	const auto gridColor = CColor::DimGray;
 
-	auto line3DRenderer = this->GetGameComponent<Line3DRendererComponent>();
-	for (int i = 0; i <= halfNumberOfLines; i++)
+	auto* line3DRenderer = this->GetGameComponent<Line3DRendererComponent>();
+	for (auto i = 0; i <= halfNumberOfLines; i++)
 	{
-		auto coord = cellWidth * i;
+		const auto coord = cellWidth * i;
 		line3DRenderer->AddLine(Vector3F(-halfLength, -coord), Vector3F(halfLength, -coord), gridColor);
 		line3DRenderer->AddLine(Vector3F(-halfLength, coord), Vector3F(halfLength, coord), gridColor);
 
@@ -374,7 +456,7 @@ void Animation2DPlayerGame::Draw()
 
 void Animation2DPlayerGame::AddGameComponent()
 {
-	auto line3DRenderer = NEW_AO Line3DRendererComponent(this);
+	auto* line3DRenderer = NEW_AO Line3DRendererComponent(this);
 	m_pSpriteRenderer = NEW_AO SpriteRenderer(this);
 
 	AddComponent(m_pSpriteRenderer);

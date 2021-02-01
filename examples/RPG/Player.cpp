@@ -1,11 +1,11 @@
 #include "Base.h"
-#include "Hero.h"
+#include "Player.h"
 #include "PlayerController.h"
 
 /**
  *
  */
-Hero::Hero(BaseEntity* pEntity) :
+Player::Player(BaseEntity* pEntity) :
 	Character(pEntity)
 {
 	m_FuryPoint = 0;
@@ -16,22 +16,22 @@ Hero::Hero(BaseEntity* pEntity) :
 /**
  *
  */
-Hero::~Hero()
+Player::~Player()
 {
 }
 
-void Hero::Initialize()
+void Player::Initialize()
 {
 	SetController(::new PlayerController(this, 0));
 	Character::Initialize();
 }
 
-int Hero::FuryPoint() const
+int Player::FuryPoint() const
 {
 	return m_FuryPoint;
 }
 
-void Hero::FuryPoint(int val)
+void Player::FuryPoint(int val)
 {
 	m_FuryPoint = val;
 	if (m_FuryPoint < 0)
@@ -45,92 +45,92 @@ void Hero::FuryPoint(int val)
 	}
 }
 
-float Hero::FuryPointDecrease() const
+float Player::FuryPointDecrease() const
 {
 	return m_FuryPointDecrease;
 }
 
-void Hero::FuryPointDecrease(float val)
+void Player::FuryPointDecrease(float val)
 {
 	m_FuryPointDecrease = val;
 }
 
-bool Hero::InBleedingMode() const
+bool Player::InBleedingMode() const
 {
 	return m_InBleedingMode;
 }
 
-void Hero::InBleedingMode(bool val)
+void Player::InBleedingMode(bool val)
 {
 	m_InBleedingMode = val;
 }
 
-int Hero::FuryForce() const
+int Player::FuryForce() const
 {
 	return m_FuryForce;
 }
 
-void Hero::FuryForce(int val)
+void Player::FuryForce(int val)
 {
 	m_FuryForce = val;
 }
 
-int Hero::FuryDef() const
+int Player::FuryDef() const
 {
 	return m_FuryDef;
 }
 
-void Hero::FuryDef(int val)
+void Player::FuryDef(int val)
 {
 	m_FuryDef = val;
 }
 
-float Hero::FurySpeed() const
+float Player::FurySpeed() const
 {
 	return m_FurySpeed;
 }
 
-void Hero::FurySpeed(float val)
+void Player::FurySpeed(float val)
 {
 	m_FurySpeed = val;
 }
 
-bool Hero::FuryModeDesabling() const
+bool Player::FuryModeDesabling() const
 {
 	return m_FuryModeDesabling;
 }
 
-void Hero::FuryModeDesabling(bool val)
+void Player::FuryModeDesabling(bool val)
 {
 	m_FuryModeDesabling = val;
 }
 
-bool Hero::FuryModeEnabling() const
+bool Player::FuryModeEnabling() const
 {
 	return m_FuryModeEnabling;
 }
 
-void Hero::FuryModeEnabling(bool val)
+void Player::FuryModeEnabling(bool val)
 {
 	m_FuryModeEnabling = val;
 }
 
-bool Hero::InFuryMode() const
+bool Player::InFuryMode() const
 {
 	return m_InFuryMode;
 }
 
-void Hero::InFuryMode(bool val)
+void Player::InFuryMode(bool val)
 {
 	m_InFuryMode = val;
 }
 
-int Hero::MaxFuryPoint() const
+int Player::MaxFuryPoint() const
 {
 	return m_MaxFuryPoint;
 }
 
-void Hero::MaxFuryPoint(int val)
+void Player::MaxFuryPoint(int val)
 {
 	m_MaxFuryPoint = val;
 }

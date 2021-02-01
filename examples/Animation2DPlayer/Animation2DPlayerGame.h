@@ -20,6 +20,7 @@ public:
 	~Animation2DPlayerGame();
 
 	void Initialize();
+	void copy_animations_name();
 	void LoadContent();
 	void Update(const CasaEngine::GameTime& gameTime_);
 	void Draw();
@@ -31,6 +32,7 @@ private:
 	void DisplayGrid();
 	void DisplayCollisions();
 	void DisplayPosition();
+	void RenameAnimation(const char* old_name, const char* new_name);
 	void DisplayUI();
 
 private:

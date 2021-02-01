@@ -21,6 +21,7 @@ namespace CasaEngine
 		~Asset();
 
 		std::string GetName() const;
+		void SetName(std::string);
 
 		template<class T>
 		T* GetAsset();

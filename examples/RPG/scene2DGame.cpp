@@ -6,7 +6,7 @@
 
 #include "scene2DGame.h"
 
-#include "Hero.h"
+#include "Player.h"
 #include "Enemy.h"
 #include "EnemyController.h"
 #include "Animations/Animation2D.h"
@@ -587,7 +587,7 @@ void Scene2DGame::CreateSwordman(World* pWorld)
 	pWorld->AddEntity(pPlayerEntity);
 
 	auto scriptComponent = new ScriptComponent(pPlayerEntity);
-	auto* pScriptCharacter = new ScriptCharacter(pPlayerEntity, new Hero(pPlayerEntity));
+	auto* pScriptCharacter = new ScriptCharacter(pPlayerEntity, new Player(pPlayerEntity));
 	scriptComponent->SetScriptObject(pScriptCharacter);
 	pPlayerEntity->GetComponentMgr()->AddComponent(scriptComponent);
 
