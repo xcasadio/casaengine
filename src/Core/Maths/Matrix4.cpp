@@ -455,16 +455,16 @@ namespace CasaEngine
 		const float ee = (_top + _bottom) / (_bottom - _top);
 		const float ff = _near / (_near - _far);
 
-		// 	a11 = aa;	a12 = 0.0f; a13 = 0.0f; a14 = dd + _offset;
-		// 	a21 = 0.0f;	a22 = bb;	a23 = 0.0f; a24 = ee;
-		// 	a31 = 0.0f;	a32 = 0.0f; a33 = 1.0f; a34 = ff;
-		// 	a41 = 0.0f;	a42 = 0.0f; a43 = 0.0f; a44 = 1.0f;
+		a11 = aa;	a12 = 0.0f; a13 = 0.0f; a14 = dd + _offset;
+		a21 = 0.0f;	a22 = bb;	a23 = 0.0f; a24 = ee;
+		a31 = 0.0f;	a32 = 0.0f; a33 = 1.0f; a34 = ff;
+		a41 = 0.0f;	a42 = 0.0f; a43 = 0.0f; a44 = 1.0f;
 
 			//bgfx
-		a11 = aa;			a12 = 0.0f; a13 = 0.0f; a14 = 0.0f;
-		a21 = 0.0f;			a22 = bb;	a23 = 0.0f; a24 = 0.0f;
-		a31 = 0.0f;			a32 = 0.0f; a33 = cc;	a34 = 0.0f;
-		a41 = dd + _offset;	a42 = ee;	a43 = ff;	a44 = 1.0f;
+		//a11 = aa;			a12 = 0.0f; a13 = 0.0f; a14 = 0.0f;
+		//a21 = 0.0f;			a22 = bb;	a23 = 0.0f; a24 = 0.0f;
+		//a31 = 0.0f;			a32 = 0.0f; a33 = cc;	a34 = 0.0f;
+		//a41 = dd + _offset;	a42 = ee;	a43 = ff;	a44 = 1.0f;
 	}
 
 	/////////////////////////////////////////////////////////////

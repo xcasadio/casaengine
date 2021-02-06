@@ -92,7 +92,7 @@ namespace CasaEngine
 			static_cast<float>(viewport.Height() * Game::Instance().GetWindowSize().y),
 			viewport.NearClipPlane(), viewport.FarClipPlane());
 
-		projectionMatrix_ = projectionMatrix_.Transpose(); // TODO check the computation, why need transpose
+		//projectionMatrix_ = projectionMatrix_.Transpose(); // TODO check the computation, why need transpose
 	}
 
 	void Camera2DTargetedController::SetTargetedEntity(BaseEntity* pTargetedEntity)
