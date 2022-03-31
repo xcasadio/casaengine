@@ -418,9 +418,9 @@ void Animation2DPlayerGame::DisplayUI()
 		}
 
 		ImGui::EndChild();
-
-		ImGui::End();
 	}
+
+	ImGui::End();
 }
 
 void Animation2DPlayerGame::DisplayGrid()
