@@ -12,7 +12,9 @@ namespace CasaEngine
 		public IShape
 	{
 	public:
-		Circle(float radius_ = 1.0f, Vector3F center_ = Vector3F::Zero());
+		Circle();
+		Circle(const Circle& rsh);
+		Circle& operator=(const Circle& rsh);
 		~Circle();
 
 		Vector3F Center() const;
@@ -20,6 +22,8 @@ namespace CasaEngine
 		float Radius() const;
 		void Radius(float val);
 
+		IShape* Copy() override;
+		
 	private:
 		Vector3F m_Center;
 		float m_Radius;

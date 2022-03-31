@@ -20,7 +20,7 @@
 
 namespace CasaEngine
 {
-	static const unsigned int NbLineMax = 1024;
+	static const unsigned int NbLineMax = 10000;
 
 
 	/**

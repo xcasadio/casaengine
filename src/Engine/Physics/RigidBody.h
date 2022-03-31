@@ -14,7 +14,7 @@ namespace CasaEngine
 	{
 		float			mass;
 
-		IShape* pCollisionShape;
+		IShape*			pCollisionShape;
 		Vector3F		localInertia;
 		float			linearDamping;
 		float			angularDamping;

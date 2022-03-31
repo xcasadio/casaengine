@@ -12,25 +12,12 @@ namespace CasaEngine
 		public AllocatedObject<IPhysicsEngine>
 	{
 	public:
-		/**
-		 *
-		 */
 		IPhysicsEngine() {}
-
-		/**
-		 *
-		 */
 		virtual ~IPhysicsEngine() {}
 
-		/**
-		 *
-		 */
 		virtual void Initialize() = 0;
 
-		/**
-		 *
-		 */
-		virtual IPhysicsWorld* CreateWorld() const = 0;
+		virtual IPhysicsWorld* CreateWorld() = 0;
 	};
 }
 

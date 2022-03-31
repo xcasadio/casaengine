@@ -1,23 +1,25 @@
-#include "Camera2DTargetedController.h"
+#include "Camera3DTargetedController.h"
 
+
+#include "Entities/Components/Camera3DComponent.h"
 #include "Entities/Components/Transform2DComponent.h"
 #include "Entities/Components/Transform3DComponent.h"
 #include "Game/Game.h"
 
 namespace CasaEngine
 {
-	Camera2DTargetedController::Camera2DTargetedController(CameraComponent* pCamera) :
+	Camera3DTargetedController::Camera3DTargetedController(CameraComponent* pCamera) :
 		ICameraController(pCamera),
 		m_pTargetedEntity(nullptr)
 	{
 	}
 
-	void Camera2DTargetedController::Initialize()
+	void Camera3DTargetedController::Initialize()
 	{
 
 	}
 
-	void Camera2DTargetedController::Update(const GameTime& gameTime_)
+	void Camera3DTargetedController::Update(const GameTime& gameTime_)
 	{
 		if (m_pTargetedEntity != nullptr)
 		{
@@ -76,49 +78,65 @@ namespace CasaEngine
 		}
 	}
 
-	void Camera2DTargetedController::ViewMatrix(Matrix4& viewMatrix_)
+	void Camera3DTargetedController::ViewMatrix(Matrix4& viewMatrix_)
 	{
-		viewMatrix_.CreateTranslation(-m_Offset.x, -m_Offset.y, 0.0f);
+		viewMatrix_.CreateFromDirection(Vector3F::UnitZ(), Vector3F::UnitX(), -Vector3F::UnitY());
+
+		/*const float d_yfov_tan = 0.267949192431123f;
+		auto& viewport = this->Camera()->GetViewport();
+		const float w = static_cast<float>(viewport.Width() * Game::Instance().GetWindowSize().x);
+		const float h = static_cast<float>(viewport.Height() * Game::Instance().GetWindowSize().y);
+		const float aspect = w / h;
+		const float midx = w * 0.5f;
+		const float midy = h * 0.5f;
+		const float z = midx / (aspect * d_yfov_tan);*/
+
+		auto fov = dynamic_cast<Camera3DComponent*>(Camera())->FOV();
+		fov = ToDegree(fov);
+		const float z = (Game::Instance().GetWindowSize().x / 2.0f) / std::tan(fov / 2.0f);		
+		viewMatrix_.SetTranslation(-m_Offset.x, -m_Offset.y, z);
 	}
 
-	void Camera2DTargetedController::ProjectionMatrix(Matrix4& projectionMatrix_)
+	void Camera3DTargetedController::ProjectionMatrix(Matrix4& projectionMatrix_)
 	{
 		auto& viewport = this->Camera()->GetViewport();
 
-		projectionMatrix_.OrthoOffCenter(
-			static_cast<float>(viewport.X()),
-			static_cast<float>(viewport.Y()),
-			static_cast<float>(viewport.Width() * Game::Instance().GetWindowSize().x),
-			static_cast<float>(viewport.Height() * Game::Instance().GetWindowSize().y),
-			viewport.NearClipPlane(), viewport.FarClipPlane());
+		const float ratio = static_cast<float>(viewport.Width() * Game::Instance().GetWindowSize().x) /
+			static_cast<float>(viewport.Height() * Game::Instance().GetWindowSize().y);
+		//Camera()->GetViewDistance(),
+		projectionMatrix_.PerspectiveFOV(
+			dynamic_cast<Camera3DComponent*>(Camera())->FOV(),
+			ratio,
+			viewport.NearClipPlane(),
+			viewport.FarClipPlane());
 	}
 
-	void Camera2DTargetedController::SetTargetedEntity(BaseEntity* pTargetedEntity)
+	void Camera3DTargetedController::SetTargetedEntity(BaseEntity* pTargetedEntity)
 	{
 		m_pTargetedEntity = pTargetedEntity;
 	}
 
-	void Camera2DTargetedController::SetDeadZoneRatio(Vector2F deadZoneRatio)
+	void Camera3DTargetedController::SetDeadZoneRatio(Vector2F deadZoneRatio)
 	{
 		m_DeadZoneRatio = deadZoneRatio;
 	}
 
-	Vector2I Camera2DTargetedController::GetOffset() const
+	Vector2I Camera3DTargetedController::GetOffset() const
 	{
 		return m_Offset;
 	}
 
-	inline void Camera2DTargetedController::SetOffset(Vector2I offset)
+	inline void Camera3DTargetedController::SetOffset(Vector2I offset)
 	{
 		m_Offset = offset;
 	}
 
-	RectangleI Camera2DTargetedController::GetLimits() const
+	RectangleI Camera3DTargetedController::GetLimits() const
 	{
 		return m_Limits;
 	}
 
-	void Camera2DTargetedController::SetLimits(RectangleI limits)
+	void Camera3DTargetedController::SetLimits(const RectangleI& limits)
 	{
 		m_Limits = limits;
 	}

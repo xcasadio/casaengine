@@ -73,6 +73,12 @@ CVector2<T> CRectangle<T>::Size() const
 }
 
 template <class T>
+CVector2<T> CRectangle<T>::Center() const
+{
+	return CVector2<T>(x + w / 2, y + h / 2);
+}
+
+template <class T>
 TIntersection CRectangle<T>::Intersects(const CVector2<T>& Point) const
 {
 	if ((Point.x >= x) && (Point.y >= y) && (Point.x <= Right()) && (Point.y <= Bottom()))

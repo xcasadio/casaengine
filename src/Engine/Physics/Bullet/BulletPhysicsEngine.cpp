@@ -1,5 +1,3 @@
-#ifdef USE_BULLET_PHYSICS
-
 #include "Log/LogManager.h"
 #include "BulletPhysicsEngine.h"
 #include "Physics/IPhysicsWorld.h"
@@ -13,6 +11,7 @@
 #include "BulletCollision/NarrowPhaseCollision/btMinkowskiPenetrationDepthSolver.h"
 #include "Bullet3Common/b3Logging.h"
 #include "BulletPhysicsWorld.h"
+#include "Tools/Bullet/BulletPhysicsDebugDraw.h"
 
 namespace CasaEngine
 {
@@ -97,22 +96,20 @@ namespace CasaEngine
 	/**
 	 *
 	 */
-	IPhysicsWorld* BulletPhysicsEngine::CreateWorld() const
+	IPhysicsWorld* BulletPhysicsEngine::CreateWorld()
 	{
 		CA_ASSERT(m_pCollisionConfig != nullptr
 			&& m_pDispatcher != nullptr
-			&& m_pDispatcher != nullptr
+			&& m_pOverlappingPairCache != nullptr
 			&& m_pConstraintSolver != nullptr,
 			"PhysicsEngine::CreateWorld() : Please call Initialize() before");
 
 		BulletPhysicsWorld* pWorld = NEW_AO BulletPhysicsWorld(m_pCollisionConfig, m_pDispatcher, m_pOverlappingPairCache, m_pConstraintSolver);
+		BulletPhysicsDebugDraw* pDebugDraw = NEW_AO BulletPhysicsDebugDraw();
+		pDebugDraw->Initialize();
+		m_pIDebugDraw = pDebugDraw;
 		pWorld->setDebugDraw(m_pIDebugDraw);
 		return pWorld;
-	}
-
-	void BulletPhysicsEngine::SetPhysicsDebugDraw(btIDebugDraw* pDebugDraw_)
-	{
-		m_pIDebugDraw = pDebugDraw_;
 	}
 
 	/**
@@ -139,5 +136,3 @@ namespace CasaEngine
 		CA_ERROR("[BULLET] %s\n", msg);
 	}
 }
-
-#endif // USE_BULLET_PHYSICS

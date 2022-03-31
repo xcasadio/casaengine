@@ -7,10 +7,12 @@
 #include "Game/Game.h"
 
 #include "CA_Assert.h"
+#include "Entities/Components/Transform3DComponent.h"
 #include "Game/GameInfo.h"
 
 namespace CasaEngine
 {
+	class Transform3DComponent;
 
 	/**
 	 *
@@ -38,7 +40,8 @@ namespace CasaEngine
 	void RigidBodyComponent::Initialize()
 	{
 		m_RigidBody.mass = 1.0f;
-		IRigidBodyContainer* pContainer = Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->AddRigidBody(&m_RigidBody);
+		auto * transform = GetEntity()->GetComponentMgr()->GetComponent<Transform3DComponent>();
+		IRigidBodyContainer* pContainer = Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->AddRigidBody(&m_RigidBody, transform->GetPosition());
 		GetEntity()->GetPhysicalEntity().SetRigidBody(pContainer);
 	}
 

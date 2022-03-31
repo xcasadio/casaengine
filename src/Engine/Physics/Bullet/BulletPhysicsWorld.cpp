@@ -1,5 +1,3 @@
-#ifdef USE_BULLET_PHYSICS
-
 #include "BulletCollision\CollisionDispatch\btCollisionWorld.h"
 #include "BulletCollision\CollisionShapes\btBox2dShape.h"
 #include "BulletCollision\CollisionShapes\btConvex2dShape.h"
@@ -8,10 +6,10 @@
 #include "BulletDynamics\Dynamics\btDiscreteDynamicsWorld.h"
 #include "BulletPhysicsWorld.h"
 #include "CA_Assert.h"
-#include "Maths\Shape\Box2D.h"
 #include "Maths\Shape\Circle.h"
 #include "Maths\Shape\IShape.h"
 #include "Exceptions.h"
+#include "Maths/Rectangle.h"
 
 #include "btBulletDynamicsCommon.h"
 #include "Memory\MemoryAllocation.h"
@@ -38,10 +36,7 @@ namespace CasaEngine
 	 */
 	BulletPhysicsWorld::~BulletPhysicsWorld()
 	{
-		if (m_pBulletWorld != nullptr)
-		{
-			delete m_pBulletWorld;
-		}
+		delete m_pBulletWorld;
 	}
 
 	void BulletPhysicsWorld::SetGravity(const Vector3F& gravity_)
@@ -51,7 +46,7 @@ namespace CasaEngine
 
 	Vector3F BulletPhysicsWorld::GetGravity() const
 	{
-		btVector3 vec = m_pBulletWorld->getGravity();
+		const auto vec = m_pBulletWorld->getGravity();
 		return Vector3F(vec.x(), vec.y(), vec.z());
 	}
 
@@ -70,9 +65,9 @@ namespace CasaEngine
 	/**
 	 *
 	 */
-	IRigidBodyContainer* BulletPhysicsWorld::AddRigidBody(const RigidBody* pRigidBody_)
+	IRigidBodyContainer* BulletPhysicsWorld::AddRigidBody(const RigidBody* pRigidBody_, const Vector3F position)
 	{
-		btScalar mass = pRigidBody_->mass;
+		auto mass = pRigidBody_->mass;
 		btTransform startTransform;
 		startTransform.setIdentity();
 		bool isDynamic;
@@ -82,9 +77,9 @@ namespace CasaEngine
 		btRigidBody::btRigidBodyConstructionInfo rbInfo(mass, 0, 0);
 		btRigidBody* body = nullptr;
 
-		btCollisionShape* pShape = CreateCollisionShape(pRigidBody_->pCollisionShape, Vector3F::Zero());
+		auto pShape = CreateCollisionShape(pRigidBody_->pCollisionShape, Vector3F::Zero());
 
-		startTransform.setOrigin(btVector3(0, 0, 0)); // TODO
+		startTransform.setOrigin(btVector3(position.x, position.y, position.z));
 
 		//rigidbody is dynamic if and only if mass is non zero, otherwise static
 		isDynamic = (mass != 0.0f);
@@ -135,21 +130,21 @@ namespace CasaEngine
 
 				break;*/
 
-		case BOX2D:
+		case RECTANGLE:
 		{
-			const Box2D* pBox2D = dynamic_cast<const Box2D*>(pShape_);
-			origin_ = pBox2D->Center();
-			btBox2dShape* pBox = new btBox2dShape(
-				btVector3(btScalar(pBox2D->Size().x), btScalar(pBox2D->Size().y), btScalar(0.0f)));
+			const auto* pBox2D = dynamic_cast<const RectangleF*>(pShape_);
+			const auto center = pBox2D->Center();
+			origin_ = Vector3F(center.x, center.y);
+			const auto size = pBox2D->Size() / 2;
+			auto* const pBox = new btBox2dShape(btVector3(size.x, size.y, 0.0f));
 			return pBox;
 		}
 
 		case CIRCLE2D:
 		{
-			const Circle* pCircle = dynamic_cast<const Circle*>(pShape_);
+			const auto* const pCircle = dynamic_cast<const Circle*>(pShape_);
 			origin_ = pCircle->Center();
-			btCylinderShapeZ* pCylinder = new btCylinderShapeZ(
-				btVector3(btScalar(pCircle->Radius()), btScalar(pCircle->Radius()), btScalar(0.0f)));
+			auto* const pCylinder = new btCylinderShapeZ(btVector3(btScalar(pCircle->Radius()), btScalar(pCircle->Radius()), btScalar(0.0f)));
 			return pCylinder;
 		}
 
@@ -179,8 +174,8 @@ namespace CasaEngine
 	btCollisionObject* BulletPhysicsWorld::CreateCollisionObjectFromShape(IShape* pShape_)
 	{
 		Vector3F origin;
-		btCollisionShape* pbtShape = CreateCollisionShape(pShape_, origin);
-		btCollisionObject* colShape = new btCollisionObject();
+		auto* const pbtShape = CreateCollisionShape(pShape_, origin);
+		auto* colShape = new btCollisionObject();
 		colShape->getWorldTransform().setOrigin(btVector3(origin.x, origin.y, origin.z));
 		colShape->setCollisionShape(pbtShape);
 
@@ -192,7 +187,7 @@ namespace CasaEngine
 	 */
 	btCollisionObject* BulletPhysicsWorld::CreateCollisionObjectFromShape(btCollisionShape* pshape_, Vector3F center_)
 	{
-		btCollisionObject* colShape = new btCollisionObject();
+		auto* colShape = new btCollisionObject();
 		colShape->getWorldTransform().setOrigin(btVector3(center_.x, center_.y, center_.z));
 		colShape->setCollisionShape(pshape_);
 		return colShape;
@@ -214,11 +209,12 @@ namespace CasaEngine
 	 */
 	ICollisionObjectContainer* BulletPhysicsWorld::AddCollisionShape(const IShape* pShape_, const Vector3F& origin_)
 	{
-		btCollisionObject* colShape = new btCollisionObject();
+		auto* colShape = new btCollisionObject();
 		Vector3F shapeOrigin;
-		btCollisionShape* b3pShape = CreateCollisionShape(pShape_, shapeOrigin);
+		auto* const b3pShape = CreateCollisionShape(pShape_, shapeOrigin);
 		colShape->getWorldTransform().setOrigin(btVector3(origin_.x + shapeOrigin.x, origin_.y + shapeOrigin.y, origin_.z + shapeOrigin.z));
 		colShape->setCollisionShape(b3pShape);
+		colShape->setCollisionFlags(btCollisionObject::CF_DYNAMIC_OBJECT);
 		AddCollisionObject(colShape);
 
 		return NEW_AO BulletCollisionObjectContainer(colShape);
@@ -229,7 +225,7 @@ namespace CasaEngine
 	 */
 	void BulletPhysicsWorld::AddCollisionObject(ICollisionObjectContainer* pObj_)
 	{
-		BulletCollisionObjectContainer* pColl = dynamic_cast<BulletCollisionObjectContainer*>(pObj_);
+		auto* const pColl = dynamic_cast<BulletCollisionObjectContainer*>(pObj_);
 		AddCollisionObject(pColl->GetCollisionObject());
 	}
 
@@ -238,7 +234,7 @@ namespace CasaEngine
 	 */
 	void BulletPhysicsWorld::RemoveCollisionObject(ICollisionObjectContainer* pObj_)
 	{
-		BulletCollisionObjectContainer* pColl = dynamic_cast<BulletCollisionObjectContainer*>(pObj_);
+		auto* const pColl = dynamic_cast<BulletCollisionObjectContainer*>(pObj_);
 		m_pBulletWorld->removeCollisionObject(pColl->GetCollisionObject());
 	}
 
@@ -247,9 +243,7 @@ namespace CasaEngine
 	 */
 	void BulletPhysicsWorld::RemoveRigidBody(IRigidBodyContainer* pObj_)
 	{
-		BulletRigidBodyContainer* pRB = dynamic_cast<BulletRigidBodyContainer*>(pObj_);
+		auto* const pRB = dynamic_cast<BulletRigidBodyContainer*>(pObj_);
 		m_pBulletWorld->removeRigidBody(pRB->GetRigidBody());
 	}
 }
-
-#endif // USE_BULLET_PHYSICS

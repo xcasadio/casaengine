@@ -20,7 +20,7 @@ namespace CasaEngine
 		
 		for (auto* pLayer : m_Layers)
 		{
-			pLayer->Initialize();
+			pLayer->Initialize(GetEntity());
 		}
 	}
 

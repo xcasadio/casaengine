@@ -5,12 +5,10 @@
 
 #include "CA_Export.h"
 #include "ColliderComponent.h"
+#include "Maths/Shape/Circle.h"
 
 namespace CasaEngine
 {
-	/*
-	 *	
-	 */
 	class CA_EXPORT Circle2DColliderComponent :
 		public ColliderComponent
 	{
@@ -20,22 +18,14 @@ namespace CasaEngine
 	public:
 		Circle2DColliderComponent(BaseEntity* pEntity_);
 		virtual ~Circle2DColliderComponent();
+		
+		void Initialize() override;
 
-		//all entities must implement an Initialize function
-		void Initialize();
+		void SetPosition(const Vector3F& position);
+		void SetRadius(float radius);
 
-		/**
-		 * 
-		 */
-		void Draw();
-
-		//all entities can communicate using messages. They are sent
-		//using the MessageDispatcher singleton class
-		//void HandleEvent(const Event* pEvent_);
-
-		//entities should be able to read/write their data to a stream
-		void Write(std::ostream&  os)const;
-		void Read (std::ifstream& is);
+	private:
+		Circle m_Circle;
 	};
 
 }

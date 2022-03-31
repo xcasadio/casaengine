@@ -2,6 +2,7 @@
 #include "TiledMapComponent.h"
 #include "Entities/Components/Transform3DComponent.h"
 #include "Game/Game.h"
+#include "Physics/Bullet/BulletObjectsContainer.h"
 #include "Sprite/SpriteRenderer.h"
 
 namespace CasaEngine
@@ -10,13 +11,37 @@ namespace CasaEngine
 	{
 	}
 
-	void TiledMapLayer::Initialize()
+	void TiledMapLayer::Initialize(BaseEntity* pEntity)
 	{
 		for (auto* tile : m_Tiles)
 		{
 			if (tile != nullptr)
 			{
 				tile->Initialize();
+			}
+		}
+
+		//const auto world_matrix = pTransform3DComponent->GetWorldMatrix();
+		const float px = 0; // world_matrix.GetTranslation().x;
+		const float py = 0; // world_matrix.GetTranslation().y;
+
+		for (int y = 0; y < m_MapSize.y; ++y)
+		{
+			for (int x = 0; x < m_MapSize.x; ++x)
+			{
+				auto* tile = m_Tiles[x + y * m_MapSize.x];
+				if (tile != nullptr && tile->IsWall())
+				{
+					auto* rigidBody = new RigidBody();
+					rigidBody->mass = 0.0f;
+					rigidBody->pCollisionShape = new RectangleF(0, 0, m_TileSize.x, m_TileSize.y);
+					IRigidBodyContainer* pContainer = Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->AddRigidBody(
+						rigidBody,
+						Vector3F(px + x * m_TileSize.x + m_TileSize.x / 2.0f, py + y * m_TileSize.y + m_TileSize.y / 2.0f));
+					//auto* collisionObjectContainer = dynamic_cast<BulletRigidBodyContainer*>(pContainer);
+					//collisionObjectContainer->GetRigidBody()->setCollisionFlags(collisionObjectContainer->GetRigidBody()->getCollisionFlags() & btCollisionObject::CF_STATIC_OBJECT);
+					//pEntity->GetPhysicalEntity().SetRigidBody(pContainer);
+				}
 			}
 		}
 	}

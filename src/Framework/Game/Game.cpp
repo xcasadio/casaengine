@@ -46,11 +46,8 @@
 #include "EventHandler/GlobalEventSet.h"
 #include "Physics/PhysicsEngine.h"
 
-
-#ifdef USE_BULLET_PHYSICS
 #include "Physics/Bullet/BulletPhysicsEngine.h"
 #include "Tools/Bullet/BulletPhysicsDebugDraw.h"
-#endif // #ifdef USE_BULLET_PHYSICS
 
 #include <dear-imgui/imgui.h>
 
@@ -137,6 +134,8 @@ Game::~Game()
 	MemoryReport::Instance().ReportLeak();
 	MemoryReport::Destroy();
 #endif
+
+	m_EntityManager.Clear();
 
 	LogManager::Destroy();
 }
@@ -522,12 +521,6 @@ void Game::Initialize()
 // 		static_cast<float>(sf::Mouse::getPosition(*m_pWindow).x), 
 // 		static_cast<float>(sf::Mouse::getPosition(*m_pWindow).y));
 
-#endif
-	
-#ifdef USE_BULLET_PHYSICS
-	BulletPhysicsDebugDraw* pDebugDraw = NEW_AO BulletPhysicsDebugDraw();
-	pDebugDraw->Initialize();
-	dynamic_cast<BulletPhysicsEngine*>(PhysicsEngine::Instance().GetPhysicsEngineImpl())->SetPhysicsDebugDraw(pDebugDraw);
 #endif
 
 	for (auto* component : m_Components)

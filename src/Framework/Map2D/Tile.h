@@ -16,12 +16,17 @@ namespace CasaEngine
 		virtual void Update(const GameTime& gameTime_) = 0;
 		virtual void Draw(float x, float y, float z, RectangleI uvOffset) = 0;
 
+		void IsWall(bool val);
+		bool IsWall() const;
+
 	protected:
+		ITile();
 		~ITile() = default;
 		void Draw(Sprite* pSprite, float x, float y, float z, RectangleI uvOffset) const;
 
 	private:
 		SpriteRenderer* m_pSpriteRenderer = nullptr;
+		bool m_IsWall;
 	};
 
 }

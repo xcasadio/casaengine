@@ -1,9 +1,6 @@
-#ifdef USE_BULLET_PHYSICS
-
 #include "Log\LogManager.h"
 #include "BulletObjectsContainer.h"
 #include "CA_Assert.h"
-#include "Log\LogManager.h"
 #include "LinearMath\btVector3.h"
 #include "LinearMath\btQuaternion.h"
 
@@ -72,8 +69,7 @@ namespace CasaEngine
 	{
 		CA_ASSERT(m_pRigidBody != nullptr, "BulletRigidBodyContainer::setLinearVelocity() : RigidBody is null");
 		m_pRigidBody->setLinearVelocity(btVector3(lin_vel.x, lin_vel.y, lin_vel.z));
-
-		//m_pRigidBody->applyCentralImpulse(btVector3(10.0f, 10.0f, 10.0f));
+		//m_pRigidBody->applyCentralImpulse(btVector3(lin_vel.x, lin_vel.y, lin_vel.z));
 	}
 
 	/**
@@ -144,5 +140,3 @@ namespace CasaEngine
 		return m_pCollisionObject;
 	}
 }
-
-#endif // USE_BULLET_PHYSICS

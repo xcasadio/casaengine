@@ -2,10 +2,25 @@
 
 namespace CasaEngine
 {
+	ITile::ITile()
+	{
+		m_IsWall = false;
+	}
+	
 	void ITile::Initialize()
 	{
 		m_pSpriteRenderer = Game::Instance().GetGameComponent<SpriteRenderer>();
 		CA_ASSERT(m_pSpriteRenderer != nullptr);
+	}
+
+	void ITile::IsWall(bool val)
+	{
+		m_IsWall = val;
+	}
+
+	bool ITile::IsWall() const
+	{
+		return m_IsWall;
 	}
 
 	void ITile::Draw(Sprite* pSprite, float x, float y, float z, RectangleI uvOffset) const

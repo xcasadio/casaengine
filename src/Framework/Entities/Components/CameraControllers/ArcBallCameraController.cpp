@@ -353,6 +353,16 @@ namespace CasaEngine
 		m_fInputDistanceRate = val;
 	}
 
+	float ArcBallCameraController::InputDisplacementRate() const
+	{
+		return m_fInputDisplacementRate;
+	}
+
+	void ArcBallCameraController::InputDisplacementRate(float val)
+	{
+		m_fInputDisplacementRate = val;
+	}
+
 	/// <summary>
 	/// Orbit directly upwards in Free camera or on
 	/// the longitude line when roll constrained

@@ -17,7 +17,7 @@ namespace CasaEngine
 	public:
 		TiledMapLayer();
 
-		void Initialize();
+		void Initialize(BaseEntity* pEntity);
 		void Update(const GameTime& gameTime_);
 		void Draw(Transform3DComponent* pTransform3DComponent, float z);
 

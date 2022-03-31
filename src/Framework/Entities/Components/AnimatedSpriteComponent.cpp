@@ -41,13 +41,6 @@ namespace CasaEngine
 	 */
 	AnimatedSpriteComponent::~AnimatedSpriteComponent()
 	{
-		/*std::vector<btCollisionObject *>::iterator itColObj;
-		for (itColObj = m_LastSpriteCollisionObjects.begin();
-			itColObj != m_LastSpriteCollisionObjects.end();
-			itColObj++)
-		{
-			delete *itColObj;
-		}*/
 	}
 
 	/*

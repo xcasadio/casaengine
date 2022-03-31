@@ -72,6 +72,7 @@ namespace CasaEngine
 		EntityId ID() const; 
 
 		const char *GetName() const;
+		void SetName(std::string &val);
 		void SetName(const char *val);
 
 		bool IsEnabled() const;
@@ -98,7 +99,7 @@ namespace CasaEngine
 		ComponentManager* m_pComponentManager;
 		PhysicalEntity m_PhysicalEntity;
 
-		const char *m_szName;
+		std::string m_Name;
 		bool m_bIsEnabled, m_bIsVisible;
 
 //#ifdef EDITOR

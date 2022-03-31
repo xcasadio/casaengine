@@ -14,9 +14,6 @@
 
 namespace CasaEngine
 {
-	/**
-	 *
-	 */
 	class CA_EXPORT BulletPhysicsEngine :
 		public IPhysicsEngine
 	{
@@ -28,30 +25,12 @@ namespace CasaEngine
 		btIDebugDraw* m_pIDebugDraw;
 
 	public:
-		/**
-		 *
-		 */
 		BulletPhysicsEngine();
-
-		/**
-		 *
-		 */
 		~BulletPhysicsEngine();
 
-		/**
-		 *
-		 */
 		void Initialize() override;
 
-		/**
-		 *
-		 */
-		void SetPhysicsDebugDraw(btIDebugDraw* pDebugDraw_);
-
-		/**
-		 *
-		 */
-		IPhysicsWorld* CreateWorld() const override;
+		IPhysicsWorld* CreateWorld() override;
 	};
 }
 

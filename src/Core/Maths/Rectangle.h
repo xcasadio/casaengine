@@ -33,6 +33,7 @@ namespace CasaEngine
 		T Top() const;
 		T Bottom() const;
 		CVector2<T> Size() const;
+		CVector2<T> Center() const;
 
 		virtual IShape* Copy() override;
 

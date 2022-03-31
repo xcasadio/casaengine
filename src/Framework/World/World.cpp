@@ -3,6 +3,8 @@
 #include "Entities/BaseEntity.h"
 #include "Script/ScriptEngine.h"
 #include "Entities/ComponentTypeEnum.h"
+#include "Game/Game.h"
+#include "Physics/Bullet/BulletPhysicsWorld.h"
 
 namespace CasaEngine
 {
@@ -83,7 +85,7 @@ namespace CasaEngine
 	}
 
 	void World::WorldComponent::Initialize()
-	{
+	{		
 		for (auto entity : m_pWorld->GetEntities())
 		{
 			entity->Initialize();

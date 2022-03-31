@@ -26,22 +26,12 @@ namespace CasaEngine
 		public IPhysicsWorld
 	{
 	public:
-
-		/// @param[in]: btDefaultCollisionConfiguration * pConfig_
-		/// @param[in]: btCollisionDispatcher * pDispatcher_
-		/// @param[in]: btBroadphaseInterface * pOverlappingPairCache_
-		/// @param[in]: btSequentialImpulseConstraintSolver * pConstraintSolver_
-		///
-		/// @return
 		BulletPhysicsWorld(
 			btDefaultCollisionConfiguration* pConfig_,
 			btCollisionDispatcher* pDispatcher_,
 			btBroadphaseInterface* pOverlappingPairCache_,
 			btSequentialImpulseConstraintSolver* pConstraintSolver_);
 
-		/**
-		 *
-		 */
 		~BulletPhysicsWorld();
 
 		void Update(const GameTime& gameTime_) override;
@@ -51,7 +41,7 @@ namespace CasaEngine
 
 		void setDebugDraw(btIDebugDraw* pIDebugDraw_);
 
-		IRigidBodyContainer* AddRigidBody(const RigidBody* pRigidBody_) override;
+		IRigidBodyContainer* AddRigidBody(const RigidBody* pRigidBody_, const Vector3F position) override;
 		void RemoveRigidBody(IRigidBodyContainer* pObj_) override;
 
 		void AddCollisionObject(ICollisionObjectContainer* pObj_) override;
@@ -68,6 +58,7 @@ namespace CasaEngine
 		btCollisionObject* CreateCollisionObjectFromShape(IShape* pShape_);
 		btCollisionObject* CreateCollisionObjectFromShape(btCollisionShape* pshape_, Vector3F center_);
 
+	private:
 		//btDiscreteDynamicsWorld* m_pBulletWorld;
 		btDynamicsWorldExt* m_pBulletWorld;
 	};

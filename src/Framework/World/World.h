@@ -12,8 +12,6 @@
 
 namespace CasaEngine
 {
-	class PhysicsWorld;
-
 	class CA_EXPORT World :
 		public BaseEntity
 	{

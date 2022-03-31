@@ -31,9 +31,6 @@ namespace CasaEngine
 		Animation2D *m_pCurrentAnim;
 
 		std::vector<Animation2D *> m_AnimationList;
-		// keep physics object created by the current frame in order to remove them after
-		// the frame change
-		std::vector<ICollisionObjectContainer *> m_LastSpriteCollisionObjects;
 
 		Event::Connection m_FrameChangedConnection;
 		Event::Connection m_AnimFinishedConnection;

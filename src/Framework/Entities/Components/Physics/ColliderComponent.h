@@ -12,9 +12,8 @@
 
 namespace CasaEngine
 {
-
 	/*
-	 *	
+	 *
 	 */
 	class CA_EXPORT ColliderComponent :
 		public Component
@@ -25,7 +24,7 @@ namespace CasaEngine
 		float m_Mass;
 
 	protected:
-		IShape *m_pShape;
+		IShape* m_pShape;
 
 	public:
 		virtual ~ColliderComponent();
@@ -34,7 +33,7 @@ namespace CasaEngine
 		void Initialize();
 
 		/**
-		 * 
+		 *
 		 */
 		void Update(const GameTime& gameTime_);
 
@@ -42,24 +41,21 @@ namespace CasaEngine
 		//using the MessageDispatcher singleton class
 		//void HandleEvent(const Event* pEvent_);
 
-		IShape *GetShape() const;
+		IShape* GetShape() const;
 
 		float Mass() const;
 		void Mass(float val);
 
 		//entities should be able to read/write their data to a stream
-		void Write(std::ostream&  os)const;
-		void Read (std::ifstream& is);
+		void Write(std::ostream& os)const;
+		void Read(std::ifstream& is);
 
 	protected:
 		ColliderComponent(BaseEntity* pEntity_, int type_);
 
 	private:
-		ICollisionObjectContainer *m_pCollisionObjectContainer;
+		ICollisionObjectContainer* m_pCollisionObjectContainer;
 	};
-
 }
 
-#endif // COLLIDERCOMPONENT_H_
-
-
+#endif

@@ -33,6 +33,8 @@ namespace CasaEngine
 
 		RIGID_BODY,
 
+		DEBUG_INFO,
+
 		CUSTOM_COMPONENT = 1000
 	};
 

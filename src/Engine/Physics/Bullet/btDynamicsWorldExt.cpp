@@ -1,5 +1,3 @@
-#ifdef USE_BULLET_PHYSICS
-
 #include "btDynamicsWorldExt.h"
 #include "CA_Assert.h"
 #include "BulletCollision\CollisionShapes\btCollisionShape.h"
@@ -34,7 +32,7 @@ namespace CasaEngine
 			break;
 		}
 
-		/*case CONVEX_2D_SHAPE_PROXYTYPE:
+		/*case CYLINDER_SHAPE_PROXYTYPE:
 
 			break;*/
 
@@ -46,5 +44,3 @@ namespace CasaEngine
 		}
 	}
 }
-
-#endif // USE_BULLET_PHYSICS

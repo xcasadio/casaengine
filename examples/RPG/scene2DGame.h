@@ -30,9 +30,6 @@ public:
 
 private:
 	void AddGameComponent();
-	void CreateEntities();
-	void CreatePlayer();
-	void LoadAssets();
 
 	void CreateMap(World* pWorld);
 	void CreateAssets(Vector2I tileSize);

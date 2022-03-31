@@ -43,6 +43,8 @@ namespace CasaEngine
 		void Distance(float val);
 		float InputDistanceRate() const;
 		void InputDistanceRate(float val);
+		float InputDisplacementRate() const;
+		void InputDisplacementRate(float val);
 
 		/// <summary>
 		/// Orbit directly upwards in Free camera or on

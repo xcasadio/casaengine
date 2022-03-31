@@ -38,7 +38,10 @@
 
 #include "load_save_types.h"
 #include "Entities/Components/Camera2DComponent.h"
+#include "Entities/Components/DebugComponent.h"
 #include "Entities/Components/CameraControllers/Camera2DTargetedController.h"
+#include "Entities/Components/CameraControllers/Camera3DTargetedController.h"
+#include "Entities/Components/Physics/Circle2DColliderComponent.h"
 
 using namespace CasaEngine;
 
@@ -92,13 +95,25 @@ void Scene2DGame::LoadContent()
 	Game::LoadContent();
 
 	m_pWorld = NEW_AO World();
+	auto* physicWorld = Game::Instance().GetPhysicsEngine().CreateWorld();
+	m_pWorld->SetPhysicsWorld(physicWorld);
+	physicWorld->SetGravity(Vector3F::Zero());
 	GetGameInfo().SetWorld(m_pWorld);
-	//m_pWorld->SetPhysicsWorld(PhysicsEngine::Instance().CreateWorld());
-	/*
-	LoadAssets();
-	CreateEntities();
-	CreateBackground();
-	CreatePlayer();*/
+	
+	//Camera 3D
+	auto* pCamera = NEW_AO BaseEntity();
+	m_pCamera3D = NEW_AO Camera3DComponent(pCamera);
+	auto* pArcBall = NEW_AO ArcBallCameraController(m_pCamera3D);
+	pArcBall->SetCamera(Vector3F(0, 0.0f, -50.0f), Vector3F::Zero(), -Vector3F::Up());
+	pArcBall->Distance(70.0f);
+	pArcBall->InputDistanceRate(4.0f);
+	pArcBall->InputDisplacementRate(30.0f);
+	m_pCamera3D->CameraController(pArcBall);
+	pCamera->GetComponentMgr()->AddComponent(m_pCamera3D);
+	pCamera->Initialize();
+	m_pWorld->AddEntity(pCamera);
+
+	//GetGameInfo().SetActiveCamera(m_pCamera3D);
 
 	CreateAssets(Vector2I(48, 48));
 	CreateMap(m_pWorld);
@@ -129,231 +144,13 @@ void Scene2DGame::Draw()
  */
 void Scene2DGame::AddGameComponent()
 {
-	//GetGameInfo().GetProjectManager().LoadProject("H:\\Developpement\\CasaEngine2D\\Projects\\LostKingdom\\LostKingdom.xml");
-	//m_pModelRenderer = NEW_AO MeshRendererGameComponent(this);
 	m_pLine2DRenderer = NEW_AO Line2DRendererComponent(this);
-	//m_pLine3DRenderer = NEW_AO Line3DRendererComponent(this);
 	m_pSpriteRenderer = NEW_AO SpriteRenderer(this);
 
 	//AddComponent(m_pModelRenderer);
 	AddComponent(m_pSpriteRenderer);
 	AddComponent(m_pLine2DRenderer);
-	//AddComponent(m_pLine3DRenderer);
-}
-
-/**
- *
- */
-void Scene2DGame::LoadAssets()
-{
-}
-
-/**
- *
- */
-void Scene2DGame::CreateEntities()
-{
-	//Camera 3D
-	BaseEntity* pCamera = NEW_AO BaseEntity();
-	m_pCamera3D = NEW_AO Camera3DComponent(pCamera);
-	ArcBallCameraController* pArcBall = NEW_AO ArcBallCameraController(m_pCamera3D);
-	pArcBall->SetCamera(Vector3F(0, 0.0f, -50.0f), Vector3F::Zero(), Vector3F::Up());
-	pArcBall->Distance(7.0f);
-	m_pCamera3D->CameraController(pArcBall);
-	pCamera->GetComponentMgr()->AddComponent(m_pCamera3D);
-	pCamera->Initialize();
-	m_pWorld->AddEntity(pCamera);
-
-	GetGameInfo().SetActiveCamera(m_pCamera3D);
-
-	//FPS
-	/*BaseEntity *pEntity = NEW_AO BaseEntity();
-	Transform2DComponent *pTrans2D = NEW_AO Transform2DComponent(pEntity);
-	pTrans2D->SetLocalPosition(Vector2F(10.0f, 10.0f));
-	pEntity->GetComponentMgr()->AddComponent(pTrans2D);
-	FPSMonitoringComponent *pFPS = NEW_AO FPSMonitoringComponent(pEntity);
-	pEntity->GetComponentMgr()->AddComponent(pFPS);
-	pEntity->Initialize();
-	m_pWorld->AddEntity(pEntity);*/
-
-	//Grid
-	BaseEntity* pEntity = NEW_AO BaseEntity();
-	GridComponent* pGridComponent = NEW_AO GridComponent(pEntity);
-	pEntity->GetComponentMgr()->AddComponent(pGridComponent);
-	pEntity->Initialize();
-	m_pWorld->AddEntity(pEntity);
-
-	//ground
-	/*pEntity = NEW_AO BaseEntity();
-	pEntity->SetName("ground");
-	Transform3DComponent *pTransform = NEW_AO Transform3DComponent(pEntity);
-	pTransform->SetLocalPosition(Vector3F(0.0f, -0.2f, 0.0f));
-	pTransform->SetLocalRotation(0.0f);
-	pTransform->SetLocalScale(Vector3F::One());
-	pEntity->GetComponentMgr()->AddComponent(pTransform);
-	MeshComponent *pModelCpt = NEW_AO MeshComponent(pEntity);
-	PlanePrimitive *pPrimitive = NEW_AO PlanePrimitive(100.0f, 100.0f);
-	Model *pModel = pPrimitive->CreateModel();
-	GetResourceManager().Add("groundModel", pModel);
-	DELETE_AO pPrimitive;
-	//new material
-	Material* pMat = pModel->GetMaterial()->Clone();
-	GetResourceManager().Add("groundMaterial", pMat);
-	pModel->SetMaterial(pMat);
-	m_pGroundTexture = NEW_AO Texture();
-	m_pGroundTexture->CreateFromFile("ceilingMain_DIF.png", PixelFormat::ARGB_8888);
-	pMat->SetTexture0(m_pGroundTexture);
-	pMat->SetTexture0Repeat(Vector2F(50, 50));
-	//
-	pModelCpt->SetModel(pModel);
-
-	bgfx::ProgramHandle pEffect = IRenderer::Get().CreateEffectFromFile("simple");
-	pModelCpt->SetEffect(pEffect);
-
-	pEntity->GetComponentMgr()->AddComponent(pModelCpt);
-	pEntity->Initialize();
-
-	m_pWorld->AddEntity(pEntity);*/
-
-	//no physics
-	//m_pWorld->GetPhysicsWorld()->SetGravity(Vector3F::Zero());
-
-	//box2d
-	/*pEntity = NEW_AO BaseEntity();
-	pEntity->SetName("ground");
-	Transform3DComponent *pTransform = NEW_AO Transform3DComponent(pEntity);
-	pTransform->SetLocalPosition(Vector3F(0.0f, -0.2f, 0.0f));
-	pTransform->SetLocalRotation(0.0f);
-	pTransform->SetLocalScale(Vector3F::One());
-	pEntity->GetComponentMgr()->AddComponent(pTransform);
-	MeshComponent *pModelCpt = NEW_AO MeshComponent(pEntity);
-	BoxPrimitive *pPrimitive = NEW_AO BoxPrimitive();
-	Model *pModel = pPrimitive->CreateModel();
-	GetResourceManager().Add("groundModel", pModel);
-	DELETE_AO pPrimitive;
-	pModelCpt->SetModel(pModel);
-
-	bgfx::ProgramHandle pEffect = IRenderer::Get().CreateEffectFromFile("simple");
-	pModelCpt->SetEffect(pEffect);
-
-	pEntity->GetComponentMgr()->AddComponent(pModelCpt);
-
-	Box2DColliderComponent *pBox2D = NEW_AO Box2DColliderComponent(pEntity);
-	pEntity->GetComponentMgr()->AddComponent(pBox2D);
-
-	m_pWorld->GetPhysicsWorld()->AddRigidBody(pBox2D);
-
-	//btCollisionShape* groundShape = new btBoxShape(btVector3(btScalar(150.),btScalar(50.),btScalar(150.)));
-
-	pEntity->Initialize();
-	m_pWorld->AddEntity(pEntity);*/
-
-	/*
-	m_collisionShapes.push_back(groundShape);
-
-	btTransform groundTransform;
-	groundTransform.setIdentity();
-	groundTransform.setOrigin(btVector3(0,-43,0));
-
-	//We can also use DemoApplication::localCreateRigidBody, but for clarity it is provided here:
-	{
-		btScalar mass(0.);
-
-		//rigidbody is dynamic if and only if mass is non zero, otherwise static
-		bool isDynamic = (mass != 0.f);
-
-		btVector3 localInertia(0,0,0);
-		if (isDynamic)
-			groundShape->calculateLocalInertia(mass,localInertia);
-
-		//using motionstate is recommended, it provides interpolation capabilities, and only synchronizes 'active' objects
-		btDefaultMotionState* myMotionState = new btDefaultMotionState(groundTransform);
-		btRigidBody::btRigidBodyConstructionInfo rbInfo(mass,myMotionState,groundShape,localInertia);
-		btRigidBody* body = new btRigidBody(rbInfo);
-
-		//add the body to the dynamics world
-		m_dynamicsWorld->addRigidBody(body);
-	}*/
-}
-
-/**
- *
- */
-void Scene2DGame::CreatePlayer()
-{
-	BaseEntity* pEntity = NEW_AO BaseEntity();
-	Transform3DComponent* pTrans3D = NEW_AO Transform3DComponent(pEntity);
-	pTrans3D->SetLocalPosition(Vector3F(0.0f, 20.0f, 0.0f));
-	pEntity->GetComponentMgr()->AddComponent(pTrans3D);
-
-	m_pAnimatedSprite = NEW_AO AnimatedSpriteComponent(pEntity);
-	pEntity->GetComponentMgr()->AddComponent(m_pAnimatedSprite);
-
-	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("Anim_belrick_idle_r"));
-	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("Anim_belrick_idle_l"));
-	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("Anim_belrick_idle_u"));
-	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("Anim_belrick_idle_d"));
-	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("Anim_belrick_idle_ur"));
-	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("Anim_belrick_idle_dr"));
-	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("Anim_belrick_idle_ul"));
-	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("Anim_belrick_idle_dl"));
-
-	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("anim_belrick_run_r"));
-	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("anim_belrick_run_l"));
-	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("anim_belrick_run_u"));
-	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("anim_belrick_run_d"));
-	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("anim_belrick_run_ur"));
-	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("anim_belrick_run_dr"));
-	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("anim_belrick_run_ul"));
-	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("anim_belrick_run_dl"));
-
-	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("anim_belrick_attack_01_r"));
-	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("anim_belrick_attack_01_l"));
-	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("anim_belrick_attack_01_u"));
-	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("anim_belrick_attack_01_d"));
-	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("anim_belrick_attack_01_ur"));
-	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("anim_belrick_attack_01_dr"));
-	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("anim_belrick_attack_01_ul"));
-	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("anim_belrick_attack_01_dl"));
-
-	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("anim_belrick_attack_02_r"));
-	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("anim_belrick_attack_02_l"));
-	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("anim_belrick_attack_02_u"));
-	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("anim_belrick_attack_02_d"));
-	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("anim_belrick_attack_02_ur"));
-	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("anim_belrick_attack_02_dr"));
-	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("anim_belrick_attack_02_ul"));
-	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("anim_belrick_attack_02_dl"));
-
-	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("anim_belrick_attack_03_r"));
-	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("anim_belrick_attack_03_l"));
-	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("anim_belrick_attack_03_u"));
-	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("anim_belrick_attack_03_d"));
-	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("anim_belrick_attack_03_ur"));
-	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("anim_belrick_attack_03_dr"));
-	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("anim_belrick_attack_03_ul"));
-	m_pAnimatedSprite->AddAnimation(GetAssetManager().GetAsset<Animation2D>("anim_belrick_attack_03_dl"));
-
-	m_pAnimatedSprite->SetCurrentAnimation(0); // Anim_belrick_idle_r
-
-// 	Box2DColliderComponent *pBox2D = NEW_AO Box2DColliderComponent(pEntity);
-// 	dynamic_cast<Box2D *>(pBox2D->GetShape())->Size(Vector2F(0.5f, 0.5f));
-// 	pBox2D->Mass(1.0f);
-// 	pEntity->GetComponentMgr()->AddComponent(pBox2D);
-
-	RectangleF box2D;
-	box2D.Set(0, 0, 0.5f, 0.5f);
-	//RigidBodyComponent *pRigidBodyCpt = NEW_AO RigidBodyComponent(pEntity);
-	//RigidBody &body = pRigidBodyCpt->GetRigidBody();
-	//body.pCollisionShape = &box2D;
-	//body.mass = 1.0f;
-	//pEntity->GetComponentMgr()->AddComponent(pRigidBodyCpt);
-
-	//ScriptComponent *pScriptComponent = NEW_AO ScriptComponent(pEntity);
-	//pEntity->GetComponentMgr()->AddComponent(pScriptComponent);
-
-	pEntity->Initialize();
-	m_pWorld->AddEntity(pEntity);
+	AddComponent(NEW_AO Line3DRendererComponent(this));
 }
 
 void Scene2DGame::CreateMap(World* pWorld)
@@ -383,6 +180,14 @@ void Scene2DGame::CreateMap(World* pWorld)
 	}
 	layer->SetTiles(tiles);
 	pMap->AddLayer(layer);
+
+	tiles[4]->IsWall(true);
+	
+	//wall
+	/*for (int x = 0; x < pMap->GetMapSize().x; ++x)
+	{
+		tiles[x + pMap->GetMapSize().x * 6]->IsWall(true);
+	}*/
 
 	//layer 2
 	layer = new TiledMapLayer();
@@ -434,7 +239,7 @@ void Scene2DGame::CreateAssets(Vector2I tileSize)
 {
 	//static tile
 	//auto texture = Texture::loadTexture(Game::Instance().GetMediaManager().FindMedia("Outside_A2.png"));
-	auto pSprite = new SpriteData();
+	auto* pSprite = new SpriteData();
 	pSprite->SetName("grass1");
 	pSprite->SetPositionInTexture(RectangleI(0, 0, tileSize.x, tileSize.y));
 	pSprite->SetAssetFileName("Outside_A2.png");
@@ -467,7 +272,7 @@ void Scene2DGame::CreateEnnemies(World* pWorld)
 	auto* pEntity = NEW_AO BaseEntity();
 	pEntity->SetName("octopus 1");
 	auto* pTrans3D = NEW_AO Transform3DComponent(pEntity);
-	pTrans3D->SetLocalPosition(Vector3F(100.0f, 100.0f, 1.0f));
+	pTrans3D->SetLocalPosition(Vector3F(100.0f, 100.0f, 0.0f));
 	pTrans3D->SetLocalRotation(0.0f);
 	//pTrans3D->SetLocalScale(Vector3F(32, 32, 1.0));
 	pEntity->GetComponentMgr()->AddComponent(pTrans3D);
@@ -478,29 +283,29 @@ void Scene2DGame::CreateEnnemies(World* pWorld)
 	int id = 0;
 	for (auto& sprite : ennemi_datas.sprites)
 	{
-		SpriteData* pSprite = new SpriteData();
+		auto* pSprite = new SpriteData();
 		std::ostringstream name;
 		name << "octopus_" << sprite.id;
 		id++;
 		pSprite->SetName(name.str());
 		pSprite->SetPositionInTexture(RectangleI(sprite.x, sprite.y, sprite.w, sprite.h));
-		//pSprite->SetTexture2D(texture);
+		pSprite->SetOrigin(Vector2I(12, 20));
 		pSprite->SetAssetFileName(ennemi_datas.tile_set.c_str());
 		GetAssetManager().AddAsset(new Asset(name.str(), pSprite));
 	}
 
-	auto pAnimatedComponent = NEW_AO AnimatedSpriteComponent(pEntity);
+	auto* pAnimatedComponent = NEW_AO AnimatedSpriteComponent(pEntity);
 	//load anim
 	for (auto& anim : ennemi_datas.animations)
 	{
-		auto pAnim = NEW_AO Animation2DData();
+		auto* pAnim = NEW_AO Animation2DData();
 		pAnim->SetAnimationType(AnimationType::Loop);
 		pAnim->SetName(anim.name);
 		const auto frame_delay = 0.64f;
 
 		for (auto& frame : anim.frames)
 		{
-			auto frameData = NEW_AO FrameData(); 
+			auto* frameData = NEW_AO FrameData(); 
 			std::ostringstream spriteName;
 			spriteName << "octopus_" << frame.sprite_id;
 			frameData->SetSpriteId(spriteName.str());
@@ -515,10 +320,20 @@ void Scene2DGame::CreateEnnemies(World* pWorld)
 	pEntity->GetComponentMgr()->AddComponent(pAnimatedComponent);
 	//pAnimatedComponent->SetCurrentAnimation(0);
 
-	auto scriptComponent = new ScriptComponent(pEntity);
+	auto* scriptComponent = new ScriptComponent(pEntity);
 	auto* pScriptCharacter = new ScriptCharacter(pEntity, new Enemy(pEntity));
 	scriptComponent->SetScriptObject(pScriptCharacter);
 	pEntity->GetComponentMgr()->AddComponent(scriptComponent);
+
+	auto* debugComponent = new DebugComponent(pEntity);
+	debugComponent->DisplayPosition(true);
+	pEntity->GetComponentMgr()->AddComponent(debugComponent);
+
+	//collision
+	auto* circleComponent = new Circle2DColliderComponent(pEntity);
+	circleComponent->SetPosition(Vector3F::Zero());
+	circleComponent->SetRadius(10.0f);
+	pEntity->GetComponentMgr()->AddComponent(circleComponent);
 
 	pWorld->AddEntity(pEntity);
 }
@@ -530,7 +345,7 @@ void Scene2DGame::CreateSwordman(World* pWorld)
 	auto* pPlayerEntity = NEW_AO BaseEntity();
 	pPlayerEntity->SetName("player 1");
 	auto* pTrans3D = NEW_AO Transform3DComponent(pPlayerEntity);
-	pTrans3D->SetLocalPosition(Vector3F(50.0f, 50.0f, 1.0f));
+	pTrans3D->SetLocalPosition(Vector3F(50.0f, 150.0f, 0.0f));
 	pTrans3D->SetLocalRotation(0.0f);
 	//pTrans3D->SetLocalScale(Vector3F(tileWidth, tileHeight, 1.0));
 	pPlayerEntity->GetComponentMgr()->AddComponent(pTrans3D);
@@ -548,29 +363,29 @@ void Scene2DGame::CreateSwordman(World* pWorld)
 	int id = 0;
 	for (auto& sprite : player_datas.sprites)
 	{
-		auto pSprite = new SpriteData();
+		auto* pSprite = new SpriteData();
 		std::ostringstream name;
 		name << "player_" << sprite.id;
 		id++;
 		pSprite->SetName(name.str());
 		pSprite->SetPositionInTexture(RectangleI(sprite.x, sprite.y, sprite.w, sprite.h));
-		//pSprite->SetTexture2D(texture);
-		pSprite->SetAssetFileName(player_datas.tile_set.c_str());
+		pSprite->SetOrigin(Vector2I(24, 38));
+		pSprite->SetAssetFileName(player_datas.tile_set);
 		GetAssetManager().AddAsset(new Asset(name.str(), pSprite));
 	}
 
 	//load anim
-	auto pAnimatedComponent = NEW_AO AnimatedSpriteComponent(pPlayerEntity);
+	auto* pAnimatedComponent = NEW_AO AnimatedSpriteComponent(pPlayerEntity);
 	for (auto& anim : player_datas.animations)
 	{
-		auto pAnim = NEW_AO Animation2DData();
+		auto* pAnim = NEW_AO Animation2DData();
 		pAnim->SetAnimationType(AnimationType::Loop);
 		pAnim->SetName(anim.name);
 		const auto frame_delay = 0.64f;
 
 		for (auto& frame : anim.frames)
 		{
-			auto frameData = NEW_AO FrameData();
+			auto* frameData = NEW_AO FrameData();
 			std::ostringstream spriteName;
 			spriteName << "player_" << frame.sprite_id;
 			frameData->SetSpriteId(spriteName.str());
@@ -586,21 +401,43 @@ void Scene2DGame::CreateSwordman(World* pWorld)
 	//pAnimatedComponent->SetCurrentAnimation("stand_down");
 	pWorld->AddEntity(pPlayerEntity);
 
-	auto scriptComponent = new ScriptComponent(pPlayerEntity);
+	auto* scriptComponent = new ScriptComponent(pPlayerEntity);
 	auto* pScriptCharacter = new ScriptCharacter(pPlayerEntity, new Player(pPlayerEntity));
 	scriptComponent->SetScriptObject(pScriptCharacter);
 	pPlayerEntity->GetComponentMgr()->AddComponent(scriptComponent);
 
+	//collision
+	auto *circleComponent = new Circle2DColliderComponent(pPlayerEntity);
+	circleComponent->SetPosition(Vector3F::Zero());
+	circleComponent->SetRadius(10.0f);
+	pPlayerEntity->GetComponentMgr()->AddComponent(circleComponent);
+
+	//debug
+	auto* debugComponent = new DebugComponent(pPlayerEntity);
+	debugComponent->DisplayPosition(true);
+	pPlayerEntity->GetComponentMgr()->AddComponent(debugComponent);
+	
 	//Camera 2D
-	BaseEntity* pCamera = NEW_AO BaseEntity();
+	auto* pCamera = NEW_AO BaseEntity();
 	pCamera->SetName("camera 2D");
-	Camera2DComponent* m_pCamera2D = NEW_AO Camera2DComponent(pCamera);
-	auto custom_camera_controller = new Camera2DTargetedController(m_pCamera2D);
+	/*auto* m_pCamera2D = NEW_AO Camera2DComponent(pCamera);
+	auto* custom_camera_controller = new Camera2DTargetedController(m_pCamera2D);
+	m_pCamera2D->CameraController(custom_camera_controller);
+	pCamera->GetComponentMgr()->AddComponent(m_pCamera2D);
+	custom_camera_controller->SetDeadZoneRatio(Vector2F(0.7f, 0.7f));
+	custom_camera_controller->SetTargetedEntity(pPlayerEntity);
+	custom_camera_controller->SetLimits(RectangleI(0, 0, 1500, 800));*/
+
+	auto* m_pCamera2D = NEW_AO Camera3DComponent(pCamera);
+	auto* custom_camera_controller = new Camera3DTargetedController(m_pCamera2D);
 	m_pCamera2D->CameraController(custom_camera_controller);
 	pCamera->GetComponentMgr()->AddComponent(m_pCamera2D);
 	custom_camera_controller->SetDeadZoneRatio(Vector2F(0.7f, 0.7f));
 	custom_camera_controller->SetTargetedEntity(pPlayerEntity);
 	custom_camera_controller->SetLimits(RectangleI(0, 0, 1500, 800));
+	pWorld->AddEntity(pCamera);
+	GetGameInfo().SetActiveCamera(m_pCamera2D);
+	
 	pWorld->AddEntity(pCamera);
 	GetGameInfo().SetActiveCamera(m_pCamera2D);
 }

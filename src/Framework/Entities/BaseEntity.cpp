@@ -26,7 +26,7 @@ namespace CasaEngine
 
 		std::ostringstream s;
 		s << "entity_" << m_ID;
-		m_szName = _strdup(s.str().c_str());
+		m_Name = s.str();
 		m_pComponentManager = NEW_AO ComponentManager(this);
 		m_bIsEnabled = true;
 		m_bIsVisible = true;
@@ -47,7 +47,6 @@ namespace CasaEngine
 	{
 		//EntityMgr.RemoveEntity(this);
 		DELETE_AO m_pComponentManager;
-		::free((void *)m_szName);
 	}
 
 	EntityId BaseEntity::ID() const
@@ -122,16 +121,20 @@ namespace CasaEngine
 	 */
 	const char *BaseEntity::GetName() const 
 	{ 
-		return m_szName; 
+		return m_Name.c_str();
+	}
+
+	void BaseEntity::SetName(std::string &val)
+	{
+		m_Name = val;
 	}
 
 	/**
 	 * 
 	 */
 	void BaseEntity::SetName(const char * val) 
-	{ 
-		::free((void *)m_szName);
-		m_szName = strdup(val); 
+	{
+		m_Name = val;
 	}
 
 	/**
