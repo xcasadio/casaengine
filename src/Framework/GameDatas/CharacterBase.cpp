@@ -24,7 +24,7 @@ namespace CasaEngine
 		m_Direction = Vector2F::UnitX();
 
 		//TODO set after creation by the level configuration
-		m_Speed = 80.0f;
+		m_Speed = 30.0f;
 	}
 
 	void CharacterBase::QueueMessage(Telegram& msg)

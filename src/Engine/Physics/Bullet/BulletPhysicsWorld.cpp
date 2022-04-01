@@ -1,11 +1,8 @@
 #include "BulletCollision\CollisionDispatch\btCollisionWorld.h"
 #include "BulletCollision\CollisionShapes\btBox2dShape.h"
-#include "BulletCollision\CollisionShapes\btConvex2dShape.h"
-#include "BulletCollision\CollisionShapes\btConvexShape.h"
 #include "BulletCollision\CollisionShapes\btCylinderShape.h"
 #include "BulletDynamics\Dynamics\btDiscreteDynamicsWorld.h"
 #include "BulletPhysicsWorld.h"
-#include "CA_Assert.h"
 #include "Maths\Shape\Circle.h"
 #include "Maths\Shape\IShape.h"
 #include "Exceptions.h"
@@ -25,10 +22,9 @@ namespace CasaEngine
 		btCollisionDispatcher* pDispatcher_,
 		btBroadphaseInterface* pOverlappingPairCache_,
 		btSequentialImpulseConstraintSolver* pConstraintSolver_) :
-		IPhysicsWorld()
+		IPhysicsWorld(),
+		m_pBulletWorld(new btDynamicsWorldExt(pDispatcher_, pOverlappingPairCache_, pConstraintSolver_, pConfig_))
 	{
-		m_pBulletWorld = new btDynamicsWorldExt(
-			pDispatcher_, pOverlappingPairCache_, pConstraintSolver_, pConfig_);
 	}
 
 	/**
@@ -76,8 +72,8 @@ namespace CasaEngine
 		btDefaultMotionState* myMotionState = nullptr;
 		btRigidBody::btRigidBodyConstructionInfo rbInfo(mass, 0, 0);
 		btRigidBody* body = nullptr;
-
-		auto pShape = CreateCollisionShape(pRigidBody_->pCollisionShape, Vector3F::Zero());
+		;
+		btCollisionShape* pShape = CreateCollisionShape(pRigidBody_->pCollisionShape);
 
 		startTransform.setOrigin(btVector3(position.x, position.y, position.z));
 
@@ -114,7 +110,7 @@ namespace CasaEngine
 	/**
 	 *
 	 */
-	btCollisionShape* BulletPhysicsWorld::CreateCollisionShape(const IShape* pShape_, Vector3F& origin_)
+	btCollisionShape* BulletPhysicsWorld::CreateCollisionShape(const IShape* pShape_)
 	{
 		switch (pShape_->Type())
 		{
@@ -133,18 +129,16 @@ namespace CasaEngine
 		case RECTANGLE:
 		{
 			const auto* pBox2D = dynamic_cast<const RectangleF*>(pShape_);
-			const auto center = pBox2D->Center();
-			origin_ = Vector3F(center.x, center.y);
-			const auto size = pBox2D->Size() / 2;
-			auto* const pBox = new btBox2dShape(btVector3(size.x, size.y, 0.0f));
+			const auto size = pBox2D->Size() / 2.0f;
+			auto* const pBox = new btBoxShape(btVector3(size.x, size.y, 1.0f));
+			//auto* const pBox = new btBox2dShape(btVector3(size.x, size.y, 0.0f));
 			return pBox;
 		}
 
 		case CIRCLE2D:
 		{
 			const auto* const pCircle = dynamic_cast<const Circle*>(pShape_);
-			origin_ = pCircle->Center();
-			auto* const pCylinder = new btCylinderShapeZ(btVector3(btScalar(pCircle->Radius()), btScalar(pCircle->Radius()), btScalar(0.0f)));
+			auto* const pCylinder = new btCylinderShapeZ(btVector3(pCircle->Radius(), pCircle->Radius(), 0.0f));
 			return pCylinder;
 		}
 
@@ -155,7 +149,6 @@ namespace CasaEngine
 		default:
 		{
 			throw CUnsupported("BulletPhysicsWorld::AddRigidBody() : unknown type");
-			break;
 		}
 		}
 	}
@@ -174,7 +167,7 @@ namespace CasaEngine
 	btCollisionObject* BulletPhysicsWorld::CreateCollisionObjectFromShape(IShape* pShape_)
 	{
 		Vector3F origin;
-		auto* const pbtShape = CreateCollisionShape(pShape_, origin);
+		auto* const pbtShape = CreateCollisionShape(pShape_);
 		auto* colShape = new btCollisionObject();
 		colShape->getWorldTransform().setOrigin(btVector3(origin.x, origin.y, origin.z));
 		colShape->setCollisionShape(pbtShape);
@@ -207,15 +200,15 @@ namespace CasaEngine
 	/**
 	 *
 	 */
-	ICollisionObjectContainer* BulletPhysicsWorld::AddCollisionShape(const IShape* pShape_, const Vector3F& origin_)
+	ICollisionObjectContainer* BulletPhysicsWorld::CreateCollisionShape(const IShape* pShape_, const Vector3F& origin_)
 	{
 		auto* colShape = new btCollisionObject();
 		Vector3F shapeOrigin;
-		auto* const b3pShape = CreateCollisionShape(pShape_, shapeOrigin);
+		auto* const b3pShape = CreateCollisionShape(pShape_);
 		colShape->getWorldTransform().setOrigin(btVector3(origin_.x + shapeOrigin.x, origin_.y + shapeOrigin.y, origin_.z + shapeOrigin.z));
 		colShape->setCollisionShape(b3pShape);
 		colShape->setCollisionFlags(btCollisionObject::CF_DYNAMIC_OBJECT);
-		AddCollisionObject(colShape);
+		//AddCollisionObject(colShape);
 
 		return NEW_AO BulletCollisionObjectContainer(colShape);
 	}

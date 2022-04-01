@@ -47,12 +47,12 @@ namespace CasaEngine
 		void AddCollisionObject(ICollisionObjectContainer* pObj_) override;
 		void RemoveCollisionObject(ICollisionObjectContainer* pObj_) override;
 
-		ICollisionObjectContainer* AddCollisionShape(const IShape* pShape_, const Vector3F& origin_) override;
+		ICollisionObjectContainer* CreateCollisionShape(const IShape* pShape_, const Vector3F& origin_) override;
 
 	private:
 		void AddCollisionObject(btCollisionObject* pColObj_);
 		//btCollisionShape *CreateCollisionShape(const MeshComponentColliper *pMeshCollider_);
-		btCollisionShape* CreateCollisionShape(const IShape* pShape_, Vector3F& origin_);
+		btCollisionShape* CreateCollisionShape(const IShape* pShape_);
 		void RemoveCollisionObject(btCollisionObject* pShape_);
 
 		btCollisionObject* CreateCollisionObjectFromShape(IShape* pShape_);

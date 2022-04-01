@@ -102,7 +102,7 @@ void PhysicalEntity::AddSpritePhysics(Sprite *pSprite_)
 		for (auto coll : pSprite_->GetSpriteData()->GetCollisions())
 		{
 			ICollisionObjectContainer *pObj = 
-				Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->AddCollisionShape(coll.GetShape(), posWithOrigin);
+				Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->CreateCollisionShape(coll.GetShape(), posWithOrigin);
 			m_SpriteCollisionObjects[m_LastSpriteID].push_back(pObj);
 		}
 	}

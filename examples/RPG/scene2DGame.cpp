@@ -99,21 +99,6 @@ void Scene2DGame::LoadContent()
 	m_pWorld->SetPhysicsWorld(physicWorld);
 	physicWorld->SetGravity(Vector3F::Zero());
 	GetGameInfo().SetWorld(m_pWorld);
-	
-	//Camera 3D
-	auto* pCamera = NEW_AO BaseEntity();
-	m_pCamera3D = NEW_AO Camera3DComponent(pCamera);
-	auto* pArcBall = NEW_AO ArcBallCameraController(m_pCamera3D);
-	pArcBall->SetCamera(Vector3F(0, 0.0f, -50.0f), Vector3F::Zero(), -Vector3F::Up());
-	pArcBall->Distance(70.0f);
-	pArcBall->InputDistanceRate(4.0f);
-	pArcBall->InputDisplacementRate(30.0f);
-	m_pCamera3D->CameraController(pArcBall);
-	pCamera->GetComponentMgr()->AddComponent(m_pCamera3D);
-	pCamera->Initialize();
-	m_pWorld->AddEntity(pCamera);
-
-	//GetGameInfo().SetActiveCamera(m_pCamera3D);
 
 	CreateAssets(Vector2I(48, 48));
 	CreateMap(m_pWorld);
@@ -181,7 +166,10 @@ void Scene2DGame::CreateMap(World* pWorld)
 	layer->SetTiles(tiles);
 	pMap->AddLayer(layer);
 
-	tiles[4]->IsWall(true);
+	for (int x = 0; x < 5; ++x)
+	{
+		tiles[4 + pMap->GetMapSize().x * x]->IsWall(true);
+	}
 	
 	//wall
 	/*for (int x = 0; x < pMap->GetMapSize().x; ++x)
@@ -420,14 +408,6 @@ void Scene2DGame::CreateSwordman(World* pWorld)
 	//Camera 2D
 	auto* pCamera = NEW_AO BaseEntity();
 	pCamera->SetName("camera 2D");
-	/*auto* m_pCamera2D = NEW_AO Camera2DComponent(pCamera);
-	auto* custom_camera_controller = new Camera2DTargetedController(m_pCamera2D);
-	m_pCamera2D->CameraController(custom_camera_controller);
-	pCamera->GetComponentMgr()->AddComponent(m_pCamera2D);
-	custom_camera_controller->SetDeadZoneRatio(Vector2F(0.7f, 0.7f));
-	custom_camera_controller->SetTargetedEntity(pPlayerEntity);
-	custom_camera_controller->SetLimits(RectangleI(0, 0, 1500, 800));*/
-
 	auto* m_pCamera2D = NEW_AO Camera3DComponent(pCamera);
 	auto* custom_camera_controller = new Camera3DTargetedController(m_pCamera2D);
 	m_pCamera2D->CameraController(custom_camera_controller);
@@ -437,7 +417,20 @@ void Scene2DGame::CreateSwordman(World* pWorld)
 	custom_camera_controller->SetLimits(RectangleI(0, 0, 1500, 800));
 	pWorld->AddEntity(pCamera);
 	GetGameInfo().SetActiveCamera(m_pCamera2D);
-	
-	pWorld->AddEntity(pCamera);
-	GetGameInfo().SetActiveCamera(m_pCamera2D);
+
+
+	//Camera 3D
+	pCamera = NEW_AO BaseEntity();
+	m_pCamera3D = NEW_AO Camera3DComponent(pCamera);
+	auto* pArcBall = NEW_AO ArcBallCameraController(m_pCamera3D);
+	pArcBall->SetCamera(Vector3F(0, 0.0f, -50.0f), Vector3F::Zero(), -Vector3F::Up());
+	pArcBall->Distance(70.0f);
+	pArcBall->InputDistanceRate(4.0f);
+	pArcBall->InputDisplacementRate(30.0f);
+	m_pCamera3D->CameraController(pArcBall);
+	pCamera->GetComponentMgr()->AddComponent(m_pCamera3D);
+	pCamera->Initialize();
+	m_pWorld->AddEntity(pCamera);
+
+	//GetGameInfo().SetActiveCamera(m_pCamera3D);
 }

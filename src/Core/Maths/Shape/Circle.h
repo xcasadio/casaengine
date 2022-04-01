@@ -13,9 +13,10 @@ namespace CasaEngine
 	{
 	public:
 		Circle();
+		Circle(float radius);
 		Circle(const Circle& rsh);
 		Circle& operator=(const Circle& rsh);
-		~Circle();
+		~Circle() override;
 
 		Vector3F Center() const;
 		void Center(Vector3F val);

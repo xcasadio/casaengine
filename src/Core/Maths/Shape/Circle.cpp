@@ -3,14 +3,18 @@
 namespace CasaEngine
 {
 	Circle::Circle() :
-		IShape(CIRCLE2D)
+		IShape(CIRCLE2D), m_Radius(1.0f)
 	{
-		m_Radius = 1.0f;
 		m_Center = Vector3F::Zero();
 	}
 
+	Circle::Circle(float radius) : Circle()
+	{
+		Radius(radius);
+	}
+
 	Circle::Circle(const Circle& rsh) :
-		IShape(CIRCLE2D)
+		Circle()
 	{
 		*this = rsh;
 	}
@@ -23,16 +27,14 @@ namespace CasaEngine
 		return *this;
 	}
 
-	Circle::~Circle()
-	{
-	}
+	Circle::~Circle() = default;
 
 	Vector3F Circle::Center() const
 	{
 		return m_Center;
 	}
 
-	void Circle::Center(Vector3F val)
+	void Circle::Center(const Vector3F val)
 	{
 		m_Center = val;
 	}
@@ -42,7 +44,7 @@ namespace CasaEngine
 		return m_Radius;
 	}
 
-	void Circle::Radius(float val)
+	void Circle::Radius(const float val)
 	{
 		m_Radius = val;
 	}

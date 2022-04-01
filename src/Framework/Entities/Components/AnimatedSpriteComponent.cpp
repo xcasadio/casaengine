@@ -218,8 +218,8 @@ namespace CasaEngine
 			itShape != pNewSprite->GetCollisionShapeIteratorEnd();
 			itShape++)
 		{
-			ICollisionObjectContainer *pObj =
-				Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->AddCollisionShape(*itShape, Vector3F::Zero());
+			ICollisionObjectContainer *pObj = Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->CreateCollisionShape(*itShape, Vector3F::Zero());
+			Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->AddCollisionObject(pObj);
 			m_LastSpriteCollisionObjects.push_back(pObj);
 		}*/
 
