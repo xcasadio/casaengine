@@ -48,21 +48,25 @@
     <IntDir>$(SolutionDir)$(Platform)\$(Configuration)\obj_$(ProjectName)\</IntDir>
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <WarningLevel>Level4</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../src/Core;../../src/Engine;../../src/Framework;../../examples/03-FSM;../../external/CEGUI;../../external/bullet/include;../../external/SFML/include;../../external/bgfx/include;../../external/bx/include;../../external/bx/include/compat/msvc;../../external/bimg/include;../../external/cereal/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <PreprocessorDefinitions>x64;_DEBUG;_WINDOWS;_USRDLL;__STDC_LIMIT_MACROS;__STDC_FORMAT_MACROS;__STDC_CONSTANT_MACROS;_SCL_SECURE=0;_SECURE_SCL=0;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_WIN32;_WIN64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../../src/Core;../../src/Engine;../../src/Framework;../../examples/03-FSM;../../external/CEGUI;../../external/bullet/include;../../external/SFML/include;../../external/bgfx/include/;../../external/bx/include;../../external/bx/include/compat/msvc;../../external/bimg/include;../../external/cereal/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>CasaEngine-d.lib;bxDebug.lib;bgfxDebug.lib;bimgDebug.lib;bimg_decodeDebug.lib;sfml-window.lib;sfml-system.lib;sfml-main.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>../../external/bgfx/lib/x64;../../external/SFML/lib;$(outdir)</AdditionalLibraryDirectories>
       <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>CasaEngine-d.lib;bxDebug.lib;bgfxDebug.lib;bimgDebug.lib;bimg_decodeDebug.lib;sfml-window.lib;sfml-system.lib;sfml-main.lib;Bullet3Common_Debug.lib;Bullet3Dynamics_Debug.lib;Bullet3Geometry_Debug.lib;Bullet3OpenCL_clew_Debug.lib;BulletCollision_Debug.lib;BulletDynamics_Debug.lib;BulletSoftBody_Debug.lib;LinearMath_Debug.lib;Bullet3Collision_Debug.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <Profile>false</Profile>
+      <OptimizeReferences>false</OptimizeReferences>
+      <AdditionalLibraryDirectories>../../external/bgfx/lib/x64;../../external/bullet/lib/windows;../../external/SFML/lib;$(outdir)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -73,8 +77,9 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>x64;NDEBUG;_WINDOWS;_USRDLL;__STDC_LIMIT_MACROS;__STDC_FORMAT_MACROS;__STDC_CONSTANT_MACROS;_SCL_SECURE=0;_SECURE_SCL=0;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_WIN32;_WIN64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>../../src/Core;../../src/Engine;../../src/Framework;../../examples/03-FSM;../../external/CEGUI;../../external/bullet/include;../../external/SFML/include;../../external/bgfx/include;../../external/bx/include;../../external/bx/include/compat/msvc;../../external/bimg/include;../../external/cereal/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;__STDC_LIMIT_MACROS;__STDC_FORMAT_MACROS;__STDC_CONSTANT_MACROS;_SCL_SECURE=0;_SECURE_SCL=0;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_WIN32;_WIN64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../../src/Core;../../src/Engine;../../src/Framework;../../examples/03-FSM;../../external/CEGUI;../../external/bullet/include;../../external/SFML/include;../../external/bgfx/include/;../../external/bx/include;../../external/bx/include/compat/msvc;../../external/bimg/include;../../external/cereal/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -82,8 +87,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>CasaEngine.lib;bxRelease.lib;bgfxRelease.lib;bimgRelease.lib;bimg_decodeRelease.lib;sfml-window.lib;sfml-system.lib;sfml-main.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>../../external/bgfx/lib/x64;../../external/SFML/lib;$(outdir)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>CasaEngine.lib;bxRelease.lib;bgfxRelease.lib;bimgRelease.lib;bimg_decodeRelease.lib;sfml-window.lib;sfml-system.lib;sfml-main.lib;Bullet3Common_Debug.lib;Bullet3Dynamics_Debug.lib;Bullet3Geometry_Debug.lib;Bullet3OpenCL_clew_Debug.lib;BulletCollision_Debug.lib;BulletDynamics_Debug.lib;BulletSoftBody_Debug.lib;LinearMath_Debug.lib;Bullet3Collision_Debug.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../../external/bgfx/lib/x64;../../external/bullet/lib/windows;../../external/SFML/lib;$(outdir)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
