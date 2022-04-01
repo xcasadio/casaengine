@@ -86,10 +86,10 @@ namespace CasaEngine
 		auto& viewport = this->Camera()->GetViewport();
 
 		projectionMatrix_.OrthoOffCenter(
-			static_cast<float>(viewport.X()),
-			static_cast<float>(viewport.Y()),
-			static_cast<float>(viewport.Width() * Game::Instance().GetWindowSize().x),
-			static_cast<float>(viewport.Height() * Game::Instance().GetWindowSize().y),
+			viewport.X(),
+			viewport.Y(),
+			viewport.Width() * Game::Instance().GetWindowSize().x,
+			viewport.Height() * Game::Instance().GetWindowSize().y,
 			viewport.NearClipPlane(), viewport.FarClipPlane());
 	}
 

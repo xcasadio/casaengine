@@ -40,8 +40,8 @@ namespace CasaEngine
 			{
 				float longitude = static_cast<float>(j) * MATH_2PI / static_cast<float>(horizontalSegments);
 
-				float dx = static_cast<float>(cosf(longitude)) * dxz;
-				float dz = static_cast<float>(sinf(longitude)) * dxz;
+				float dx = cosf(longitude) * dxz;
+				float dz = sinf(longitude) * dxz;
 
 				Vector3F normal(dx, dy, dz);
 				AddVertex(normal * radius, normal, Vector2F(static_cast<float>(j) / static_cast<float>(horizontalSegments), static_cast<float>(i) / static_cast<float>(verticalSegments)));

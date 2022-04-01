@@ -168,7 +168,7 @@ namespace CasaEngine
 	{
 		if (m_Height != 0)
 		{
-			m_fAspectRatio = static_cast<float>(m_Width) / static_cast<float>(m_Height);
+			m_fAspectRatio = m_Width / m_Height;
 		}
 		else
 		{
@@ -196,7 +196,7 @@ namespace CasaEngine
 		float a = source.x * mat.a14 + source.y * mat.a24 + source.z * mat.a34 + mat.a44;
 		if (!WithinEpsilon(a, 1.0f))
 		{
-			vector = static_cast<Vector3F>(vector / a);
+			vector = vector / a;
 		}
 		vector.x = (vector.x + 1.0f) * 0.5f * m_Width + m_X;
 		vector.y = (-vector.y + 1.0f) * 0.5f * m_Height + m_Y;

@@ -31,7 +31,7 @@ void PlayerStateIdle::Execute(IController* pController_, const GameTime& elpased
 
 	if (pPlayerController->IsAttackButtonPressed() == true)
 	{
-		pPlayerController->FSM()->ChangeState(pPlayerController->GetState(static_cast<int>(ATTACK_1)));
+		pPlayerController->FSM()->ChangeState(pPlayerController->GetState(ATTACK_1));
 		return;
 	}
 
@@ -44,7 +44,7 @@ void PlayerStateIdle::Execute(IController* pController_, const GameTime& elpased
 
 	if (joyDir.x != 0.0f || joyDir.y != 0.0f)
 	{
-		pPlayerController->FSM()->ChangeState(pPlayerController->GetState((int)PlayerControllerState::MOVING));
+		pPlayerController->FSM()->ChangeState(pPlayerController->GetState(PlayerControllerState::MOVING));
 	}
 	else // used to immobilized the character
 	{
@@ -108,7 +108,7 @@ void PlayerStateWalking::Execute(IController* pController_, const GameTime& elpa
 			pPlayerController->GetPlayer()->SetCurrentAnimationByName("walk_backward");
 	} else
 	{
-		pPlayerController->FSM()->ChangeState(pPlayerController->GetState((int)PlayerControllerState::IDLE));
+		pPlayerController->FSM()->ChangeState(pPlayerController->GetState(PlayerControllerState::IDLE));
 	}
 }
 

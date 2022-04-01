@@ -412,7 +412,7 @@ void Game::HandleWindowEvents()
 
 		case sf::Event::MouseWheelScrolled:
 			//handled = GUIContext.injectMouseWheelChange(static_cast<float>(event.mouseWheelScroll.delta));
-			io.MouseWheel = static_cast<float>(event.mouseWheelScroll.delta);
+			io.MouseWheel = event.mouseWheelScroll.delta;
 			break;
 
 #endif

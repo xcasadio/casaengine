@@ -97,8 +97,8 @@ namespace CasaEngine
 		//Touch
 		if (Game::Instance().GetInput().IsTouchMove(0) == true)
 		{
-			horizontalOrbit = static_cast<float>(-Game::Instance().GetInput().TouchMoveDeltaX(0));
-			verticalOrbit = static_cast<float>(-Game::Instance().GetInput().TouchMoveDeltaY(0));
+			horizontalOrbit = -Game::Instance().GetInput().TouchMoveDeltaX(0);
+			verticalOrbit = -Game::Instance().GetInput().TouchMoveDeltaY(0);
 			CA_TRACE("TouchMove x:%f y=%f\n", horizontalOrbit, verticalOrbit);
 		}
 
@@ -311,8 +311,8 @@ namespace CasaEngine
 	{
 		auto& viewport = this->Camera()->GetViewport();
 
-		float ratio = static_cast<float>(viewport.Width() * Game::Instance().GetWindowSize().x) /
-			static_cast<float>(viewport.Height() * Game::Instance().GetWindowSize().y);
+		float ratio = viewport.Width() * Game::Instance().GetWindowSize().x /
+			(viewport.Height() * Game::Instance().GetWindowSize().y);
 
 		projectionMatrix_.PerspectiveFOV(
 			dynamic_cast<Camera3DComponent*>(Camera())->FOV(),

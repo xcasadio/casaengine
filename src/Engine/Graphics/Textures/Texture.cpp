@@ -27,7 +27,7 @@ namespace CasaEngine
 	 */
 	Texture* Texture::loadTexture(IFile* pFile, uint32_t _flags, uint8_t _skip)
 	{
-		auto pair = _textureCache.find(static_cast<std::string>(pFile->Fullname()));
+		auto pair = _textureCache.find(pFile->Fullname());
 		if (pair != _textureCache.end())
 		{
 			return pair->second;

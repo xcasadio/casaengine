@@ -32,13 +32,13 @@ void PlayerController::Initialize()
 	auto player_state_idle = NEW_AO PlayerStateIdle();
 	auto player_state_walking = NEW_AO PlayerStateWalking();
 
-	AddState(static_cast<int>(IDLE), player_state_idle);
-	AddState(static_cast<int>(MOVING), player_state_walking);
+	AddState(IDLE, player_state_idle);
+	AddState(MOVING, player_state_walking);
 	//AddState(static_cast<int>(ATTACK_1), player_state_attack);
 
 	GetPlayer()->SetOrientation(RIGHT);
 	//Character.Animation2DPlayer.SetCurrentAnimationByID((int)AnimationIndex.IdleRight);
-	FSM()->SetCurrentState(GetState(static_cast<int>(IDLE)));
+	FSM()->SetCurrentState(GetState(IDLE));
 }
 
 /**

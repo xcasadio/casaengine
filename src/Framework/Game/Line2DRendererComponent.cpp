@@ -89,10 +89,10 @@ namespace CasaEngine
 
 		Matrix4 matProj;
 		matProj.OrthoOffCenter(
-			static_cast<float>(pCamera->GetViewport().X() * GetGame()->GetWindowSize().x),
-			static_cast<float>(pCamera->GetViewport().Y() * GetGame()->GetWindowSize().y),
-			static_cast<float>(pCamera->GetViewport().Width() * GetGame()->GetWindowSize().x),
-			static_cast<float>(pCamera->GetViewport().Height() * GetGame()->GetWindowSize().y),
+			pCamera->GetViewport().X() * GetGame()->GetWindowSize().x,
+			pCamera->GetViewport().Y() * GetGame()->GetWindowSize().y,
+			pCamera->GetViewport().Width() * GetGame()->GetWindowSize().x,
+			pCamera->GetViewport().Height() * GetGame()->GetWindowSize().y,
 			0.0f, 1000.0f);
 
 		setVertexBuffer(0, m_VertexBuffer, 0, m_NbLines);

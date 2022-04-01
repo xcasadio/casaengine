@@ -11,7 +11,7 @@ namespace CasaEngine
 	Sprite::Sprite(SpriteData& spriteData)
 	{
 		Texture* texture;
-		auto pair = _textureCache.find(static_cast<std::string>(spriteData.GetAssetFileName()));
+		auto pair = _textureCache.find(spriteData.GetAssetFileName());
 
 		if (pair != _textureCache.end())
 		{

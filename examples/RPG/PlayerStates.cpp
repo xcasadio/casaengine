@@ -56,17 +56,17 @@ void PlayerStateIdle::Execute(IController* pController_, const GameTime& elpased
 
 	if (pPlayerController->GetPlayer()->FuryModeEnabling() == true)
 	{
-		pPlayerController->FSM()->ChangeState(pPlayerController->GetState(static_cast<int>(TO_FURY_MODE)));
+		pPlayerController->FSM()->ChangeState(pPlayerController->GetState(TO_FURY_MODE));
 		return;
 	}
 	else if (pPlayerController->GetPlayer()->FuryModeDesabling() == true)
 	{
-		pPlayerController->FSM()->ChangeState(pPlayerController->GetState(static_cast<int>(TO_NORMAL_MODE)));
+		pPlayerController->FSM()->ChangeState(pPlayerController->GetState(TO_NORMAL_MODE));
 		return;
 	}
 	else if (pPlayerController->IsAttackButtonPressed() == true)
 	{
-		pPlayerController->FSM()->ChangeState(pPlayerController->GetState(static_cast<int>(ATTACK_1)));
+		pPlayerController->FSM()->ChangeState(pPlayerController->GetState(ATTACK_1));
 		return;
 	}
 
@@ -147,7 +147,7 @@ void PlayerStateAttack::Enter(IController* pController_)
 
 	if (pPlayerController->GetPlayer()->FuryModeDesabling() == true)
 	{
-		pPlayerController->FSM()->ChangeState(pPlayerController->GetState(static_cast<int>(TO_NORMAL_MODE)));
+		pPlayerController->FSM()->ChangeState(pPlayerController->GetState(TO_NORMAL_MODE));
 		return;
 	}
 
@@ -222,7 +222,7 @@ bool PlayerStateAttack::OnMessage(IController* pController_, const Telegram& msg
 			// 			}
 			// 			else
 			{
-				pPlayerController->FSM()->ChangeState(pPlayerController->GetState(static_cast<int>(IDLE)));
+				pPlayerController->FSM()->ChangeState(pPlayerController->GetState(IDLE));
 			}
 		}
 		// 		else // ranged attack

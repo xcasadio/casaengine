@@ -38,10 +38,10 @@ namespace CasaEngine
 	void Camera2DComponent::ComputeProjectionMatrix()
 	{
 		m_ProjectionMatrix.OrthoOffCenter(
-			static_cast<float>(m_Viewport.X()),
-			static_cast<float>(m_Viewport.Y()),
-			static_cast<float>(m_Viewport.Width() * Game::Instance().GetWindowSize().x),
-			static_cast<float>(m_Viewport.Height() * Game::Instance().GetWindowSize().y),
+			m_Viewport.X(),
+			m_Viewport.Y(),
+			m_Viewport.Width() * Game::Instance().GetWindowSize().x,
+			m_Viewport.Height() * Game::Instance().GetWindowSize().y,
 			m_Viewport.NearClipPlane(),
 			m_Viewport.FarClipPlane());
 		m_ProjectionMatrix = m_ProjectionMatrix.Transpose();

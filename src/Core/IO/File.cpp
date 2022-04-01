@@ -125,14 +125,14 @@ namespace CasaEngine
 	int File::Read(char* dst_, unsigned int size_)
 	{
 		CA_ASSERT(m_Stream.is_open() == true, "Try to read a file which is not opened");
-		m_Stream.read(dst_, static_cast<std::streamsize>(size_));
+		m_Stream.read(dst_, size_);
 		return size_;
 	}
 
 	int File::Write(char* data_, unsigned int size_)
 	{
 		CA_ASSERT(m_Stream.is_open() == true, "Try to write a file which is not opened");
-		m_Stream.write(data_, static_cast<std::streamsize>(size_));
+		m_Stream.write(data_, size_);
 		return size_;
 	}
 
@@ -161,6 +161,6 @@ namespace CasaEngine
 		}
 
 		m_Stream.seekg(off_, dir);
-		return static_cast<unsigned int>(m_Stream.tellg());
+		return m_Stream.tellg();
 	}
 }

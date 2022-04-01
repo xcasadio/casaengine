@@ -101,8 +101,8 @@ namespace CasaEngine
 	{
 		auto& viewport = this->Camera()->GetViewport();
 
-		const float ratio = static_cast<float>(viewport.Width() * Game::Instance().GetWindowSize().x) /
-			static_cast<float>(viewport.Height() * Game::Instance().GetWindowSize().y);
+		const float ratio = viewport.Width() * Game::Instance().GetWindowSize().x /
+			(viewport.Height() * Game::Instance().GetWindowSize().y);
 		//Camera()->GetViewDistance(),
 		projectionMatrix_.PerspectiveFOV(
 			dynamic_cast<Camera3DComponent*>(Camera())->FOV(),

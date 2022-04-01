@@ -34,9 +34,9 @@ void PlayerController::Initialize()
 	auto player_state_idle = NEW_AO PlayerStateIdle();
 	auto player_state_attack = NEW_AO PlayerStateAttack();
 
-	AddState(static_cast<int>(IDLE), player_state_idle);
+	AddState(IDLE, player_state_idle);
 	// 	AddState((int)PlayerControllerState::MOVING, new PlayerRunState());
-	AddState(static_cast<int>(ATTACK_1), player_state_attack);
+	AddState(ATTACK_1, player_state_attack);
 	// 	AddState((int)PlayerControllerState::ATTACK_2, new PlayerAttack2State());
 	// 	AddState((int)PlayerControllerState::ATTACK_3, new PlayerAttack3State());
 	// 	AddState((int)PlayerControllerState::TO_FURY_MODE, new PlayerToFuryState());
@@ -44,7 +44,7 @@ void PlayerController::Initialize()
 
 	GetPlayer()->SetOrientation(RIGHT);
 	//Character.Animation2DPlayer.SetCurrentAnimationByID((int)AnimationIndex.IdleRight);
-	FSM()->SetCurrentState(GetState(static_cast<int>(IDLE)));
+	FSM()->SetCurrentState(GetState(IDLE));
 }
 
 /**

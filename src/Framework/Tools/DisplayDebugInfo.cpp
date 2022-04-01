@@ -118,10 +118,10 @@ namespace CasaEngine
 
 
 		matProj.OrthoOffCenter(
-			static_cast<float>(viewport.X() * CA_DEFAULT_WIDTH), // TODO get screen size
-			static_cast<float>(viewport.Y() * CA_DEFAULT_HEIGHT), 
-			static_cast<float>(viewport.Width() * CA_DEFAULT_WIDTH), 
-			static_cast<float>(viewport.Height() * CA_DEFAULT_HEIGHT),
+			viewport.X() * CA_DEFAULT_WIDTH, // TODO get screen size
+			viewport.Y() * CA_DEFAULT_HEIGHT, 
+			viewport.Width() * CA_DEFAULT_WIDTH, 
+			viewport.Height() * CA_DEFAULT_HEIGHT,
 			0.0f, 1000.0f);
 
 		bgfx::setViewTransform(1, NULL, matProj);

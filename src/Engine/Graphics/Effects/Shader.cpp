@@ -25,7 +25,7 @@ namespace CasaEngine
 			return nullptr;
 		}
 
-		return NEW_AO Shader(bgfx::createShader(bgfx::makeRef((uint8_t*)pFile->GetBuffer(), pFile->GetBufferLength())));
+		return NEW_AO Shader(bgfx::createShader(bgfx::makeRef(pFile->GetBuffer(), pFile->GetBufferLength())));
 	}
 
 	/**

@@ -49,7 +49,7 @@ namespace CasaEngine
 				DepthColor = ini.GetInteger("Engine.Settings", "DepthColor", 32);
 				FullScreen = ini.GetBoolean("Engine.Settings", "FullScreen", false);
 
-				memcpy_s(static_cast<void*>(GameplayDLL),
+				memcpy_s(GameplayDLL,
 					256 * sizeof(char),
 					ini.Get("Engine.Settings", "GameplayDLL", "").substr(0, 255).c_str(),
 					255 * sizeof(char));

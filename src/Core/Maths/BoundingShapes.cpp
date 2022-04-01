@@ -71,7 +71,7 @@ namespace CasaEngine
 
 	float AABB::IsResetSel(float ifReset, float ifNotReset) const
 	{
-		return static_cast<float>(__fsel(max.x - min.x, ifNotReset, ifReset));
+		return __fsel(max.x - min.x, ifNotReset, ifReset);
 	}
 
 	bool AABB::IsEmpty() const

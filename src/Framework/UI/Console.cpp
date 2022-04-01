@@ -25,8 +25,8 @@ namespace CasaEngine
 		RegisterCommand("help", Bind(&Console::GetCommands, *this));
 
 		RegisterCommand("exit", Bind(&Game::Exit, Game::Instance()));
-		RegisterCommand("activate", Bind(static_cast<T1>(&DebugOptions::Activate), Game::Instance().GetDebugOptions()));
-		RegisterCommand("show", Bind(static_cast<T1>(&DebugOptions::Show), Game::Instance().GetDebugOptions()));
+		RegisterCommand("activate", Bind(&DebugOptions::Activate, Game::Instance().GetDebugOptions()));
+		RegisterCommand("show", Bind(&DebugOptions::Show, Game::Instance().GetDebugOptions()));
 
 		// 		Console::Instance().RegisterCommand("vsparam1", Bind(static_cast<T1>(&Shader::SetParameter), m_VertexShader));
 		// 		Console::Instance().RegisterCommand("psparam1", Bind(static_cast<T1>(&Shader::SetParameter), m_VertexShader));

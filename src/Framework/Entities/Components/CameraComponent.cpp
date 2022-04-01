@@ -138,8 +138,8 @@ namespace CasaEngine
 
 		const float d_yfov_tan = 0.267949192431123f;
 
-		const float w = static_cast<float>(m_Viewport.Width() * Game::Instance().GetWindowSize().x);
-		const float h = static_cast<float>(m_Viewport.Height() * Game::Instance().GetWindowSize().y);
+		const float w = m_Viewport.Width() * Game::Instance().GetWindowSize().x;
+		const float h = m_Viewport.Height() * Game::Instance().GetWindowSize().y;
 		const float aspect = w / h;
 		const float midx = w * 0.5f;
 		const float midy = h * 0.5f;
