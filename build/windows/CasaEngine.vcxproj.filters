@@ -975,6 +975,12 @@
     <ClInclude Include="..\..\src\Framework\GameDatas\CharacterTypes.h">
       <Filter>Framework\GameDatas</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Framework\Entities\Components\DebugComponent.h">
+      <Filter>Framework\Entities\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Framework\Entities\Components\CameraControllers\Camera3DTargetedController.h">
+      <Filter>Framework\Entities\Components\CameraControllers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Core\DateTime.cpp">
@@ -1453,6 +1459,12 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Framework\GameDatas\IController.cpp">
       <Filter>Framework\GameDatas</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Framework\Entities\Components\DebugComponent.cpp">
+      <Filter>Framework\Entities\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Framework\Entities\Components\CameraControllers\Camera3DTargetedController.cpp">
+      <Filter>Framework\Entities\Components\CameraControllers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

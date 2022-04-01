@@ -29,27 +29,27 @@
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Editor Debug|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Editor Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -92,7 +92,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>x64;NOMINMAX;_DEBUG;_WINDOWS;_USRDLL;__STDC_LIMIT_MACROS;__STDC_FORMAT_MACROS;__STDC_CONSTANT_MACROS;_SCL_SECURE=0;_SECURE_SCL=0;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_WIN32;_WIN64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>USE_BULLET_PHYSICS;x64;NOMINMAX;_DEBUG;_WINDOWS;_USRDLL;__STDC_LIMIT_MACROS;__STDC_FORMAT_MACROS;__STDC_CONSTANT_MACROS;_SCL_SECURE=0;_SECURE_SCL=0;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_WIN32;_WIN64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>../../src/Core;../../src/Engine;../../src/Framework;../../external/bgfx/include/;../../external/bimg/include;../../external/bx/include;../../external/bx/include/compat/msvc;../../external/bullet/include;..\..\external\SFML\include;../../external/tolua++-1.0.93/include;../../external/CEGUI;../../external/lua-5.1.4/include;../../external/ib-compress;../../external/stb;../../external/;../../external/dear-imgui;../../external/cereal/include</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -123,7 +123,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>x64;NOMINMAX;NDEBUG;_WINDOWS;_USRDLL;__STDC_LIMIT_MACROS;__STDC_FORMAT_MACROS;__STDC_CONSTANT_MACROS;_HAS_ITERATOR_DEBUGGING=0;_SCL_SECURE=0;_SECURE_SCL=0;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_WIN32;_WIN64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>USE_BULLET_PHYSICS;x64;NOMINMAX;NDEBUG;_WINDOWS;_USRDLL;__STDC_LIMIT_MACROS;__STDC_FORMAT_MACROS;__STDC_CONSTANT_MACROS;_HAS_ITERATOR_DEBUGGING=0;_SCL_SECURE=0;_SECURE_SCL=0;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_WIN32;_WIN64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>../../src/Core;../../src/Engine;../../src/Framework;../../external/bgfx/include/;../../external/bimg/include;../../external/bx/include;../../external/bx/include/compat/msvc;../../external/bullet/include;..\..\external\SFML\include;../../external/tolua++-1.0.93/include;../../external/CEGUI;../../external/lua-5.1.4/include;../../external/ib-compress;../../external/stb;../../external/;../../external/dear-imgui;../../external/cereal/include</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <WholeProgramOptimization>false</WholeProgramOptimization>
@@ -323,6 +323,8 @@
     <ClInclude Include="..\..\src\Framework\Datas\AnimationData.h" />
     <ClInclude Include="..\..\src\Framework\Datas\FrameData.h" />
     <ClInclude Include="..\..\src\Framework\Datas\SpriteData.h" />
+    <ClInclude Include="..\..\src\Framework\Entities\Components\CameraControllers\Camera3DTargetedController.h" />
+    <ClInclude Include="..\..\src\Framework\Entities\Components\DebugComponent.h" />
     <ClInclude Include="..\..\src\Framework\GameDatas\CharacterBase.h" />
     <ClInclude Include="..\..\src\Framework\GameDatas\CharacterTypes.h" />
     <ClInclude Include="..\..\src\Framework\GameDatas\GameDataFactory.h" />
@@ -507,6 +509,8 @@
     <ClCompile Include="..\..\src\Framework\Datas\AnimationData.cpp" />
     <ClCompile Include="..\..\src\Framework\Datas\FrameData.cpp" />
     <ClCompile Include="..\..\src\Framework\Datas\SpriteData.cpp" />
+    <ClCompile Include="..\..\src\Framework\Entities\Components\CameraControllers\Camera3DTargetedController.cpp" />
+    <ClCompile Include="..\..\src\Framework\Entities\Components\DebugComponent.cpp" />
     <ClCompile Include="..\..\src\Framework\GameDatas\CharacterBase.cpp" />
     <ClCompile Include="..\..\src\Framework\GameDatas\GameDataFactory.cpp" />
     <ClCompile Include="..\..\src\Framework\GameDatas\IController.cpp" />
