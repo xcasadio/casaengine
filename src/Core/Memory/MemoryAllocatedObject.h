@@ -1,7 +1,7 @@
-#ifndef _CASAENGINEMemoryAllocatedObject_h_
-#define _CASAENGINEMemoryAllocatedObject_h_
+#ifndef CASAENGINE_MEMORY_ALLOCATED_OBJECT_H
+#define CASAENGINE_MEMORY_ALLOCATED_OBJECT_H
 
-#ifndef _CASAENGINEMemoryAllocation_h_
+#ifndef CASAENGINE_MEMORY_ALLOCATED_OBJECT_H
 #   error Do not include this directly! Include MemoryAllocation.h instead.
 #endif
 
@@ -23,8 +23,8 @@ namespace CasaEngine
 	public:
 		typedef typename AllocatorConfig<Class>::Allocator Allocator;
 
-		inline explicit AllocatedObject()
-		{}
+		explicit AllocatedObject() = default;
+		virtual ~AllocatedObject() = default;
 
 #ifndef CA_CUSTOM_ALLOCATORS_DEBUG
 		inline void* operator new(size_t size)
@@ -32,13 +32,13 @@ namespace CasaEngine
 			return Allocator::allocateBytes(size);
 		}
 #else
-		inline void* operator new(size_t size, const char* file, int line, const char* func)
+		void* operator new(size_t size, const char* file, int line, const char* func)
 		{
 			return Allocator::allocateBytes(size, file, line, func);
 		}
 #endif
 
-		inline void operator delete(void* ptr)
+		void operator delete(void* ptr)
 		{
 			Allocator::deallocateBytes(ptr);
 		}
@@ -49,25 +49,25 @@ namespace CasaEngine
 			return Allocator::allocateBytes(size);
 		}
 #else
-		inline void* operator new[](size_t size, const char* file, int line, const char* func)
+		void* operator new[](size_t size, const char* file, int line, const char* func)
 		{
 			return Allocator::allocateBytes(size, file, line, func);
 		}
 #endif
 
-			inline void operator delete[](void* ptr)
+		void operator delete[](void* ptr)
 		{
 			Allocator::deallocateBytes(ptr);
 		}
 
 			// todo: does debug variant even make sense with placement new?
-			inline void* operator new(size_t size, void* ptr)
+		void* operator new(size_t size, void* ptr)
 		{
 			(void)size;
 			return ptr;
 		}
 
-		inline void operator delete(void* ptr, void*)
+		void operator delete(void* ptr, void*)
 		{
 			Allocator::deallocateBytes(ptr);
 		}
@@ -80,8 +80,7 @@ namespace CasaEngine
 	class AllocatedObject
 	{
 	public:
-		inline explicit AllocatedObject()
-		{}
+		explicit AllocatedObject() = default;
 	};
 
 #endif

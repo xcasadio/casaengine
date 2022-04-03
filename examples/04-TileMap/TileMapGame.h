@@ -7,24 +7,22 @@
 
 using namespace CasaEngine;
 
-/**
- *
- */
+
 class TileMapGame :
 	public Game
 {
 public:
 	TileMapGame();
-	~TileMapGame();
+	~TileMapGame() override;
 
-	virtual void Initialize();
+	void Initialize() override;
 	void CreateBackground(World* pWorld);
-	virtual void LoadContent();
-	virtual void Draw();
-	virtual void Update(const GameTime& gameTime_);
+	void LoadContent() override;
+	void Draw() override;
+	void Update(const GameTime& gameTime_) override;
 
 private:
 	SpriteRenderer* m_pSpriteRenderer;
 };
 
-#endif // TILEMAPGAME_H_
+#endif

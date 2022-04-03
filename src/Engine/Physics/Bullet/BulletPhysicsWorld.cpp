@@ -61,7 +61,7 @@ namespace CasaEngine
 	/**
 	 *
 	 */
-	IRigidBodyContainer* BulletPhysicsWorld::AddRigidBody(const RigidBody* pRigidBody_, const Vector3F position)
+	IRigidBodyContainer* BulletPhysicsWorld::AddRigidBody(const RigidBody* pRigidBody_, Vector3F position)
 	{
 		auto mass = pRigidBody_->mass;
 		btTransform startTransform;
@@ -203,12 +203,10 @@ namespace CasaEngine
 	ICollisionObjectContainer* BulletPhysicsWorld::CreateCollisionShape(const IShape* pShape_, const Vector3F& origin_)
 	{
 		auto* colShape = new btCollisionObject();
-		Vector3F shapeOrigin;
 		auto* const b3pShape = CreateCollisionShape(pShape_);
-		colShape->getWorldTransform().setOrigin(btVector3(origin_.x + shapeOrigin.x, origin_.y + shapeOrigin.y, origin_.z + shapeOrigin.z));
+		colShape->getWorldTransform().setOrigin(btVector3(origin_.x, origin_.y, origin_.z));
 		colShape->setCollisionShape(b3pShape);
 		colShape->setCollisionFlags(btCollisionObject::CF_DYNAMIC_OBJECT);
-		//AddCollisionObject(colShape);
 
 		return NEW_AO BulletCollisionObjectContainer(colShape);
 	}

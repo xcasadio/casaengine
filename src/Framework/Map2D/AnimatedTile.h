@@ -7,12 +7,11 @@
 
 namespace CasaEngine
 {
-	class CA_EXPORT AnimatedTile : public ITile
+	class CA_EXPORT AnimatedTile : public ITile, public AllocatedObject<AnimatedTile>
 	{
 	public:
 		explicit AnimatedTile(Animation2D* pAnimation);
 
-		virtual ~AnimatedTile() = default;
 		void Initialize() override;
 		void Update(const GameTime& gameTime_) override;
 		void Draw(float x, float y, float z, RectangleI uvOffset) override;

@@ -1,13 +1,7 @@
-/**
- *
- */
 #include "FSMGame.h"
-#include <windows.h>
+#include <Windows.h>
 #include <exception>
 
- /**
-  *
-  */
 INT WINAPI WinMain(HINSTANCE Instance, HINSTANCE PrevInst, LPSTR CmdLine, INT NbCmd)
 {
 	try
@@ -17,7 +11,7 @@ INT WINAPI WinMain(HINSTANCE Instance, HINSTANCE PrevInst, LPSTR CmdLine, INT Nb
 	}
 	catch (const std::exception& E)
 	{
-		MessageBox(NULL, E.what(), "Error", MB_ICONWARNING);
+		MessageBox(nullptr, E.what(), "Error", MB_ICONWARNING);
 	}
 
 	return EXIT_SUCCESS;

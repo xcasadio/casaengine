@@ -1,8 +1,3 @@
-/************************************************************************
-	filename:   CEGUIRefCounted.h
-	created:    Wed Mar 1 2006
-	author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
 #ifndef _CASAENGINERefCounted_h_
 #define _CASAENGINERefCounted_h_
 
@@ -17,7 +12,7 @@ namespace CasaEngine
 		Only safe to use with AllocatedObject<T> derived classes!
 	*/
 	template<typename T>
-	class RefCounted
+	class RefCounted : public AllocatedObject<RefCounted<T>>
 	{
 	public:
 		/*!
@@ -179,4 +174,4 @@ namespace CasaEngine
 	};
 }
 
-#endif  // end of guard _CASAENGINERefCounted_h_
+#endif

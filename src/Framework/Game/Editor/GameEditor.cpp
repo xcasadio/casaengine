@@ -22,8 +22,8 @@ namespace CasaEngine
 
 	GameEditor::~GameEditor()
 	{
-		if (nullptr != m_pLineRenderer) DELETE_AO m_pLineRenderer;
-		if (nullptr != m_SpriteRenderer) DELETE_AO m_SpriteRenderer;
+		DELETE_AO m_pLineRenderer;
+		DELETE_AO m_SpriteRenderer;
 	}
 
 	void GameEditor::Initialize()
@@ -72,15 +72,4 @@ namespace CasaEngine
 
 		Game::Instance().GetGameInfo().SetActiveCamera(m_pCamera3D);
 	}
-
-	void GameEditor::Update( const GameTime& gameTime_)
-	{
-		Game::Update(gameTime_);
-	}
-
-	void GameEditor::Draw()
-	{
-		Game::Draw();
-	}
-
 }

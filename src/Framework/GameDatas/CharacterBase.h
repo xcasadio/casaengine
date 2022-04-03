@@ -21,11 +21,11 @@ namespace CasaEngine
 		static orientation GetOrientationFromVector2(Vector2F v);
 
 	public:
-		virtual ~CharacterBase();
+		~CharacterBase() override;
 
 		virtual void Initialize();
-		void Update(const GameTime& gameTime_);
-		void Draw();
+		virtual void Update(const GameTime& gameTime_);
+		virtual void Draw();
 		virtual bool HandleMessage(const Telegram& msg);
 
 		bool SetCurrentAnimation(const char* name) const;

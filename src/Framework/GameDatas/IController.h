@@ -11,11 +11,9 @@ namespace CasaEngine
 {
 	class CharacterBase;
 
-	class IController
+	class IController : public AllocatedObject<IController>
 	{
 	public:
-		virtual ~IController();
-
 		StateMachine<IController>* FSM();
 		IState<IController>* GetState(int stateId_);
 		void AddState(int stateId_, IState<IController>* pState_);

@@ -49,4 +49,4 @@ namespace CasaEngine
 	};
 }
 
-#endif // IOMANAGER_H
+#endif

@@ -9,15 +9,12 @@
 
 namespace CasaEngine
 {
-	/**
-	 *  
-	 */
 	class CA_EXPORT DisplayDebugInfo :
 		public AllocatedObject<DisplayDebugInfo>
 	{
 	public:
 		DisplayDebugInfo();
-		virtual ~DisplayDebugInfo() = default;
+		~DisplayDebugInfo();
 
 		void Initialize();
 		void Release();
@@ -29,7 +26,6 @@ namespace CasaEngine
 		bgfx::VertexBufferHandle m_VertexBuffer;
 		VertexPositionColor m_Vertices[6];
 	};
-
 }
 
-#endif // _DISPLAYDEBUGINFO_H_
+#endif

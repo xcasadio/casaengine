@@ -45,4 +45,4 @@ private:
 	Program* m_pProgram;
 };
 
-#endif // STEERINGGAME_H_
+#endif

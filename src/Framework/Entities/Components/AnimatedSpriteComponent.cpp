@@ -20,27 +20,16 @@
 
 namespace CasaEngine
 {
-
-	/**
-	 *
-	 */
 	AnimatedSpriteComponent::AnimatedSpriteComponent(BaseEntity* pEntity_)
 		: Component(pEntity_, ANIMATED_SPRITE),
 		m_pSpriteRenderer(nullptr),
 		m_pTransform(nullptr),
-		m_pCurrentAnim(nullptr),
+		m_Color(CColor::White),
 		m_SpriteEffect(SPRITE_EFFECT_NONE),
-		m_Color(CColor::White)
+		m_pCurrentAnim(nullptr)
 	{
 		addEvent(FrameChangeEvent::GetEventName());
 		addEvent(AnimationFinishedEvent::GetEventName());
-	}
-
-	/**
-	 *
-	 */
-	AnimatedSpriteComponent::~AnimatedSpriteComponent()
-	{
 	}
 
 	/*
@@ -76,6 +65,14 @@ namespace CasaEngine
 
 	void AnimatedSpriteComponent::SetCurrentAnimation(int index_)
 	{
+		// if the animation is already set we do nothing
+		if (m_pCurrentAnim != nullptr
+			/*&& m_pCurrentAnim->ID() == m_AnimationList[index_]->ID()*/
+			&& m_pCurrentAnim->GetAnimationData()->GetName() == m_AnimationList[index_]->GetAnimationData()->GetName())
+		{
+			return;
+		}
+
 		if (m_pCurrentAnim != nullptr)
 		{
 			//if (m_FrameChangedConnection.isValid() == true)
@@ -87,14 +84,6 @@ namespace CasaEngine
 			{
 				m_AnimFinishedConnection->disconnect();
 			}
-		}
-
-		// if the animation is already set we do nothing
-		if (m_pCurrentAnim != nullptr
-			/*&& m_pCurrentAnim->ID() == m_AnimationList[index_]->ID()*/
-			&& m_pCurrentAnim->GetAnimationData()->GetName() == m_AnimationList[index_]->GetAnimationData()->GetName())
-		{
-			return;
 		}
 
 		m_pCurrentAnim = m_AnimationList[index_];

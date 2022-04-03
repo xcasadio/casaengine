@@ -3,7 +3,6 @@
 #include "EntityManager.h"
 #include "BaseEntity.h"
 
-
 #include "CA_Assert.h"
 #include "World/World.h"
 
@@ -17,7 +16,7 @@ namespace CasaEngine
 	BaseEntity* EntityManager::GetEntityFromID(int id)const
 	{
 		//find the entity
-		EntityMap::const_iterator ent = m_EntityMap.find(id);
+		auto ent = m_EntityMap.find(id);
 
 		//assert that the entity is a member of the map
 		CA_ASSERT(ent != m_EntityMap.end(), "<EntityManager::GetEntityFromID>: invalid ID");
@@ -49,14 +48,12 @@ namespace CasaEngine
 	{
 		std::vector<BaseEntity*> worlds;
 
-		EntityMap::iterator it;
-
 		//we need to delete world after
 		//because world contains the physics world
 		//and some entity can use this physics world when they are deleted
-		for (it = m_EntityMap.begin();
-			it != m_EntityMap.end();
-			it++)
+		for (auto it = m_EntityMap.begin();
+		     it != m_EntityMap.end();
+		     ++it)
 		{
 			if (dynamic_cast<World*>((*it).second) != nullptr)
 			{
@@ -78,7 +75,7 @@ namespace CasaEngine
 		}
 	}
 
-//#ifdef EDITOR
+#ifdef EDITOR
 	BaseEntity* EntityManager::GetFirstSelectedEntity() const
 	{
 		for (auto pair : m_EntityMap)
@@ -92,6 +89,5 @@ namespace CasaEngine
 		return nullptr;
 	}
 
-//#endif
-
+#endif
 }

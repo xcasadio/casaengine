@@ -6,8 +6,4 @@ namespace CasaEngine
 		IShape(CAPSULE)
 	{
 	}
-
-	Capsule::~Capsule()
-	{
-	}
 }

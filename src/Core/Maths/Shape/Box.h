@@ -4,18 +4,16 @@
 #include "CA_Export.h"
 #include "Maths/Vector3.h"
 #include "IShape.h"
-#include "Memory/MemoryAllocation.h"
 
 namespace CasaEngine
 {
 	class CA_EXPORT Box :
-		public IShape, public virtual AllocatedObject<Box>
+		public IShape
 	{
 	public:
 		Box(Vector3F size_ = Vector3F::One(), Vector3F center_ = Vector3F::Zero());
 		Box(const Box& rsh);
 		Box& operator=(const Box& rsh);
-		~Box();
 
 		virtual IShape* Copy() override;
 

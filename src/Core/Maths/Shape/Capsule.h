@@ -9,12 +9,11 @@
 namespace CasaEngine
 {
 	class CA_EXPORT Capsule :
-		public IShape, public virtual AllocatedObject<Capsule>
+		public IShape
 	{
 	public:
 		Capsule();
-		~Capsule();
 	};
 }
 
-#endif // CAPSULE_H
+#endif

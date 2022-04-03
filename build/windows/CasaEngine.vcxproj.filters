@@ -384,9 +384,6 @@
     <ClInclude Include="..\..\src\Core\Memory\MemorySTLWrapper.h">
       <Filter>Core\Memory</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\Memory\ObjectPool.h">
-      <Filter>Core\Memory</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Core\Parsers\Ini\ini.h">
       <Filter>Core\Parsers\Ini</Filter>
     </ClInclude>
@@ -998,9 +995,6 @@
     <ClCompile Include="..\..\src\Core\EventHandler\Event.cpp">
       <Filter>Core\EventHandler</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Core\EventHandler\EventArgs.cpp">
-      <Filter>Core\EventHandler</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Core\EventHandler\EventSet.cpp">
       <Filter>Core\EventHandler</Filter>
     </ClCompile>
@@ -1474,23 +1468,8 @@
     <None Include="..\..\src\Core\Maths\Plane.inl">
       <Filter>Core\Maths</Filter>
     </None>
-    <None Include="..\..\src\Core\Maths\Vector2.inl">
-      <Filter>Core\Maths</Filter>
-    </None>
-    <None Include="..\..\src\Core\Maths\Vector3.inl">
-      <Filter>Core\Maths</Filter>
-    </None>
-    <None Include="..\..\src\Core\Maths\Vector4.inl">
-      <Filter>Core\Maths</Filter>
-    </None>
-    <None Include="..\..\src\Core\Memory\ObjectPool.inl">
-      <Filter>Core\Memory</Filter>
-    </None>
     <None Include="..\..\src\Framework\Game\Game.inl">
       <Filter>Framework\Game</Filter>
-    </None>
-    <None Include="..\..\src\Core\Maths\Rectangle.inl">
-      <Filter>Core\Maths</Filter>
     </None>
     <None Include="..\..\external\dear-imgui\imgui_user.inl">
       <Filter>3rdparty\dear-imgui</Filter>

@@ -25,19 +25,10 @@ namespace CasaEngine
 		virtual void Initialize() = 0;
 		virtual void Update(const GameTime& gameTime_) = 0;
 		virtual void Draw();
-
-		//all entities can communicate using messages. They are sent
-		//using the MessageDispatcher singleton class
-		//virtual void HandleEvent(const int msg_) = 0;
-
-		/**
-		 * Get the entity which contains this component
-		 */
+		
 		BaseEntity* GetEntity();
 
-		/**
-		 * Editor
-		 */
+		//Editor
 		virtual void ShowDebugWidget();
 
 	protected:

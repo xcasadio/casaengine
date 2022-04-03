@@ -21,7 +21,6 @@ namespace CasaEngine
 
 	protected:
 		ITile();
-		~ITile() = default;
 		void Draw(Sprite* pSprite, float x, float y, float z, RectangleI uvOffset) const;
 
 	private:

@@ -31,16 +31,14 @@
 #include "Log/LoggerFile.h"
 #include "Maths/Vector3.h"
 #include "Memory/MemoryAllocation.h"
-#include "Parsers/Xml/tinyxml2.h"
 #include "Map2D/AutoTile.h"
 #include "Map2D/StaticTile.h"
 #include "Map2D/TiledMapComponent.h"
 
 #include "load_save_types.h"
-#include "Entities/Components/Camera2DComponent.h"
 #include "Entities/Components/DebugComponent.h"
-#include "Entities/Components/CameraControllers/Camera2DTargetedController.h"
 #include "Entities/Components/CameraControllers/Camera3DTargetedController.h"
+#include "Entities/Components/Physics/Box2DColliderComponent.h"
 #include "Entities/Components/Physics/Circle2DColliderComponent.h"
 
 using namespace CasaEngine;
@@ -130,12 +128,13 @@ void Scene2DGame::Draw()
 void Scene2DGame::AddGameComponent()
 {
 	m_pLine2DRenderer = NEW_AO Line2DRendererComponent(this);
+	m_pLine3DRenderer = NEW_AO Line3DRendererComponent(this);	
 	m_pSpriteRenderer = NEW_AO SpriteRenderer(this);
 
 	//AddComponent(m_pModelRenderer);
 	AddComponent(m_pSpriteRenderer);
 	AddComponent(m_pLine2DRenderer);
-	AddComponent(NEW_AO Line3DRendererComponent(this));
+	AddComponent(m_pLine3DRenderer);
 }
 
 void Scene2DGame::CreateMap(World* pWorld)
@@ -152,14 +151,14 @@ void Scene2DGame::CreateMap(World* pWorld)
 	pMap->SetTileSize(Vector2I(48, 48));
 
 	//layer 1
-	auto* layer = new TiledMapLayer();
+	auto* layer = NEW_AO TiledMapLayer();
 	std::vector<ITile*> tiles;
 	for (int y = 0; y < pMap->GetMapSize().y; ++y)
 	{
 		for (int x = 0; x < pMap->GetMapSize().x; ++x)
 		{
 			auto* sprite = GetAssetManager().GetAsset<SpriteData>("grass1");
-			auto* tile = new StaticTile(NEW_AO Sprite(*sprite));
+			auto* tile = NEW_AO StaticTile(NEW_AO Sprite(*sprite));
 			tiles.push_back(tile);
 		}
 	}
@@ -178,7 +177,7 @@ void Scene2DGame::CreateMap(World* pWorld)
 	}*/
 
 	//layer 2
-	layer = new TiledMapLayer();
+	layer = NEW_AO TiledMapLayer();
 	tiles.clear();
 	//create tile for autotile
 	std::vector<ITile*> autoTiles;
@@ -189,7 +188,7 @@ void Scene2DGame::CreateMap(World* pWorld)
 			std::ostringstream name;
 			name << "autoGrass2_" << x << "_" << y;
 			auto* sprite = GetAssetManager().GetAsset<SpriteData>(name.str());
-			auto* tile = new StaticTile(NEW_AO Sprite(*sprite));
+			auto* tile = NEW_AO StaticTile(NEW_AO Sprite(*sprite));
 			autoTiles.push_back(tile);
 		}
 	}
@@ -200,7 +199,7 @@ void Scene2DGame::CreateMap(World* pWorld)
 			if (y > 2 && y < pMap->GetMapSize().y - 2
 				&& x > 5 && x < pMap->GetMapSize().x - 5)
 			{
-				auto* tile = new AutoTile(layer, x, y);
+				auto* tile = NEW_AO AutoTile(layer, x, y);
 				tile->setTiles(autoTiles);
 				tiles.push_back(tile);
 			}
@@ -227,24 +226,24 @@ void Scene2DGame::CreateAssets(Vector2I tileSize)
 {
 	//static tile
 	//auto texture = Texture::loadTexture(Game::Instance().GetMediaManager().FindMedia("Outside_A2.png"));
-	auto* pSprite = new SpriteData();
+	auto* pSprite = NEW_AO SpriteData();
 	pSprite->SetName("grass1");
 	pSprite->SetPositionInTexture(RectangleI(0, 0, tileSize.x, tileSize.y));
 	pSprite->SetAssetFileName("Outside_A2.png");
-	GetAssetManager().AddAsset(new Asset("grass1", pSprite));
+	GetAssetManager().AddAsset(NEW_AO Asset("grass1", pSprite));
 	//autotile
 	for (int y = 0; y < 3; ++y)
 	{
 		for (int x = 0; x < 2; ++x)
 		{
-			pSprite = new SpriteData();
+			pSprite = NEW_AO SpriteData();
 			pSprite->SetName("grass1");
 			pSprite->SetPositionInTexture(RectangleI(8 * tileSize.x + tileSize.x * x, y * tileSize.y, tileSize.x, tileSize.y));
 			//pSprite->SetTexture2D(texture);
 			pSprite->SetAssetFileName("Outside_A2.png");
 			std::ostringstream name;
 			name << "autoGrass2_" << x << "_" << y;
-			GetAssetManager().AddAsset(new Asset(name.str(), pSprite));
+			GetAssetManager().AddAsset(NEW_AO Asset(name.str(), pSprite));
 		}
 	}
 }
@@ -271,15 +270,15 @@ void Scene2DGame::CreateEnnemies(World* pWorld)
 	int id = 0;
 	for (auto& sprite : ennemi_datas.sprites)
 	{
-		auto* pSprite = new SpriteData();
+		auto* pSprite = NEW_AO SpriteData();
 		std::ostringstream name;
 		name << "octopus_" << sprite.id;
 		id++;
 		pSprite->SetName(name.str());
 		pSprite->SetPositionInTexture(RectangleI(sprite.x, sprite.y, sprite.w, sprite.h));
 		pSprite->SetOrigin(Vector2I(12, 20));
-		pSprite->SetAssetFileName(ennemi_datas.tile_set.c_str());
-		GetAssetManager().AddAsset(new Asset(name.str(), pSprite));
+		pSprite->SetAssetFileName(ennemi_datas.tile_set);
+		GetAssetManager().AddAsset(NEW_AO Asset(name.str(), pSprite));
 	}
 
 	auto* pAnimatedComponent = NEW_AO AnimatedSpriteComponent(pEntity);
@@ -301,27 +300,29 @@ void Scene2DGame::CreateEnnemies(World* pWorld)
 			pAnim->AddFrame(*frameData);
 		}
 
-		GetAssetManager().AddAsset(new Asset(pAnim->GetName(), pAnim));
+		GetAssetManager().AddAsset(NEW_AO Asset(pAnim->GetName(), pAnim));
 		pAnimatedComponent->AddAnimation(NEW_AO Animation2D(*pAnim));
 	}
 
 	pEntity->GetComponentMgr()->AddComponent(pAnimatedComponent);
 	//pAnimatedComponent->SetCurrentAnimation(0);
 
-	auto* scriptComponent = new ScriptComponent(pEntity);
-	auto* pScriptCharacter = new ScriptCharacter(pEntity, new Enemy(pEntity));
+	auto* scriptComponent = NEW_AO ScriptComponent(pEntity);
+	auto* pScriptCharacter = NEW_AO ScriptCharacter(pEntity, NEW_AO Enemy(pEntity));
 	scriptComponent->SetScriptObject(pScriptCharacter);
 	pEntity->GetComponentMgr()->AddComponent(scriptComponent);
 
-	auto* debugComponent = new DebugComponent(pEntity);
+	auto* debugComponent = NEW_AO DebugComponent(pEntity);
 	debugComponent->DisplayPosition(true);
 	pEntity->GetComponentMgr()->AddComponent(debugComponent);
 
 	//collision
-	auto* circleComponent = new Circle2DColliderComponent(pEntity);
-	circleComponent->SetPosition(Vector3F::Zero());
-	circleComponent->SetRadius(10.0f);
-	pEntity->GetComponentMgr()->AddComponent(circleComponent);
+	//auto *colliderComponent = new Circle2DColliderComponent(pPlayerEntity);
+	//colliderComponent->SetCenter(Vector3F::Zero());
+	//colliderComponent->SetRadius(10.0f);
+	auto* colliderComponent = NEW_AO Box2DColliderComponent(pEntity);
+	colliderComponent->Set(0, 0, 10, 10);
+	pEntity->GetComponentMgr()->AddComponent(colliderComponent);
 
 	pWorld->AddEntity(pEntity);
 }
@@ -351,7 +352,7 @@ void Scene2DGame::CreateSwordman(World* pWorld)
 	int id = 0;
 	for (auto& sprite : player_datas.sprites)
 	{
-		auto* pSprite = new SpriteData();
+		auto* pSprite = NEW_AO SpriteData();
 		std::ostringstream name;
 		name << "player_" << sprite.id;
 		id++;
@@ -359,7 +360,7 @@ void Scene2DGame::CreateSwordman(World* pWorld)
 		pSprite->SetPositionInTexture(RectangleI(sprite.x, sprite.y, sprite.w, sprite.h));
 		pSprite->SetOrigin(Vector2I(24, 38));
 		pSprite->SetAssetFileName(player_datas.tile_set);
-		GetAssetManager().AddAsset(new Asset(name.str(), pSprite));
+		GetAssetManager().AddAsset(NEW_AO Asset(name.str(), pSprite));
 	}
 
 	//load anim
@@ -381,7 +382,7 @@ void Scene2DGame::CreateSwordman(World* pWorld)
 			pAnim->AddFrame(*frameData);
 		}
 
-		GetAssetManager().AddAsset(new Asset(pAnim->GetName(), pAnim));
+		GetAssetManager().AddAsset(NEW_AO Asset(pAnim->GetName(), pAnim));
 		pAnimatedComponent->AddAnimation(NEW_AO Animation2D(*pAnim));
 	}
 
@@ -389,19 +390,21 @@ void Scene2DGame::CreateSwordman(World* pWorld)
 	//pAnimatedComponent->SetCurrentAnimation("stand_down");
 	pWorld->AddEntity(pPlayerEntity);
 
-	auto* scriptComponent = new ScriptComponent(pPlayerEntity);
-	auto* pScriptCharacter = new ScriptCharacter(pPlayerEntity, new Player(pPlayerEntity));
+	auto* scriptComponent = NEW_AO ScriptComponent(pPlayerEntity);
+	auto* pScriptCharacter = NEW_AO ScriptCharacter(pPlayerEntity, NEW_AO Player(pPlayerEntity));
 	scriptComponent->SetScriptObject(pScriptCharacter);
 	pPlayerEntity->GetComponentMgr()->AddComponent(scriptComponent);
 
 	//collision
-	auto *circleComponent = new Circle2DColliderComponent(pPlayerEntity);
-	circleComponent->SetPosition(Vector3F::Zero());
-	circleComponent->SetRadius(10.0f);
-	pPlayerEntity->GetComponentMgr()->AddComponent(circleComponent);
+	//auto *colliderComponent = new Circle2DColliderComponent(pPlayerEntity);
+	//colliderComponent->SetCenter(Vector3F::Zero());
+	//colliderComponent->SetRadius(10.0f);
+	auto* colliderComponent = NEW_AO Box2DColliderComponent(pPlayerEntity);
+	colliderComponent->Set(0, 0, 10, 10);
+	pPlayerEntity->GetComponentMgr()->AddComponent(colliderComponent);
 
 	//debug
-	auto* debugComponent = new DebugComponent(pPlayerEntity);
+	auto* debugComponent = NEW_AO DebugComponent(pPlayerEntity);
 	debugComponent->DisplayPosition(true);
 	pPlayerEntity->GetComponentMgr()->AddComponent(debugComponent);
 	
@@ -409,7 +412,7 @@ void Scene2DGame::CreateSwordman(World* pWorld)
 	auto* pCamera = NEW_AO BaseEntity();
 	pCamera->SetName("camera 2D");
 	auto* m_pCamera2D = NEW_AO Camera3DComponent(pCamera);
-	auto* custom_camera_controller = new Camera3DTargetedController(m_pCamera2D);
+	auto* custom_camera_controller = NEW_AO Camera3DTargetedController(m_pCamera2D);
 	m_pCamera2D->CameraController(custom_camera_controller);
 	pCamera->GetComponentMgr()->AddComponent(m_pCamera2D);
 	custom_camera_controller->SetDeadZoneRatio(Vector2F(0.7f, 0.7f));

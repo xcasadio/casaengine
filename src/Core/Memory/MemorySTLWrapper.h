@@ -42,76 +42,76 @@ namespace CasaEngine
 			typedef STLAllocatorWrapper<U, Allocator> other;
 		};
 
-		inline explicit STLAllocatorWrapper()
+		explicit STLAllocatorWrapper()
 		{}
 
-		inline STLAllocatorWrapper(const STLAllocatorWrapper&)
+		STLAllocatorWrapper(const STLAllocatorWrapper&)
 		{}
 
 		template <typename U, typename P>
-		inline STLAllocatorWrapper(const STLAllocatorWrapper<U, P>&)
+		STLAllocatorWrapper(const STLAllocatorWrapper<U, P>&)
 		{}
 
-		inline pointer address(reference x) const
+		pointer address(reference x) const
 		{
 			return &x;
 		}
 
-		inline const_pointer address(const_reference x) const
+		const_pointer address(const_reference x) const
 		{
 			return &x;
 		}
 
-		inline size_type max_size() const throw()
+		size_type max_size() const noexcept
 		{
 			return Allocator::getMaxAllocationSize();
 		}
 
-		inline pointer allocate(size_type count, typename std::allocator<void>::const_pointer ptr = 0)
+		pointer allocate(size_type count, std::allocator<void>::const_pointer ptr = 0)
 		{
 			(void)ptr;
 			return static_cast<pointer>(Allocator::allocateBytes(count * sizeof(T)));
 		}
 
-		inline void deallocate(pointer ptr, size_type /*size*/)
+		void deallocate(pointer ptr, size_type /*size*/)
 		{
 			Allocator::deallocateBytes(ptr);
 		}
 
-		inline void construct(pointer p, const T& val)
+		void construct(pointer p, const T& val)
 		{
 			new(static_cast<void*>(p)) T(val);
 		}
 
-		inline void destroy(pointer p)
+		void destroy(pointer p)
 		{
 			p->~T();
 		}
 	};
 
 	template<typename T, typename T2, typename P>
-	inline bool operator==(const STLAllocatorWrapper<T, P>&, const STLAllocatorWrapper<T2, P>&)
+	bool operator==(const STLAllocatorWrapper<T, P>&, const STLAllocatorWrapper<T2, P>&)
 	{
 		// same allocator, return true
 		return true;
 	}
 
 	template<typename T, typename P, typename OtherAllocator>
-	inline bool operator==(const STLAllocatorWrapper<T, P>&, const OtherAllocator&)
+	bool operator==(const STLAllocatorWrapper<T, P>&, const OtherAllocator&)
 	{
 		// if the template abose doesn't get matched, return false (allocators differ)
 		return false;
 	}
 
 	template<typename T, typename T2, typename P>
-	inline bool operator!=(const STLAllocatorWrapper<T, P>&, const STLAllocatorWrapper<T2, P>&)
+	bool operator!=(const STLAllocatorWrapper<T, P>&, const STLAllocatorWrapper<T2, P>&)
 	{
 		// same allocator, return false (they are not different)
 		return false;
 	}
 
 	template<typename T, typename P, typename OtherAllocator>
-	inline bool operator!=(const STLAllocatorWrapper<T, P>&, const OtherAllocator&)
+	bool operator!=(const STLAllocatorWrapper<T, P>&, const OtherAllocator&)
 	{
 		// the above didn't get matched, that means the allocators differ...
 		return true;
@@ -134,4 +134,4 @@ namespace CasaEngine
 #endif
 }
 
-#endif	// end of guard _CASAENGINEMemorySTLWrapper_h_
+#endif

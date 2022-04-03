@@ -58,7 +58,7 @@ private:
 
 #include <pshpack1.h>
 
-#endif // #if CA_PLATFORM_WINDOWS
+#endif
 
 	///----------------------------------------------------------
 	/// Structure de l'en-tête des fichiers MD2
@@ -133,7 +133,7 @@ private:
 
 #include <poppack.h>
 
-#endif // #if CA_PLATFORM_WINDOWS
+#endif
 };
 
-#endif // MD2LOADER_H
+#endif

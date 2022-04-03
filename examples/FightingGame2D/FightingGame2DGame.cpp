@@ -104,8 +104,8 @@ void FightingGame2DGame::LoadContent()
 	pAnimatedSprite->SetCurrentAnimation("idle");
 	pAnimatedSprite->SetSpriteEffect(eSpriteEffects::SPRITE_EFFECT_NONE);
 
-	auto* scriptComponent = new ScriptComponent(pPlayer1);
-	auto* pScriptCharacter = new ScriptCharacter(pPlayer1, new Player(pPlayer1));
+	auto* scriptComponent = NEW_AO ScriptComponent(pPlayer1);
+	auto* pScriptCharacter = NEW_AO ScriptCharacter(pPlayer1, NEW_AO Player(pPlayer1));
 	scriptComponent->SetScriptObject(pScriptCharacter);
 	pPlayer1->GetComponentMgr()->AddComponent(scriptComponent);
 	m_pWorld->AddEntity(pPlayer1);
@@ -133,7 +133,7 @@ void FightingGame2DGame::LoadContent()
 	auto* pCamera = NEW_AO BaseEntity();
 	pCamera->SetName("camera 2D");
 	auto* m_pCamera2D = NEW_AO Camera2DComponent(pCamera);
-	auto* camera_controller = new Camera2DTargetedController(m_pCamera2D);
+	auto* camera_controller = NEW_AO Camera2DTargetedController(m_pCamera2D);
 	m_pCamera2D->CameraController(camera_controller);
 	pCamera->GetComponentMgr()->AddComponent(m_pCamera2D);
 	camera_controller->SetDeadZoneRatio(Vector2F(0.7f, 0.7f));
@@ -148,12 +148,12 @@ void FightingGame2DGame::LoadContent()
 	pTransform = NEW_AO Transform3DComponent(pStage);
 	pTransform->SetLocalPosition(Vector3F(0, 0));
 	pStage->GetComponentMgr()->AddComponent(pTransform);
-	auto* stage = new Stage(pStage);
+	auto* stage = NEW_AO Stage(pStage);
 	pStage->GetComponentMgr()->AddComponent(stage);
 	m_pWorld->AddEntity(pStage);
 
 	//stage info
-	auto* stageInfo = new StageInfo(stage, pPlayer1, pPlayer2);
+	auto* stageInfo = NEW_AO StageInfo(stage, pPlayer1, pPlayer2);
 	stage->SetStageInfo(stageInfo);
 	
 	m_pWorld->Initialize();

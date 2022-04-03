@@ -1,16 +1,18 @@
-#include <windows.h>
-#include <stdlib.h>
+#include "TileMapGame.h"
+#include <Windows.h>
 #include <exception>
 
-#include "TileMapGame.h"
-
-/**
- *
- */
 INT WINAPI WinMain(HINSTANCE Instance, HINSTANCE PrevInst, LPSTR CmdLine, INT NbCmd)
 {
-	TileMapGame game;
-	game.Run();
+	try
+	{
+		TileMapGame game;
+		game.Run();
+	}
+	catch (const std::exception& E)
+	{
+		MessageBox(nullptr, E.what(), "Error", MB_ICONWARNING);
+	}
 
 	return EXIT_SUCCESS;
 }

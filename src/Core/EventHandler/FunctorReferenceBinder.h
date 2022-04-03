@@ -1,10 +1,7 @@
-/************************************************************************
-	filename:   CEGUIFunctorReferenceBinder.h
-	created:    Tue Feb 28 2006
-	author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
 #ifndef _CASAENGINEFunctorReferenceBinder_h_
 #define _CASAENGINEFunctorReferenceBinder_h_
+
+#include "Memory\MemoryAllocation.h"
 
 namespace CasaEngine
 {
@@ -16,7 +13,7 @@ namespace CasaEngine
 		to the functor object being copied, or using a pointer).
 	*/
 	template<typename T>
-	struct FunctorReferenceBinder
+	struct FunctorReferenceBinder : AllocatedObject<FunctorReferenceBinder<T>>
 	{
 		FunctorReferenceBinder(T& functor) :
 			d_functor(functor)
@@ -26,4 +23,4 @@ namespace CasaEngine
 	};
 }
 
-#endif  // end of guard _CASAENGINEFunctorReferenceBinder_h_
+#endif 

@@ -1,10 +1,3 @@
-/***********************************************************************
-	filename:   CEGUIEventSet.cpp
-	created:    21/2/2004
-	author:     Paul D Turner
-
-	purpose:    Implements the EventSet class
-*************************************************************************/
 #include "EventSet.h"
 //#include "Exceptions.h"
 #include "GlobalEventSet.h"
@@ -17,25 +10,21 @@
 // Start of CEGUI namespace section
 namespace CasaEngine
 {
-	//----------------------------------------------------------------------------//
 	EventSet::EventSet() :
 		d_muted(false)
 	{
 	}
 
-	//----------------------------------------------------------------------------//
 	EventSet::~EventSet()
 	{
 		removeAllEvents();
 	}
 
-	//----------------------------------------------------------------------------//
 	void EventSet::addEvent(const std::string& name)
 	{
-		addEvent(*new Event(name));
+		addEvent(*NEW_AO Event(name));
 	}
 
-	//----------------------------------------------------------------------------//
 	void EventSet::addEvent(Event& event)
 	{
 		const std::string name(event.getName());
@@ -51,8 +40,7 @@ namespace CasaEngine
 
 		d_events.insert(std::make_pair(name, &event));
 	}
-
-	//----------------------------------------------------------------------------//
+	
 	void EventSet::removeEvent(const std::string& name)
 	{
 		EventMap::iterator pos = d_events.find(name);
@@ -63,14 +51,12 @@ namespace CasaEngine
 			d_events.erase(pos);
 		}
 	}
-
-	//----------------------------------------------------------------------------//
+	
 	void EventSet::removeEvent(Event& event)
 	{
 		removeEvent(event.getName());
 	}
-
-	//----------------------------------------------------------------------------//
+	
 	void EventSet::removeAllEvents(void)
 	{
 		EventMap::const_iterator pos = d_events.begin();
@@ -81,8 +67,7 @@ namespace CasaEngine
 
 		d_events.clear();
 	}
-
-	//----------------------------------------------------------------------------//
+	
 	bool EventSet::isEventPresent(const std::string& name)
 	{
 		return d_events.find(name) != d_events.end();
@@ -187,4 +172,4 @@ namespace CasaEngine
 	}
 
 	//----------------------------------------------------------------------------//
-} // End of  CEGUI namespace section
+}

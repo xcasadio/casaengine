@@ -41,4 +41,4 @@ namespace CasaEngine
 	};
 }
 
-#endif // LINE2D_H
+#endif

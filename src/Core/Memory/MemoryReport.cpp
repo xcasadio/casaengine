@@ -10,9 +10,6 @@ namespace CasaEngine
 {
 	MemoryReport* MemoryReport::m_pInstance(nullptr);
 
-	/**
-	 *
-	 */
 	MemoryReport& MemoryReport::Instance()
 	{
 		if (m_pInstance == nullptr)
@@ -23,9 +20,6 @@ namespace CasaEngine
 		return *m_pInstance;
 	}
 
-	/**
-	 *
-	 */
 	void MemoryReport::Destroy()
 	{
 		if (m_pInstance != nullptr)
@@ -35,19 +29,13 @@ namespace CasaEngine
 		}
 	}
 
-	/**
-	 *
-	 */
 	MemoryReport::MemoryReport()
 #if CA_PLATFORM_DESKTOP
 		: m_File("Memory monitor.log")
-#endif // CA_PLATFORM_DESKTOP
+#endif
 	{
 	}
 
-	/**
-	 *
-	 */
 	void MemoryReport::Allocate(void* ptr, const size_t size, const char* file, const int line)
 	{
 		TBlock block;
@@ -62,12 +50,9 @@ namespace CasaEngine
 			<< " | " << block.File << " (" << block.Line << ")" << std::endl;
 #if CA_PLATFORM_DESKTOP
 		m_File << oss.str().c_str();
-#endif // CA_PLATFORM_DESKTOP
+#endif
 	}
 
-	/**
-	 *
-	 */
 	void MemoryReport::Deallocate(void* ptr)
 	{
 		TBlockMap::iterator It = m_Blocks.find(ptr);
@@ -87,20 +72,14 @@ namespace CasaEngine
 
 #if CA_PLATFORM_DESKTOP
 		m_File << oss.str().c_str();
-#endif // CA_PLATFORM_DESKTOP
+#endif
 	}
 
-	/**
-	 *
-	 */
 	MemoryReport::~MemoryReport()
 	{
 		//m_File.close();
 	}
 
-	/**
-	 *
-	 */
 	void MemoryReport::ReportLeak()
 	{
 		std::ostringstream oss;
@@ -140,6 +119,6 @@ namespace CasaEngine
 
 #if CA_PLATFORM_DESKTOP
 		m_File << oss.str().c_str();
-#endif // CA_PLATFORM_DESKTOP
+#endif
 	}
 }

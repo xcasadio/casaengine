@@ -21,10 +21,6 @@ namespace CasaEngine
 		return *this;
 	}
 
-	Collision::~Collision()
-	{
-	}
-
 	Collision* Collision::Copy() const
 	{
 		return NEW_AO Collision(*this);

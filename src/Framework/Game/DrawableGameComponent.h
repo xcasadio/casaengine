@@ -1,4 +1,3 @@
-
 #ifndef _DRAWABLEGAMECOMPONENT_H_
 #define _DRAWABLEGAMECOMPONENT_H_
 
@@ -9,10 +8,7 @@
 namespace CasaEngine
 {
 	class Game;
-
-	/////////////////////////////////////////////////////////////
-	/// CDrawableGameComponent
-	/////////////////////////////////////////////////////////////
+	
 	class CA_EXPORT DrawableGameComponent :
 		public IGameComponent
 	{
@@ -23,13 +19,10 @@ namespace CasaEngine
 		int DrawOrder() const;
 		void DrawOrder(int val);
 
-		//EventHandler<int> DrawOrderChanged;
-
 	protected :
 		DrawableGameComponent(Game* pGame_);
-		virtual ~DrawableGameComponent();
 
-		virtual void Update( const GameTime& gameTime_ ) = 0;
+		void Update( const GameTime& gameTime_ ) override = 0;
 
 	private:
 		int m_DrawOrder;		
@@ -37,4 +30,4 @@ namespace CasaEngine
 
 }
 
-#endif // _DRAWABLEGAMECOMPONENT_H_
+#endif

@@ -1,24 +1,7 @@
 #ifndef _CASAENGINEMemoryAllocation_h_
 #define _CASAENGINEMemoryAllocation_h_
 
-#include "Base.h"
 #include "CompilationConfig.h"
-
-/*
-#define CA_SET_DEFAULT_ALLOCATOR(A) \
-template<typename T> \
-struct AllocatorConfig \
-{ \
-	typedef A Allocator; \
-};
-
-#define CA_SET_ALLOCATOR(Class, A) \
-template<> \
-struct AllocatorConfig<Class> \
-{ \
-	typedef A Allocator; \
-};
-*/
 
 #ifdef CA_DEBUG_MEMORY
 #	define CA_CUSTOM_ALLOCATORS
@@ -39,7 +22,7 @@ namespace CasaEngine
 	{
 		for (size_t i = 0; i < count; ++i)
 		{
-			new ((void*)(basePtr + i)) T();
+			new (static_cast<void*>(basePtr + i)) T();
 		}
 		return basePtr;
 	}
@@ -99,4 +82,4 @@ namespace CasaEngine
 #include "MemoryAllocatedObject.h"
 #include "MemorySTLWrapper.h"
 
-#endif	// end of guard _CASAENGINEMemoryAllocation_h_
+#endif

@@ -8,8 +8,7 @@
 namespace CasaEngine
 {
 	std::map<std::string, Texture*> Texture::_textureCache;
-
-	//create only one allocator
+	
 	bx::AllocatorI* getDefaultAllocator()
 	{
 		static bx::DefaultAllocator s_allocator;
@@ -18,13 +17,10 @@ namespace CasaEngine
 
 	static void imageReleaseCb(void* _ptr, void* _userData)
 	{
-		bimg::ImageContainer* imageContainer = static_cast<bimg::ImageContainer*>(_userData);
+		auto imageContainer = static_cast<bimg::ImageContainer*>(_userData);
 		imageFree(imageContainer);
 	}
 
-	/**
-	 *
-	 */
 	Texture* Texture::loadTexture(IFile* pFile, uint32_t _flags, uint8_t _skip)
 	{
 		auto pair = _textureCache.find(pFile->Fullname());
@@ -37,11 +33,11 @@ namespace CasaEngine
 		bgfx::TextureInfo* info;
 		void* data = pFile->GetBuffer();
 
-		if (NULL != data)
+		if (nullptr != data)
 		{
 			bimg::ImageContainer* imageContainer = bimg::imageParse(getDefaultAllocator(), data, pFile->GetBufferLength());
 
-			if (NULL != imageContainer)
+			if (nullptr != imageContainer)
 			{
 				/*if (NULL != _orientation)
 				{
@@ -58,10 +54,10 @@ namespace CasaEngine
 				if (imageContainer->m_cubeMap)
 				{
 					handle = createTextureCube(
-						uint16_t(imageContainer->m_width)
+						static_cast<uint16_t>(imageContainer->m_width)
 						, 1 < imageContainer->m_numMips
 						, imageContainer->m_numLayers
-						, bgfx::TextureFormat::Enum(imageContainer->m_format)
+						, static_cast<bgfx::TextureFormat::Enum>(imageContainer->m_format)
 						, _flags
 						, mem
 					);
@@ -69,23 +65,23 @@ namespace CasaEngine
 				else if (1 < imageContainer->m_depth)
 				{
 					handle = createTexture3D(
-						uint16_t(imageContainer->m_width)
-						, uint16_t(imageContainer->m_height)
-						, uint16_t(imageContainer->m_depth)
+						static_cast<uint16_t>(imageContainer->m_width)
+						, static_cast<uint16_t>(imageContainer->m_height)
+						, static_cast<uint16_t>(imageContainer->m_depth)
 						, 1 < imageContainer->m_numMips
-						, bgfx::TextureFormat::Enum(imageContainer->m_format)
+						, static_cast<bgfx::TextureFormat::Enum>(imageContainer->m_format)
 						, _flags
 						, mem
 					);
 				}
-				else if (isTextureValid(0, false, imageContainer->m_numLayers, bgfx::TextureFormat::Enum(imageContainer->m_format), _flags))
+				else if (isTextureValid(0, false, imageContainer->m_numLayers, static_cast<bgfx::TextureFormat::Enum>(imageContainer->m_format), _flags))
 				{
 					handle = createTexture2D(
-						uint16_t(imageContainer->m_width)
-						, uint16_t(imageContainer->m_height)
+						static_cast<uint16_t>(imageContainer->m_width)
+						, static_cast<uint16_t>(imageContainer->m_height)
 						, 1 < imageContainer->m_numMips
 						, imageContainer->m_numLayers
-						, bgfx::TextureFormat::Enum(imageContainer->m_format)
+						, static_cast<bgfx::TextureFormat::Enum>(imageContainer->m_format)
 						, _flags
 						, mem
 					);
@@ -96,40 +92,37 @@ namespace CasaEngine
 					setName(handle, pFile->Fullname().c_str());
 				}
 
-				info = NEW_AO bgfx::TextureInfo();
+				info = ::new bgfx::TextureInfo();
 
 				calcTextureSize(
 					*info
-					, uint16_t(imageContainer->m_width)
-					, uint16_t(imageContainer->m_height)
-					, uint16_t(imageContainer->m_depth)
+					, static_cast<uint16_t>(imageContainer->m_width)
+					, static_cast<uint16_t>(imageContainer->m_height)
+					, static_cast<uint16_t>(imageContainer->m_depth)
 					, imageContainer->m_cubeMap
 					, 1 < imageContainer->m_numMips
 					, imageContainer->m_numLayers
-					, bgfx::TextureFormat::Enum(imageContainer->m_format)
+					, static_cast<bgfx::TextureFormat::Enum>(imageContainer->m_format)
 				);
 			}
 		}
 
-		auto texture = NEW_AO Texture(handle, info);
+		auto *texture = NEW_AO Texture(handle, info);
 		_textureCache.insert(std::make_pair(pFile->Fullname(), texture));
 		return texture;
 	}
 
-	/**
-	 *
-	 */
 	Texture* Texture::createTexture(const unsigned int width_, const unsigned int height_, const bgfx::TextureFormat::Enum format_,
 		const bgfx::Memory* pData_, const unsigned long flags_, bgfx::TextureInfo* info_)
 	{
-		bgfx::TextureHandle handle = createTexture2D(uint16_t(width_), uint16_t(height_), true, 1,
-			format_, uint32_t(flags_), pData_);
+		bgfx::TextureHandle handle = createTexture2D(static_cast<uint16_t>(width_), static_cast<uint16_t>(height_), true, 1,
+			format_, static_cast<uint32_t>(flags_), pData_);
 
-		if (NULL != info_)
+		if (nullptr != info_)
 		{
 			calcTextureSize(*info_
-				, uint16_t(width_)
-				, uint16_t(height_)
+				, static_cast<uint16_t>(width_)
+				, static_cast<uint16_t>(height_)
 				, 0
 				, false
 				, true
@@ -141,34 +134,21 @@ namespace CasaEngine
 		return NEW_AO Texture(handle, info_);
 	}
 
-	/**
-	 *
-	 */
-	Texture::Texture(bgfx::TextureHandle handle_, bgfx::TextureInfo* pInfo_ /*= nullptr*/)
+	Texture::Texture(bgfx::TextureHandle handle_, bgfx::TextureInfo* pInfo_ /*= nullptr*/) :
+		m_pTextureInfo(pInfo_), m_Handle(handle_)
 	{
-		m_Handle = handle_;
-		m_pTextureInfo = pInfo_;
 	}
 
-	/**
-	 *
-	 */
 	Texture::~Texture()
 	{
 		destroy(m_Handle);
 	}
 
-	/**
-	 *
-	 */
 	bgfx::TextureInfo* Texture::TextureInfo() const
 	{
 		return m_pTextureInfo;
 	}
 
-	/**
-	 *
-	 */
 	bgfx::TextureHandle Texture::Handle() const
 	{
 		return m_Handle;

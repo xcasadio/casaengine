@@ -1,4 +1,3 @@
-
 #include "Base.h"
 
 #include "Game/Line2DRendererComponent.h"
@@ -20,10 +19,6 @@ namespace CasaEngine
 {
 	static const unsigned int NbLineMax = 1024;
 
-
-	/**
-	 * 
-	 */
 	Line2DRendererComponent::Line2DRendererComponent(Game* pGame_) : 
 		DrawableGameComponent(pGame_),
 		m_bRecomputeVB(false),
@@ -35,44 +30,31 @@ namespace CasaEngine
 		m_Lines.reserve(100);
 	}
 
-	/**
-	 * 
-	 */
 	Line2DRendererComponent::~Line2DRendererComponent()
 	{
 		destroy(m_VertexBuffer);
 	}
 
-	/**
-	 * 
-	 */
 	void Line2DRendererComponent::OnLoadContent() 
 	{
 		m_VertexBuffer = createDynamicVertexBuffer(NbLineMax * 2, VertexPositionColor::ms_layout);
 		//m_pEffect = IRenderer::Get().CreateEffectFromFile("line_renderer");
 	}
 
-	/**
-	 * 
-	 */
 	void Line2DRendererComponent::Update(const GameTime& /*gameTime_*/)
 	{
 		BuildVB();
 
-		for (std::vector<LineRenderer2DData *>::iterator it = m_Lines.begin();
-			it != m_Lines.end();
-			it++)
+		for (auto it = m_Lines.begin();
+		     it != m_Lines.end();
+		     ++it)
 		{
-			::delete *it;
-			*it = nullptr;
+			DELETE_AO *it;
 		}
 
 		m_Lines.clear();
 	}
 
-	/**
-	 * 
-	 */
 	void Line2DRendererComponent::Draw()
 	{
 		if (m_NbLines == 0)
@@ -98,22 +80,16 @@ namespace CasaEngine
 		setVertexBuffer(0, m_VertexBuffer, 0, m_NbLines);
 	}
 
-	/**
-	 * 
-	 */
 	void Line2DRendererComponent::AddLine( const Vector2F &start_, const CColor &startColor_, 
 		const Vector2F &end_, const CColor &endColor_ )
 	{
 		AddLine(start_, startColor_.ToABGR(), end_, endColor_.ToABGR());
 	}
 
-	/**
-	 * 
-	 */
 	void Line2DRendererComponent::AddLine( const Vector2F &start_, const unsigned int &startColor_, 
 		const Vector2F &end_, const unsigned int &endColor_ )
 	{
-		LineRenderer2DData *pLineData = ::new LineRenderer2DData();
+		const auto pLineData = ::new LineRenderer2DData();
 
 		pLineData->Start = start_;
 		pLineData->StartColor = startColor_;
@@ -125,24 +101,21 @@ namespace CasaEngine
 		m_NbLines = static_cast<unsigned int>(m_Lines.size());
 	}
 
-	/**
-	 * 
-	 */
 	void Line2DRendererComponent::BuildVB()
 	{
 		if (m_bRecomputeVB == false)
 		{
 			return;
 		}
-
-		VertexPositionColor* pVertices = ::new VertexPositionColor[m_Lines.size() * 2];
+		//NEW_ARRAY_PT
+		const auto pVertices = NEW_AO VertexPositionColor[m_Lines.size() * 2];
 		int nbLines = 0;
 
-		for (std::vector<LineRenderer2DData *>::const_iterator it = m_Lines.cbegin(); 
-			it != m_Lines.cend(); 
-			it++)
+		for (auto it = m_Lines.cbegin(); 
+		     it != m_Lines.cend(); 
+		     ++it)
 		{
-			LineRenderer2DData *pLineData = *it;
+			const LineRenderer2DData *pLineData = *it;
 
 			pVertices[nbLines * 2 + 0].Position = Vector3F(pLineData->Start.x, pLineData->Start.y);
 			pVertices[nbLines * 2 + 0].Color = pLineData->StartColor;
@@ -154,7 +127,8 @@ namespace CasaEngine
 		}
 
 		update(m_VertexBuffer, 0 , bgfx::copy(pVertices, static_cast<uint32_t>(m_Lines.size()) * 2 * sizeof(VertexPositionColor) ));
-		::delete[] pVertices;
+		//DELETE_ARRAY_PT
+		DELETE_AO pVertices;
 
 		m_bRecomputeVB = false;
 	}

@@ -1,17 +1,11 @@
-/************************************************************************
-	filename:   CEGUIBoundSlot.cpp
-	created:    Tue Feb 28 2006
-	author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
 #include "BoundSlot.h"
 #include "Event.h"
 
-// Start of CEGUI namespace section
 namespace CasaEngine
 {
 	BoundSlot::BoundSlot(Group group, const SubscriberSlot& subscriber, Event& event) :
 		d_group(group),
-		d_subscriber(new SubscriberSlot(subscriber)),
+		d_subscriber(NEW_AO SubscriberSlot(subscriber)),
 		d_event(&event)
 	{}
 
@@ -65,4 +59,4 @@ namespace CasaEngine
 			d_event = 0;
 		}
 	}
-} // End of  CEGUI namespace section
+}

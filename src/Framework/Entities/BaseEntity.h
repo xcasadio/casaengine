@@ -1,14 +1,5 @@
 #ifndef BASEENTITY_H
 #define BASEENTITY_H
-//------------------------------------------------------------------------
-//
-//  Name:   BaseEntity.h
-//
-//  Desc:   Base class for a game object
-//
-//  Author: Mat Buckland 2002 (fup@ai-junkie.com)
-//
-//------------------------------------------------------------------------
 
 #include "CA_Export.h"
 
@@ -20,7 +11,6 @@
 #include "EventHandler/EventSet.h"
 #include "Parsers/Xml/tinyxml2.h"
 
-#include "Memory/MemoryAllocation.h"
 #include "Physics/PhysicalEntity.h"
 
 
@@ -28,41 +18,22 @@ namespace CasaEngine
 {
 	typedef unsigned int EntityId;					// Unique identifier for each entity instance.
 	#define INVALID_ENTITYID ((EntityId)(0))
-
-	/**
-	 *	
-	 */
+	
 	class CA_EXPORT BaseEntity :
-		public EventSet,
-		public AllocatedObject<BaseEntity>
+		public EventSet
 	{  
 	public:
-		/*
-		 *	setting the ID and incrementing
-		 *	the next valid ID
-		 */
 		BaseEntity();
-		~BaseEntity();
+		~BaseEntity() override;
 
 		BaseEntity* GetParent() const;
 		void SetParent(BaseEntity* val);
 
 		ComponentManager* GetComponentMgr();
 		PhysicalEntity &GetPhysicalEntity();
-
-		/**
-		 * 
-		 */
+		
 		void Initialize();
-
-		/**
-		 * 
-		 */
 		void Update(const GameTime& gameTime_);
-
-		/**
-		 * 
-		 */
 		void Draw();
 
 		//all entities can communicate using messages. They are sent
@@ -102,14 +73,14 @@ namespace CasaEngine
 		std::string m_Name;
 		bool m_bIsEnabled, m_bIsVisible;
 
-//#ifdef EDITOR
+#ifdef EDITOR
 	public:
 		bool IsSelected() const;
 		void IsSelected(bool val);
 
 	public:
 		bool m_IsSelected;
-//#endif
+#endif
 	};
 
 }

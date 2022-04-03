@@ -13,9 +13,6 @@
 
 namespace CasaEngine
 {
-	/**
-	 *
-	 */
 	class CA_EXPORT IPhysicsWorld :
 		public AllocatedObject<IPhysicsWorld>
 	{
@@ -33,11 +30,9 @@ namespace CasaEngine
 		virtual void AddCollisionObject(ICollisionObjectContainer*) = 0;
 		virtual void RemoveCollisionObject(ICollisionObjectContainer*) = 0;
 
-		virtual IRigidBodyContainer* AddRigidBody(const RigidBody* pRigidBody_, const Vector3F position) = 0;
+		virtual IRigidBodyContainer* AddRigidBody(const RigidBody* pRigidBody_, Vector3F position) = 0;
 		virtual void RemoveRigidBody(IRigidBodyContainer*) = 0;
-
-	private:
 	};
 }
 
-#endif // IPHYSICSWORLD_H_
+#endif

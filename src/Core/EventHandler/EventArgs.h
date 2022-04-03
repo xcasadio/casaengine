@@ -1,8 +1,3 @@
-/***********************************************************************
-	filename:   CEGUIEventArgs.h
-	created:    21/2/2004
-	author:     Paul D Turner
-*************************************************************************/
 #ifndef _CASAENGINEEventArgs_h_
 #define _CASAENGINEEventArgs_h_
 
@@ -30,15 +25,9 @@ namespace CasaEngine
 		public AllocatedObject<EventArgs>
 	{
 	public:
-		/*************************************************************************
-			Construction
-		*************************************************************************/
-		EventArgs(void) : handled(0) {}
-		virtual ~EventArgs(void) {}
+		EventArgs() : handled(0) {}
+		virtual ~EventArgs() = default;
 
-		/*************************************************************************
-			Data members
-		*************************************************************************/
 		//! handlers should increment this if they handled the event.
 		unsigned int handled;
 	};
@@ -65,4 +54,4 @@ namespace CasaEngine
 	};
 }
 
-#endif  // end of guard _CASAENGINEEventArgs_h_
+#endif

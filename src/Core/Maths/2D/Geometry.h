@@ -220,4 +220,4 @@ namespace CasaEngine
 	}; // class Transformation
 }
 
-#endif // GEOMETRY_H
+#endif

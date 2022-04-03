@@ -60,4 +60,4 @@ namespace CasaEngine
 	};
 }
 
-#endif // PLUGIN_H
+#endif

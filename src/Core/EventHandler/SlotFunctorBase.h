@@ -1,13 +1,8 @@
-/************************************************************************
-	filename:   CEGUISlotFunctorBase.h
-	created:    Tue Feb 28 2006
-	author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
-
 #ifndef _CASAENGINESlotFunctorBase_h_
 #define _CASAENGINESlotFunctorBase_h_
 
 #include "CA_Export.h"
+#include "Memory/MemoryAllocation.h"
 
 namespace CasaEngine
 {
@@ -20,12 +15,12 @@ namespace CasaEngine
 		functor objects that bind slots to signals (or in CEGUI terms, handlers to
 		events).
 	*/
-	class CA_EXPORT SlotFunctorBase
+	class CA_EXPORT SlotFunctorBase : public AllocatedObject<SlotFunctorBase>
 	{
 	public:
-		virtual ~SlotFunctorBase() {};
+		virtual ~SlotFunctorBase() = default;;
 		virtual bool operator()(const EventArgs& args) = 0;
 	};
 }
 
-#endif  // end of guard _CASAENGINESlotFunctorBase_h_
+#endif

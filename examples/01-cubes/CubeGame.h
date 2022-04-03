@@ -1,28 +1,22 @@
-#ifndef HELLOWORLDGAME_H_
-#define HELLOWORLDGAME_H_
+#ifndef CUBEGAME_H_
+#define CUBEGAME_H_
 
 #include "Game/Game.h"
 #include "Graphics/Effects/Program.h"
 
 using namespace CasaEngine;
 
-/**
- *
- */
 class CubeGame :
 	public Game
 {
 public:
 	CubeGame();
-	~CubeGame();
 
-	virtual void Initialize();
-	virtual void LoadContent();
-	virtual void Draw();
-	virtual void Update(const GameTime& gameTime_);
+	void Initialize() override;
+	void LoadContent() override;
 
 private:
 	Program* m_pProgram;
 };
 
-#endif // HELLOWORLDGAME_H_
+#endif

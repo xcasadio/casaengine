@@ -16,13 +16,13 @@ extern "C" void NSLog(CFStringRef _format, ...);
 #	endif // defined(__OBJC__)
 #else
 #	include <stdio.h>
-#endif // CA_PLATFORM_WINDOWS
+#endif
 
 namespace CasaEngine
 {
 #if CA_COMPILER_CLANG_ANALYZER
 	inline __attribute__((analyzer_noreturn)) void debugBreak();
-#endif // CA_COMPILER_CLANG_ANALYZER
+#endif
 
 	inline void debugBreak()
 	{
@@ -37,7 +37,7 @@ namespace CasaEngine
 #else // cross platform implementation
 		int* int3 = (int*)3L;
 		*int3 = 3;
-#endif // BX
+#endif
 	}
 
 	inline void debugOutput(const char* _out)
@@ -55,7 +55,7 @@ namespace CasaEngine
 #else
 		fputs(_out, stdout);
 		fflush(stdout);
-#endif // CA_PLATFORM_WINDOWS
+#endif
 	}
 }
 

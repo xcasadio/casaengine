@@ -24,4 +24,4 @@ namespace CasaEngine
 	};
 }
 
-#endif // LOGGERFILE_H
+#endif

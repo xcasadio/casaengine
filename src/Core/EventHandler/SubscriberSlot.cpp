@@ -1,16 +1,9 @@
-/************************************************************************
-	filename:   CEGUISubscriberSlot.cpp
-	created:    Tue Feb 28 2006
-	author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
-
 #include "SubscriberSlot.h"
 
-// Start of CEGUI namespace section
 namespace CasaEngine
 {
 	SubscriberSlot::SubscriberSlot(FreeFunctionSlot::SlotFunction* func) :
-		d_functor_impl(new FreeFunctionSlot(func))
+		d_functor_impl(NEW_AO FreeFunctionSlot(func))
 	{
 	}
 
@@ -19,13 +12,11 @@ namespace CasaEngine
 	{
 	}
 
-	SubscriberSlot::~SubscriberSlot()
-	{
-	}
+	SubscriberSlot::~SubscriberSlot() = default;
 
 	void SubscriberSlot::cleanup()
 	{
-		delete d_functor_impl;
+		DELETE_AO d_functor_impl;
 		d_functor_impl = 0;
 	}
-} // End of  CEGUI namespace section
+}

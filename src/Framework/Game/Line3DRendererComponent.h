@@ -1,17 +1,13 @@
-
 #ifndef _LINE3DRENDERERCOMPONENT_H_
 #define _LINE3DRENDERERCOMPONENT_H_
 
 #include "CA_Export.h"
-
-
 
 #include "GameTime.h"
 #include "DrawableGameComponent.h"
 #include "Maths/Vector3.h"
 
 #include "Graphics/Color.h"
-#include "Memory/ObjectPool.h"
 #include <vector>
 
 #include <bgfx/bgfx.h>
@@ -21,18 +17,12 @@ namespace CasaEngine
 {
 	class Game;
 
-	/**
-	 * 
-	 */
 	class CA_EXPORT Line3DRendererComponent :
 		public DrawableGameComponent
 	{
 	private:
-		/**
-		 * 
-		 */
 		class LineRenderer3DData : 
-			public ObjectPool<LineRenderer3DData>
+			public AllocatedObject<LineRenderer3DData>
 		{
 		public:
 			Vector3F Start, End;
@@ -41,11 +31,11 @@ namespace CasaEngine
 
 	public:
 		Line3DRendererComponent(Game* pGame_);
-		virtual ~Line3DRendererComponent();
+		~Line3DRendererComponent() override;
 
-		virtual void OnLoadContent();
-		virtual void Update( const GameTime& gameTime_ );
-		virtual void Draw();
+		void OnLoadContent() override;
+		void Update( const GameTime& gameTime_ ) override;
+		void Draw() override;
 
 		void AddLine(const Vector3F& start_, const Vector3F& end_, const CColor& color_);
 		void AddLine(const Vector3F& start_, const Vector3F& end_, const unsigned int color_);
@@ -55,7 +45,6 @@ namespace CasaEngine
 	private:
 		void BuildVB();
 
-	private:
 		Program *m_pProgram;
 		bgfx::DynamicVertexBufferHandle m_VertexBuffer;
 		std::vector<LineRenderer3DData *> m_Lines;
@@ -65,4 +54,4 @@ namespace CasaEngine
 
 }
 
-#endif // _LINE3DRENDERERCOMPONENT_H_
+#endif

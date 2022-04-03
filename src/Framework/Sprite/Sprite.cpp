@@ -3,7 +3,6 @@
 #include "Game/Game.h"
 #include "Graphics/Textures/Texture.h"
 
-
 namespace CasaEngine
 {
 	std::map<std::string, Texture*> Sprite::_textureCache;

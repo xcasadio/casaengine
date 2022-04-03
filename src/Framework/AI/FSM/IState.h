@@ -8,7 +8,7 @@ namespace CasaEngine
 	struct Telegram;
 
 	template <class entity_type>
-	class IState
+	class IState : public AllocatedObject<IState<entity_type>>
 	{
 	public:
 		virtual ~IState(){}

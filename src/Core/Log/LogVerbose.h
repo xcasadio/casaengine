@@ -32,4 +32,4 @@ namespace CasaEngine
 	};
 }
 
-#endif // LOGVERBOSE_H_
+#endif

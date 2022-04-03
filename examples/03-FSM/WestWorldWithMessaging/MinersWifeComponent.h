@@ -74,4 +74,4 @@ public:
 	void SetMinerID(int val) { m_MinerID = val; }
 };
 
-#endif // MinersWifeComponent_H_
+#endif

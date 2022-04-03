@@ -5,7 +5,7 @@
 
 class Stage;
 
-class StageInfo
+class StageInfo : public CasaEngine::AllocatedObject<StageInfo>
 {
 public:
 	StageInfo(Stage *stage, CasaEngine::BaseEntity* player1, CasaEngine::BaseEntity* player2);

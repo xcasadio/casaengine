@@ -1,10 +1,7 @@
-#include "ShaderGame.h"
-#include <windows.h>
+#include <Windows.h>
 #include <exception>
+#include "ShaderGame.h"
 
-/**
- *
- */
 INT WINAPI WinMain(HINSTANCE Instance, HINSTANCE PrevInst, LPSTR CmdLine, INT NbCmd)
 {
 	try

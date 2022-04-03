@@ -1,19 +1,13 @@
-//==========================================================
-// En-têtes
-//==========================================================
-
 #include "Game/GameComponent.h"
 #include "Game/Game.h"
-
 
 namespace CasaEngine
 {
 	Game* IGameComponent::GetGame() const { return m_pGame; }
 
 	IGameComponent::IGameComponent(Game* pGame_) :
-		m_Initialized(false)
+		m_pGame(pGame_), m_UpdateOrder(0), m_Initialized(false)
 	{
-		m_pGame = pGame_;
 	}
 
 	IGameComponent::~IGameComponent()

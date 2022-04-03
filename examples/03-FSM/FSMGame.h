@@ -21,4 +21,4 @@ private:
 	BaseEntity* m_pBob, * m_pElsa;
 };
 
-#endif // FSMGAME_H_
+#endif

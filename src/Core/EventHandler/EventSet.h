@@ -1,10 +1,3 @@
-/***********************************************************************
-	filename:   CEGUIEventSet.h
-	created:    21/2/2004
-	author:     Paul D Turner
-
-	purpose:    Defines class for a named collection of Event objects
-*************************************************************************/
 #ifndef _CASAENGINEEventSet_h_
 #define _CASAENGINEEventSet_h_
 
@@ -12,6 +5,8 @@
 #include "Event.h"
 #include "IteratorBase.h"
 #include <map>
+
+#include "Memory/MemoryAllocatedObject.h"
 
 #if defined (_MSC_VER)
 #   pragma warning(push)
@@ -38,7 +33,7 @@ namespace CasaEngine
 		has no handlers subscribed, and therefore doing nothing is the correct
 		course action).
 	*/
-	class CA_EXPORT EventSet
+	class CA_EXPORT EventSet : public AllocatedObject<EventSet>
 	{
 	public:
 		/*!
@@ -312,12 +307,9 @@ namespace CasaEngine
 		typedef std::map<std::string, Event*> EventMap;
 		EventMap    d_events;
 
-		bool    d_muted;    //!< true if events for this EventSet have been muted.
+		bool    d_muted{};    //!< true if events for this EventSet have been muted.
 
 	public:
-		/*************************************************************************
-			Iterator stuff
-		*************************************************************************/
 		typedef ConstMapIterator<EventMap> EventIterator;
 
 		/*!
@@ -333,4 +325,4 @@ namespace CasaEngine
 #   pragma warning(pop)
 #endif
 
-#endif  // end of guard _CASAENGINEEventSet_h_
+#endif

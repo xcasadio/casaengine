@@ -1,4 +1,3 @@
-
 #ifndef _GAMECOMPONENT_H_
 #define _GAMECOMPONENT_H_
 
@@ -9,10 +8,7 @@
 namespace CasaEngine
 {
 	class Game;
-
-	/////////////////////////////////////////////////////////////
-	/// CGameComponent
-	/////////////////////////////////////////////////////////////
+	
 	class CA_EXPORT IGameComponent :
 		public AllocatedObject<IGameComponent>
 	{
@@ -25,8 +21,6 @@ namespace CasaEngine
 		void UpdateOrder(int val);
 		bool IsInitialized() const;
 
-		//EventHandler<int> UpdateOrderChanged;
-
 	protected:
 		IGameComponent(Game* pGame_);
 		virtual ~IGameComponent();
@@ -38,4 +32,4 @@ namespace CasaEngine
 	};
 }
 
-#endif // _GAMECOMPONENT_H_
+#endif

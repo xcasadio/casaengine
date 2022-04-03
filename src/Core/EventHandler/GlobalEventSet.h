@@ -1,14 +1,10 @@
-/***********************************************************************
-	filename: 	CEGUIGlobalEventSet.h
-	created:	16/1/2005
-	author:		Paul D Turner
-*************************************************************************/
 #ifndef _CASAENGINEGlobalEventSet_h_
 #define _CASAENGINEGlobalEventSet_h_
 
 #include "EventSet.h"
 
 #include "CA_Export.h"
+#include "Memory/MemoryAllocatedObject.h"
 
 #if defined(_MSC_VER)
 #	pragma warning(push)
@@ -24,14 +20,13 @@ namespace CasaEngine
 		to events; which means you can subscribe to some event that does not actually
 		exist (yet).
 	*/
-	class CA_EXPORT GlobalEventSet :
-		public EventSet
+	class CA_EXPORT GlobalEventSet : public EventSet
 	{
 	public:
 		static GlobalEventSet* Instance();
 		static void Destroy();
 
-		~GlobalEventSet();
+		~GlobalEventSet() override;
 		GlobalEventSet(const GlobalEventSet& rsh) = delete;
 		GlobalEventSet& operator=(const GlobalEventSet& rsh) = delete;
 
@@ -65,4 +60,4 @@ namespace CasaEngine
 #	pragma warning(pop)
 #endif
 
-#endif	// end of guard _CASAENGINEGlobalEventSet_h_
+#endif

@@ -2,8 +2,6 @@
 
 #include "Maths/Matrix4.h"
 #include "Graphics/Mesh/Mesh.h"
-#include "Graphics/Renderer/Renderer.h"
-
 
 #include "Log/LogManager.h"
 #include "Log/LogVerbose.h"
@@ -109,14 +107,11 @@ namespace CasaEngine
 		bgfx::setTexture(0, m_TextureUniform, bgfx::isValid(texture) ? texture : m_pDefaultTexture->Handle());
 
 		bgfx::setUniform(m_TextureRepetitionUniform, Vector4F(m_pMaterial->Texture0Repeat().x, m_pMaterial->Texture0Repeat().y, 1.0f, 1.0f));
-
-		bgfx::setState(BGFX_STATE_WRITE_RGB
-			| BGFX_STATE_WRITE_A
-			| BGFX_STATE_WRITE_Z
+		//bgfx::setState(BGFX_STATE_DEFAULT);
+		bgfx::setState(BGFX_STATE_WRITE_MASK
 			| BGFX_STATE_DEPTH_TEST_GREATER
-			| BGFX_STATE_CULL_CW
-			| BGFX_STATE_MSAA);
-
+			| BGFX_STATE_CULL_CW);
+		//
 		bgfx::submit(0, handle_);
 	}
 }

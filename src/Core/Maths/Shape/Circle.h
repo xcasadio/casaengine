@@ -8,8 +8,7 @@
 
 namespace CasaEngine
 {
-	class CA_EXPORT Circle :
-		public IShape
+	class CA_EXPORT Circle : public IShape
 	{
 	public:
 		Circle();

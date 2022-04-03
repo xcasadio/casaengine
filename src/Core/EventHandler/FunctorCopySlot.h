@@ -1,12 +1,8 @@
-/************************************************************************
-	filename:   CEGUIFunctorCopySlot.h
-	created:    Tue Feb 28 2006
-	author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
 #ifndef _CASAENGINEFunctorCopySlot_h_
 #define _CASAENGINEFunctorCopySlot_h_
 
 #include "SlotFunctorBase.h"
+#include "Memory\MemoryAllocation.h"
 
 namespace CasaEngine
 {
@@ -16,7 +12,7 @@ namespace CasaEngine
 		functor object.
 	*/
 	template<typename T>
-	class FunctorCopySlot : public SlotFunctorBase
+	class FunctorCopySlot : public SlotFunctorBase, public AllocatedObject<FunctorCopySlot<T>>
 	{
 	public:
 		FunctorCopySlot(const T& functor) :
@@ -33,4 +29,4 @@ namespace CasaEngine
 	};
 }
 
-#endif  // end of guard _CASAENGINEFunctorCopySlot_h_
+#endif

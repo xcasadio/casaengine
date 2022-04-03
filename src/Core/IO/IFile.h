@@ -65,4 +65,4 @@ namespace CasaEngine
 	};
 }
 
-#endif // IFILE_H
+#endif

@@ -235,7 +235,6 @@
     <ClInclude Include="..\..\src\Core\Memory\MemoryReport.h" />
     <ClInclude Include="..\..\src\Core\Memory\MemoryStdAllocator.h" />
     <ClInclude Include="..\..\src\Core\Memory\MemorySTLWrapper.h" />
-    <ClInclude Include="..\..\src\Core\Memory\ObjectPool.h" />
     <ClInclude Include="..\..\src\Core\Parsers\Ini\ini.h" />
     <ClInclude Include="..\..\src\Core\Parsers\Ini\INIReader.h" />
     <ClInclude Include="..\..\src\Core\Parsers\Xml\tinyxml2.h" />
@@ -428,7 +427,6 @@
     <ClCompile Include="..\..\src\Core\DynamicModule.cpp" />
     <ClCompile Include="..\..\src\Core\EventHandler\BoundSlot.cpp" />
     <ClCompile Include="..\..\src\Core\EventHandler\Event.cpp" />
-    <ClCompile Include="..\..\src\Core\EventHandler\EventArgs.cpp" />
     <ClCompile Include="..\..\src\Core\EventHandler\EventSet.cpp" />
     <ClCompile Include="..\..\src\Core\EventHandler\GlobalEventSet.cpp" />
     <ClCompile Include="..\..\src\Core\EventHandler\SubscriberSlot.cpp" />
@@ -593,11 +591,6 @@
     <None Include="..\..\external\dear-imgui\widgets\range_slider.inl" />
     <None Include="..\..\src\Core\Functor.inl" />
     <None Include="..\..\src\Core\Maths\Plane.inl" />
-    <None Include="..\..\src\Core\Maths\Vector2.inl" />
-    <None Include="..\..\src\Core\Maths\Vector3.inl" />
-    <None Include="..\..\src\Core\Maths\Vector4.inl" />
-    <None Include="..\..\src\Core\Maths\Rectangle.inl" />
-    <None Include="..\..\src\Core\Memory\ObjectPool.inl" />
     <None Include="..\..\src\Core\StringUtils.inl" />
     <None Include="..\..\src\Framework\Game\Game.inl" />
   </ItemGroup>

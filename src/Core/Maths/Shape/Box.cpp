@@ -26,10 +26,6 @@ namespace CasaEngine
 		return *this;
 	}
 
-	Box::~Box()
-	{
-	}
-
 	IShape* Box::Copy()
 	{
 		return NEW_AO Box(*this);

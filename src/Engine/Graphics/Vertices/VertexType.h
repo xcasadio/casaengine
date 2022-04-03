@@ -10,74 +10,59 @@
 
 namespace CasaEngine
 {
-	/**
-	 *
-	 */
 	struct CA_EXPORT VertexPositionColor :
-		public AllocatedObject<VertexPositionColor>
+		AllocatedObject<VertexPositionColor>
 	{
-		Vector3F     Position;  ///< Position
-		unsigned int Color;     ///< ABGR
+		Vector3F     Position;  
+		unsigned int Color;     
 
 		static void init();
 		static bgfx::VertexLayout ms_layout;
 	};
 
-	/**
-	 *
-	 */
 	struct CA_EXPORT VertexPositionTexture :
-		public AllocatedObject<VertexPositionTexture>
+		AllocatedObject<VertexPositionTexture>
 	{
-		Vector3F     Position;  ///< Position
-		Vector2F     TexCoords; ///< Coordonnées de texture
+		Vector3F     Position;  
+		Vector2F     TexCoords; 
 
 		static void init();
 		static bgfx::VertexLayout ms_layout;
 	};
 
-	/**
-	 *
-	 */
 	struct CA_EXPORT VertexPositionColorTexture :
-		public AllocatedObject<VertexPositionColorTexture>
+		AllocatedObject<VertexPositionColorTexture>
 	{
-		Vector3F     Position;  ///< Position
-		Vector2F     TexCoords; ///< Coordonnées de texture
-		unsigned int Color;     ///< ABGR
+		Vector3F     Position;  
+		Vector2F     TexCoords; 
+		unsigned int Color;     
 
 		static void init();
 		static bgfx::VertexLayout ms_layout;
 	};
 
-	/**
-	 *
-	 */
 	struct CA_EXPORT VertexPositionNormalTexture :
-		public AllocatedObject<VertexPositionNormalTexture>
+		AllocatedObject<VertexPositionNormalTexture>
 	{
-		Vector3F     Position;  ///< Position
-		Vector3F     Normal;    ///< Vecteur normal
-		Vector2F     TexCoords; ///< Coordonnées de texture
+		Vector3F     Position;  
+		Vector3F     Normal;    
+		Vector2F     TexCoords; 
 
 		static void init();
 		static bgfx::VertexLayout ms_layout;
 	};
 
-	/**
-	 *
-	 */
 	struct CA_EXPORT VertexPositionColorNormalTexture :
-		public AllocatedObject<VertexPositionColorNormalTexture>
+		AllocatedObject<VertexPositionColorNormalTexture>
 	{
-		Vector3F     Position;  ///< Position
-		Vector3F     Normal;    ///< Vecteur normal
-		Vector2F     TexCoords; ///< Coordonnées de texture
-		unsigned int Color;     ///< ABGR
+		Vector3F     Position;  
+		Vector3F     Normal;    
+		Vector2F     TexCoords; 
+		unsigned int Color{};   
 
 		static void init();
 		static bgfx::VertexLayout ms_layout;
 	};
 }
 
-#endif // VERTEXTYPE_H_
+#endif

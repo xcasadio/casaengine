@@ -1,8 +1,7 @@
-#ifndef _INGAMELOGGER_H_
-#define _INGAMELOGGER_H_
+#ifndef INGAMELOGGER_H
+#define INGAMELOGGER_H
 
 #include "CompilationConfig.h"
-#include "Graphics/Color.h"
 
 #if defined(CA_IN_GAME_LOGGER)
 
@@ -10,15 +9,13 @@
 
 #include "CA_Export.h"
 #include "GameTime.h"
+#include "Graphics/Color.h"
 
 namespace CasaEngine
 {
 	//TODO : create component
 #define IN_GAME_LOG(delay, color, fmt, ...) Game::Instance().GetInGameLogger().AddLog(delay, color, fmt, ##__VA_ARGS__)
 
-	/**
-	 *
-	 */
 	class CA_EXPORT InGameLogger
 	{
 	public:
@@ -30,12 +27,11 @@ namespace CasaEngine
 	private:
 		struct LogData
 		{
-			float delay; // in ms
-			const char* text;
+			float delay{}; // in ms
+			const char* text{};
 			CColor color;
 		};
 
-	private:
 		std::vector<LogData> m_Lines;
 	};
 

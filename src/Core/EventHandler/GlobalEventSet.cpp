@@ -1,13 +1,7 @@
-/***********************************************************************
-	filename: 	CEGUIGlobalEventSet.cpp
-	created:	16/1/2005
-	author:		Paul D Turner
-*************************************************************************/
 #include "GlobalEventSet.h"
 #include <string>
 #include "Log\LogManager.h"
 
-// Start of CEGUI namespace section
 namespace CasaEngine
 {
 	GlobalEventSet* GlobalEventSet::s_pInstance(nullptr);
@@ -27,25 +21,16 @@ namespace CasaEngine
 		DELETE_AO s_pInstance;
 	}
 
-	/*************************************************************************
-		GlobalEventSet constructor.
-	*************************************************************************/
 	GlobalEventSet::GlobalEventSet()
 	{
 		CA_TRACE("GlobalEventSet singleton created. (%p)\n", static_cast<void*>(this));
 	}
 
-	/*************************************************************************
-		GlobalEventSet destructor.
-	*************************************************************************/
 	GlobalEventSet::~GlobalEventSet()
 	{
 		CA_TRACE("GlobalEventSet singleton destroyed. (%p)\n", static_cast<void*>(this));
 	}
 
-	/*************************************************************************
-		Overridden fireEvent which always succeeds.
-	*************************************************************************/
 	void GlobalEventSet::fireEvent(const std::string& name, EventArgs& args, const std::string& eventNamespace)
 	{
 		// here we are very explicit about how we construct the event std::string.
@@ -63,4 +48,4 @@ namespace CasaEngine
 		evt_name.append(name);
 		fireEvent_impl(evt_name, args);
 	}
-} // End of  CEGUI namespace section
+}

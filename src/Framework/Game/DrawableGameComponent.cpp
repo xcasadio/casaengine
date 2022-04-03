@@ -1,7 +1,3 @@
-//==========================================================
-// En-têtes
-//==========================================================
-
 #include "Game/DrawableGameComponent.h"
 #include "Game/GameComponent.h"
 #include "Game/Game.h"
@@ -13,10 +9,6 @@ namespace CasaEngine
 		m_DrawOrder(0)
 	{
 
-	}
-
-	DrawableGameComponent::~DrawableGameComponent()
-	{
 	}
 
 	void DrawableGameComponent::OnLoadContent() 

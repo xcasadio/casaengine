@@ -10,4 +10,4 @@ enum MessageType
 	ANIMATION_FINISHED,
 };
 
-#endif // MESSAGETYPE_H_
+#endif

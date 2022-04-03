@@ -12,7 +12,7 @@ namespace CasaEngine
 {
 	class TiledMapComponent;
 
-	class CA_EXPORT TiledMapLayer
+	class CA_EXPORT TiledMapLayer : public AllocatedObject<TiledMapLayer>
 	{
 	public:
 		TiledMapLayer();
@@ -27,11 +27,11 @@ namespace CasaEngine
 		Vector2I GetTileSize() const;
 		void SetTileSize(Vector2I& size);
 
-		std::vector<ITile*> GetTiles()  const;
+		std::vector<ITile*> GetTiles() const;
 		void SetTiles(std::vector<ITile*>& tiles);
 
 		void SetTile(int x, int y, ITile* pTile);
-		ITile* GetTile(const int x, const int y) const;
+		ITile* GetTile(int x, int y) const;
 
 	private:
 		Vector2I m_MapSize;

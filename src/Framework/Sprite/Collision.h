@@ -16,13 +16,13 @@ namespace CasaEngine
 	};
 
 
-	class CA_EXPORT Collision
+	class CA_EXPORT Collision : public AllocatedObject<Collision>
 	{
 	public:
 		Collision();
 		Collision(const Collision& rsh);
 		Collision& operator=(const Collision& rsh);
-		~Collision();
+		~Collision() = default;
 
 		CollisionType GetType() const;
 		void SetType(CollisionType type);

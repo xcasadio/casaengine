@@ -12,31 +12,27 @@ namespace CasaEngine
 {
 	Animation2D::Animation2D(Animation2DData& data) :
 		Animation(data),
-		m_CurrentFrame(nullptr)
+		m_CurrentFrame(nullptr),
+		m_pAnimation2DData(&data)
 	{
 		addEvent(FrameChangeEvent::GetEventName());
-		m_pAnimation2DData = &data;
+
 		float timeEventFired = 0.0f;
-		for (auto frame : data.GetFrames())
+		for (const auto& frame : data.GetFrames())
 		{
-			SetFrameEvent* pFrameEvent = new SetFrameEvent();
+			auto *pFrameEvent = NEW_AO SetFrameEvent();
 			pFrameEvent->FrameID(frame.GetSpriteId().c_str());
 			pFrameEvent->Time(timeEventFired);
 			timeEventFired += frame.GetDuration();
 			AddEvent(pFrameEvent);
 		}
 
-		if (data.GetFrames().size() > 0)
+		if (!data.GetFrames().empty())
 		{
-			AnimationEndEvent* pEndEvent = NEW_AO AnimationEndEvent();
+			auto *pEndEvent = NEW_AO AnimationEndEvent();
 			pEndEvent->Time(timeEventFired);
 			AddEvent(pEndEvent);
 		}
-	}
-
-	Animation2D::~Animation2D()
-	{
-
 	}
 
 	void Animation2D::Initialize()
@@ -49,7 +45,7 @@ namespace CasaEngine
 	{
 		for (unsigned int i=0; i<m_Events.size(); i++)
 		{
-			SetFrameEvent *pFrameEvent = dynamic_cast<SetFrameEvent *>(m_Events[i]);
+			auto *pFrameEvent = dynamic_cast<SetFrameEvent *>(m_Events[i]);
 			if (pFrameEvent != nullptr)
 			{
 				CurrentFrame(pFrameEvent->FrameID());

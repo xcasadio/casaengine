@@ -51,6 +51,6 @@ namespace CasaEngine
 
 	IShape* Circle::Copy()
 	{
-		return new Circle(*this);
+		return NEW_AO Circle(*this);
 	}
 }

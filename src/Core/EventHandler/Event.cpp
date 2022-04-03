@@ -8,10 +8,8 @@
 
 #include <algorithm>
 
-// Start of CEGUI namespace section
 namespace CasaEngine
 {
-	//----------------------------------------------------------------------------//
 	/*!
 	\brief
 		Implementation helper functor which is used to locate a BoundSlot in the
@@ -43,7 +41,7 @@ namespace CasaEngine
 	//----------------------------------------------------------------------------//
 	Event::~Event()
 	{
-		SlotContainer::iterator iter(d_slots.begin());
+		auto iter(d_slots.begin());
 		const SlotContainer::const_iterator end_iter(d_slots.end());
 
 		for (; iter != end_iter; ++iter)
@@ -65,7 +63,7 @@ namespace CasaEngine
 	Event::Connection Event::subscribe(Group group,
 		const Subscriber& slot)
 	{
-		Connection c(new BoundSlot(group, slot, *this));
+		Connection c(NEW_AO BoundSlot(group, slot, *this));
 		d_slots.insert(std::pair<Group, Connection>(group, c));
 		return c;
 	}
@@ -73,7 +71,7 @@ namespace CasaEngine
 	//----------------------------------------------------------------------------//
 	void Event::operator()(EventArgs& args)
 	{
-		SlotContainer::iterator iter(d_slots.begin());
+		auto iter(d_slots.begin());
 		const SlotContainer::const_iterator end_iter(d_slots.end());
 
 		// execute all subscribers, updating the 'handled' state as we go
@@ -86,7 +84,7 @@ namespace CasaEngine
 	void Event::unsubscribe(const BoundSlot& slot)
 	{
 		// try to find the slot in our collection
-		SlotContainer::iterator curr =
+		auto curr =
 			std::find_if(d_slots.begin(),
 				d_slots.end(),
 				SubComp(slot));
@@ -95,6 +93,4 @@ namespace CasaEngine
 		if (curr != d_slots.end())
 			d_slots.erase(curr);
 	}
-
-	//----------------------------------------------------------------------------//
-} // End of  CEGUI namespace section
+}

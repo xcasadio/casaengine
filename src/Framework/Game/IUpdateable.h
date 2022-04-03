@@ -1,4 +1,3 @@
-
 #ifndef _IUPDATEABLE_H_
 #define _IUPDATEABLE_H_
 
@@ -7,9 +6,6 @@
 
 namespace CasaEngine
 {
-	/////////////////////////////////////////////////////////////
-	/// IUpdateable
-	/////////////////////////////////////////////////////////////
 	class CA_EXPORT IUpdateable
 	{
 	public:
@@ -17,4 +13,4 @@ namespace CasaEngine
 	};
 }
 
-#endif // _IUPDATEABLE_H_
+#endif

@@ -1,4 +1,3 @@
-
 #ifndef INPUT_H_
 #define INPUT_H_
 
@@ -11,9 +10,6 @@
 
 namespace CasaEngine
 {
-	/**
-	 *
-	 */
 	class CA_EXPORT Input
 	{
 	public:
@@ -85,4 +81,4 @@ namespace CasaEngine
 
 }
 
-#endif // INPUTMANAGERCOMPONENT_H_
+#endif

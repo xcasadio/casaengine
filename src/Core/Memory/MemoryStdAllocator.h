@@ -2,7 +2,7 @@
 #define _CASAENGINEMemoryStdAllocator_h_
 
 #include "CA_Export.h"
-#include <stdlib.h>
+#include <cstdlib>
 #include <limits>
 
 namespace CasaEngine
@@ -10,12 +10,12 @@ namespace CasaEngine
 	class CA_EXPORT StdAllocator
 	{
 	public:
-		static inline void* allocateBytes(size_t count)
+		static void* allocateBytes(size_t count)
 		{
 			return malloc(count);
 		}
 
-		static inline void deallocateBytes(void* ptr)
+		static void deallocateBytes(void* ptr)
 		{
 			free(ptr);
 		}
@@ -26,7 +26,7 @@ namespace CasaEngine
 		// have to provide your own custom memory allocator if you want memory debugging.
 
 		/// Get the maximum size of a single allocation
-		static inline size_t getMaxAllocationSize()
+		static size_t getMaxAllocationSize()
 		{
 			return std::numeric_limits<size_t>::max();
 		}
@@ -35,4 +35,4 @@ namespace CasaEngine
 	//CASAENGINE_SET_DEFAULT_ALLOCATOR(StdAllocator)
 }
 
-#endif	// end of guard _CASAENGINEMemoryStdAllocator_h_
+#endif

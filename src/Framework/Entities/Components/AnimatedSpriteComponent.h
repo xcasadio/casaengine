@@ -15,8 +15,6 @@
 #include "EventHandler\EventSet.h"
 #include "EventHandler/Event.h"
 
-#include "Physics/PhysicsObjectContainer.h"
-
 namespace CasaEngine
 {
 	class CA_EXPORT AnimatedSpriteComponent :
@@ -37,7 +35,6 @@ namespace CasaEngine
 
 	public:
 		AnimatedSpriteComponent(BaseEntity* pEntity_);
-		virtual ~AnimatedSpriteComponent();
 
 		CColor GetColor() const;
 		void SetColor(CColor val);

@@ -12,7 +12,6 @@ namespace CasaEngine
 	{
 	public:
 		Animation2D(Animation2DData& data);
-		~Animation2D();
 
 		//EventHandler<Animation2DFrameChangedEventArgs> OnFrameChanged;
 		//EventHandler OnEndAnimationReached;

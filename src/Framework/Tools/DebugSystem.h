@@ -7,19 +7,14 @@
 
 namespace CasaEngine
 {
-    /**
-     *  
-     */
     class CA_EXPORT DebugSystem :
 		public AllocatedObject<DebugSystem>
     {
 	public :
 		DebugSystem();
-		~DebugSystem();
+		~DebugSystem() = default;
 
-		void Initialize();
 		void Update(const GameTime& gameTime_);
-
 		int GetFPS() const;
 		
 	private:
@@ -31,5 +26,4 @@ namespace CasaEngine
 
 }
 
-
-#endif // _DEBUGSYSTEM_H_
+#endif

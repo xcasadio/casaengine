@@ -33,7 +33,7 @@ namespace CasaEngine
 	//  defines a cell containing a list of pointers to entities
 	//------------------------------------------------------------------------
 	template <class entity>
-	struct Cell
+	struct Cell : AllocatedObject<Cell<entity>>
 	{
 		  //all the entities inhabiting this cell
 		  std::list<entity>    Members;
@@ -51,7 +51,7 @@ namespace CasaEngine
 	//  the subdivision class
 	///////////////////////////////////////////////////////////////////////////////
 	template <class entity>
-	class CellSpacePartition
+	class CellSpacePartition : AllocatedObject<CellSpacePartition<entity>>
 	{
 	private:
 
@@ -80,7 +80,7 @@ namespace CasaEngine
 
 		//given a position in the game space this method determines the           
 		//relevant cell's index
-		inline int  PositionToIndex(const Vector2F& pos)const;
+		int  PositionToIndex(const Vector2F& pos)const;
 
 	public:
 		CellSpacePartition();
@@ -92,30 +92,30 @@ namespace CasaEngine
 			int   cellsY);      //number of cells vertically
 
 		//adds entities to the class by allocating them to the appropriate cell
-		inline void AddEntity(const entity& ent);
+		void AddEntity(const entity& ent);
 
 		//update an entity's cell by calling this from your entity's Update method 
-		inline void UpdateEntity(const entity& ent, Vector2F OldPos);
+		void UpdateEntity(const entity& ent, Vector2F OldPos);
 
 		//this method calculates all a target's neighbors and stores them in
 		//the neighbor vector. After you have called this method use the begin, 
 		//next and end methods to iterate through the vector.
-		inline void CalculateNeighbors(Vector2F TargetPos, float QueryRadius);
+		void CalculateNeighbors(Vector2F TargetPos, float QueryRadius);
 
 		//returns a reference to the entity at the front of the neighbor vector
-		inline entity& begin(){m_curNeighbor = m_Neighbors.begin(); return *m_curNeighbor;}
+		entity& begin(){m_curNeighbor = m_Neighbors.begin(); return *m_curNeighbor;}
 
 		//this returns the next entity in the neighbor vector
-		inline entity& next(){++m_curNeighbor; return *m_curNeighbor;}
+		entity& next(){++m_curNeighbor; return *m_curNeighbor;}
 
 		//returns true if the end of the vector is found (a zero value marks the end)
-		inline bool   end(){return (m_curNeighbor == m_Neighbors.end()) || (*m_curNeighbor == 0);}   
+		bool   end(){return (m_curNeighbor == m_Neighbors.end()) || (*m_curNeighbor == 0);}   
    
 		//empties the cells of entities
 		void        EmptyCells();
 
 		//call this to use the gdi to render the cell edges
-		inline void RenderCells() const;
+		void RenderCells() const;
 	};
 
 
@@ -123,9 +123,16 @@ namespace CasaEngine
 	//----------------------------- ctor ---------------------------------------
 	//--------------------------------------------------------------------------
 	template<class entity>
-	CellSpacePartition<entity>::CellSpacePartition()
-	{}
-	
+	CellSpacePartition<entity>::CellSpacePartition():
+		m_fSpaceWidth(0),
+		m_fSpaceHeight(0),
+		m_iNumCellsX(0),
+		m_iNumCellsY(0),
+		m_fCellSizeX(0),
+		m_fCellSizeY(0)
+	{
+	}
+
 	//
 	template<class entity>
 	void CellSpacePartition<entity>::Build(
@@ -232,7 +239,7 @@ namespace CasaEngine
 	//  method calculates an index into its appropriate cell
 	//------------------------------------------------------------------------
 	template<class entity>
-	inline int CellSpacePartition<entity>::PositionToIndex(const Vector2F& pos)const
+	int CellSpacePartition<entity>::PositionToIndex(const Vector2F& pos)const
 	{
 		int idx = static_cast<int>(m_iNumCellsX * pos.x / m_fSpaceWidth) + 
 				static_cast<int>(m_iNumCellsY * pos.y / m_fSpaceHeight) * m_iNumCellsX;
@@ -249,7 +256,7 @@ namespace CasaEngine
 	//  Used to add the entities to the data structure
 	//------------------------------------------------------------------------
 	template<class entity>
-	inline void CellSpacePartition<entity>::AddEntity(const entity& ent)
+	void CellSpacePartition<entity>::AddEntity(const entity& ent)
 	{ 
 		CA_ASSERT(ent, "CellSpacePartition<entity>::AddEntity() : entity is nullptr");
 
@@ -268,8 +275,8 @@ namespace CasaEngine
 	//  is updated accordingly
 	//------------------------------------------------------------------------
 	template<class entity>
-	inline void CellSpacePartition<entity>::UpdateEntity(const entity&  ent,
-														 Vector2F       OldPos)
+	void CellSpacePartition<entity>::UpdateEntity(const entity&  ent,
+	                                              Vector2F       OldPos)
 	{
 		//if the index for the old pos and the new pos are not equal then
 		//the entity has moved to another cell.
@@ -291,7 +298,7 @@ namespace CasaEngine
 	//-------------------------- RenderCells -----------------------------------
 	//--------------------------------------------------------------------------
 	template<class entity>
-	inline void CellSpacePartition<entity>::RenderCells()const
+	void CellSpacePartition<entity>::RenderCells()const
 	{
 		typename std::vector<Cell<entity> >::const_iterator curCell;
 		for (curCell=m_Cells.begin(); curCell!=m_Cells.end(); ++curCell)

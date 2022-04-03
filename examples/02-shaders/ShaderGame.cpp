@@ -20,18 +20,13 @@
 
 using namespace CasaEngine;
 
-/**
- *
- */
+
 ShaderGame::ShaderGame() :
 	m_pWorld(nullptr)
 {
 	Logging.AddLogger(NEW_AO LoggerFile("Out.log"));
 }
 
-/**
- *
- */
 void ShaderGame::Initialize()
 {
 	GetMediaManager().AddSearchPath("../../examples/resources");
@@ -105,9 +100,6 @@ void ShaderGame::Initialize()
 	m_ShadersDesc["grey"] = "Effect \"grey scale\"";
 }
 
-/**
- *
- */
 void ShaderGame::LoadContent()
 {
 	Game::LoadContent();
@@ -150,7 +142,7 @@ void ShaderGame::LoadContent()
 	pCamera->GetComponentMgr()->AddComponent(m_pCamera3D);
 
 	m_pWorld->AddEntity(pCamera);
-	Game::Instance().GetGameInfo().SetActiveCamera(m_pCamera3D);
+	GetGameInfo().SetActiveCamera(m_pCamera3D);
 
 	//FPS
 	/*BaseEntity *pEntity = NEW_AO BaseEntity();
@@ -176,7 +168,7 @@ void ShaderGame::LoadContent()
 	pModelCpt = NEW_AO MeshComponent(m_pModelEntity);
 
 	CMD2Loader loader;
-	CasaEngine::IFile* pFile = CasaEngine::Game::Instance().GetMediaManager().FindMedia("Goblin.md2", CasaEngine::FileMode::READ | FileMode::BINARY);
+	IFile* pFile = GetMediaManager().FindMedia("Goblin.md2", FileMode::READ | FileMode::BINARY);
 	m_Player = loader.LoadFromFile(pFile);
 	//
 	pModelCpt->SetModel(m_Player);
@@ -192,9 +184,6 @@ void ShaderGame::LoadContent()
 	//LoadModel("goblin");
 }
 
-/**
- *
- */
 void ShaderGame::Update(const GameTime& gameTime_)
 {
 	Game::Update(gameTime_);
@@ -210,24 +199,6 @@ void ShaderGame::Update(const GameTime& gameTime_)
 	//UpdateShadersParams(gameTime_);
 }
 
-/**
- *
- */
-void ShaderGame::Draw()
-{
-	Game::Draw();
-}
-
-/**
- *
- */
-void ShaderGame::EndRun()
-{
-}
-
-/**
- *
- */
 void ShaderGame::ChangeShaders(const std::string& Type)
 {
 	//     if (m_ShadersDesc.find(Type) == m_ShadersDesc.end())
@@ -258,9 +229,6 @@ void ShaderGame::ChangeShaders(const std::string& Type)
 	//     SetShadersDefaults();
 }
 
-/**
- *
- */
 void ShaderGame::UpdateShadersParams(const GameTime& gameTime_)
 {
 	//     Matrix4 ModelView = m_Rotation * Game::Instance().GetGameInfo().GetActiveCamera()->GetViewMatrix();
@@ -295,9 +263,6 @@ void ShaderGame::UpdateShadersParams(const GameTime& gameTime_)
 	//     }
 }
 
-/**
- *
- */
 void ShaderGame::SetShadersDefaults()
 {
 	//     if (m_ShadersType == "cartoon")
@@ -311,13 +276,10 @@ void ShaderGame::SetShadersDefaults()
 	//     }
 }
 
-/**
- *
- */
 void ShaderGame::LoadModel(const char* Filename)
 {
 	static CMD2Loader loader;
 
-	CasaEngine::IFile* pFile = CasaEngine::Game::Instance().GetMediaManager().FindMedia((std::string(Filename) + ".md2").c_str(), CasaEngine::FileMode::READ | FileMode::BINARY);
+	IFile* pFile = Game::Instance().GetMediaManager().FindMedia((std::string(Filename) + ".md2").c_str(), FileMode::READ | FileMode::BINARY);
 	m_Player = loader.LoadFromFile(pFile);
 }

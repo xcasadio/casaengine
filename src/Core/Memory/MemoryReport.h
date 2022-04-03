@@ -8,9 +8,6 @@
 
 namespace CasaEngine
 {
-	/**
-	 *
-	 */
 	class CA_EXPORT MemoryReport
 	{
 	public:
@@ -38,13 +35,12 @@ namespace CasaEngine
 		};
 
 		typedef std::map<void*, TBlock> TBlockMap;
-
-		TBlockMap m_Blocks;      ///< allocated blocks
+		TBlockMap m_Blocks;
 
 #if CA_PLATFORM_DESKTOP
 		std::ofstream m_File;
-#endif // #if CA_PLATFORM_DESKTOP
+#endif
 	};
 }
 
-#endif	// _MEMORYREPORT_H_
+#endif

@@ -11,4 +11,4 @@ const float logDelay = 32.0f;
  */
 const float updateDelay = 5.0f;
 
-#endif // CONFIG_H_
+#endif

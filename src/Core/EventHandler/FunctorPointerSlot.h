@@ -1,12 +1,8 @@
-/************************************************************************
-	filename:   CEGUIFunctorPointerSlot.h
-	created:    Tue Feb 28 2006
-	author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
 #ifndef _CASAENGINEFunctorPointerSlot_h_
 #define _CASAENGINEFunctorPointerSlot_h_
 
 #include "SlotFunctorBase.h"
+#include "Memory\MemoryAllocation.h"
 
 namespace CasaEngine
 {
@@ -16,7 +12,7 @@ namespace CasaEngine
 		object pointer.
 	*/
 	template<typename T>
-	class FunctorPointerSlot : public SlotFunctorBase
+	class FunctorPointerSlot : public SlotFunctorBase, public AllocatedObject<FunctorPointerSlot<T>>
 	{
 	public:
 		FunctorPointerSlot(T* functor) :
@@ -33,4 +29,4 @@ namespace CasaEngine
 	};
 }
 
-#endif  // end of guard _CASAENGINEFunctorPointerSlot_h_
+#endif

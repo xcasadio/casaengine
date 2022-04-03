@@ -1,5 +1,5 @@
-#ifndef MYAPPLICATION_H
-#define MYAPPLICATION_H
+#ifndef SHADERGAME_H
+#define SHADERGAME_H
 
 #include <Graphics/Textures/Texture.h>
 #include "GameTime.h"
@@ -26,17 +26,15 @@ class ShaderGame :
 public:
 	ShaderGame();
 
-	void Initialize();
-	void LoadContent();
-	void Update(const GameTime& gameTime_);
-	void Draw();
+	void Initialize() override;
+	void LoadContent() override;
+	void Update(const GameTime& gameTime_) override;
 
 	void ChangeShaders(const std::string& Type);
 	void UpdateShadersParams(const GameTime& gameTime_);
 	void SetShadersDefaults();
 
 	void LoadModel(const char* Filename);
-	void EndRun();
 
 	typedef std::map<std::string, std::string> TDescTable;
 
@@ -65,4 +63,4 @@ private:
 	Material* m_pGroundMaterial;
 };
 
-#endif // MYAPPLICATION_H
+#endif

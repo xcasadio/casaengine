@@ -50,7 +50,7 @@ namespace CasaEngine
 		//mContext.getExternalFilesDir(null); // external SDCard
 #else
 		pRes = NEW_AO File();
-#endif // CA_PLATFORM_ANDROID
+#endif
 
 		pRes->Open(fileName_, mode_);
 		return pRes;

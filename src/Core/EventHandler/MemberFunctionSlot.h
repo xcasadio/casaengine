@@ -1,12 +1,8 @@
-/************************************************************************
-	filename:   CEGUIMemberFunctionSlot.h
-	created:    Tue Feb 28 2006
-	author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
 #ifndef _CASAENGINEMemberFunctionSlot_h_
 #define _CASAENGINEMemberFunctionSlot_h_
 
 #include "SlotFunctorBase.h"
+#include "Memory\MemoryAllocation.h"
 
 namespace CasaEngine
 {
@@ -38,4 +34,4 @@ namespace CasaEngine
 	};
 }
 
-#endif  // end of guard _CASAENGINEMemberFunctionSlot_h_
+#endif 

@@ -8,9 +8,7 @@ namespace CasaEngine
 {
 	class BaseEntity;
 
-	/**
-	 *	
-	 */
+
 	class CA_EXPORT EntityParentChangeEvent : public CasaEngine::EventArgs
 	{
 	private:
@@ -26,9 +24,7 @@ namespace CasaEngine
 		BaseEntity *getParent() const;
 	};
 
-	/**
-	 *	
-	 */
+
 	class CA_EXPORT WindowResizeEvent : public EventArgs
 	{
 	private:
@@ -78,4 +74,4 @@ namespace CasaEngine
 
 }
 
-#endif // BASEENTITYEVENTS_H
+#endif

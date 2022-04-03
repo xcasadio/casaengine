@@ -10,8 +10,7 @@
 
 namespace CasaEngine
 {
-	class CA_EXPORT IAssetable :
-		public AllocatedObject<IAssetable>
+	class CA_EXPORT IAssetable : public AllocatedObject<IAssetable>
 	{
 	public:
 		virtual ~IAssetable();

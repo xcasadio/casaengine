@@ -1,12 +1,8 @@
-/************************************************************************
-	filename:   CEGUIFunctorReferenceSlot.h
-	created:    Tue Feb 28 2006
-	author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
 #ifndef _CASAENGINEFunctorReferenceSlot_h_
 #define _CASAENGINEFunctorReferenceSlot_h_
 
 #include "SlotFunctorBase.h"
+#include "Memory\MemoryAllocation.h"
 
 namespace CasaEngine
 {
@@ -16,7 +12,7 @@ namespace CasaEngine
 		object reference.
 	*/
 	template<typename T>
-	class FunctorReferenceSlot : public SlotFunctorBase
+	class FunctorReferenceSlot : public SlotFunctorBase, public AllocatedObject<FunctorReferenceSlot<T>>
 	{
 	public:
 		FunctorReferenceSlot(T& functor) :
@@ -33,4 +29,4 @@ namespace CasaEngine
 	};
 }
 
-#endif  // end of guard _CASAENGINEFunctorReferenceSlot_h_
+#endif

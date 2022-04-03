@@ -5,32 +5,32 @@
 #include "UI/imgui/bgfx-imgui.h"
 
 #include "Game/Game.h"
-#include <stdarg.h>
+#include <cstdarg>
 
 namespace CasaEngine
 {
 	void InGameLogger::AddLog(float delay_, CColor color, const char *fmt, ...)
 	{
-		static char sBuffer[1024];
+		static char s_buffer[1024];
 		va_list Params;
 		va_start(Params, fmt);
-		vsprintf(sBuffer, fmt, Params);
+		vsprintf(s_buffer, fmt, Params);
 		va_end(Params);
 
-		LogData logData;
-		logData.delay = delay_;
-		logData.text = _strdup(sBuffer);
-		logData.color = color;
-		m_Lines.push_back(logData);
+		LogData log_data;
+		log_data.delay = delay_;
+		log_data.text = _strdup(s_buffer);
+		log_data.color = color;
+		m_Lines.push_back(log_data);
 	}
 
 	void InGameLogger::Update(const GameTime& gameTime_)
 	{
 		const float time = gameTime_.FrameTime();
 
-		for (int i=0; i<m_Lines.size(); i++)
+		for (auto& m_Line : m_Lines)
 		{
-			m_Lines[i].delay -= time;
+			m_Line.delay -= time;
 		}
 
 		bool needDelete = true;
@@ -38,7 +38,7 @@ namespace CasaEngine
 		while (needDelete)
 		{
 			needDelete = false;
-			for (std::vector<LogData>::iterator it = m_Lines.begin(); it != m_Lines.end(); it++)
+			for (auto it = m_Lines.begin(); it != m_Lines.end(); ++it)
 			{
 				if (it->delay <= 0.0f)
 				{

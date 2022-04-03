@@ -11,7 +11,6 @@ namespace CasaEngine
 	{
 	public:
 		DebugComponent(BaseEntity* pEntity_);
-		virtual ~DebugComponent();
 		
 		void Initialize() override;
 		void Update(const GameTime& gameTime_) override;

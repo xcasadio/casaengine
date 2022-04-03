@@ -27,31 +27,22 @@ namespace CasaEngine
 		IShape* m_pShape;
 
 	public:
-		virtual ~ColliderComponent();
+		~ColliderComponent() override;
 
-		//all entities must implement an Initialize function
-		void Initialize();
-
-		/**
-		 *
-		 */
-		void Update(const GameTime& gameTime_);
-
-		//all entities can communicate using messages. They are sent
-		//using the MessageDispatcher singleton class
-		//void HandleEvent(const Event* pEvent_);
+		void Initialize() override;
+		void Update(const GameTime& gameTime_) override;
 
 		IShape* GetShape() const;
 
 		float Mass() const;
 		void Mass(float val);
 
-		//entities should be able to read/write their data to a stream
-		void Write(std::ostream& os)const;
-		void Read(std::ifstream& is);
+		virtual void Write(std::ostream& os)const;
+		virtual void Read(std::ifstream& is);
 
 	protected:
 		ColliderComponent(BaseEntity* pEntity_, int type_);
+		void CreateAndSetRigidBody(float mass);
 
 	private:
 		ICollisionObjectContainer* m_pCollisionObjectContainer;

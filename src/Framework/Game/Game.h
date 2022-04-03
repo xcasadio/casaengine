@@ -4,19 +4,12 @@
 #include "CA_Export.h"
 #include "Resources/MediaManager.h"
 
-
-
 #include "GameTime.h"
 #include "Game/GameComponent.h"
 #include "Game/DrawableGameComponent.h"
 #include "EngineSettings.h"
 #include "Graphics/Renderer/Renderer.h"
 #include "SFML/Window/Window.hpp"
-// #include "CEGUI/CEGUIRenderer.h"
-// #include "CEGUI/CEGUIResourceProvider.h"
-// #include "CEGUI/CEGUIXMLParser.h"
-// #include "CEGUI/CEGUILogger.h"
-// #include "CEGUI/CEGUIImageCodec.h"
 
 #if CA_PLATFORM_DESKTOP
 #	include "SFML/Window/WindowHandle.hpp"
@@ -56,7 +49,6 @@ namespace CasaEngine
 		template <class T> T* GetGameComponent() const;
 
 		void OnEvent(const sf::Event& EventReceived);
-		//		CEGUIRenderer *GetCEGUIRenderer() const;
 		bool LoadGamePlayDLL(const char* pFileName_);
 		void RenderThreadloop();
 
@@ -123,6 +115,7 @@ namespace CasaEngine
 #if CA_PLATFORM_MOBILE
 	public:
 #endif
+		void BeginUpdate(const GameTime& game_time);
 		void FrameLoop();
 
 	private:
@@ -145,12 +138,6 @@ namespace CasaEngine
 		std::vector<DrawableGameComponent*> m_DrawableComponents;
 		bool				m_Initialized;
 		EngineSettings		m_EngineSettings;
-
-		// 		CEGUIRenderer* m_pCEGUIRenderer;
-		// 		CEGUIResourceProvider *m_pCEGUIResourceProvider;
-		// 		CEGUIXMLParser* m_pCEGUIXMLParser;
-		// 		CEGUILogger* m_pCEGUILogger;
-		// 		CEGUIImageCodec* m_pCEGUIImageCodec;
 
 		DebugSystem m_DebugSystem;
 		DisplayDebugInfo m_DisplayDebugInfo;

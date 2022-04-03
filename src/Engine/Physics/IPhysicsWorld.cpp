@@ -2,17 +2,6 @@
 
 namespace CasaEngine
 {
-	/**
-	 *
-	 */
-	IPhysicsWorld::IPhysicsWorld()
-	{
-	}
-
-	/**
-	 *
-	 */
-	IPhysicsWorld::~IPhysicsWorld()
-	{
-	}
+	IPhysicsWorld::IPhysicsWorld() = default;
+	IPhysicsWorld::~IPhysicsWorld()	= default;
 }

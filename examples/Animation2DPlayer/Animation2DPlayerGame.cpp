@@ -132,11 +132,8 @@ void Animation2DPlayerGame::LoadContent()
 
 	m_pWorld->Initialize();
 
-
-
 	auto animation_datas = GetAssetManager().GetAssets<AnimationData>();
 
-	auto* items = new const char* [animation_datas.size()];
 	for (auto* anim : animation_datas)
 	{
 		auto str = anim->GetName();
@@ -264,14 +261,14 @@ void Animation2DPlayerGame::LoadSprites()
 
 void Animation2DPlayerGame::Update(const GameTime& gameTime_)
 {
-	Game::Update(gameTime_);
-
 	//if (Game::Instance().GetInput().IsKeyJustDown(sf::Keyboard::Space))
 	if (m_LastAnimationIndexSelected != m_AnimationIndexSelected)
 	{
 		m_pAnimatedSprite->SetCurrentAnimation(animation_names[m_AnimationIndexSelected]);
 		m_LastAnimationIndexSelected = m_AnimationIndexSelected;
 	}
+
+	Game::Update(gameTime_);
 
 	//DisplayGrid();
 	DisplayCollisions();
@@ -342,9 +339,15 @@ void Animation2DPlayerGame::DisplayUI()
 	{
 		ImGui::BeginChild("Animation List", ImVec2(0, 0));
 
-		ImGui::Button("Play");
+		if (ImGui::Button("Play"))
+		{
+			m_pEntity->IsEnabled(true);
+		}
 		ImGui::SameLine();
-		ImGui::Button("Stop");
+		if (ImGui::Button("Stop"))
+		{
+			m_pEntity->IsEnabled(false);
+		}
 
 		ImGui::Combo("Animations", &m_AnimationIndexSelected, &animation_names[0], animation_names.size()/*IM_ARRAYSIZE(items)*/);
 		ImGui::SameLine();
@@ -365,26 +368,14 @@ void Animation2DPlayerGame::DisplayUI()
 				ImGui::EndPopup();
 			}
 		}
-		
 
-		/*auto frames = m_pAnimatedSprite->GetCurrentAnimation();
-		GetAssetManager().GetAsset<>(frames->CurrentFrame())
-
-		for (auto anim : m_pAnimatedSprite->GetAnimations())
-		{
-			std::string str = anim->GetName();
-			char* writable = new char[str.size() + 1];
-			std::copy(str.begin(), str.end(), writable);
-			writable[str.size()] = '\0';
-			names.push_back(writable);
-		}*/
 		ImGui::Combo("Frames", &m_FrameIndexSelected, new const char* [] { "test" }, 1);
 
 		std::vector<const char*> collisionNames;
 		auto* frames = m_pAnimatedSprite->GetCurrentAnimation();
 		auto* spriteData = GetAssetManager().GetAsset<SpriteData>(frames->CurrentFrame());
 		auto i = 0;
-		for (auto collision : spriteData->GetCollisions())
+		for (const auto& collision : spriteData->GetCollisions())
 		{
 			auto* rect = dynamic_cast<RectangleI*>(collision.GetShape());
 			std::ostringstream ostr;

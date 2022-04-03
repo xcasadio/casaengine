@@ -9,9 +9,7 @@
 
 using namespace CasaEngine;
 
-/**
- *
- */
+
 class ScriptObjectFactory : public IScriptObjectFactory
 {
 public:
@@ -21,4 +19,4 @@ public:
 	IScriptObject* CreateObject(ScriptObjectClassID id_, BaseEntity* pEntity_) override;
 };
 
-#endif // SCRIPTOBJECTFACTORY_H_
+#endif

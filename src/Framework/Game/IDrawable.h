@@ -1,4 +1,3 @@
-
 #ifndef _IDRAWABLE_H_
 #define _IDRAWABLE_H_
 
@@ -7,9 +6,6 @@
 
 namespace CasaEngine
 {
-	/////////////////////////////////////////////////////////////
-	/// IDrawable
-	/////////////////////////////////////////////////////////////
 	class CA_EXPORT IDrawable
 	{
 	public:
@@ -17,4 +13,4 @@ namespace CasaEngine
 	};
 }
 
-#endif // _IUPDATEABLE_H_
+#endif

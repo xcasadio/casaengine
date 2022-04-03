@@ -1,7 +1,6 @@
 #include "Base.h"
 #include "World.h"
 #include "Entities/BaseEntity.h"
-#include "Script/ScriptEngine.h"
 #include "Entities/ComponentTypeEnum.h"
 #include "Game/Game.h"
 #include "Physics/Bullet/BulletPhysicsWorld.h"
@@ -28,7 +27,7 @@ namespace CasaEngine
 
 	BaseEntity* World::GetEntityByName(std::string name)
 	{
-		for (auto entity : m_Entities)
+		for (const auto entity : m_Entities)
 		{
 			if (entity->GetName() == name)
 			{
@@ -78,15 +77,15 @@ namespace CasaEngine
 	//////////////////////////////////////////////////////////////////////////
 
 	World::WorldComponent::WorldComponent(BaseEntity* pEntity_) :
-		Component(pEntity_, ComponentType::WORLD)
+		Component(pEntity_, WORLD),
+		m_pWorld(dynamic_cast<World*>(pEntity_))
 	{
-		m_pWorld = dynamic_cast<World*>(pEntity_);
 		CA_ASSERT(m_pWorld != nullptr, "WorldComponent()");
 	}
 
 	void World::WorldComponent::Initialize()
 	{		
-		for (auto entity : m_pWorld->GetEntities())
+		for (const auto entity : m_pWorld->GetEntities())
 		{
 			entity->Initialize();
 		}
@@ -99,9 +98,9 @@ namespace CasaEngine
 			m_pWorld->GetPhysicsWorld()->Update(gameTime_);
 		}
 
-		for (std::vector<BaseEntity*>::const_iterator it = m_pWorld->GetEntities().begin();
-			it != m_pWorld->GetEntities().end();
-			it++)
+		for (auto it = m_pWorld->GetEntities().begin();
+		     it != m_pWorld->GetEntities().end();
+		     ++it)
 		{
 			(*it)->Update(gameTime_);
 		}
@@ -109,9 +108,9 @@ namespace CasaEngine
 
 	void World::WorldComponent::Draw()
 	{
-		for (std::vector<BaseEntity*>::const_iterator it = m_pWorld->GetEntities().begin();
-			it != m_pWorld->GetEntities().end();
-			it++)
+		for (auto it = m_pWorld->GetEntities().begin();
+		     it != m_pWorld->GetEntities().end();
+		     ++it)
 		{
 			(*it)->Draw();
 		}

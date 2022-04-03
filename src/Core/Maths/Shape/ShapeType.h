@@ -16,4 +16,4 @@ namespace CasaEngine
 	};
 }
 
-#endif // SHAPETYPE_H
+#endif

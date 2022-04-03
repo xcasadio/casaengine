@@ -11,7 +11,6 @@
 #include "Graphics/Color.h"
 #include "Maths/Vector3.h"
 
-
 #include "Memory/MemoryAllocation.h"
 
 #include <vector>
@@ -20,17 +19,14 @@
 
 namespace CasaEngine
 {
-	static const unsigned int NbLineMax = 10000;
-
-
-	/**
-	 * 
-	 */
+	static constexpr unsigned int NbLineMax = 10000;
+	
 	Line3DRendererComponent::Line3DRendererComponent(Game* pGame_) : 
 		DrawableGameComponent(pGame_),
+		m_pProgram(nullptr),
+		m_VertexBuffer{},
 		m_bRecomputeVB(false),
-		m_NbLines(0),
-		m_pProgram(nullptr)
+		m_NbLines(0)
 	{
 		DrawOrder(1000);
 		UpdateOrder(5000);
@@ -38,45 +34,33 @@ namespace CasaEngine
 		m_Lines.reserve(100);
 	}
 
-	/**
-	 * 
-	 */
 	Line3DRendererComponent::~Line3DRendererComponent()
 	{
 		DELETE_AO m_pProgram;
 		destroy(m_VertexBuffer);
 	}
 
-	/**
-	 * 
-	 */
 	void Line3DRendererComponent::OnLoadContent() 
 	{
 		m_pProgram = NEW_AO Program("vs_3Dlines", "fs_3Dlines");
 		m_VertexBuffer = createDynamicVertexBuffer(NbLineMax * 2, VertexPositionColor::ms_layout);
 	}
 
-	/**
-	 * 
-	 */
 	void Line3DRendererComponent::Update(const GameTime& /*gameTime_*/)
 	{
 		BuildVB();
 
-		for (std::vector<LineRenderer3DData *>::iterator it = m_Lines.begin();
-			it != m_Lines.end();
-			it++)
+		for (auto it = m_Lines.begin();
+		     it != m_Lines.end();
+		     ++it)
 		{
-			::delete *it;
+			DELETE_AO *it;
 			*it = nullptr;
 		}
 
 		m_Lines.clear();
 	}
 
-	/**
-	 * 
-	 */
 	void Line3DRendererComponent::Draw()
 	{
 		if (m_NbLines == 0)
@@ -93,7 +77,7 @@ namespace CasaEngine
 		Matrix4 id;
 		bgfx::setTransform(id);
 		//bgfx::setUniform(m_TextureRepetitionUniform,  Vector4F(m_pMaterial->GetTexture0Repeat().x, m_pMaterial->GetTexture0Repeat().y, 1.0f, 1.0f));
-		bgfx::setState(BGFX_STATE_WRITE_RGB // depth always ??
+		bgfx::setState(BGFX_STATE_WRITE_RGB
 			| BGFX_STATE_WRITE_A
 			| BGFX_STATE_BLEND_ALPHA
 			| BGFX_STATE_PT_LINES);
@@ -118,7 +102,7 @@ namespace CasaEngine
 
 	void Line3DRendererComponent::AddLine( const Vector3F &start_, const unsigned int &startColor_, const Vector3F &end_, const unsigned int &endColor_ )
 	{
-		LineRenderer3DData *pLineData = ::new LineRenderer3DData();
+		const auto pLineData = NEW_AO LineRenderer3DData();
 
 		pLineData->Start = start_;
 		pLineData->StartColor = startColor_;
@@ -138,14 +122,14 @@ namespace CasaEngine
 
 		// TODO : don't do a new, use a temporary list (as a member)
 		// or use directly a structure than it can be copied directly
-		VertexPositionColor* pVertices = ::new VertexPositionColor[m_Lines.size() * 2];
+		const auto pVertices = NEW_AO VertexPositionColor[m_Lines.size() * 2];
 		int index = 0;
 
-		for (std::vector<LineRenderer3DData *>::const_iterator it = m_Lines.cbegin(); 
-			it != m_Lines.cend(); 
-			it++)
+		for (auto it = m_Lines.cbegin(); 
+		     it != m_Lines.cend(); 
+		     ++it)
 		{
-			LineRenderer3DData *pLineData = *it;
+			const LineRenderer3DData *pLineData = *it;
 
 			pVertices[index * 2 + 0].Position = pLineData->Start;
 			pVertices[index * 2 + 0].Color = pLineData->StartColor;
@@ -159,10 +143,9 @@ namespace CasaEngine
 		update(m_VertexBuffer , 0, 
 			bgfx::copy(pVertices, static_cast<uint32_t>(m_Lines.size() * 2 * sizeof(VertexPositionColor)) ));
 
-		::delete[] pVertices;
+		DELETE_AO pVertices;
 
 		m_bRecomputeVB = false;
 		m_NbLines = static_cast<unsigned int>(m_Lines.size());
 	}
-
 }

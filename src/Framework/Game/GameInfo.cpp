@@ -7,8 +7,8 @@
 namespace CasaEngine
 {
 	GameInfo::GameInfo() :
-		m_pCamera(nullptr),
-		m_pWorld(nullptr)
+		m_pWorld(nullptr),
+		m_pCamera(nullptr)
 	{
 	}
 

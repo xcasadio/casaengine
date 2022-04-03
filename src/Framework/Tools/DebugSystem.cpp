@@ -6,37 +6,10 @@
 
 namespace CasaEngine
 {
-	/**
-	 * 
-	 */
-	DebugSystem::DebugSystem() 
+	DebugSystem::DebugSystem(): m_fFPSTime(0.0f), m_iFPSCount(0), m_fFPSLastDelta(0.0f), m_iLastFPSCount(0)
 	{
-		m_fFPSTime = 0.0f;
-		m_fFPSLastDelta = 0.0f;
-		m_iFPSCount = 0;
-		m_iLastFPSCount = 0;
-		//Game::Instance().GetGlobalEventSet().addEvent(FPSChangeEvent::FPSChangeEventName);
 	}
 
-	/**
-	 * 
-	 */
-	DebugSystem::~DebugSystem()
-	{
-		//Game::Instance().GetGlobalEventSet().removeEvent(FPSChangeEvent::FPSChangeEventName);
-	}
-
-	/**
-	 * 
-	 */
-	void DebugSystem::Initialize()
-	{
-		
-	}
-
-	/**
-	 * 
-	 */
 	void DebugSystem::Update( const GameTime& gameTime_ )
 	{
 		m_fFPSTime += gameTime_.FrameTime();
@@ -66,12 +39,8 @@ namespace CasaEngine
 		}
 	}
 
-	/**
-	 * 
-	 */
 	int DebugSystem::GetFPS() const
 	{
 		return m_iLastFPSCount;
 	}
-
 }

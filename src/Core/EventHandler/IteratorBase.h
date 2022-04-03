@@ -1,15 +1,7 @@
-/***********************************************************************
-	filename: 	CEGUIIteratorBase.h
-	created:	26/7/2004
-	author:		Paul D Turner
-
-	purpose:	Defines interface for base iterator class
-*************************************************************************/
-/*************************************************************************
-	This is based somewhat on MapIterator in the Ogre library (www.ogre3d.org)
-*************************************************************************/
 #ifndef _CASAENGINEIteratorBase_h_
 #define _CASAENGINEIteratorBase_h_
+
+#include "Memory\MemoryAllocation.h"
 
 namespace CasaEngine
 {
@@ -18,7 +10,7 @@ namespace CasaEngine
 		Base class constant iterator used to offer iteration over various collections within the system.
 	*/
 	template<typename T, typename V = typename T::value_type>
-	class ConstBaseIterator
+	class ConstBaseIterator : public AllocatedObject<ConstBaseIterator<T, V>>
 	{
 	public:
 		typedef V value_type;

@@ -3,7 +3,6 @@
 
 #include "CA_Export.h"
 
-#include "BulletDynamics\Dynamics\btDynamicsWorld.h"
 #include "BulletDynamics\ConstraintSolver\btSequentialImpulseConstraintSolver.h"
 #include "BulletCollision\CollisionDispatch\btCollisionDispatcher.h"
 #include "BulletCollision\BroadphaseCollision\btDispatcher.h"
@@ -32,7 +31,7 @@ namespace CasaEngine
 			btBroadphaseInterface* pOverlappingPairCache_,
 			btSequentialImpulseConstraintSolver* pConstraintSolver_);
 
-		~BulletPhysicsWorld();
+		~BulletPhysicsWorld() override;
 
 		void Update(const GameTime& gameTime_) override;
 
@@ -41,7 +40,7 @@ namespace CasaEngine
 
 		void setDebugDraw(btIDebugDraw* pIDebugDraw_);
 
-		IRigidBodyContainer* AddRigidBody(const RigidBody* pRigidBody_, const Vector3F position) override;
+		IRigidBodyContainer* AddRigidBody(const RigidBody* pRigidBody_, Vector3F position) override;
 		void RemoveRigidBody(IRigidBodyContainer* pObj_) override;
 
 		void AddCollisionObject(ICollisionObjectContainer* pObj_) override;

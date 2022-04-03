@@ -17,21 +17,22 @@
 namespace CasaEngine
 {
 	void ShowUI4AllComponents(BaseEntity *pEntity);
-	void DrawAxis(bgfx::VertexBufferHandle vertexHandle_, bgfx::ProgramHandle programhandle_);
+	void DrawAxis(bgfx::VertexBufferHandle vertexHandle_, bgfx::ProgramHandle program_handle);
 	void ShowFPS();
 	void ShowDebugWindow();
 
-	/**
-	 * 
-	 */
-	DisplayDebugInfo::DisplayDebugInfo()
+	DisplayDebugInfo::DisplayDebugInfo() :
+		m_pProgram(nullptr),
+		m_VertexBuffer(),
+		m_Vertices{}
 	{
-		m_pProgram = nullptr;
 	}
 
-	/**
-	 * 
-	 */
+	DisplayDebugInfo::~DisplayDebugInfo()
+	{
+		Release();
+	}
+
 	void DisplayDebugInfo::Initialize() 
 	{ 
 		bgfx::setViewName(1, "DisplayDebugInfo");
@@ -49,9 +50,6 @@ namespace CasaEngine
 		m_VertexBuffer = bgfx::createVertexBuffer(bgfx::makeRef(m_Vertices, 6 * sizeof(VertexPositionColor)), VertexPositionColor::ms_layout);
 	}
 
-	/**
-	 * 
-	 */
 	void DisplayDebugInfo::Release()
 	{
 		DELETE_AO m_pProgram;
@@ -60,15 +58,9 @@ namespace CasaEngine
 		m_VertexBuffer = BGFX_INVALID_HANDLE;
 	}
 
-	/**
-	 * 
-	 */
 	void DisplayDebugInfo::Update(const GameTime& /*gameTime_*/)
 	{ }
 
-	/**
-	 * 
-	 */
 	void DisplayDebugInfo::Draw()
 	{
 		if (Game::Instance().GetDebugOptions().ShowAxis == true)
@@ -92,10 +84,7 @@ namespace CasaEngine
 		}
 	}
 
-	/**
-	 * 
-	 */
-	void DrawAxis(bgfx::VertexBufferHandle vertexHandle_, bgfx::ProgramHandle programhandle_)
+	void DrawAxis(bgfx::VertexBufferHandle vertexHandle_, bgfx::ProgramHandle program_handle)
 	{
 		CameraComponent *pCamera = Game::Instance().GetGameInfo().GetActiveCamera();
 		Viewport &viewport = pCamera->GetViewport();
@@ -132,30 +121,23 @@ namespace CasaEngine
 
 		bgfx::setVertexBuffer(0, vertexHandle_);
 		bgfx::setState(BGFX_STATE_WRITE_RGB	| BGFX_STATE_MSAA | BGFX_STATE_PT_LINES);
-		bgfx::submit(1, programhandle_);
+		bgfx::submit(1, program_handle);
 	}
 
-	/**
-	 * 
-	 */
 	void ShowFPS()
 	{
 		ImGui::SetNextWindowPos(ImVec2(10,10));
-		//ImVec2(0,0), 0.3f,
+		
 		if (!ImGui::Begin("FPS", nullptr,  ImGuiWindowFlags_NoTitleBar|ImGuiWindowFlags_NoResize|ImGuiWindowFlags_NoMove|ImGuiWindowFlags_NoSavedSettings))
 		{
-			ImGui::End();
-			return;
+			// 			ImGui::Text("Simple overlay\non the top-left side of the screen.");
+			// 			ImGui::Separator();
+			ImGui::Text("FPS: %d", Game::Instance().GetDebugSystem().GetFPS());
 		}
-		// 			ImGui::Text("Simple overlay\non the top-left side of the screen.");
-		// 			ImGui::Separator();
-		ImGui::Text("FPS: %d", Game::Instance().GetDebugSystem().GetFPS());
+		
 		ImGui::End();
 	}
 
-	/**
-	 * 
-	 */
 	void ShowDebugWindow()
 	{
 		ImGui::SetNextWindowSize(ImVec2(500, 440), ImGuiCond_FirstUseEver);
@@ -172,7 +154,7 @@ namespace CasaEngine
 				ImGui::Checkbox("show fps", &Game::Instance().GetDebugOptions().ShowFPS);
 			}
 
-			// entities
+#ifdef EDITOR
 			if (ImGui::CollapsingHeader("entities", ImGuiTreeNodeFlags_OpenOnArrow))
 			{
 				// left
@@ -181,7 +163,7 @@ namespace CasaEngine
 
 				EntityManager::EntityIterator it;
 
-				for (it = Game::Instance().GetEntityManager().cbegin(); it != Game::Instance().GetEntityManager().cend(); it++)
+				for (it = Game::Instance().GetEntityManager().cbegin(); it != Game::Instance().GetEntityManager().cend(); ++it)
 				{
 					char label[128];
 					sprintf(label, "%s (%d)", it->second->GetName(), it->first);
@@ -212,6 +194,7 @@ namespace CasaEngine
 
 				ImGui::EndGroup();
 			}
+#endif
 
 			ImGui::PopStyleVar();
 			ImGui::EndChild();
@@ -220,19 +203,15 @@ namespace CasaEngine
 		ImGui::End();
 	}
 
-	/**
-	 * 
-	 */
 	void ShowUI4AllComponents(BaseEntity *pEntity)
 	{
 		const std::vector<Component *> &cpts = pEntity->GetComponentMgr()->Components();
 
-		for (std::vector<Component *>::const_iterator it = cpts.cbegin();
-			it != cpts.cend(); 
-			it++)
+		for (auto it = cpts.cbegin();
+		     it != cpts.cend(); 
+		     ++it)
 		{
 			(*it)->ShowDebugWidget();
 		}
 	}
-
 }

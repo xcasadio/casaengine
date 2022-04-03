@@ -1,13 +1,9 @@
-/************************************************************************
-	filename:   CEGUIBoundSlot.h
-	created:    Tue Feb 28 2006
-	author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
 #ifndef _CASAENGINEBoundSlot_h_
 #define _CASAENGINEBoundSlot_h_
 
 #include "SubscriberSlot.h"
 #include "CA_Export.h"
+#include "Memory/MemoryAllocation.h"
 
 namespace CasaEngine
 {
@@ -21,7 +17,7 @@ namespace CasaEngine
 		reference counted pointer.  When a BoundSlot is deleted, the connection is
 		unsubscribed and the SubscriberSlot is deleted.
 	*/
-	class CA_EXPORT BoundSlot
+	class CA_EXPORT BoundSlot : public AllocatedObject<BoundSlot>
 	{
 	public:
 		typedef unsigned int Group;
@@ -112,4 +108,4 @@ namespace CasaEngine
 	};
 }
 
-#endif  // end of guard _CASAENGINEBoundSlot_h_
+#endif

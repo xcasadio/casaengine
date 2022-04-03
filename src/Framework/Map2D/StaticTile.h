@@ -3,7 +3,6 @@
 
 #include "Tile.h"
 #include "Sprite/Sprite.h"
-#include "Sprite/SpriteRenderer.h"
 
 namespace CasaEngine
 {
@@ -12,7 +11,6 @@ namespace CasaEngine
 	public:
 		explicit StaticTile(Sprite* pSprite);
 
-		virtual ~StaticTile() = default;
 		void Update(const GameTime& gameTime_) override;
 		void Draw(float x, float y, float z, RectangleI uvOffset) override;
 

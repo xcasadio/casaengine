@@ -1,8 +1,3 @@
-/************************************************************************
-	filename:   CEGUISubscriberSlot.h
-	created:    Tue Feb 28 2006
-	author:     Paul D Turner <paul@cegui.org.uk>
-*************************************************************************/
 #ifndef _CASAENGINESubscriberSlot_h_
 #define _CASAENGINESubscriberSlot_h_
 
@@ -13,6 +8,7 @@
 #include "MemberFunctionSlot.h"
 #include "FunctorReferenceBinder.h"
 #include "CA_Export.h"
+#include "Memory/MemoryAllocatedObject.h"
 
 namespace CasaEngine
 {
@@ -25,7 +21,7 @@ namespace CasaEngine
 		exceptions are for subscribing member functions and references to functor
 		objects.
 	*/
-	class CA_EXPORT SubscriberSlot
+	class CA_EXPORT SubscriberSlot : public AllocatedObject<SubscriberSlot>
 	{
 	public:
 		/*!
@@ -81,7 +77,7 @@ namespace CasaEngine
 		*/
 		template<typename T>
 		SubscriberSlot(bool (T::* function)(const EventArgs&), T* obj) :
-			d_functor_impl(new MemberFunctionSlot<T>(function, obj))
+			d_functor_impl(NEW_AO MemberFunctionSlot<T>(function, obj))
 		{}
 
 		/*!
@@ -117,4 +113,4 @@ namespace CasaEngine
 	};
 }
 
-#endif  // end of guard _CASAENGINESubscriberSlot_h_
+#endif

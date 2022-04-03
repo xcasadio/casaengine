@@ -2,6 +2,8 @@
 #include "Entities/BaseEntity.h"
 
 #include "ColliderComponent.h"
+
+#include "Entities/Components/Transform3DComponent.h"
 #include "Game/Game.h"
 
 #include "Game/GameInfo.h"
@@ -56,5 +58,16 @@ namespace CasaEngine
 	IShape* ColliderComponent::GetShape() const
 	{
 		return m_pShape;
+	}
+
+	void ColliderComponent::CreateAndSetRigidBody(float mass)
+	{
+		auto* transform = GetEntity()->GetComponentMgr()->GetComponent<Transform3DComponent>();
+		CA_ASSERT(transform != nullptr, "Circle2DColliderComponent::Initialize() can't find the Transform3DComponent. Please add it before add a Circle2DColliderComponent");
+		auto* rigidBody = NEW_AO RigidBody();
+		rigidBody->mass = mass;
+		rigidBody->pCollisionShape = m_pShape;
+		IRigidBodyContainer* pContainer = Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->AddRigidBody(rigidBody, transform->GetPosition());
+		GetEntity()->GetPhysicalEntity().SetRigidBody(pContainer);
 	}
 }

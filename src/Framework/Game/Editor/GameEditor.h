@@ -14,12 +14,10 @@ namespace CasaEngine
 	{
 	public:
 		GameEditor(sf::WindowHandle handle_);
-		~GameEditor();
+		~GameEditor() override;
 
-		virtual void Initialize();
-		virtual void LoadContent();
-		virtual void Update( const GameTime& gameTime_ );
-		virtual void Draw();
+		void Initialize() override;
+		void LoadContent() override;
 
 	private:
 		SpriteRenderer*	m_SpriteRenderer;

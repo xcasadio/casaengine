@@ -11,17 +11,15 @@ namespace CasaEngine
 {
 	DebugComponent::DebugComponent(BaseEntity* pEntity_)
 		: Component(pEntity_, DEBUG_INFO),
-		m_DisplayPosition(false)
-	{
-	}
-
-	DebugComponent::~DebugComponent()
+		m_DisplayPosition(false),
+		m_LineRenderer(nullptr)
 	{
 	}
 
 	void DebugComponent::Initialize()
 	{
 		m_LineRenderer = Game::Instance().GetGameComponent<Line3DRendererComponent>();
+		CA_ASSERT(m_LineRenderer != nullptr, "DebugComponent : Line3DRendererComponent is null")
 	}
 
 	void DebugComponent::Update(const GameTime& gameTime_)
@@ -34,7 +32,7 @@ namespace CasaEngine
 		{
 			const auto position = GetEntity()->GetComponentMgr()->GetComponent<Transform3DComponent>()->GetLocalPosition();
 			const auto color = CColor::Red;
-			const auto scale = 10.0f;
+			constexpr auto scale = 5.0f;
 			m_LineRenderer->AddLine(position - Vector3F::UnitX() * scale, position + Vector3F::UnitX() * scale, color);
 			m_LineRenderer->AddLine(position - Vector3F::UnitY() * scale, position + Vector3F::UnitY() * scale, color);
 			m_LineRenderer->AddLine(position - Vector3F::UnitZ() * scale, position + Vector3F::UnitZ() * scale, color);

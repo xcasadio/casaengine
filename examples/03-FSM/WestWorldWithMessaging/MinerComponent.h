@@ -101,4 +101,4 @@ public:
 	void SetWifeID(int val) { m_WifeID = val; }
 };
 
-#endif // MINERCOMPONENT_H_
+#endif
