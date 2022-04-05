@@ -94,7 +94,7 @@ namespace CasaEngine
 		auto fov = dynamic_cast<Camera3DComponent*>(Camera())->FOV();
 		fov = ToDegree(fov);
 		const float z = (Game::Instance().GetWindowSize().x / 2.0f) / std::tan(fov / 2.0f);		
-		viewMatrix_.SetTranslation(-m_Offset.x, -m_Offset.y, z);
+		viewMatrix_.Translation(-m_Offset.x, -m_Offset.y, z);
 	}
 
 	void Camera3DTargetedController::ProjectionMatrix(Matrix4& projectionMatrix_)
@@ -104,7 +104,7 @@ namespace CasaEngine
 		const float ratio = viewport.Width() * Game::Instance().GetWindowSize().x /
 			(viewport.Height() * Game::Instance().GetWindowSize().y);
 		//Camera()->GetViewDistance(),
-		projectionMatrix_.PerspectiveFOV(
+		projectionMatrix_ = Matrix4::CreatePerspectiveFieldOfView(
 			dynamic_cast<Camera3DComponent*>(Camera())->FOV(),
 			ratio,
 			viewport.NearClipPlane(),

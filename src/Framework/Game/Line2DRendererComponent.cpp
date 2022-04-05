@@ -70,7 +70,7 @@ namespace CasaEngine
 			| BGFX_STATE_PT_LINES);
 
 		Matrix4 matProj;
-		matProj.OrthoOffCenter(
+		matProj.CreateOrthographicOffCenter(
 			pCamera->GetViewport().X() * GetGame()->GetWindowSize().x,
 			pCamera->GetViewport().Y() * GetGame()->GetWindowSize().y,
 			pCamera->GetViewport().Width() * GetGame()->GetWindowSize().x,

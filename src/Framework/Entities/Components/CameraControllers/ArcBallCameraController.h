@@ -5,28 +5,20 @@
 #include "GameTime.h"
 #include "CameraController.h"
 #include <iosfwd>
-#include <string>
 #include "Maths/Quaternion.h"
 #include "Maths/Vector3.h"
 #include "Maths/Matrix4.h"
 
 namespace CasaEngine
 {
-	/*
-	 *	
-	 */
 	class CA_EXPORT ArcBallCameraController :
 		public ICameraController
 	{
 	public:
 		ArcBallCameraController(CameraComponent* pCamera);
-		virtual ~ArcBallCameraController();
 
-		//all entities must implement an update function
 		void Initialize();
-
-		//all entities must implement an update function
-		void  Update(const GameTime& gameTime_);
+		void  Update(const GameTime& gameTime_) override;
 
 		Vector3F Direction() const;
 		Vector3F Right() const;
@@ -86,7 +78,7 @@ namespace CasaEngine
 		/// <summary>
 		/// The distance between the camera and the target
 		/// </summary>
-		float m_fDistance;
+		float m_fDistance{};
 		
 		/// <summary>
 		/// The orientation of the camera relative to the target
@@ -96,8 +88,8 @@ namespace CasaEngine
 		bool m_bRecomputeViewMatrix;
 		float m_fInputDistanceRate;		
 		float m_fInputTurnRate, m_fInputDisplacementRate;
-		float m_fArcBallYaw, m_fArcBallPitch;
+		float m_fArcBallYaw{}, m_fArcBallPitch{};
 	};
 }
 
-#endif // _ARCBALLCAMERACONTROLLER_H_
+#endif

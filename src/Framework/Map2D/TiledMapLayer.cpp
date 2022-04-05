@@ -53,9 +53,9 @@ namespace CasaEngine
 
 	void TiledMapLayer::Draw(Transform3DComponent* pTransform3DComponent, float z)
 	{
-		const auto world_matrix = pTransform3DComponent->GetWorldMatrix();
-		const float px = world_matrix.GetTranslation().x;
-		const float py = world_matrix.GetTranslation().y;
+		auto world_matrix = pTransform3DComponent->GetWorldMatrix();
+		const float px = world_matrix.Translation().x;
+		const float py = world_matrix.Translation().y;
 
 		for (int y = 0; y < m_MapSize.y; ++y)
 		{

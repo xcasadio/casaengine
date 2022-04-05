@@ -49,7 +49,6 @@ namespace CasaEngine
 		//if (pCamera != nullptr)
 		{
 			bgfx::setViewTransform(0, pCamera->GetViewMatrix(), pCamera->GetProjectionMatrix());
-
 			for (auto *data : m_Datas)
 			{
 				data->pModel->Render(data->handle, data->pMatWorld);

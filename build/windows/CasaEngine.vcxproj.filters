@@ -1465,7 +1465,7 @@
     <None Include="..\..\src\Core\StringUtils.inl">
       <Filter>Core</Filter>
     </None>
-    <None Include="..\..\src\Core\Maths\Plane.inl">
+    <None Include="..\..\src\Core\Maths\Plane.cpp">
       <Filter>Core\Maths</Filter>
     </None>
     <None Include="..\..\src\Framework\Game\Game.inl">

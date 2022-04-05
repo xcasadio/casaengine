@@ -1,4 +1,3 @@
-
 #include "Base.h"
 #include "Entities/BaseEntity.h"
 
@@ -14,80 +13,45 @@ namespace CasaEngine
 {
 	class Transform3DComponent;
 
-	/**
-	 *
-	 */
 	RigidBodyComponent::RigidBodyComponent(BaseEntity* pEntity_)
-		: Component(pEntity_, RIGID_BODY)
+		: Component(pEntity_, RIGID_BODY), m_Mass(0.0f), m_UseGravity(true), m_IsKinematic(false)
 	{
 		m_ListShapes.reserve(1);
-		m_Mass = 0.0f;
-		m_UseGravity = true;
-		m_IsKinematic = false;
 	}
 
-	/**
-	 *
-	 */
-	RigidBodyComponent::~RigidBodyComponent()
-	{
-
-	}
-
-	/**
-	 *
-	 */
 	void RigidBodyComponent::Initialize()
 	{
 		m_RigidBody.mass = 1.0f;
-		auto * transform = GetEntity()->GetComponentMgr()->GetComponent<Transform3DComponent>();
+		auto* transform = GetEntity()->GetComponentMgr()->GetComponent<Transform3DComponent>();
 		IRigidBodyContainer* pContainer = Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->AddRigidBody(&m_RigidBody, transform->GetPosition());
 		GetEntity()->GetPhysicalEntity().SetRigidBody(pContainer);
 	}
 
-	/**
-	 *
-	 */
 	bool RigidBodyComponent::HandleMessage(const Telegram& msg)
 	{
 		return false;
 	}
 
-	/**
-	 *
-	 */
 	void RigidBodyComponent::Update(const GameTime& gameTime_)
 	{
 
 	}
 
-	/**
-	 *
-	 */
 	RigidBody& RigidBodyComponent::GetRigidBody()
 	{
 		return m_RigidBody;
 	}
 
-	/**
-	 *
-	 */
 	void RigidBodyComponent::SetRigidBody(RigidBody& val)
 	{
 		m_RigidBody = val;
 	}
 
-	/**
-	 *
-	 */
 	void RigidBodyComponent::AddShape(ColliderComponent* pShape_)
 	{
 		m_ListShapes.push_back(pShape_);
 	}
 
-	/**
-	 *
-	 */
 	void RigidBodyComponent::RemoveShape(ColliderComponent* pShape_)
 	{
 		std::vector<ColliderComponent*>::iterator it;

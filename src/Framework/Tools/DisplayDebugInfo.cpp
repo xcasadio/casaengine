@@ -106,7 +106,7 @@ namespace CasaEngine
 			nullptr);
 
 
-		matProj.OrthoOffCenter(
+		matProj.CreateOrthographicOffCenter(
 			viewport.X() * CA_DEFAULT_WIDTH, // TODO get screen size
 			viewport.Y() * CA_DEFAULT_HEIGHT, 
 			viewport.Width() * CA_DEFAULT_WIDTH, 

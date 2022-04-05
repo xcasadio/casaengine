@@ -75,6 +75,7 @@ namespace CasaEngine
 		//bgfx::setBuffer(0, m_VertexBuffer, bgfx::Access::Write);
 
 		Matrix4 id;
+		id.Identity();
 		bgfx::setTransform(id);
 		//bgfx::setUniform(m_TextureRepetitionUniform,  Vector4F(m_pMaterial->GetTexture0Repeat().x, m_pMaterial->GetTexture0Repeat().y, 1.0f, 1.0f));
 		bgfx::setState(BGFX_STATE_WRITE_RGB

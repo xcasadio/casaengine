@@ -111,7 +111,7 @@ namespace CasaEngine
 		bgfx::setState(BGFX_STATE_WRITE_MASK
 			| BGFX_STATE_DEPTH_TEST_GREATER
 			| BGFX_STATE_CULL_CW);
-		//
+		
 		bgfx::submit(0, handle_);
 	}
 }

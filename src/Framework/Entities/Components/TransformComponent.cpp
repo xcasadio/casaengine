@@ -3,59 +3,38 @@
 #include "TransformComponent.h"
 #include "Maths/Matrix4.h"
 
-
-
 namespace CasaEngine
 {
-
-TransformComponent::TransformComponent(BaseEntity* pEntity_, int type_)
-	: Component(pEntity_, type_)
-{
-	m_LocalMatrix.Identity();
-	m_WorldMatrix.Identity();
-	m_LocalMatrixChanged = true;
-}
-
-TransformComponent::~TransformComponent()
-{
-
-}
-
-Matrix4 TransformComponent::GetLocalMatrix() 
-{ 
-	if (m_LocalMatrixChanged == true)
+	TransformComponent::TransformComponent(BaseEntity* pEntity_, int type_)
+		: Component(pEntity_, type_), m_LocalMatrixChanged(true)
 	{
-		UpdateLocalMatrix();
+		m_LocalMatrix.Identity();
+		m_WorldMatrix.Identity();
 	}
 
-	return m_LocalMatrix; 
-}
-/*
-void TransformComponent::SetLocalMatrix(Matrix4 val) 
-{ 
-	localMatrix = val; 
-}*/
+	Matrix4 TransformComponent::GetLocalMatrix()
+	{
+		if (m_LocalMatrixChanged == true)
+		{
+			UpdateLocalMatrix();
+		}
 
-Matrix4 TransformComponent::GetWorldMatrix() 
-{ 
-	UpdateWorldMatrix();
-	return m_WorldMatrix; 
-}
-/*
-void TransformComponent::SetWorldMatrix(Matrix4 val) 
-{ 
-	worldMatrix = val; 
-}*/
+		return m_LocalMatrix;
+	}
 
+	Matrix4 TransformComponent::GetWorldMatrix()
+	{
+		UpdateWorldMatrix();
+		return m_WorldMatrix;
+	}
 
-void TransformComponent::Write(std::ostream& /*os*/) const
-{
+	void TransformComponent::Write(std::ostream& /*os*/) const
+	{
 
-}
+	}
 
-void TransformComponent::Read (std::ifstream& /*is*/)
-{
+	void TransformComponent::Read(std::ifstream& /*is*/)
+	{
 
-}
-
+	}
 }

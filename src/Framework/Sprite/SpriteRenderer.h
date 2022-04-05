@@ -1,7 +1,6 @@
 #ifndef _SPRITERENDERER_H_
 #define _SPRITERENDERER_H_
 
-
 #include "CA_Export.h"
 
 #include "Game/DrawableGameComponent.h"
@@ -10,7 +9,6 @@
 #include "Graphics/Color.h"
 
 #include "Graphics/Textures/Texture.h"
-
 
 #include "Graphics/Vertices/VertexType.h"
 #include "Maths/Rectangle.h"
@@ -21,10 +19,8 @@
 
 #include <vector>
 
-
 namespace CasaEngine
 {
-	
 	class CA_EXPORT SpriteRenderer :
 		public DrawableGameComponent
 	{
@@ -57,11 +53,11 @@ namespace CasaEngine
 
 	public:
 		SpriteRenderer(Game* game_);
-		~SpriteRenderer();
+		~SpriteRenderer() override;
 
-		void Initialize();
-		void Update(const GameTime& gametime_);
-		void Draw();
+		void Initialize() override;
+		void Update(const GameTime& gametime_) override;
+		void Draw() override;
 
 		void AddSprite(const Sprite* sprite, const Matrix4& transform, const CColor& color_, float z_order, eSpriteEffects effects_ = eSpriteEffects::SPRITE_EFFECT_NONE);
 		void AddSprite(const Texture* tex_, const RectangleI& posInTex, const Vector2I& origin, const Matrix4& transform, const CColor& color_, float z_order,
@@ -83,12 +79,12 @@ namespace CasaEngine
 
 		int m_MaxSprite;
 
-		bgfx::UniformHandle m_texColor;
-		Program *m_Program;
-		bgfx::DynamicVertexBufferHandle m_VertexBuffer;
-		bgfx::IndexBufferHandle m_IndexBuffer;
-		VertexPositionColorTexture *m_pDatas;
+		bgfx::UniformHandle m_texColor{};
+		Program *m_Program{};
+		bgfx::DynamicVertexBufferHandle m_VertexBuffer{};
+		bgfx::IndexBufferHandle m_IndexBuffer{};
+		VertexPositionColorTexture *m_pDatas{};
 	};
 }
 
-#endif //_SPRITERENDERER_H_
+#endif

@@ -237,7 +237,6 @@ namespace CasaEngine
 		return LengthSquared() < MinDouble;
 	}
 
-	////////////////////////////////////////////////////////////
 	template <class T>
 	T CVector3<T>::Length() const
 	{

@@ -8,9 +8,6 @@
 
 namespace CasaEngine
 {
-	/**
-	 *
-	 */
 	class CA_EXPORT Viewport :
 		public AllocatedObject<Viewport>
 	{
@@ -19,7 +16,6 @@ namespace CasaEngine
 		Viewport(const Viewport& rsh_);
 		Viewport(float x, float y, float width, float height);
 		const Viewport& operator = (const Viewport& rsh_);
-		~Viewport();
 
 		float X() const;
 		void X(float val);
@@ -39,19 +35,16 @@ namespace CasaEngine
 		Vector3F Unproject(const Vector3F& source, const Matrix4& projection, const Matrix4& view, const Matrix4& world) const;
 
 	private:
-
 		void ComputeAspectRatio();
 
-	private:
-
-		float m_X;
-		float m_Y;
-		float m_Width;
-		float m_Height;
-		float m_fNearClipPlane;
-		float m_fFarClipPlane;
-		float m_fAspectRatio;
+		float m_X{};
+		float m_Y{};
+		float m_Width{};
+		float m_Height{};
+		float m_fNearClipPlane{};
+		float m_fFarClipPlane{};
+		float m_fAspectRatio{};
 	};
 }
 
-#endif //_VIEWPORT_H_
+#endif

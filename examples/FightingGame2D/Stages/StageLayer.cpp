@@ -33,11 +33,11 @@ void StageLayer::Draw(SpriteRenderer *spriteRenderer)
 	Matrix4 matrix;
 	matrix.Identity();
 	float offsetX = 0;
-
+	
 	for (auto* texture : m_Textures)
 	{
 		const auto posInTexture = RectangleI(0, 0, texture->TextureInfo()->width, texture->TextureInfo()->height);
-		matrix.SetTranslation(offsetX, 0, 0);
+		matrix.Translation(offsetX, 0, 0);
 
 		spriteRenderer->AddSprite(texture, posInTexture, Vector2I::Zero(), matrix, CColor::White, 0.0f);
 

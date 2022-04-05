@@ -26,29 +26,13 @@ namespace CasaEngine
 
 	public:
 		RigidBodyComponent(BaseEntity* pEntity_);
-		virtual ~RigidBodyComponent();
 
-		//all entities must implement an Initialize function
 		void Initialize();
-
-		/**
-		 *
-		 */
 		void Update(const GameTime& gameTime_) override;
 
-		/**
-		 *
-		 */
 		bool HandleMessage(const Telegram& msg) override;
 
-		/**
-		 *
-		 */
 		RigidBody& GetRigidBody();
-
-		/**
-		 *
-		 */
 		void SetRigidBody(RigidBody& val);
 
 		void AddShape(ColliderComponent* pShape_);

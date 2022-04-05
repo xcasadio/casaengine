@@ -11,9 +11,6 @@
 
 namespace CasaEngine
 {
-	/*
-	 *	
-	 */
 	class CA_EXPORT Transform3DComponent :
 		public TransformComponent
 	{
@@ -31,10 +28,10 @@ namespace CasaEngine
 
 	public:
 		Transform3DComponent(BaseEntity* pEntity_);
-		virtual ~Transform3DComponent();
+		~Transform3DComponent() override;
 
-		void SetLocalMatrix(Matrix4 val);
-		void SetWorldMatrix(Matrix4 val);
+		void SetLocalMatrix(Matrix4 val) override;
+		void SetWorldMatrix(Matrix4 val) override;
 
 		Vector3F GetCenterOfRotation() const;
 		void SetCenterOfRotation(Vector3F val);
@@ -52,39 +49,21 @@ namespace CasaEngine
 		Quaternion GetRotation() const;
 		Vector3F GetScale() const;
 
-		/**
-		 * 
-		 */
-		void Initialize();
+		void Initialize() override;
+		void  Update(const GameTime& gameTime_) override;
 
-		/**
-		 * 
-		 */
-		void  Update(const GameTime& gameTime_);
-
-		/**
-		 * 
-		 */
 		bool OnParentChange(const EventArgs &e);
 
-		/**
-		 * Editor
-		 */
-		void ShowDebugWidget();
+		void ShowDebugWidget() override;
 
-		/**
-		 * 
-		 */
-		void Write(std::ostream&  os)const;
-		void Read (std::ifstream& is);
+		void Write(std::ostream&  os)const override;
+		void Read (std::ifstream& is) override;
 
 	protected:
-		void UpdateLocalMatrix();
-		void UpdateWorldMatrix();
+		void UpdateLocalMatrix() override;
+		void UpdateWorldMatrix() override;
 	};
 
 }
 
-#endif // Transform3DComponent_H_
-
-
+#endif

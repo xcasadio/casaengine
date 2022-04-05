@@ -16,9 +16,6 @@
 
 namespace CasaEngine
 {
-	/**
-	 *
-	 */
 	CameraComponent::CameraComponent(BaseEntity* pEntity_, int type_)
 		: Component(pEntity_, type_),
 		m_needToComputeProjectionMatrix(true),
@@ -30,7 +27,7 @@ namespace CasaEngine
 			WindowResizeEvent::GetEventName(),
 			Event::Subscriber(&CameraComponent::OnWindowResized, this));
 
-		m_ViewMatrix.LookAt(Vector3F(0.0f, 10.0f, -10.0f), Vector3F::Zero());
+		//m_ViewMatrix = Matrix4::CreateLookAt(Vector3F(0.0f, 10.0f, -10.0f), Vector3F::Zero(), Vector3F::Up());
 		
 		m_Viewport.X(0);
 		m_Viewport.Y(0);
@@ -40,9 +37,6 @@ namespace CasaEngine
 		m_Viewport.FarClipPlane(1000.0f);
 	}
 
-	/**
-	 *
-	 */
 	CameraComponent::~CameraComponent()
 	{
 		m_WindowResizedConnection->disconnect();
@@ -57,9 +51,6 @@ namespace CasaEngine
 		}
 	}
 
-	/**
-	 *
-	 */
 	void CameraComponent::Update(const GameTime& gameTime_)
 	{
 		if (m_pCameraController != nullptr)
@@ -68,18 +59,6 @@ namespace CasaEngine
 		}
 	}
 
-
-	/**
-	 *
-	 */
-	 /*void CameraComponent::HandleEvent(const Event* pEvent_)
-	 {
-
-	 }*/
-
-	 /**
-	  *
-	  */
 	Matrix4 CameraComponent::GetProjectionMatrix()
 	{
 		if (m_pCameraController != nullptr)
@@ -94,9 +73,6 @@ namespace CasaEngine
 		return m_ProjectionMatrix;
 	}
 
-	/**
-	 *
-	 */
 	Matrix4 CameraComponent::GetViewMatrix()
 	{
 		if (m_pCameraController != nullptr)
@@ -111,17 +87,11 @@ namespace CasaEngine
 		return m_ViewMatrix;
 	}
 
-	/**
-	 *
-	 */
 	ICameraController* CameraComponent::CameraController() const
 	{
 		return m_pCameraController;
 	}
 
-	/**
-	 *
-	 */
 	void CameraComponent::CameraController(ICameraController* val)
 	{
 		m_pCameraController = val;
@@ -129,9 +99,6 @@ namespace CasaEngine
 		m_needToComputeViewMatrix = true;
 	}
 
-	/**
-	 *
-	 */
 	bool CameraComponent::OnWindowResized(const EventArgs& e_)
 	{
 		m_needToComputeProjectionMatrix = true;
@@ -142,23 +109,17 @@ namespace CasaEngine
 		const float h = m_Viewport.Height() * Game::Instance().GetWindowSize().y;
 		const float aspect = w / h;
 		const float midx = w * 0.5f;
-		const float midy = h * 0.5f;
+		//const float midy = h * 0.5f;
 		m_ViewDistance = midx / (aspect * d_yfov_tan);
 
 		return false;
 	}
 
-	/**
-	 *
-	 */
 	CasaEngine::Viewport& CameraComponent::GetViewport()
 	{
 		return m_Viewport;
 	}
 
-	/**
-	 *
-	 */
 	float CameraComponent::GetViewDistance() const
 	{
 		return m_ViewDistance;
@@ -166,14 +127,11 @@ namespace CasaEngine
 
 #if EDITOR
 
-	/**
-	 * Draw icon only in editor mode
-	 */
 	void CameraComponent::Draw()
 	{
 
 	}
 
-#endif // EDITOR
+#endif
 
 }

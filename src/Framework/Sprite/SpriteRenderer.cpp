@@ -14,9 +14,6 @@
 
 namespace CasaEngine
 {
-	/**
-	 * 
-	 */
 	SpriteRenderer::SpriteRenderer(Game* pGame_) : 
 		DrawableGameComponent(pGame_),
 		m_MaxSprite(5000)
@@ -24,9 +21,6 @@ namespace CasaEngine
 		DrawOrder(5000);
 	}
 
-	/**
-		* 
-		*/
 	SpriteRenderer::~SpriteRenderer()
 	{
 		DELETE_AO[] m_pDatas;
@@ -37,9 +31,6 @@ namespace CasaEngine
 		DELETE_AO m_Program;
 	}
 
-	/**
-	 * 
-	 */
 	void SpriteRenderer::Initialize()
 	{
 		IGameComponent::Initialize();
@@ -50,7 +41,7 @@ namespace CasaEngine
 		m_VertexBuffer = createDynamicVertexBuffer(m_MaxSprite * 4, VertexPositionColorTexture::ms_layout);
 
 		const int nbIndex = 6;
-		short *pIndices = ::new short[nbIndex * 6];
+		auto pIndices = ::new short[nbIndex * 6];
 
 		for (int i=0; i< nbIndex; i++)
 		{
@@ -69,17 +60,11 @@ namespace CasaEngine
 		m_texColor = createUniform("s_texColor", bgfx::UniformType::Sampler);
 	}
 
-	/**
-	 * 
-	 */
 	void SpriteRenderer::Update(const GameTime& /*gametime_*/ )
 	{
 		m_SpriteDatas.clear();
 	}
 
-	/**
-	 * 
-	 */
 	void SpriteRenderer::Draw()
 	{
 		if (m_SpriteDatas.empty())
@@ -123,12 +108,9 @@ namespace CasaEngine
 
 	bool sortSpriteDatas(SpriteRenderer::SpriteDisplayData i, SpriteRenderer::SpriteDisplayData j)
 	{
-		return i.transform.GetTranslation().z < j.transform.GetTranslation().z;
+		return i.transform.Translation().z < j.transform.Translation().z;
 	}
-	
-	/**
-	 *
-	 */
+
 	void SpriteRenderer::UpdateBuffer()
 	{
 		const int nbVertices = 4;
@@ -169,9 +151,6 @@ namespace CasaEngine
 		update(m_VertexBuffer, 0, bgfx::makeRef(m_pDatas, size));
 	}
 
-	/**
-	 *
-	 */
 	void SpriteRenderer::AddSprite(const Sprite* sprite, const Matrix4& transform, const CColor& color_, float z_order, eSpriteEffects effects_)
 	{
 		if (sprite == nullptr)
@@ -181,10 +160,7 @@ namespace CasaEngine
 		
 		AddSprite(sprite->GetTexture2D(), sprite->GetSpriteData()->GetPositionInTexture(), sprite->GetSpriteData()->GetOrigin(), transform, color_, z_order, effects_);
 	}
-	
-	/**
-	 *
-	 */
+
 	void SpriteRenderer::AddSprite(const Texture* tex_,
 		const RectangleI& posInTex, const Vector2I& origin, const Matrix4& transform, const CColor& color_, float z_order, eSpriteEffects effects_)
 	{
@@ -232,7 +208,7 @@ namespace CasaEngine
 		Matrix4 worldMatrix = transform;
 		Matrix4 offsetMatrix;
 		//Todo : get scale
-		offsetMatrix.CreateTranslation(-origin.x * transform.a11, -origin.y * transform.a22, 0.0f);
+		offsetMatrix = Matrix4::CreateTranslation(-origin.x * transform.m11, -origin.y * transform.m22, 0.0f);
 		spriteData.transform = worldMatrix * offsetMatrix;
 		//Left-Top
 		spriteData.TopLeft.Position.x = 0.0f;
@@ -265,10 +241,7 @@ namespace CasaEngine
 
 		m_SpriteDatas.push_back(spriteData);
 	}
-	
-	/**
-	 * 
-	 */
+
 	void SpriteRenderer::AddSprite(const Texture* tex_,
 		const RectangleI& posInTex, const Vector2I& origin, const Vector2F& pos_,
 		float rot_, const Vector2F& scale_, const CColor& color_, float z_order, eSpriteEffects effects_)
@@ -295,9 +268,6 @@ namespace CasaEngine
 		AddSprite(tex_, posInTex, origin, transform, color_, z_order, effects_);
 	}
 
-	/**
-	 *	
-	 */
 	void SpriteRenderer::AddSprite(Sprite* pSprite_, const Vector2F &pos_, 
 		float rot_, const Vector2F &scale_, const CColor &color_, float ZOrder_, eSpriteEffects effects_)
 	{

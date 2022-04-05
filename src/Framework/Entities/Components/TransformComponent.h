@@ -9,9 +9,6 @@
 
 namespace CasaEngine
 {
-	/*
-	 *	
-	 */
 	class CA_EXPORT TransformComponent :
 		public Component
 	{
@@ -32,7 +29,7 @@ namespace CasaEngine
 		virtual void SetWorldMatrix(Matrix4 val) = 0;
 
 		//all entities must implement an update function
-		virtual void  Update(const GameTime& gameTime_) = 0;
+		void  Update(const GameTime& gameTime_) override = 0;
 
 		//all entities can communicate using messages. They are sent
 		//using the MessageDispatcher singleton class
@@ -44,7 +41,6 @@ namespace CasaEngine
 
 	protected:
 		TransformComponent(BaseEntity* pEntity_, int type_);
-		virtual ~TransformComponent();
 
 		virtual void UpdateLocalMatrix() = 0;
 		virtual void UpdateWorldMatrix() = 0;
@@ -52,6 +48,4 @@ namespace CasaEngine
 
 }
 
-#endif // TRANSFORMCOMPONENT_H_
-
-
+#endif

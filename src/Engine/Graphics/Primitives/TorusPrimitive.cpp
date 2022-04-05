@@ -39,7 +39,7 @@ namespace CasaEngine
 			transform *= matRot;*/
 			Matrix4 transform;
 			transform.CreateRotationY(outerAngle);
-			transform.SetTranslation(m_Diameter / 2.0f, 0, 0);
+			transform.Translation(m_Diameter / 2.0f, 0, 0);
 
 			int step = m_Tessellation + 1;
 

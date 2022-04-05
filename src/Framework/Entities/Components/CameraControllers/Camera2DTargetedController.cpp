@@ -78,19 +78,21 @@ namespace CasaEngine
 
 	void Camera2DTargetedController::ViewMatrix(Matrix4& viewMatrix_)
 	{
-		viewMatrix_.CreateTranslation(-m_Offset.x, -m_Offset.y, 0.0f);
+		viewMatrix_ = Matrix4::CreateTranslation(-m_Offset.x, -m_Offset.y, 0.0f);
 	}
 
 	void Camera2DTargetedController::ProjectionMatrix(Matrix4& projectionMatrix_)
 	{
-		auto& viewport = this->Camera()->GetViewport();
+		const auto& viewport = this->Camera()->GetViewport();
+		const auto& window_size = Game::Instance().GetWindowSize();
 
-		projectionMatrix_.OrthoOffCenter(
+		projectionMatrix_ = Matrix4::CreateOrthographicOffCenter(
 			viewport.X(),
+			viewport.Width() * window_size.x,
+			viewport.Height() * window_size.y,
 			viewport.Y(),
-			viewport.Width() * Game::Instance().GetWindowSize().x,
-			viewport.Height() * Game::Instance().GetWindowSize().y,
-			viewport.NearClipPlane(), viewport.FarClipPlane());
+			viewport.NearClipPlane(),
+			viewport.FarClipPlane());
 	}
 
 	void Camera2DTargetedController::SetTargetedEntity(BaseEntity* pTargetedEntity)

@@ -7,14 +7,10 @@
 
 namespace CasaEngine
 {
-	/**
-	 *
-	 */
 	class CA_EXPORT PlanePrimitive : public IPrimitive3D
 	{
 	public:
 		PlanePrimitive(float width_ = 1.0f, float height_ = 1.0f);
-		virtual ~PlanePrimitive();
 
 	private:
 		float m_Width;
@@ -22,4 +18,4 @@ namespace CasaEngine
 	};
 }
 
-#endif // PLANEPRIMITIVE_H
+#endif

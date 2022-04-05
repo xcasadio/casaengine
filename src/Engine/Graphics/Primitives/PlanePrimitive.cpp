@@ -4,21 +4,15 @@
 
 namespace CasaEngine
 {
-	/**
-	 *
-	 */
 	PlanePrimitive::PlanePrimitive(float width_, float height_) :
-		IPrimitive3D(IPrimitive3D::PLANE)
+		IPrimitive3D(PLANE), m_Width(width_), m_Height(height_)
 	{
-		m_Width = width_;
-		m_Height = height_;
-
 		//TODO : UVs are not the same with OpenGL and DX
 
 		AddIndex(GetCurrentVertex() + 0);
 		AddIndex(GetCurrentVertex() + 1);
 		AddIndex(GetCurrentVertex() + 2);
-
+		
 		AddIndex(GetCurrentVertex() + 1);
 		AddIndex(GetCurrentVertex() + 3);
 		AddIndex(GetCurrentVertex() + 2);
@@ -29,12 +23,5 @@ namespace CasaEngine
 		AddVertex((Vector3F::UnitZ() * height_ + Vector3F::UnitX() * width_) / 2.0f, Vector3F::Up(), Vector2F::One());
 
 		m_nbPrimitives = 2;
-	}
-
-	/**
-	 *
-	 */
-	PlanePrimitive::~PlanePrimitive()
-	{
 	}
 }

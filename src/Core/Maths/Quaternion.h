@@ -31,26 +31,26 @@ namespace CasaEngine
 		Matrix3 ToMatrix3() const;
 		Matrix4 ToMatrix4() const;
 
-		void FromMatrix(const Matrix4& Matrix);
+		void FromMatrix(const Matrix4& matrix);
 		void FromAxisAngle(const Vector3F& Axis, float Angle);
 		void ToAxisAngle(Vector3F& Axis, float& Angle) const;
 
 		void Transform(const Vector3F& value, Vector3F& result) const;
 		void Transform(const std::vector<Vector3F>& sourceArray, std::vector<Vector3F>& destinationArray) const;
 
-		void FromEulerAngles(float X, float Y, float Z);
+		void CreateFromYawPitchRoll(float X, float Y, float Z);
 
 		Quaternion operator *(const Quaternion& q_) const;
 		const Quaternion& operator *=(const Quaternion& q_);
 
-		float x;
-		float y;
-		float z;
-		float w;
+		float x{};
+		float y{};
+		float z{};
+		float w{};
 	};
 
 	std::istream& operator >>(std::istream& Stream, Quaternion& Quaternion);
 	std::ostream& operator <<(std::ostream& Stream, const Quaternion& Quaternion);
 }
 
-#endif // QUATERNION_H
+#endif

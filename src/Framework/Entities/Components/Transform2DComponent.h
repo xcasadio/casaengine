@@ -12,21 +12,14 @@
 
 namespace CasaEngine
 {
-	/*
-	 *	
-	 */
 	class CA_EXPORT Transform2DComponent :
 		public TransformComponent
 	{
 	private:
-
-		// The position in local space.
 		Vector2F m_LocalPosition;
 		
 		// The rotation in local space and in degrees unit.
 		float m_LocalRotation;
-		
-		// The scale in local space.
 		Vector2F m_LocalScale;
 		
 		// The parent of this transform component.
@@ -37,10 +30,10 @@ namespace CasaEngine
 
 	public:
 		Transform2DComponent(BaseEntity* pEntity_);
-		virtual ~Transform2DComponent();
+		~Transform2DComponent() override;
 
-		void SetLocalMatrix(Matrix4 val);
-		void SetWorldMatrix(Matrix4 val);
+		void SetLocalMatrix(Matrix4 val) override;
+		void SetWorldMatrix(Matrix4 val) override;
 
 		Vector2F GetLocalPosition() const;
 		void SetLocalPosition(Vector2F val);
@@ -55,25 +48,22 @@ namespace CasaEngine
 		float GetRotation() const;
 		Vector2F GetScale() const;
 
-		void Initialize();
+		void Initialize() override;
 
 		//all entities must implement an update function
-		void  Update(const GameTime& gameTime_);
+		void  Update(const GameTime& gameTime_) override;
 
-		/**
-		 * 
-		 */
 		bool OnParentChange(const EventArgs &e_);
 
 		//entities should be able to read/write their data to a stream
-		void Write(std::ostream&  os)const;
-		void Read (std::ifstream& is);
+		void Write(std::ostream&  os)const override;
+		void Read (std::ifstream& is) override;
 
 	protected:
-		void UpdateLocalMatrix();
-		void UpdateWorldMatrix();
+		void UpdateLocalMatrix() override;
+		void UpdateWorldMatrix() override;
 	};
 
 }
 
-#endif // TRANSFORM2DCOMPONENT_H_
+#endif

@@ -176,7 +176,7 @@ namespace CasaEngine
 	 * returns true if the value is a NaN
 	 */
 	template <typename T>
-	inline bool isNaN(T val)
+	bool isNaN(T val)
 	{
 		return val != val;
 	}
@@ -203,7 +203,7 @@ namespace CasaEngine
 	 * clamps the first argument between the second two
 	 */
 	template <class T, class U, class V>
-	inline void Clamp(T& arg, const U& minVal, const V& maxVal)
+	void Clamp(T& arg, const U& minVal, const V& maxVal)
 	{
 		//CA_ASSERT( (static_cast<double>(minVal) < static_cast<double>(maxVal)) && "<Clamp> MaxVal < MinVal");
 
@@ -219,7 +219,7 @@ namespace CasaEngine
 	}
 
 	template<class T>
-	inline int Sign(T a)
+	int Sign(T a)
 	{
 		return (a < 0) ? -1 : 1;
 	}
@@ -241,4 +241,4 @@ namespace CasaEngine
 	}
 }
 
-#endif // MATH_H_
+#endif

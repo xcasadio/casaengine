@@ -144,7 +144,7 @@ void Camera3DComponent::NearClipPlane(float val)
 void Camera3DComponent::ComputeViewMatrix()
 {
     m_needToComputeViewMatrix = false;
-    m_ViewMatrix.LookAt(m_Position, m_Target);
+	m_ViewMatrix = Matrix4::CreateLookAt(m_Position, m_Target, Vector3F::Up());
 }
 	
 /**
@@ -156,7 +156,7 @@ void Camera3DComponent::ComputeProjectionMatrix()
 	float ratio = m_Viewport.Width() * Game::Instance().GetWindowSize().x / 
 		(m_Viewport.Height() * Game::Instance().GetWindowSize().y);
 
-	m_ProjectionMatrix.PerspectiveFOV(
+	m_ProjectionMatrix = Matrix4::CreatePerspectiveFieldOfView(
 		m_fFOV,
 		ratio, 
 		m_Viewport.NearClipPlane(),
