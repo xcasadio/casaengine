@@ -109,7 +109,7 @@ namespace CasaEngine
 		bgfx::setUniform(m_TextureRepetitionUniform, Vector4F(m_pMaterial->Texture0Repeat().x, m_pMaterial->Texture0Repeat().y, 1.0f, 1.0f));
 		//bgfx::setState(BGFX_STATE_DEFAULT);
 		bgfx::setState(BGFX_STATE_WRITE_MASK
-			| BGFX_STATE_DEPTH_TEST_GREATER
+			| BGFX_STATE_DEPTH_TEST_LESS
 			| BGFX_STATE_CULL_CW);
 		
 		bgfx::submit(0, handle_);

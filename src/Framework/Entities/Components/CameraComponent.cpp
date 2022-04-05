@@ -1,5 +1,3 @@
-#include <string>
-
 #include "Base.h"
 
 #include "Entities/BaseEntity.h"
@@ -27,13 +25,11 @@ namespace CasaEngine
 			WindowResizeEvent::GetEventName(),
 			Event::Subscriber(&CameraComponent::OnWindowResized, this));
 
-		//m_ViewMatrix = Matrix4::CreateLookAt(Vector3F(0.0f, 10.0f, -10.0f), Vector3F::Zero(), Vector3F::Up());
-		
 		m_Viewport.X(0);
 		m_Viewport.Y(0);
 		m_Viewport.Width(1.0f);
 		m_Viewport.Height(1.0f);
-		m_Viewport.NearClipPlane(0.0f);
+		m_Viewport.NearClipPlane(0.1f);
 		m_Viewport.FarClipPlane(1000.0f);
 	}
 
@@ -115,7 +111,7 @@ namespace CasaEngine
 		return false;
 	}
 
-	CasaEngine::Viewport& CameraComponent::GetViewport()
+	Viewport& CameraComponent::GetViewport()
 	{
 		return m_Viewport;
 	}

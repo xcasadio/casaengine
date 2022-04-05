@@ -7,44 +7,27 @@
 
 #include "Transform2DComponent.h"
 
-
 namespace CasaEngine
 {
-	/**
-	 *
-	 */
 	Camera2DComponent::Camera2DComponent(BaseEntity* pEntity_)
 		: CameraComponent(pEntity_, CAMERA_2D),
 		m_Zoom(1.0f)
 	{}
 
-	/**
-	 *
-	 */
-	Camera2DComponent::~Camera2DComponent()
-	{
-	}
-
-	/**
-	 *
-	 */
 	void Camera2DComponent::Initialize()
 	{
 	}
 
-	/**
-	 *
-	 */
 	void Camera2DComponent::ComputeProjectionMatrix()
 	{
 		m_ProjectionMatrix = Matrix4::CreateOrthographicOffCenter(
 			m_Viewport.X(),
-			m_Viewport.Y(),
 			m_Viewport.Width() * Game::Instance().GetWindowSize().x,
+			m_Viewport.Y(),
 			m_Viewport.Height() * Game::Instance().GetWindowSize().y,
 			m_Viewport.NearClipPlane(),
 			m_Viewport.FarClipPlane());
-		m_ProjectionMatrix = Matrix4::Transpose(m_ProjectionMatrix);
+		//m_ProjectionMatrix = Matrix4::Transpose(m_ProjectionMatrix);
 	}
 
 	void Camera2DComponent::ComputeViewMatrix()

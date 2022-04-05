@@ -86,11 +86,13 @@ void FightingGame2DGame::LoadContent()
 	m_pWorld = NEW_AO World();
 	GetGameInfo().SetWorld(m_pWorld);
 
+	Transform3DComponent* pTransform = nullptr;
+
 	//player 1
 	auto* pPlayer1 = NEW_AO BaseEntity();
 	pPlayer1->SetName("player 1");
-	auto* pTransform = NEW_AO Transform3DComponent(pPlayer1);
-	pTransform->SetLocalPosition(Vector3F(520, 400, 1.0f));
+	pTransform = NEW_AO Transform3DComponent(pPlayer1);
+	pTransform->SetLocalPosition(Vector3F(520, 400, 0.5f));
 	auto scale = 1.0f;
 	pTransform->SetLocalScale(Vector3F(scale, scale));
 	pPlayer1->GetComponentMgr()->AddComponent(pTransform);
@@ -114,7 +116,7 @@ void FightingGame2DGame::LoadContent()
 	auto* pPlayer2 = NEW_AO BaseEntity();
 	pPlayer2->SetName("player 2");
 	pTransform = NEW_AO Transform3DComponent(pPlayer2);
-	pTransform->SetLocalPosition(Vector3F(820, 400, 1.0f));
+	pTransform->SetLocalPosition(Vector3F(820, 400, 0.6f));
 	scale = 1.0f;
 	pTransform->SetLocalScale(Vector3F(scale, scale));
 	pPlayer2->GetComponentMgr()->AddComponent(pTransform);
@@ -146,7 +148,7 @@ void FightingGame2DGame::LoadContent()
 	auto* pStage = NEW_AO BaseEntity();
 	pStage->SetName("stage");
 	pTransform = NEW_AO Transform3DComponent(pStage);
-	pTransform->SetLocalPosition(Vector3F(0, 0));
+	pTransform->SetLocalPosition(Vector3F(0, 0, 1.0f));
 	pStage->GetComponentMgr()->AddComponent(pTransform);
 	auto* stage = NEW_AO Stage(pStage);
 	pStage->GetComponentMgr()->AddComponent(stage);

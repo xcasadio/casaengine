@@ -23,7 +23,6 @@
 #include "Log/LoggerFile.h"
 #include "Maths/Vector3.h"
 #include "Memory/MemoryAllocation.h"
-#include "Parsers/Xml/tinyxml2.h"
 #include "Physics/PhysicsEngine.h"
 #include <IO/File.h>
 #include <save_load_types.h>
@@ -93,7 +92,7 @@ void Animation2DPlayerGame::LoadContent()
 	auto* pEntity = NEW_AO BaseEntity();
 	m_pEntity = pEntity;
 	auto* pTransform = NEW_AO Transform3DComponent(pEntity);
-	pTransform->SetLocalPosition(Vector3F(520, 400));
+	pTransform->SetLocalPosition(Vector3F(520, 400, 1.0f));
 	const auto scale = 1.0f;
 	pTransform->SetLocalScale(Vector3F(scale, scale));
 	pEntity->GetComponentMgr()->AddComponent(pTransform);

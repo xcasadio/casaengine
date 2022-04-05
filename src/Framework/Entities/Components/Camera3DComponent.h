@@ -8,33 +8,19 @@
 
 namespace CasaEngine
 {
-	/*
-	 *	
-	 */
 	class CA_EXPORT Camera3DComponent :
 		public CameraComponent
 	{
 	public:
 		Camera3DComponent(BaseEntity* pEntity_);
-		virtual ~Camera3DComponent();
 
-		//all entities must implement an update function
-		void Initialize();
+		void Initialize() override;
 
-		/**
-		 * 
-		 */
-		//void Update(const GameTime& gameTime_);
+		Vector3F Position() const;
+		void Position(Vector3F val);
 
-		//all entities can communicate using messages. They are sent
-		//using the MessageDispatcher singleton class
-		//void HandleEvent(const Event* pEvent_);
-		
-		CasaEngine::Vector3F Position() const;
-		void Position(CasaEngine::Vector3F val);
-
-		CasaEngine::Vector3F Target() const;
-		void Target(CasaEngine::Vector3F val);
+		Vector3F Target() const;
+		void Target(Vector3F val);
 
 		float FOV() const;
 		void FOV(float val);
@@ -45,7 +31,6 @@ namespace CasaEngine
 		float NearClipPlane() const;
 		void NearClipPlane(float val);
 
-		//entities should be able to read/write their data to a stream
 		void Write(std::ostream&  os)const;
 		void Read (std::ifstream& is);
 
@@ -59,6 +44,4 @@ namespace CasaEngine
 	};
 }
 
-#endif // CAMERA3DCOMPONENT_H_
-
-
+#endif

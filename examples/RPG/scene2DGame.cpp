@@ -100,7 +100,7 @@ void Scene2DGame::LoadContent()
 
 	CreateAssets(Vector2I(48, 48));
 	CreateMap(m_pWorld);
-	CreateEnnemies(m_pWorld);
+	CreateEnemies(m_pWorld);
 	CreateSwordman(m_pWorld);
 
 	m_pWorld->Initialize();
@@ -248,7 +248,7 @@ void Scene2DGame::CreateAssets(Vector2I tileSize)
 	}
 }
 
-void Scene2DGame::CreateEnnemies(World* pWorld)
+void Scene2DGame::CreateEnemies(World* pWorld)
 {
 	IFile* pFile = Game::Instance().GetMediaManager().FindMedia("octopus.json", true);
 	std::ifstream is(pFile->Fullname());
@@ -259,7 +259,7 @@ void Scene2DGame::CreateEnnemies(World* pWorld)
 	auto* pEntity = NEW_AO BaseEntity();
 	pEntity->SetName("octopus 1");
 	auto* pTrans3D = NEW_AO Transform3DComponent(pEntity);
-	pTrans3D->SetLocalPosition(Vector3F(100.0f, 100.0f, 0.0f));
+	pTrans3D->SetLocalPosition(Vector3F(100.0f, 100.0f, 0.2f));
 	pTrans3D->SetLocalRotation(0.0f);
 	//pTrans3D->SetLocalScale(Vector3F(32, 32, 1.0));
 	pEntity->GetComponentMgr()->AddComponent(pTrans3D);
@@ -334,7 +334,7 @@ void Scene2DGame::CreateSwordman(World* pWorld)
 	auto* pPlayerEntity = NEW_AO BaseEntity();
 	pPlayerEntity->SetName("player 1");
 	auto* pTrans3D = NEW_AO Transform3DComponent(pPlayerEntity);
-	pTrans3D->SetLocalPosition(Vector3F(50.0f, 150.0f, 0.0f));
+	pTrans3D->SetLocalPosition(Vector3F(50.0f, 150.0f, 0.2f));
 	pTrans3D->SetLocalRotation(0.0f);
 	//pTrans3D->SetLocalScale(Vector3F(tileWidth, tileHeight, 1.0));
 	pPlayerEntity->GetComponentMgr()->AddComponent(pTrans3D);
@@ -435,5 +435,5 @@ void Scene2DGame::CreateSwordman(World* pWorld)
 	pCamera->Initialize();
 	m_pWorld->AddEntity(pCamera);
 
-	//GetGameInfo().SetActiveCamera(m_pCamera3D);
+	GetGameInfo().SetActiveCamera(m_pCamera3D);
 }

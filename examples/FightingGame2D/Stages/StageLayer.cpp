@@ -1,7 +1,5 @@
 #include "Stage.h"
 
-
-#include "Entities/ComponentTypeEnum.h"
 #include "Entities/Components/Transform3DComponent.h"
 #include "Game/Game.h"
 #include "Sprite/SpriteRenderer.h"
@@ -37,9 +35,9 @@ void StageLayer::Draw(SpriteRenderer *spriteRenderer)
 	for (auto* texture : m_Textures)
 	{
 		const auto posInTexture = RectangleI(0, 0, texture->TextureInfo()->width, texture->TextureInfo()->height);
-		matrix.Translation(offsetX, 0, 0);
+		matrix.Translation(offsetX, 0, transform->GetPosition().z);
 
-		spriteRenderer->AddSprite(texture, posInTexture, Vector2I::Zero(), matrix, CColor::White, 0.0f);
+		spriteRenderer->AddSprite(texture, posInTexture, Vector2I::Zero(), matrix, CColor::White, transform->GetPosition().z);
 
 		offsetX += posInTexture.w;
 	}

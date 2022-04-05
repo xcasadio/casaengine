@@ -13,7 +13,6 @@ namespace CasaEngine
 	{
 	public:
 		Camera2DComponent(BaseEntity* pEntity_);
-		virtual ~Camera2DComponent();
 
 		void Initialize() override;
 

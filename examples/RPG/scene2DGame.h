@@ -33,7 +33,7 @@ private:
 
 	void CreateMap(World* pWorld);
 	void CreateAssets(Vector2I tileSize);
-	void CreateEnnemies(World* pWorld);
+	void CreateEnemies(World* pWorld);
 	void CreateSwordman(World* pWorld);
 
 private:

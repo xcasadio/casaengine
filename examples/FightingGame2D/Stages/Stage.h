@@ -23,6 +23,4 @@ private:
 	std::vector<StageLayer*> m_Layers;
 };
 
-
-
 #endif

@@ -29,7 +29,6 @@ namespace CasaEngine
 		void NearClipPlane(float val);
 		float FarClipPlane() const;
 		void FarClipPlane(float val);
-		float AspectRatio() const;
 
 		Vector3F Project(const Vector3F& source, const Matrix4& projection, const Matrix4& view, const Matrix4& world) const;
 		Vector3F Unproject(const Vector3F& source, const Matrix4& projection, const Matrix4& view, const Matrix4& world) const;
@@ -43,7 +42,6 @@ namespace CasaEngine
 		float m_Height{};
 		float m_fNearClipPlane{};
 		float m_fFarClipPlane{};
-		float m_fAspectRatio{};
 	};
 }
 

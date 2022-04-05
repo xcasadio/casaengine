@@ -69,13 +69,13 @@ namespace CasaEngine
 			| BGFX_STATE_BLEND_ALPHA
 			| BGFX_STATE_PT_LINES);
 
-		Matrix4 matProj;
-		matProj.CreateOrthographicOffCenter(
+		Matrix4 matProj = Matrix4::CreateOrthographicOffCenter(
 			pCamera->GetViewport().X() * GetGame()->GetWindowSize().x,
-			pCamera->GetViewport().Y() * GetGame()->GetWindowSize().y,
 			pCamera->GetViewport().Width() * GetGame()->GetWindowSize().x,
+			pCamera->GetViewport().Y() * GetGame()->GetWindowSize().y,
 			pCamera->GetViewport().Height() * GetGame()->GetWindowSize().y,
-			0.0f, 1000.0f);
+			pCamera->GetViewport().NearClipPlane(),
+			pCamera->GetViewport().FarClipPlane());
 
 		setVertexBuffer(0, m_VertexBuffer, 0, m_NbLines);
 	}

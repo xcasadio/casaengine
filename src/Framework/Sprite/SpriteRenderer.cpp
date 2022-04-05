@@ -73,30 +73,30 @@ namespace CasaEngine
 		}
 
 		UpdateBuffer();
-		
-		int indexPos = 0;
+
 		CameraComponent *pCamera = Game::Instance().GetGameInfo().GetActiveCamera();
-		if (pCamera == nullptr)
-		{
-			float proj[16];
-			bx::mtxOrtho(proj, 0.0f,
-				static_cast<float>(this->GetGame()->GetWindowSize().x),
-				static_cast<float>(this->GetGame()->GetWindowSize().y),
-				0.0f, -1.0f, 1000.0f, 0.0f, false);
-			bgfx::setViewTransform(0, nullptr, proj);
-		}
-		else
-		{
+		//if (pCamera == nullptr)
+		//{
+		//	float proj[16];
+		//	bx::mtxOrtho(proj, 0.0f,
+		//		static_cast<float>(this->GetGame()->GetWindowSize().x),
+		//		static_cast<float>(this->GetGame()->GetWindowSize().y),
+		//		0.0f, 0.1f, 1000.0f, 0.0f, false);
+		//	bgfx::setViewTransform(0, nullptr, proj);
+		//}
+		//else
+		//{
 			bgfx::setViewTransform(0, pCamera->GetViewMatrix(), pCamera->GetProjectionMatrix());
-		}
-		
+		//}
+
 		for (auto i = 0; i < m_SpriteDatas.size(); i++)
 		{
 			bgfx::setState(BGFX_STATE_WRITE_MASK
-				| BGFX_STATE_DEPTH_TEST_GEQUAL
+				| BGFX_STATE_DEPTH_TEST_LESS
 				//| BGFX_STATE_CULL_CW
 				//| BGFX_STATE_MSAA
 				| BGFX_STATE_BLEND_ALPHA);
+
 			setVertexBuffer(0, m_VertexBuffer, i * 4, 4);
 			setIndexBuffer(m_IndexBuffer, 0, 6);
 			setTexture(0, m_texColor, m_SpriteDatas[i].Texture->Handle());
@@ -243,8 +243,8 @@ namespace CasaEngine
 	}
 
 	void SpriteRenderer::AddSprite(const Texture* tex_,
-		const RectangleI& posInTex, const Vector2I& origin, const Vector2F& pos_,
-		float rot_, const Vector2F& scale_, const CColor& color_, float z_order, eSpriteEffects effects_)
+		const RectangleI& posInTex, const Vector2I& origin, const Vector2F& pos,
+		float rot, const Vector2F& scale, const CColor& color, float z_order, eSpriteEffects effects)
 	{
 		if (tex_ == nullptr)
 		{
@@ -256,28 +256,28 @@ namespace CasaEngine
 			return;
 		}
 
-		Quaternion rot;
-		rot.FromAxisAngle(Vector3F::UnitZ(), rot_);
+		Quaternion quaternionRotation;
+		quaternionRotation.FromAxisAngle(Vector3F::UnitZ(), rot);
 		Matrix4 transform;
-		//transform.SetTranslation(Vector3F(pos_.x, pos_.y));
-		//transform.CreateScale(scale_.x, scale_.y, 0.0f);
+		//transform.SetTranslation(Vector3F(pos.x, pos.y));
+		//transform.CreateScale(scale.x, scale.y, 0.0f);
 		transform.Transformation(nullptr,
-			nullptr, &Vector3F(scale_.x, scale_.y),
-			&Vector3F(origin.x, origin.y), &rot,
-			&Vector3F(pos_.x, pos_.y));
-		AddSprite(tex_, posInTex, origin, transform, color_, z_order, effects_);
+			nullptr, &Vector3F(scale.x, scale.y),
+			&Vector3F(origin.x, origin.y), &quaternionRotation,
+			&Vector3F(pos.x, pos.y));
+		AddSprite(tex_, posInTex, origin, transform, color, z_order, effects);
 	}
 
-	void SpriteRenderer::AddSprite(Sprite* pSprite_, const Vector2F &pos_, 
+	void SpriteRenderer::AddSprite(Sprite* pSprite, const Vector2F &pos_, 
 		float rot_, const Vector2F &scale_, const CColor &color_, float ZOrder_, eSpriteEffects effects_)
 	{
-		if (pSprite_->GetTexture2D() == nullptr)
+		if (pSprite->GetTexture2D() == nullptr)
 		{
 			throw NEW_AO CException("Sprite is null");
 		}
 
-		AddSprite(pSprite_->GetTexture2D(), pSprite_->GetSpriteData()->GetPositionInTexture(),
-			pSprite_->GetSpriteData()->GetOrigin(), pos_, rot_, scale_, color_, ZOrder_, effects_);
+		AddSprite(pSprite->GetTexture2D(), pSprite->GetSpriteData()->GetPositionInTexture(),
+			pSprite->GetSpriteData()->GetOrigin(), pos_, rot_, scale_, color_, ZOrder_, effects_);
 	}
 
 	void SpriteRenderer::AddSprite(Sprite* pSprite_, const Vector2F& pos_, float rot_, const CColor& color_,

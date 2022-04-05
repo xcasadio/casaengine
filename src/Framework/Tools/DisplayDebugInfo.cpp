@@ -88,14 +88,13 @@ namespace CasaEngine
 	{
 		CameraComponent *pCamera = Game::Instance().GetGameInfo().GetActiveCamera();
 		Viewport &viewport = pCamera->GetViewport();
-
 		Matrix4 matProj, matWorld;
 
 		//matWorld.CreateRotationZ(0.5f * Pi);
 		//matWorld.CreateTranslation(0.0f, 0.0f, -1.0f);
 		//matWorld.CreateScale(1.0f / (float)CA_DEFAULT_WIDTH, 1.0f / (float)CA_DEFAULT_HEIGHT, 1.0f);
 		//matWorld.CreateScale(0.989f, 1.0f, 1.0f);
-		Vector3F scale(0.989f, 1.0f, 1.0f);
+		Vector3F scale(1.0f, 1.0f, 1.0f);
 		Quaternion rot;
 		rot.FromAxisAngle(Vector3F::UnitZ(), 0.5f * Pi);
 		matWorld.Transformation(
@@ -105,18 +104,16 @@ namespace CasaEngine
 			&rot, //rotation
 			nullptr);
 
+		float left = viewport.X() * Game::Instance().GetWindowSize().x;
+		float right = viewport.Width() * Game::Instance().GetWindowSize().x;
+		float bottom = viewport.Height() * Game::Instance().GetWindowSize().y;
+		float top = viewport.Y() * Game::Instance().GetWindowSize().y;
+		matProj = Matrix4::CreateOrthographicOffCenter(left, right, bottom, top, viewport.NearClipPlane(), viewport.FarClipPlane());
 
-		matProj.CreateOrthographicOffCenter(
-			viewport.X() * CA_DEFAULT_WIDTH, // TODO get screen size
-			viewport.Y() * CA_DEFAULT_HEIGHT, 
-			viewport.Width() * CA_DEFAULT_WIDTH, 
-			viewport.Height() * CA_DEFAULT_HEIGHT,
-			0.0f, 1000.0f);
-
-		bgfx::setViewTransform(1, NULL, matProj);
+		bgfx::setViewTransform(1, nullptr, matProj);
 		//bgfx::setViewTransform(1, pCamera->GetViewMatrix(), pCamera->GetProjectionMatrix());
 
-		bgfx::setViewRect(1, 0, 0, Game::Instance().GetWindowSize().x, Game::Instance().GetWindowSize().y);
+		bgfx::setViewRect(1, left, top, right, bottom);
 		bgfx::setTransform(matWorld);
 
 		bgfx::setVertexBuffer(0, vertexHandle_);

@@ -14,9 +14,8 @@ namespace CasaEngine
 	}
 
 	Viewport::Viewport(float x, float y, float width, float height) :
-		m_X(x), m_Y(y), m_Width(width), m_Height(height), m_fNearClipPlane(0.0f), m_fFarClipPlane(1.0f)
+		m_X(x), m_Y(y), m_Width(width), m_Height(height), m_fNearClipPlane(0.1f), m_fFarClipPlane(100.0f)
 	{
-		ComputeAspectRatio();
 	}
 
 	const Viewport& Viewport::operator = (const Viewport& rsh_)
@@ -27,9 +26,6 @@ namespace CasaEngine
 		m_Height = rsh_.m_Height;
 		m_fNearClipPlane = rsh_.m_fNearClipPlane;
 		m_fFarClipPlane = rsh_.m_fFarClipPlane;
-		m_fAspectRatio = rsh_.m_fAspectRatio;
-
-		ComputeAspectRatio();
 
 		return *this;
 	}
@@ -50,7 +46,6 @@ namespace CasaEngine
 	void Viewport::Width(float val)
 	{
 		m_Width = val;
-		ComputeAspectRatio();
 	}
 
 	float Viewport::Height() const
@@ -61,7 +56,6 @@ namespace CasaEngine
 	void Viewport::Height(float val)
 	{
 		m_Height = val;
-		ComputeAspectRatio();
 	}
 
 	float Viewport::NearClipPlane() const
@@ -83,24 +77,7 @@ namespace CasaEngine
 	{
 		m_fFarClipPlane = val;
 	}
-
-	float Viewport::AspectRatio() const
-	{
-		return m_fAspectRatio;
-	}
-
-	void Viewport::ComputeAspectRatio()
-	{
-		if (m_Height != 0)
-		{
-			m_fAspectRatio = m_Width / m_Height;
-		}
-		else
-		{
-			m_fAspectRatio = 0.0f;
-		}
-	}
-
+	
 	bool WithinEpsilon(float a, float b)
 	{
 		float num = a - b;

@@ -129,11 +129,11 @@ namespace CasaEngine
 		{
 			m_LocalMatrixChanged = false;
 
-			Matrix4 matS, transCenter, trans;
+			Matrix4 transCenter, trans;
 			trans.Translation(m_LocalPosition);
 			transCenter.Translation(m_LocalCenterOfRotation);
-			matS.CreateScale(m_LocalScale.x, m_LocalScale.y, m_LocalScale.z);
-			Matrix4 matRot = m_LocalRotation.ToMatrix4();
+			Matrix4 matS = Matrix4::CreateScale(m_LocalScale.x, m_LocalScale.y, m_LocalScale.z);
+			Matrix4 matRot = Matrix4::CreateFromQuaternion(m_LocalRotation); //m_LocalRotation.ToMatrix4();
 
 			m_LocalMatrix = transCenter * matS * matRot * trans;
 		}
