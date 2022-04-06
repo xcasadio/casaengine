@@ -92,8 +92,8 @@
       </PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>USE_BULLET_PHYSICS;x64;NOMINMAX;_DEBUG;_WINDOWS;_USRDLL;__STDC_LIMIT_MACROS;__STDC_FORMAT_MACROS;__STDC_CONSTANT_MACROS;_SCL_SECURE=0;_SECURE_SCL=0;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_WIN32;_WIN64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>../../src/Core;../../src/Engine;../../src/Framework;../../external/bgfx/include/;../../external/bimg/include;../../external/bx/include;../../external/bx/include/compat/msvc;../../external/bullet/include;..\..\external\SFML\include;../../external/tolua++-1.0.93/include;../../external/CEGUI;../../external/lua-5.1.4/include;../../external/ib-compress;../../external/stb;../../external/;../../external/dear-imgui;../../external/cereal/include</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>BX_CONFIG_DEBUG;USE_BULLET_PHYSICS;x64;NOMINMAX;_DEBUG;_WINDOWS;_USRDLL;__STDC_LIMIT_MACROS;__STDC_FORMAT_MACROS;__STDC_CONSTANT_MACROS;_SCL_SECURE=0;_SECURE_SCL=0;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_WIN32;_WIN64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../../src/Core;../../src/Engine;../../src/Framework;../../external/bgfx/include/;../../external/bimg/include;../../external/bx/include;../../external/bx/include/compat/msvc;../../external/bullet/include;..\..\external\SFML\include;../../external/ib-compress;../../external/stb;../../external/;../../external/dear-imgui;../../external/cereal/include</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
@@ -159,9 +159,6 @@
     <ClInclude Include="..\..\external\dear-imgui\imstb_rectpack.h" />
     <ClInclude Include="..\..\external\dear-imgui\imstb_textedit.h" />
     <ClInclude Include="..\..\external\dear-imgui\imstb_truetype.h" />
-    <ClInclude Include="..\..\external\dear-imgui\stb_rect_pack.h" />
-    <ClInclude Include="..\..\external\dear-imgui\stb_textedit.h" />
-    <ClInclude Include="..\..\external\dear-imgui\stb_truetype.h" />
     <ClInclude Include="..\..\external\dear-imgui\widgets\color_picker.h" />
     <ClInclude Include="..\..\external\dear-imgui\widgets\color_wheel.h" />
     <ClInclude Include="..\..\external\dear-imgui\widgets\dock.h" />
@@ -396,24 +393,17 @@
     <ClInclude Include="..\..\src\Framework\Tools\InGameLogger.h" />
     <ClInclude Include="..\..\src\Framework\UI\Console.h" />
     <ClInclude Include="..\..\src\Framework\UI\imguiAdapter.h" />
+    <ClInclude Include="..\..\src\Framework\UI\imgui\common.h" />
     <ClInclude Include="..\..\src\Framework\UI\imgui\droidsans.ttf.h" />
-    <ClInclude Include="..\..\src\Framework\UI\imgui\fs_imgui_color.bin.h" />
-    <ClInclude Include="..\..\src\Framework\UI\imgui\fs_imgui_cubemap.bin.h" />
     <ClInclude Include="..\..\src\Framework\UI\imgui\fs_imgui_image.bin.h" />
-    <ClInclude Include="..\..\src\Framework\UI\imgui\fs_imgui_image_swizz.bin.h" />
-    <ClInclude Include="..\..\src\Framework\UI\imgui\fs_imgui_latlong.bin.h" />
-    <ClInclude Include="..\..\src\Framework\UI\imgui\fs_imgui_texture.bin.h" />
     <ClInclude Include="..\..\src\Framework\UI\imgui\fs_ocornut_imgui.bin.h" />
     <ClInclude Include="..\..\src\Framework\UI\imgui\icons_font_awesome.ttf.h" />
     <ClInclude Include="..\..\src\Framework\UI\imgui\icons_kenney.ttf.h" />
     <ClInclude Include="..\..\src\Framework\UI\imgui\bgfx-imgui.h" />
+    <ClInclude Include="..\..\src\Framework\UI\imgui\packrect.h" />
     <ClInclude Include="..\..\src\Framework\UI\imgui\robotomono_regular.ttf.h" />
     <ClInclude Include="..\..\src\Framework\UI\imgui\roboto_regular.ttf.h" />
-    <ClInclude Include="..\..\src\Framework\UI\imgui\vs_imgui_color.bin.h" />
-    <ClInclude Include="..\..\src\Framework\UI\imgui\vs_imgui_cubemap.bin.h" />
     <ClInclude Include="..\..\src\Framework\UI\imgui\vs_imgui_image.bin.h" />
-    <ClInclude Include="..\..\src\Framework\UI\imgui\vs_imgui_latlong.bin.h" />
-    <ClInclude Include="..\..\src\Framework\UI\imgui\vs_imgui_texture.bin.h" />
     <ClInclude Include="..\..\src\Framework\UI\imgui\vs_ocornut_imgui.bin.h" />
     <ClInclude Include="..\..\src\Framework\World\World.h" />
   </ItemGroup>
@@ -421,6 +411,7 @@
     <ClCompile Include="..\..\external\dear-imgui\imgui.cpp" />
     <ClCompile Include="..\..\external\dear-imgui\imgui_demo.cpp" />
     <ClCompile Include="..\..\external\dear-imgui\imgui_draw.cpp" />
+    <ClCompile Include="..\..\external\dear-imgui\imgui_tables.cpp" />
     <ClCompile Include="..\..\external\dear-imgui\imgui_widgets.cpp" />
     <ClCompile Include="..\..\src\Core\ContainerUtil.cpp" />
     <ClCompile Include="..\..\src\Core\DateTime.cpp" />
@@ -593,6 +584,13 @@
     <None Include="..\..\src\Core\Functor.inl" />
     <None Include="..\..\src\Core\StringUtils.inl" />
     <None Include="..\..\src\Framework\Game\Game.inl" />
+    <None Include="..\..\src\Framework\UI\imgui\common.sh" />
+    <None Include="..\..\src\Framework\UI\imgui\fs_imgui_image.sc" />
+    <None Include="..\..\src\Framework\UI\imgui\fs_ocornut_imgui.sc" />
+    <None Include="..\..\src\Framework\UI\imgui\shaderlib.sh" />
+    <None Include="..\..\src\Framework\UI\imgui\varying.def.sc" />
+    <None Include="..\..\src\Framework\UI\imgui\vs_imgui_image.sc" />
+    <None Include="..\..\src\Framework\UI\imgui\vs_ocornut_imgui.sc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

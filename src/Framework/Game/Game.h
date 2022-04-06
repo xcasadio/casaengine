@@ -19,6 +19,7 @@
 #include "Script/ScriptEngine.h"
 #include "DynamicModule.h"
 #include "GameInfo.h"
+#include "imgui.h"
 #include "AI/Messaging/MessageDispatcher.h"
 #include "Assets/AssetManager.h"
 #include "GameDatas/GameDataFactory.h"

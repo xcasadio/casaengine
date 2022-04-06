@@ -172,9 +172,6 @@
     <Filter Include="3rdparty\dear-imgui">
       <UniqueIdentifier>{3cb7a6f4-a9c9-475e-88a8-8849d9e37ee0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="3rdparty\dear-imgui\widgets">
-      <UniqueIdentifier>{40c5bc90-2d39-45d8-976e-3eaed28dbb85}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Framework\GameDatas">
       <UniqueIdentifier>{15b27981-44fc-4efc-b9a1-27a48ac6a458}</UniqueIdentifier>
     </Filter>
@@ -183,6 +180,9 @@
     </Filter>
     <Filter Include="Engine\Resources">
       <UniqueIdentifier>{269f16ae-b2b5-410d-877a-62d2dc2fe94e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3rdparty\dear-imgui\widgets">
+      <UniqueIdentifier>{df3edde7-6b3a-4adc-ad44-e829c31c0ac2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -813,117 +813,6 @@
     <ClInclude Include="..\..\src\Framework\UI\imguiAdapter.h">
       <Filter>Framework\UI</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\UI\imgui\droidsans.ttf.h">
-      <Filter>Framework\UI\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Framework\UI\imgui\fs_imgui_color.bin.h">
-      <Filter>Framework\UI\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Framework\UI\imgui\fs_imgui_cubemap.bin.h">
-      <Filter>Framework\UI\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Framework\UI\imgui\fs_imgui_image.bin.h">
-      <Filter>Framework\UI\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Framework\UI\imgui\fs_imgui_image_swizz.bin.h">
-      <Filter>Framework\UI\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Framework\UI\imgui\fs_imgui_latlong.bin.h">
-      <Filter>Framework\UI\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Framework\UI\imgui\fs_imgui_texture.bin.h">
-      <Filter>Framework\UI\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Framework\UI\imgui\fs_ocornut_imgui.bin.h">
-      <Filter>Framework\UI\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Framework\UI\imgui\icons_font_awesome.ttf.h">
-      <Filter>Framework\UI\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Framework\UI\imgui\icons_kenney.ttf.h">
-      <Filter>Framework\UI\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Framework\UI\imgui\roboto_regular.ttf.h">
-      <Filter>Framework\UI\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Framework\UI\imgui\robotomono_regular.ttf.h">
-      <Filter>Framework\UI\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Framework\UI\imgui\vs_imgui_color.bin.h">
-      <Filter>Framework\UI\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Framework\UI\imgui\vs_imgui_cubemap.bin.h">
-      <Filter>Framework\UI\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Framework\UI\imgui\vs_imgui_image.bin.h">
-      <Filter>Framework\UI\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Framework\UI\imgui\vs_imgui_latlong.bin.h">
-      <Filter>Framework\UI\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Framework\UI\imgui\vs_imgui_texture.bin.h">
-      <Filter>Framework\UI\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Framework\UI\imgui\vs_ocornut_imgui.bin.h">
-      <Filter>Framework\UI\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\external\dear-imgui\imconfig.h">
-      <Filter>3rdparty\dear-imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\external\dear-imgui\imgui.h">
-      <Filter>3rdparty\dear-imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\external\dear-imgui\imgui_internal.h">
-      <Filter>3rdparty\dear-imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\external\dear-imgui\imgui_user.h">
-      <Filter>3rdparty\dear-imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\external\dear-imgui\imstb_rectpack.h">
-      <Filter>3rdparty\dear-imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\external\dear-imgui\imstb_textedit.h">
-      <Filter>3rdparty\dear-imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\external\dear-imgui\imstb_truetype.h">
-      <Filter>3rdparty\dear-imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\external\dear-imgui\stb_rect_pack.h">
-      <Filter>3rdparty\dear-imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\external\dear-imgui\stb_textedit.h">
-      <Filter>3rdparty\dear-imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\external\dear-imgui\stb_truetype.h">
-      <Filter>3rdparty\dear-imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\external\dear-imgui\widgets\color_picker.h">
-      <Filter>3rdparty\dear-imgui\widgets</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\external\dear-imgui\widgets\color_wheel.h">
-      <Filter>3rdparty\dear-imgui\widgets</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\external\dear-imgui\widgets\dock.h">
-      <Filter>3rdparty\dear-imgui\widgets</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\external\dear-imgui\widgets\file_list.h">
-      <Filter>3rdparty\dear-imgui\widgets</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\external\dear-imgui\widgets\gizmo.h">
-      <Filter>3rdparty\dear-imgui\widgets</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\external\dear-imgui\widgets\markdown.h">
-      <Filter>3rdparty\dear-imgui\widgets</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\external\dear-imgui\widgets\memory_editor.h">
-      <Filter>3rdparty\dear-imgui\widgets</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\external\dear-imgui\widgets\range_slider.h">
-      <Filter>3rdparty\dear-imgui\widgets</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Framework\UI\imgui\bgfx-imgui.h">
-      <Filter>Framework\UI\imgui</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Framework\Entities\Components\CameraControllers\Camera2DTargetedController.h">
       <Filter>Framework\Entities\Components\CameraControllers</Filter>
     </ClInclude>
@@ -977,6 +866,87 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Framework\Entities\Components\CameraControllers\Camera3DTargetedController.h">
       <Filter>Framework\Entities\Components\CameraControllers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Framework\UI\imgui\droidsans.ttf.h">
+      <Filter>Framework\UI\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Framework\UI\imgui\fs_imgui_image.bin.h">
+      <Filter>Framework\UI\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Framework\UI\imgui\fs_ocornut_imgui.bin.h">
+      <Filter>Framework\UI\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Framework\UI\imgui\icons_font_awesome.ttf.h">
+      <Filter>Framework\UI\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Framework\UI\imgui\icons_kenney.ttf.h">
+      <Filter>Framework\UI\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Framework\UI\imgui\bgfx-imgui.h">
+      <Filter>Framework\UI\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Framework\UI\imgui\roboto_regular.ttf.h">
+      <Filter>Framework\UI\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Framework\UI\imgui\robotomono_regular.ttf.h">
+      <Filter>Framework\UI\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Framework\UI\imgui\vs_imgui_image.bin.h">
+      <Filter>Framework\UI\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Framework\UI\imgui\vs_ocornut_imgui.bin.h">
+      <Filter>Framework\UI\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Framework\UI\imgui\common.h">
+      <Filter>Framework\UI\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Framework\UI\imgui\packrect.h">
+      <Filter>Framework\UI\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\external\dear-imgui\imconfig.h">
+      <Filter>3rdparty\dear-imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\external\dear-imgui\imgui.h">
+      <Filter>3rdparty\dear-imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\external\dear-imgui\imgui_internal.h">
+      <Filter>3rdparty\dear-imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\external\dear-imgui\imgui_user.h">
+      <Filter>3rdparty\dear-imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\external\dear-imgui\imstb_rectpack.h">
+      <Filter>3rdparty\dear-imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\external\dear-imgui\imstb_textedit.h">
+      <Filter>3rdparty\dear-imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\external\dear-imgui\imstb_truetype.h">
+      <Filter>3rdparty\dear-imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\external\dear-imgui\widgets\color_picker.h">
+      <Filter>3rdparty\dear-imgui\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\external\dear-imgui\widgets\color_wheel.h">
+      <Filter>3rdparty\dear-imgui\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\external\dear-imgui\widgets\dock.h">
+      <Filter>3rdparty\dear-imgui\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\external\dear-imgui\widgets\file_list.h">
+      <Filter>3rdparty\dear-imgui\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\external\dear-imgui\widgets\gizmo.h">
+      <Filter>3rdparty\dear-imgui\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\external\dear-imgui\widgets\markdown.h">
+      <Filter>3rdparty\dear-imgui\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\external\dear-imgui\widgets\memory_editor.h">
+      <Filter>3rdparty\dear-imgui\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\external\dear-imgui\widgets\range_slider.h">
+      <Filter>3rdparty\dear-imgui\widgets</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1400,21 +1370,6 @@
     <ClCompile Include="..\..\src\Framework\UI\imguiAdapter.cpp">
       <Filter>Framework\UI</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\external\dear-imgui\imgui.cpp">
-      <Filter>3rdparty\dear-imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\external\dear-imgui\imgui_demo.cpp">
-      <Filter>3rdparty\dear-imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\external\dear-imgui\imgui_draw.cpp">
-      <Filter>3rdparty\dear-imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\external\dear-imgui\imgui_widgets.cpp">
-      <Filter>3rdparty\dear-imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Framework\UI\imgui\bgfx-imgui.cpp">
-      <Filter>Framework\UI\imgui</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Framework\Entities\Components\CameraControllers\Camera2DTargetedController.cpp">
       <Filter>Framework\Entities\Components\CameraControllers</Filter>
     </ClCompile>
@@ -1460,16 +1415,56 @@
     <ClCompile Include="..\..\src\Framework\Entities\Components\CameraControllers\Camera3DTargetedController.cpp">
       <Filter>Framework\Entities\Components\CameraControllers</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Core\Maths\Plane.cpp" />
+    <ClCompile Include="..\..\src\Framework\UI\imgui\bgfx-imgui.cpp">
+      <Filter>Framework\UI\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\external\dear-imgui\imgui.cpp">
+      <Filter>3rdparty\dear-imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\external\dear-imgui\imgui_demo.cpp">
+      <Filter>3rdparty\dear-imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\external\dear-imgui\imgui_draw.cpp">
+      <Filter>3rdparty\dear-imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\external\dear-imgui\imgui_tables.cpp">
+      <Filter>3rdparty\dear-imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\external\dear-imgui\imgui_widgets.cpp">
+      <Filter>3rdparty\dear-imgui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\src\Core\StringUtils.inl">
       <Filter>Core</Filter>
     </None>
-    <None Include="..\..\src\Core\Maths\Plane.cpp">
-      <Filter>Core\Maths</Filter>
-    </None>
     <None Include="..\..\src\Framework\Game\Game.inl">
       <Filter>Framework\Game</Filter>
+    </None>
+    <None Include="..\..\src\Core\Functor.inl">
+      <Filter>Core</Filter>
+    </None>
+    <None Include="..\..\src\Framework\UI\imgui\fs_imgui_image.sc">
+      <Filter>Framework\UI\imgui</Filter>
+    </None>
+    <None Include="..\..\src\Framework\UI\imgui\fs_ocornut_imgui.sc">
+      <Filter>Framework\UI\imgui</Filter>
+    </None>
+    <None Include="..\..\src\Framework\UI\imgui\varying.def.sc">
+      <Filter>Framework\UI\imgui</Filter>
+    </None>
+    <None Include="..\..\src\Framework\UI\imgui\vs_imgui_image.sc">
+      <Filter>Framework\UI\imgui</Filter>
+    </None>
+    <None Include="..\..\src\Framework\UI\imgui\vs_ocornut_imgui.sc">
+      <Filter>Framework\UI\imgui</Filter>
+    </None>
+    <None Include="..\..\src\Framework\UI\imgui\common.sh">
+      <Filter>Framework\UI\imgui</Filter>
+    </None>
+    <None Include="..\..\src\Framework\UI\imgui\shaderlib.sh">
+      <Filter>Framework\UI\imgui</Filter>
     </None>
     <None Include="..\..\external\dear-imgui\imgui_user.inl">
       <Filter>3rdparty\dear-imgui</Filter>
@@ -1497,9 +1492,6 @@
     </None>
     <None Include="..\..\external\dear-imgui\widgets\range_slider.inl">
       <Filter>3rdparty\dear-imgui\widgets</Filter>
-    </None>
-    <None Include="..\..\src\Core\Functor.inl">
-      <Filter>Core</Filter>
     </None>
   </ItemGroup>
 </Project>
