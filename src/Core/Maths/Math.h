@@ -1,7 +1,7 @@
 #ifndef MATH_H_
 #define MATH_H_
 
-#include <math.h>
+#include <cmath>
 #include <limits>
 
 namespace CasaEngine
@@ -38,111 +38,50 @@ namespace CasaEngine
 	/**
 	 * returns true if the parameter is equal to zero
 	 */
-	inline bool IsZero(double val)
+	template<typename T>
+	bool IsZero(T val)
 	{
-		return -MinDouble < val&& val < MinDouble;
-	}
-
-	/**
-	 * returns true if the parameter is equal to zero
-	 */
-	inline bool IsZero(float val)
-	{
-		return -MinFloat < val&& val < MinFloat;
+		return -std::numeric_limits<T>::min < val && val < std::numeric_limits<T>::min;
 	}
 
 	/**
 	 * returns true is the third parameter is in the range described by the
 	 * first two
 	 */
-	inline bool InRange(double start, double end, double val)
+	template<typename T>
+	bool InRange(T start, T end, T val)
 	{
 		if (start < end)
 		{
-			if (val > start && val < end) return true;
-			return false;
+			return (val > start && val < end);
 		}
-		if (val < start && val > end) return true;
-		return false;
-	}
 
-	/**
-	 * returns true is the third parameter is in the range described by the
-	 * first two
-	 */
-	inline bool InRange(float start, float end, float val)
-	{
-		if (start < end)
-		{
-			if (val > start && val < end) return true;
-			return false;
-		}
-		if (val < start && val > end) return true;
-		return false;
+		return (val < start && val > end);
 	}
 
 	/**
 	 *
 	 */
-	inline double Sigmoid(double input, double response)
+	template<typename T>
+	double Sigmoid(T input, T response)
 	{
-		return 1.0 / (1.0 + exp(-input / response));
-	}
-
-	/**
-	 *
-	 */
-	inline float Sigmoid(float input, float response)
-	{
-		return 1.0f / (1.0f + exp(-input / response));
+		return static_cast<T>(1.0) / (static_cast<T>(1.0) + exp(-input / response));
 	}
 
 	//rounds a double up or down depending on its value
-	inline int Rounded(double val)
+	template<typename T>
+	int Rounded(T val)
 	{
-		int    integral = static_cast<int>(val);
-		double mantissa = val - integral;
-
-		if (mantissa < 0.5)
-		{
-			return integral;
-		}
-		return integral + 1;
-	}
-
-	//rounds a double up or down depending on its value
-	inline int Rounded(float val)
-	{
-		int    integral = static_cast<int>(val);
-		float mantissa = val - integral;
-
-		if (mantissa < 0.5f)
-		{
-			return integral;
-		}
-		return integral + 1;
+		return RoundUnderOffset(val, static_cast<T>(0.5));
 	}
 
 	//rounds a double up or down depending on whether its
 	//mantissa is higher or lower than offset
-	inline int RoundUnderOffset(double val, double offset)
+	template<typename T>
+	int RoundUnderOffset(T val, T offset)
 	{
 		int    integral = static_cast<int>(val);
-		double mantissa = val - integral;
-
-		if (mantissa < offset)
-		{
-			return integral;
-		}
-		return integral + 1;
-	}
-
-	//rounds a double up or down depending on whether its
-	//mantissa is higher or lower than offset
-	inline int RoundUnderOffset(float val, float offset)
-	{
-		int    integral = static_cast<int>(val);
-		float mantissa = val - integral;
+		T mantissa = val - integral;
 
 		if (mantissa < offset)
 		{
@@ -154,7 +93,7 @@ namespace CasaEngine
 	//compares two real numbers. Returns true if they are equal
 	inline bool isEqual(float a, float b)
 	{
-		if (fabs(a - b) < 1E-12)
+		if (fabsf(a - b) < 1E-12)
 		{
 			return true;
 		}
@@ -224,9 +163,9 @@ namespace CasaEngine
 		return (a < 0) ? -1 : 1;
 	}
 
-	inline unsigned int NearestPowerOfTwo(unsigned int Value)
+	inline unsigned int NearestPowerOfTwo(unsigned int value)
 	{
-		unsigned int Temp = Value;
+		unsigned int Temp = value;
 		unsigned int PowerOfTwo = 0;
 
 		while (Temp > 1)
@@ -235,9 +174,9 @@ namespace CasaEngine
 			++PowerOfTwo;
 		}
 
-		unsigned int Retval = 1 << PowerOfTwo;
+		const unsigned int retval = 1 << PowerOfTwo;
 
-		return Retval == Value ? Retval : Retval << 1;
+		return retval == value ? retval : retval << 1;
 	}
 }
 
