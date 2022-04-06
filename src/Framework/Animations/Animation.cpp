@@ -26,7 +26,7 @@ namespace CasaEngine
 
 		for (it = m_Events.begin(); it != m_Events.end(); it++)
 		{
-			DELETE_AO (*it);
+			delete (*it);
 		}
 	}
 

@@ -4,12 +4,11 @@
 #include "CA_Export.h"
 #include "Maths/Vector3.h"
 #include "Maths/Matrix4.h"
-#include "Memory/MemoryAllocation.h"
+
 
 namespace CasaEngine
 {
-	class CA_EXPORT Viewport :
-		public AllocatedObject<Viewport>
+	class CA_EXPORT Viewport
 	{
 	public:
 		Viewport();

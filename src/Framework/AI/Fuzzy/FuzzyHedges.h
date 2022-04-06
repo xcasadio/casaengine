@@ -12,7 +12,6 @@
 #include "CA_Export.h"
 #include "FuzzySet.h"
 #include "FuzzyTerm.h"
-#include "Memory\MemoryAllocation.h"
 
 namespace CasaEngine
 {
@@ -37,7 +36,7 @@ public:
     return m_Set.GetDOM() * m_Set.GetDOM();
   }
 
-  FuzzyTerm* Clone()const{return NEW_AO FzVery(*this);}
+  FuzzyTerm* Clone()const{return new FzVery(*this);}
 
   void ClearDOM(){m_Set.ClearDOM();}
   void ORwithDOM(float val){m_Set.ORwithDOM(val * val);}
@@ -63,7 +62,7 @@ public:
     return sqrt(m_Set.GetDOM());
   }
 
-  FuzzyTerm* Clone()const{return NEW_AO FzFairly(*this);}
+  FuzzyTerm* Clone()const{return new FzFairly(*this);}
 
   void ClearDOM(){m_Set.ClearDOM();}
   void ORwithDOM(float val){m_Set.ORwithDOM(sqrt(val));}

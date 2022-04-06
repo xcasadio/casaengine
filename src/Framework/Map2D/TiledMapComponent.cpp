@@ -47,7 +47,7 @@ namespace CasaEngine
 		return m_MapSize;
 	}
 
-	void TiledMapComponent::SetMapSize(Vector2I& size)
+	void TiledMapComponent::SetMapSize(const Vector2I& size)
 	{
 		m_MapSize = size;
 	}
@@ -57,7 +57,7 @@ namespace CasaEngine
 		return m_TileSize;
 	}
 
-	void TiledMapComponent::SetTileSize(Vector2I& size)
+	void TiledMapComponent::SetTileSize(const Vector2I& size)
 	{
 		m_TileSize = size;
 	}
@@ -74,7 +74,7 @@ namespace CasaEngine
 		m_Layers.push_back(pLayer);
 	}
 
-	TiledMapLayer* TiledMapComponent::GetLayer(const int layerNum) const
+	TiledMapLayer* TiledMapComponent::GetLayer(int layerNum) const
 	{
 		return m_Layers[layerNum];
 	}

@@ -1,29 +1,16 @@
-#ifndef PATH_H
-#define PATH_H
-//------------------------------------------------------------------------
-//
-//  Name:   Path.h
-//
+#pragma once
+
 //  Desc:   class to define, manage, and traverse a path (defined by a series of 2D vectors)
-//
-//
 //  Author: Mat Buckland 2003 (fup@ai-junkie.com)
-//
-//------------------------------------------------------------------------
 
 #include "CA_Export.h"
 #include "Maths\Vector2.h"
-#include "Memory/MemoryAllocation.h"
 
 #include <list>
 
 namespace CasaEngine
 {
-	/*
-	 *
-	 */
-	class CA_EXPORT Path :
-		public AllocatedObject<Path>
+	class CA_EXPORT Path
 	{
 	private:
 
@@ -71,5 +58,3 @@ namespace CasaEngine
 		void Render()const;
 	};
 }
-
-#endif // PATH_H

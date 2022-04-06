@@ -3,14 +3,10 @@
 
 #include <Maths/Vector3.h>
 #include <Maths/Vector4.h>
-#include <SFML/Window/Keyboard.hpp>
-
-#include "Memory/MemoryAllocation.h"
 
 namespace CasaEngine
 {
-	class Plane :
-		public AllocatedObject<Plane>
+	class Plane
 	{
 	public:
 		Plane(float A = 0.0f, float B = 0.0f, float C = 0.0f, float D = 0.0f);
@@ -27,8 +23,8 @@ namespace CasaEngine
 		bool operator ==(const Plane& p) const;
 		bool operator !=(const Plane& p) const;
 
-		Vector3F n; ///< Normale du plan
-		float    d{}; ///< Distance du plan à l'originie
+		Vector3F n;
+		float    d;
 	};
 
 	std::istream& operator >>(std::istream& Stream, Plane& Plane);

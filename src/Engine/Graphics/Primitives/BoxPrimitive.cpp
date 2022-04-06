@@ -4,11 +4,8 @@
 
 namespace CasaEngine
 {
-	/**
-	 *
-	 */
 	BoxPrimitive::BoxPrimitive(float width_, float height_, float length_) :
-		IPrimitive3D(IPrimitive3D::BOX)
+		IPrimitive3D(Primitive3DType::BOX)
 	{
 		m_Width = width_;
 		m_Height = height_;

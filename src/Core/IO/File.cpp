@@ -9,16 +9,13 @@
 
 namespace CasaEngine
 {
-	File::File()
-	{
-	}
-
 	File::File(const File& rsh)
+		: IFile(rsh)
 	{
 		*this = rsh;
 	}
 
-	const File& File::operator = (const File& rsh)
+	File& File::operator = (const File& rsh)
 	{
 		m_Name = rsh.m_Name;
 		return *this;
@@ -26,7 +23,7 @@ namespace CasaEngine
 
 	File::~File()
 	{
-		Close();
+		File::Close();
 	}
 
 	/**
@@ -42,9 +39,9 @@ namespace CasaEngine
 	bool File::Open(const char* fileName_, unsigned int mode_)
 	{
 		unsigned int stdMode = 0;
-		stdMode |= (mode_ & FileMode::READ) == FileMode::READ ? std::ios::in : 0;
-		stdMode |= (mode_ & FileMode::WRITE) == FileMode::WRITE ? std::ios::out : 0;
-		stdMode |= (mode_ & FileMode::BINARY) == FileMode::BINARY ? std::ios::binary : 0;
+		stdMode |= (mode_ & (unsigned int)FileMode::READ) == (unsigned int)FileMode::READ ? std::ios::in : 0;
+		stdMode |= (mode_ & (unsigned int)FileMode::WRITE) == (unsigned int)FileMode::WRITE ? std::ios::out : 0;
+		stdMode |= (mode_ & (unsigned int)FileMode::BINARY) == (unsigned int)FileMode::BINARY ? std::ios::binary : 0;
 
 		m_Name = fileName_;
 		std::replace(m_Name.begin(), m_Name.end(), '/', '\\');
@@ -98,7 +95,7 @@ namespace CasaEngine
 		m_BufferSize = m_Stream.tellg();
 		m_Stream.seekg(0, m_Stream.beg);
 
-		m_pBuffer = NEW_AO char[m_BufferSize];
+		m_pBuffer = new char[m_BufferSize];
 		m_Stream.read(m_pBuffer, m_BufferSize);*/
 
 		/*std::ifstream file(fileName_, std::ios::binary);
@@ -108,7 +105,7 @@ namespace CasaEngine
 
 		//std::vector<char> buffer(size);
 		//if (m_Stream.read(buffer.data(), m_Stream))
-		char *pBuffer = NEW_AO char[m_Stream];
+		char *pBuffer = new char[m_Stream];
 		if (m_Stream.read(pBuffer, m_Stream))
 		{
 			m_Stream.rdbuf()->pubsetbuf(pBuffer, size);
@@ -136,7 +133,7 @@ namespace CasaEngine
 		return size_;
 	}
 
-	unsigned int File::Seek(unsigned int off_, SeekDir::TSeekDir dir_)
+	unsigned int File::Seek(unsigned int off_, SeekDir dir_)
 	{
 		CA_ASSERT(m_Stream.is_open() == true, "Try to read a file which is not opened");
 		std::ios::seekdir dir;

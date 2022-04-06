@@ -3,7 +3,7 @@
 namespace CasaEngine
 {
 	Capsule::Capsule() :
-		IShape(CAPSULE)
+		IShape(ShapeType::CAPSULE)
 	{
 	}
 }

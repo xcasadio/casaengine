@@ -2,7 +2,6 @@
 #define _CASAENGINEMemberFunctionSlot_h_
 
 #include "SlotFunctorBase.h"
-#include "Memory\MemoryAllocation.h"
 
 namespace CasaEngine
 {

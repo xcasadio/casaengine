@@ -4,13 +4,11 @@
 #include "CA_Export.h"
 #include "LinearMath\btIDebugDraw.h"
 #include "Game\Line3DRendererComponent.h"
-#include "Memory\MemoryAllocation.h"
 
 namespace CasaEngine
 {
 	class CA_EXPORT BulletPhysicsDebugDraw :
-		public btIDebugDraw,
-		public AllocatedObject<BulletPhysicsDebugDraw>
+		public btIDebugDraw
 	{
 	public:
 		BulletPhysicsDebugDraw();

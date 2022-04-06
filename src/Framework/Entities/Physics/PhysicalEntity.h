@@ -2,7 +2,7 @@
 #define PHYSICALENTITY_H_
 
 #include "CA_Export.h"
-#include "Memory/MemoryAllocation.h"
+
 #include <iosfwd>
 #include <string>
 #include "Maths/Vector3.h"
@@ -16,11 +16,7 @@ namespace CasaEngine
 {
 	class BaseEntity;
 
-	/**
-	 *	
-	 */
-	class CA_EXPORT PhysicalEntity :
-		public AllocatedObject<PhysicalEntity>
+	class CA_EXPORT PhysicalEntity
 	{
 	private:
 		Vector3F    m_vVelocity;
@@ -101,4 +97,4 @@ namespace CasaEngine
 
 }
 
-#endif // PHYSICALENTITY_H_
+#endif

@@ -34,7 +34,7 @@ namespace CasaEngine
 
 	CharacterBase::~CharacterBase()
 	{
-		DELETE_AO m_pController;
+		delete m_pController;
 	}
 
 	void CharacterBase::Initialize()

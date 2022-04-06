@@ -1,28 +1,19 @@
 #ifndef SMOOTHER
 #define SMOOTHER
 
-//------------------------------------------------------------------------
-//
-//  Name: Smoother.h
-//
 //  Desc: Template class to help calculate the average value of a history
 //        of values. This can only be used with types that have a 'zero'
 //        value and that have the += and / operators overloaded.
 //
 //        Example: Used to smooth frame rate calculations.
-//
 //  Author: Mat Buckland (fup@ai-junkie.com)
-//
-//------------------------------------------------------------------------
 
 #include <vector>
-#include "Memory/MemoryAllocation.h"
 
 namespace CasaEngine
 {
 	template <class T>
-	class Smoother :
-		public AllocatedObject<Smoother<T> >
+	class Smoother
 	{
 	private:
 

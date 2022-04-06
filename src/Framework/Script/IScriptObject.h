@@ -2,7 +2,6 @@
 #define ISCRIPTOBJECT_H_
 
 #include "CA_Export.h"
-#include "Memory\MemoryAllocation.h"
 #include "Entities\BaseEntity.h"
 
 
@@ -14,8 +13,7 @@ namespace CasaEngine
 	/**
 	 *
 	 */
-	class CA_EXPORT IScriptObject :
-		public AllocatedObject<IScriptObject>
+	class CA_EXPORT IScriptObject
 	{
 	public:
 		virtual ~IScriptObject() {}

@@ -32,12 +32,12 @@ Camera2DTargetedController* s_pCameraController;
 TileMapGame::TileMapGame() :
 	m_pSpriteRenderer(nullptr)
 {
-	Logging.AddLogger(NEW_AO LoggerFile("Out.log"));
+	Logging.AddLogger(new LoggerFile("Out.log"));
 }
 
 TileMapGame::~TileMapGame()
 {
-	DELETE_AO m_pSpriteRenderer;
+	delete m_pSpriteRenderer;
 }
 
 void TileMapGame::Initialize()
@@ -51,78 +51,78 @@ void TileMapGame::Initialize()
 	GetMediaManager().AddSearchPath("../../examples/resources/tileset");
 	GetMediaManager().AddSearchPath("../../examples/resources/fonts");
 
-	m_pSpriteRenderer = NEW_AO SpriteRenderer(this);
+	m_pSpriteRenderer = new SpriteRenderer(this);
 	AddComponent(m_pSpriteRenderer);
-	AddComponent(NEW_AO Line3DRendererComponent(this));
+	AddComponent(new Line3DRendererComponent(this));
 
 	Game::Initialize();
 }
 
 void TileMapGame::CreateBackground(World* pWorld)
 {
-	auto pEntity = NEW_AO BaseEntity();
+	auto *pEntity = new BaseEntity();
 	pEntity->SetName("background");
-	auto pTrans3D = NEW_AO Transform3DComponent(pEntity);
+	auto *pTrans3D = new Transform3DComponent(pEntity);
 	pTrans3D->SetLocalPosition(Vector3F(0.0f, 0.0f, 1.0f));
 	pTrans3D->SetLocalRotation(0.0f);
 
 	//Texture* texture = Texture::loadTexture("Outside_A2.png");
-	const int size = 48; // 32
-	auto pSprite = NEW_AO SpriteData();
+	constexpr int size = 48; // 32
+	auto *pSprite = new SpriteData();
 	pSprite->SetAssetFileName("Outside_A2.png");
 	//pSprite->SetTexture2D(texture);
 	pSprite->SetPositionInTexture(RectangleI(0, 0, size, size));
 	pSprite->SetName("tile0");
-	Game::Instance().GetAssetManager().AddAsset(NEW_AO Asset(pSprite->GetName(), pSprite));
+	Game::Instance().GetAssetManager().AddAsset(new Asset(pSprite->GetName(), pSprite));
 
 	for (int y = 0; y < 3; ++y)
 	{
 		for (int x = 0; x < 2; ++x)
 		{
-			pSprite = NEW_AO SpriteData();
+			pSprite = new SpriteData();
 			pSprite->SetAssetFileName("Outside_A2.png");
 			//pSprite->SetTexture2D(texture);
 			pSprite->SetPositionInTexture(RectangleI(2 * size + x * size, y * size, size, size));
 			std::ostringstream str;
 			str << "autoTile" << x + y * 2;
 			pSprite->SetName(str.str());
-			Game::Instance().GetAssetManager().AddAsset(NEW_AO Asset(pSprite->GetName(), pSprite));
+			Game::Instance().GetAssetManager().AddAsset(new Asset(pSprite->GetName(), pSprite));
 		}
 	}
 
-	auto pMap = NEW_AO TiledMapComponent(pEntity);
+	auto *pMap = new TiledMapComponent(pEntity);
 	pMap->SetMapSize(Vector2I(30, 11));
 	pMap->SetTileSize(Vector2I(size, size));
 	//create anim
-	auto pAnim2DData = NEW_AO Animation2DData();
+	auto *pAnim2DData = new Animation2DData();
 	pAnim2DData->SetName("anim2D_tile1");
-	auto pFrameData = NEW_AO FrameData();
+	auto *pFrameData = new FrameData();
 	pFrameData->SetSpriteId("tile0");
 	pFrameData->SetDuration(2.0f);
 	pAnim2DData->GetFrames().push_back(*pFrameData);
-	pFrameData = NEW_AO FrameData();
+	pFrameData = new FrameData();
 	pFrameData->SetSpriteId("tile1");
 	pFrameData->SetDuration(2.0f);
 	pAnim2DData->GetFrames().push_back(*pFrameData);
-	pFrameData = NEW_AO FrameData();
+	pFrameData = new FrameData();
 	pFrameData->SetSpriteId("tile2");
 	pFrameData->SetDuration(2.0f);
 	pAnim2DData->GetFrames().push_back(*pFrameData);
 	pAnim2DData->SetAnimationType(AnimationType::Loop);
-	Game::Instance().GetAssetManager().AddAsset(NEW_AO Asset(pAnim2DData->GetName(), pAnim2DData));
+	Game::Instance().GetAssetManager().AddAsset(new Asset(pAnim2DData->GetName(), pAnim2DData));
 	//
-	pAnim2DData = NEW_AO Animation2DData();
+	pAnim2DData = new Animation2DData();
 	pAnim2DData->SetName("anim2D_tile0");
-	pFrameData = NEW_AO FrameData();
+	pFrameData = new FrameData();
 	pFrameData->SetSpriteId("tile1");
 	pFrameData->SetDuration(2.0f);
 	pAnim2DData->GetFrames().push_back(*pFrameData);
-	pFrameData = NEW_AO FrameData();
+	pFrameData = new FrameData();
 	pFrameData->SetSpriteId("tile0");
 	pFrameData->SetDuration(2.0f);
 	pAnim2DData->GetFrames().push_back(*pFrameData);
 	pAnim2DData->SetAnimationType(AnimationType::Loop);
-	Game::Instance().GetAssetManager().AddAsset(NEW_AO Asset(pAnim2DData->GetName(), pAnim2DData));
+	Game::Instance().GetAssetManager().AddAsset(new Asset(pAnim2DData->GetName(), pAnim2DData));
 
 	std::vector<ITile*> tiles4AutoTile;
 	for (int y = 0; y < 3; ++y)
@@ -131,12 +131,12 @@ void TileMapGame::CreateBackground(World* pWorld)
 		{
 			std::ostringstream str;
 			str << "autoTile" << x + y * 2;
-			auto* staticTile = NEW_AO StaticTile(NEW_AO Sprite(*GetAssetManager().GetAsset<SpriteData>(str.str())));
+			auto* staticTile = new StaticTile(new Sprite(*GetAssetManager().GetAsset<SpriteData>(str.str())));
 			tiles4AutoTile.push_back(staticTile);
 		}
 	}
 
-	auto* layer = NEW_AO TiledMapLayer();
+	auto* layer = new TiledMapLayer();
 
 	std::vector<ITile*> tiles;
 	for (int y = 0; y < 11; ++y)
@@ -147,14 +147,14 @@ void TileMapGame::CreateBackground(World* pWorld)
 				x % 2 == 0 && (y == 1 || y == 9) ||
 				y % 2 == 0 && (x == 1 || x == 28))
 			{
-				auto* autoTile = NEW_AO AutoTile(layer, x, y);
+				auto* autoTile = new AutoTile(layer, x, y);
 				autoTile->setTiles(tiles4AutoTile);
 				tiles.push_back(autoTile);
 			}
 			else
 			{
 				//tiles.push_back(new AnimatedTile(Game::Instance().GetAssetManager().GetAsset<Animation2D>("anim2D_tile1")->Copy()));
-				tiles.push_back(NEW_AO StaticTile(NEW_AO Sprite(*Game::Instance().GetAssetManager().GetAsset<SpriteData>("tile0"))));
+				tiles.push_back(new StaticTile(new Sprite(*Game::Instance().GetAssetManager().GetAsset<SpriteData>("tile0"))));
 			}
 		}
 	}
@@ -171,36 +171,36 @@ void TileMapGame::LoadContent()
 {
 	Game::LoadContent();
 
-	auto p_world = NEW_AO World();
+	auto p_world = new World();
 	Game::Instance().GetGameInfo().SetWorld(p_world);
 
-	auto pSprite = NEW_AO SpriteData();
+	auto pSprite = new SpriteData();
 	pSprite->SetAssetFileName("vegeta.png");
 	pSprite->SetPositionInTexture(RectangleI(0, 0, 43, 76));
 	pSprite->SetName("sprite");
-	GetAssetManager().AddAsset(NEW_AO Asset(pSprite->GetName(), pSprite));
+	GetAssetManager().AddAsset(new Asset(pSprite->GetName(), pSprite));
 
-	auto pEntity = NEW_AO BaseEntity();
+	auto pEntity = new BaseEntity();
 	pEntity->SetName("vegeta");
-	auto pTransform = NEW_AO Transform3DComponent(pEntity);
+	auto pTransform = new Transform3DComponent(pEntity);
 	s_pTransform = pTransform;
-	pTransform->SetLocalPosition(Vector3F(500.0f, 250.0f, -2.0f));
+	pTransform->SetLocalPosition(Vector3F(500.0f, 250.0f, 0.5f));
 	//pTransform->SetLocalRotation(0.0f);
 	//pTransform->SetLocalScale(Vector3F(43, 76, 1.0f));
 	pEntity->GetComponentMgr()->AddComponent(pTransform);
-	auto pStaticSprite = NEW_AO StaticSpriteComponent(pEntity);
+	auto pStaticSprite = new StaticSpriteComponent(pEntity);
 	pStaticSprite->SetSpriteID("sprite");
 	pEntity->GetComponentMgr()->AddComponent(pStaticSprite);
-	auto* debugComponent = NEW_AO DebugComponent(pEntity);
+	auto* debugComponent = new DebugComponent(pEntity);
 	debugComponent->DisplayPosition(true);
 	pEntity->GetComponentMgr()->AddComponent(debugComponent);
 	p_world->AddEntity(pEntity);
 
 	//Camera 2D
-	auto pCamera = NEW_AO BaseEntity();
+	auto pCamera = new BaseEntity();
 	pCamera->SetName("camera 2D");
-	auto m_pCamera2D = NEW_AO Camera2DComponent(pCamera);
-	auto custom_camera_controller = NEW_AO Camera2DTargetedController(m_pCamera2D);
+	auto m_pCamera2D = new Camera2DComponent(pCamera);
+	auto custom_camera_controller = new Camera2DTargetedController(m_pCamera2D);
 	s_pCameraController = custom_camera_controller;
 	m_pCamera2D->CameraController(custom_camera_controller);
 	pCamera->GetComponentMgr()->AddComponent(m_pCamera2D);

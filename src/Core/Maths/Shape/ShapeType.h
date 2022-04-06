@@ -3,7 +3,7 @@
 
 namespace CasaEngine
 {
-	enum ShapeType
+	enum class ShapeType
 	{
 		//3D
 		BOX,

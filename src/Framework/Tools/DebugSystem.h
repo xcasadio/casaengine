@@ -3,12 +3,11 @@
 
 #include "CA_Export.h"
 #include "GameTime.h"
-#include "Memory/MemoryAllocation.h"
+
 
 namespace CasaEngine
 {
-    class CA_EXPORT DebugSystem :
-		public AllocatedObject<DebugSystem>
+    class CA_EXPORT DebugSystem
     {
 	public :
 		DebugSystem();

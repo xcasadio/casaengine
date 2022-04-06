@@ -3,18 +3,11 @@
 
 #include "CA_Export.h"
 
-#include "Memory\MemoryAllocation.h"
-
-
 namespace CasaEngine
 {
 	typedef unsigned int GameDataFactoryID;
 
-	/**
-	 *
-	 */
-	class CA_EXPORT IGameDataFactory :
-		public AllocatedObject<IGameDataFactory>
+	class CA_EXPORT IGameDataFactory
 	{
 	public:
 		virtual ~IGameDataFactory() {}
@@ -29,9 +22,7 @@ namespace CasaEngine
 		//std::string m_Name;
 	};
 
-	/**
-	 *
-	 */
+
 	class CA_EXPORT AutoRegisterGameDataFactory
 	{
 	public:
@@ -45,4 +36,4 @@ namespace CasaEngine
 
 }
 
-#endif // IGAMEDATAFACTORY_H_
+#endif

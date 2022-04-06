@@ -12,10 +12,10 @@ namespace CasaEngine
 	 *
 	 */
 	SpherePrimitive::SpherePrimitive(float diameter_, unsigned int tessellation_) :
-		IPrimitive3D(SPHERE)
+		IPrimitive3D(Primitive3DType::SPHERE)
 	{
 		if (tessellation_ < 3)
-			throw NEW_AO CArgumentOutOfRangeException("tessellation < 3");
+			throw new CArgumentOutOfRangeException("tessellation < 3");
 
 		int verticalSegments = tessellation_;
 		int horizontalSegments = tessellation_ * 2;

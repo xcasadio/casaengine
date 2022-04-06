@@ -44,7 +44,7 @@ namespace CasaEngine
 	void GameDataFactory::UnRegisterFactory(IGameDataFactory* pFactory_)
 	{
 		m_Factories.erase(pFactory_->GetID());
-		DELETE_AO pFactory_;
+		delete pFactory_;
 	}
 
 	/**

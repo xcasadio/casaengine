@@ -63,7 +63,7 @@ namespace CasaEngine
 	Event::Connection Event::subscribe(Group group,
 		const Subscriber& slot)
 	{
-		Connection c(NEW_AO BoundSlot(group, slot, *this));
+		Connection c(new BoundSlot(group, slot, *this));
 		d_slots.insert(std::pair<Group, Connection>(group, c));
 		return c;
 	}

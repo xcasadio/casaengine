@@ -10,11 +10,8 @@
 
 namespace CasaEngine
 {
-	/**
-	 * A container which contains the parameters to load the asset
-	 */
-	class CA_EXPORT Asset : //public IResource
-		public AllocatedObject<Asset>
+	//A container which contains the parameters to load the asset 
+	class CA_EXPORT Asset
 	{
 	public:
 		Asset(std::string name_, IAssetable* pObject);

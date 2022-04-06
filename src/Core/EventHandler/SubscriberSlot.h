@@ -8,7 +8,6 @@
 #include "MemberFunctionSlot.h"
 #include "FunctorReferenceBinder.h"
 #include "CA_Export.h"
-#include "Memory/MemoryAllocatedObject.h"
 
 namespace CasaEngine
 {
@@ -21,7 +20,7 @@ namespace CasaEngine
 		exceptions are for subscribing member functions and references to functor
 		objects.
 	*/
-	class CA_EXPORT SubscriberSlot : public AllocatedObject<SubscriberSlot>
+	class CA_EXPORT SubscriberSlot
 	{
 	public:
 		/*!
@@ -77,7 +76,7 @@ namespace CasaEngine
 		*/
 		template<typename T>
 		SubscriberSlot(bool (T::* function)(const EventArgs&), T* obj) :
-			d_functor_impl(NEW_AO MemberFunctionSlot<T>(function, obj))
+			d_functor_impl(new MemberFunctionSlot<T>(function, obj))
 		{}
 
 		/*!

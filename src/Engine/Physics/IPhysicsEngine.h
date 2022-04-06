@@ -4,12 +4,9 @@
 #include "CA_Export.h"
 #include "IPhysicsWorld.h"
 
-#include "Memory\MemoryAllocation.h"
-
 namespace CasaEngine
 {
-	class CA_EXPORT IPhysicsEngine :
-		public AllocatedObject<IPhysicsEngine>
+	class CA_EXPORT IPhysicsEngine
 	{
 	public:
 		IPhysicsEngine() {}
@@ -21,4 +18,4 @@ namespace CasaEngine
 	};
 }
 
-#endif // IPHYSICSENGINE_H_
+#endif

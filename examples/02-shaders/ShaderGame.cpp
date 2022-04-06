@@ -24,7 +24,7 @@ using namespace CasaEngine;
 ShaderGame::ShaderGame() :
 	m_pWorld(nullptr)
 {
-	Logging.AddLogger(NEW_AO LoggerFile("Out.log"));
+	Logging.AddLogger(new LoggerFile("Out.log"));
 }
 
 void ShaderGame::Initialize()
@@ -38,19 +38,19 @@ void ShaderGame::Initialize()
 
 	Game::Initialize();
 
-	m_pLine2DRenderer = NEW_AO Line2DRendererComponent(this);
-	m_pLine3DRenderer = NEW_AO Line3DRendererComponent(this);
+	m_pLine2DRenderer = new Line2DRendererComponent(this);
+	m_pLine3DRenderer = new Line3DRendererComponent(this);
 
-	AddComponent(NEW_AO MeshRendererGameComponent(this));
+	AddComponent(new MeshRendererGameComponent(this));
 	AddComponent(m_pLine2DRenderer);
 	AddComponent(m_pLine3DRenderer);
 
-	m_pWorld = NEW_AO World();
+	m_pWorld = new World();
 	GetGameInfo().SetWorld(m_pWorld);
 
 	m_LightDir.Set(1.0f, 0.0f, 0.5f);
 	m_LightDir.Normalize();
-	//Game::Instance().GetMediaManager().RegisterLoader(NEW_AO CMD2Loader, "md2");
+	//Game::Instance().GetMediaManager().RegisterLoader(new CMD2Loader, "md2");
 
 	// Enregistrement des commandes console
 	//
@@ -106,18 +106,18 @@ void ShaderGame::LoadContent()
 
 	//m_CartoonShadingTextureHandle = CreateFromFile("cartoon_shading.dds", PixelFormat::AL_88, TEX_NOMIPMAP);
 	Texture::loadTexture(Game::Instance().GetMediaManager().FindMedia("cartoon_shading.dds", true), BGFX_SAMPLER_MIN_ANISOTROPIC | BGFX_SAMPLER_MAG_ANISOTROPIC, 1);
-	m_pProgram = NEW_AO Program("vs_mesh", "fs_mesh");
+	m_pProgram = new Program("vs_mesh", "fs_mesh");
 
 	//ground
-	m_pEntity = NEW_AO BaseEntity();
+	m_pEntity = new BaseEntity();
 	m_pEntity->SetName("ground");
-	Transform3DComponent* pTransform = NEW_AO Transform3DComponent(m_pEntity);
+	Transform3DComponent* pTransform = new Transform3DComponent(m_pEntity);
 	pTransform->SetLocalPosition(Vector3F(0.0f, -0.5f, 0.0f));
 	pTransform->SetLocalRotation(0.0f);
 	pTransform->SetLocalScale(Vector3F::One());
 	m_pEntity->GetComponentMgr()->AddComponent(pTransform);
-	MeshComponent* pModelCpt = NEW_AO MeshComponent(m_pEntity);
-	BoxPrimitive* pBox = NEW_AO BoxPrimitive(100.0f, 1.0f, 100.0f);
+	MeshComponent* pModelCpt = new MeshComponent(m_pEntity);
+	BoxPrimitive* pBox = new BoxPrimitive(100.0f, 1.0f, 100.0f);
 	Mesh* pModel = pBox->CreateModel();
 	//new material
 	m_pGroundMaterial = pModel->GetMaterial()->Clone();
@@ -133,9 +133,9 @@ void ShaderGame::LoadContent()
 	m_pWorld->AddEntity(m_pEntity);
 
 	//Camera 3D
-	BaseEntity* pCamera = NEW_AO BaseEntity();
-	m_pCamera3D = NEW_AO Camera3DComponent(pCamera);
-	ArcBallCameraController* pArcBall = NEW_AO ArcBallCameraController(m_pCamera3D);
+	BaseEntity* pCamera = new BaseEntity();
+	m_pCamera3D = new Camera3DComponent(pCamera);
+	ArcBallCameraController* pArcBall = new ArcBallCameraController(m_pCamera3D);
 	pArcBall->SetCamera(Vector3F(0, 25.0f, -80.0f), Vector3F(0.0f, 1.9f, 0.0f), Vector3F::Up());
 	pArcBall->Distance(7.0f);
 	m_pCamera3D->CameraController(pArcBall);
@@ -145,12 +145,12 @@ void ShaderGame::LoadContent()
 	GetGameInfo().SetActiveCamera(m_pCamera3D);
 
 	//FPS
-	/*BaseEntity *pEntity = NEW_AO BaseEntity();
+	/*BaseEntity *pEntity = new BaseEntity();
 	pEntity->SetName("FPS Monitoring");
-	Transform2DComponent *pTranform2D = NEW_AO Transform2DComponent(pEntity);
+	Transform2DComponent *pTranform2D = new Transform2DComponent(pEntity);
 	pTranform2D->SetLocalPosition(Vector2F(10.0f, 10.0f));
 	pEntity->GetComponentMgr()->AddComponent(pTranform2D);
-	FPSMonitoringComponent *pFPS = NEW_AO FPSMonitoringComponent(pEntity);
+	FPSMonitoringComponent *pFPS = new FPSMonitoringComponent(pEntity);
 	pEntity->GetComponentMgr()->AddComponent(pFPS);
 	pEntity->Initialize();
 
@@ -158,17 +158,17 @@ void ShaderGame::LoadContent()
 	pEntity->Initialize();*/
 
 	//Mesh
-	m_pModelEntity = NEW_AO BaseEntity();
+	m_pModelEntity = new BaseEntity();
 	m_pModelEntity->SetName("model");
-	m_pTrans3D = NEW_AO Transform3DComponent(m_pModelEntity);
+	m_pTrans3D = new Transform3DComponent(m_pModelEntity);
 	m_pTrans3D->SetLocalPosition(Vector3F(0.0f, -5.0f, 0.0f));
 	m_pTrans3D->SetLocalRotation(0.0f);
 	m_pTrans3D->SetLocalScale(Vector3F::One());
 	m_pModelEntity->GetComponentMgr()->AddComponent(m_pTrans3D);
-	pModelCpt = NEW_AO MeshComponent(m_pModelEntity);
+	pModelCpt = new MeshComponent(m_pModelEntity);
 
 	CMD2Loader loader;
-	IFile* pFile = GetMediaManager().FindMedia("Goblin.md2", FileMode::READ | FileMode::BINARY);
+	IFile* pFile = GetMediaManager().FindMedia("Goblin.md2", (unsigned int)FileMode::READ | (unsigned int)FileMode::BINARY);
 	m_Player = loader.LoadFromFile(pFile);
 	//
 	pModelCpt->SetModel(m_Player);
@@ -280,6 +280,6 @@ void ShaderGame::LoadModel(const char* Filename)
 {
 	static CMD2Loader loader;
 
-	IFile* pFile = Game::Instance().GetMediaManager().FindMedia((std::string(Filename) + ".md2").c_str(), FileMode::READ | FileMode::BINARY);
+	IFile* pFile = Game::Instance().GetMediaManager().FindMedia((std::string(Filename) + ".md2").c_str(), (unsigned int)FileMode::READ | (unsigned int)FileMode::BINARY);
 	m_Player = loader.LoadFromFile(pFile);
 }

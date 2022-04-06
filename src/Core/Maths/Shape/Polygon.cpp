@@ -3,7 +3,7 @@
 namespace CasaEngine
 {
 	Polygon::Polygon() :
-		IShape(POLYGON)
+		IShape(ShapeType::POLYGON)
 	{
 	}
 }

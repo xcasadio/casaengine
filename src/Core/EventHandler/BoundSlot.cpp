@@ -5,7 +5,7 @@ namespace CasaEngine
 {
 	BoundSlot::BoundSlot(Group group, const SubscriberSlot& subscriber, Event& event) :
 		d_group(group),
-		d_subscriber(NEW_AO SubscriberSlot(subscriber)),
+		d_subscriber(new SubscriberSlot(subscriber)),
 		d_event(&event)
 	{}
 

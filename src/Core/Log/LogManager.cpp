@@ -16,7 +16,7 @@ namespace CasaEngine
 	{
 		if (m_sInstance == nullptr)
 		{
-			m_sInstance = NEW_AO LogManager();
+			m_sInstance = new LogManager();
 		}
 
 		return *m_sInstance;
@@ -26,7 +26,7 @@ namespace CasaEngine
 	{
 		if (m_sInstance != nullptr)
 		{
-			DELETE_AO m_sInstance;
+			delete m_sInstance;
 			m_sInstance = nullptr;
 		}
 	}
@@ -40,7 +40,7 @@ namespace CasaEngine
 	{
 		for (auto* log : m_Logs)
 		{
-			DELETE_AO log;
+			delete log;
 		}
 	}
 

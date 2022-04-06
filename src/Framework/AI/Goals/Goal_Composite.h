@@ -85,7 +85,7 @@ void Goal_Composite<entity_type>::RemoveAllSubgoals()
   {  
     (*it)->Terminate();
     
-    DELETE_AO *it;
+    delete *it;
   }
 
   m_SubGoals.clear();
@@ -105,7 +105,7 @@ int Goal_Composite<entity_type>::ProcessSubgoals()
          (m_SubGoals.front()->isComplete() || m_SubGoals.front()->hasFailed()))
   {    
     m_SubGoals.front()->Terminate();
-    DELETE_AO m_SubGoals.front(); 
+    delete m_SubGoals.front(); 
     m_SubGoals.pop_front();
   }
 

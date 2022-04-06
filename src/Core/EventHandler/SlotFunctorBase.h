@@ -2,7 +2,7 @@
 #define _CASAENGINESlotFunctorBase_h_
 
 #include "CA_Export.h"
-#include "Memory/MemoryAllocation.h"
+
 
 namespace CasaEngine
 {
@@ -15,7 +15,7 @@ namespace CasaEngine
 		functor objects that bind slots to signals (or in CEGUI terms, handlers to
 		events).
 	*/
-	class CA_EXPORT SlotFunctorBase : public AllocatedObject<SlotFunctorBase>
+	class CA_EXPORT SlotFunctorBase 
 	{
 	public:
 		virtual ~SlotFunctorBase() = default;;

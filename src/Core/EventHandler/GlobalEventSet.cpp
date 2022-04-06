@@ -10,7 +10,7 @@ namespace CasaEngine
 	{
 		if (s_pInstance == nullptr)
 		{
-			s_pInstance = NEW_AO GlobalEventSet();
+			s_pInstance = new GlobalEventSet();
 		}
 
 		return s_pInstance;
@@ -18,7 +18,7 @@ namespace CasaEngine
 
 	void GlobalEventSet::Destroy()
 	{
-		DELETE_AO s_pInstance;
+		delete s_pInstance;
 	}
 
 	GlobalEventSet::GlobalEventSet()

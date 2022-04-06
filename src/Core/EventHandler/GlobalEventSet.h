@@ -4,7 +4,6 @@
 #include "EventSet.h"
 
 #include "CA_Export.h"
-#include "Memory/MemoryAllocatedObject.h"
 
 #if defined(_MSC_VER)
 #	pragma warning(push)

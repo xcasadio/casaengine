@@ -36,7 +36,7 @@ namespace CasaEngine
 	CameraComponent::~CameraComponent()
 	{
 		m_WindowResizedConnection->disconnect();
-		DELETE_AO m_pCameraController;
+		delete m_pCameraController;
 	}
 
 	void CameraComponent::Initialize()

@@ -2,7 +2,6 @@
 #define _CASAENGINEFunctorCopySlot_h_
 
 #include "SlotFunctorBase.h"
-#include "Memory\MemoryAllocation.h"
 
 namespace CasaEngine
 {
@@ -12,7 +11,7 @@ namespace CasaEngine
 		functor object.
 	*/
 	template<typename T>
-	class FunctorCopySlot : public SlotFunctorBase, public AllocatedObject<FunctorCopySlot<T>>
+	class FunctorCopySlot : public SlotFunctorBase
 	{
 	public:
 		FunctorCopySlot(const T& functor) :

@@ -9,7 +9,7 @@
 
 namespace CasaEngine
 {
-	class CA_EXPORT Texture : public AllocatedObject<Texture>
+	class CA_EXPORT Texture
 	{
 	public:
 		static Texture* loadTexture(IFile* pFile, uint32_t _flags = BGFX_TEXTURE_NONE, uint8_t _skip = 0);

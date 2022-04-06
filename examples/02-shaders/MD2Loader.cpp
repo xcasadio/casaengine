@@ -87,7 +87,7 @@ Mesh* CMD2Loader::LoadFromFile(IFile* pFile_)
 	unsigned short* pIndices = ::new unsigned short[(int)Indices.size()];
 	memcpy(pIndices, Indices.data(), Indices.size() * sizeof(unsigned short));
 
-	Mesh* pModel = NEW_AO Mesh(pVerts, (int)Vertices.size(), pIndices, (int)Indices.size());
+	Mesh* pModel = new Mesh(pVerts, (int)Vertices.size(), pIndices, (int)Indices.size());
 	Material* pMaterial = pModel->GetMaterial()->Clone();
 	pMaterial->Texture0(Texture::loadTexture(
 		Game::Instance().GetMediaManager().FindMedia(Textures[0].Name, true),

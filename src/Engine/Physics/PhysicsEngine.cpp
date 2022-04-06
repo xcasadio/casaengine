@@ -2,9 +2,7 @@
 #include "Log/LogManager.h"
 #include "PhysicsEngine.h"
 #include "IPhysicsWorld.h"
-#include "CompilationConfig.h"
 #include "Bullet\BulletPhysicsEngine.h"
-#include "Memory\MemoryAllocation.h"
 
 namespace CasaEngine
 {
@@ -15,14 +13,14 @@ namespace CasaEngine
 
 	PhysicsEngine::~PhysicsEngine()
 	{
-		DELETE_AO m_pPhysicsEngine;
+		delete m_pPhysicsEngine;
 	}
 
 	void PhysicsEngine::Initialize()
 	{
 		CA_ASSERT(m_pPhysicsEngine == nullptr, "Physics engine already initialized")
 
-		m_pPhysicsEngine = NEW_AO BulletPhysicsEngine();
+		m_pPhysicsEngine = new BulletPhysicsEngine();
 		m_pPhysicsEngine->Initialize();
 	}
 

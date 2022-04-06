@@ -4,15 +4,12 @@
 #include "CA_Export.h"
 #include "ShapeType.h"
 
-#include "Memory/MemoryAllocation.h"
-
 #include <cereal/access.hpp>
 #include <cereal/types/polymorphic.hpp>
 
 namespace CasaEngine
 {
-	class CA_EXPORT IShape :
-		public AllocatedObject<IShape>
+	class CA_EXPORT IShape
 	{
 	public:
 		virtual ~IShape();

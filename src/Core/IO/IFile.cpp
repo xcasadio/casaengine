@@ -16,15 +16,17 @@ namespace CasaEngine
 		*this = rsh;
 	}
 
-	const IFile& IFile::operator = (const IFile& rsh)
+	IFile& IFile::operator = (const IFile& rsh)
 	{
-		m_Name = rsh.m_Name;
-
-		if (rsh.m_BufferSize > 0 && rsh.m_pBuffer != nullptr)
+		if (&rsh != this)
 		{
-			FillBuffer();
-		}
+			m_Name = rsh.m_Name;
 
+			if (rsh.m_BufferSize > 0 && rsh.m_pBuffer != nullptr)
+			{
+				FillBuffer();
+			}
+		}
 		return *this;
 	}
 
@@ -43,7 +45,7 @@ namespace CasaEngine
 		return m_pBuffer;
 	}
 
-	unsigned int IFile::GetBufferLength()
+	std::size_t IFile::GetBufferLength()
 	{
 		if (m_pBuffer == nullptr)
 		{

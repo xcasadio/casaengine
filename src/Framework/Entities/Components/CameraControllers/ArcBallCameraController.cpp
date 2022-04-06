@@ -243,14 +243,6 @@ namespace CasaEngine
 			m_bRecomputeViewMatrix = false;
 			const auto position = m_Target - Direction() * m_fDistance;
 			viewMatrix_ = Matrix4::CreateLookAt(position, m_Target, Up());
-
-			/*float mat[16];
-			bx::mtxLookAt(mat, bx::Vec3(position.x, position.y, position.z), bx::Vec3(m_Target.x, m_Target.y, m_Target.z),
-				bx::Vec3(0.0f, 1.0f, 0.0f));
-
-			float* p = (float *) & viewMatrix_;
-			for (int i = 0; i < 16; i++)
-				p[i] = mat[i];*/
 		}
 	}
 
@@ -266,20 +258,6 @@ namespace CasaEngine
 			ratio,
 			viewport.NearClipPlane(),
 			viewport.FarClipPlane());
-
-		/*auto mat2 = Matrix4::CreatePerspectiveFieldOfView2(
-			dynamic_cast<Camera3DComponent*>(Camera())->FOV(),
-			ratio,
-			viewport.NearClipPlane(),
-			viewport.FarClipPlane());
-
-		float mat[16];
-		bx::mtxProj(mat, dynamic_cast<Camera3DComponent*>(Camera())->FOV(), ratio, viewport.NearClipPlane(), 
-			viewport.FarClipPlane(), false);
-
-		float* p = (float*)&projectionMatrix_;
-		for (int i = 0; i < 16; i++)
-			p[i] = mat[i];*/
 	}
 
 	Vector3F ArcBallCameraController::Target() const

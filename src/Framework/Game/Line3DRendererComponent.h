@@ -21,8 +21,7 @@ namespace CasaEngine
 		public DrawableGameComponent
 	{
 	private:
-		class LineRenderer3DData : 
-			public AllocatedObject<LineRenderer3DData>
+		class LineRenderer3DData
 		{
 		public:
 			Vector3F Start, End;

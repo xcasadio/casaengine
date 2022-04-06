@@ -22,7 +22,7 @@
 
 #include "Log/LoggerFile.h"
 #include "Maths/Vector3.h"
-#include "Memory/MemoryAllocation.h"
+
 #include "Physics/PhysicsEngine.h"
 #include <IO/File.h>
 #include <save_load_types.h>
@@ -46,12 +46,12 @@ Animation2DPlayerGame::Animation2DPlayerGame() :
 	m_CollisionIndexSelected(0),
 	m_LastCollisionIndexSelected(0)
 {
-	Logging.AddLogger(NEW_AO LoggerFile("Out.log"));
+	Logging.AddLogger(new LoggerFile("Out.log"));
 }
 
 Animation2DPlayerGame::~Animation2DPlayerGame()
 {
-	DELETE_AO m_pSpriteRenderer;
+	delete m_pSpriteRenderer;
 }
 
 void Animation2DPlayerGame::Initialize()
@@ -85,19 +85,19 @@ void Animation2DPlayerGame::LoadContent()
 {
 	Game::LoadContent();
 
-	m_pWorld = NEW_AO World();
+	m_pWorld = new World();
 	GetGameInfo().SetWorld(m_pWorld);
 
 	//Entity
-	auto* pEntity = NEW_AO BaseEntity();
+	auto* pEntity = new BaseEntity();
 	m_pEntity = pEntity;
-	auto* pTransform = NEW_AO Transform3DComponent(pEntity);
+	auto* pTransform = new Transform3DComponent(pEntity);
 	pTransform->SetLocalPosition(Vector3F(520, 400, 1.0f));
 	const auto scale = 1.0f;
 	pTransform->SetLocalScale(Vector3F(scale, scale));
 	pEntity->GetComponentMgr()->AddComponent(pTransform);
 
-	m_pAnimatedSprite = NEW_AO AnimatedSpriteComponent(pEntity);
+	m_pAnimatedSprite = new AnimatedSpriteComponent(pEntity);
 	pEntity->GetComponentMgr()->AddComponent(m_pAnimatedSprite);
 	LoadSprites();
 	LoadAnimations(m_pAnimatedSprite);
@@ -105,9 +105,9 @@ void Animation2DPlayerGame::LoadContent()
 	m_pWorld->AddEntity(pEntity);
 
 	//Camera 2D
-	auto* pCamera = NEW_AO BaseEntity();
+	auto* pCamera = new BaseEntity();
 	pCamera->SetName("camera 2D");
-	auto* m_pCamera2D = NEW_AO Camera2DComponent(pCamera);
+	auto* m_pCamera2D = new Camera2DComponent(pCamera);
 	auto* camera_controller = new Camera2DTargetedController(m_pCamera2D);
 	m_pCamera2D->CameraController(camera_controller);
 	pCamera->GetComponentMgr()->AddComponent(m_pCamera2D);
@@ -118,9 +118,9 @@ void Animation2DPlayerGame::LoadContent()
 	GetGameInfo().SetActiveCamera(m_pCamera2D);
 
 	//Camera 3D
-	/*BaseEntity* pCamera = NEW_AO BaseEntity();
-	Camera3DComponent* m_pCamera3D = NEW_AO Camera3DComponent(pCamera);
-	ArcBallCameraController* pArcBall = NEW_AO ArcBallCameraController(m_pCamera3D);
+	/*BaseEntity* pCamera = new BaseEntity();
+	Camera3DComponent* m_pCamera3D = new Camera3DComponent(pCamera);
+	ArcBallCameraController* pArcBall = new ArcBallCameraController(m_pCamera3D);
 	//TODO : why we need to have -Up in order to have the sprite oriented well
 	pArcBall->SetCamera(Vector3F(0, 0.0f, -10.0f), Vector3F::Zero(), -Vector3F::Up());
 	pArcBall->Distance(15.0f);
@@ -158,7 +158,7 @@ void Animation2DPlayerGame::LoadAnimations(AnimatedSpriteComponent* pAnimatedCom
 
 	for (auto animation : animations.animations)
 	{
-		auto* animation2D = NEW_AO Animation2DData();
+		auto* animation2D = new Animation2DData();
 		std::ostringstream number;
 		number << animation.Number;
 		animation2D->SetName(number.str());
@@ -171,22 +171,22 @@ void Animation2DPlayerGame::LoadAnimations(AnimatedSpriteComponent* pAnimatedCom
 				auto* sprite = GetAssetManager().GetAsset<SpriteData>(frame.SpriteId);
 				for (auto& coll : frame.Collisions)
 				{
-					auto* collision = NEW_AO Collision();
+					auto* collision = new Collision();
 					collision->SetType(coll.ClsnType == 1 ? CollisionType::Attack : CollisionType::Defense);
-					auto* rect = NEW_AO RectangleI(coll.X, coll.Y, coll.Width, coll.Height);
+					auto* rect = new RectangleI(coll.X, coll.Y, coll.Width, coll.Height);
 					collision->SetShape(rect);
 					sprite->GetCollisions().push_back(*collision);
 				}
 			}
 
-			auto* frameData = NEW_AO FrameData();
+			auto* frameData = new FrameData();
 			frameData->SetSpriteId(frame.SpriteId.c_str());
 			frameData->SetDuration(frame.GameTick * 0.16f); // 0.048f;
 			animation2D->AddFrame(*frameData);
 		}
 
 		GetAssetManager().AddAsset(new Asset(animation2D->GetName(), animation2D));
-		pAnimatedComponent->AddAnimation(NEW_AO Animation2D(*animation2D));
+		pAnimatedComponent->AddAnimation(new Animation2D(*animation2D));
 
 		anims.push_back(*animation2D);
 	}
@@ -217,8 +217,8 @@ void Animation2DPlayerGame::LoadAnimations(AnimatedSpriteComponent* pAnimatedCom
 	for (auto& data : anim2DDatas)
 	{
 		auto* animation = data.Copy();
-		GetAssetManager().AddAsset(NEW_AO Asset(data.GetName(), animation));
-		pAnimatedComponent->AddAnimation(NEW_AO Animation2D(*animation));
+		GetAssetManager().AddAsset(new Asset(data.GetName(), animation));
+		pAnimatedComponent->AddAnimation(new Animation2D(*animation));
 	}
 }
 
@@ -235,7 +235,7 @@ void Animation2DPlayerGame::LoadSprites()
 
 	for (auto sprite : sprites.sprites)
 	{
-		auto* spriteData = NEW_AO SpriteData();
+		auto* spriteData = new SpriteData();
 		spriteData->SetOrigin(Vector2I(sprite.X, sprite.Y));
 		spriteData->SetPositionInTexture(RectangleI(sprite.posInTextureX, sprite.posInTextureY, sprite.SpriteSizeX, sprite.SpriteSizeY));
 		spriteData->SetAssetFileName("ryu.png"); // TODO : read from file
@@ -254,7 +254,7 @@ void Animation2DPlayerGame::LoadSprites()
 
 	for (auto& data : spriteDatas)
 	{
-		GetAssetManager().AddAsset(NEW_AO Asset(data.GetName(), data.Copy()));
+		GetAssetManager().AddAsset(new Asset(data.GetName(), data.Copy()));
 	}
 }
 
@@ -446,8 +446,8 @@ void Animation2DPlayerGame::Draw()
 
 void Animation2DPlayerGame::AddGameComponent()
 {
-	auto* line3DRenderer = NEW_AO Line3DRendererComponent(this);
-	m_pSpriteRenderer = NEW_AO SpriteRenderer(this);
+	auto* line3DRenderer = new Line3DRendererComponent(this);
+	m_pSpriteRenderer = new SpriteRenderer(this);
 
 	AddComponent(m_pSpriteRenderer);
 	AddComponent(line3DRenderer);

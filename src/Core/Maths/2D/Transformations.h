@@ -1,13 +1,5 @@
-//------------------------------------------------------------------------
-//
 //  Name:   Transformations.h
-//
-//  Desc:   Functions for converting 2D vectors between World and Local
-//          space.
-//
-//  Author: Mat Buckland (fup@ai-junkie.com)
-//
-//------------------------------------------------------------------------
+//  Desc:   Functions for converting 2D vectors between World and Local space.
 
 #ifndef TRANSFORMATIONS_H
 #define TRANSFORMATIONS_H
@@ -16,16 +8,11 @@
 
 #include "Maths/Vector2.h"
 #include "CA_Export.h"
-#include "Memory//MemoryAllocation.h"
-#include "../Vector3.h"
+#include "Maths/Vector3.h"
 
 namespace CasaEngine
 {
-	/**
-	 *
-	 */
-	class CA_EXPORT Transformation :
-		public AllocatedObject<Transformation>
+	class CA_EXPORT Transformation
 	{
 	public:
 
@@ -105,4 +92,4 @@ namespace CasaEngine
 	}; // class transformation
 }
 
-#endif // TRANSFORMATIONS_H
+#endif

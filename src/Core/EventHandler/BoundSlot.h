@@ -1,9 +1,7 @@
-#ifndef _CASAENGINEBoundSlot_h_
-#define _CASAENGINEBoundSlot_h_
+#pragma once
 
 #include "SubscriberSlot.h"
 #include "CA_Export.h"
-#include "Memory/MemoryAllocation.h"
 
 namespace CasaEngine
 {
@@ -17,7 +15,7 @@ namespace CasaEngine
 		reference counted pointer.  When a BoundSlot is deleted, the connection is
 		unsubscribed and the SubscriberSlot is deleted.
 	*/
-	class CA_EXPORT BoundSlot : public AllocatedObject<BoundSlot>
+	class CA_EXPORT BoundSlot
 	{
 	public:
 		typedef unsigned int Group;
@@ -107,5 +105,3 @@ namespace CasaEngine
 		Event* d_event;                 //! The event to which the slot was attached
 	};
 }
-
-#endif

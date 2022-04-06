@@ -7,9 +7,6 @@
 
 namespace CasaEngine
 {
-	/**
-	 *
-	 */
 	class CA_EXPORT BoxPrimitive : public IPrimitive3D
 	{
 	public:
@@ -26,4 +23,4 @@ namespace CasaEngine
 	};
 }
 
-#endif // BOXPRIMITIVE_H
+#endif

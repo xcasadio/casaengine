@@ -9,7 +9,7 @@
 
 namespace CasaEngine
 {
-	class CA_EXPORT Sprite : public AllocatedObject<Sprite>
+	class CA_EXPORT Sprite
 	{
 	private:
 		static std::map<std::string, Texture*> _textureCache;

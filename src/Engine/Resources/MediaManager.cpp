@@ -52,14 +52,14 @@ namespace CasaEngine
 		{
 			std::string path = m_RootPath + dir + fileName_;
 			//TODO : set if open in BINARY MODE or not
-			IFile* pRetFile = IOManager::OpenFile(path, FileMode::READ | (isBinary_ == true ? FileMode::BINARY : 0));
+			IFile* pRetFile = IOManager::OpenFile(path, (unsigned int)FileMode::READ | (isBinary_ == true ? (unsigned int)FileMode::BINARY : 0));
 
 			if (pRetFile->Exists() == true)
 			{
 				return pRetFile;
 			}
 
-			DELETE_AO pRetFile;
+			delete pRetFile;
 		}
 
 		return nullptr;

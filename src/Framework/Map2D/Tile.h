@@ -8,8 +8,7 @@
 
 namespace CasaEngine
 {
-	class CA_EXPORT ITile :
-		public AllocatedObject<ITile>
+	class CA_EXPORT ITile
 	{
 	public:
 		virtual void Initialize();

@@ -7,7 +7,7 @@
 #include <sstream>
 
 #include "Game/Game.h"
-#include "Memory/MemoryAllocation.h"
+
 
 
 namespace CasaEngine
@@ -16,7 +16,7 @@ namespace CasaEngine
 	
 	BaseEntity::BaseEntity() :
 		m_ID(m_iNextValidID), m_pParent(nullptr),
-		m_pComponentManager(NEW_AO ComponentManager(this)),
+		m_pComponentManager(new ComponentManager(this)),
 		m_PhysicalEntity(this),
 		m_bIsEnabled(true),
 		m_bIsVisible(true)
@@ -37,7 +37,7 @@ namespace CasaEngine
 
 	BaseEntity::~BaseEntity()
 	{
-		DELETE_AO m_pComponentManager;
+		delete m_pComponentManager;
 	}
 
 	EntityId BaseEntity::ID() const

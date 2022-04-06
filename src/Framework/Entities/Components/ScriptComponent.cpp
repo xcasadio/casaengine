@@ -24,7 +24,7 @@ namespace CasaEngine
 		if (m_pScriptObject != nullptr)
 		{
 			m_pScriptObject->OnDestroy();
-			DELETE_AO m_pScriptObject;
+			delete m_pScriptObject;
 		}
 	}
 

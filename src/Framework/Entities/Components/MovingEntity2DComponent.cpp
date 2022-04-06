@@ -18,7 +18,7 @@ namespace CasaEngine
 MovingEntity2DComponent::MovingEntity2DComponent(BaseEntity* pEntity_, int smootherSampleSize_, Vector2F smootherZeroValue_)
 	: Component(pEntity_, MOVING_ENTITY_2D)
 {
-	m_pHeadingSmoother = NEW_AO Smoother<Vector2F>(smootherSampleSize_, smootherZeroValue_);
+	m_pHeadingSmoother = new Smoother<Vector2F>(smootherSampleSize_, smootherZeroValue_);
 }
 
 /**
@@ -26,7 +26,7 @@ MovingEntity2DComponent::MovingEntity2DComponent(BaseEntity* pEntity_, int smoot
  */
 MovingEntity2DComponent::~MovingEntity2DComponent()
 {
-	DELETE_AO m_pHeadingSmoother;
+	delete m_pHeadingSmoother;
 }
 
 /**

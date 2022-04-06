@@ -44,12 +44,12 @@ namespace CasaEngine
 
 #if CA_PLATFORM_ANDROID
 		CA_ASSERT(m_pAAssetManager != nullptr, "AAssetManager is not set.");
-		pRes = NEW_AO FileAsset(m_pAAssetManager);
+		pRes = new FileAsset(m_pAAssetManager);
 
 		//mContext.getFilesDir(); //directory where the application is
 		//mContext.getExternalFilesDir(null); // external SDCard
 #else
-		pRes = NEW_AO File();
+		pRes = new File();
 #endif
 
 		pRes->Open(fileName_, mode_);
@@ -61,11 +61,11 @@ namespace CasaEngine
 	 */
 	IFile* IOManager::CreateFile(const std::string& Filename, bool append_)
 	{
-		IFile* pRes = NEW_AO File();
+		IFile* pRes = new File();
 
 		if (pRes->Create(Filename.c_str(), append_) == false)
 		{
-			DELETE_AO pRes;
+			delete pRes;
 			pRes = nullptr;
 		}
 

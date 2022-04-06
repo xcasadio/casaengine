@@ -16,17 +16,19 @@ namespace CasaEngine
 	public:
 		IRenderer();
 
+		void Initialize(EngineSettings& settings, void* Hwnd);
 		void shutdown();
 
 		void Resize(unsigned int width_, unsigned height_);
 
-		void SetClearColor(unsigned char index_, CColor val) const;
-		void Initialize(EngineSettings& settings_);
+		void SetClearColor(unsigned char index_, unsigned short flags, CColor val, float depth = 1.0f, unsigned char stencil = 0) const;
 
 		bool IsDeviceLost() const;
 		void SetDeviceLost();
 
 		void SetWireframe(bool enable);
+		void BeginDraw();
+		void EndDraw();
 
 	private:
 		IRenderer(const IRenderer&) = delete;
@@ -43,6 +45,8 @@ namespace CasaEngine
 	private:
 		bool m_bDeviceLost;
 		unsigned int m_debugFlag;
+		int window_width;
+		int window_height;
 	};
 }
 

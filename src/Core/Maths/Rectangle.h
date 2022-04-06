@@ -76,7 +76,8 @@ namespace CasaEngine
 	typedef CRectangle<float> RectangleF;
 
 	template <class T>
-	CRectangle<T>::CRectangle() : IShape(ShapeType::RECTANGLE)
+	CRectangle<T>::CRectangle() : IShape(ShapeType::RECTANGLE),
+		x(0), y(0), w(0), h(0)
 	{
 	}
 
@@ -107,7 +108,7 @@ namespace CasaEngine
 	template <class T>
 	IShape* CRectangle<T>::Copy()
 	{
-		return NEW_AO CRectangle<T>(*this);
+		return new CRectangle<T>(*this);
 	}
 
 	template <class T>

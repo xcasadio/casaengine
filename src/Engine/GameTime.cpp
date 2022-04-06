@@ -1,8 +1,8 @@
 #include "GameTime.h"
 
-#if defined(CA_PLATFORM_WINDOWS)
+#ifdef CA_PLATFORM_WINDOWS
 
-#include <windows.h>
+#include <Windows.h>
 
 TimeVal getPerfTime()
 {
@@ -36,69 +36,48 @@ int getPerfDeltaTimeUsec(const TimeVal start, const TimeVal end)
 	return (int)(end - start);
 }
 
-#endif // defined(CA_PLATFORM_WINDOWS)
+#endif
 
 namespace CasaEngine
 {
-	GameTime::GameTime()
-	{
-		m_ElapsedTime = 0;
-		m_TotalElapsedTime = 0;
-		m_StartTime = 0;
-		//m_FirstStartTime = 0;
-	}
-
-	/**
-	 *
-	 */
-	GameTime::~GameTime()
+	GameTime::GameTime() :
+		m_StartTime(0),
+		m_ElapsedTime(0),
+		m_TotalElapsedTime(0)
 	{
 	}
 
-	/**
-	 *
-	 */
+	GameTime::~GameTime() = default;
+
 	float GameTime::FrameTime() const
 	{
 		return m_ElapsedTime;
 	}
 
-	/**
-	 *
-	 */
 	float GameTime::TotalTime() const
 	{
 		return m_TotalElapsedTime;
 	}
 
-	/**
-	 *
-	 */
 	void GameTime::Start()
 	{
 		m_StartTime = getPerfTime();
 	}
 
-	/**
-	 *
-	 */
 	void GameTime::End()
 	{
 		TimeVal endTime = getPerfTime();
-		float v = static_cast<float>(getPerfDeltaTimeUsec(m_StartTime, endTime)) / 100000.0f;
+		float elapsedTime = static_cast<float>(getPerfDeltaTimeUsec(m_StartTime, endTime)) / 100000.0f;
 
-		m_ElapsedTime = v;
+		m_ElapsedTime = elapsedTime;
 		m_TotalElapsedTime += m_ElapsedTime;
 
 #ifdef CA_DEBUGGING
-
-		//If we are in a breakpoint the time of the frame
-		//can be very high and create some bug
+		//If we are in a breakpoint the time of the frame can be very high and create some bug
 		if (m_ElapsedTime > 0.05f) // 1/20 FPS
 		{
 			m_ElapsedTime = 1.0f / 60.0f;
 		}
-
-#endif // CA_DEBUGGING
+#endif
 	}
 }

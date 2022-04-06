@@ -22,27 +22,21 @@
 
 #	include "Win32/Win32Exception.h"
 
-#endif // CA_PLATFORM_WINDOWS
+#endif
 
 #include "Assets/AssetManager.h"
 #include "SFML/Window/Keyboard.hpp"
 #include "SFML/Window/Mouse.hpp"
 #include <iosfwd>
-#include "SFML/System/Err.hpp"
 #include "EventHandler/GlobalEventSet.h"
 #include "Physics/PhysicsEngine.h"
 
 #include "Physics/Bullet/BulletPhysicsEngine.h"
-#include "Tools/Bullet/BulletPhysicsDebugDraw.h"
 
 #include <dear-imgui/imgui.h>
 
-#include "Memory/MemoryReport.h"
-#include "bgfx/platform.h"
-#include "bx/math.h"
 #include "Tools/InGameLogger.h"
 #include "UI/imguiAdapter.h"
-#include "UI/imgui/bgfx-imgui.h"
 
 namespace CasaEngine
 {
@@ -82,7 +76,7 @@ namespace CasaEngine
 
 	Game::~Game()
 	{
-		DELETE_AO m_pGamePlayDLL;
+		delete m_pGamePlayDLL;
 
 		m_EntityManager.Clear();
 
@@ -90,9 +84,9 @@ namespace CasaEngine
 		if (m_pWindow != nullptr)
 		{
 			m_pWindow->close();
-			DELETE_AO m_pWindow;
+			delete m_pWindow;
 		}
-#endif // CA_PLATFORM_DESKTOP
+#endif
 
 #if defined(CA_CUSTOM_ALLOCATORS) && defined(CA_CUSTOM_ALLOCATORS_DEBUG)
 		MemoryReport::Instance().ReportLeak();
@@ -105,31 +99,19 @@ namespace CasaEngine
 	void Game::MakeWindow()
 	{
 		sf::VideoMode videoMode(m_EngineSettings.WindowWidth, m_EngineSettings.WindowHeight, m_EngineSettings.DepthColor);
-		sf::ContextSettings winSettings(
-			24, //Depth
-			8,	//Stencil
-			0); //Anti aliasing
+		sf::ContextSettings winSettings(24, 8,	0);
 
 #if CA_PLATFORM_DESKTOP
-
 		if (m_Hwnd != nullptr)
 		{
 			m_pWindow = new sf::Window(m_Hwnd, winSettings);
 		}
 		else
-#endif // CA_PLATFORM_DESKTOP
+#endif
 		{
 			m_pWindow = new sf::Window(videoMode, "Title", sf::Style::Resize | sf::Style::Titlebar | sf::Style::Close, winSettings);
 			m_pWindow->setVisible(true);
-#if CA_PLATFORM_DESKTOP
 			m_Hwnd = m_pWindow->getSystemHandle();
-			CA_ASSERT(m_Hwnd != nullptr, "Game::MakeWindow() : Hwnd is nullptr");
-#endif // CA_PLATFORM_DESKTOP
-
-			bgfx::PlatformData pd;
-			bx::memSet(&pd, 0, sizeof pd);
-			pd.nwh = m_Hwnd;
-			setPlatformData(pd);
 		}
 	}
 
@@ -137,8 +119,8 @@ namespace CasaEngine
 	{
 #if CA_PLATFORM_DESKTOP
 		m_EngineSettings.initialize(ENGINE_SETTING_FILE);
-#else // mobile platform
-#endif // CA_PLATFORM_DESKTOP
+#else
+#endif
 	}
 
 	EngineSettings& Game::GetEngineSettings()
@@ -419,7 +401,7 @@ namespace CasaEngine
 	{
 		InitializeEngineSettings();
 		MakeWindow();
-		m_Renderer.Initialize(m_EngineSettings);
+		m_Renderer.Initialize(m_EngineSettings, m_pWindow->getSystemHandle());
 		OnWindowResized(m_EngineSettings.WindowWidth, m_EngineSettings.WindowHeight);
 		RenderThreadloop();
 	}
@@ -527,15 +509,10 @@ namespace CasaEngine
 
 	void Game::BeginDraw()
 	{
-		bgfx::setViewRect(0, 0, 0, GetWindowSize().x, GetWindowSize().y);
-
-		// This dummy draw call is here to make sure that view 0 is cleared
-		// if no other draw calls are submitted to view 0.
-		bgfx::touch(0);
-
+		m_Renderer.BeginDraw();
+		
 		ImGuiIO& io = ImGui::GetIO();
 		io.DisplaySize = ImVec2(GetEngineSettings().WindowWidth, GetEngineSettings().WindowHeight);
-
 		imguiAdapter::imguiBeginFrame(GetEngineSettings().WindowWidth, GetEngineSettings().WindowHeight);
 
 		if (m_GameInfo.GetWorld() != nullptr)
@@ -559,7 +536,7 @@ namespace CasaEngine
 		m_DisplayDebugInfo.Draw();
 		m_Console.Draw();
 		imguiAdapter::imguiEndFrame();
-		bgfx::frame();
+		m_Renderer.EndDraw();
 	}
 
 	/*void Game::LoadPlugin(const std::string& Filename)
@@ -569,7 +546,7 @@ namespace CasaEngine
 			throw CLoadingFailed(Filename, "DLL already loaded");
 
 		// Sinon on crée et charge le module
-		m_Plugins[Filename] = NEW_AO Plugin(Filename);
+		m_Plugins[Filename] = new Plugin(Filename);
 	}
 
 	void Game::UnloadPlugin(const std::string& Filename)
@@ -655,11 +632,11 @@ namespace CasaEngine
 		return { static_cast<int>(m_pWindow->getSize().x), static_cast<int>(m_pWindow->getSize().y) };
 	}
 
-	void Game::OnWindowResized(unsigned int width_, unsigned int height_)
+	void Game::OnWindowResized(unsigned int width, unsigned int height)
 	{
 		m_NeedResize = true;
-		m_NewSize.x = width_;
-		m_NewSize.y = height_;
+		m_NewSize.x = width;
+		m_NewSize.y = height;
 	}
 
 	void Game::Resize()
@@ -679,7 +656,7 @@ namespace CasaEngine
 	{
 		//TODO create release method ??
 
-		m_pGamePlayDLL = NEW_AO DynamicModule(pFileName_);
+		m_pGamePlayDLL = new DynamicModule(pFileName_);
 		return m_pGamePlayDLL != nullptr;
 	}
 

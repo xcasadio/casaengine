@@ -4,13 +4,11 @@
 #include "CA_Export.h"
 #include <exception>
 #include <string>
-#include "Memory\MemoryAllocation.h"
 
 namespace CasaEngine
 {
 	class CA_EXPORT CException :
-		public std::exception,
-		public AllocatedObject<CException>
+		public std::exception
 	{
 	public:
 		CException(const std::string& Message = "");

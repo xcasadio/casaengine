@@ -41,7 +41,7 @@ PhysicalEntity::~PhysicalEntity()
 			itColObj++)
 		{
 			Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->RemoveCollisionObject(*itColObj);
-			DELETE_AO *itColObj;
+			delete *itColObj;
 		}
 	}
 }

@@ -31,8 +31,8 @@ PlayerController::~PlayerController()
  */
 void PlayerController::Initialize()
 {
-	auto player_state_idle = NEW_AO PlayerStateIdle();
-	auto player_state_attack = NEW_AO PlayerStateAttack();
+	auto player_state_idle = new PlayerStateIdle();
+	auto player_state_attack = new PlayerStateAttack();
 
 	AddState(IDLE, player_state_idle);
 	// 	AddState((int)PlayerControllerState::MOVING, new PlayerRunState());

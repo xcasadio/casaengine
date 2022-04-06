@@ -2,7 +2,6 @@
 #define _CASAENGINEFunctorReferenceSlot_h_
 
 #include "SlotFunctorBase.h"
-#include "Memory\MemoryAllocation.h"
 
 namespace CasaEngine
 {
@@ -12,7 +11,7 @@ namespace CasaEngine
 		object reference.
 	*/
 	template<typename T>
-	class FunctorReferenceSlot : public SlotFunctorBase, public AllocatedObject<FunctorReferenceSlot<T>>
+	class FunctorReferenceSlot : public SlotFunctorBase
 	{
 	public:
 		FunctorReferenceSlot(T& functor) :

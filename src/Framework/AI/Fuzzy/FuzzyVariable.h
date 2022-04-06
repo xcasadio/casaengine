@@ -2,21 +2,12 @@
 #define FLV_H
 
 #pragma warning (disable:4786)
-//-----------------------------------------------------------------------------
-//
-//  Name:   FuzzyVariable.h
-//
+
 //  Author: Mat Buckland (www.ai-junkie.com)
-//
 //  Desc:   Class to define a fuzzy linguistic variable (FLV).
-//
 //          An FLV comprises of a number of fuzzy sets  
-//
-//-----------------------------------------------------------------------------
 
 #include "CA_Export.h"
-
-#include "Memory/MemoryAllocation.h"
 
 #include <map>
 #include <iosfwd>
@@ -24,27 +15,21 @@
 
 namespace CasaEngine
 {
-
 	class FuzzySet;
 	class FzSet;
 	class FuzzyModule;
 
-
-	class CA_EXPORT FuzzyVariable :
-		public AllocatedObject<FuzzyVariable>
+	class CA_EXPORT FuzzyVariable
 	{
-	private:
-  
+	private:  
 	  typedef std::map<std::string, FuzzySet*>  MemberSets;
     
-	private:
-  
+	private:  
 	  //disallow copies
 	  FuzzyVariable(const FuzzyVariable&);
 	  FuzzyVariable& operator=(const FuzzyVariable&);
 
-	private:
- 
+	private: 
 	  //a map of the fuzzy sets that comprise this variable
 	  MemberSets   m_MemberSets;
 
@@ -107,4 +92,4 @@ namespace CasaEngine
 
 }
       
-#endif // FLV_H
+#endif

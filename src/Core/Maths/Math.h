@@ -160,7 +160,7 @@ namespace CasaEngine
 	template<class T>
 	int Sign(T a)
 	{
-		return (a < 0) ? -1 : 1;
+		return (a < static_cast<T>(0)) ? static_cast<T>(-1) : static_cast<T>(1);
 	}
 
 	inline unsigned int NearestPowerOfTwo(unsigned int value)
@@ -174,9 +174,9 @@ namespace CasaEngine
 			++PowerOfTwo;
 		}
 
-		const unsigned int retval = 1 << PowerOfTwo;
+		const unsigned int result = 1 << PowerOfTwo;
 
-		return retval == value ? retval : retval << 1;
+		return result == value ? result : result << 1;
 	}
 }
 

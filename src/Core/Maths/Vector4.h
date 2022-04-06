@@ -3,13 +3,10 @@
 
 #include <iostream>
 
-#include "Memory/MemoryAllocation.h"
-
 namespace CasaEngine
 {
 	template <class T>
-	class CVector4 :
-		public AllocatedObject<CVector4<T> >
+	class CVector4
 	{
 	public:
 		CVector4(T X = 0, T Y = 0, T Z = 0, T W = 1);

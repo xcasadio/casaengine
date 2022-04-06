@@ -2,15 +2,10 @@
 #define RIGIDBODY_H_
 
 #include "CA_Export.h"
-#include "Memory/MemoryAllocation.h"
 
 namespace CasaEngine
 {
-	/**
-	 *
-	 */
-	struct CA_EXPORT RigidBody :
-		public AllocatedObject<RigidBody>
+	struct CA_EXPORT RigidBody
 	{
 		float			mass;
 
@@ -56,4 +51,4 @@ namespace CasaEngine
 	};
 }
 
-#endif // RIGIDBODY_H_
+#endif

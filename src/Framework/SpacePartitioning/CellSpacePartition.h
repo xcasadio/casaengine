@@ -33,7 +33,7 @@ namespace CasaEngine
 	//  defines a cell containing a list of pointers to entities
 	//------------------------------------------------------------------------
 	template <class entity>
-	struct Cell : AllocatedObject<Cell<entity>>
+	struct Cell
 	{
 		  //all the entities inhabiting this cell
 		  std::list<entity>    Members;
@@ -51,7 +51,7 @@ namespace CasaEngine
 	//  the subdivision class
 	///////////////////////////////////////////////////////////////////////////////
 	template <class entity>
-	class CellSpacePartition : AllocatedObject<CellSpacePartition<entity>>
+	class CellSpacePartition
 	{
 	private:
 

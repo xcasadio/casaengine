@@ -6,14 +6,11 @@
 #include "AI/Messaging/Telegram.h"
 #include "GameTime.h"
 
-#include "Memory/MemoryAllocation.h"
-
 namespace CasaEngine
 {
 	class BaseEntity;
 
-	class CA_EXPORT Component :
-		public AllocatedObject<Component>
+	class CA_EXPORT Component
 	{
 	public:
 		virtual ~Component();

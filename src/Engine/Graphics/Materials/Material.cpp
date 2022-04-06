@@ -49,7 +49,7 @@ namespace CasaEngine
 	 */
 	Material* Material::Clone() const
 	{
-		Material* pRes = NEW_AO Material();
+		Material* pRes = new Material();
 		*pRes = *this;
 		return pRes;
 	}

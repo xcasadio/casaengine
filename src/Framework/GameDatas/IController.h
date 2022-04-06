@@ -11,7 +11,7 @@ namespace CasaEngine
 {
 	class CharacterBase;
 
-	class IController : public AllocatedObject<IController>
+	class IController
 	{
 	public:
 		StateMachine<IController>* FSM();

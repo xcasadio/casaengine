@@ -46,12 +46,11 @@
 
 #include <TCHAR.H>
 #include <Windows.h>
-#include "Memory/MemoryAllocation.h"
+
 
 namespace CasaEngine
 {
-	class CA_EXPORT Win32Exception :
-		public AllocatedObject<Win32Exception>
+	class CA_EXPORT Win32Exception
 	{
 	public:
 		//----- Construction and destruction -----------------------------------

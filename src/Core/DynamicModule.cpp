@@ -1,9 +1,7 @@
 #include "Base.h"
-#include <stdlib.h>
+#include <cstdlib>
 #include "DynamicModule.h"
 #include "Exceptions.h"
-
-#include "Memory\MemoryAllocation.h"
 
 #if defined(__WIN32__) || defined(_WIN32)
 #   if defined(_MSC_VER)
@@ -32,9 +30,7 @@ typedef void* DYNLIB_HANDLE;
 
 namespace CasaEngine
 {
-	//----------------------------------------------------------------------------//
-	struct DynamicModule::Impl :
-		public AllocatedObject<Impl>
+	struct DynamicModule::Impl
 	{
 		Impl(const std::string& name) :
 			d_moduleName(name),
@@ -46,16 +42,12 @@ namespace CasaEngine
 			DYNLIB_UNLOAD(d_handle);
 		}
 
-		//! Holds the name of the loaded module.
 		std::string d_moduleName;
-		//! Handle for the loaded module
 		DYNLIB_HANDLE d_handle;
 	};
 
-	//----------------------------------------------------------------------------//
 	static const char MODULE_DIR_VAR_NAME[] = "CA_MODULE_DIR";
 
-	//----------------------------------------------------------------------------//
 #if defined(__WIN32__) || defined(_WIN32) || defined(__CYGWIN__)
 	static const std::string LibraryExtension(".dll");
 #elif defined(__APPLE__)
@@ -63,8 +55,7 @@ namespace CasaEngine
 #else
 	static const std::string LibraryExtension(".so");
 #endif
-
-	//----------------------------------------------------------------------------//
+	
 	// return whether module name has it's extension in place
 	static bool hasDynamicLibraryExtension(const std::string& name)
 	{
@@ -75,12 +66,12 @@ namespace CasaEngine
 
 		return name.compare(name.length() - ext_len, ext_len, LibraryExtension) == 0;
 	}
-	//----------------------------------------------------------------------------//
+
 	static void appendDynamicLibraryExtension(std::string& name)
 	{
 		name.append(LibraryExtension);
 	}
-	//----------------------------------------------------------------------------//
+
 	static void addLibraryNameSuffixes(std::string& name)
 	{
 #ifdef CA_HAS_BUILD_SUFFIX
@@ -90,7 +81,6 @@ namespace CasaEngine
 		appendDynamicLibraryExtension(name);
 	}
 
-	//----------------------------------------------------------------------------//
 	static std::string getModuleDirEnvVar()
 	{
 		if (const char* envModuleDir = getenv(MODULE_DIR_VAR_NAME))
@@ -98,8 +88,7 @@ namespace CasaEngine
 
 		return std::string();
 	}
-
-	//----------------------------------------------------------------------------//
+	
 	// Returns a std::string containing the last failure message from the platform's
 	// dynamic loading system.
 	static std::string getFailureString()
@@ -120,7 +109,7 @@ namespace CasaEngine
 			0,
 			0))
 		{
-			retMsg = reinterpret_cast<LPTSTR>(msgBuffer);
+			retMsg = static_cast<LPTSTR>(msgBuffer);
 			LocalFree(msgBuffer);
 		}
 		else
@@ -133,7 +122,6 @@ namespace CasaEngine
 		return retMsg;
 	}
 
-	//----------------------------------------------------------------------------//
 	static DYNLIB_HANDLE DynLibLoad(const std::string& name)
 	{
 		DYNLIB_HANDLE handle = 0;
@@ -160,10 +148,9 @@ namespace CasaEngine
 
 		return handle;
 	}
-
-	//----------------------------------------------------------------------------//
+	
 	DynamicModule::DynamicModule(const std::string& name) :
-		d_pimpl(NEW_AO Impl(name))
+		d_pimpl(new Impl(name))
 	{
 		if (name.empty())
 			return;
@@ -196,24 +183,19 @@ namespace CasaEngine
 			throw CException("Failed to load module '" +
 				d_pimpl->d_moduleName + "': " + getFailureString());
 	}
-
-	//----------------------------------------------------------------------------//
+	
 	DynamicModule::~DynamicModule()
 	{
-		DELETE_AO d_pimpl;
+		delete d_pimpl;
 	}
-
-	//----------------------------------------------------------------------------//
+	
 	const std::string& DynamicModule::getModuleName() const
 	{
 		return d_pimpl->d_moduleName;
 	}
-
-	//----------------------------------------------------------------------------//
+	
 	void* DynamicModule::getSymbolAddress(const std::string& symbol) const
 	{
 		return static_cast<void*>(DYNLIB_GETSYM(d_pimpl->d_handle, symbol));
 	}
-
-	//----------------------------------------------------------------------------//
 }

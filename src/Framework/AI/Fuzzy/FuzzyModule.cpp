@@ -7,7 +7,6 @@
 #include "FuzzyModule.h"
 
 #include "CA_Assert.h"
-#include "Memory\MemoryAllocation.h"
 
 
 namespace CasaEngine
@@ -19,13 +18,13 @@ FuzzyModule::~FuzzyModule()
   VarMap::iterator curVar = m_Variables.begin();
   for (curVar; curVar != m_Variables.end(); ++curVar)
   {
-    DELETE_AO curVar->second;
+    delete curVar->second;
   }
 
   std::vector<FuzzyRule*>::iterator curRule = m_Rules.begin();
   for (curRule; curRule != m_Rules.end(); ++curRule)
   {
-    DELETE_AO *curRule;
+    delete *curRule;
   }
 }
 
@@ -42,7 +41,7 @@ void FuzzyModule::AddRule(FuzzyTerm& antecedent, FuzzyTerm& consequence)
 //-----------------------------------------------------------------------------
 FuzzyVariable& FuzzyModule::CreateFLV(const std::string& VarName)
 {
-  m_Variables[VarName] = NEW_AO FuzzyVariable();
+  m_Variables[VarName] = new FuzzyVariable();
 
   return *m_Variables[VarName];
 }

@@ -9,7 +9,6 @@
 #include "Maths/Rectangle.h"
 
 #include "btBulletDynamicsCommon.h"
-#include "Memory\MemoryAllocation.h"
 #include "BulletObjectsContainer.h"
 
 namespace CasaEngine
@@ -96,7 +95,7 @@ namespace CasaEngine
 		m_pBulletWorld->addRigidBody(body);
 		//body->setActivationState(ISLAND_SLEEPING);
 
-		return NEW_AO BulletRigidBodyContainer(body);
+		return new BulletRigidBodyContainer(body);
 	}
 
 	/**
@@ -126,7 +125,7 @@ namespace CasaEngine
 
 				break;*/
 
-		case RECTANGLE:
+		case ShapeType::RECTANGLE:
 		{
 			const auto* pBox2D = dynamic_cast<const RectangleF*>(pShape_);
 			const auto size = pBox2D->Size() / 2.0f;
@@ -135,7 +134,7 @@ namespace CasaEngine
 			return pBox;
 		}
 
-		case CIRCLE2D:
+		case ShapeType::CIRCLE2D:
 		{
 			const auto* const pCircle = dynamic_cast<const Circle*>(pShape_);
 			auto* const pCylinder = new btCylinderShapeZ(btVector3(pCircle->Radius(), pCircle->Radius(), 0.0f));
@@ -208,7 +207,7 @@ namespace CasaEngine
 		colShape->setCollisionShape(b3pShape);
 		colShape->setCollisionFlags(btCollisionObject::CF_DYNAMIC_OBJECT);
 
-		return NEW_AO BulletCollisionObjectContainer(colShape);
+		return new BulletCollisionObjectContainer(colShape);
 	}
 
 	/**

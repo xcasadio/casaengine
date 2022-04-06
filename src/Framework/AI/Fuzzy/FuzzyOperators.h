@@ -13,7 +13,6 @@
 
 #include "CA_Export.h"
 #include "FuzzyTerm.h"
-#include "Memory\MemoryAllocation.h"
 
 namespace CasaEngine
 {
@@ -47,7 +46,7 @@ public:
   FzAND(FuzzyTerm& op1, FuzzyTerm& op2, FuzzyTerm& op3, FuzzyTerm& op4);
 
   //virtual ctor
-  FuzzyTerm* Clone()const{return NEW_AO FzAND(*this);}
+  FuzzyTerm* Clone()const{return new FzAND(*this);}
   
   float GetDOM()const;
   void  ClearDOM();
@@ -83,7 +82,7 @@ public:
   FzOR(FuzzyTerm& op1, FuzzyTerm& op2, FuzzyTerm& op3, FuzzyTerm& op4);
 
   //virtual ctor
-  FuzzyTerm* Clone()const{return NEW_AO FzOR(*this);}
+  FuzzyTerm* Clone()const{return new FzOR(*this);}
   
   float GetDOM()const;
 

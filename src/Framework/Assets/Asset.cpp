@@ -7,7 +7,7 @@
 #include "Assetable.h"
 #include "Exceptions.h"
 #include "CA_Assert.h"
-#include "Memory/MemoryAllocation.h"
+
 
 namespace CasaEngine
 {
@@ -22,7 +22,7 @@ namespace CasaEngine
 
 	Asset::~Asset()
 	{
-		DELETE_AO m_pObject;
+		delete m_pObject;
 	}
 
 	std::string Asset::GetName() const
@@ -38,6 +38,6 @@ namespace CasaEngine
 
 	void Asset::LoadAsset()
 	{
-		throw NEW_AO CNotImplementedException("Asset::LoadAsset()");
+		throw new CNotImplementedException("Asset::LoadAsset()");
 	}
 }

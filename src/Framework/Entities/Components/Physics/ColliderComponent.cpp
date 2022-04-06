@@ -22,7 +22,7 @@ namespace CasaEngine
 	{
 		if (m_pCollisionObjectContainer != nullptr)
 		{
-			DELETE_AO m_pCollisionObjectContainer;
+			delete m_pCollisionObjectContainer;
 		}
 	}
 
@@ -64,7 +64,7 @@ namespace CasaEngine
 	{
 		auto* transform = GetEntity()->GetComponentMgr()->GetComponent<Transform3DComponent>();
 		CA_ASSERT(transform != nullptr, "Circle2DColliderComponent::Initialize() can't find the Transform3DComponent. Please add it before add a Circle2DColliderComponent");
-		auto* rigidBody = NEW_AO RigidBody();
+		auto* rigidBody = new RigidBody();
 		rigidBody->mass = mass;
 		rigidBody->pCollisionShape = m_pShape;
 		IRigidBodyContainer* pContainer = Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->AddRigidBody(rigidBody, transform->GetPosition());

@@ -8,7 +8,9 @@ namespace CasaEngine
 	{
 	}
 
-	inline Plane::Plane(const Vector3F& v0, const Vector3F& v1, const Vector3F& v2)
+	inline Plane::Plane(const Vector3F& v0, const Vector3F& v1, const Vector3F& v2) :
+		n(0,0, 0),
+		d(0)
 	{
 		BuildFromPoints(v0, v1, v2);
 	}
@@ -21,11 +23,9 @@ namespace CasaEngine
 
 	inline void Plane::BuildFromPoints(const Vector3F& v0, const Vector3F& v1, const Vector3F& v2)
 	{
-		// Calcul de la normale du plan
 		n = Vector3F::Cross(v1 - v0, v2 - v0);
 		n.Normalize();
 
-		// Calcul de la distance à l'origine
 		d = -Vector3F::Dot(n, v0);
 	}
 

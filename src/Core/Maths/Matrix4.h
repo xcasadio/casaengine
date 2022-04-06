@@ -6,14 +6,13 @@
 #include "Rectangle.h"
 #include "Maths/Vector3.h"
 #include "Maths/Vector4.h"
-#include "Memory/MemoryAllocation.h"
+
 
 namespace CasaEngine
 {
 	class Quaternion;
 
-	class CA_EXPORT Matrix4 :
-		public AllocatedObject<Matrix4>
+	class CA_EXPORT Matrix4
 	{
 	public:
 		float m11, m12, m13, m14;

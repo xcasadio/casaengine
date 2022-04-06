@@ -29,8 +29,8 @@ PlayerController::~PlayerController()
  */
 void PlayerController::Initialize()
 {
-	auto player_state_idle = NEW_AO PlayerStateIdle();
-	auto player_state_walking = NEW_AO PlayerStateWalking();
+	auto player_state_idle = new PlayerStateIdle();
+	auto player_state_walking = new PlayerStateWalking();
 
 	AddState(IDLE, player_state_idle);
 	AddState(MOVING, player_state_walking);

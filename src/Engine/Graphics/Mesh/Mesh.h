@@ -12,7 +12,7 @@
 
 namespace CasaEngine
 {
-	class CA_EXPORT Mesh : public AllocatedObject<Mesh>
+	class CA_EXPORT Mesh
 	{
 	public:
 		Mesh(const VertexPositionNormalTexture* Vertices, unsigned long VerticesCount,

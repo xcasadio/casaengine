@@ -1,8 +1,6 @@
 #ifndef _CASAENGINEIteratorBase_h_
 #define _CASAENGINEIteratorBase_h_
 
-#include "Memory\MemoryAllocation.h"
-
 namespace CasaEngine
 {
 	/*!
@@ -10,7 +8,7 @@ namespace CasaEngine
 		Base class constant iterator used to offer iteration over various collections within the system.
 	*/
 	template<typename T, typename V = typename T::value_type>
-	class ConstBaseIterator : public AllocatedObject<ConstBaseIterator<T, V>>
+	class ConstBaseIterator
 	{
 	public:
 		typedef V value_type;

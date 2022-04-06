@@ -1,8 +1,6 @@
-#ifndef PLUGIN_H
-#define PLUGIN_H
+#pragma once
 
 #include "CA_Export.h"
-#include "Memory\MemoryAllocation.h"
 #include <string>
 
 namespace CasaEngine
@@ -12,8 +10,7 @@ namespace CasaEngine
 		Class that wraps and gives access to a dynamically linked module
 		(.dll, .so, etc...)
 	*/
-	class CA_EXPORT DynamicModule :
-		public AllocatedObject<DynamicModule>
+	class CA_EXPORT DynamicModule
 	{
 	public:
 		/*!
@@ -59,5 +56,3 @@ namespace CasaEngine
 		Impl* d_pimpl;
 	};
 }
-
-#endif

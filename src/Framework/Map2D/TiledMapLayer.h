@@ -12,7 +12,7 @@ namespace CasaEngine
 {
 	class TiledMapComponent;
 
-	class CA_EXPORT TiledMapLayer : public AllocatedObject<TiledMapLayer>
+	class CA_EXPORT TiledMapLayer
 	{
 	public:
 		TiledMapLayer();

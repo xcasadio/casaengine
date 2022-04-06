@@ -2,7 +2,6 @@
 #define CONTAINERUTIL_H_
 
 #include <vector>
-#include "Memory\MemoryAllocation.h"
 
 namespace CasaEngine
 {
@@ -35,7 +34,7 @@ namespace CasaEngine
 	{
 		for (typename container::iterator it = c.begin(); it != c.end(); ++it)
 		{
-			DELETE_AO* it;
+			delete* it;
 			*it = nullptr;
 		}
 	}
@@ -48,7 +47,7 @@ namespace CasaEngine
 	{
 		for (typename map::iterator it = m.begin(); it != m.end(); ++it)
 		{
-			DELETE_AO it->second;
+			delete it->second;
 			it->second = nullptr;
 		}
 	}

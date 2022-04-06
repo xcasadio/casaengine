@@ -20,8 +20,7 @@ namespace CasaEngine
 		public DrawableGameComponent
 	{
 	private:
-		class LineRenderer2DData : 
-			public AllocatedObject<LineRenderer2DData>
+		class LineRenderer2DData
 		{
 		public:
 			Vector2F Start, End;

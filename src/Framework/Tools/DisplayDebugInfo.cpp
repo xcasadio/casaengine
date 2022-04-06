@@ -38,7 +38,7 @@ namespace CasaEngine
 		bgfx::setViewName(1, "DisplayDebugInfo");
 		//bgfx::setView(1, true);
 		
-		m_pProgram = NEW_AO Program("vs_3DLines", "fs_3DLines");
+		m_pProgram = new Program("vs_3DLines", "fs_3DLines");
 
 		m_Vertices[0].Position = Vector3F::Zero();  m_Vertices[0].Color = CColor::Red.ToABGR();
 		m_Vertices[1].Position = Vector3F::UnitX(); m_Vertices[1].Color = CColor::Red.ToABGR();
@@ -52,7 +52,7 @@ namespace CasaEngine
 
 	void DisplayDebugInfo::Release()
 	{
-		DELETE_AO m_pProgram;
+		delete m_pProgram;
 		m_pProgram = nullptr;
 		bgfx::destroy(m_VertexBuffer);
 		m_VertexBuffer = BGFX_INVALID_HANDLE;
@@ -106,8 +106,8 @@ namespace CasaEngine
 
 		float left = viewport.X() * Game::Instance().GetWindowSize().x;
 		float right = viewport.Width() * Game::Instance().GetWindowSize().x;
-		float bottom = viewport.Height() * Game::Instance().GetWindowSize().y;
-		float top = viewport.Y() * Game::Instance().GetWindowSize().y;
+		float bottom = viewport.Y() * Game::Instance().GetWindowSize().y;
+		float top = viewport.Height() * Game::Instance().GetWindowSize().y;
 		matProj = Matrix4::CreateOrthographicOffCenter(left, right, bottom, top, viewport.NearClipPlane(), viewport.FarClipPlane());
 
 		bgfx::setViewTransform(1, nullptr, matProj);
@@ -125,10 +125,8 @@ namespace CasaEngine
 	{
 		ImGui::SetNextWindowPos(ImVec2(10,10));
 		
-		if (!ImGui::Begin("FPS", nullptr,  ImGuiWindowFlags_NoTitleBar|ImGuiWindowFlags_NoResize|ImGuiWindowFlags_NoMove|ImGuiWindowFlags_NoSavedSettings))
+		if (ImGui::Begin("FPS", nullptr,  ImGuiWindowFlags_NoTitleBar|ImGuiWindowFlags_NoResize|ImGuiWindowFlags_NoMove|ImGuiWindowFlags_NoSavedSettings))
 		{
-			// 			ImGui::Text("Simple overlay\non the top-left side of the screen.");
-			// 			ImGui::Separator();
 			ImGui::Text("FPS: %d", Game::Instance().GetDebugSystem().GetFPS());
 		}
 		

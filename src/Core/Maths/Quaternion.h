@@ -4,14 +4,11 @@
 #include "CA_Export.h"
 #include "Maths/Matrix4.h"
 #include "Maths/Vector3.h"
-
-#include "Memory/MemoryAllocation.h"
 #include "Matrix3.h"
 
 namespace CasaEngine
 {
-	class CA_EXPORT Quaternion :
-		public AllocatedObject<Quaternion>
+	class CA_EXPORT Quaternion
 	{
 	public:
 		Quaternion(float X = 0.0f, float Y = 0.0f, float Z = 0.0f, float W = 1.0f);

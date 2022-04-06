@@ -3,14 +3,13 @@
 
 #include "CA_Export.h"
 #include <string>
-#include "Memory/MemoryAllocation.h"
 
 #include <cereal/cereal.hpp>
 #include <cereal/types/polymorphic.hpp>
 
 namespace CasaEngine
 {
-	class CA_EXPORT IAssetable : public AllocatedObject<IAssetable>
+	class CA_EXPORT IAssetable
 	{
 	public:
 		virtual ~IAssetable();

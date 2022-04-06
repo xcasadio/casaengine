@@ -23,7 +23,7 @@
 
 #include "Log/LoggerFile.h"
 #include "Maths/Vector3.h"
-#include "Memory/MemoryAllocation.h"
+
 #include "Physics/PhysicsEngine.h"
 #include "Sprite/SpriteTypes.h"
 #include <IO/File.h>
@@ -38,7 +38,7 @@ using namespace CasaEngine;
 FightingGame2DGame::FightingGame2DGame() :
 	m_pWorld(nullptr)
 {
-	Logging.AddLogger(NEW_AO LoggerFile("Out.log"));
+	Logging.AddLogger(new LoggerFile("Out.log"));
 }
 
 FightingGame2DGame::~FightingGame2DGame()
@@ -70,8 +70,8 @@ void FightingGame2DGame::Initialize()
 
 void FightingGame2DGame::AddGameComponent()
 {
-	auto* const line3DRenderer = NEW_AO Line3DRendererComponent(this);
-	auto* const pSpriteRenderer = NEW_AO SpriteRenderer(this);
+	auto* const line3DRenderer = new Line3DRendererComponent(this);
+	auto* const pSpriteRenderer = new SpriteRenderer(this);
 
 	AddComponent(pSpriteRenderer);
 	AddComponent(line3DRenderer);
@@ -83,59 +83,59 @@ void FightingGame2DGame::LoadContent()
 	LoadSprites();
 	auto animations = LoadAnimations();
 
-	m_pWorld = NEW_AO World();
+	m_pWorld = new World();
 	GetGameInfo().SetWorld(m_pWorld);
 
 	Transform3DComponent* pTransform = nullptr;
 
 	//player 1
-	auto* pPlayer1 = NEW_AO BaseEntity();
+	auto* pPlayer1 = new BaseEntity();
 	pPlayer1->SetName("player 1");
-	pTransform = NEW_AO Transform3DComponent(pPlayer1);
+	pTransform = new Transform3DComponent(pPlayer1);
 	pTransform->SetLocalPosition(Vector3F(520, 400, 0.5f));
 	auto scale = 1.0f;
 	pTransform->SetLocalScale(Vector3F(scale, scale));
 	pPlayer1->GetComponentMgr()->AddComponent(pTransform);
 
-	auto* pAnimatedSprite = NEW_AO AnimatedSpriteComponent(pPlayer1);
+	auto* pAnimatedSprite = new AnimatedSpriteComponent(pPlayer1);
 	pPlayer1->GetComponentMgr()->AddComponent(pAnimatedSprite);
 	for (auto& anim : animations)
 	{
-		pAnimatedSprite->AddAnimation(NEW_AO Animation2D(*anim.Copy()));
+		pAnimatedSprite->AddAnimation(new Animation2D(*anim.Copy()));
 	}
 	pAnimatedSprite->SetCurrentAnimation("idle");
 	pAnimatedSprite->SetSpriteEffect(eSpriteEffects::SPRITE_EFFECT_NONE);
 
-	auto* scriptComponent = NEW_AO ScriptComponent(pPlayer1);
-	auto* pScriptCharacter = NEW_AO ScriptCharacter(pPlayer1, NEW_AO Player(pPlayer1));
+	auto* scriptComponent = new ScriptComponent(pPlayer1);
+	auto* pScriptCharacter = new ScriptCharacter(pPlayer1, new Player(pPlayer1));
 	scriptComponent->SetScriptObject(pScriptCharacter);
 	pPlayer1->GetComponentMgr()->AddComponent(scriptComponent);
 	m_pWorld->AddEntity(pPlayer1);
 
 	//player 2
-	auto* pPlayer2 = NEW_AO BaseEntity();
+	auto* pPlayer2 = new BaseEntity();
 	pPlayer2->SetName("player 2");
-	pTransform = NEW_AO Transform3DComponent(pPlayer2);
+	pTransform = new Transform3DComponent(pPlayer2);
 	pTransform->SetLocalPosition(Vector3F(820, 400, 0.6f));
 	scale = 1.0f;
 	pTransform->SetLocalScale(Vector3F(scale, scale));
 	pPlayer2->GetComponentMgr()->AddComponent(pTransform);
 
-	pAnimatedSprite = NEW_AO AnimatedSpriteComponent(pPlayer2);
+	pAnimatedSprite = new AnimatedSpriteComponent(pPlayer2);
 	pPlayer2->GetComponentMgr()->AddComponent(pAnimatedSprite);
 	for (auto& anim : animations)
 	{
-		pAnimatedSprite->AddAnimation(NEW_AO Animation2D(*anim.Copy()));
+		pAnimatedSprite->AddAnimation(new Animation2D(*anim.Copy()));
 	}
 	pAnimatedSprite->SetCurrentAnimation("idle");
 	pAnimatedSprite->SetSpriteEffect(eSpriteEffects::SPRITE_EFFECT_FLIP_HORIZONTALLY);
 	m_pWorld->AddEntity(pPlayer2);
 
 	//Camera 2D
-	auto* pCamera = NEW_AO BaseEntity();
+	auto* pCamera = new BaseEntity();
 	pCamera->SetName("camera 2D");
-	auto* m_pCamera2D = NEW_AO Camera2DComponent(pCamera);
-	auto* camera_controller = NEW_AO Camera2DTargetedController(m_pCamera2D);
+	auto* m_pCamera2D = new Camera2DComponent(pCamera);
+	auto* camera_controller = new Camera2DTargetedController(m_pCamera2D);
 	m_pCamera2D->CameraController(camera_controller);
 	pCamera->GetComponentMgr()->AddComponent(m_pCamera2D);
 	camera_controller->SetDeadZoneRatio(Vector2F(0.7f, 0.7f));
@@ -145,17 +145,17 @@ void FightingGame2DGame::LoadContent()
 	GetGameInfo().SetActiveCamera(m_pCamera2D);
 
 	//stage
-	auto* pStage = NEW_AO BaseEntity();
+	auto* pStage = new BaseEntity();
 	pStage->SetName("stage");
-	pTransform = NEW_AO Transform3DComponent(pStage);
+	pTransform = new Transform3DComponent(pStage);
 	pTransform->SetLocalPosition(Vector3F(0, 0, 1.0f));
 	pStage->GetComponentMgr()->AddComponent(pTransform);
-	auto* stage = NEW_AO Stage(pStage);
+	auto* stage = new Stage(pStage);
 	pStage->GetComponentMgr()->AddComponent(stage);
 	m_pWorld->AddEntity(pStage);
 
 	//stage info
-	auto* stageInfo = NEW_AO StageInfo(stage, pPlayer1, pPlayer2);
+	auto* stageInfo = new StageInfo(stage, pPlayer1, pPlayer2);
 	stage->SetStageInfo(stageInfo);
 	
 	m_pWorld->Initialize();
@@ -172,7 +172,7 @@ std::vector<Animation2DData> FightingGame2DGame::LoadAnimations()
 	for (auto& data : anim2DDatas)
 	{
 		auto* animation = data.Copy();
-		GetAssetManager().AddAsset(NEW_AO Asset(data.GetName(), animation));
+		GetAssetManager().AddAsset(new Asset(data.GetName(), animation));
 	}
 
 	return anim2DDatas;
@@ -188,7 +188,7 @@ void FightingGame2DGame::LoadSprites()
 
 	for (auto& data : spriteDatas)
 	{
-		GetAssetManager().AddAsset(NEW_AO Asset(data.GetName(), data.Copy()));
+		GetAssetManager().AddAsset(new Asset(data.GetName(), data.Copy()));
 	}
 }
 

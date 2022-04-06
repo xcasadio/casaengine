@@ -13,7 +13,7 @@ namespace CasaEngine
 	 *
 	 */
 	TorusPrimitive::TorusPrimitive(float diameter_, float thickness_, unsigned int tessellation_) :
-		IPrimitive3D(TORUS)
+		IPrimitive3D(Primitive3DType::TORUS)
 	{
 		m_Diameter = diameter_;
 		m_Thickness = thickness_;
@@ -22,7 +22,7 @@ namespace CasaEngine
 		//TODO : UVs are not the same with OpenGL and DX
 
 		if (tessellation_ < 3)
-			throw NEW_AO CArgumentOutOfRangeException("tessellation");
+			throw new CArgumentOutOfRangeException("tessellation");
 
 		m_nbPrimitives = 0;
 

@@ -21,7 +21,7 @@
 #include "Graphics/Textures/Texture.h"
 #include "Log/LoggerFile.h"
 #include "Maths/Vector3.h"
-#include "Memory/MemoryAllocation.h"
+
 #include "Entities/Components/MovingEntity2DComponent.h"
 #include "Entities/Components/SteeringBehaviorComponent.h"
 
@@ -35,7 +35,7 @@ SteeringGame::SteeringGame() :
 	m_pWorld(nullptr),
 	m_pModelRenderer(nullptr)
 {
-	Logging.AddLogger(NEW_AO LoggerFile("Out.log"));
+	Logging.AddLogger(new LoggerFile("Out.log"));
 }
 
 /**
@@ -43,8 +43,8 @@ SteeringGame::SteeringGame() :
  */
 SteeringGame::~SteeringGame()
 {
-	if (m_pModelRenderer != nullptr) DELETE_AO m_pModelRenderer;
-	if (m_pLine3DRenderer != nullptr) DELETE_AO m_pLine3DRenderer;
+	if (m_pModelRenderer != nullptr) delete m_pModelRenderer;
+	if (m_pLine3DRenderer != nullptr) delete m_pLine3DRenderer;
 
 	//Game::Instance().GetEntityManager().Clear();
 	//PhysicsEngine::Destroy();
@@ -75,7 +75,7 @@ void SteeringGame::LoadContent()
 {
 	Game::LoadContent();
 
-	m_pWorld = NEW_AO World();
+	m_pWorld = new World();
 	Game::Instance().GetGameInfo().SetWorld(m_pWorld);
 	//m_pWorld->SetPhysicsWorld(PhysicsEngine::Instance().CreateWorld());
 
@@ -104,8 +104,8 @@ void SteeringGame::Draw()
  */
 void SteeringGame::AddGameComponents()
 {
-	m_pModelRenderer = NEW_AO MeshRendererGameComponent(this);
-	m_pLine3DRenderer = NEW_AO Line3DRendererComponent(this);
+	m_pModelRenderer = new MeshRendererGameComponent(this);
+	m_pLine3DRenderer = new Line3DRendererComponent(this);
 
 	AddComponent(m_pModelRenderer);
 	AddComponent(m_pLine3DRenderer);
@@ -116,13 +116,13 @@ void SteeringGame::AddGameComponents()
  */
 void SteeringGame::CreateEntities()
 {
-	m_pProgram = NEW_AO Program("vs_mesh", "fs_mesh");
+	m_pProgram = new Program("vs_mesh", "fs_mesh");
 
 	//////////////////////////////////////////////////////////////////////////
 	// Camera 3D
-	BaseEntity* pCamera = NEW_AO BaseEntity();
-	m_pCamera3D = NEW_AO Camera3DComponent(pCamera);
-	ArcBallCameraController* pArcBall = NEW_AO ArcBallCameraController(m_pCamera3D);
+	BaseEntity* pCamera = new BaseEntity();
+	m_pCamera3D = new Camera3DComponent(pCamera);
+	ArcBallCameraController* pArcBall = new ArcBallCameraController(m_pCamera3D);
 	pArcBall->SetCamera(Vector3F(0, 20.0f, -50.0f), Vector3F::Zero(), Vector3F::Up());
 	pArcBall->Distance(15.0f);
 	m_pCamera3D->CameraController(pArcBall);
@@ -133,15 +133,15 @@ void SteeringGame::CreateEntities()
 
 	//////////////////////////////////////////////////////////////////////////
 	// ground
-	BaseEntity* pEntity = NEW_AO BaseEntity();
+	BaseEntity* pEntity = new BaseEntity();
 	pEntity->SetName("ground");
-	Transform3DComponent* pTransform = NEW_AO Transform3DComponent(pEntity);
+	Transform3DComponent* pTransform = new Transform3DComponent(pEntity);
 	pTransform->SetLocalPosition(Vector3F(0.0f, -0.5f, 0.0f));
 	pTransform->SetLocalRotation(0.0f);
 	pTransform->SetLocalScale(Vector3F::One());
 	pEntity->GetComponentMgr()->AddComponent(pTransform);
-	MeshComponent* pModelCpt = NEW_AO MeshComponent(pEntity);
-	BoxPrimitive* pBox = NEW_AO BoxPrimitive(100.0f, 1.0f, 100.0f);
+	MeshComponent* pModelCpt = new MeshComponent(pEntity);
+	BoxPrimitive* pBox = new BoxPrimitive(100.0f, 1.0f, 100.0f);
 	Mesh* pModel = pBox->CreateModel();
 	//new material
 	Material* pMat = pModel->GetMaterial()->Clone();
@@ -163,14 +163,14 @@ void SteeringGame::CreateEntities()
  */
 void SteeringGame::CreateBoids()
 {
-	BaseEntity* pEntity = NEW_AO BaseEntity();
-	Transform3DComponent* pTrans3D = NEW_AO Transform3DComponent(pEntity);
+	BaseEntity* pEntity = new BaseEntity();
+	Transform3DComponent* pTrans3D = new Transform3DComponent(pEntity);
 	pEntity->GetComponentMgr()->AddComponent(pTrans3D);
 
-	MovingEntity2DComponent* pMovingCpnt = NEW_AO MovingEntity2DComponent(pEntity);
+	MovingEntity2DComponent* pMovingCpnt = new MovingEntity2DComponent(pEntity);
 	pEntity->GetComponentMgr()->AddComponent(pMovingCpnt);
 
-	SteeringBehaviorComponent* pSteeringCpnt = NEW_AO SteeringBehaviorComponent(pEntity);
+	SteeringBehaviorComponent* pSteeringCpnt = new SteeringBehaviorComponent(pEntity);
 	pEntity->GetComponentMgr()->AddComponent(pSteeringCpnt);
 
 	pEntity->Initialize();

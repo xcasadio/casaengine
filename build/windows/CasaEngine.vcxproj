@@ -226,12 +226,6 @@
     <ClInclude Include="..\..\src\Core\Maths\Vector2.h" />
     <ClInclude Include="..\..\src\Core\Maths\Vector3.h" />
     <ClInclude Include="..\..\src\Core\Maths\Vector4.h" />
-    <ClInclude Include="..\..\src\Core\Memory\MemoryAllocatedObject.h" />
-    <ClInclude Include="..\..\src\Core\Memory\MemoryAllocation.h" />
-    <ClInclude Include="..\..\src\Core\Memory\MemoryDebugAllocator.h" />
-    <ClInclude Include="..\..\src\Core\Memory\MemoryReport.h" />
-    <ClInclude Include="..\..\src\Core\Memory\MemoryStdAllocator.h" />
-    <ClInclude Include="..\..\src\Core\Memory\MemorySTLWrapper.h" />
     <ClInclude Include="..\..\src\Core\Parsers\Ini\ini.h" />
     <ClInclude Include="..\..\src\Core\Parsers\Ini\INIReader.h" />
     <ClInclude Include="..\..\src\Core\Parsers\Xml\tinyxml2.h" />
@@ -445,8 +439,6 @@
     <ClCompile Include="..\..\src\Core\Maths\Shape\IShape.cpp" />
     <ClCompile Include="..\..\src\Core\Maths\Shape\Polygon.cpp" />
     <ClCompile Include="..\..\src\Core\Maths\Shape\Sphere.cpp" />
-    <ClCompile Include="..\..\src\Core\Memory\MemoryDebugAllocator.cpp" />
-    <ClCompile Include="..\..\src\Core\Memory\MemoryReport.cpp" />
     <ClCompile Include="..\..\src\Core\Parsers\Ini\ini.cpp" />
     <ClCompile Include="..\..\src\Core\Parsers\Ini\INIReader.cpp" />
     <ClCompile Include="..\..\src\Core\Parsers\Xml\tinyxml2.cpp" />
@@ -581,8 +573,6 @@
     <None Include="..\..\external\dear-imgui\widgets\markdown.inl" />
     <None Include="..\..\external\dear-imgui\widgets\memory_editor.inl" />
     <None Include="..\..\external\dear-imgui\widgets\range_slider.inl" />
-    <None Include="..\..\src\Core\Functor.inl" />
-    <None Include="..\..\src\Core\StringUtils.inl" />
     <None Include="..\..\src\Framework\Game\Game.inl" />
     <None Include="..\..\src\Framework\UI\imgui\common.sh" />
     <None Include="..\..\src\Framework\UI\imgui\fs_imgui_image.sc" />

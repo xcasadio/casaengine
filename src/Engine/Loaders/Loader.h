@@ -8,8 +8,7 @@
 namespace CasaEngine
 {
 	template <class T>
-	class ILoader :
-		public AllocatedObject<ILoader<T> >
+	class ILoader
 	{
 	public:
 		virtual ~ILoader() {}

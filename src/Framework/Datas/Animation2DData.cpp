@@ -41,6 +41,6 @@ namespace CasaEngine
 
 	Animation2DData* Animation2DData::Copy() const
 	{
-		return NEW_AO Animation2DData(*this);
+		return new Animation2DData(*this);
 	}
 }

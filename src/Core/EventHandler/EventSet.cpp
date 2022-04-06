@@ -22,7 +22,7 @@ namespace CasaEngine
 
 	void EventSet::addEvent(const std::string& name)
 	{
-		addEvent(*NEW_AO Event(name));
+		addEvent(*new Event(name));
 	}
 
 	void EventSet::addEvent(Event& event)

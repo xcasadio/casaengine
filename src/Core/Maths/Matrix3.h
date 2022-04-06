@@ -5,24 +5,16 @@
 
 #include "Maths/Vector2.h"
 #include "Maths/Vector3.h"
-#include "Memory/MemoryAllocation.h"
 
 namespace CasaEngine
 {
-	/**
-	 *
-	 */
-	class CA_EXPORT Matrix3 :
-		public AllocatedObject<Matrix3>
+	class CA_EXPORT Matrix3
 	{
 	public:
 		float a11, a21, a31;
 		float a12, a22, a32;
 		float a13, a23, a33;
 
-		/**
-		 *
-		 */
 		Matrix3(float m11 = 1.0f, float m12 = 0.0f, float m13 = 0.0f,
 			float m21 = 0.0f, float m22 = 1.0f, float m23 = 0.0f,
 			float m31 = 0.0f, float m32 = 0.0f, float m33 = 1.0f);
@@ -149,9 +141,6 @@ namespace CasaEngine
 		operator const float* () const;
 	};
 
-	//==========================================================
-	// Fonctions globales relatives aux matrices
-	//==========================================================
 	Matrix3      operator * (const Matrix3& m, float t);
 	Matrix3      operator * (float t, const Matrix3& m);
 	Matrix3      operator / (const Matrix3& m, float t);
@@ -159,4 +148,4 @@ namespace CasaEngine
 	std::ostream& operator <<(std::ostream& Stream, const Matrix3& Mat);
 }
 
-#endif // Matrix3_H
+#endif

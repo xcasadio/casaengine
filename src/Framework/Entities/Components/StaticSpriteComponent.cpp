@@ -36,7 +36,7 @@ namespace CasaEngine
 	void StaticSpriteComponent::SetSpriteID(std::string val)
 	{
 		m_SpriteID = val;
-		m_pSprite = NEW_AO Sprite(*Game::Instance().GetAssetManager().GetAsset<SpriteData>(m_SpriteID));
+		m_pSprite = new Sprite(*Game::Instance().GetAssetManager().GetAsset<SpriteData>(m_SpriteID));
 	}
 
 	CColor StaticSpriteComponent::GetColor() const

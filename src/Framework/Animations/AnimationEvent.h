@@ -5,20 +5,16 @@
 #include <cereal/access.hpp>
 #include <cereal/cereal.hpp>
 
-
-#include "Memory\MemoryAllocation.h"
-
 namespace CasaEngine
 {
 	class Animation;
 
-	class CA_EXPORT AnimationEvent :
-		public AllocatedObject<AnimationEvent>
+	class CA_EXPORT AnimationEvent
 	{
 	public:
 		AnimationEvent();
 		AnimationEvent(const AnimationEvent& rsh);
-		const AnimationEvent& operator = (const AnimationEvent& rsh);
+		AnimationEvent& operator = (const AnimationEvent& rsh);
 		~AnimationEvent();
 
 		virtual AnimationEvent* Copy() = 0;

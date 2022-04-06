@@ -10,14 +10,14 @@ namespace CasaEngine
 	World::World() :
 		m_pPhysicsWorld(nullptr)
 	{
-		GetComponentMgr()->AddComponent(NEW_AO WorldComponent(this));
+		GetComponentMgr()->AddComponent(new WorldComponent(this));
 		//TODO : create parameters
 		m_CellSpacePartition.Build(50, 50, 7, 7);
 	}
 
 	World::~World()
 	{
-		DELETE_AO m_pPhysicsWorld;
+		delete m_pPhysicsWorld;
 	}
 
 	const std::vector<BaseEntity*>& World::GetEntities()

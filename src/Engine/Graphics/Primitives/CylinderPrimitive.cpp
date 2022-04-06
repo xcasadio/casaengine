@@ -25,7 +25,7 @@ namespace CasaEngine
 	 *
 	 */
 	CylinderPrimitive::CylinderPrimitive(float diameter_, float height_, unsigned int tessellation_) :
-		IPrimitive3D(CYLINDER)
+		IPrimitive3D(Primitive3DType::CYLINDER)
 	{
 		m_Diameter = diameter_;
 		m_Height = height_;
@@ -33,7 +33,7 @@ namespace CasaEngine
 
 		if (m_Tessellation < 3)
 		{
-			throw NEW_AO CArgumentOutOfRangeException("tessellation");
+			throw new CArgumentOutOfRangeException("tessellation");
 		}
 
 		m_nbPrimitives = 0;

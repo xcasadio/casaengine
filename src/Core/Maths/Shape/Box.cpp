@@ -4,14 +4,14 @@
 namespace CasaEngine
 {
 	Box::Box(Vector3F size_, Vector3F center_) :
-		IShape(BOX)
+		IShape(ShapeType::BOX)
 	{
 		m_Center = center_;
 		m_Size = size_;
 	}
 
 	Box::Box(const Box& rsh) :
-		IShape(BOX)
+		IShape(ShapeType::BOX)
 	{
 		*this = rsh;
 	}
@@ -28,7 +28,7 @@ namespace CasaEngine
 
 	IShape* Box::Copy()
 	{
-		return NEW_AO Box(*this);
+		return new Box(*this);
 	}
 
 	Vector3F Box::Size() const

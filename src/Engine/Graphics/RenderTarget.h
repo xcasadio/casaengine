@@ -3,13 +3,10 @@
 
 #include "CA_Export.h"
 #include "Maths/Rectangle.h"
-#include "Memory/MemoryAllocation.h"
 
 namespace CasaEngine
 {
-	///
-	class CA_EXPORT RenderTarget :
-		public AllocatedObject<RenderTarget>
+	class CA_EXPORT RenderTarget
 	{
 	public:
 		RenderTarget();

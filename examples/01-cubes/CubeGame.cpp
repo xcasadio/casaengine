@@ -18,7 +18,7 @@
 
 CubeGame::CubeGame()
 {
-	Logging.AddLogger(NEW_AO LoggerFile("Out.log"));
+	Logging.AddLogger(new LoggerFile("Out.log"));
 }
 
 void CubeGame::Initialize()
@@ -33,7 +33,7 @@ void CubeGame::Initialize()
 
 	Game::Initialize();
 
-	MeshRendererGameComponent* m_pModelRenderer = NEW_AO MeshRendererGameComponent(this);
+	MeshRendererGameComponent* m_pModelRenderer = new MeshRendererGameComponent(this);
 
 	AddComponent(m_pModelRenderer);
 
@@ -47,15 +47,15 @@ void CubeGame::LoadContent()
 {
 	Game::LoadContent();
 
-	World* m_pWorld = NEW_AO World();
+	World* m_pWorld = new World();
 	Game::Instance().GetGameInfo().SetWorld(m_pWorld);
 
-	m_pProgram = NEW_AO Program("vs_mesh", "fs_mesh");
+	m_pProgram = new Program("vs_mesh", "fs_mesh");
 
 	//Camera 3D
-	BaseEntity* pCamera = NEW_AO BaseEntity();
-	Camera3DComponent* m_pCamera3D = NEW_AO Camera3DComponent(pCamera);
-	ArcBallCameraController* pArcBall = NEW_AO ArcBallCameraController(m_pCamera3D);
+	BaseEntity* pCamera = new BaseEntity();
+	Camera3DComponent* m_pCamera3D = new Camera3DComponent(pCamera);
+	ArcBallCameraController* pArcBall = new ArcBallCameraController(m_pCamera3D);
 	pArcBall->SetCamera(Vector3F(0, 20.0f, -50.0f), Vector3F::Zero(), Vector3F::Up());
 	pArcBall->Distance(15.0f);
 	m_pCamera3D->CameraController(pArcBall);
@@ -71,15 +71,15 @@ void CubeGame::LoadContent()
 	Mesh* pModel;
 
 	//Cylinder
-	pEntity = NEW_AO BaseEntity();
+	pEntity = new BaseEntity();
 	pEntity->SetName("cylinder");
-	pTransform = NEW_AO Transform3DComponent(pEntity);
+	pTransform = new Transform3DComponent(pEntity);
 	pTransform->SetLocalPosition(Vector3F(-delta, 0.5f, 0.0f));
 	pTransform->SetLocalRotation(0.0f);
 	pTransform->SetLocalScale(Vector3F::One());
 	pEntity->GetComponentMgr()->AddComponent(pTransform);
-	pModelCpt = NEW_AO MeshComponent(pEntity);
-	pPrimitive = NEW_AO CylinderPrimitive();
+	pModelCpt = new MeshComponent(pEntity);
+	pPrimitive = new CylinderPrimitive();
 	pModel = pPrimitive->CreateModel();
 	pModelCpt->SetModel(pModel);
 	pModelCpt->SetProgram(m_pProgram);
@@ -88,15 +88,15 @@ void CubeGame::LoadContent()
 	m_pWorld->AddEntity(pEntity);
 
 	//Box
-	pEntity = NEW_AO BaseEntity();
+	pEntity = new BaseEntity();
 	pEntity->SetName("box");
-	pTransform = NEW_AO Transform3DComponent(pEntity);
+	pTransform = new Transform3DComponent(pEntity);
 	pTransform->SetLocalPosition(Vector3F(0.0f, 0.5f, delta));
 	pTransform->SetLocalRotation(0.0f);
 	pTransform->SetLocalScale(Vector3F::One());
 	pEntity->GetComponentMgr()->AddComponent(pTransform);
-	pModelCpt = NEW_AO MeshComponent(pEntity);
-	pPrimitive = NEW_AO BoxPrimitive();
+	pModelCpt = new MeshComponent(pEntity);
+	pPrimitive = new BoxPrimitive();
 	pModel = pPrimitive->CreateModel();
 	pModelCpt->SetModel(pModel);
 	pModelCpt->SetProgram(m_pProgram);
@@ -105,15 +105,15 @@ void CubeGame::LoadContent()
 	m_pWorld->AddEntity(pEntity);
 
 	//Sphere
-	pEntity = NEW_AO BaseEntity();
+	pEntity = new BaseEntity();
 	pEntity->SetName("sphere");
-	pTransform = NEW_AO Transform3DComponent(pEntity);
+	pTransform = new Transform3DComponent(pEntity);
 	pTransform->SetLocalPosition(Vector3F(delta, 0.5f, 0.0f));
 	pTransform->SetLocalRotation(0.0f);
 	pTransform->SetLocalScale(Vector3F::One());
 	pEntity->GetComponentMgr()->AddComponent(pTransform);
-	pModelCpt = NEW_AO MeshComponent(pEntity);
-	pPrimitive = NEW_AO SpherePrimitive();
+	pModelCpt = new MeshComponent(pEntity);
+	pPrimitive = new SpherePrimitive();
 	pModel = pPrimitive->CreateModel();
 	pModelCpt->SetModel(pModel);
 	pModelCpt->SetProgram(m_pProgram);
@@ -122,15 +122,15 @@ void CubeGame::LoadContent()
 	m_pWorld->AddEntity(pEntity);
 
 	//ground
-	pEntity = NEW_AO BaseEntity();
+	pEntity = new BaseEntity();
 	pEntity->SetName("ground");
-	pTransform = NEW_AO Transform3DComponent(pEntity);
+	pTransform = new Transform3DComponent(pEntity);
 	pTransform->SetLocalPosition(Vector3F(0.0f, 0.0f, 0.0f));
 	pTransform->SetLocalRotation(0.0f);
 	pTransform->SetLocalScale(Vector3F::One());
 	pEntity->GetComponentMgr()->AddComponent(pTransform);
-	pModelCpt = NEW_AO MeshComponent(pEntity);
-	pPrimitive = NEW_AO PlanePrimitive(100.0f, 100.0f);
+	pModelCpt = new MeshComponent(pEntity);
+	pPrimitive = new PlanePrimitive(100.0f, 100.0f);
 	pModel = pPrimitive->CreateModel();
 	Material* pMat = pModel->GetMaterial()->Clone();
 	pModel->SetMaterial(pMat);

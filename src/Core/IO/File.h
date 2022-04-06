@@ -11,11 +11,11 @@ namespace CasaEngine
 	class CA_EXPORT File : public IFile
 	{
 	public:
-		File();
+		File() = default;
 		File(const File& rsh);
-		const File& operator = (const File& rsh);
+		File& operator = (const File& rsh);
 
-		~File();
+		~File() override;
 
 		bool Open(const char* fileName_, unsigned int mode_) override;
 		bool Create(const char* fileName_, bool append_) override;
@@ -23,7 +23,7 @@ namespace CasaEngine
 		bool Exists() const override;
 		int Read(char* dst_, unsigned int size_) override;
 		int Write(char* data_, unsigned int size_) override;
-		unsigned int Seek(unsigned int off_, SeekDir::TSeekDir dir_) override;
+		unsigned int Seek(unsigned int off_, SeekDir dir_) override;
 
 	protected:
 		void FillBuffer() override;

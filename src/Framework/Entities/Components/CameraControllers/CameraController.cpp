@@ -32,15 +32,4 @@ namespace CasaEngine
 	{
 
 	}
-
-	void ICameraController::Read(const tinyxml2::XMLElement& xmlElt)
-	{
-
-	}
-
-	void ICameraController::Write(tinyxml2::XMLElement& xmlElt)
-	{
-
-	}
-
 }

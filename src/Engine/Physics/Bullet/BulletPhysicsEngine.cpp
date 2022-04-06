@@ -104,8 +104,8 @@ namespace CasaEngine
 			&& m_pConstraintSolver != nullptr,
 			"PhysicsEngine::CreateWorld() : Please call Initialize() before");
 
-		BulletPhysicsWorld* pWorld = NEW_AO BulletPhysicsWorld(m_pCollisionConfig, m_pDispatcher, m_pOverlappingPairCache, m_pConstraintSolver);
-		BulletPhysicsDebugDraw* pDebugDraw = NEW_AO BulletPhysicsDebugDraw();
+		BulletPhysicsWorld* pWorld = new BulletPhysicsWorld(m_pCollisionConfig, m_pDispatcher, m_pOverlappingPairCache, m_pConstraintSolver);
+		BulletPhysicsDebugDraw* pDebugDraw = new BulletPhysicsDebugDraw();
 		pDebugDraw->Initialize();
 		m_pIDebugDraw = pDebugDraw;
 		pWorld->setDebugDraw(m_pIDebugDraw);

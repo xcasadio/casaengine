@@ -1,16 +1,12 @@
 #ifndef LINE2D_H
 #define LINE2D_H
 
-#include <fstream>
-
 #include "Base.h"
 #include "Maths\Vector2.h"
-#include "Memory/MemoryAllocation.h"
 
 namespace CasaEngine
 {
-	class CA_EXPORT Line2D :
-		public AllocatedObject<Line2D>
+	class CA_EXPORT Line2D
 	{
 	public:
 		Line2D();

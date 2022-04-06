@@ -19,8 +19,7 @@ namespace CasaEngine
 		public DrawableGameComponent
 	{
 	private:
-		class ModelRendererData : 
-			public AllocatedObject<ModelRendererData>
+		class ModelRendererData
 		{
 		public:
 			Mesh *pModel;

@@ -1,11 +1,10 @@
-#ifndef _CASAENGINEEvent_h_
-#define _CASAENGINEEvent_h_
+#pragma once
 
 #include <string>
 #include "BoundSlot.h"
 #include "SubscriberSlot.h"
 #include "RefCounted.h"
-#include "Memory/MemoryAllocation.h"
+
 
 #include <map>
 #include "CA_Export.h"
@@ -29,7 +28,7 @@ namespace CasaEngine
 		\note
 			An Event object may not be copied.
 	*/
-	class CA_EXPORT Event : public AllocatedObject<Event>
+	class CA_EXPORT Event
 	{
 	public:
 		/*!
@@ -204,6 +203,4 @@ namespace CasaEngine
 
 #if defined(_MSC_VER)
 #   pragma warning(pop)
-#endif
-
 #endif

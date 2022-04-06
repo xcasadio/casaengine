@@ -22,7 +22,7 @@ IScriptObject* ScriptObjectFactory::CreateObject(ScriptObjectClassID id_, BaseEn
 {
 	if (id_ == ScriptCharacter::ClassID)
 	{
-		return NEW_AO ScriptCharacter(pEntity_, NEW_AO Enemy(pEntity_));
+		return new ScriptCharacter(pEntity_, new Enemy(pEntity_));
 	}
 
 	return nullptr;

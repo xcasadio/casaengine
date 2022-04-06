@@ -7,8 +7,6 @@
 
 #include <vector>
 
-#include "Memory\MemoryAllocation.h"
-
 #define Logging CasaEngine::LogManager::Instance()
 #define CA_TRACE(format, ...) Logging.Log(CasaEngine::Trace, format, ##__VA_ARGS__)
 #define CA_DEBUG(format, ...) Logging.Log(CasaEngine::Debug, format, ##__VA_ARGS__)
@@ -19,8 +17,7 @@
 
 namespace CasaEngine
 {
-	class CA_EXPORT LogManager :
-		public AllocatedObject<LogManager>
+	class CA_EXPORT LogManager
 	{
 	public:
 		static LogManager& Instance();

@@ -24,9 +24,9 @@ EnemyController::~EnemyController()
  */
 void EnemyController::Initialize()
 {
-	auto state_idle = NEW_AO EnemyStateIdle();
-	auto state_walking = NEW_AO EnemyStateWalking();
-	//auto state_attack = NEW_AO PlayerStateAttack();
+	auto state_idle = new EnemyStateIdle();
+	auto state_walking = new EnemyStateWalking();
+	//auto state_attack = new PlayerStateAttack();
 
 	AddState(static_cast<int>(EnemyControllerState::IDLE), state_idle);
 	AddState(static_cast<int>(EnemyControllerState::MOVING), state_walking);

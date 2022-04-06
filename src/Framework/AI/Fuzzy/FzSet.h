@@ -36,7 +36,7 @@ namespace CasaEngine
 	  FzSet(FuzzySet& fs):m_Set(fs){}
 	  FzSet& operator = (const FzSet &rsh) { m_Set = rsh.m_Set; return *this;}
 
-	  FuzzyTerm* Clone()const {return NEW_AO FzSet(*this);}
+	  FuzzyTerm* Clone()const {return new FzSet(*this);}
 	  float     GetDOM()const {return m_Set.GetDOM();}
 	  void       ClearDOM(){m_Set.ClearDOM();}
 	  void       ORwithDOM(float val){m_Set.ORwithDOM(val);}

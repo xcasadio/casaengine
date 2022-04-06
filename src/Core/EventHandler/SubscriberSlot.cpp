@@ -3,7 +3,7 @@
 namespace CasaEngine
 {
 	SubscriberSlot::SubscriberSlot(FreeFunctionSlot::SlotFunction* func) :
-		d_functor_impl(NEW_AO FreeFunctionSlot(func))
+		d_functor_impl(new FreeFunctionSlot(func))
 	{
 	}
 
@@ -16,7 +16,7 @@ namespace CasaEngine
 
 	void SubscriberSlot::cleanup()
 	{
-		DELETE_AO d_functor_impl;
+		delete d_functor_impl;
 		d_functor_impl = 0;
 	}
 }

@@ -5,7 +5,7 @@
 namespace CasaEngine
 {
 	PlanePrimitive::PlanePrimitive(float width_, float height_) :
-		IPrimitive3D(PLANE), m_Width(width_), m_Height(height_)
+		IPrimitive3D(Primitive3DType::PLANE), m_Width(width_), m_Height(height_)
 	{
 		//TODO : UVs are not the same with OpenGL and DX
 

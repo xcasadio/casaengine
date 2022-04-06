@@ -1,38 +1,27 @@
-#ifndef IFILE_H
-#define IFILE_H
+#pragma once
 
 #include "CA_Export.h"
 #include <string>
-#include "Memory\MemoryAllocation.h"
 
 namespace CasaEngine
 {
-	namespace FileMode
+	enum class FileMode : unsigned int
 	{
-		enum TFileMode
-		{
-			READ = 0x1,
-			STREAM = 0x2,
-			WRITE = 0x4,
-			BINARY = 0x8,
-		};
-	}
+		READ = 0x1,
+		STREAM = 0x2,
+		WRITE = 0x4,
+		BINARY = 0x8,
+	};
 
-	namespace SeekDir
+	enum class SeekDir
 	{
-		enum TSeekDir
-		{
-			SEEKDIR_SET, // Beginning of file
-			SEEKDIR_CUR, // Current position of the file pointer
-			SEEKDIR_END, // End of file
-		};
-	}
+		SEEKDIR_SET, // Beginning of file
+		SEEKDIR_CUR, // Current position of the file pointer
+		SEEKDIR_END, // End of file
+	};
 
-	/**
-	 *
-	 */
-	class CA_EXPORT IFile :
-		public AllocatedObject<IFile>
+
+	class CA_EXPORT IFile
 	{
 	public:
 		virtual ~IFile();
@@ -43,10 +32,10 @@ namespace CasaEngine
 		virtual int Read(char* dst_, unsigned int size_) = 0;
 		virtual int Write(char* data_, unsigned int size_) = 0;
 		unsigned int Seek(unsigned int pos_);
-		virtual unsigned int Seek(unsigned int off_, SeekDir::TSeekDir dir_) = 0;
+		virtual unsigned int Seek(unsigned int off_, SeekDir dir_) = 0;
 		unsigned int Position();
 		char* GetBuffer();
-		unsigned int GetBufferLength();
+		std::size_t GetBufferLength();
 		const std::string& Fullname() const;
 		std::string Filename() const;
 		std::string ShortFilename() const;
@@ -55,7 +44,7 @@ namespace CasaEngine
 	protected:
 		IFile();
 		IFile(const IFile& rsh);
-		const IFile& operator = (const IFile& rsh);
+		IFile& operator = (const IFile& rsh);
 		virtual void FillBuffer() = 0;
 		void DestroyBuffer();
 
@@ -64,5 +53,3 @@ namespace CasaEngine
 		char* m_pBuffer;
 	};
 }
-
-#endif

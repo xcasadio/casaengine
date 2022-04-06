@@ -67,7 +67,7 @@ namespace CasaEngine
 		if (nullptr == m_pMaterial
 			&& !Game::Instance().GetAssetManager().Contains(materialName))
 		{
-			m_pMaterial = NEW_AO Material();
+			m_pMaterial = new Material();
 			m_pMaterial->Texture0(m_pDefaultTexture);
 			Game::Instance().GetAssetManager().AddAsset(materialName, m_pMaterial);
 		}

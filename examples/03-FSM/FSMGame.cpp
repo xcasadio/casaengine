@@ -15,7 +15,7 @@ using namespace CasaEngine;
  */
 FSMGame::FSMGame()
 {
-	Logging.AddLogger(NEW_AO LoggerFile("Out.log"));
+	Logging.AddLogger(new LoggerFile("Out.log"));
 }
 
 /**
@@ -37,15 +37,15 @@ void FSMGame::Initialize()
 	GetMediaManager().AddSearchPath("../../examples/resources/spriteSheet");
 	GetMediaManager().AddSearchPath("../../examples/resources/fonts");
 
-	GetGameInfo().SetWorld(NEW_AO World());
+	GetGameInfo().SetWorld(new World());
 
-	m_pBob = NEW_AO BaseEntity();
-	MinerComponent* pMiner = NEW_AO MinerComponent(m_pBob);
+	m_pBob = new BaseEntity();
+	MinerComponent* pMiner = new MinerComponent(m_pBob);
 	m_pBob->GetComponentMgr()->AddComponent(pMiner);
 	Game::Instance().GetGameInfo().GetWorld()->AddEntity(m_pBob);
 
-	m_pElsa = NEW_AO BaseEntity();
-	MinersWifeComponent* pMinersWife = NEW_AO MinersWifeComponent(m_pElsa);
+	m_pElsa = new BaseEntity();
+	MinersWifeComponent* pMinersWife = new MinersWifeComponent(m_pElsa);
 	m_pElsa->GetComponentMgr()->AddComponent(pMinersWife);
 	Game::Instance().GetGameInfo().GetWorld()->AddEntity(m_pElsa);
 

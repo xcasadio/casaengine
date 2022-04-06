@@ -1,5 +1,4 @@
-#ifndef PRIMITIVE3D_H
-#define PRIMITIVE3D_H
+#pragma once
 
 #include "CA_Export.h"
 
@@ -8,18 +7,13 @@
 #include "Graphics/Mesh/Mesh.h"
 #include "Maths/Vector3.h"
 #include "Maths/Vector2.h"
-#include "Memory/MemoryAllocation.h"
 
 namespace CasaEngine
 {
-	class CA_EXPORT IPrimitive3D :
-		public AllocatedObject<IPrimitive3D>
+	class CA_EXPORT IPrimitive3D
 	{
 	public:
-		/**
-		 *
-		 */
-		enum Primitive3DType
+		enum class Primitive3DType
 		{
 			BOX,
 			SPHERE,
@@ -65,5 +59,3 @@ namespace CasaEngine
 		std::vector<unsigned short> m_Indices;
 	};
 }
-
-#endif // PRIMITIVE3D_H

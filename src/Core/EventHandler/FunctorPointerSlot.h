@@ -2,7 +2,6 @@
 #define _CASAENGINEFunctorPointerSlot_h_
 
 #include "SlotFunctorBase.h"
-#include "Memory\MemoryAllocation.h"
 
 namespace CasaEngine
 {
@@ -12,7 +11,7 @@ namespace CasaEngine
 		object pointer.
 	*/
 	template<typename T>
-	class FunctorPointerSlot : public SlotFunctorBase, public AllocatedObject<FunctorPointerSlot<T>>
+	class FunctorPointerSlot : public SlotFunctorBase
 	{
 	public:
 		FunctorPointerSlot(T* functor) :

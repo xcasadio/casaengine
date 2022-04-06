@@ -11,7 +11,7 @@
 #include "Graphics/Color.h"
 #include "Maths/Vector3.h"
 
-#include "Memory/MemoryAllocation.h"
+
 
 #include <vector>
 
@@ -36,13 +36,13 @@ namespace CasaEngine
 
 	Line3DRendererComponent::~Line3DRendererComponent()
 	{
-		DELETE_AO m_pProgram;
+		delete m_pProgram;
 		destroy(m_VertexBuffer);
 	}
 
 	void Line3DRendererComponent::OnLoadContent() 
 	{
-		m_pProgram = NEW_AO Program("vs_3Dlines", "fs_3Dlines");
+		m_pProgram = new Program("vs_3Dlines", "fs_3Dlines");
 		m_VertexBuffer = createDynamicVertexBuffer(NbLineMax * 2, VertexPositionColor::ms_layout);
 	}
 
@@ -54,7 +54,7 @@ namespace CasaEngine
 		     it != m_Lines.end();
 		     ++it)
 		{
-			DELETE_AO *it;
+			delete *it;
 			*it = nullptr;
 		}
 
@@ -103,7 +103,7 @@ namespace CasaEngine
 
 	void Line3DRendererComponent::AddLine( const Vector3F &start_, const unsigned int &startColor_, const Vector3F &end_, const unsigned int &endColor_ )
 	{
-		const auto pLineData = NEW_AO LineRenderer3DData();
+		const auto pLineData = new LineRenderer3DData();
 
 		pLineData->Start = start_;
 		pLineData->StartColor = startColor_;
@@ -123,7 +123,7 @@ namespace CasaEngine
 
 		// TODO : don't do a new, use a temporary list (as a member)
 		// or use directly a structure than it can be copied directly
-		const auto pVertices = NEW_AO VertexPositionColor[m_Lines.size() * 2];
+		const auto pVertices = new VertexPositionColor[m_Lines.size() * 2];
 		int index = 0;
 
 		for (auto it = m_Lines.cbegin(); 
@@ -144,7 +144,7 @@ namespace CasaEngine
 		update(m_VertexBuffer , 0, 
 			bgfx::copy(pVertices, static_cast<uint32_t>(m_Lines.size() * 2 * sizeof(VertexPositionColor)) ));
 
-		DELETE_AO pVertices;
+		delete pVertices;
 
 		m_bRecomputeVB = false;
 		m_NbLines = static_cast<unsigned int>(m_Lines.size());

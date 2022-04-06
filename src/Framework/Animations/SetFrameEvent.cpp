@@ -49,7 +49,7 @@ namespace CasaEngine
 
 	AnimationEvent* SetFrameEvent::Copy()
 	{
-		return NEW_AO SetFrameEvent(*this);
+		return new SetFrameEvent(*this);
 	}
 
 	/**

@@ -42,7 +42,7 @@ public:
                                   m_pConsequence(con.Clone())
   {}
 
-  ~FuzzyRule(){DELETE_AO m_pAntecedent; DELETE_AO m_pConsequence;}
+  ~FuzzyRule(){delete m_pAntecedent; delete m_pConsequence;}
 
   void SetConfidenceOfConsequentToZero(){m_pConsequence->ClearDOM();}
 

@@ -49,7 +49,7 @@ namespace CasaEngine
 		     it != m_Lines.end();
 		     ++it)
 		{
-			DELETE_AO *it;
+			delete *it;
 		}
 
 		m_Lines.clear();
@@ -108,7 +108,7 @@ namespace CasaEngine
 			return;
 		}
 		//NEW_ARRAY_PT
-		const auto pVertices = NEW_AO VertexPositionColor[m_Lines.size() * 2];
+		const auto pVertices = new VertexPositionColor[m_Lines.size() * 2];
 		int nbLines = 0;
 
 		for (auto it = m_Lines.cbegin(); 
@@ -128,7 +128,7 @@ namespace CasaEngine
 
 		update(m_VertexBuffer, 0 , bgfx::copy(pVertices, static_cast<uint32_t>(m_Lines.size()) * 2 * sizeof(VertexPositionColor) ));
 		//DELETE_ARRAY_PT
-		DELETE_AO pVertices;
+		delete pVertices;
 
 		m_bRecomputeVB = false;
 	}

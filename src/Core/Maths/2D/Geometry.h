@@ -1,29 +1,16 @@
 #ifndef GEOMETRY_H
 #define GEOMETRY_H
 
-//------------------------------------------------------------------------
-//
-//Name:   geometry.h
-//
 //Desc:   useful 2D geometry functions
-//
 //Author: Mat Buckland (fup@ai-junkie.com)
-//
-//------------------------------------------------------------------------
 
 #include "Maths/Vector2.h"
 #include "CA_Export.h"
 #include <vector>
 
-#include "Memory/MemoryAllocation.h"
-
 namespace CasaEngine
 {
-	/**
-	 *
-	 */
-	class CA_EXPORT Geometry :
-		public AllocatedObject<Geometry>
+	class CA_EXPORT Geometry
 	{
 	public:
 
@@ -217,7 +204,7 @@ namespace CasaEngine
 			Vector2F pos,
 			float    radius,
 			Vector2F& IntersectionPoint);
-	}; // class Transformation
+	};
 }
 
 #endif

@@ -12,14 +12,12 @@
 #include <string>
 
 #include "CA_Export.h"
-#include "Memory/MemoryAllocation.h"
 
 namespace CasaEngine
 {
 	// Read an INI file into easy-to-access name/value pairs. (Note that I've gone
 	// for simplicity here rather than speed, but it should be pretty decent.)
-	class CA_EXPORT INIReader :
-		public AllocatedObject<INIReader>
+	class CA_EXPORT INIReader
 	{
 	public:
 		// Construct INIReader and parse given filename. See ini.h for more info

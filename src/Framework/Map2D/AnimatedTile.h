@@ -7,7 +7,7 @@
 
 namespace CasaEngine
 {
-	class CA_EXPORT AnimatedTile : public ITile, public AllocatedObject<AnimatedTile>
+	class CA_EXPORT AnimatedTile : public ITile
 	{
 	public:
 		explicit AnimatedTile(Animation2D* pAnimation);

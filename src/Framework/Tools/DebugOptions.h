@@ -6,9 +6,6 @@
 
 namespace CasaEngine
 {
-	/**
-	 *
-	 */
 	class CA_EXPORT DebugOptions
 	{
 	public:
@@ -23,7 +20,7 @@ namespace CasaEngine
 		bool ShowFPS;
 		bool IsDebugActivated;
 
-	}; // struct EditorOptions
+	};
 }
 
-#endif // DEBUGOPTIONS_H
+#endif

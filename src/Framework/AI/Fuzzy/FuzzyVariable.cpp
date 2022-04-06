@@ -12,7 +12,7 @@
 #include "FzSet.h"
 
 #include "CA_Assert.h"
-#include "Memory/MemoryAllocation.h"
+
 
 namespace CasaEngine
 {
@@ -24,7 +24,7 @@ FuzzyVariable::~FuzzyVariable()
   MemberSets::iterator it;
   for (it = m_MemberSets.begin(); it != m_MemberSets.end(); ++it)
   {
-    DELETE_AO it->second;
+    delete it->second;
   }
 }
 
@@ -127,7 +127,7 @@ FzSet FuzzyVariable::AddTriangularSet(std::string name,
                                      float       peak,
                                      float       maxBound)
 {
-  m_MemberSets[name] = NEW_AO FuzzySet_Triangle(peak,
+  m_MemberSets[name] = new FuzzySet_Triangle(peak,
                                              peak-minBound,
                                              maxBound-peak);
   //adjust range if necessary
@@ -145,7 +145,7 @@ FzSet FuzzyVariable::AddLeftShoulderSet(std::string name,
                                         float       peak,
                                         float       maxBound)
 {
-  m_MemberSets[name] = NEW_AO FuzzySet_LeftShoulder(peak, peak-minBound, maxBound-peak);
+  m_MemberSets[name] = new FuzzySet_LeftShoulder(peak, peak-minBound, maxBound-peak);
 
   //adjust range if necessary
   AdjustRangeToFit(minBound, maxBound);
@@ -163,7 +163,7 @@ FzSet FuzzyVariable::AddRightShoulderSet(std::string name,
                                          float       peak,
                                          float       maxBound)
 {
-  m_MemberSets[name] = NEW_AO FuzzySet_RightShoulder(peak, peak-minBound, maxBound-peak);
+  m_MemberSets[name] = new FuzzySet_RightShoulder(peak, peak-minBound, maxBound-peak);
 
   //adjust range if necessary
   AdjustRangeToFit(minBound, maxBound);
@@ -181,7 +181,7 @@ FzSet FuzzyVariable::AddSingletonSet(std::string name,
                                     float       peak,
                                     float       maxBound)
 {
-  m_MemberSets[name] = NEW_AO FuzzySet_Singleton(peak,
+  m_MemberSets[name] = new FuzzySet_Singleton(peak,
                                               peak-minBound,
                                               maxBound-peak);
 

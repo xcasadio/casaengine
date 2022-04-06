@@ -8,7 +8,7 @@
 #include "GameInfo.h"
 #include "Entities/Components/CameraComponent.h"
 
-#include "Memory/MemoryAllocation.h"
+
 #include "bx/math.h"
 
 
@@ -37,7 +37,7 @@ namespace CasaEngine
 		     it != m_Datas.end();
 		     ++it)
 		{
-			DELETE_AO (*it); //TODO : no delete in real time
+			delete (*it); //TODO : no delete in real time
 		}
 		
 		m_Datas.clear();
@@ -65,7 +65,7 @@ namespace CasaEngine
 		CA_ASSERT(pModel_ != nullptr, "MeshRendererGameComponent::AddModel() : Mesh is nullptr");
 		CA_ASSERT(pProgram_ != nullptr, "MeshRendererGameComponent::AddModel() : Program is nullptr");
 
-		auto pData = NEW_AO ModelRendererData();//TODO : no new in real time
+		auto pData = new ModelRendererData();//TODO : no new in real time
 		pData->pModel = pModel_;
 		pData->pMatWorld = pMatWorld_;
 		pData->handle = pProgram_->Handle();

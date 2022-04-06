@@ -1,7 +1,6 @@
 #ifndef PHYSICSOBJECTCONTAINER_H_
 #define PHYSICSOBJECTCONTAINER_H_
 
-#include "Memory\MemoryAllocation.h"
 #include "CA_Export.h"
 #include "Maths\Vector3.h"
 #include "Log\LogManager.h"
@@ -9,11 +8,7 @@
 
 namespace CasaEngine
 {
-	/**
-	 *
-	 */
-	class CA_EXPORT IRigidBodyContainer :
-		public AllocatedObject<IRigidBodyContainer>
+	class CA_EXPORT IRigidBodyContainer
 	{
 	public:
 		virtual ~IRigidBodyContainer() {}
@@ -35,15 +30,12 @@ namespace CasaEngine
 		virtual void setRotation(const Quaternion& rot) = 0;
 	};
 
-	/**
-	 *
-	 */
-	class CA_EXPORT ICollisionObjectContainer :
-		public AllocatedObject<ICollisionObjectContainer>
+
+	class CA_EXPORT ICollisionObjectContainer
 	{
 	public:
 		virtual ~ICollisionObjectContainer() {}
 	};
 }
 
-#endif // PHYSICSOBJECTCONTAINER_H_
+#endif

@@ -53,16 +53,16 @@ namespace CasaEngine
 
 	std::ostream& Line2D::Write(std::ostream& os)const
 	{
-		os << std::endl;
+		/*os << std::endl;
 		os << From() << ",";
 		os << To() << ",";
-		os << Normal();
+		os << Normal();*/
 		return os;
 	}
 
 	void Line2D::Read(std::ifstream& in)
 	{
-		float x, y;
+		/*float x, y;
 
 		in >> x >> y;
 		SetFrom(Vector2F(x, y));
@@ -71,6 +71,6 @@ namespace CasaEngine
 		SetTo(Vector2F(x, y));
 
 		in >> x >> y;
-		SetNormal(Vector2F(x, y));
+		SetNormal(Vector2F(x, y));*/
 	}
 }

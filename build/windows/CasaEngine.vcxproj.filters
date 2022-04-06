@@ -22,9 +22,6 @@
     <Filter Include="Core\Maths">
       <UniqueIdentifier>{5eca7a97-e443-4f7f-96db-86220c722d9a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\Memory">
-      <UniqueIdentifier>{8debb864-29ce-4ac8-9f60-00c4bc6174f1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Core\Parsers">
       <UniqueIdentifier>{ac72c6f4-efbf-4fba-8391-faeea0c9584e}</UniqueIdentifier>
     </Filter>
@@ -365,24 +362,6 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Core\Maths\Utils\Smoother.h">
       <Filter>Core\Maths\Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Core\Memory\MemoryAllocatedObject.h">
-      <Filter>Core\Memory</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Core\Memory\MemoryAllocation.h">
-      <Filter>Core\Memory</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Core\Memory\MemoryDebugAllocator.h">
-      <Filter>Core\Memory</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Core\Memory\MemoryReport.h">
-      <Filter>Core\Memory</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Core\Memory\MemoryStdAllocator.h">
-      <Filter>Core\Memory</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Core\Memory\MemorySTLWrapper.h">
-      <Filter>Core\Memory</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Core\Parsers\Ini\ini.h">
       <Filter>Core\Parsers\Ini</Filter>
@@ -1037,12 +1016,6 @@
     <ClCompile Include="..\..\src\Core\Maths\Shape\Sphere.cpp">
       <Filter>Core\Maths\Shape</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Core\Memory\MemoryDebugAllocator.cpp">
-      <Filter>Core\Memory</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Core\Memory\MemoryReport.cpp">
-      <Filter>Core\Memory</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Core\Parsers\Ini\ini.cpp">
       <Filter>Core\Parsers\Ini</Filter>
     </ClCompile>
@@ -1436,14 +1409,8 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\src\Core\StringUtils.inl">
-      <Filter>Core</Filter>
-    </None>
     <None Include="..\..\src\Framework\Game\Game.inl">
       <Filter>Framework\Game</Filter>
-    </None>
-    <None Include="..\..\src\Core\Functor.inl">
-      <Filter>Core</Filter>
     </None>
     <None Include="..\..\src\Framework\UI\imgui\fs_imgui_image.sc">
       <Filter>Framework\UI\imgui</Filter>

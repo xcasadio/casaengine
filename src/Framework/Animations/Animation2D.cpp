@@ -3,7 +3,7 @@
 #include "Animations/Animation2D.h"
 #include <string>
 #include "SetFrameEvent.h"
-#include "Memory/MemoryAllocation.h"
+
 #include "Entities/EntityManager.h"
 #include "Entities/Events/BaseEntityEvents.h"
 #include "Animations/AnimationEndEvent.h"
@@ -20,7 +20,7 @@ namespace CasaEngine
 		float timeEventFired = 0.0f;
 		for (const auto& frame : data.GetFrames())
 		{
-			auto *pFrameEvent = NEW_AO SetFrameEvent();
+			auto *pFrameEvent = new SetFrameEvent();
 			pFrameEvent->FrameID(frame.GetSpriteId().c_str());
 			pFrameEvent->Time(timeEventFired);
 			timeEventFired += frame.GetDuration();
@@ -29,7 +29,7 @@ namespace CasaEngine
 
 		if (!data.GetFrames().empty())
 		{
-			auto *pEndEvent = NEW_AO AnimationEndEvent();
+			auto *pEndEvent = new AnimationEndEvent();
 			pEndEvent->Time(timeEventFired);
 			AddEvent(pEndEvent);
 		}

@@ -62,7 +62,7 @@ namespace CasaEngine
 			it != m_CollisionShapes.end();
 			it++)
 		{
-			DELETE_AO it->GetShape();
+			delete it->GetShape();
 		}
 
 		m_CollisionShapes.clear();*/
@@ -70,7 +70,7 @@ namespace CasaEngine
 
 	SpriteData* SpriteData::Copy()
 	{
-		return NEW_AO SpriteData(*this);
+		return new SpriteData(*this);
 	}
 
 //#ifdef EDITOR

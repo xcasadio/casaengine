@@ -2,14 +2,11 @@
 #define COLOR_H
 
 #include <iostream>
-
 #include "CA_Export.h"
-#include "Memory/MemoryAllocation.h"
 
 namespace CasaEngine
 {
-	class CA_EXPORT CColor :
-		public AllocatedObject<CColor>
+	class CA_EXPORT CColor
 	{
 	public:
 		CColor(unsigned long Color = 0xFFFFFFFF);

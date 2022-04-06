@@ -12,7 +12,7 @@ namespace CasaEngine
 		Only safe to use with AllocatedObject<T> derived classes!
 	*/
 	template<typename T>
-	class RefCounted : public AllocatedObject<RefCounted<T>>
+	class RefCounted
 	{
 	public:
 		/*!

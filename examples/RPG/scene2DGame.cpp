@@ -30,7 +30,7 @@
 #include "Graphics/Textures/Texture.h"
 #include "Log/LoggerFile.h"
 #include "Maths/Vector3.h"
-#include "Memory/MemoryAllocation.h"
+
 #include "Map2D/AutoTile.h"
 #include "Map2D/StaticTile.h"
 #include "Map2D/TiledMapComponent.h"
@@ -52,16 +52,16 @@ Scene2DGame::Scene2DGame() :
 	m_pWorld(nullptr),
 	m_pModelRenderer(nullptr)
 {
-	Logging.AddLogger(NEW_AO LoggerFile("Out.log"));
+	Logging.AddLogger(new LoggerFile("Out.log"));
 }
 
 Scene2DGame::~Scene2DGame()
 {
-	DELETE_AO m_pModelRenderer;
-	DELETE_AO m_pSpriteRenderer;
-	DELETE_AO m_pLine2DRenderer;
-	DELETE_AO m_pLine3DRenderer;
-	DELETE_AO m_pGroundTexture;
+	delete m_pModelRenderer;
+	delete m_pSpriteRenderer;
+	delete m_pLine2DRenderer;
+	delete m_pLine3DRenderer;
+	delete m_pGroundTexture;
 }
 
 /**
@@ -92,7 +92,7 @@ void Scene2DGame::LoadContent()
 {
 	Game::LoadContent();
 
-	m_pWorld = NEW_AO World();
+	m_pWorld = new World();
 	auto* physicWorld = Game::Instance().GetPhysicsEngine().CreateWorld();
 	m_pWorld->SetPhysicsWorld(physicWorld);
 	physicWorld->SetGravity(Vector3F::Zero());
@@ -127,9 +127,9 @@ void Scene2DGame::Draw()
  */
 void Scene2DGame::AddGameComponent()
 {
-	m_pLine2DRenderer = NEW_AO Line2DRendererComponent(this);
-	m_pLine3DRenderer = NEW_AO Line3DRendererComponent(this);	
-	m_pSpriteRenderer = NEW_AO SpriteRenderer(this);
+	m_pLine2DRenderer = new Line2DRendererComponent(this);
+	m_pLine3DRenderer = new Line3DRendererComponent(this);	
+	m_pSpriteRenderer = new SpriteRenderer(this);
 
 	//AddComponent(m_pModelRenderer);
 	AddComponent(m_pSpriteRenderer);
@@ -139,26 +139,26 @@ void Scene2DGame::AddGameComponent()
 
 void Scene2DGame::CreateMap(World* pWorld)
 {
-	auto* pEntity = NEW_AO BaseEntity();
+	auto* pEntity = new BaseEntity();
 	pEntity->SetName("tiled map");
-	auto* pTrans3D = NEW_AO Transform3DComponent(pEntity);
+	auto* pTrans3D = new Transform3DComponent(pEntity);
 	pTrans3D->SetLocalPosition(Vector3F(0.0f, 0.0f, 1.0f));
 	pTrans3D->SetLocalRotation(0.0f);
 	//pTrans3D->SetLocalScale(Vector3F(48, 48, 1.0));
 
-	auto* pMap = NEW_AO TiledMapComponent(pEntity);
+	auto* pMap = new TiledMapComponent(pEntity);
 	pMap->SetMapSize(Vector2I(30, 11));
 	pMap->SetTileSize(Vector2I(48, 48));
 
 	//layer 1
-	auto* layer = NEW_AO TiledMapLayer();
+	auto* layer = new TiledMapLayer();
 	std::vector<ITile*> tiles;
 	for (int y = 0; y < pMap->GetMapSize().y; ++y)
 	{
 		for (int x = 0; x < pMap->GetMapSize().x; ++x)
 		{
 			auto* sprite = GetAssetManager().GetAsset<SpriteData>("grass1");
-			auto* tile = NEW_AO StaticTile(NEW_AO Sprite(*sprite));
+			auto* tile = new StaticTile(new Sprite(*sprite));
 			tiles.push_back(tile);
 		}
 	}
@@ -177,7 +177,7 @@ void Scene2DGame::CreateMap(World* pWorld)
 	}*/
 
 	//layer 2
-	layer = NEW_AO TiledMapLayer();
+	layer = new TiledMapLayer();
 	tiles.clear();
 	//create tile for autotile
 	std::vector<ITile*> autoTiles;
@@ -188,7 +188,7 @@ void Scene2DGame::CreateMap(World* pWorld)
 			std::ostringstream name;
 			name << "autoGrass2_" << x << "_" << y;
 			auto* sprite = GetAssetManager().GetAsset<SpriteData>(name.str());
-			auto* tile = NEW_AO StaticTile(NEW_AO Sprite(*sprite));
+			auto* tile = new StaticTile(new Sprite(*sprite));
 			autoTiles.push_back(tile);
 		}
 	}
@@ -199,7 +199,7 @@ void Scene2DGame::CreateMap(World* pWorld)
 			if (y > 2 && y < pMap->GetMapSize().y - 2
 				&& x > 5 && x < pMap->GetMapSize().x - 5)
 			{
-				auto* tile = NEW_AO AutoTile(layer, x, y);
+				auto* tile = new AutoTile(layer, x, y);
 				tile->setTiles(autoTiles);
 				tiles.push_back(tile);
 			}
@@ -226,24 +226,24 @@ void Scene2DGame::CreateAssets(Vector2I tileSize)
 {
 	//static tile
 	//auto texture = Texture::loadTexture(Game::Instance().GetMediaManager().FindMedia("Outside_A2.png"));
-	auto* pSprite = NEW_AO SpriteData();
+	auto* pSprite = new SpriteData();
 	pSprite->SetName("grass1");
 	pSprite->SetPositionInTexture(RectangleI(0, 0, tileSize.x, tileSize.y));
 	pSprite->SetAssetFileName("Outside_A2.png");
-	GetAssetManager().AddAsset(NEW_AO Asset("grass1", pSprite));
+	GetAssetManager().AddAsset(new Asset("grass1", pSprite));
 	//autotile
 	for (int y = 0; y < 3; ++y)
 	{
 		for (int x = 0; x < 2; ++x)
 		{
-			pSprite = NEW_AO SpriteData();
+			pSprite = new SpriteData();
 			pSprite->SetName("grass1");
 			pSprite->SetPositionInTexture(RectangleI(8 * tileSize.x + tileSize.x * x, y * tileSize.y, tileSize.x, tileSize.y));
 			//pSprite->SetTexture2D(texture);
 			pSprite->SetAssetFileName("Outside_A2.png");
 			std::ostringstream name;
 			name << "autoGrass2_" << x << "_" << y;
-			GetAssetManager().AddAsset(NEW_AO Asset(name.str(), pSprite));
+			GetAssetManager().AddAsset(new Asset(name.str(), pSprite));
 		}
 	}
 }
@@ -256,9 +256,9 @@ void Scene2DGame::CreateEnemies(World* pWorld)
 	_ennemi ennemi_datas;
 	ar(cereal::make_nvp("octopus", ennemi_datas));
 
-	auto* pEntity = NEW_AO BaseEntity();
+	auto* pEntity = new BaseEntity();
 	pEntity->SetName("octopus 1");
-	auto* pTrans3D = NEW_AO Transform3DComponent(pEntity);
+	auto* pTrans3D = new Transform3DComponent(pEntity);
 	pTrans3D->SetLocalPosition(Vector3F(100.0f, 100.0f, 0.2f));
 	pTrans3D->SetLocalRotation(0.0f);
 	//pTrans3D->SetLocalScale(Vector3F(32, 32, 1.0));
@@ -270,7 +270,7 @@ void Scene2DGame::CreateEnemies(World* pWorld)
 	int id = 0;
 	for (auto& sprite : ennemi_datas.sprites)
 	{
-		auto* pSprite = NEW_AO SpriteData();
+		auto* pSprite = new SpriteData();
 		std::ostringstream name;
 		name << "octopus_" << sprite.id;
 		id++;
@@ -278,21 +278,21 @@ void Scene2DGame::CreateEnemies(World* pWorld)
 		pSprite->SetPositionInTexture(RectangleI(sprite.x, sprite.y, sprite.w, sprite.h));
 		pSprite->SetOrigin(Vector2I(12, 20));
 		pSprite->SetAssetFileName(ennemi_datas.tile_set);
-		GetAssetManager().AddAsset(NEW_AO Asset(name.str(), pSprite));
+		GetAssetManager().AddAsset(new Asset(name.str(), pSprite));
 	}
 
-	auto* pAnimatedComponent = NEW_AO AnimatedSpriteComponent(pEntity);
+	auto* pAnimatedComponent = new AnimatedSpriteComponent(pEntity);
 	//load anim
 	for (auto& anim : ennemi_datas.animations)
 	{
-		auto* pAnim = NEW_AO Animation2DData();
+		auto* pAnim = new Animation2DData();
 		pAnim->SetAnimationType(AnimationType::Loop);
 		pAnim->SetName(anim.name);
 		const auto frame_delay = 0.64f;
 
 		for (auto& frame : anim.frames)
 		{
-			auto* frameData = NEW_AO FrameData(); 
+			auto* frameData = new FrameData(); 
 			std::ostringstream spriteName;
 			spriteName << "octopus_" << frame.sprite_id;
 			frameData->SetSpriteId(spriteName.str());
@@ -300,19 +300,19 @@ void Scene2DGame::CreateEnemies(World* pWorld)
 			pAnim->AddFrame(*frameData);
 		}
 
-		GetAssetManager().AddAsset(NEW_AO Asset(pAnim->GetName(), pAnim));
-		pAnimatedComponent->AddAnimation(NEW_AO Animation2D(*pAnim));
+		GetAssetManager().AddAsset(new Asset(pAnim->GetName(), pAnim));
+		pAnimatedComponent->AddAnimation(new Animation2D(*pAnim));
 	}
 
 	pEntity->GetComponentMgr()->AddComponent(pAnimatedComponent);
 	//pAnimatedComponent->SetCurrentAnimation(0);
 
-	auto* scriptComponent = NEW_AO ScriptComponent(pEntity);
-	auto* pScriptCharacter = NEW_AO ScriptCharacter(pEntity, NEW_AO Enemy(pEntity));
+	auto* scriptComponent = new ScriptComponent(pEntity);
+	auto* pScriptCharacter = new ScriptCharacter(pEntity, new Enemy(pEntity));
 	scriptComponent->SetScriptObject(pScriptCharacter);
 	pEntity->GetComponentMgr()->AddComponent(scriptComponent);
 
-	auto* debugComponent = NEW_AO DebugComponent(pEntity);
+	auto* debugComponent = new DebugComponent(pEntity);
 	debugComponent->DisplayPosition(true);
 	pEntity->GetComponentMgr()->AddComponent(debugComponent);
 
@@ -320,7 +320,7 @@ void Scene2DGame::CreateEnemies(World* pWorld)
 	//auto *colliderComponent = new Circle2DColliderComponent(pPlayerEntity);
 	//colliderComponent->SetCenter(Vector3F::Zero());
 	//colliderComponent->SetRadius(10.0f);
-	auto* colliderComponent = NEW_AO Box2DColliderComponent(pEntity);
+	auto* colliderComponent = new Box2DColliderComponent(pEntity);
 	colliderComponent->Set(0, 0, 10, 10);
 	pEntity->GetComponentMgr()->AddComponent(colliderComponent);
 
@@ -331,9 +331,9 @@ void Scene2DGame::CreateSwordman(World* pWorld)
 {
 	//player
 	const auto tileWidth = 48, tileHeight = 48;
-	auto* pPlayerEntity = NEW_AO BaseEntity();
+	auto* pPlayerEntity = new BaseEntity();
 	pPlayerEntity->SetName("player 1");
-	auto* pTrans3D = NEW_AO Transform3DComponent(pPlayerEntity);
+	auto* pTrans3D = new Transform3DComponent(pPlayerEntity);
 	pTrans3D->SetLocalPosition(Vector3F(50.0f, 150.0f, 0.2f));
 	pTrans3D->SetLocalRotation(0.0f);
 	//pTrans3D->SetLocalScale(Vector3F(tileWidth, tileHeight, 1.0));
@@ -352,7 +352,7 @@ void Scene2DGame::CreateSwordman(World* pWorld)
 	int id = 0;
 	for (auto& sprite : player_datas.sprites)
 	{
-		auto* pSprite = NEW_AO SpriteData();
+		auto* pSprite = new SpriteData();
 		std::ostringstream name;
 		name << "player_" << sprite.id;
 		id++;
@@ -360,21 +360,21 @@ void Scene2DGame::CreateSwordman(World* pWorld)
 		pSprite->SetPositionInTexture(RectangleI(sprite.x, sprite.y, sprite.w, sprite.h));
 		pSprite->SetOrigin(Vector2I(24, 38));
 		pSprite->SetAssetFileName(player_datas.tile_set);
-		GetAssetManager().AddAsset(NEW_AO Asset(name.str(), pSprite));
+		GetAssetManager().AddAsset(new Asset(name.str(), pSprite));
 	}
 
 	//load anim
-	auto* pAnimatedComponent = NEW_AO AnimatedSpriteComponent(pPlayerEntity);
+	auto* pAnimatedComponent = new AnimatedSpriteComponent(pPlayerEntity);
 	for (auto& anim : player_datas.animations)
 	{
-		auto* pAnim = NEW_AO Animation2DData();
+		auto* pAnim = new Animation2DData();
 		pAnim->SetAnimationType(AnimationType::Loop);
 		pAnim->SetName(anim.name);
 		const auto frame_delay = 0.64f;
 
 		for (auto& frame : anim.frames)
 		{
-			auto* frameData = NEW_AO FrameData();
+			auto* frameData = new FrameData();
 			std::ostringstream spriteName;
 			spriteName << "player_" << frame.sprite_id;
 			frameData->SetSpriteId(spriteName.str());
@@ -382,16 +382,16 @@ void Scene2DGame::CreateSwordman(World* pWorld)
 			pAnim->AddFrame(*frameData);
 		}
 
-		GetAssetManager().AddAsset(NEW_AO Asset(pAnim->GetName(), pAnim));
-		pAnimatedComponent->AddAnimation(NEW_AO Animation2D(*pAnim));
+		GetAssetManager().AddAsset(new Asset(pAnim->GetName(), pAnim));
+		pAnimatedComponent->AddAnimation(new Animation2D(*pAnim));
 	}
 
 	pPlayerEntity->GetComponentMgr()->AddComponent(pAnimatedComponent);
 	//pAnimatedComponent->SetCurrentAnimation("stand_down");
 	pWorld->AddEntity(pPlayerEntity);
 
-	auto* scriptComponent = NEW_AO ScriptComponent(pPlayerEntity);
-	auto* pScriptCharacter = NEW_AO ScriptCharacter(pPlayerEntity, NEW_AO Player(pPlayerEntity));
+	auto* scriptComponent = new ScriptComponent(pPlayerEntity);
+	auto* pScriptCharacter = new ScriptCharacter(pPlayerEntity, new Player(pPlayerEntity));
 	scriptComponent->SetScriptObject(pScriptCharacter);
 	pPlayerEntity->GetComponentMgr()->AddComponent(scriptComponent);
 
@@ -399,20 +399,20 @@ void Scene2DGame::CreateSwordman(World* pWorld)
 	//auto *colliderComponent = new Circle2DColliderComponent(pPlayerEntity);
 	//colliderComponent->SetCenter(Vector3F::Zero());
 	//colliderComponent->SetRadius(10.0f);
-	auto* colliderComponent = NEW_AO Box2DColliderComponent(pPlayerEntity);
+	auto* colliderComponent = new Box2DColliderComponent(pPlayerEntity);
 	colliderComponent->Set(0, 0, 10, 10);
 	pPlayerEntity->GetComponentMgr()->AddComponent(colliderComponent);
 
 	//debug
-	auto* debugComponent = NEW_AO DebugComponent(pPlayerEntity);
+	auto* debugComponent = new DebugComponent(pPlayerEntity);
 	debugComponent->DisplayPosition(true);
 	pPlayerEntity->GetComponentMgr()->AddComponent(debugComponent);
 	
 	//Camera 2D
-	auto* pCamera = NEW_AO BaseEntity();
+	auto* pCamera = new BaseEntity();
 	pCamera->SetName("camera 2D");
-	auto* m_pCamera2D = NEW_AO Camera3DComponent(pCamera);
-	auto* custom_camera_controller = NEW_AO Camera3DTargetedController(m_pCamera2D);
+	auto* m_pCamera2D = new Camera3DComponent(pCamera);
+	auto* custom_camera_controller = new Camera3DTargetedController(m_pCamera2D);
 	m_pCamera2D->CameraController(custom_camera_controller);
 	pCamera->GetComponentMgr()->AddComponent(m_pCamera2D);
 	custom_camera_controller->SetDeadZoneRatio(Vector2F(0.7f, 0.7f));
@@ -423,9 +423,9 @@ void Scene2DGame::CreateSwordman(World* pWorld)
 
 
 	//Camera 3D
-	pCamera = NEW_AO BaseEntity();
-	m_pCamera3D = NEW_AO Camera3DComponent(pCamera);
-	auto* pArcBall = NEW_AO ArcBallCameraController(m_pCamera3D);
+	pCamera = new BaseEntity();
+	m_pCamera3D = new Camera3DComponent(pCamera);
+	auto* pArcBall = new ArcBallCameraController(m_pCamera3D);
 	pArcBall->SetCamera(Vector3F(0, 0.0f, -50.0f), Vector3F::Zero(), -Vector3F::Up());
 	pArcBall->Distance(70.0f);
 	pArcBall->InputDistanceRate(4.0f);
@@ -435,5 +435,5 @@ void Scene2DGame::CreateSwordman(World* pWorld)
 	pCamera->Initialize();
 	m_pWorld->AddEntity(pCamera);
 
-	GetGameInfo().SetActiveCamera(m_pCamera3D);
+	//GetGameInfo().SetActiveCamera(m_pCamera3D);
 }

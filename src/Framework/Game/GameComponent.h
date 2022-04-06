@@ -3,14 +3,13 @@
 
 #include "CA_Export.h"
 #include "GameTime.h"
-#include "Memory/MemoryAllocation.h"
+
 
 namespace CasaEngine
 {
 	class Game;
 	
-	class CA_EXPORT IGameComponent :
-		public AllocatedObject<IGameComponent>
+	class CA_EXPORT IGameComponent
 	{
 	public:
 		Game* GetGame() const;

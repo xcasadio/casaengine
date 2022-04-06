@@ -3,7 +3,7 @@
 namespace CasaEngine
 {
 	Circle::Circle() :
-		IShape(CIRCLE2D), m_Radius(1.0f)
+		IShape(ShapeType::CIRCLE2D), m_Radius(1.0f)
 	{
 		m_Center = Vector3F::Zero();
 	}
@@ -51,6 +51,6 @@ namespace CasaEngine
 
 	IShape* Circle::Copy()
 	{
-		return NEW_AO Circle(*this);
+		return new Circle(*this);
 	}
 }

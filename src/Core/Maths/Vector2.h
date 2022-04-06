@@ -2,18 +2,13 @@
 #define VECTOR2_H
 
 #include <iostream>
-
-#include "Memory/MemoryAllocation.h"
-
 #include <cereal/access.hpp>
-
 #include "Math.h"
 
 namespace CasaEngine
 {
 	template <class T>
-	class CVector2 :
-		public AllocatedObject<CVector2<T>>
+	class CVector2
 	{
 	public:
 		static CVector2<T> Zero();

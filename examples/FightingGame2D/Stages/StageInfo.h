@@ -1,11 +1,10 @@
-#ifndef STAGEINFO_H_
-#define STAGEINFO_H_
+#pragma once
 
 #include "Sprite/SpriteRenderer.h"
 
 class Stage;
 
-class StageInfo : public CasaEngine::AllocatedObject<StageInfo>
+class StageInfo
 {
 public:
 	StageInfo(Stage *stage, CasaEngine::BaseEntity* player1, CasaEngine::BaseEntity* player2);
@@ -24,5 +23,3 @@ private:
 	CasaEngine::BaseEntity* m_pPlayer1, * m_pPlayer2;
 	Stage *m_pStage;
 };
-
-#endif

@@ -107,7 +107,7 @@ namespace CasaEngine
 			}
 		}
 
-		auto *texture = NEW_AO Texture(handle, info);
+		auto *texture = new Texture(handle, info);
 		_textureCache.insert(std::make_pair(pFile->Fullname(), texture));
 		return texture;
 	}
@@ -131,7 +131,7 @@ namespace CasaEngine
 			);
 		}
 
-		return NEW_AO Texture(handle, info_);
+		return new Texture(handle, info_);
 	}
 
 	Texture::Texture(bgfx::TextureHandle handle_, bgfx::TextureInfo* pInfo_ /*= nullptr*/) :

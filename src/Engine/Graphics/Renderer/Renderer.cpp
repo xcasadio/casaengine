@@ -3,6 +3,10 @@
 #include <bgfx/bgfx.h>
 
 #include "Graphics/Renderer/Renderer.h"
+
+#include <bgfx/platform.h>
+#include <bx/bx.h>
+
 #include "Maths/Matrix4.h"
 
 #include "EngineSettings.h"
@@ -20,13 +24,21 @@ namespace CasaEngine
 		bgfx::shutdown();
 	}
 
-	void IRenderer::Initialize(EngineSettings& settings_)
+	void IRenderer::Initialize(EngineSettings& settings, void* Hwnd)
 	{
+		bgfx::PlatformData pd;
+		bx::memSet(&pd, 0, sizeof pd);
+		pd.nwh = Hwnd;
+		setPlatformData(pd);
+
+		window_width = settings.WindowWidth;
+		window_height = settings.WindowHeight;
+
 		bgfx::Init init;
-		init.type = settings_.RendererType;
+		init.type = settings.RendererType;
 		init.vendorId = BGFX_PCI_ID_NONE;
-		init.resolution.width = settings_.WindowWidth;
-		init.resolution.height = settings_.WindowHeight;
+		init.resolution.width = window_width;
+		init.resolution.height = window_height;
 		init.resolution.reset = BGFX_RESET_VSYNC;
 		bgfx::init(init);
 
@@ -37,12 +49,11 @@ namespace CasaEngine
 		m_debugFlag = BGFX_DEBUG_TEXT;
 		SetDebugFlag();
 
-		bgfx::setViewClear(0
+		SetClearColor(0
 			, BGFX_CLEAR_COLOR | BGFX_CLEAR_DEPTH | BGFX_CLEAR_STENCIL
 			, CColor::CornflowerBlue.ToRGBA()
 			, 1.0f
-			, 0
-		);
+			, 0);
 
 		VertexPositionColor::init();
 		VertexPositionTexture::init();
@@ -74,6 +85,18 @@ namespace CasaEngine
 		SetDebugFlag();
 	}
 
+	void IRenderer::BeginDraw()
+	{
+		//TODO : set by the current camera
+		bgfx::setViewRect(0, 0, 0, window_width, window_height);
+		bgfx::touch(0);
+	}
+
+	void IRenderer::EndDraw()
+	{
+		bgfx::frame();
+	}
+
 	void IRenderer::SetDebugFlag()
 	{
 		bgfx::setDebug(m_debugFlag);
@@ -89,9 +112,9 @@ namespace CasaEngine
 	}
 #endif
 
-	void IRenderer::SetClearColor(unsigned char index_, CColor val) const
+	void IRenderer::SetClearColor(unsigned char index_, unsigned short flags, CColor val, float depth, unsigned char stencil) const
 	{
-		bgfx::setViewClear(index_, val.ToRGBA());
+		bgfx::setViewClear(index_, flags, val.ToRGBA(), depth, stencil);
 	}
 
 	void IRenderer::Resize(unsigned int width_, unsigned height_)

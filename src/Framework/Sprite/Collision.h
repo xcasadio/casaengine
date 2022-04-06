@@ -16,7 +16,7 @@ namespace CasaEngine
 	};
 
 
-	class CA_EXPORT Collision : public AllocatedObject<Collision>
+	class CA_EXPORT Collision
 	{
 	public:
 		Collision();

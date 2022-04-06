@@ -61,7 +61,7 @@ namespace CasaEngine
 			}
 			else
 			{
-				DELETE_AO(*it).second;
+				delete(*it).second;
 			}
 
 			(*it).second = nullptr;
@@ -71,7 +71,7 @@ namespace CasaEngine
 
 		for (auto* world : worlds)
 		{
-			DELETE_AO world;
+			delete world;
 		}
 	}
 

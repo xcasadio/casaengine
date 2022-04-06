@@ -8,15 +8,14 @@
 #include <cmath>
 
 #include "Maths/ValidNumber.h"
-#include "Memory/MemoryAllocation.h"
+
 #include "CA_Assert.h"
 #include "Log/LogManager.h"
 
 namespace CasaEngine
 {
 	template <class T>
-	class CVector3 :
-		public AllocatedObject<CVector3<T> >
+	class CVector3
 	{
 	public:
 		T x, y, z;

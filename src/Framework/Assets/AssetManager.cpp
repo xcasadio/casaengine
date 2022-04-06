@@ -19,7 +19,7 @@ namespace CasaEngine
 	void AssetManager::AddAsset(std::string name, IAssetable* assetable)
 	{
 		CA_ASSERT(m_Assets.find(name) == m_Assets.end(), "AssetManager::AddAsset(): asset '%s' already exist", name.c_str());
-		m_Assets.insert(std::make_pair(name, NEW_AO Asset(name, assetable)));
+		m_Assets.insert(std::make_pair(name, new Asset(name, assetable)));
 	}
 	
 	void AssetManager::AddAsset(Asset* asset_)
@@ -47,7 +47,7 @@ namespace CasaEngine
 	{
 		for (auto it = m_Assets.begin(); it != m_Assets.end(); ++it)
 		{
-			DELETE_AO it->second;
+			delete it->second;
 		}
 	}
 

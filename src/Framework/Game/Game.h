@@ -49,7 +49,6 @@ namespace CasaEngine
 		void RemoveComponent(IGameComponent* component_);
 		template <class T> T* GetGameComponent() const;
 
-		void OnEvent(const sf::Event& EventReceived);
 		bool LoadGamePlayDLL(const char* pFileName_);
 		void RenderThreadloop();
 
@@ -121,7 +120,7 @@ namespace CasaEngine
 
 	private:
 		void Resize();
-		void OnWindowResized(unsigned int height_, unsigned int width_);
+		void OnWindowResized(unsigned int height, unsigned int width);
 		void HandleWindowEvents();
 
 	private:
@@ -156,9 +155,7 @@ namespace CasaEngine
 		PhysicsEngine m_PhysicsEngine;
 		MessageDispatcher m_MessageDispatcher;
 
-#if CA_PLATFORM_DESKTOP
 		sf::WindowHandle m_Hwnd;
-#endif
 		sf::Window* m_pWindow;
 	};
 

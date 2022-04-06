@@ -251,37 +251,37 @@ public:
 template <typename Class, typename Ret>
 inline Functor BindCopy(Ret(Class::* Func)(), Class Obj)
 {
-	return NEW_AO CFunctionMem0<Class, Ret(Class::*)(), Ret>(Func, Obj);
+	return new CFunctionMem0<Class, Ret(Class::*)(), Ret>(Func, Obj);
 }
 
 template <typename Class, typename Ret, typename Arg1>
 inline Functor BindCopy(Ret(Class::* Func)(Arg1), Class Obj)
 {
-	return NEW_AO CFunctionMem1<Class, Ret(Class::*)(Arg1), Ret, Arg1>(Func, Obj);
+	return new CFunctionMem1<Class, Ret(Class::*)(Arg1), Ret, Arg1>(Func, Obj);
 }
 
 template <typename Class, typename Ret, typename Arg1, typename Arg2>
 inline Functor BindCopy(Ret(Class::* Func)(Arg1, Arg2), Class Obj)
 {
-	return NEW_AO CFunctionMem2<Class, Ret(Class::*)(Arg1, Arg2), Ret, Arg1, Arg2>(Func, Obj);
+	return new CFunctionMem2<Class, Ret(Class::*)(Arg1, Arg2), Ret, Arg1, Arg2>(Func, Obj);
 }
 
 template <typename Class, typename Ret>
 inline Functor BindCopy(Ret(Class::* Func)() const, Class Obj)
 {
-	return NEW_AO CFunctionMem0<Class, Ret(Class::*)() const, Ret>(Func, Obj);
+	return new CFunctionMem0<Class, Ret(Class::*)() const, Ret>(Func, Obj);
 }
 
 template <typename Class, typename Ret, typename Arg1>
 inline Functor BindCopy(Ret(Class::* Func)(Arg1) const, Class Obj)
 {
-	return NEW_AO CFunctionMem1<Class, Ret(Class::*)(Arg1) const, Ret, Arg1>(Func, Obj);
+	return new CFunctionMem1<Class, Ret(Class::*)(Arg1) const, Ret, Arg1>(Func, Obj);
 }
 
 template <typename Class, typename Ret, typename Arg1, typename Arg2>
 inline Functor BindCopy(Ret(Class::* Func)(Arg1, Arg2) const, Class Obj)
 {
-	return NEW_AO CFunctionMem2<Class, Ret(Class::*)(Arg1, Arg2) const, Ret, Arg1, Arg2>(Func, Obj);
+	return new CFunctionMem2<Class, Ret(Class::*)(Arg1, Arg2) const, Ret, Arg1, Arg2>(Func, Obj);
 }
 
 template <typename T>
@@ -293,53 +293,53 @@ inline Functor Bind(T Obj)
 template <typename Ret>
 inline Functor Bind(Ret(*Func)())
 {
-	return NEW_AO CFunction0<Ret>(Func);
+	return new CFunction0<Ret>(Func);
 }
 
 template <typename Ret, typename Arg1>
 inline Functor Bind(Ret(*Func)(Arg1))
 {
-	return NEW_AO CFunction1<Ret, Arg1>(Func);
+	return new CFunction1<Ret, Arg1>(Func);
 }
 
 template <typename Ret, typename Arg1, typename Arg2>
 inline Functor Bind(Ret(*Func)(Arg1, Arg2))
 {
-	return NEW_AO CFunction2<Ret, Arg1, Arg2>(Func);
+	return new CFunction2<Ret, Arg1, Arg2>(Func);
 }
 
 template <typename Class, typename ParamType, typename Ret>
 inline Functor Bind(Ret(Class::* Func)(), ParamType& Obj)
 {
-	return NEW_AO CFunctionMem0<ParamType&, Ret(Class::*)(), Ret>(Func, Obj);
+	return new CFunctionMem0<ParamType&, Ret(Class::*)(), Ret>(Func, Obj);
 }
 
 template <typename Class, typename ParamType, typename Ret, typename Arg1>
 inline Functor Bind(Ret(Class::* Func)(Arg1), ParamType& Obj)
 {
-	return NEW_AO CFunctionMem1<ParamType&, Ret(Class::*)(Arg1), Ret, Arg1>(Func, Obj);
+	return new CFunctionMem1<ParamType&, Ret(Class::*)(Arg1), Ret, Arg1>(Func, Obj);
 }
 
 template <typename Class, typename ParamType, typename Ret, typename Arg1, typename Arg2>
 inline Functor Bind(Ret(Class::* Func)(Arg1, Arg2), ParamType& Obj)
 {
-	return NEW_AO CFunctionMem2<ParamType&, Ret(Class::*)(Arg1, Arg2), Ret, Arg1, Arg2>(Func, Obj);
+	return new CFunctionMem2<ParamType&, Ret(Class::*)(Arg1, Arg2), Ret, Arg1, Arg2>(Func, Obj);
 }
 
 template <typename Class, typename ParamType, typename Ret>
 inline Functor Bind(Ret(Class::* Func)() const, const ParamType& Obj)
 {
-	return NEW_AO CFunctionMem0<const ParamType&, Ret(Class::*)() const, Ret>(Func, Obj);
+	return new CFunctionMem0<const ParamType&, Ret(Class::*)() const, Ret>(Func, Obj);
 }
 
 template <typename Class, typename ParamType, typename Ret, typename Arg1>
 inline Functor Bind(Ret(Class::* Func)(Arg1) const, const ParamType& Obj)
 {
-	return NEW_AO CFunctionMem1<const ParamType&, Ret(Class::*)(Arg1) const, Ret, Arg1>(Func, Obj);
+	return new CFunctionMem1<const ParamType&, Ret(Class::*)(Arg1) const, Ret, Arg1>(Func, Obj);
 }
 
 template <typename Class, typename ParamType, typename Ret, typename Arg1, typename Arg2>
 inline Functor Bind(Ret(Class::* Func)(Arg1, Arg2) const, const ParamType& Obj)
 {
-	return NEW_AO CFunctionMem2<const ParamType&, Ret(Class::*)(Arg1, Arg2) const, Ret, Arg1, Arg2>(Func, Obj);
+	return new CFunctionMem2<const ParamType&, Ret(Class::*)(Arg1, Arg2) const, Ret, Arg1, Arg2>(Func, Obj);
 }

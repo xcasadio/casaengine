@@ -118,8 +118,8 @@ void Input::ResetStates()
 
 	memset(m_Keys, 0, sizeof(bool) * sf::Keyboard::Key::KeyCount);
 	memset(m_MouseButtons, 0, sizeof(bool) * sf::Mouse::ButtonCount);
-	memset(m_JoystickButtons[0], 0, sizeof(bool) * sf::Joystick::Count * sf::Joystick::ButtonCount);
-	memset(m_JoystickAxis[0], 0, sizeof(float) * sf::Joystick::Count * sf::Joystick::AxisCount);
+	memset(m_JoystickButtons, 0, sizeof(bool) * sf::Joystick::Count * sf::Joystick::ButtonCount);
+	memset(m_JoystickAxis, 0, sizeof(float) * sf::Joystick::Count * sf::Joystick::AxisCount);
 
 	m_LastMouseX = 0;
 	m_LastMouseY = 0;
@@ -129,8 +129,8 @@ void Input::ResetStates()
 
 	memset(m_LastKeys, 0, sizeof(bool) * sf::Keyboard::Key::KeyCount);
 	memset(m_LastMouseButtons, 0, sizeof(bool) * sf::Mouse::ButtonCount);
-	memset(m_LastJoystickButtons[0], 0, sizeof(bool) * sf::Joystick::Count * sf::Joystick::ButtonCount);
-	memset(m_LastJoystickAxis[0], 0, sizeof(float) * sf::Joystick::Count * sf::Joystick::AxisCount);
+	memset(m_LastJoystickButtons, 0, sizeof(bool) * sf::Joystick::Count * sf::Joystick::ButtonCount);
+	memset(m_LastJoystickAxis, 0, sizeof(float) * sf::Joystick::Count * sf::Joystick::AxisCount);
 
 	/*for (int i = 0; i < Touch::Count; ++i)
 	{

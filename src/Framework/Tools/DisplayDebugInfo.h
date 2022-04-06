@@ -5,12 +5,11 @@
 #include "GameTime.h"
 #include "Graphics\Effects\Program.h"
 #include "Graphics\Vertices\VertexType.h"
-#include "Memory/MemoryAllocation.h"
+
 
 namespace CasaEngine
 {
-	class CA_EXPORT DisplayDebugInfo :
-		public AllocatedObject<DisplayDebugInfo>
+	class CA_EXPORT DisplayDebugInfo
 	{
 	public:
 		DisplayDebugInfo();

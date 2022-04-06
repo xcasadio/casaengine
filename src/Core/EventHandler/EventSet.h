@@ -6,8 +6,6 @@
 #include "IteratorBase.h"
 #include <map>
 
-#include "Memory/MemoryAllocatedObject.h"
-
 #if defined (_MSC_VER)
 #   pragma warning(push)
 #   pragma warning(disable : 4251)
@@ -33,7 +31,7 @@ namespace CasaEngine
 		has no handlers subscribed, and therefore doing nothing is the correct
 		course action).
 	*/
-	class CA_EXPORT EventSet : public AllocatedObject<EventSet>
+	class CA_EXPORT EventSet
 	{
 	public:
 		/*!

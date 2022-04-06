@@ -25,7 +25,7 @@ namespace CasaEngine
 		m_pSpriteRenderer(nullptr),
 		m_pTransform(nullptr),
 		m_Color(CColor::White),
-		m_SpriteEffect(SPRITE_EFFECT_NONE),
+		m_SpriteEffect(eSpriteEffects::SPRITE_EFFECT_NONE),
 		m_pCurrentAnim(nullptr)
 	{
 		addEvent(FrameChangeEvent::GetEventName());
@@ -155,7 +155,7 @@ namespace CasaEngine
 			auto worldMatrix  = m_pTransform->GetWorldMatrix();
 			m_pSpriteRenderer->AddSprite(
 				//TODO : load all sprites in a dictionary<name, sprite>
-				NEW_AO Sprite(*Game::Instance().GetAssetManager().GetAsset<SpriteData>(m_pCurrentAnim->CurrentFrame())),
+				new Sprite(*Game::Instance().GetAssetManager().GetAsset<SpriteData>(m_pCurrentAnim->CurrentFrame())),
 				worldMatrix,
 				m_Color,
 				worldMatrix.Translation().z,
@@ -196,7 +196,7 @@ namespace CasaEngine
 		{
 			//delete (*itColObj)->getCollisionShape();
 			Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->RemoveCollisionShape(*itColObj);
-			DELETE_AO *itColObj;
+			delete *itColObj;
 		}
 		m_LastSpriteCollisionObjects.clear();
 		//TODO : keep shape

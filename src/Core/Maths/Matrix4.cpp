@@ -954,24 +954,24 @@ namespace CasaEngine
 		translation.y = m42;
 		translation.z = m43;
 
-		const float xs = (Sign(m11 * m12 * m13 * m14) < 0) ? -1 : 1;
-		const float ys = (Sign(m21 * m22 * m23 * m24) < 0) ? -1 : 1;
-		const float zs = (Sign(m31 * m32 * m33 * m34) < 0) ? -1 : 1;
+		const float xs = (Sign(m11 * m12 * m13 * m14) < 0.0f) ? -1.0f : 1.0f;
+		const float ys = (Sign(m21 * m22 * m23 * m24) < 0.0f) ? -1.0f : 1.0f;
+		const float zs = (Sign(m31 * m32 * m33 * m34) < 0.0f) ? -1.0f : 1.0f;
 
 		scale.x = xs * sqrtf(m11 * m11 + m12 * m12 + m13 * m13);
 		scale.y = ys * sqrtf(m21 * m21 + m22 * m22 + m23 * m23);
 		scale.z = zs * sqrtf(m31 * m31 + m32 * m32 + m33 * m33);
 
-		if (scale.x == 0.0 || scale.y == 0.0 || scale.z == 0.0)
+		if (scale.x == 0.0f || scale.y == 0.0f || scale.z == 0.0f)
 		{
 			rotation.Identity();
 			return false;
 		}
 
-		Matrix4 m1(m11 / scale.x, m12 / scale.x, m13 / scale.x, 0,
-			m21 / scale.y, m22 / scale.y, m23 / scale.y, 0,
-			m31 / scale.z, m32 / scale.z, m33 / scale.z, 0,
-			0, 0, 0, 1);
+		const Matrix4 m1(m11 / scale.x, m12 / scale.x, m13 / scale.x, 0.0f,
+		                 m21 / scale.y, m22 / scale.y, m23 / scale.y, 0.0f,
+		                 m31 / scale.z, m32 / scale.z, m33 / scale.z, 0.0f,
+		                 0.0f, 0.0f, 0.0f, 1.0f);
 		rotation.FromMatrix(m1);
 		//rotation = Quaternion::CreateFromRotationMatrix(m1);
 		return true;

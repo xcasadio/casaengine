@@ -6,7 +6,7 @@
 #include "Maths/Vector4.h"
 #include "Graphics/Color.h"
 #include "CA_Export.h"
-#include "Memory/MemoryAllocation.h"
+
 #include "Maths/Matrix4.h"
 #include "Graphics/Textures/Texture.h"
 #include <bgfx/bgfx.h>
@@ -14,8 +14,7 @@
 
 namespace CasaEngine
 {
-	class CA_EXPORT Program :
-		public AllocatedObject<Program>
+	class CA_EXPORT Program
 	{
 	public:
 

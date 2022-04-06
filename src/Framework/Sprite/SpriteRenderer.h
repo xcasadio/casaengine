@@ -15,7 +15,6 @@
 #include "Maths/Vector2.h"
 #include "Sprite/Sprite.h"
 #include "Sprite/SpriteTypes.h"
-#include "Memory/MemoryAllocatedObject.h"
 
 #include <vector>
 
@@ -26,9 +25,7 @@ namespace CasaEngine
 	{
 	public:
 		/// Use to remember how to draw sprite
-		struct SpriteDisplayData/* : 
-			public ObjectPool<SpriteDisplayData>*/
-			: public AllocatedObject<SpriteDisplayData>
+		struct SpriteDisplayData
 		{
 		public:
 			VertexPositionColorTexture TopLeft;
@@ -42,8 +39,7 @@ namespace CasaEngine
 
 		/// Use to draw several sprites with the same texture
 		/// used only with a Buffer sorted by depth and texture
-		struct SpriteBatch :
-			public AllocatedObject<SpriteDisplayData>
+		struct SpriteBatch
 		{
 		public:
 			const Texture *Texture;

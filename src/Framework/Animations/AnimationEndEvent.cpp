@@ -45,7 +45,7 @@ namespace CasaEngine
 
 	AnimationEvent* AnimationEndEvent::Copy()
 	{
-		return NEW_AO AnimationEndEvent(*this);
+		return new AnimationEndEvent(*this);
 	}
 
 	/**

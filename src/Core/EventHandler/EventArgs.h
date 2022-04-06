@@ -2,7 +2,6 @@
 #define _CASAENGINEEventArgs_h_
 
 #include "CA_Export.h"
-#include "Memory\MemoryAllocation.h"
 
 namespace CasaEngine
 {
@@ -21,8 +20,7 @@ namespace CasaEngine
 		the event system does not look at this value, code at a higher level can use it to determine
 		how far to propagate an event.
 	*/
-	class CA_EXPORT EventArgs :
-		public AllocatedObject<EventArgs>
+	class CA_EXPORT EventArgs
 	{
 	public:
 		EventArgs() : handled(0) {}

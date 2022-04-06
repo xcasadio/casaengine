@@ -5,16 +5,13 @@
 
 #include "Maths\Vector3.h"
 #include "Maths\Shape\IShape.h"
-
-#include "Memory\MemoryAllocation.h"
 #include "GameTime.h"
 #include "RigidBody.h"
 #include "PhysicsObjectContainer.h"
 
 namespace CasaEngine
 {
-	class CA_EXPORT IPhysicsWorld :
-		public AllocatedObject<IPhysicsWorld>
+	class CA_EXPORT IPhysicsWorld
 	{
 	public:
 		IPhysicsWorld();

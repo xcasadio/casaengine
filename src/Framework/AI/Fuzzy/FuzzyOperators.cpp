@@ -52,7 +52,7 @@ FzAND::~FzAND()
   std::vector<FuzzyTerm*>::iterator curTerm;
   for (curTerm = m_Terms.begin(); curTerm != m_Terms.end(); ++curTerm)
   {
-    DELETE_AO *curTerm;
+    delete *curTerm;
   }
 }
   
@@ -142,7 +142,7 @@ FzOR::~FzOR()
   std::vector<FuzzyTerm*>::iterator curTerm;
   for (curTerm = m_Terms.begin(); curTerm != m_Terms.end(); ++curTerm)
   {
-    DELETE_AO *curTerm;
+    delete *curTerm;
   }
 }
   

@@ -22,15 +22,15 @@ namespace CasaEngine
 		void Draw() override;
 
 		Vector2I GetMapSize() const;
-		void SetMapSize(Vector2I& size);
+		void SetMapSize(const Vector2I& size);
 
 		Vector2I GetTileSize() const;
-		void SetTileSize(Vector2I& size);
+		void SetTileSize(const Vector2I& size);
 
 		std::vector<TiledMapLayer*> GetLayers()  const;
 
 		void AddLayer(TiledMapLayer *pLayer);
-		TiledMapLayer* GetLayer(const int layerNum) const;
+		TiledMapLayer* GetLayer(int layerNum) const;
 
 	private:
 		Vector2I m_MapSize;

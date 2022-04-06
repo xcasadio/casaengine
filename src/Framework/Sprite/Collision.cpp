@@ -23,7 +23,7 @@ namespace CasaEngine
 
 	Collision* Collision::Copy() const
 	{
-		return NEW_AO Collision(*this);
+		return new Collision(*this);
 	}
 
 	CollisionType Collision::GetType() const

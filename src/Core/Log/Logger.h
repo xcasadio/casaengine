@@ -7,12 +7,10 @@
 #include "CA_Export.h"
 
 #include "LogVerbose.h"
-#include "Memory\MemoryAllocation.h"
 
 namespace CasaEngine
 {
-	class CA_EXPORT ILogger :
-		public AllocatedObject<ILogger>
+	class CA_EXPORT ILogger
 	{
 	public:
 		virtual ~ILogger();
