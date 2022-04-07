@@ -250,7 +250,7 @@ namespace CasaEngine
 		//transform.SetTranslation(Vector3F(pos.x, pos.y));
 		//transform.CreateScale(scale.x, scale.y, 0.0f);
 		transform.Transformation(nullptr,
-			nullptr, &Vector3F(scale.x, scale.y),
+			nullptr, &Vector3F(scale.x, scale.y, 1.0f),
 			&Vector3F(origin.x, origin.y), &quaternionRotation,
 			&Vector3F(pos.x, pos.y));
 		AddSprite(tex_, posInTex, origin, transform, color, z_order, effects);

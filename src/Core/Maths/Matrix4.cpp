@@ -279,12 +279,12 @@ namespace CasaEngine
 		m7 = Matrix4::CreateTranslation(prc.x + pt.x, prc.y + pt.y, prc.z + pt.z);
 		//D3DXMatrixTranslation(&m7, prc.x + pt.x, prc.y + pt.y, prc.z + pt.z);
 
-		p1 = m1 * m2;
-		p2 = p1 * m3;
-		p3 = p2 * m4;
-		p4 = p3 * m5;
-		p5 = p4 * m6;
-		*this = p5 * m7;
+		p1 = Matrix4::Multiply(m1, m2);
+		p2 = Matrix4::Multiply(p1, m3);
+		p3 = Matrix4::Multiply(p2, m4);
+		p4 = Matrix4::Multiply(p3, m5);
+		p5 = Matrix4::Multiply(p4, m6);
+		*this = Matrix4::Multiply(p5, m7);
 	}
 
 	Matrix4 Matrix4::Add(Matrix4 matrix1, Matrix4 matrix2)
@@ -1408,7 +1408,7 @@ namespace CasaEngine
 	{
 		Matrix4 result;
 
-		/*const auto m11 = (((matrix1.m11 * matrix2.m11) + (matrix1.m12 * matrix2.m21)) + (matrix1.m13 * matrix2.m31)) + (matrix1.m14 * matrix2.m41);
+		const auto m11 = (((matrix1.m11 * matrix2.m11) + (matrix1.m12 * matrix2.m21)) + (matrix1.m13 * matrix2.m31)) + (matrix1.m14 * matrix2.m41);
 		const auto m12 = (((matrix1.m11 * matrix2.m12) + (matrix1.m12 * matrix2.m22)) + (matrix1.m13 * matrix2.m32)) + (matrix1.m14 * matrix2.m42);
 		const auto m13 = (((matrix1.m11 * matrix2.m13) + (matrix1.m12 * matrix2.m23)) + (matrix1.m13 * matrix2.m33)) + (matrix1.m14 * matrix2.m43);
 		const auto m14 = (((matrix1.m11 * matrix2.m14) + (matrix1.m12 * matrix2.m24)) + (matrix1.m13 * matrix2.m34)) + (matrix1.m14 * matrix2.m44);
@@ -1439,9 +1439,7 @@ namespace CasaEngine
 		result.m41 = m41;
 		result.m42 = m42;
 		result.m43 = m43;
-		result.m44 = m44;*/
-
-		result = matrix1 * matrix2;
+		result.m44 = m44;
 
 		return result;
 	}
