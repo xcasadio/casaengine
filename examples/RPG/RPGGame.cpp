@@ -4,7 +4,7 @@
 #include <cereal/cereal.hpp>
 #include <cereal/archives/json.hpp>
 
-#include "scene2DGame.h"
+#include "RPGGame.h"
 
 #include "Player.h"
 #include "Enemy.h"
@@ -44,7 +44,7 @@
 
 using namespace CasaEngine;
 
-Scene2DGame::Scene2DGame() :
+RPGGame::RPGGame() :
 	m_pSpriteRenderer(nullptr),
 	m_pAnimatedSprite(nullptr),
 	m_pGroundTexture(nullptr),
@@ -56,7 +56,7 @@ Scene2DGame::Scene2DGame() :
 	Logging.AddLogger(new LoggerFile("Out.log"));
 }
 
-Scene2DGame::~Scene2DGame()
+RPGGame::~RPGGame()
 {
 	delete m_pModelRenderer;
 	delete m_pSpriteRenderer;
@@ -68,7 +68,7 @@ Scene2DGame::~Scene2DGame()
 /**
  *
  */
-void Scene2DGame::Initialize()
+void RPGGame::Initialize()
 {
 	GetMediaManager().AddSearchPath("../../examples/resources");
 	GetMediaManager().AddSearchPath("../../examples/resources/datas");
@@ -89,7 +89,7 @@ void Scene2DGame::Initialize()
 /**
  *
  */
-void Scene2DGame::LoadContent()
+void RPGGame::LoadContent()
 {
 	Game::LoadContent();
 
@@ -107,26 +107,8 @@ void Scene2DGame::LoadContent()
 	m_pWorld->Initialize();
 }
 
-/**
- *
- */
-void Scene2DGame::Update(const GameTime& gameTime_)
-{
-	Game::Update(gameTime_);
-}
 
-/**
- *
- */
-void Scene2DGame::Draw()
-{
-	Game::Draw();
-}
-
-/**
- *
- */
-void Scene2DGame::AddGameComponent()
+void RPGGame::AddGameComponent()
 {
 	m_pLine2DRenderer = new Line2DRendererComponent(this);
 	m_pLine3DRenderer = new Line3DRendererComponent(this);	
@@ -138,7 +120,7 @@ void Scene2DGame::AddGameComponent()
 	AddComponent(m_pLine3DRenderer);
 }
 
-void Scene2DGame::CreateMap(World* pWorld)
+void RPGGame::CreateMap(World* pWorld)
 {
 	auto* pEntity = new BaseEntity();
 	pEntity->SetName("tiled map");
@@ -223,7 +205,7 @@ void Scene2DGame::CreateMap(World* pWorld)
 	pWorld->AddEntity(pEntity);
 }
 
-void Scene2DGame::CreateAssets(Vector2I tileSize)
+void RPGGame::CreateAssets(Vector2I tileSize)
 {
 	//static tile
 	//auto texture = Texture::loadTexture(Game::Instance().GetMediaManager().FindMedia("Outside_A2.png"));
@@ -249,7 +231,10 @@ void Scene2DGame::CreateAssets(Vector2I tileSize)
 	}
 }
 
-void Scene2DGame::CreateEnemies(World* pWorld)
+
+const auto frame_delay = 0.64f * 5.0f;
+
+void RPGGame::CreateEnemies(World* pWorld)
 {
 	IFile* pFile = Game::Instance().GetMediaManager().FindMedia("octopus.json", true);
 	std::ifstream is(pFile->Fullname());
@@ -289,7 +274,6 @@ void Scene2DGame::CreateEnemies(World* pWorld)
 		auto* pAnim = new Animation2DData();
 		pAnim->SetAnimationType(AnimationType::Loop);
 		pAnim->SetName(anim.name);
-		const auto frame_delay = 0.64f;
 
 		for (auto& frame : anim.frames)
 		{
@@ -328,7 +312,7 @@ void Scene2DGame::CreateEnemies(World* pWorld)
 	pWorld->AddEntity(pEntity);
 }
 
-void Scene2DGame::CreateSwordman(World* pWorld)
+void RPGGame::CreateSwordman(World* pWorld)
 {
 	//player
 	const auto tileWidth = 48, tileHeight = 48;
@@ -371,7 +355,6 @@ void Scene2DGame::CreateSwordman(World* pWorld)
 		auto* pAnim = new Animation2DData();
 		pAnim->SetAnimationType(AnimationType::Loop);
 		pAnim->SetName(anim.name);
-		const auto frame_delay = 0.64f;
 
 		for (auto& frame : anim.frames)
 		{
@@ -423,7 +406,6 @@ void Scene2DGame::CreateSwordman(World* pWorld)
 	pWorld->AddEntity(pCamera);
 	GetGameInfo().SetActiveCamera(m_pCamera2D);
 
-
 	//Camera 3D
 	pCamera = new BaseEntity();
 	m_pCamera3D = new Camera3DComponent(pCamera);
@@ -437,5 +419,5 @@ void Scene2DGame::CreateSwordman(World* pWorld)
 	pCamera->Initialize();
 	m_pWorld->AddEntity(pCamera);
 
-	//GetGameInfo().SetActiveCamera(m_pCamera3D);
+	GetGameInfo().SetActiveCamera(m_pCamera3D);
 }

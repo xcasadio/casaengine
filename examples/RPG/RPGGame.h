@@ -1,8 +1,6 @@
-#ifndef GAME2DDEMOGAME_H_
-#define GAME2DDEMOGAME_H_
+#pragma once
 
 #include "Graphics/Textures/Texture.h"
-#include "GameTime.h"
 #include "Game/Game.h"
 
 #include "Sprite/SpriteRenderer.h"
@@ -15,18 +13,16 @@
 
 using namespace CasaEngine;
 
-class Scene2DGame :
+class RPGGame :
 	public Game
 {
 public:
 
-	Scene2DGame();
-	~Scene2DGame();
+	RPGGame();
+	~RPGGame() override;
 
-	void Initialize();
-	void LoadContent();
-	void Update(const CasaEngine::GameTime& gameTime_);
-	void Draw();
+	void Initialize() override;
+	void LoadContent() override;
 
 private:
 	void AddGameComponent();
@@ -49,5 +45,3 @@ private:
 	Camera3DComponent* m_pCamera3D;
 	World* m_pWorld;
 };
-
-#endif

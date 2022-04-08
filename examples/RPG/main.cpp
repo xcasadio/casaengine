@@ -1,12 +1,13 @@
-#include "scene2DGame.h"
+#include "RPGGame.h"
 #include <Windows.h>
 #include <exception>
+
 
 INT WINAPI WinMain(HINSTANCE Instance, HINSTANCE PrevInst, LPSTR CmdLine, INT NbCmd)
 {
 	try
 	{
-		Scene2DGame game;
+		RPGGame game;
 		game.Run();
 	}
 	catch (const std::exception& E)

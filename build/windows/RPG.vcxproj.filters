@@ -5,7 +5,7 @@
     <ClCompile Include="..\..\examples\RPG\EnemyStates.cpp" />
     <ClCompile Include="..\..\examples\RPG\PlayerController.cpp" />
     <ClCompile Include="..\..\examples\RPG\PlayerStates.cpp" />
-    <ClCompile Include="..\..\examples\RPG\scene2DGame.cpp" />
+    <ClCompile Include="..\..\examples\RPG\RPGGame.cpp" />
     <ClCompile Include="..\..\examples\RPG\main.cpp" />
     <ClCompile Include="..\..\examples\RPG\ScriptObjectFactory.cpp" />
     <ClCompile Include="..\..\examples\RPG\EnemyController.cpp" />
@@ -21,7 +21,7 @@
     <ClInclude Include="..\..\examples\RPG\MessageType.h" />
     <ClInclude Include="..\..\examples\RPG\PlayerController.h" />
     <ClInclude Include="..\..\examples\RPG\PlayerStates.h" />
-    <ClInclude Include="..\..\examples\RPG\scene2DGame.h" />
+    <ClInclude Include="..\..\examples\RPG\RPGGame.h" />
     <ClInclude Include="..\..\examples\RPG\ScriptObjectFactory.h" />
     <ClInclude Include="..\..\examples\RPG\EnemyController.h" />
     <ClInclude Include="..\..\examples\RPG\Enemy.h" />
