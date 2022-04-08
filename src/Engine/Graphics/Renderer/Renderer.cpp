@@ -51,7 +51,7 @@ namespace CasaEngine
 
 		SetClearColor(0
 			, BGFX_CLEAR_COLOR | BGFX_CLEAR_DEPTH | BGFX_CLEAR_STENCIL
-			, CColor::CornflowerBlue.ToRGBA()
+			, CColor::CornflowerBlue
 			, 1.0f
 			, 0);
 
