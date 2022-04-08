@@ -1,5 +1,4 @@
-#ifndef BOX2DCOLLIDERCOMPONENT_H_
-#define BOX2DCOLLIDERCOMPONENT_H_
+#pragma once
 
 #include <iosfwd>
 
@@ -27,5 +26,3 @@ namespace CasaEngine
 	};
 
 }
-
-#endif // BOX2DCOLLIDERCOMPONENT_H_
