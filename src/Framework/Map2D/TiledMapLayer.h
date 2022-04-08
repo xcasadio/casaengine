@@ -1,5 +1,4 @@
-#ifndef TILEDMAPLAYER_H_
-#define TILEDMAPLAYER_H_
+#pragma once
 
 #include <vector>
 
@@ -7,6 +6,7 @@
 #include "Animations/Animation2D.h"
 #include "Entities/Components/Transform3DComponent.h"
 #include "Maths/Vector2.h"
+#include "Maths/Vector3.h"
 
 namespace CasaEngine
 {
@@ -19,7 +19,7 @@ namespace CasaEngine
 
 		void Initialize(BaseEntity* pEntity);
 		void Update(const GameTime& gameTime_);
-		void Draw(Transform3DComponent* pTransform3DComponent, float z);
+		void Draw(const Vector3F& translation);
 
 		Vector2I GetMapSize() const;
 		void SetMapSize(Vector2I& size);
@@ -39,5 +39,3 @@ namespace CasaEngine
 		std::vector<ITile*> m_Tiles;
 	};
 }
-
-#endif

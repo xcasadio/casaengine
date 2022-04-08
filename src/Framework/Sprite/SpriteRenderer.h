@@ -55,9 +55,10 @@ namespace CasaEngine
 		void Update(const GameTime& gametime_) override;
 		void Draw() override;
 
-		void AddSprite(const Sprite* sprite, const Matrix4& transform, const CColor& color_, float z_order, eSpriteEffects effects_ = eSpriteEffects::SPRITE_EFFECT_NONE);
-		void AddSprite(const Texture* tex_, const RectangleI& posInTex, const Vector2I& origin, const Matrix4& transform, const CColor& color_, float z_order,
-			eSpriteEffects effects_ = eSpriteEffects::SPRITE_EFFECT_NONE);
+		void AddSprite(const Sprite* sprite, const Matrix4& transform, const CColor& color_, eSpriteEffects effects_ =
+			               eSpriteEffects::SPRITE_EFFECT_NONE);
+		void AddSprite(const Texture* tex_, const RectangleI& posInTex, const Vector2I& origin, const Matrix4& transform, const CColor& color_,
+		               eSpriteEffects effects_ = eSpriteEffects::SPRITE_EFFECT_NONE);
 		void AddSprite(const Texture *tex_, 
 			const RectangleI &posInTex, const Vector2I &origin, const Vector2F &pos,
 			float rot, const Vector2F &scale, const CColor &color, float ZOrder_, eSpriteEffects effects = eSpriteEffects::SPRITE_EFFECT_NONE);

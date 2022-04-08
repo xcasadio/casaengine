@@ -37,7 +37,7 @@ void StageLayer::Draw(SpriteRenderer *spriteRenderer)
 		const auto posInTexture = RectangleI(0, 0, texture->TextureInfo()->width, texture->TextureInfo()->height);
 		matrix.Translation(offsetX, 0, transform->GetPosition().z);
 
-		spriteRenderer->AddSprite(texture, posInTexture, Vector2I::Zero(), matrix, CColor::White, transform->GetPosition().z);
+		spriteRenderer->AddSprite(texture, posInTexture, Vector2I::Zero(), matrix, CColor::White);
 
 		offsetX += posInTexture.w;
 	}

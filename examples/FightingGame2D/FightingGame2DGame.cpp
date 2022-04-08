@@ -92,7 +92,7 @@ void FightingGame2DGame::LoadContent()
 	auto* pPlayer1 = new BaseEntity();
 	pPlayer1->SetName("player 1");
 	pTransform = new Transform3DComponent(pPlayer1);
-	pTransform->SetLocalPosition(Vector3F(520, 400, 0.5f));
+	pTransform->SetLocalPosition(Vector3F(520, 400, 2.0f));
 	auto scale = 1.0f;
 	pTransform->SetLocalScale(Vector3F(scale, scale));
 	pPlayer1->GetComponentMgr()->AddComponent(pTransform);
@@ -116,7 +116,7 @@ void FightingGame2DGame::LoadContent()
 	auto* pPlayer2 = new BaseEntity();
 	pPlayer2->SetName("player 2");
 	pTransform = new Transform3DComponent(pPlayer2);
-	pTransform->SetLocalPosition(Vector3F(820, 400, 0.6f));
+	pTransform->SetLocalPosition(Vector3F(820, 400, 2.0f));
 	scale = 1.0f;
 	pTransform->SetLocalScale(Vector3F(scale, scale));
 	pPlayer2->GetComponentMgr()->AddComponent(pTransform);

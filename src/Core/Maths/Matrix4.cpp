@@ -712,26 +712,6 @@ namespace CasaEngine
 		_result[14] = -bb;*/
 	}
 
-	Matrix4 Matrix4::CreatePerspectiveFieldOfView2(float fieldOfView, float aspectRatio, float nearPlaneDistance,
-		float farPlaneDistance)
-	{
-		Matrix4 result;
-
-		float YScale = 1.0f / std::tan(fieldOfView / 2.0f);
-		float XScale = YScale / aspectRatio;
-		float Coeff = farPlaneDistance / (farPlaneDistance - nearPlaneDistance);
-
-		//TODO : righthanded : XScale = -XScale;
-		//TODO : lefthanded : XScale = XScale;
-
-		result.m11 = XScale; result.m12 = 0.0f;   result.m13 = 0.0f;  result.m14 = 0.0f;
-		result.m21 = 0.0f;   result.m22 = YScale; result.m23 = 0.0f;  result.m24 = 0.0f;
-		result.m31 = 0.0f;   result.m32 = 0.0f;   result.m33 = Coeff; result.m34 = nearPlaneDistance * -Coeff;
-		result.m41 = 0.0f;   result.m42 = 0.0f;   result.m43 = 1.0f;  result.m44 = 0.0f;
-
-		return result;
-	}
-
 	Matrix4 Matrix4::CreatePerspectiveOffCenter(float left, float right, float bottom, float top,
 		float nearPlaneDistance, float farPlaneDistance)
 	{

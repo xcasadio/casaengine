@@ -34,11 +34,12 @@ namespace CasaEngine
 
 	void TiledMapComponent::Draw()
 	{
-		float zOrder = 0.0f;
+		auto translation = m_pTransform3DComponent->GetWorldMatrix().Translation();
+
 		for (auto* pLayer : m_Layers)
 		{
-			pLayer->Draw(m_pTransform3DComponent, m_pTransform3DComponent->GetPosition().z + zOrder);
-			zOrder += 0.01f;
+			pLayer->Draw(translation);
+			translation.z += 0.01f;
 		}
 	}
 

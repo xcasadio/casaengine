@@ -37,6 +37,7 @@
 
 #include "load_save_types.h"
 #include "Entities/Components/DebugComponent.h"
+#include "Entities/Components/CameraControllers/Camera2DTargetedController.h"
 #include "Entities/Components/CameraControllers/Camera3DTargetedController.h"
 #include "Entities/Components/Physics/Box2DColliderComponent.h"
 #include "Entities/Components/Physics/Circle2DColliderComponent.h"
@@ -259,7 +260,7 @@ void Scene2DGame::CreateEnemies(World* pWorld)
 	auto* pEntity = new BaseEntity();
 	pEntity->SetName("octopus 1");
 	auto* pTrans3D = new Transform3DComponent(pEntity);
-	pTrans3D->SetLocalPosition(Vector3F(100.0f, 100.0f, 0.2f));
+	pTrans3D->SetLocalPosition(Vector3F(100.0f, 100.0f, 2.0f));
 	pTrans3D->SetLocalRotation(0.0f);
 	//pTrans3D->SetLocalScale(Vector3F(32, 32, 1.0));
 	pEntity->GetComponentMgr()->AddComponent(pTrans3D);
@@ -317,11 +318,11 @@ void Scene2DGame::CreateEnemies(World* pWorld)
 	pEntity->GetComponentMgr()->AddComponent(debugComponent);
 
 	//collision
-	//auto *colliderComponent = new Circle2DColliderComponent(pPlayerEntity);
-	//colliderComponent->SetCenter(Vector3F::Zero());
-	//colliderComponent->SetRadius(10.0f);
-	auto* colliderComponent = new Box2DColliderComponent(pEntity);
-	colliderComponent->Set(0, 0, 10, 10);
+	auto *colliderComponent = new Circle2DColliderComponent(pEntity);
+	colliderComponent->SetCenter(Vector3F::Zero());
+	colliderComponent->SetRadius(10.0f);
+	//auto* colliderComponent = new Box2DColliderComponent(pEntity);
+	//colliderComponent->Set(0, 0, 10, 10);
 	pEntity->GetComponentMgr()->AddComponent(colliderComponent);
 
 	pWorld->AddEntity(pEntity);
@@ -334,7 +335,7 @@ void Scene2DGame::CreateSwordman(World* pWorld)
 	auto* pPlayerEntity = new BaseEntity();
 	pPlayerEntity->SetName("player 1");
 	auto* pTrans3D = new Transform3DComponent(pPlayerEntity);
-	pTrans3D->SetLocalPosition(Vector3F(50.0f, 150.0f, 0.2f));
+	pTrans3D->SetLocalPosition(Vector3F(50.0f, 150.0f, 2.0f));
 	pTrans3D->SetLocalRotation(0.0f);
 	//pTrans3D->SetLocalScale(Vector3F(tileWidth, tileHeight, 1.0));
 	pPlayerEntity->GetComponentMgr()->AddComponent(pTrans3D);
@@ -396,11 +397,11 @@ void Scene2DGame::CreateSwordman(World* pWorld)
 	pPlayerEntity->GetComponentMgr()->AddComponent(scriptComponent);
 
 	//collision
-	//auto *colliderComponent = new Circle2DColliderComponent(pPlayerEntity);
-	//colliderComponent->SetCenter(Vector3F::Zero());
-	//colliderComponent->SetRadius(10.0f);
-	auto* colliderComponent = new Box2DColliderComponent(pPlayerEntity);
-	colliderComponent->Set(0, 0, 10, 10);
+	auto *colliderComponent = new Circle2DColliderComponent(pPlayerEntity);
+	colliderComponent->SetCenter(Vector3F::Zero());
+	colliderComponent->SetRadius(10.0f);
+	//auto* colliderComponent = new Box2DColliderComponent(pPlayerEntity);
+	//colliderComponent->Set(0, 0, 10, 10);
 	pPlayerEntity->GetComponentMgr()->AddComponent(colliderComponent);
 
 	//debug
@@ -412,7 +413,8 @@ void Scene2DGame::CreateSwordman(World* pWorld)
 	auto* pCamera = new BaseEntity();
 	pCamera->SetName("camera 2D");
 	auto* m_pCamera2D = new Camera3DComponent(pCamera);
-	auto* custom_camera_controller = new Camera3DTargetedController(m_pCamera2D);
+	//auto* custom_camera_controller = new Camera3DTargetedController(m_pCamera2D);
+	auto* custom_camera_controller = new Camera2DTargetedController(m_pCamera2D);
 	m_pCamera2D->CameraController(custom_camera_controller);
 	pCamera->GetComponentMgr()->AddComponent(m_pCamera2D);
 	custom_camera_controller->SetDeadZoneRatio(Vector2F(0.7f, 0.7f));

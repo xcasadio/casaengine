@@ -80,7 +80,7 @@ namespace CasaEngine
 		for (auto i = 0; i < m_SpriteDatas.size(); i++)
 		{
 			bgfx::setState(BGFX_STATE_WRITE_MASK
-				| BGFX_STATE_DEPTH_TEST_LESS
+				| BGFX_STATE_DEPTH_TEST_ALWAYS
 				//| BGFX_STATE_CULL_CW
 				//| BGFX_STATE_MSAA
 				| BGFX_STATE_BLEND_ALPHA);
@@ -139,18 +139,18 @@ namespace CasaEngine
 		update(m_VertexBuffer, 0, bgfx::makeRef(m_pDatas, size));
 	}
 
-	void SpriteRenderer::AddSprite(const Sprite* sprite, const Matrix4& transform, const CColor& color_, float z_order, eSpriteEffects effects_)
+	void SpriteRenderer::AddSprite(const Sprite* sprite, const Matrix4& transform, const CColor& color_, eSpriteEffects effects_)
 	{
 		if (sprite == nullptr)
 		{
 			throw new CException("Sprite is null");
 		}
 		
-		AddSprite(sprite->GetTexture2D(), sprite->GetSpriteData()->GetPositionInTexture(), sprite->GetSpriteData()->GetOrigin(), transform, color_, z_order, effects_);
+		AddSprite(sprite->GetTexture2D(), sprite->GetSpriteData()->GetPositionInTexture(), sprite->GetSpriteData()->GetOrigin(), transform, color_, effects_);
 	}
 
 	void SpriteRenderer::AddSprite(const Texture* tex_,
-		const RectangleI& posInTex, const Vector2I& origin, const Matrix4& transform, const CColor& color_, float z_order, eSpriteEffects effects_)
+	                               const RectangleI& posInTex, const Vector2I& origin, const Matrix4& transform, const CColor& color_, eSpriteEffects effects_)
 	{
 		if (tex_ == nullptr)
 		{
@@ -190,7 +190,6 @@ namespace CasaEngine
 		const float texRight = right / texW;
 
 		SpriteDisplayData spriteData;
-
 		//texture
 		spriteData.Texture = tex_;
 		Matrix4 worldMatrix = transform;
@@ -201,28 +200,28 @@ namespace CasaEngine
 		//Left-Top
 		spriteData.TopLeft.Position.x = 0.0f;
 		spriteData.TopLeft.Position.y = 0.0f;
-		spriteData.TopLeft.Position.z = z_order;
+		spriteData.TopLeft.Position.z = 0.0f;
 		spriteData.TopLeft.Color = color;
 		spriteData.TopLeft.TexCoords.x = texLeft;
 		spriteData.TopLeft.TexCoords.y = texTop;
 		//Right-Top
 		spriteData.TopRight.Position.x = 1.0f * posInTex.w;
 		spriteData.TopRight.Position.y = 0.0f;
-		spriteData.TopRight.Position.z = z_order;
+		spriteData.TopRight.Position.z = 0.0f;
 		spriteData.TopRight.Color = color;
 		spriteData.TopRight.TexCoords.x = texRight;
 		spriteData.TopRight.TexCoords.y = texTop;
 		//Right-Bottom
 		spriteData.BottomRight.Position.x = 1.0f * posInTex.w;
 		spriteData.BottomRight.Position.y = 1.0f * posInTex.h;
-		spriteData.BottomRight.Position.z = z_order;
+		spriteData.BottomRight.Position.z = 0.0f;
 		spriteData.BottomRight.Color = color;
 		spriteData.BottomRight.TexCoords.x = texRight;
 		spriteData.BottomRight.TexCoords.y = texBottom;
 		//Left-Bottom
 		spriteData.BottomLeft.Position.x = 0.0f;
 		spriteData.BottomLeft.Position.y = 1.0f * posInTex.h;
-		spriteData.BottomLeft.Position.z = z_order;
+		spriteData.BottomLeft.Position.z = 0.0f;
 		spriteData.BottomLeft.Color = color;
 		spriteData.BottomLeft.TexCoords.x = texLeft;
 		spriteData.BottomLeft.TexCoords.y = texBottom;
@@ -247,13 +246,18 @@ namespace CasaEngine
 		Quaternion quaternionRotation;
 		quaternionRotation.FromAxisAngle(Vector3F::UnitZ(), rot);
 		Matrix4 transform;
+		const auto scale3 = Vector3F(scale.x, scale.y, 1.0f);
+		const auto rotationCenter = Vector3F(origin.x, origin.y);
+		const auto translation = Vector3F(pos.x, pos.y, z_order);
 		//transform.SetTranslation(Vector3F(pos.x, pos.y));
 		//transform.CreateScale(scale.x, scale.y, 0.0f);
 		transform.Transformation(nullptr,
-			nullptr, &Vector3F(scale.x, scale.y, 1.0f),
-			&Vector3F(origin.x, origin.y), &quaternionRotation,
-			&Vector3F(pos.x, pos.y));
-		AddSprite(tex_, posInTex, origin, transform, color, z_order, effects);
+			nullptr, 
+			&scale3,
+			&rotationCenter, 
+			&quaternionRotation,
+			&translation);
+		AddSprite(tex_, posInTex, origin, transform, color, effects);
 	}
 
 	void SpriteRenderer::AddSprite(Sprite* pSprite, const Vector2F &pos_, 

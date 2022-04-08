@@ -158,7 +158,6 @@ namespace CasaEngine
 				new Sprite(*Game::Instance().GetAssetManager().GetAsset<SpriteData>(m_pCurrentAnim->CurrentFrame())),
 				worldMatrix,
 				m_Color,
-				worldMatrix.Translation().z,
 				m_SpriteEffect);
 		}
 	}

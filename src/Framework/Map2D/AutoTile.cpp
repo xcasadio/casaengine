@@ -79,17 +79,17 @@ namespace CasaEngine
 		DrawTile(mask, x, y, z, uvOffset);
 	}
 
-	void AutoTile::DrawTile(unsigned int mask, float x, float y, float z, RectangleI uvOffset)
+	void AutoTile::DrawTile(unsigned int mask, float x, float y, float z, const RectangleI uv_offset) const
 	{
 		//trivial case
 		if (mask == mask_none)
 		{
-			m_Tiles[0]->Draw(x, y, z, uvOffset);
+			m_Tiles[0]->Draw(x, y, z, uv_offset);
 			return;
 		}
 
-		const auto width = uvOffset.w / 2;
-		const auto height = uvOffset.h / 2;
+		const auto width = uv_offset.w / 2.0f;
+		const auto height = uv_offset.h / 2.0f;
 
 		//trivial case
 		if (mask == mask_all)

@@ -76,7 +76,6 @@ namespace CasaEngine
 
 	void StaticSpriteComponent::Draw()
 	{
-		m_pSpriteRenderer->AddSprite(m_pSprite, m_pTransform->GetWorldMatrix(),
-			m_Color, m_pTransform->GetLocalMatrix().Translation().z, m_SpriteEffect);
+		m_pSpriteRenderer->AddSprite(m_pSprite, m_pTransform->GetWorldMatrix(), m_Color, m_SpriteEffect);
 	}
 }

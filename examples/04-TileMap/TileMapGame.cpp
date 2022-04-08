@@ -184,7 +184,7 @@ void TileMapGame::LoadContent()
 	pEntity->SetName("vegeta");
 	auto pTransform = new Transform3DComponent(pEntity);
 	s_pTransform = pTransform;
-	pTransform->SetLocalPosition(Vector3F(500.0f, 250.0f, 0.5f));
+	pTransform->SetLocalPosition(Vector3F(500.0f, 250.0f, 1.5f));
 	//pTransform->SetLocalRotation(0.0f);
 	//pTransform->SetLocalScale(Vector3F(43, 76, 1.0f));
 	pEntity->GetComponentMgr()->AddComponent(pTransform);

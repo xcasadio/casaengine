@@ -21,7 +21,7 @@ namespace CasaEngine
 		bool Hidden() const;
 
 	private:
-		void DrawTile(unsigned mask, float x, float y, float z, RectangleI uvOffset);
+		void DrawTile(unsigned mask, float x, float y, float z, RectangleI uv_offset) const;
 
 	private:
 		std::vector<ITile*> m_Tiles;

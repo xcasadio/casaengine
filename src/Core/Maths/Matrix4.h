@@ -191,7 +191,6 @@ namespace CasaEngine
 		  /// <param name="farPlaneDistance">Distance to the far plane, or <see cref="float.PositiveInfinity"/>.</param>
 		  /// <returns>The new projection <see cref="Matrix"/> for perspective view with FOV.</returns>
 		static Matrix4 CreatePerspectiveFieldOfView(float fieldOfView, float aspectRatio, float nearPlaneDistance, float farPlaneDistance);
-		static Matrix4 CreatePerspectiveFieldOfView2(float fieldOfView, float aspectRatio, float nearPlaneDistance, float farPlaneDistance);
 
 		/// <summary>
 		  /// Creates a new projection <see cref="Matrix"/> for customized perspective view.
