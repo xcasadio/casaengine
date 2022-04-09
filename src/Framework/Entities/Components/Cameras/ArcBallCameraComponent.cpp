@@ -3,32 +3,41 @@
 #include <iosfwd>
 #include <cmath>
 
-#include "ArcBallCameraController.h"
+#include "ArcBallCameraComponent.h"
 
 #include <bx/math.h>
 
-#include "CameraController.h"
 #include "Game/Game.h"
 #include "Maths/Matrix4.h"
 #include "StringUtils.h"
-#include "Entities/Components/Camera3DComponent.h"
+#include "Entities/ComponentTypeEnum.h"
 #include "Maths/Math.h"
 #include "Maths/Quaternion.h"
 #include "Game/Input.h"
 
 namespace CasaEngine
 {
-	ArcBallCameraController::ArcBallCameraController(CameraComponent* pCamera)
-		: ICameraController(pCamera), m_bRecomputeViewMatrix(true), m_fInputDistanceRate(4.0f), m_fInputTurnRate(0.5f), m_fInputDisplacementRate(2.0f)
+	ArcBallCameraComponent::ArcBallCameraComponent(BaseEntity* pEntity_)
+		: Camera3DComponent(pEntity_, CAMERA_ARC_BALL),
+		m_fInputDistanceRate(4.0f),
+		m_fInputTurnRate(0.5f),
+		m_fInputDisplacementRate(2.0f)
 	{
-		ReInit();
+		//orientation quaternion assumes a Pi rotation so you're facing the "front"
+		//of the model (looking down the +Z axis)
+		m_ArcBallOrientation.FromAxisAngle(Vector3F::Up(), Pi);
+		m_Target = Vector3F::Zero();
+		m_fDistance = 5.0f;
+		m_fArcBallYaw = Pi;
+		m_fArcBallPitch = 0.0f;
 	}
 
-	void ArcBallCameraController::Initialize()
+	void ArcBallCameraComponent::Initialize()
 	{
+		
 	}
 
-	void ArcBallCameraController::Update(const GameTime& gameTime_)
+	void ArcBallCameraComponent::Update(const GameTime& gameTime_)
 	{
 		float rightAxis = 0.0f;
 		float upAxis = 0.0f;
@@ -68,7 +77,7 @@ namespace CasaEngine
 			upAxis = -step;
 		}
 
-		if (Game::Instance().GetInput().IsMouseButtonDown(sf::Mouse::Middle) == true)
+		if (Game::Instance().GetInput().IsMouseButtonDown(sf::Mouse::Right) == true)
 		{
 			horizontalOrbit = static_cast<float>(-Game::Instance().GetInput().GetDeltaMouseX());
 			verticalOrbit = static_cast<float>(-Game::Instance().GetInput().GetDeltaMouseY());
@@ -83,8 +92,7 @@ namespace CasaEngine
 		}
 
 		//
-		HandleControls(gameTime_, rightAxis, upAxis, forwardAxis,
-			horizontalOrbit, verticalOrbit, rollOrbit, zoom);
+		HandleControls(gameTime_, rightAxis, upAxis, forwardAxis, horizontalOrbit, verticalOrbit, rollOrbit, zoom);
 	}
 
 	/**
@@ -94,7 +102,7 @@ namespace CasaEngine
 	 * <param name="rollAxis_"> value between -1.0 and 1.0 </param>
 	 * <param name="zoom"> zoom value </param>
 	*/
-	void ArcBallCameraController::HandleControls(const GameTime& gameTime_,
+	void ArcBallCameraComponent::HandleControls(const GameTime& gameTime_,
 		float rightAxis_, float upAxis_, float forwardAxis_,
 		float horizontalOrbit_, float verticalOrbit_, float /*rollOrbit_*/, float zoom_)
 	{
@@ -127,50 +135,41 @@ namespace CasaEngine
 
 			SetCamera(pos, target, Up());*/
 		}
+
+		m_needToComputeViewMatrix = true;
 	}
 
-	void ArcBallCameraController::ReInit()
-	{
-		//orientation quaternion assumes a Pi rotation so you're facing the "front"
-		//of the model (looking down the +Z axis)
-		m_ArcBallOrientation.FromAxisAngle(Vector3F::Up(), Pi);
-		m_Target = Vector3F::Zero();
-		m_fDistance = 5.0f;
-		m_fArcBallYaw = Pi;
-		m_fArcBallPitch = 0.0f;
-	}
-
-	float ArcBallCameraController::ArcBallPitch() const
+	float ArcBallCameraComponent::ArcBallPitch() const
 	{
 		return m_fArcBallPitch;
 	}
 
-	void ArcBallCameraController::ArcBallPitch(float val)
+	void ArcBallCameraComponent::ArcBallPitch(float val)
 	{
 		m_fArcBallPitch = val;
-		m_bRecomputeViewMatrix = true;
+		m_needToComputeViewMatrix = true;
 		Quaternion q1, q2;
 		q1.FromAxisAngle(Vector3F::Up(), -m_fArcBallYaw);
 		q2.FromAxisAngle(Vector3F::Right(), m_fArcBallPitch);
 		m_ArcBallOrientation = q1 * q2;
 	}
 
-	float ArcBallCameraController::ArcBallYaw() const
+	float ArcBallCameraComponent::ArcBallYaw() const
 	{
 		return m_fArcBallYaw;
 	}
 
-	void ArcBallCameraController::ArcBallYaw(float val)
+	void ArcBallCameraComponent::ArcBallYaw(float val)
 	{
 		m_fArcBallYaw = val;
-		m_bRecomputeViewMatrix = true;
+		m_needToComputeViewMatrix = true;
 		Quaternion q1, q2;
 		q1.FromAxisAngle(Vector3F::Up(), -m_fArcBallYaw);
 		q2.FromAxisAngle(Vector3F::Right(), m_fArcBallPitch);
 		m_ArcBallOrientation = q1 * q2;
 	}
 
-	Vector3F ArcBallCameraController::Direction() const
+	Vector3F ArcBallCameraComponent::Direction() const
 	{
 		//R v R' where v = (0,0,-1,0)
 		//The equation can be reduced because we know the following things:
@@ -189,7 +188,7 @@ namespace CasaEngine
 		return dir;
 	}
 
-	Vector3F ArcBallCameraController::Right() const
+	Vector3F ArcBallCameraComponent::Right() const
 	{
 		//R v R' where v = (1,0,0,0)
 		//The equation can be reduced because we know the following things:
@@ -208,7 +207,7 @@ namespace CasaEngine
 		return right;
 	}
 
-	Vector3F ArcBallCameraController::Up() const
+	Vector3F ArcBallCameraComponent::Up() const
 	{
 		//R v R' where v = (0,1,0,0)
 		//The equation can be reduced because we know the following things:
@@ -226,78 +225,60 @@ namespace CasaEngine
 		return up;
 	}
 
-	Vector3F ArcBallCameraController::Position() const
+	Vector3F ArcBallCameraComponent::Position() const
 	{
 		return m_Target - Direction() * m_fDistance;
 	}
 
-	void ArcBallCameraController::Position(Vector3F val_)
+	void ArcBallCameraComponent::Position(Vector3F val_)
 	{
 		SetCamera(val_, m_Target, Up());
 	}
 
-	void ArcBallCameraController::ViewMatrix(Matrix4& viewMatrix_)
+	void ArcBallCameraComponent::ComputeViewMatrix()
 	{
-		if (m_bRecomputeViewMatrix == true)
-		{
-			m_bRecomputeViewMatrix = false;
-			const auto position = m_Target - Direction() * m_fDistance;
-			viewMatrix_ = Matrix4::CreateLookAt(position, m_Target, Up());
-		}
+		const auto position = m_Target - Direction() * m_fDistance;
+		m_ViewMatrix = Matrix4::CreateLookAt(position, m_Target, Up());
 	}
 
-	void ArcBallCameraController::ProjectionMatrix(Matrix4& projectionMatrix_)
-	{
-		auto& viewport = this->Camera()->GetViewport();
-
-		float ratio = viewport.Width() * Game::Instance().GetWindowSize().x /
-			(viewport.Height() * Game::Instance().GetWindowSize().y);
-
-		projectionMatrix_ = Matrix4::CreatePerspectiveFieldOfView(
-			dynamic_cast<Camera3DComponent*>(Camera())->FOV(),
-			ratio,
-			viewport.NearClipPlane(),
-			viewport.FarClipPlane());
-	}
-
-	Vector3F ArcBallCameraController::Target() const
+	Vector3F ArcBallCameraComponent::Target() const
 	{
 		return m_Target;
 	}
 	
-	void ArcBallCameraController::Target(Vector3F val)
+	void ArcBallCameraComponent::Target(Vector3F val)
 	{
-		m_bRecomputeViewMatrix = true;
+		m_needToComputeViewMatrix = true;
 		m_Target = val;
 	}
 	
-	float ArcBallCameraController::Distance() const
+	float ArcBallCameraComponent::Distance() const
 	{
 		return m_fDistance;
 	}
 	
-	void ArcBallCameraController::Distance(float val)
+	void ArcBallCameraComponent::Distance(float val)
 	{
 		m_fDistance = val;
-		m_bRecomputeViewMatrix = true;
+		m_needToComputeViewMatrix = true;
 	}
 	
-	float ArcBallCameraController::InputDistanceRate() const
+	float ArcBallCameraComponent::InputDistanceRate() const
 	{
 		return m_fInputDistanceRate;
 	}
 	
-	void ArcBallCameraController::InputDistanceRate(float val)
+	void ArcBallCameraComponent::InputDistanceRate(float val)
 	{
 		m_fInputDistanceRate = val;
 	}
 
-	float ArcBallCameraController::InputDisplacementRate() const
+	float ArcBallCameraComponent::InputDisplacementRate() const
 	{
 		return m_fInputDisplacementRate;
 	}
 
-	void ArcBallCameraController::InputDisplacementRate(float val)
+	void ArcBallCameraComponent::InputDisplacementRate(float val)
 	{
 		m_fInputDisplacementRate = val;
 	}
@@ -306,9 +287,9 @@ namespace CasaEngine
 	/// Orbit directly upwards in Free camera or on
 	/// the longitude line when roll constrained
 	/// </summary>
-	void ArcBallCameraController::OrbitUp(float angle)
+	void ArcBallCameraComponent::OrbitUp(float angle)
 	{
-		m_bRecomputeViewMatrix = true;
+		m_needToComputeViewMatrix = true;
 
 		Quaternion q1, q2;
 
@@ -333,9 +314,9 @@ namespace CasaEngine
 	/// Orbit towards the Right vector in Free camera
 	/// or on the latitude line when roll constrained
 	/// </summary>
-	void ArcBallCameraController::OrbitRight(float angle)
+	void ArcBallCameraComponent::OrbitRight(float angle)
 	{
-		m_bRecomputeViewMatrix = true;
+		m_needToComputeViewMatrix = true;
 
 		Quaternion q1, q2;
 
@@ -358,7 +339,7 @@ namespace CasaEngine
 	/// Rotate around the Forward vector 
 	/// in free-look camera only
 	/// </summary>
-	void ArcBallCameraController::RotateClockwise(float /*angle*/)
+	void ArcBallCameraComponent::RotateClockwise(float /*angle*/)
 	{
 		/*
 		m_bRecomputeViewMatrix = true;
@@ -373,9 +354,9 @@ namespace CasaEngine
 		*/
 	}
 
-	void ArcBallCameraController::RotateTargetUp(float angle_)
+	void ArcBallCameraComponent::RotateTargetUp(float angle_)
 	{
-		m_bRecomputeViewMatrix = true;
+		m_needToComputeViewMatrix = true;
 
 		Quaternion rot;
 		rot.FromAxisAngle(Right(), angle_);
@@ -388,9 +369,9 @@ namespace CasaEngine
 		OrbitUp(-angle_);
 	}
 
-	void ArcBallCameraController::RotateTargetRight(float angle_)
+	void ArcBallCameraComponent::RotateTargetRight(float angle_)
 	{
-		m_bRecomputeViewMatrix = true;
+		m_needToComputeViewMatrix = true;
 
 		Quaternion rot;
 		rot.FromAxisAngle(Up(), -angle_);
@@ -410,27 +391,17 @@ namespace CasaEngine
 	/// <param name="eye">The camera position</param>
 	/// <param name="lookAt">The camera's look-at point</param>
 	/// <param name="up"></param>
-	void ArcBallCameraController::SetCamera(Vector3F position, Vector3F target, Vector3F up)
+	void ArcBallCameraComponent::SetCamera(Vector3F position, Vector3F target, Vector3F up)
 	{
-		m_bRecomputeViewMatrix = true;
+		m_needToComputeViewMatrix = true;
 
-		//Create a look at matrix, to simplify matters a bit
-		Matrix4 temp;
-		temp = Matrix4::CreateLookAt(position, target, up);
-
-		//invert the matrix, since we're determining the
-		//orientation from the rotation matrix in RH coords
-		Matrix4::Invert(temp);
-
-		//set the position
-		m_Target = target;
-
-		//set distance
-		m_fDistance = (target - position).Length();
-
-		//create the new aspect from the look-at matrix
+		Matrix4 temp = Matrix4::CreateLookAt(position, target, up);
+		temp = Matrix4::Invert(temp);
 		m_ArcBallOrientation.FromMatrix(temp);
 
+		m_Target = target;
+		m_fDistance = (target - position).Length();
+		
 		//When setting a new eye-view direction 
 		//in one of the gamble-locked modes, the yaw and
 		//pitch gimble must be calculated.
@@ -447,20 +418,22 @@ namespace CasaEngine
 		//find the yaw of the direction on the x/z plane
 		//and use the sign of the x-component since we have 360 degrees
 		//of freedom
-		m_fArcBallYaw = acosf(-dir.z) * Sign(dir.x);
+		//m_fArcBallYaw = ;
+		ArcBallYaw(acosf(-dir.z) * Sign(dir.x));
 
 		//Get the pitch from the angle formed by the Up vector and the 
 		//the forward direction, then subtracting Pi / 2, since 
 		//we pitch is zero at Forward, not Up.
-		m_fArcBallPitch = -(acosf(Vector3F::Dot(Vector3F::Up(), Direction())) - MATH_PI_DIV_2);
+		//m_fArcBallPitch = ;
+		ArcBallPitch(-(acosf(Vector3F::Dot(Vector3F::Up(), Direction())) - MATH_PI_DIV_2));
 	}
 
-	void ArcBallCameraController::Write(std::ostream& /*os*/) const
+	void ArcBallCameraComponent::Write(std::ostream& /*os*/) const
 	{
 
 	}
 
-	void ArcBallCameraController::Read(std::ifstream& /*is*/)
+	void ArcBallCameraComponent::Read(std::ifstream& /*is*/)
 	{
 
 	}

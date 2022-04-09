@@ -1,29 +1,24 @@
-#include "Camera3DTargetedController.h"
+#include "Camera3DTargetedComponent.h"
 
-
-#include "Entities/Components/Camera3DComponent.h"
+#include "Camera3DComponent.h"
+#include "Entities/ComponentTypeEnum.h"
 #include "Entities/Components/Transform2DComponent.h"
 #include "Entities/Components/Transform3DComponent.h"
 #include "Game/Game.h"
 
 namespace CasaEngine
 {
-	Camera3DTargetedController::Camera3DTargetedController(CameraComponent* pCamera) :
-		ICameraController(pCamera),
+	Camera3DTargetedComponent::Camera3DTargetedComponent(BaseEntity* entity) :
+		Camera3DComponent(entity, CAMERA_3D_TARGETED),
 		m_pTargetedEntity(nullptr)
 	{
 	}
 
-	void Camera3DTargetedController::Initialize()
-	{
-
-	}
-
-	void Camera3DTargetedController::Update(const GameTime& gameTime_)
+	void Camera3DTargetedComponent::Update(const GameTime& gameTime_)
 	{
 		if (m_pTargetedEntity != nullptr)
 		{
-			auto viewport = Camera()->GetViewport();
+			auto viewport = GetViewport();
 			const auto winSize = Game::Instance().GetWindowSize();
 			auto* const transform_3d_component = m_pTargetedEntity->GetComponentMgr()->GetComponent<Transform3DComponent>();
 			CA_ASSERT(transform_3d_component != nullptr, "cameracomponent : the target need to have a Transform3DComponent");
@@ -78,10 +73,10 @@ namespace CasaEngine
 		}
 	}
 
-	void Camera3DTargetedController::ViewMatrix(Matrix4& viewMatrix_)
+	void Camera3DTargetedComponent::ComputeViewMatrix()
 	{
-		viewMatrix_.CreateFromDirection(Vector3F::UnitZ(), Vector3F::UnitX(), -Vector3F::UnitY());
-		viewMatrix_.Identity();
+		m_ViewMatrix.CreateFromDirection(Vector3F::UnitZ(), Vector3F::UnitX(), -Vector3F::UnitY());
+		
 		/*const float d_yfov_tan = 0.267949192431123f;
 		auto& viewport = this->Camera()->GetViewport();
 		const float w = static_cast<float>(viewport.Width() * Game::Instance().GetWindowSize().x);
@@ -91,56 +86,44 @@ namespace CasaEngine
 		const float midy = h * 0.5f;
 		const float z = midx / (aspect * d_yfov_tan);*/
 
-		auto fov = dynamic_cast<Camera3DComponent*>(Camera())->FOV();
+		auto fov = FOV();
 		fov = ToDegree(fov);
 		const float z = (Game::Instance().GetWindowSize().x / 2.0f) / std::tan(fov / 2.0f);		
-		viewMatrix_.Translation(-m_Offset.x, -m_Offset.y, z);
+		//viewMatrix_.Translation(-m_Offset.x, -m_Offset.y, z);
 
+		m_ViewMatrix.Identity();
 		Vector3F pos(-m_Offset.x, -m_Offset.y, z);
 		Vector3F target(-m_Offset.x, -m_Offset.y, 0.0f);
-		Vector3F up = Vector3F::UnitY();
-		viewMatrix_ = Matrix4::CreateLookAt(pos, target, up);
+		Vector3F up = -Vector3F::UnitY();
+		m_ViewMatrix = Matrix4::CreateLookAt(pos, target, up);
 	}
 
-	void Camera3DTargetedController::ProjectionMatrix(Matrix4& projectionMatrix_)
-	{
-		const auto& viewport = this->Camera()->GetViewport();
-
-		const float ratio = viewport.Width() * Game::Instance().GetWindowSize().x / (viewport.Height() * Game::Instance().GetWindowSize().y);
-		//Camera()->GetViewDistance(),
-		projectionMatrix_ = Matrix4::CreatePerspectiveFieldOfView(
-			dynamic_cast<Camera3DComponent*>(Camera())->FOV(),
-			ratio,
-			viewport.NearClipPlane(),
-			viewport.FarClipPlane());
-	}
-
-	void Camera3DTargetedController::SetTargetedEntity(BaseEntity* pTargetedEntity)
+	void Camera3DTargetedComponent::SetTargetedEntity(BaseEntity* pTargetedEntity)
 	{
 		m_pTargetedEntity = pTargetedEntity;
 	}
 
-	void Camera3DTargetedController::SetDeadZoneRatio(Vector2F deadZoneRatio)
+	void Camera3DTargetedComponent::SetDeadZoneRatio(Vector2F deadZoneRatio)
 	{
 		m_DeadZoneRatio = deadZoneRatio;
 	}
 
-	Vector2I Camera3DTargetedController::GetOffset() const
+	Vector2I Camera3DTargetedComponent::GetOffset() const
 	{
 		return m_Offset;
 	}
 
-	inline void Camera3DTargetedController::SetOffset(Vector2I offset)
+	inline void Camera3DTargetedComponent::SetOffset(Vector2I offset)
 	{
 		m_Offset = offset;
 	}
 
-	RectangleI Camera3DTargetedController::GetLimits() const
+	RectangleI Camera3DTargetedComponent::GetLimits() const
 	{
 		return m_Limits;
 	}
 
-	void Camera3DTargetedController::SetLimits(const RectangleI& limits)
+	void Camera3DTargetedComponent::SetLimits(const RectangleI& limits)
 	{
 		m_Limits = limits;
 	}

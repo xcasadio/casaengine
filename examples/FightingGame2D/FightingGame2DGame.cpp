@@ -11,8 +11,6 @@
 #include "Assets/AssetManager.h"
 
 #include "Entities/Components/AnimatedSpriteComponent.h"
-#include "Entities/Components/CameraControllers/ArcBallCameraController.h"
-#include "Entities/Components/CameraControllers/Camera2DController.h"
 #include "Entities/Components/GridComponent.h"
 #include "Entities/Components/StaticSpriteComponent.h"
 #include "Entities/Components/Transform3DComponent.h"
@@ -28,9 +26,8 @@
 #include "Sprite/SpriteTypes.h"
 #include <IO/File.h>
 #include "../../external/dear-imgui/imgui.h"
-#include "Entities/Components/Camera2DComponent.h"
 #include "Entities/Components/ScriptComponent.h"
-#include "Entities/Components/CameraControllers/Camera2DTargetedController.h"
+#include "Entities/Components/Cameras/Camera2DTargetedComponent.h"
 #include "Stages/Stage.h"
 
 using namespace CasaEngine;
@@ -134,13 +131,11 @@ void FightingGame2DGame::LoadContent()
 	//Camera 2D
 	auto* pCamera = new BaseEntity();
 	pCamera->SetName("camera 2D");
-	auto* m_pCamera2D = new Camera2DComponent(pCamera);
-	auto* camera_controller = new Camera2DTargetedController(m_pCamera2D);
-	m_pCamera2D->CameraController(camera_controller);
+	auto* m_pCamera2D = new Camera2DTargetedComponent(pCamera);
 	pCamera->GetComponentMgr()->AddComponent(m_pCamera2D);
-	camera_controller->SetDeadZoneRatio(Vector2F(0.7f, 0.7f));
-	camera_controller->SetTargetedEntity(pPlayer1);
-	camera_controller->SetLimits(RectangleI(0, 0, 1500, 800));
+	m_pCamera2D->SetDeadZoneRatio(Vector2F(0.7f, 0.7f));
+	m_pCamera2D->SetTargetedEntity(pPlayer1);
+	m_pCamera2D->SetLimits(RectangleI(0, 0, 1500, 800));
 	m_pWorld->AddEntity(pCamera);
 	GetGameInfo().SetActiveCamera(m_pCamera2D);
 

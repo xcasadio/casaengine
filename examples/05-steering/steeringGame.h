@@ -3,11 +3,11 @@
 
 #include "Entities/BaseEntity.h"
 #include "Entities/Components/AnimatedSpriteComponent.h"
-#include "Entities/Components/Camera3DComponent.h"
 #include "Game/Game.h"
 #include "Game/Line3DRendererComponent.h"
 #include "Game/MeshRendererGameComponent.h"
 #include "GameTime.h"
+#include "Entities/Components/Cameras/ArcBallCameraComponent.h"
 #include "World/World.h"
 #include "Graphics/Effects/Program.h"
 
@@ -39,7 +39,7 @@ private:
 	Line3DRendererComponent* m_pLine3DRenderer;
 
 	std::vector<BaseEntity*> m_Entities;
-	Camera3DComponent* m_pCamera3D;
+	ArcBallCameraComponent* m_pCamera3D;
 	World* m_pWorld;
 
 	Program* m_pProgram;

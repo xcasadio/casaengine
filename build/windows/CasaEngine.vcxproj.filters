@@ -109,7 +109,7 @@
     <Filter Include="Framework\Entities\Components">
       <UniqueIdentifier>{5972c208-8603-421f-8f9b-98c17ff36473}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Framework\Entities\Components\CameraControllers">
+    <Filter Include="Framework\Entities\Components\Cameras">
       <UniqueIdentifier>{11302b0b-57ec-47df-a6f3-be80a0379944}</UniqueIdentifier>
     </Filter>
     <Filter Include="Framework\Entities\Components\Physics">
@@ -588,14 +588,8 @@
     <ClInclude Include="..\..\src\Framework\Assets\AssetManager.h">
       <Filter>Framework\Assets</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Entities\Components\CameraControllers\ArcBallCameraController.h">
-      <Filter>Framework\Entities\Components\CameraControllers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Entities\Components\CameraControllers\Camera2DController.h">
-      <Filter>Framework\Entities\Components\CameraControllers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Entities\Components\CameraControllers\CameraController.h">
-      <Filter>Framework\Entities\Components\CameraControllers</Filter>
+    <ClInclude Include="..\..\src\Framework\Entities\Components\Cameras\ArcBallCameraComponent.h">
+      <Filter>Framework\Entities\Components\Cameras</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Framework\Entities\Components\Physics\Box2DColliderComponent.h">
       <Filter>Framework\Entities\Components\Physics</Filter>
@@ -619,12 +613,6 @@
       <Filter>Framework\Entities\Components\Physics</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Framework\Entities\Components\AnimatedSpriteComponent.h">
-      <Filter>Framework\Entities\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Entities\Components\Camera2DComponent.h">
-      <Filter>Framework\Entities\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Entities\Components\Camera3DComponent.h">
       <Filter>Framework\Entities\Components</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Framework\Entities\Components\CameraComponent.h">
@@ -792,8 +780,8 @@
     <ClInclude Include="..\..\src\Framework\UI\imguiAdapter.h">
       <Filter>Framework\UI</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Entities\Components\CameraControllers\Camera2DTargetedController.h">
-      <Filter>Framework\Entities\Components\CameraControllers</Filter>
+    <ClInclude Include="..\..\src\Framework\Entities\Components\Cameras\Camera2DTargetedComponent.h">
+      <Filter>Framework\Entities\Components\Cameras</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Framework\Map2D\TiledMapLayer.h">
       <Filter>Framework\Map2D</Filter>
@@ -843,8 +831,8 @@
     <ClInclude Include="..\..\src\Framework\Entities\Components\DebugComponent.h">
       <Filter>Framework\Entities\Components</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Entities\Components\CameraControllers\Camera3DTargetedController.h">
-      <Filter>Framework\Entities\Components\CameraControllers</Filter>
+    <ClInclude Include="..\..\src\Framework\Entities\Components\Cameras\Camera3DTargetedComponent.h">
+      <Filter>Framework\Entities\Components\Cameras</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Framework\UI\imgui\droidsans.ttf.h">
       <Filter>Framework\UI\imgui</Filter>
@@ -926,6 +914,15 @@
     </ClInclude>
     <ClInclude Include="..\..\external\dear-imgui\widgets\range_slider.h">
       <Filter>3rdparty\dear-imgui\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Framework\Entities\Components\Cameras\Camera2DComponent.h">
+      <Filter>Framework\Entities\Components\Cameras</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Framework\Entities\Components\Cameras\Camera3DComponent.h">
+      <Filter>Framework\Entities\Components\Cameras</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Framework\Entities\Components\Cameras\Camera3DLookAtComponent.h">
+      <Filter>Framework\Entities\Components\Cameras</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1145,14 +1142,8 @@
     <ClCompile Include="..\..\src\Framework\Assets\AssetManager.cpp">
       <Filter>Framework\Assets</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Framework\Entities\Components\CameraControllers\ArcBallCameraController.cpp">
-      <Filter>Framework\Entities\Components\CameraControllers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Framework\Entities\Components\CameraControllers\Camera2DController.cpp">
-      <Filter>Framework\Entities\Components\CameraControllers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Framework\Entities\Components\CameraControllers\CameraController.cpp">
-      <Filter>Framework\Entities\Components\CameraControllers</Filter>
+    <ClCompile Include="..\..\src\Framework\Entities\Components\Cameras\ArcBallCameraComponent.cpp">
+      <Filter>Framework\Entities\Components\Cameras</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Framework\Entities\Components\Physics\Box2DColliderComponent.cpp">
       <Filter>Framework\Entities\Components\Physics</Filter>
@@ -1176,12 +1167,6 @@
       <Filter>Framework\Entities\Components\Physics</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Framework\Entities\Components\AnimatedSpriteComponent.cpp">
-      <Filter>Framework\Entities\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Framework\Entities\Components\Camera2DComponent.cpp">
-      <Filter>Framework\Entities\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Framework\Entities\Components\Camera3DComponent.cpp">
       <Filter>Framework\Entities\Components</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Framework\Entities\Components\CameraComponent.cpp">
@@ -1343,8 +1328,8 @@
     <ClCompile Include="..\..\src\Framework\UI\imguiAdapter.cpp">
       <Filter>Framework\UI</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Framework\Entities\Components\CameraControllers\Camera2DTargetedController.cpp">
-      <Filter>Framework\Entities\Components\CameraControllers</Filter>
+    <ClCompile Include="..\..\src\Framework\Entities\Components\Cameras\Camera2DTargetedComponent.cpp">
+      <Filter>Framework\Entities\Components\Cameras</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Framework\Map2D\TiledMapLayer.cpp">
       <Filter>Framework\Map2D</Filter>
@@ -1385,8 +1370,8 @@
     <ClCompile Include="..\..\src\Framework\Entities\Components\DebugComponent.cpp">
       <Filter>Framework\Entities\Components</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Framework\Entities\Components\CameraControllers\Camera3DTargetedController.cpp">
-      <Filter>Framework\Entities\Components\CameraControllers</Filter>
+    <ClCompile Include="..\..\src\Framework\Entities\Components\Cameras\Camera3DTargetedComponent.cpp">
+      <Filter>Framework\Entities\Components\Cameras</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Framework\UI\imgui\bgfx-imgui.cpp">
       <Filter>Framework\UI\imgui</Filter>
@@ -1409,8 +1394,14 @@
     <ClCompile Include="..\..\src\Core\Maths\Plane.cpp">
       <Filter>Core\Maths</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Framework\Entities\Components\CameraControllers\Camera3DController.cpp">
-      <Filter>Framework\Entities\Components\CameraControllers</Filter>
+    <ClCompile Include="..\..\src\Framework\Entities\Components\Cameras\Camera2DComponent.cpp">
+      <Filter>Framework\Entities\Components\Cameras</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Framework\Entities\Components\Cameras\Camera3DComponent.cpp">
+      <Filter>Framework\Entities\Components\Cameras</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Framework\Entities\Components\Cameras\Camera3DLookAtComponent.cpp">
+      <Filter>Framework\Entities\Components\Cameras</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

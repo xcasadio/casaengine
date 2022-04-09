@@ -8,9 +8,10 @@
 #include <map>
 #include "World/World.h"
 
-#include "Entities/Components/Camera3DComponent.h"
-#include "Entities/Components/Camera2DComponent.h"
+#include "Entities/Components/Cameras/Camera2DComponent.h"
 #include "Entities/Components/Transform3DComponent.h"
+#include "Entities/Components/Cameras/ArcBallCameraComponent.h"
+#include "Entities/Components/Cameras/Camera3DLookAtComponent.h"
 #include "Tools/DebugSystem.h"
 #include "Game/Line2DRendererComponent.h"
 #include "Game/Line3DRendererComponent.h"
@@ -55,8 +56,7 @@ private:
 	Line3DRendererComponent* m_pLine3DRenderer;
 
 	BaseEntity* m_pEntity; //, *m_pCamera;
-	Camera3DComponent* m_pCamera3D;
-	Camera2DComponent* m_pCamera2D;
+	ArcBallCameraComponent* m_pCamera3D;
 	BaseEntity* m_pModelEntity;
 	Transform3DComponent* m_pTrans3D;
 	World* m_pWorld;

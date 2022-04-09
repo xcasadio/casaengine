@@ -13,9 +13,7 @@
 #include "Assets/AssetManager.h"
 
 #include "Entities/Components/AnimatedSpriteComponent.h"
-#include "Entities/Components/Camera3DComponent.h"
-#include "Entities/Components/CameraControllers/ArcBallCameraController.h"
-#include "Entities/Components/CameraControllers/Camera2DController.h"
+#include "Entities/Components/Cameras/ArcBallCameraComponent.h"
 #include "Entities/Components/GridComponent.h"
 #include "Entities/Components/MeshComponent.h"
 #include "Entities/Components/ScriptComponent.h"
@@ -37,8 +35,8 @@
 
 #include "load_save_types.h"
 #include "Entities/Components/DebugComponent.h"
-#include "Entities/Components/CameraControllers/Camera2DTargetedController.h"
-#include "Entities/Components/CameraControllers/Camera3DTargetedController.h"
+#include "Entities/Components/Cameras/Camera2DTargetedComponent.h"
+#include "Entities/Components/Cameras/Camera3DTargetedComponent.h"
 #include "Entities/Components/Physics/Box2DColliderComponent.h"
 #include "Entities/Components/Physics/Circle2DColliderComponent.h"
 
@@ -395,29 +393,25 @@ void RPGGame::CreateSwordman(World* pWorld)
 	//Camera 2D
 	auto* pCamera = new BaseEntity();
 	pCamera->SetName("camera 2D");
-	auto* m_pCamera2D = new Camera3DComponent(pCamera);
-	//auto* custom_camera_controller = new Camera3DTargetedController(m_pCamera2D);
-	auto* custom_camera_controller = new Camera2DTargetedController(m_pCamera2D);
-	m_pCamera2D->CameraController(custom_camera_controller);
+	auto* m_pCamera2D = new Camera2DTargetedComponent(pCamera);
+	//auto* custom_camera_controller = new Camera3DTargetedComponent(m_pCamera2D);
 	pCamera->GetComponentMgr()->AddComponent(m_pCamera2D);
-	custom_camera_controller->SetDeadZoneRatio(Vector2F(0.7f, 0.7f));
-	custom_camera_controller->SetTargetedEntity(pPlayerEntity);
-	custom_camera_controller->SetLimits(RectangleI(0, 0, 1500, 800));
+	m_pCamera2D->SetDeadZoneRatio(Vector2F(0.7f, 0.7f));
+	m_pCamera2D->SetTargetedEntity(pPlayerEntity);
+	m_pCamera2D->SetLimits(RectangleI(0, 0, 1500, 800));
 	pWorld->AddEntity(pCamera);
 	GetGameInfo().SetActiveCamera(m_pCamera2D);
 
 	//Camera 3D
 	pCamera = new BaseEntity();
-	m_pCamera3D = new Camera3DComponent(pCamera);
-	auto* pArcBall = new ArcBallCameraController(m_pCamera3D);
-	pArcBall->SetCamera(Vector3F(0, 0.0f, -50.0f), Vector3F::Zero(), -Vector3F::Up());
-	pArcBall->Distance(70.0f);
-	pArcBall->InputDistanceRate(4.0f);
-	pArcBall->InputDisplacementRate(30.0f);
-	m_pCamera3D->CameraController(pArcBall);
+	m_pCamera3D = new ArcBallCameraComponent(pCamera);
+	m_pCamera3D->SetCamera(Vector3F(0, 0.0f, -50.0f), Vector3F::Zero(), -Vector3F::Up());
+	m_pCamera3D->Distance(70.0f);
+	m_pCamera3D->InputDistanceRate(4.0f);
+	m_pCamera3D->InputDisplacementRate(30.0f);
 	pCamera->GetComponentMgr()->AddComponent(m_pCamera3D);
 	pCamera->Initialize();
 	m_pWorld->AddEntity(pCamera);
 
-	GetGameInfo().SetActiveCamera(m_pCamera3D);
+	//GetGameInfo().SetActiveCamera(m_pCamera3D);
 }

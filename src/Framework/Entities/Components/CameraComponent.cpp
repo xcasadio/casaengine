@@ -4,21 +4,17 @@
 #include "CameraComponent.h"
 
 #include "Game/Game.h"
-#include "Maths/Matrix4.h"
 #include "Transform2DComponent.h"
 
-#include "Entities/Components/CameraControllers/CameraController.h"
 #include "EventHandler/GlobalEventSet.h"
 #include "EventHandler/Event.h"
-
 
 namespace CasaEngine
 {
 	CameraComponent::CameraComponent(BaseEntity* pEntity_, int type_)
 		: Component(pEntity_, type_),
 		m_needToComputeProjectionMatrix(true),
-		m_needToComputeViewMatrix(true),
-		m_pCameraController(nullptr)
+		m_needToComputeViewMatrix(true)
 	{
 		//registerEventFunc(this, &CameraComponent::OnWindowResized);
 		m_WindowResizedConnection = Game::Instance().GetGlobalEventSet().subscribeEvent(
@@ -36,63 +32,32 @@ namespace CasaEngine
 	CameraComponent::~CameraComponent()
 	{
 		m_WindowResizedConnection->disconnect();
-		delete m_pCameraController;
-	}
-
-	void CameraComponent::Initialize()
-	{
-		if (m_pCameraController != nullptr)
-		{
-			m_pCameraController->Initialize();
-		}
-	}
-
-	void CameraComponent::Update(const GameTime& gameTime_)
-	{
-		if (m_pCameraController != nullptr)
-		{
-			m_pCameraController->Update(gameTime_);
-		}
-	}
-
-	Matrix4 CameraComponent::GetProjectionMatrix()
-	{
-		if (m_pCameraController != nullptr)
-		{
-			m_pCameraController->ProjectionMatrix(m_ProjectionMatrix);
-		}
-		else
-		{
-			ComputeProjectionMatrix();
-		}
-		
-		return m_ProjectionMatrix;
 	}
 
 	Matrix4 CameraComponent::GetViewMatrix()
 	{
-		if (m_pCameraController != nullptr)
-		{
-			m_pCameraController->ViewMatrix(m_ViewMatrix);
-		}
-		else
+		if (m_needToComputeViewMatrix)
 		{
 			ComputeViewMatrix();
+			m_needToComputeViewMatrix = false;
 		}
 
 		return m_ViewMatrix;
 	}
 
-	ICameraController* CameraComponent::CameraController() const
+	Matrix4 CameraComponent::GetProjectionMatrix()
 	{
-		return m_pCameraController;
+		if (m_needToComputeProjectionMatrix)
+		{
+			ComputeProjectionMatrix();
+			m_needToComputeProjectionMatrix = false;
+		}
+
+		return m_ProjectionMatrix;
 	}
 
-	void CameraComponent::CameraController(ICameraController* val)
+	void CameraComponent::Update(const GameTime& gameTime_)
 	{
-		m_pCameraController = val;
-		m_needToComputeProjectionMatrix = true;
-		m_needToComputeViewMatrix = true;
 	}
 
 	bool CameraComponent::OnWindowResized(const EventArgs& e_)

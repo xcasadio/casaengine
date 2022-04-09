@@ -7,8 +7,8 @@
 #include "Game/Line2DRendererComponent.h"
 #include "Game/Line3DRendererComponent.h"
 #include "World/World.h"
-#include "Entities/Components/Camera3DComponent.h"
 #include "Entities/Components/AnimatedSpriteComponent.h"
+#include "Entities/Components/Cameras/ArcBallCameraComponent.h"
 #include "Game/MeshRendererGameComponent.h"
 
 using namespace CasaEngine;
@@ -42,6 +42,6 @@ private:
 
 	BaseEntity* m_pEntity;
 	AnimatedSpriteComponent* m_pAnimatedSprite;
-	Camera3DComponent* m_pCamera3D;
+	ArcBallCameraComponent* m_pCamera3D;
 	World* m_pWorld;
 };

@@ -1,23 +1,22 @@
-#ifndef _ARCBALLCAMERACONTROLLER_H_
-#define _ARCBALLCAMERACONTROLLER_H_
+#pragma once
 
 #include "CA_Export.h"
 #include "GameTime.h"
-#include "CameraController.h"
 #include <iosfwd>
+
+#include "Camera3DComponent.h"
 #include "Maths/Quaternion.h"
 #include "Maths/Vector3.h"
-#include "Maths/Matrix4.h"
 
 namespace CasaEngine
 {
-	class CA_EXPORT ArcBallCameraController :
-		public ICameraController
+	class CA_EXPORT ArcBallCameraComponent :
+		public Camera3DComponent
 	{
 	public:
-		ArcBallCameraController(CameraComponent* pCamera);
+		ArcBallCameraComponent(BaseEntity* pEntity_);
 
-		void Initialize();
+		void Initialize() override;
 		void  Update(const GameTime& gameTime_) override;
 
 		Vector3F Direction() const;
@@ -26,8 +25,7 @@ namespace CasaEngine
 		Vector3F Position() const;
 		void Position(Vector3F val);
 
-		void ViewMatrix(Matrix4& viewMatrix_) override;
-		void ProjectionMatrix(Matrix4& projectionMatrix_) override;
+		void ComputeViewMatrix() override;
 
 		Vector3F Target() const;
 		void Target(Vector3F val);
@@ -49,8 +47,6 @@ namespace CasaEngine
 		void RotateTargetRight(float angle_);
 		void SetCamera(Vector3F position, Vector3F target, Vector3F up);
 
-		void ReInit();
-
 		float ArcBallPitch() const;
 		void ArcBallPitch(float val);
 		float ArcBallYaw() const;
@@ -70,26 +66,13 @@ namespace CasaEngine
 			float horizontalOrbit_, float verticalOrbit_, float rollOrbit_, float zoom_);
 
 	private:
-		/// <summary>
-		/// The location of the look-at target
-		/// </summary>
 		Vector3F m_Target;
-		
-		/// <summary>
-		/// The distance between the camera and the target
-		/// </summary>
 		float m_fDistance{};
-		
-		/// <summary>
-		/// The orientation of the camera relative to the target
-		/// </summary>
+
 		Quaternion m_ArcBallOrientation;
 
-		bool m_bRecomputeViewMatrix;
 		float m_fInputDistanceRate;		
 		float m_fInputTurnRate, m_fInputDisplacementRate;
 		float m_fArcBallYaw{}, m_fArcBallPitch{};
 	};
 }
-
-#endif

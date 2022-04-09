@@ -5,8 +5,6 @@
 #include <bgfx/defines.h>
 
 #include "Entities/Components/AnimatedSpriteComponent.h"
-#include "Entities/Components/Camera3DComponent.h"
-#include "Entities/Components/CameraControllers/ArcBallCameraController.h"
 #include "Entities/Components/MeshComponent.h"
 #include "Entities/Components/Physics/RigidBodyComponent.h"
 #include "Entities/Components/Transform3DComponent.h"
@@ -24,6 +22,7 @@
 
 #include "Entities/Components/MovingEntity2DComponent.h"
 #include "Entities/Components/SteeringBehaviorComponent.h"
+#include "Entities/Components/Cameras/ArcBallCameraComponent.h"
 
 using namespace CasaEngine;
 
@@ -121,11 +120,9 @@ void SteeringGame::CreateEntities()
 	//////////////////////////////////////////////////////////////////////////
 	// Camera 3D
 	BaseEntity* pCamera = new BaseEntity();
-	m_pCamera3D = new Camera3DComponent(pCamera);
-	ArcBallCameraController* pArcBall = new ArcBallCameraController(m_pCamera3D);
-	pArcBall->SetCamera(Vector3F(0, 20.0f, -50.0f), Vector3F::Zero(), Vector3F::Up());
-	pArcBall->Distance(15.0f);
-	m_pCamera3D->CameraController(pArcBall);
+	m_pCamera3D = new ArcBallCameraComponent(pCamera);
+	m_pCamera3D->SetCamera(Vector3F(0, 20.0f, -50.0f), Vector3F::Zero(), Vector3F::Up());
+	m_pCamera3D->Distance(15.0f);
 	pCamera->GetComponentMgr()->AddComponent(m_pCamera3D);
 	pCamera->Initialize();
 	m_pWorld->AddEntity(pCamera);

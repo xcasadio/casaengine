@@ -10,8 +10,6 @@
 #include "Assets/AssetManager.h"
 
 #include "Entities/Components/AnimatedSpriteComponent.h"
-#include "Entities/Components/CameraControllers/ArcBallCameraController.h"
-#include "Entities/Components/CameraControllers/Camera2DController.h"
 #include "Entities/Components/GridComponent.h"
 #include "Entities/Components/StaticSpriteComponent.h"
 #include "Entities/Components/Transform3DComponent.h"
@@ -27,8 +25,8 @@
 #include <IO/File.h>
 #include <save_load_types.h>
 #include "../../external/dear-imgui/imgui.h"
-#include "Entities/Components/Camera2DComponent.h"
-#include "Entities/Components/CameraControllers/Camera2DTargetedController.h"
+#include "Entities/Components/Cameras/Camera2DComponent.h"
+#include "Entities/Components/Cameras/Camera2DTargetedComponent.h"
 
 using namespace CasaEngine;
 
@@ -107,20 +105,18 @@ void Animation2DPlayerGame::LoadContent()
 	//Camera 2D
 	auto* pCamera = new BaseEntity();
 	pCamera->SetName("camera 2D");
-	auto* m_pCamera2D = new Camera2DComponent(pCamera);
-	auto* camera_controller = new Camera2DTargetedController(m_pCamera2D);
-	m_pCamera2D->CameraController(camera_controller);
+	auto* m_pCamera2D = new Camera2DTargetedComponent(pCamera);
 	pCamera->GetComponentMgr()->AddComponent(m_pCamera2D);
-	camera_controller->SetDeadZoneRatio(Vector2F(0.7f, 0.7f));
-	camera_controller->SetTargetedEntity(pEntity);
-	camera_controller->SetLimits(RectangleI(0, 0, 1500, 800));
+	m_pCamera2D->SetDeadZoneRatio(Vector2F(0.7f, 0.7f));
+	m_pCamera2D->SetTargetedEntity(pEntity);
+	m_pCamera2D->SetLimits(RectangleI(0, 0, 1500, 800));
 	m_pWorld->AddEntity(pCamera);
 	GetGameInfo().SetActiveCamera(m_pCamera2D);
 
 	//Camera 3D
 	/*BaseEntity* pCamera = new BaseEntity();
 	Camera3DComponent* m_pCamera3D = new Camera3DComponent(pCamera);
-	ArcBallCameraController* pArcBall = new ArcBallCameraController(m_pCamera3D);
+	ArcBallCameraComponent* pArcBall = new ArcBallCameraComponent(m_pCamera3D);
 	//TODO : why we need to have -Up in order to have the sprite oriented well
 	pArcBall->SetCamera(Vector3F(0, 0.0f, -10.0f), Vector3F::Zero(), -Vector3F::Up());
 	pArcBall->Distance(15.0f);

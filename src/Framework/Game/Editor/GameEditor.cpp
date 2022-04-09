@@ -3,8 +3,8 @@
 #include "Game/Game.h"
 
 #include "Entities/BaseEntity.h"
-#include "Entities/Components/Camera3DComponent.h"
-#include "Entities/Components/CameraControllers/ArcBallCameraController.h"
+#include "Entities/Components/Cameras/Camera3DComponent.h"
+#include "Entities/Components/Cameras/ArcBallCameraComponent.h"
 #include "World/World.h"
 #include "Game/GameInfo.h"
 #include "Maths/Vector3.h"
@@ -61,11 +61,9 @@ namespace CasaEngine
 
 		//Camera 3D
 		BaseEntity *pCamera = new BaseEntity();
-		Camera3DComponent *m_pCamera3D = new Camera3DComponent(pCamera);
-		ArcBallCameraController *pArcBall = new ArcBallCameraController(m_pCamera3D);
-		pArcBall->SetCamera(Vector3F(0, 10.0f, -50.0f), Vector3F::Zero(), Vector3F::Up());
-		pArcBall->Distance(7.0f);
-		m_pCamera3D->CameraController(pArcBall);
+		ArcBallCameraComponent *m_pCamera3D = new ArcBallCameraComponent(pCamera);
+		m_pCamera3D->SetCamera(Vector3F(0, 10.0f, -50.0f), Vector3F::Zero(), Vector3F::Up());
+		m_pCamera3D->Distance(7.0f);
 		pCamera->GetComponentMgr()->AddComponent(m_pCamera3D);	
 		pCamera->Initialize();
 		Game::Instance().GetGameInfo().GetWorld()->AddEntity(pCamera);

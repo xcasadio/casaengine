@@ -1,27 +1,22 @@
-#include "Camera2DTargetedController.h"
+#include "Camera2DTargetedComponent.h"
 
-#include "Entities/Components/Transform2DComponent.h"
 #include "Entities/Components/Transform3DComponent.h"
+#include "Entities/ComponentTypeEnum.h"
 #include "Game/Game.h"
 
 namespace CasaEngine
 {
-	Camera2DTargetedController::Camera2DTargetedController(CameraComponent* pCamera) :
-		ICameraController(pCamera),
+	Camera2DTargetedComponent::Camera2DTargetedComponent(BaseEntity *entity) :
+		Camera2DComponent(entity, CAMERA_2D_TARGETED),
 		m_pTargetedEntity(nullptr)
 	{
 	}
 
-	void Camera2DTargetedController::Initialize()
-	{
-
-	}
-
-	void Camera2DTargetedController::Update(const GameTime& gameTime_)
+	void Camera2DTargetedComponent::Update(const GameTime& gameTime_)
 	{
 		if (m_pTargetedEntity != nullptr)
 		{
-			auto viewport = Camera()->GetViewport();
+			auto viewport = GetViewport();
 			const auto winSize = Game::Instance().GetWindowSize();
 			auto* const transform_3d_component = m_pTargetedEntity->GetComponentMgr()->GetComponent<Transform3DComponent>();
 			CA_ASSERT(transform_3d_component != nullptr, "cameracomponent : the target need to have a Transform3DComponent");
@@ -76,51 +71,37 @@ namespace CasaEngine
 		}
 	}
 
-	void Camera2DTargetedController::ViewMatrix(Matrix4& viewMatrix_)
+	void Camera2DTargetedComponent::ComputeViewMatrix()
 	{
-		viewMatrix_ = Matrix4::CreateTranslation(-m_Offset.x, -m_Offset.y, 0.0f);
+		m_ViewMatrix = Matrix4::CreateTranslation(-m_Offset.x, -m_Offset.y, 0.0f);
 	}
 
-	void Camera2DTargetedController::ProjectionMatrix(Matrix4& projectionMatrix_)
-	{
-		const auto& viewport = this->Camera()->GetViewport();
-		const auto& window_size = Game::Instance().GetWindowSize();
-
-		projectionMatrix_ = Matrix4::CreateOrthographicOffCenter(
-			viewport.X(),
-			viewport.Width() * window_size.x,
-			viewport.Height() * window_size.y,
-			viewport.Y(),
-			viewport.NearClipPlane(),
-			viewport.FarClipPlane());
-	}
-
-	void Camera2DTargetedController::SetTargetedEntity(BaseEntity* pTargetedEntity)
+	void Camera2DTargetedComponent::SetTargetedEntity(BaseEntity* pTargetedEntity)
 	{
 		m_pTargetedEntity = pTargetedEntity;
 	}
 
-	void Camera2DTargetedController::SetDeadZoneRatio(Vector2F deadZoneRatio)
+	void Camera2DTargetedComponent::SetDeadZoneRatio(Vector2F deadZoneRatio)
 	{
 		m_DeadZoneRatio = deadZoneRatio;
 	}
 
-	Vector2I Camera2DTargetedController::GetOffset() const
+	Vector2I Camera2DTargetedComponent::GetOffset() const
 	{
 		return m_Offset;
 	}
 
-	inline void Camera2DTargetedController::SetOffset(Vector2I offset)
+	void Camera2DTargetedComponent::SetOffset(Vector2I offset)
 	{
 		m_Offset = offset;
 	}
 
-	RectangleI Camera2DTargetedController::GetLimits() const
+	RectangleI Camera2DTargetedComponent::GetLimits() const
 	{
 		return m_Limits;
 	}
 
-	void Camera2DTargetedController::SetLimits(RectangleI limits)
+	void Camera2DTargetedComponent::SetLimits(RectangleI limits)
 	{
 		m_Limits = limits;
 	}

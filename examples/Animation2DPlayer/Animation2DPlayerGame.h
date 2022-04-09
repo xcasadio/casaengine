@@ -6,7 +6,6 @@
 
 #include "Sprite/SpriteRenderer.h"
 #include "World/World.h"
-#include "Entities/Components/Camera3DComponent.h"
 #include "Entities/Components/AnimatedSpriteComponent.h"
 
 using namespace CasaEngine;
@@ -40,7 +39,6 @@ private:
 
 	BaseEntity* m_pEntity;
 	AnimatedSpriteComponent* m_pAnimatedSprite;
-	Camera3DComponent* m_pCamera3D;
 	World* m_pWorld;
 
 	int m_AnimationIndexSelected, m_LastAnimationIndexSelected;

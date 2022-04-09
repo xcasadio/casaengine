@@ -1,17 +1,15 @@
 #include "TileMapGame.h"
 
 #include "bgfx\bgfx.h"
-#include "Entities\Components\CameraControllers\Camera2DTargetedController.h"
+#include "Entities\Components\Cameras\Camera2DTargetedComponent.h"
 
-#include "Entities\Components\Camera3DComponent.h"
-#include "Entities\Components\CameraControllers\ArcBallCameraController.h"
+#include "Entities\Components\Cameras\ArcBallCameraComponent.h"
 #include "Entities\Components\MeshComponent.h"
 #include "Entities\Components\Transform3DComponent.h"
 #include "GameTime.h"
 #include "Animations/SetFrameEvent.h"
 #include "Assets/Asset.h"
 #include "Assets/AssetManager.h"
-#include "Entities/Components/Camera2DComponent.h"
 #include "Entities/Components/StaticSpriteComponent.h"
 #include "Game\GameInfo.h"
 #include "Game\Line2DRendererComponent.h"
@@ -26,7 +24,7 @@
 #include "../../external/dear-imgui/imgui.h"
 
 Transform3DComponent* s_pTransform;
-Camera2DTargetedController* s_pCameraController;
+Camera2DTargetedComponent* s_pCameraController;
 
 
 TileMapGame::TileMapGame() :
@@ -199,16 +197,13 @@ void TileMapGame::LoadContent()
 	//Camera 2D
 	auto pCamera = new BaseEntity();
 	pCamera->SetName("camera 2D");
-	auto m_pCamera2D = new Camera2DComponent(pCamera);
-	auto custom_camera_controller = new Camera2DTargetedController(m_pCamera2D);
-	s_pCameraController = custom_camera_controller;
-	m_pCamera2D->CameraController(custom_camera_controller);
-	pCamera->GetComponentMgr()->AddComponent(m_pCamera2D);
-	custom_camera_controller->SetDeadZoneRatio(Vector2F(0.7f, 0.7f));
-	custom_camera_controller->SetTargetedEntity(pEntity);
-	custom_camera_controller->SetLimits(RectangleI(0, 0, 1500, 800));
+	s_pCameraController = new Camera2DTargetedComponent(pCamera);
+	pCamera->GetComponentMgr()->AddComponent(s_pCameraController);
+	s_pCameraController->SetDeadZoneRatio(Vector2F(0.7f, 0.7f));
+	s_pCameraController->SetTargetedEntity(pEntity);
+	s_pCameraController->SetLimits(RectangleI(0, 0, 1500, 800));
 	p_world->AddEntity(pCamera);
-	GetGameInfo().SetActiveCamera(m_pCamera2D);
+	GetGameInfo().SetActiveCamera(s_pCameraController);
 
 	CreateBackground(p_world);
 

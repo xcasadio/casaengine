@@ -1,10 +1,7 @@
-#ifndef CAMERA2DCOMPONENT_H_
-#define CAMERA2DCOMPONENT_H_
+#pragma once
 
 #include "CA_Export.h"
 #include "Entities/Components/CameraComponent.h"
-#include "Transform2DComponent.h"
-
 
 namespace CasaEngine
 {
@@ -13,18 +10,12 @@ namespace CasaEngine
 	{
 	public:
 		Camera2DComponent(BaseEntity* pEntity_);
-
 		void Initialize() override;
 
 	protected:
+		Camera2DComponent(BaseEntity* pEntity_, int type);
+
 		void ComputeProjectionMatrix() override;
 		void ComputeViewMatrix() override;
-	private:
-		Transform2DComponent* m_pTransform;
-		Vector2F m_Position;
-		float m_Zoom;
 	};
-
 }
-
-#endif

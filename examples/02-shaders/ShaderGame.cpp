@@ -1,9 +1,7 @@
 #include "ShaderGame.h"
 #include "MD2Loader.h"
 
-#include "Entities/Components/Camera3DComponent.h"
-#include "Entities/Components/CameraControllers/ArcBallCameraController.h"
-#include "Entities/Components/CameraControllers/Camera2DController.h"
+#include "Entities/Components/Cameras/ArcBallCameraComponent.h"
 #include "Entities/Components/GridComponent.h"
 #include "Entities/Components/MeshComponent.h"
 #include "Game/GameInfo.h"
@@ -134,11 +132,9 @@ void ShaderGame::LoadContent()
 
 	//Camera 3D
 	BaseEntity* pCamera = new BaseEntity();
-	m_pCamera3D = new Camera3DComponent(pCamera);
-	ArcBallCameraController* pArcBall = new ArcBallCameraController(m_pCamera3D);
-	pArcBall->SetCamera(Vector3F(0, 25.0f, -80.0f), Vector3F(0.0f, 1.9f, 0.0f), Vector3F::Up());
-	pArcBall->Distance(7.0f);
-	m_pCamera3D->CameraController(pArcBall);
+	m_pCamera3D = new ArcBallCameraComponent(pCamera);
+	m_pCamera3D->SetCamera(Vector3F(0, 25.0f, -80.0f), Vector3F(0.0f, 1.9f, 0.0f), Vector3F::Up());
+	m_pCamera3D->Distance(7.0f);
 	pCamera->GetComponentMgr()->AddComponent(m_pCamera3D);
 
 	m_pWorld->AddEntity(pCamera);

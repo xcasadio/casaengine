@@ -1,8 +1,7 @@
 #include "CubeGame.h"
 #include "bgfx\bgfx.h"
 
-#include "Entities\Components\Camera3DComponent.h"
-#include "Entities\Components\CameraControllers\ArcBallCameraController.h"
+#include "Entities\Components\Cameras\ArcBallCameraComponent.h"
 #include "Entities\Components\MeshComponent.h"
 #include "Entities\Components\Transform3DComponent.h"
 #include "Game\GameInfo.h"
@@ -54,11 +53,9 @@ void CubeGame::LoadContent()
 
 	//Camera 3D
 	BaseEntity* pCamera = new BaseEntity();
-	Camera3DComponent* m_pCamera3D = new Camera3DComponent(pCamera);
-	ArcBallCameraController* pArcBall = new ArcBallCameraController(m_pCamera3D);
-	pArcBall->SetCamera(Vector3F(0, 20.0f, -50.0f), Vector3F::Zero(), Vector3F::Up());
-	pArcBall->Distance(15.0f);
-	m_pCamera3D->CameraController(pArcBall);
+	ArcBallCameraComponent* m_pCamera3D = new ArcBallCameraComponent(pCamera);
+	m_pCamera3D->SetCamera(Vector3F(0, 20.0f, -50.0f), Vector3F::Zero(), Vector3F::Up());
+	m_pCamera3D->Distance(15.0f);
 	pCamera->GetComponentMgr()->AddComponent(m_pCamera3D);
 	m_pWorld->AddEntity(pCamera);
 	Game::Instance().GetGameInfo().SetActiveCamera(m_pCamera3D);

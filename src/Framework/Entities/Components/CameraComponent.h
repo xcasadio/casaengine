@@ -1,5 +1,4 @@
-#ifndef CAMERACOMPONENT_H_
-#define CAMERACOMPONENT_H_
+#pragma once
 
 #include "CA_Export.h"
 #include "GameTime.h"
@@ -19,11 +18,7 @@ namespace CasaEngine
 		Matrix4 GetViewMatrix();
 		Matrix4 GetProjectionMatrix();
 
-		void Initialize() override;
 		void Update(const GameTime& gameTime_) override;
-
-		ICameraController * CameraController() const;
-		void CameraController(ICameraController * val);
 
 		bool OnWindowResized(const EventArgs& e_);
 
@@ -46,7 +41,6 @@ namespace CasaEngine
 		bool m_needToComputeViewMatrix;
 
 	private:
-		ICameraController *m_pCameraController;
 		Event::Connection m_WindowResizedConnection;
 
 #if EDITOR
@@ -56,7 +50,3 @@ namespace CasaEngine
 	};
 
 }
-
-#endif
-
-
