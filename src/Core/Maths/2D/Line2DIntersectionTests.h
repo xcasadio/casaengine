@@ -22,8 +22,8 @@ namespace CasaEngine
 	//  returns true if an intersection occurs.
 	//-----------------------------------------------------------------------------
 	template <class ContWall>
-	bool doWallsObstructLineSegment(Vector2F from,
-		Vector2F to,
+	bool doWallsObstructLineSegment(Vector2 from,
+		Vector2 to,
 		const ContWall& walls)
 	{
 		//test against the walls
@@ -49,19 +49,19 @@ namespace CasaEngine
 	//  entity objects)
 	//-----------------------------------------------------------------------------
 	template <class ContWall>
-	bool doWallsObstructCylinderSides(Vector2F        A,
-		Vector2F        B,
+	bool doWallsObstructCylinderSides(Vector2        A,
+		Vector2        B,
 		float           BoundingRadius,
 		const ContWall& walls)
 	{
 		//the line segments that make up the sides of the cylinder must be created
-		Vector2F toB = B - A;
+		Vector2 toB = B - A;
 		toB.Normalize();
 
 		//A1B1 will be one side of the cylinder, A2B2 the other.
-		Vector2F A1, B1, A2, B2;
+		Vector2 A1, B1, A2, B2;
 
-		Vector2F radialEdge = toB.GetOrthogonal() * BoundingRadius;
+		Vector2 radialEdge = toB.GetOrthogonal() * BoundingRadius;
 
 		//create the two sides of the cylinder
 		A1 = A + radialEdge;
@@ -89,10 +89,10 @@ namespace CasaEngine
 	//-----------------------------------------------------------------------------
 
 	template <class ContWall>
-	bool FindClosestPointOfIntersectionWithWalls(Vector2F        A,
-		Vector2F        B,
+	bool FindClosestPointOfIntersectionWithWalls(Vector2        A,
+		Vector2        B,
 		float& distance,
-		Vector2F& ip,
+		Vector2& ip,
 		const ContWall& walls)
 	{
 		distance = MaxFloat;
@@ -101,7 +101,7 @@ namespace CasaEngine
 		for (curWall; curWall != walls.cend(); ++curWall)
 		{
 			float dist = 0.0;
-			Vector2F point;
+			Vector2 point;
 
 			if (LineIntersection2D(A, B, (*curWall)->From(), (*curWall)->To(), dist, point))
 			{
@@ -123,7 +123,7 @@ namespace CasaEngine
 	//  returns true if any walls intersect the circle of radius at point p
 	//-----------------------------------------------------------------------------
 	template <class ContWall>
-	bool doWallsIntersectCircle(const ContWall& walls, Vector2F p, float r)
+	bool doWallsIntersectCircle(const ContWall& walls, Vector2 p, float r)
 	{
 		//test against the walls
 		typename ContWall::const_iterator curWall = walls.cbegin();

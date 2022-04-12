@@ -94,9 +94,9 @@ void PhysicalEntity::AddSpritePhysics(Sprite *pSprite_)
 
 		//TODO : compute the position of the shape with the offset of the sprite
 		Transform3DComponent *pTrans = m_pEntity->GetComponentMgr()->GetComponent<Transform3DComponent>();
-		Vector3F pos = pTrans->GetLocalPosition();
-		Vector2F origin(static_cast<float>(pSprite_->GetSpriteData()->GetOrigin().x) / 100.0f, static_cast<float>(pSprite_->GetSpriteData()->GetOrigin().y) / 100.0f);
-		Vector3F posWithOrigin(pos.x - origin.x, pos.y + origin.y, pos.z); 
+		Vector3 pos = pTrans->GetLocalPosition();
+		Vector2 origin(static_cast<float>(pSprite_->GetSpriteData()->GetOrigin().x) / 100.0f, static_cast<float>(pSprite_->GetSpriteData()->GetOrigin().y) / 100.0f);
+		Vector3 posWithOrigin(pos.x - origin.x, pos.y + origin.y, pos.z); 
 
 		std::vector<IShape *>::iterator itShape;
 		for (auto coll : pSprite_->GetSpriteData()->GetCollisions())
@@ -154,14 +154,14 @@ void PhysicalEntity::SetRigidBody(IRigidBodyContainer *val_)
 }
 
 
-Vector3F  PhysicalEntity::Velocity()const{return m_vVelocity;}
-void      PhysicalEntity::SetVelocity(const Vector3F& NewVel){m_vVelocity = NewVel;}
+Vector3  PhysicalEntity::Velocity()const{return m_vVelocity;}
+void      PhysicalEntity::SetVelocity(const Vector3& NewVel){m_vVelocity = NewVel;}
 
 float     PhysicalEntity::Mass()const{return m_fMass;}
 void      PhysicalEntity::Mass(float mass_){m_fMass = mass_;}
 
-Vector3F  PhysicalEntity::Side()const{return m_vSide;}
-void      PhysicalEntity::Side(Vector3F side_){m_vSide = side_;}
+Vector3  PhysicalEntity::Side()const{return m_vSide;}
+void      PhysicalEntity::Side(Vector3 side_){m_vSide = side_;}
 
 float     PhysicalEntity::MaxSpeed()const{return m_fMaxSpeed;}
 void      PhysicalEntity::SetMaxSpeed(float new_speed){m_fMaxSpeed = new_speed;}
@@ -173,7 +173,7 @@ bool      PhysicalEntity::IsSpeedMaxedOut()const{return m_fMaxSpeed*m_fMaxSpeed 
 float     PhysicalEntity::Speed() const{return m_vVelocity.Length();}
 float     PhysicalEntity::SpeedSq() const{return m_vVelocity.LengthSquared();}
 
-Vector3F  PhysicalEntity::Heading() const{return m_vHeading;}
+Vector3  PhysicalEntity::Heading() const{return m_vHeading;}
 
 float     PhysicalEntity::MaxTurnRate() const{return m_fMaxTurnRate;}
 void      PhysicalEntity::SetMaxTurnRate(float val){m_fMaxTurnRate = val;}
@@ -187,9 +187,9 @@ void      PhysicalEntity::SetMaxTurnRate(float val){m_fMaxTurnRate = val;}
 //
 //  returns true when the heading is facing in the desired direction
 //-----------------------------------------------------------------------------
-inline bool PhysicalEntity::RotateHeadingToFacePosition(Vector3F target)
+inline bool PhysicalEntity::RotateHeadingToFacePosition(Vector3 target)
 {
-// 	Vector3F toTarget = target - m_pTransform->GetPosition();
+// 	Vector3 toTarget = target - m_pTransform->GetPosition();
 // 	toTarget.Normalize();
 // 
 // 	//first determine the angle between the heading vector and the target
@@ -224,7 +224,7 @@ inline bool PhysicalEntity::RotateHeadingToFacePosition(Vector3F target)
 //  new heading is valid this fumction sets the entity's heading and side 
 //  vectors accordingly
 //-----------------------------------------------------------------------------
-inline void PhysicalEntity::SetHeading(Vector3F new_heading)
+inline void PhysicalEntity::SetHeading(Vector3 new_heading)
 {
 	CA_ASSERT((new_heading.LengthSquared() - 1.0) < 0.00001, "PhysicalEntity::SetHeading() : don't use Vector::Zero");
 

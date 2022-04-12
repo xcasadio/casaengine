@@ -90,9 +90,9 @@ void Animation2DPlayerGame::LoadContent()
 	auto* pEntity = new BaseEntity();
 	m_pEntity = pEntity;
 	auto* pTransform = new Transform3DComponent(pEntity);
-	pTransform->SetLocalPosition(Vector3F(520, 400, 1.0f));
+	pTransform->SetLocalPosition(Vector3(520, 400, 1.0f));
 	const auto scale = 1.0f;
-	pTransform->SetLocalScale(Vector3F(scale, scale));
+	pTransform->SetLocalScale(Vector3(scale, scale, 0.0f));
 	pEntity->GetComponentMgr()->AddComponent(pTransform);
 
 	m_pAnimatedSprite = new AnimatedSpriteComponent(pEntity);
@@ -107,7 +107,7 @@ void Animation2DPlayerGame::LoadContent()
 	pCamera->SetName("camera 2D");
 	auto* m_pCamera2D = new Camera2DTargetedComponent(pCamera);
 	pCamera->GetComponentMgr()->AddComponent(m_pCamera2D);
-	m_pCamera2D->SetDeadZoneRatio(Vector2F(0.7f, 0.7f));
+	m_pCamera2D->SetDeadZoneRatio(Vector2(0.7f, 0.7f));
 	m_pCamera2D->SetTargetedEntity(pEntity);
 	m_pCamera2D->SetLimits(RectangleI(0, 0, 1500, 800));
 	m_pWorld->AddEntity(pCamera);
@@ -118,7 +118,7 @@ void Animation2DPlayerGame::LoadContent()
 	Camera3DComponent* m_pCamera3D = new Camera3DComponent(pCamera);
 	ArcBallCameraComponent* pArcBall = new ArcBallCameraComponent(m_pCamera3D);
 	//TODO : why we need to have -Up in order to have the sprite oriented well
-	pArcBall->SetCamera(Vector3F(0, 0.0f, -10.0f), Vector3F::Zero(), -Vector3F::Up());
+	pArcBall->SetCamera(Vector3(0, 0.0f, -10.0f), Vector3::Zero(), -Vector3::Up());
 	pArcBall->Distance(15.0f);
 	m_pCamera3D->CameraController(pArcBall);
 	pCamera->GetComponentMgr()->AddComponent(m_pCamera3D);
@@ -293,10 +293,10 @@ void Animation2DPlayerGame::DisplayCollisions()
 					const auto scaleY = transform->GetLocalScale().y;
 					auto rectScaled = RectangleI(rect->x * scaleX, rect->y * scaleY, rect->w * scaleX, rect->h * scaleY);
 
-					auto leftTop = Vector3F(rectScaled.Left(), rectScaled.Top()) + pos;
-					auto leftBottom = Vector3F(rectScaled.Left(), rectScaled.Bottom()) + pos;
-					auto rightTop = Vector3F(rectScaled.Right(), rectScaled.Top()) + pos;
-					auto rightBottom = Vector3F(rectScaled.Right(), rectScaled.Bottom()) + pos;
+					auto leftTop = Vector3(rectScaled.Left(), rectScaled.Top(), 0.0f) + pos;
+					auto leftBottom = Vector3(rectScaled.Left(), rectScaled.Bottom(), 0.0f) + pos;
+					auto rightTop = Vector3(rectScaled.Right(), rectScaled.Top(), 0.0f) + pos;
+					auto rightBottom = Vector3(rectScaled.Right(), rectScaled.Bottom(), 0.0f) + pos;
 
 					line3DRenderer->AddLine(leftTop, rightTop, color);
 					line3DRenderer->AddLine(leftBottom, rightBottom, color);
@@ -315,8 +315,8 @@ void Animation2DPlayerGame::DisplayPosition()
 	const auto color = CColor::Green;
 	const auto size = 500 / 2.0f;
 
-	line3DRenderer->AddLine(Vector3F(position.x + size, position.y), Vector3F(position.x - size, position.y), color);
-	line3DRenderer->AddLine(Vector3F(position.x, position.y + size), Vector3F(position.x, position.y - size), color);
+	line3DRenderer->AddLine(Vector3(position.x + size, position.y, 0.0f), Vector3(position.x - size, position.y, 0.0f), color);
+	line3DRenderer->AddLine(Vector3(position.x, position.y + size, 0.0f), Vector3(position.x, position.y - size, 0.0f), color);
 }
 
 void Animation2DPlayerGame::RenameAnimation(const char* old_name, const char* new_name)
@@ -420,16 +420,16 @@ void Animation2DPlayerGame::DisplayGrid()
 	for (auto i = 0; i <= halfNumberOfLines; i++)
 	{
 		const auto coord = cellWidth * i;
-		line3DRenderer->AddLine(Vector3F(-halfLength, -coord), Vector3F(halfLength, -coord), gridColor);
-		line3DRenderer->AddLine(Vector3F(-halfLength, coord), Vector3F(halfLength, coord), gridColor);
+		line3DRenderer->AddLine(Vector3(-halfLength, -coord, 0.0f), Vector3(halfLength, -coord, 0.0f), gridColor);
+		line3DRenderer->AddLine(Vector3(-halfLength, coord, 0.0f), Vector3(halfLength, coord, 0.0f), gridColor);
 
-		line3DRenderer->AddLine(Vector3F(-coord, -halfLength), Vector3F(-coord, halfLength), gridColor);
-		line3DRenderer->AddLine(Vector3F(coord, -halfLength), Vector3F(coord, halfLength), gridColor);
+		line3DRenderer->AddLine(Vector3(-coord, -halfLength, 0.0f), Vector3(-coord, halfLength, 0.0f), gridColor);
+		line3DRenderer->AddLine(Vector3(coord, -halfLength, 0.0f), Vector3(coord, halfLength, 0.0f), gridColor);
 	}
 	/*
-	line3DRenderer->AddLine(Vector3F::Zero(), CColor::Red, Vector3F::UnitX(), CColor::Red);
-	line3DRenderer->AddLine(Vector3F::Zero(), CColor::Green, Vector3F::UnitY(), CColor::Green);
-	line3DRenderer->AddLine(Vector3F::Zero(), CColor::Blue, Vector3F::UnitZ(), CColor::Blue);
+	line3DRenderer->AddLine(Vector3::Zero(), CColor::Red, Vector3::UnitX(), CColor::Red);
+	line3DRenderer->AddLine(Vector3::Zero(), CColor::Green, Vector3::UnitY(), CColor::Green);
+	line3DRenderer->AddLine(Vector3::Zero(), CColor::Blue, Vector3::UnitZ(), CColor::Blue);
 	*/
 }
 

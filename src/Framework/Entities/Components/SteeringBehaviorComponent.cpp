@@ -63,7 +63,7 @@ void SteeringBehaviorComponent::Initialize()
 void SteeringBehaviorComponent::Update(const GameTime& gameTime_)
 {
 	Calculate(gameTime_.FrameTime());
-	m_pTranform->SetLocalPosition(Vector3F(m_Position2D.x, m_pTranform->GetPosition().y, m_Position2D.y));
+	m_pTranform->SetLocalPosition(Vector3(m_Position2D.x, m_pTranform->GetPosition().y, m_Position2D.y));
 }
 
 /**
@@ -98,7 +98,7 @@ void SteeringBehaviorComponent::Read (std::ifstream& /*is*/)
 //  calculates the accumulated steering force according to the method set
 //  in m_SummingMethod
 //------------------------------------------------------------------------
-Vector2F SteeringBehaviorComponent::Calculate(float elapsedTime_)
+Vector2 SteeringBehaviorComponent::Calculate(float elapsedTime_)
 { 
 	//reset the steering force
 	m_vSteeringForce.Set(0.0f, 0.0f);
@@ -138,7 +138,7 @@ Vector2F SteeringBehaviorComponent::Calculate(float elapsedTime_)
 		break;
 
 	default:
-		m_vSteeringForce = Vector2F(0,0);
+		m_vSteeringForce = Vector2(0,0);
 	}//end switch
 
   return m_vSteeringForce;
@@ -150,8 +150,8 @@ Vector2F SteeringBehaviorComponent::Calculate(float elapsedTime_)
 //------------------------------------------------------------------------
 float SteeringBehaviorComponent::ForwardComponent()
 {
-	Vector3F tmp = this->GetEntity()->GetPhysicalEntity().Heading();
-	Vector2F heading(tmp.x, tmp.z);
+	Vector3 tmp = this->GetEntity()->GetPhysicalEntity().Heading();
+	Vector2 heading(tmp.x, tmp.z);
 	return heading.Dot(m_vSteeringForce);
 }
 
@@ -160,8 +160,8 @@ float SteeringBehaviorComponent::ForwardComponent()
 //------------------------------------------------------------------------
 float SteeringBehaviorComponent::SideComponent()
 {
-	Vector3F tmp = this->GetEntity()->GetPhysicalEntity().Side();
-	Vector2F side(tmp.x, tmp.z);
+	Vector3 tmp = this->GetEntity()->GetPhysicalEntity().Side();
+	Vector2 side(tmp.x, tmp.z);
 	return side.Dot(m_vSteeringForce);
 }
 
@@ -172,7 +172,7 @@ float SteeringBehaviorComponent::SideComponent()
 //  BaseEntity has left to apply and then applies that amount of the
 //  force to add.
 //------------------------------------------------------------------------
-bool SteeringBehaviorComponent::AccumulateForce(Vector2F &RunningTot, Vector2F ForceToAdd)
+bool SteeringBehaviorComponent::AccumulateForce(Vector2 &RunningTot, Vector2 ForceToAdd)
 {
 	//calculate how much steering force the BaseEntity has used so far
 	float MagnitudeSoFar = RunningTot.Length();
@@ -211,9 +211,9 @@ bool SteeringBehaviorComponent::AccumulateForce(Vector2F &RunningTot, Vector2F F
 //  is reached, at which time the function returns the steering force 
 //  accumulated to that  point
 //------------------------------------------------------------------------
-Vector2F SteeringBehaviorComponent::CalculatePrioritized(float elapsedTime_)
+Vector2 SteeringBehaviorComponent::CalculatePrioritized(float elapsedTime_)
 {       
-	Vector2F force;
+	Vector2 force;
   
 // 	if (On(wall_avoidance))
 // 	{
@@ -346,7 +346,7 @@ Vector2F SteeringBehaviorComponent::CalculatePrioritized(float elapsedTime_)
 //  truncates the result to the max available steering force before 
 //  returning
 //------------------------------------------------------------------------
-Vector2F SteeringBehaviorComponent::CalculateWeightedSum(float elapsedTime_)
+Vector2 SteeringBehaviorComponent::CalculateWeightedSum(float elapsedTime_)
 {        
 //   if (On(wall_avoidance))
 //   {
@@ -478,7 +478,7 @@ Vector2F SteeringBehaviorComponent::CalculateWeightedSum(float elapsedTime_)
 //  NOTE: Not all of the behaviors have been implemented in this method,
 //        just a few, so you get the general idea
 //------------------------------------------------------------------------
-Vector2F SteeringBehaviorComponent::CalculateDithered(float elapsedTime_)
+Vector2 SteeringBehaviorComponent::CalculateDithered(float elapsedTime_)
 {  
 //   //reset the steering force
 //    m_vSteeringForce.Set(0.0f, 0.0f);
@@ -675,37 +675,37 @@ Vector2F SteeringBehaviorComponent::CalculateDithered(float elapsedTime_)
 //  Given a target, this behavior returns a steering force which will
 //  direct the agent towards the target
 //------------------------------------------------------------------------
-Vector2F SteeringBehaviorComponent::Seek(Vector2F TargetPos)
+Vector2 SteeringBehaviorComponent::Seek(Vector2 TargetPos)
 {
-//   Vector2F DesiredVelocity = TargetPos - m_Position2D;
+//   Vector2 DesiredVelocity = TargetPos - m_Position2D;
 //   DesiredVelocity.Normalize();
 //   DesiredVelocity *= this->GetEntity()->GetPhysicalEntity().MaxSpeed();
 // 
 //   return (DesiredVelocity - this->GetEntity()->GetPhysicalEntity().Velocity());
-	return Vector2F::Zero();
+	return Vector2::Zero();
 }
 
 //----------------------------- Flee -------------------------------------
 //
 //  Does the opposite of Seek
 //------------------------------------------------------------------------
-Vector2F SteeringBehaviorComponent::Flee(Vector2F TargetPos)
+Vector2 SteeringBehaviorComponent::Flee(Vector2 TargetPos)
 {
 //   //only flee if the target is within 'panic distance'. Work in distance
 //   //squared space.
 //  /* const float PanicDistanceSq = 100.0f * 100.0;
 //   if (Vec2DDistanceSq(m_Position2D, target) > PanicDistanceSq)
 //   {
-//     return Vector2F(0,0);
+//     return Vector2(0,0);
 //   }
 //   */
 // 
-//   Vector2F DesiredVelocity = m_Position2D - TargetPos;
+//   Vector2 DesiredVelocity = m_Position2D - TargetPos;
 //   DesiredVelocity.Normalize();
 //   DesiredVelocity *= this->GetEntity()->GetPhysicalEntity().MaxSpeed();
 // 
 //   return (DesiredVelocity - this->GetEntity()->GetPhysicalEntity().Velocity());
-	return Vector2F::Zero();
+	return Vector2::Zero();
 }
 
 //--------------------------- Arrive -------------------------------------
@@ -713,10 +713,10 @@ Vector2F SteeringBehaviorComponent::Flee(Vector2F TargetPos)
 //  This behavior is similar to seek but it attempts to arrive at the
 //  target with a zero velocity
 //------------------------------------------------------------------------
-Vector2F SteeringBehaviorComponent::Arrive(Vector2F     TargetPos,
+Vector2 SteeringBehaviorComponent::Arrive(Vector2     TargetPos,
                                   Deceleration deceleration)
 {
-//   Vector2F ToTarget = TargetPos - m_Position2D;
+//   Vector2 ToTarget = TargetPos - m_Position2D;
 // 
 //   //calculate the distance to the target
 //   float dist = ToTarget.Length();
@@ -737,12 +737,12 @@ Vector2F SteeringBehaviorComponent::Arrive(Vector2F     TargetPos,
 //     //from here proceed just like Seek except we don't need to normalize 
 //     //the ToTarget vector because we have already gone to the trouble
 //     //of calculating its length: dist. 
-//     Vector2F DesiredVelocity =  ToTarget * speed / dist;
+//     Vector2 DesiredVelocity =  ToTarget * speed / dist;
 // 
 //     return (DesiredVelocity - this->GetEntity()->GetPhysicalEntity().Velocity());
 //   }
 
-  return Vector2F::Zero();
+  return Vector2::Zero();
 }
 
 //------------------------------ Pursuit ---------------------------------
@@ -750,14 +750,14 @@ Vector2F SteeringBehaviorComponent::Arrive(Vector2F     TargetPos,
 //  this behavior creates a force that steers the agent towards the 
 //  evader
 //------------------------------------------------------------------------
-CasaEngine::Vector2F SteeringBehaviorComponent::Pursuit( BaseEntity* evader )
+CasaEngine::Vector2 SteeringBehaviorComponent::Pursuit( BaseEntity* evader )
 {
 // 	Transform2DComponent *pEvaderTrans2D = evader->GetComponentMgr()->GetComponent<Transform2DComponent>();
 // 	PhysicComponent *pEvaderPhysic = evader->GetComponentMgr()->GetComponent<PhysicComponent>();
 // 
 //   //if the evader is ahead and facing the agent then we can just seek
 //   //for the evader's current position.
-//   Vector2F ToEvader = pEvaderTrans2D->GetPosition() - m_Position2D;
+//   Vector2 ToEvader = pEvaderTrans2D->GetPosition() - m_Position2D;
 // 
 //   float RelativeHeading = this->GetEntity()->GetPhysicalEntity().Heading().Dot(pEvaderPhysic->Heading());
 // 
@@ -778,7 +778,7 @@ CasaEngine::Vector2F SteeringBehaviorComponent::Pursuit( BaseEntity* evader )
 //   //now seek to the predicted future position of the evader
 //   return Seek(pEvaderTrans2D->GetPosition() + pEvaderPhysic->Velocity() * LookAheadTime);
 
-	return Vector2F::Zero();
+	return Vector2::Zero();
 }
 
 
@@ -787,19 +787,19 @@ CasaEngine::Vector2F SteeringBehaviorComponent::Pursuit( BaseEntity* evader )
 //  similar to pursuit except the agent Flees from the estimated future
 //  position of the pursuer
 //------------------------------------------------------------------------
-Vector2F SteeringBehaviorComponent::Evade( BaseEntity* pursuer )
+Vector2 SteeringBehaviorComponent::Evade( BaseEntity* pursuer )
 {
 // 	Transform2DComponent *pEvaderTrans2D = pursuer->GetComponentMgr()->GetComponent<Transform2DComponent>();
 // 	PhysicComponent *pEvaderPhysic = pursuer->GetComponentMgr()->GetComponent<PhysicComponent>();
 // 
 //   /* Not necessary to include the check for facing direction this time */
 // 
-//   Vector2F ToPursuer = pEvaderTrans2D->GetPosition() - m_Position2D;
+//   Vector2 ToPursuer = pEvaderTrans2D->GetPosition() - m_Position2D;
 // 
 //   //uncomment the following two lines to have Evade only consider pursuers 
 //   //within a 'threat range'
 //   const float ThreatRange = 100.0f;
-//   if (ToPursuer.LengthSquared() > ThreatRange * ThreatRange) return Vector2F();
+//   if (ToPursuer.LengthSquared() > ThreatRange * ThreatRange) return Vector2();
 //  
 //   //the lookahead time is propotional to the distance between the pursuer
 //   //and the pursuer; and is inversely proportional to the sum of the
@@ -810,7 +810,7 @@ Vector2F SteeringBehaviorComponent::Evade( BaseEntity* pursuer )
 //   //now flee away from predicted future position of the pursuer
 //   return Flee(pEvaderTrans2D->GetPosition() + pEvaderPhysic->Velocity() * LookAheadTime);
 
-	return Vector2F::Zero();
+	return Vector2::Zero();
 }
 
 
@@ -818,14 +818,14 @@ Vector2F SteeringBehaviorComponent::Evade( BaseEntity* pursuer )
 //
 //  This behavior makes the agent wander about randomly
 //------------------------------------------------------------------------
-Vector2F SteeringBehaviorComponent::Wander(float elapsedTime_)
+Vector2 SteeringBehaviorComponent::Wander(float elapsedTime_)
 { 
 //   //this behavior is dependent on the update rate, so this line must
 //   //be included when using time independent framerate.
 //   float JitterThisTimeSlice = m_fWanderJitter * elapsedTime_;
 // 
 //   //first, add a small random vector to the target's position
-//   m_vWanderTarget += Vector2F(RandomClamped() * JitterThisTimeSlice,
+//   m_vWanderTarget += Vector2(RandomClamped() * JitterThisTimeSlice,
 //                               RandomClamped() * JitterThisTimeSlice);
 // 
 //   //reproject this new vector back on to a unit circle
@@ -836,17 +836,17 @@ Vector2F SteeringBehaviorComponent::Wander(float elapsedTime_)
 //   m_vWanderTarget *= m_fWanderRadius;
 // 
 //   //move the target into a position WanderDist in front of the agent
-//   Vector2F target = m_vWanderTarget + Vector2F(m_fWanderDistance, 0);
+//   Vector2 target = m_vWanderTarget + Vector2(m_fWanderDistance, 0);
 // 
 //   //project the target into world space
-//   Vector2F res = Transformation::PointToWorldSpace(target,
+//   Vector2 res = Transformation::PointToWorldSpace(target,
 //                                        this->GetEntity()->GetPhysicalEntity().Heading(),
 //                                        this->GetEntity()->GetPhysicalEntity().Side(), 
 //                                        m_Position2D );
 // 
 //   //and steer towards it
 //   return res - m_Position2D; 
-	return Vector2F::Zero();
+	return Vector2::Zero();
 }
 
 
@@ -855,7 +855,7 @@ Vector2F SteeringBehaviorComponent::Wander(float elapsedTime_)
 //  Given a vector of CObstacles, this method returns a steering force
 //  that will prevent the agent colliding with the closest obstacle
 //------------------------------------------------------------------------
-Vector2F SteeringBehaviorComponent::ObstacleAvoidance(const std::vector<BaseEntity*>& obstacles)
+Vector2 SteeringBehaviorComponent::ObstacleAvoidance(const std::vector<BaseEntity*>& obstacles)
 {
 //   //the detection box length is proportional to the agent's velocity
 //   m_fDBoxLength = DBoxLength() + 
@@ -876,7 +876,7 @@ Vector2F SteeringBehaviorComponent::ObstacleAvoidance(const std::vector<BaseEnti
 // 	  Transform2DComponent *pTrans = (*curEntity)->GetComponentMgr()->GetComponent<Transform2DComponent>();
 // 	  PhysicComponent *pPhysic = (*curEntity)->GetComponentMgr()->GetComponent<PhysicComponent>();
 // 
-// 	  Vector2F to = pTrans->GetPosition() - m_Position2D;
+// 	  Vector2 to = pTrans->GetPosition() - m_Position2D;
 // 
 // 	  //the bounding radius of the other is taken into account by adding it 
 // 	  //to the range
@@ -897,7 +897,7 @@ Vector2F SteeringBehaviorComponent::ObstacleAvoidance(const std::vector<BaseEnti
 //   float DistToClosestIP = MaxFloat;
 // 
 //   //this will record the transformed local coordinates of the CIB
-//   Vector2F LocalPosOfClosestObstacle;
+//   Vector2 LocalPosOfClosestObstacle;
 // 
 //   std::vector<BaseEntity*>::const_iterator curOb = obstaclesWithinViewRange.begin();
 // 
@@ -909,12 +909,12 @@ Vector2F SteeringBehaviorComponent::ObstacleAvoidance(const std::vector<BaseEnti
 // 		Transform2DComponent *pCurObTrans2D = (*curOb)->GetComponentMgr()->GetComponent<Transform2DComponent>();
 // 
 // 		//calculate this obstacle's position in local space
-// 		Vector2F obPos = pCurObTrans2D->GetPosition();
-// 		Vector2F heading = this->GetEntity()->GetPhysicalEntity().Heading();
-// 		Vector2F side = this->GetEntity()->GetPhysicalEntity().Side();
-// 		Vector2F pos = m_Position2D;
+// 		Vector2 obPos = pCurObTrans2D->GetPosition();
+// 		Vector2 heading = this->GetEntity()->GetPhysicalEntity().Heading();
+// 		Vector2 side = this->GetEntity()->GetPhysicalEntity().Side();
+// 		Vector2 pos = m_Position2D;
 // 
-//       Vector2F LocalPos = Transformation::PointToLocalSpace(obPos, heading, side, pos);
+//       Vector2 LocalPos = Transformation::PointToLocalSpace(obPos, heading, side, pos);
 // 
 //       //if the local position has a negative x value then it must lay
 //       //behind the agent. (in which case it can be ignored)
@@ -966,7 +966,7 @@ Vector2F SteeringBehaviorComponent::ObstacleAvoidance(const std::vector<BaseEnti
 // 
 //   //if we have found an intersecting obstacle, calculate a steering 
 //   //force away from it
-//   Vector2F SteeringForce;
+//   Vector2 SteeringForce;
 // 
 //   if (ClosestIntersectingObstacle)
 //   {
@@ -995,7 +995,7 @@ Vector2F SteeringBehaviorComponent::ObstacleAvoidance(const std::vector<BaseEnti
 //                             this->GetEntity()->GetPhysicalEntity().Heading(),
 //                             this->GetEntity()->GetPhysicalEntity().Side());
 
-	return Vector2F::Zero();
+	return Vector2::Zero();
 }
 
 
@@ -1004,7 +1004,7 @@ Vector2F SteeringBehaviorComponent::ObstacleAvoidance(const std::vector<BaseEnti
 //  This returns a steering force that will keep the agent away from any
 //  walls it may encounter
 //------------------------------------------------------------------------
-Vector2F SteeringBehaviorComponent::WallAvoidance(const std::vector<Line2D>& walls)
+Vector2 SteeringBehaviorComponent::WallAvoidance(const std::vector<Line2D>& walls)
 {
   //the feelers are contained in a std::vector, m_Feelers
   CreateFeelers();
@@ -1015,13 +1015,13 @@ Vector2F SteeringBehaviorComponent::WallAvoidance(const std::vector<Line2D>& wal
   //this will hold an index into the vector of walls
   int ClosestWall = -1;
 
-  Vector2F SteeringForce,
+  Vector2 SteeringForce,
             point,         //used for storing temporary info
             ClosestPoint;  //holds the closest intersection point
 
 
 
-  Vector2F pos = GetEntity()->GetComponentMgr()->GetComponent<Transform2DComponent>()->GetPosition();
+  Vector2 pos = GetEntity()->GetComponentMgr()->GetComponent<Transform2DComponent>()->GetPosition();
 
   //examine each feeler in turn
   for (unsigned int flr=0; flr<m_Feelers.size(); ++flr)
@@ -1055,7 +1055,7 @@ Vector2F SteeringBehaviorComponent::WallAvoidance(const std::vector<Line2D>& wal
     {
       //calculate by what distance the projected position of the agent
       //will overshoot the wall
-      Vector2F OverShoot = m_Feelers[flr] - ClosestPoint;
+      Vector2 OverShoot = m_Feelers[flr] - ClosestPoint;
 
       //create a force in the direction of the wall normal, with a 
       //magnitude of the overshoot
@@ -1073,20 +1073,20 @@ Vector2F SteeringBehaviorComponent::WallAvoidance(const std::vector<Line2D>& wal
 //------------------------------------------------------------------------
 void SteeringBehaviorComponent::CreateFeelers()
 {
-// 	Vector2F pos = GetEntity()->GetComponentMgr()->GetComponent<Transform2DComponent>()->GetPosition();
-// 	Vector2F heading = GetEntity()->GetComponentMgr()->GetComponent<PhysicComponent>()->Heading();
+// 	Vector2 pos = GetEntity()->GetComponentMgr()->GetComponent<Transform2DComponent>()->GetPosition();
+// 	Vector2 heading = GetEntity()->GetComponentMgr()->GetComponent<PhysicComponent>()->Heading();
 // 
 //   //feeler pointing straight in front
 //   m_Feelers[0] = pos + m_fWallDetectionFeelerLength * heading;
 // 
 //   //feeler to left
-//   Vector2F temp = heading;
-//   Transformation::Vec2DRotateAroundOrigin(temp, MATH_PI_DIV_2 * 3.5f);
+//   Vector2 temp = heading;
+//   Transformation::Vec2DRotateAroundOrigin(temp, PI_OVER_2 * 3.5f);
 //   m_Feelers[1] = pos + m_fWallDetectionFeelerLength / 2.0f * temp;
 // 
 //   //feeler to right
 //   temp = heading;
-//   Transformation::Vec2DRotateAroundOrigin(temp, MATH_PI_DIV_2 * 0.5f);
+//   Transformation::Vec2DRotateAroundOrigin(temp, PI_OVER_2 * 0.5f);
 //   m_Feelers[2] = pos + m_fWallDetectionFeelerLength / 2.0f * temp;
 }
 
@@ -1095,10 +1095,10 @@ void SteeringBehaviorComponent::CreateFeelers()
 //
 // this calculates a force repelling from the other neighbors
 //------------------------------------------------------------------------
-Vector2F SteeringBehaviorComponent::Separation(const std::vector<BaseEntity*>& /*neighbors*/)
+Vector2 SteeringBehaviorComponent::Separation(const std::vector<BaseEntity*>& /*neighbors*/)
 {  
-  Vector2F SteeringForce;
-  Vector2F pos = GetEntity()->GetComponentMgr()->GetComponent<Transform2DComponent>()->GetPosition();
+  Vector2 SteeringForce;
+  Vector2 pos = GetEntity()->GetComponentMgr()->GetComponent<Transform2DComponent>()->GetPosition();
 
   throw CException("SteeringBehaviorComponent::Separation() not implemented");
 
@@ -1111,7 +1111,7 @@ Vector2F SteeringBehaviorComponent::Separation(const std::vector<BaseEntity*>& /
     if((neighbors[a] != GetEntity()) && neighbors[a]->IsTagged() &&
       (neighbors[a] != m_pTargetAgent1))
     {
-      Vector2F ToAgent = pos - neighbors[a]->GetComponentMgr()->GetComponent<Transform2DComponent>()->GetPosition();
+      Vector2 ToAgent = pos - neighbors[a]->GetComponentMgr()->GetComponent<Transform2DComponent>()->GetPosition();
 	  float l = ToAgent.Length();
 	  ToAgent.Normalize();
 
@@ -1130,10 +1130,10 @@ Vector2F SteeringBehaviorComponent::Separation(const std::vector<BaseEntity*>& /
 //  returns a force that attempts to align this agents heading with that
 //  of its neighbors
 //------------------------------------------------------------------------
-Vector2F SteeringBehaviorComponent::Alignment(const std::vector<BaseEntity*>& /*neighbors*/)
+Vector2 SteeringBehaviorComponent::Alignment(const std::vector<BaseEntity*>& /*neighbors*/)
 {
   //used to record the average heading of the neighbors
-  Vector2F AverageHeading;
+  Vector2 AverageHeading;
 
   throw CException("SteeringBehaviorComponent::Alignment() not implemented");
 
@@ -1171,10 +1171,10 @@ Vector2F SteeringBehaviorComponent::Alignment(const std::vector<BaseEntity*>& /*
 //  returns a steering force that attempts to move the agent towards the
 //  center of mass of the agents in its immediate area
 //------------------------------------------------------------------------
-Vector2F SteeringBehaviorComponent::Cohesion(const std::vector<BaseEntity*>& /*neighbors*/)
+Vector2 SteeringBehaviorComponent::Cohesion(const std::vector<BaseEntity*>& /*neighbors*/)
 {
   //first find the center of mass of all the agents
-  Vector2F CenterOfMass, SteeringForce;
+  Vector2 CenterOfMass, SteeringForce;
 
   throw CException("SteeringBehaviorComponent::Cohesion() not implemented");
 
@@ -1224,10 +1224,10 @@ Vector2F SteeringBehaviorComponent::Cohesion(const std::vector<BaseEntity*>& /*n
 //
 //  USES SPACIAL PARTITIONING
 //------------------------------------------------------------------------
-Vector2F SteeringBehaviorComponent::SeparationPlus(const std::vector<BaseEntity*>& /*neighbors*/)
+Vector2 SteeringBehaviorComponent::SeparationPlus(const std::vector<BaseEntity*>& /*neighbors*/)
 {  
-   Vector2F SteeringForce;
-//   Vector2F pos = GetEntity()->GetComponentMgr()->GetComponent<Transform2DComponent>()->GetPosition();
+   Vector2 SteeringForce;
+//   Vector2 pos = GetEntity()->GetComponentMgr()->GetComponent<Transform2DComponent>()->GetPosition();
 // 
 //   //iterate through the neighbors and sum up all the position vectors
 //   for (BaseEntity* pV = Game::Instance().GetGameInfo().GetWorld()->GetCellSpcEntity()->begin();
@@ -1238,7 +1238,7 @@ Vector2F SteeringBehaviorComponent::SeparationPlus(const std::vector<BaseEntity*
 //     //the agent being examined is close enough
 //     if(pV != GetEntity())
 //     {
-//       Vector2F ToAgent = pos - pV->GetComponentMgr()->GetComponent<Transform2DComponent>()->GetPosition();
+//       Vector2 ToAgent = pos - pV->GetComponentMgr()->GetComponent<Transform2DComponent>()->GetPosition();
 // 	  float l = ToAgent.Length();
 // 	  ToAgent.Normalize();
 // 
@@ -1258,10 +1258,10 @@ Vector2F SteeringBehaviorComponent::SeparationPlus(const std::vector<BaseEntity*
 //
 //  USES SPACIAL PARTITIONING
 //------------------------------------------------------------------------
-Vector2F SteeringBehaviorComponent::AlignmentPlus(const std::vector<BaseEntity*>& /*neighbors*/)
+Vector2 SteeringBehaviorComponent::AlignmentPlus(const std::vector<BaseEntity*>& /*neighbors*/)
 {
 	//This will record the average heading of the neighbors
- 	Vector2F AverageHeading;
+ 	Vector2 AverageHeading;
 // 
 // 	//This count the number of vehicles in the neighborhood
 // 	float    NeighborCount = 0.0f;
@@ -1299,10 +1299,10 @@ Vector2F SteeringBehaviorComponent::AlignmentPlus(const std::vector<BaseEntity*>
 //
 //  USES SPACIAL PARTITIONING
 //------------------------------------------------------------------------
-Vector2F SteeringBehaviorComponent::CohesionPlus(const std::vector<BaseEntity*>& /*neighbors*/)
+Vector2 SteeringBehaviorComponent::CohesionPlus(const std::vector<BaseEntity*>& /*neighbors*/)
 {
    //first find the center of mass of all the agents
-   Vector2F CenterOfMass, SteeringForce;
+   Vector2 CenterOfMass, SteeringForce;
 //   //Transform2DComponent* pTrans = nullptr;
 // 
 //   int NeighborCount = 0;
@@ -1342,7 +1342,7 @@ Vector2F SteeringBehaviorComponent::CohesionPlus(const std::vector<BaseEntity*>&
 //  Given two agents, this method returns a force that attempts to 
 //  position the BaseEntity between them
 //------------------------------------------------------------------------
-CasaEngine::Vector2F SteeringBehaviorComponent::Interpose( BaseEntity* AgentA, BaseEntity* AgentB )
+CasaEngine::Vector2 SteeringBehaviorComponent::Interpose( BaseEntity* AgentA, BaseEntity* AgentB )
 {
 // 	Transform2DComponent* pATrans2D = AgentA->GetComponentMgr()->GetComponent<Transform2DComponent>();
 // 	//MovingEntity2DComponent* pAMoving = AgentA->GetComponentMgr()->GetComponent<MovingEntity2DComponent>();
@@ -1355,15 +1355,15 @@ CasaEngine::Vector2F SteeringBehaviorComponent::Interpose( BaseEntity* AgentA, B
 //   //first we need to figure out where the two agents are going to be at 
 //   //time T in the future. This is approximated by determining the time
 //   //taken to reach the mid way point at the current time at at max speed.
-//   Vector2F MidPoint = (pATrans2D->GetPosition() + pBTrans2D->GetPosition()) / 2.0f;
+//   Vector2 MidPoint = (pATrans2D->GetPosition() + pBTrans2D->GetPosition()) / 2.0f;
 // 
 //   float TimeToReachMidPoint = m_Position2D.DistanceSq(MidPoint) /
 //                                this->GetEntity()->GetPhysicalEntity().MaxSpeed();
 // 
 //   //now we have T, we assume that agent A and agent B will continue on a
 //   //straight trajectory and extrapolate to get their future positions
-//   Vector2F APos = pATrans2D->GetPosition() + pAPhysic->Velocity() * TimeToReachMidPoint;
-//   Vector2F BPos = pBTrans2D->GetPosition() + pBPhysic->Velocity() * TimeToReachMidPoint;
+//   Vector2 APos = pATrans2D->GetPosition() + pAPhysic->Velocity() * TimeToReachMidPoint;
+//   Vector2 BPos = pBTrans2D->GetPosition() + pBPhysic->Velocity() * TimeToReachMidPoint;
 // 
 //   //calculate the mid point of these predicted positions
 //   MidPoint = (APos + BPos) / 2.0f;
@@ -1371,17 +1371,17 @@ CasaEngine::Vector2F SteeringBehaviorComponent::Interpose( BaseEntity* AgentA, B
 //   //then steer to Arrive at it
 //   return Arrive(MidPoint, FAST);
 
-	return Vector2F::Zero();
+	return Vector2::Zero();
 }
 
 //--------------------------- Hide ---------------------------------------
 //
 //------------------------------------------------------------------------
-CasaEngine::Vector2F SteeringBehaviorComponent::Hide( BaseEntity* hunter, 
+CasaEngine::Vector2 SteeringBehaviorComponent::Hide( BaseEntity* hunter, 
 							const std::vector<BaseEntity*>& obstacles )
 {
 //   float    DistToClosest = MaxFloat;
-//   Vector2F BestHidingSpot;
+//   Vector2 BestHidingSpot;
 // 
 //   Transform2DComponent* pHunterTransform2D = hunter->GetComponentMgr()->GetComponent<Transform2DComponent>();
 //   //MovingEntity2DComponent* pHunterMoving = hunter->GetComponentMgr()->GetComponent<MovingEntity2DComponent>();
@@ -1396,7 +1396,7 @@ CasaEngine::Vector2F SteeringBehaviorComponent::Hide( BaseEntity* hunter,
 // 	  PhysicComponent* pObtPhysic = (*curOb)->GetComponentMgr()->GetComponent<PhysicComponent>();
 // 
 // 	//calculate the position of the hiding spot for this obstacle
-// 	Vector2F HidingSpot = GetHidingPosition(pObtTransform2D->GetPosition(),
+// 	Vector2 HidingSpot = GetHidingPosition(pObtTransform2D->GetPosition(),
 // 												pObtPhysic->GetRadius(),
 // 												pHunterTransform2D->GetPosition());
 //             
@@ -1426,7 +1426,7 @@ CasaEngine::Vector2F SteeringBehaviorComponent::Hide( BaseEntity* hunter,
 //   //else use Arrive on the hiding spot
 //   return Arrive(BestHidingSpot, FAST);
 
-	return Vector2F::Zero();
+	return Vector2::Zero();
 }
 
 //------------------------- GetHidingPosition ----------------------------
@@ -1435,9 +1435,9 @@ CasaEngine::Vector2F SteeringBehaviorComponent::Hide( BaseEntity* hunter,
 //  an obstacle, this method calculates a position DistanceFromBoundary 
 //  away from its bounding radius and directly opposite the hunter
 //------------------------------------------------------------------------
-Vector2F SteeringBehaviorComponent::GetHidingPosition(const Vector2F& posOb,
+Vector2 SteeringBehaviorComponent::GetHidingPosition(const Vector2& posOb,
                                               const float     radiusOb,
-                                              const Vector2F& posHunter)
+                                              const Vector2& posHunter)
 {
   //calculate how far away the agent is to be from the chosen obstacle's
   //bounding radius
@@ -1445,7 +1445,7 @@ Vector2F SteeringBehaviorComponent::GetHidingPosition(const Vector2F& posOb,
   float       DistAway    = radiusOb + DistanceFromBoundary;
 
   //calculate the heading toward the object from the hunter
-  Vector2F ToOb = posOb - posHunter;
+  Vector2 ToOb = posOb - posHunter;
   ToOb.Normalize();
 
   //scale it to size and add to the obstacles position to get
@@ -1461,7 +1461,7 @@ Vector2F SteeringBehaviorComponent::GetHidingPosition(const Vector2F& posOb,
 // 'Seek' behavior to move to the next waypoint - unless it is the last
 //  waypoint, in which case it 'Arrives'
 //------------------------------------------------------------------------
-Vector2F SteeringBehaviorComponent::FollowPath()
+Vector2 SteeringBehaviorComponent::FollowPath()
 { 
 	throw CNotImplementedException("SteeringBehaviorComponent::FollowPath() not implemented");
 
@@ -1482,7 +1482,7 @@ Vector2F SteeringBehaviorComponent::FollowPath()
   {
     return Arrive(m_pPath->CurrentWaypoint(), normal);
   }*/
-	return Vector2F();
+	return Vector2();
 }
 
 //------------------------- Offset Pursuit -------------------------------
@@ -1490,20 +1490,20 @@ Vector2F SteeringBehaviorComponent::FollowPath()
 //  Produces a steering force that keeps a BaseEntity at a specified offset
 //  from a leader BaseEntity
 //------------------------------------------------------------------------
-CasaEngine::Vector2F SteeringBehaviorComponent::OffsetPursuit(BaseEntity* leader, const Vector2F offset)
+CasaEngine::Vector2 SteeringBehaviorComponent::OffsetPursuit(BaseEntity* leader, const Vector2 offset)
 {
 	Transform3DComponent* pLeaderTransform2D = leader->GetComponentMgr()->GetComponent<Transform3DComponent>();
 	//MovingEntity2DComponent* pLeaderMoving = leader->GetComponentMgr()->GetComponent<MovingEntity2DComponent>();
 	PhysicalEntity &pLeaderPhysic = leader->GetPhysicalEntity();
 
 	//calculate the offset's position in world space
-	Vector3F WorldOffsetPos;
-// 	Vector2F WorldOffsetPos = Transformation::PointToWorldSpace(offset,
+	Vector3 WorldOffsetPos;
+// 	Vector2 WorldOffsetPos = Transformation::PointToWorldSpace(offset,
 // 													pLeaderPhysic.Heading(),
 // 													pLeaderPhysic.Side(),
 // 													pLeaderTransform2D->GetPosition());
 
-	Vector2F ToOffset = WorldOffsetPos - m_Position2D;
+	Vector2 ToOffset = WorldOffsetPos - m_Position2D;
 
 	//the lookahead time is proportional to the distance between the leader
 	//and the pursuer; and is inversely proportional to the sum of both
@@ -1513,7 +1513,7 @@ CasaEngine::Vector2F SteeringBehaviorComponent::OffsetPursuit(BaseEntity* leader
   
 	//now Arrive at the predicted future position of the offset
 	//return Arrive(WorldOffsetPos + pLeaderPhysic.Velocity() * LookAheadTime, FAST);
-	return Vector2F::Zero();
+	return Vector2::Zero();
 }
 
 //----------------------------- RenderAids -------------------------------
@@ -1542,7 +1542,7 @@ void SteeringBehaviorComponent::RenderAids( )
   if (Game::Instance().GetGameInfo().GetWorld()->RenderSteeringForce())
   {  
     gdi->RedPen();
-    Vector2F F = (m_vSteeringForce / Prm.SteeringForceTweaker) * Prm.VehicleScale ;
+    Vector2 F = (m_vSteeringForce / Prm.SteeringForceTweaker) * Prm.VehicleScale ;
     gdi->Line(m_Position2D, m_Position2D + F);
   }
 
@@ -1563,7 +1563,7 @@ void SteeringBehaviorComponent::RenderAids( )
 
     
     //calculate the center of the wander circle
-    Vector2F m_vTCC = PointToWorldSpace(Vector2F(m_fWanderDistance*GetEntity()->BRadius(), 0),
+    Vector2 m_vTCC = PointToWorldSpace(Vector2(m_fWanderDistance*GetEntity()->BRadius(), 0),
                                          GetEntity()->Heading(),
                                          GetEntity()->Side(),
                                          m_Position2D);
@@ -1574,7 +1574,7 @@ void SteeringBehaviorComponent::RenderAids( )
 
     //draw the wander target
     gdi->RedPen();
-    gdi->Circle(PointToWorldSpace((m_vWanderTarget + Vector2F(m_fWanderDistance,0))*GetEntity()->BRadius(),
+    gdi->Circle(PointToWorldSpace((m_vWanderTarget + Vector2(m_fWanderDistance,0))*GetEntity()->BRadius(),
                                   GetEntity()->Heading(),
                                   GetEntity()->Side(),
                                   m_Position2D), 3);                                  
@@ -1586,17 +1586,17 @@ void SteeringBehaviorComponent::RenderAids( )
     gdi->GreyPen();
 
     //a vertex buffer rqd for drawing the detection box
-    static std::vector<Vector2F> box(4);
+    static std::vector<Vector2> box(4);
 
     float length = Prm.MinDetectionBoxLength + 
                   (GetEntity()->Speed()/GetEntity()->MaxSpeed()) *
                   Prm.MinDetectionBoxLength;
 
     //verts for the detection box buffer
-    box[0] = Vector2F(0,GetEntity()->BRadius());
-    box[1] = Vector2F(length, GetEntity()->BRadius());
-    box[2] = Vector2F(length, -GetEntity()->BRadius());
-    box[3] = Vector2F(0, -GetEntity()->BRadius());
+    box[0] = Vector2(0,GetEntity()->BRadius());
+    box[1] = Vector2(length, GetEntity()->BRadius());
+    box[2] = Vector2(length, -GetEntity()->BRadius());
+    box[3] = Vector2(0, -GetEntity()->BRadius());
  
   
     if (!GetEntity()->isSmoothingOn())
@@ -1627,7 +1627,7 @@ void SteeringBehaviorComponent::RenderAids( )
   float DistToClosestIP = MaxDouble;
 
   //this will record the transformed local coordinates of the CIB
-  Vector2F LocalPosOfClosestObstacle;
+  Vector2 LocalPosOfClosestObstacle;
 
   std::vector<BaseEntity*>::const_iterator curOb = Game::Instance().GetGameInfo().GetWorld()->Obstacles().begin();
 
@@ -1637,7 +1637,7 @@ void SteeringBehaviorComponent::RenderAids( )
     if ((*curOb)->IsTagged())
     {
       //calculate this obstacle's position in local space
-      Vector2F LocalPos = PointToLocalSpace((*curOb)->Pos(),
+      Vector2 LocalPos = PointToLocalSpace((*curOb)->Pos(),
                                              GetEntity()->Heading(),
                                              GetEntity()->Side(),
                                              m_Position2D);

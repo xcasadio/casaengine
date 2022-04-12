@@ -22,7 +22,7 @@ EnemyStateIdle::~EnemyStateIdle()
  */
 void EnemyStateIdle::Enter(IController* pController_)
 {
-	pController_->GetCharacter()->Move(Vector2F::Zero());
+	pController_->GetCharacter()->Move(Vector2::Zero());
 	pController_->GetCharacter()->SetOrientation(orientation::RIGHT);
 	//set animation stand
 	/*orientation dir = (orientation)(1 << (rand() % 4));
@@ -101,25 +101,25 @@ void EnemyStateWalking::Execute(IController* pController_, const GameTime& elpas
 {
 	//arrive to the target
 	auto dir = pController_->GetCharacter()->GetOrientation();
-	Vector2F newDir;
+	Vector2 newDir;
 
 	switch (dir)
 	{
-	case UP: newDir = -Vector2F::UnitY();
+	case UP: newDir = -Vector2::UnitY();
 		break;
-	case DOWN: newDir = Vector2F::UnitY();
+	case DOWN: newDir = Vector2::UnitY();
 		break;
-	case LEFT: newDir = -Vector2F::UnitX();
+	case LEFT: newDir = -Vector2::UnitX();
 		break;
-	case RIGHT: newDir = Vector2F::UnitX();
+	case RIGHT: newDir = Vector2::UnitX();
 		break;
-		/*case UP_LEFT: newDir = -Vector2F::UnitY() - Vector2F::UnitX();
+		/*case UP_LEFT: newDir = -Vector2::UnitY() - Vector2::UnitX();
 			break;
-		case DOWN_LEFT: newDir = Vector2F::UnitY() - Vector2F::UnitX();
+		case DOWN_LEFT: newDir = Vector2::UnitY() - Vector2::UnitX();
 			break;
-		case UP_RIGHT: newDir = -Vector2F::UnitY() + Vector2F::UnitX();
+		case UP_RIGHT: newDir = -Vector2::UnitY() + Vector2::UnitX();
 			break;
-		case DOWN_RIGHT: newDir = Vector2F::UnitY() + Vector2F::UnitX();
+		case DOWN_RIGHT: newDir = Vector2::UnitY() + Vector2::UnitX();
 			break;*/
 	default:
 		break;

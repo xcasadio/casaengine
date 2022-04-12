@@ -62,7 +62,7 @@ namespace CasaEngine
 		//Camera 3D
 		BaseEntity *pCamera = new BaseEntity();
 		ArcBallCameraComponent *m_pCamera3D = new ArcBallCameraComponent(pCamera);
-		m_pCamera3D->SetCamera(Vector3F(0, 10.0f, -50.0f), Vector3F::Zero(), Vector3F::Up());
+		m_pCamera3D->SetCamera(Vector3(0, 10.0f, -50.0f), Vector3::Zero(), Vector3::Up());
 		m_pCamera3D->Distance(7.0f);
 		pCamera->GetComponentMgr()->AddComponent(m_pCamera3D);	
 		pCamera->Initialize();

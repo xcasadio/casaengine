@@ -17,7 +17,7 @@ void PlayerStateIdle::Enter(IController* pController_)
 {
 	auto* pPlayerController = dynamic_cast<PlayerController*>(pController_);
 
-	Vector2F joyDir = Vector2F::Zero();
+	Vector2 joyDir = Vector2::Zero();
 	pPlayerController->GetPlayer()->Move(joyDir);
 	pPlayerController->GetPlayer()->SetCurrentAnimationByName("idle");
 }
@@ -27,7 +27,7 @@ void PlayerStateIdle::Execute(IController* pController_, const GameTime& elpased
 	auto* pPlayerController = dynamic_cast<PlayerController*>(pController_);
 	//PlayerIndex playerIndex = c.PlayerIndex;
 
-	Vector2F joyDir;
+	Vector2 joyDir;
 
 	if (pPlayerController->IsAttackButtonPressed() == true)
 	{
@@ -48,7 +48,7 @@ void PlayerStateIdle::Execute(IController* pController_, const GameTime& elpased
 	}
 	else // used to immobilized the character
 	{
-		joyDir = Vector2F::Zero();
+		joyDir = Vector2::Zero();
 		pPlayerController->GetPlayer()->Move(joyDir);
 		pPlayerController->GetPlayer()->SetCurrentAnimationByName("idle");
 	}
@@ -78,7 +78,7 @@ void PlayerStateWalking::Enter(IController* pController_)
 {
 	auto* pPlayerController = dynamic_cast<PlayerController*>(pController_);
 
-	Vector2F joyDir;
+	Vector2 joyDir;
 	pPlayerController->GetDirectionFromInput(joyDir);
 
 	if (joyDir.x != 0.0f || joyDir.y != 0.0f)
@@ -95,7 +95,7 @@ void PlayerStateWalking::Enter(IController* pController_)
 void PlayerStateWalking::Execute(IController* pController_, const GameTime& elpasedTime_)
 {
 	auto* pPlayerController = dynamic_cast<PlayerController*>(pController_);
-	Vector2F joyDir;
+	Vector2 joyDir;
 	pPlayerController->GetDirectionFromInput(joyDir);
 	
 	if (joyDir.x != 0.0f || joyDir.y != 0.0f)

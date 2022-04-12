@@ -1,5 +1,4 @@
-#ifndef BULLETOBJECTSCONTAINER_H_
-#define BULLETOBJECTSCONTAINER_H_
+#pragma once
 
 #include "Physics\PhysicsObjectContainer.h"
 #include "BulletDynamics\Dynamics\btRigidBody.h"
@@ -13,35 +12,30 @@ namespace CasaEngine
 {
 	//TODO : when the container is deleted : remove from the physics world ?
 
-	/**
-	 *
-	 */
 	class CA_EXPORT BulletRigidBodyContainer :
 		public IRigidBodyContainer
 	{
 	public:
 		BulletRigidBodyContainer(btRigidBody* pRB_);
-		~BulletRigidBodyContainer();
+		~BulletRigidBodyContainer() override;
 
 		btRigidBody* GetRigidBody() const;
 
-#if defined(CA_DEBUG)
+		Vector3 GetLinearVelocity() const override;
+		void setLinearVelocity(const Vector3& lin_vel) override;
 
-		void logInfo() override;
+		Vector3 getAngularVelocity() const override;
+		void setAngularVelocity(const Vector3& ang_vel) override;
 
-#endif // #if defined(CA_DEBUG)
+		Vector3 getTranslation() const override;
+		void setTranslation(const Vector3& vec_) override;
 
-		const Vector3F& getLinearVelocity() const override;
-		void setLinearVelocity(const Vector3F& lin_vel) override;
-
-		Vector3F& getAngularVelocity() const override;
-		void setAngularVelocity(const Vector3F& ang_vel) override;
-
-		Vector3F& getTranslation() const override;
-		void setTranslation(const Vector3F& ang_vel) override;
-
-		Quaternion& getRotation() const override;
+		Quaternion getRotation() const override;
 		void setRotation(const Quaternion& rot) override;
+
+#if defined(CA_DEBUG)
+		void logInfo() override;
+#endif
 
 	private:
 		btRigidBody* m_pRigidBody;
@@ -49,15 +43,12 @@ namespace CasaEngine
 
 	//////////////////////////////////////////////////////////////////////////
 
-	/**
-	 *
-	 */
 	class CA_EXPORT BulletCollisionObjectContainer :
 		public ICollisionObjectContainer
 	{
 	public:
 		BulletCollisionObjectContainer(btCollisionObject* pObj_);
-		~BulletCollisionObjectContainer();
+		~BulletCollisionObjectContainer() override;
 
 		btCollisionObject* GetCollisionObject() const;
 
@@ -65,5 +56,3 @@ namespace CasaEngine
 		btCollisionObject* m_pCollisionObject;
 	};
 }
-
-#endif // BULLETOBJECTSCONTAINER_H_

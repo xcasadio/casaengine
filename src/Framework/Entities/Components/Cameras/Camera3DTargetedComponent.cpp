@@ -29,7 +29,7 @@ namespace CasaEngine
 				winSize.x * m_DeadZoneRatio.x,
 				winSize.y * m_DeadZoneRatio.y);
 
-			if (deadZone.Intersects(Vector2F(targetPosition.x, targetPosition.y)) == INT_OUT)
+			if (deadZone.Intersects(Vector2(targetPosition.x, targetPosition.y)) == INT_OUT)
 			{
 				if (targetPosition.x < deadZone.Left())
 				{
@@ -75,7 +75,7 @@ namespace CasaEngine
 
 	void Camera3DTargetedComponent::ComputeViewMatrix()
 	{
-		m_ViewMatrix.CreateFromDirection(Vector3F::UnitZ(), Vector3F::UnitX(), -Vector3F::UnitY());
+		m_ViewMatrix.CreateFromDirection(Vector3::UnitZ(), Vector3::UnitX(), -Vector3::UnitY());
 		
 		/*const float d_yfov_tan = 0.267949192431123f;
 		auto& viewport = this->Camera()->GetViewport();
@@ -92,9 +92,9 @@ namespace CasaEngine
 		//viewMatrix_.Translation(-m_Offset.x, -m_Offset.y, z);
 
 		m_ViewMatrix.Identity();
-		Vector3F pos(-m_Offset.x, -m_Offset.y, z);
-		Vector3F target(-m_Offset.x, -m_Offset.y, 0.0f);
-		Vector3F up = -Vector3F::UnitY();
+		Vector3 pos(-m_Offset.x, -m_Offset.y, z);
+		Vector3 target(-m_Offset.x, -m_Offset.y, 0.0f);
+		Vector3 up = -Vector3::UnitY();
 		m_ViewMatrix = Matrix4::CreateLookAt(pos, target, up);
 	}
 
@@ -103,7 +103,7 @@ namespace CasaEngine
 		m_pTargetedEntity = pTargetedEntity;
 	}
 
-	void Camera3DTargetedComponent::SetDeadZoneRatio(Vector2F deadZoneRatio)
+	void Camera3DTargetedComponent::SetDeadZoneRatio(Vector2 deadZoneRatio)
 	{
 		m_DeadZoneRatio = deadZoneRatio;
 	}

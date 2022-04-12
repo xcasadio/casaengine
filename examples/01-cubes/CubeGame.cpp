@@ -54,7 +54,7 @@ void CubeGame::LoadContent()
 	//Camera 3D
 	BaseEntity* pCamera = new BaseEntity();
 	ArcBallCameraComponent* m_pCamera3D = new ArcBallCameraComponent(pCamera);
-	m_pCamera3D->SetCamera(Vector3F(0, 20.0f, -50.0f), Vector3F::Zero(), Vector3F::Up());
+	m_pCamera3D->SetCamera(Vector3(0, 20.0f, -50.0f), Vector3::Zero(), Vector3::Up());
 	m_pCamera3D->Distance(15.0f);
 	pCamera->GetComponentMgr()->AddComponent(m_pCamera3D);
 	m_pWorld->AddEntity(pCamera);
@@ -71,9 +71,9 @@ void CubeGame::LoadContent()
 	pEntity = new BaseEntity();
 	pEntity->SetName("cylinder");
 	pTransform = new Transform3DComponent(pEntity);
-	pTransform->SetLocalPosition(Vector3F(-delta, 0.5f, 0.0f));
+	pTransform->SetLocalPosition(Vector3(-delta, 0.5f, 0.0f));
 	pTransform->SetLocalRotation(0.0f);
-	pTransform->SetLocalScale(Vector3F::One());
+	pTransform->SetLocalScale(Vector3::One());
 	pEntity->GetComponentMgr()->AddComponent(pTransform);
 	pModelCpt = new MeshComponent(pEntity);
 	pPrimitive = new CylinderPrimitive();
@@ -88,9 +88,9 @@ void CubeGame::LoadContent()
 	pEntity = new BaseEntity();
 	pEntity->SetName("box");
 	pTransform = new Transform3DComponent(pEntity);
-	pTransform->SetLocalPosition(Vector3F(0.0f, 0.5f, delta));
+	pTransform->SetLocalPosition(Vector3(0.0f, 0.5f, delta));
 	pTransform->SetLocalRotation(0.0f);
-	pTransform->SetLocalScale(Vector3F::One());
+	pTransform->SetLocalScale(Vector3::One());
 	pEntity->GetComponentMgr()->AddComponent(pTransform);
 	pModelCpt = new MeshComponent(pEntity);
 	pPrimitive = new BoxPrimitive();
@@ -105,9 +105,9 @@ void CubeGame::LoadContent()
 	pEntity = new BaseEntity();
 	pEntity->SetName("sphere");
 	pTransform = new Transform3DComponent(pEntity);
-	pTransform->SetLocalPosition(Vector3F(delta, 0.5f, 0.0f));
+	pTransform->SetLocalPosition(Vector3(delta, 0.5f, 0.0f));
 	pTransform->SetLocalRotation(0.0f);
-	pTransform->SetLocalScale(Vector3F::One());
+	pTransform->SetLocalScale(Vector3::One());
 	pEntity->GetComponentMgr()->AddComponent(pTransform);
 	pModelCpt = new MeshComponent(pEntity);
 	pPrimitive = new SpherePrimitive();
@@ -122,9 +122,9 @@ void CubeGame::LoadContent()
 	pEntity = new BaseEntity();
 	pEntity->SetName("ground");
 	pTransform = new Transform3DComponent(pEntity);
-	pTransform->SetLocalPosition(Vector3F(0.0f, 0.0f, 0.0f));
+	pTransform->SetLocalPosition(Vector3(0.0f, 0.0f, 0.0f));
 	pTransform->SetLocalRotation(0.0f);
-	pTransform->SetLocalScale(Vector3F::One());
+	pTransform->SetLocalScale(Vector3::One());
 	pEntity->GetComponentMgr()->AddComponent(pTransform);
 	pModelCpt = new MeshComponent(pEntity);
 	pPrimitive = new PlanePrimitive(100.0f, 100.0f);
@@ -132,7 +132,7 @@ void CubeGame::LoadContent()
 	Material* pMat = pModel->GetMaterial()->Clone();
 	pModel->SetMaterial(pMat);
 	pMat->Texture0(Texture::loadTexture(Game::Instance().GetMediaManager().FindMedia("ceilingMain_DIF.dds"), BGFX_SAMPLER_MIN_ANISOTROPIC | BGFX_SAMPLER_MAG_ANISOTROPIC));
-	pMat->Texture0Repeat(Vector2F(50, 50));
+	pMat->Texture0Repeat(Vector2(50, 50));
 	//
 	pModelCpt->SetModel(pModel);
 	pModelCpt->SetProgram(m_pProgram);

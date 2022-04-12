@@ -14,7 +14,7 @@ namespace CasaEngine
 		Polygon();
 
 	private:
-		std::vector<Vector2F> m_PointList;
+		std::vector<Vector2> m_PointList;
 	};
 }
 

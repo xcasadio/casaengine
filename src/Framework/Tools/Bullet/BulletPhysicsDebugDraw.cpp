@@ -26,8 +26,8 @@ namespace CasaEngine
 	void BulletPhysicsDebugDraw::drawLine(const btVector3& from, const btVector3& to, const btVector3& color)
 	{
 		CA_ASSERT(m_pLineRenderer != nullptr, "BulletPhysicsDebugDraw : please call Initialize() before call drawXXX() function");
-		Vector3F start(from.x(), from.y(), from.z());
-		Vector3F end(to.x(), to.y(), to.z());
+		Vector3 start(from.x(), from.y(), from.z());
+		Vector3 end(to.x(), to.y(), to.z());
 		CColor ccolor;
 		ccolor.SetFloats(color.x(), color.y(), color.z());
 		m_pLineRenderer->AddLine(start, ccolor, end, ccolor);
@@ -43,8 +43,8 @@ namespace CasaEngine
 		btVector3 to = PointOnB + normalOnB * 1;//distance;
 		const btVector3& from = PointOnB;
 
-		Vector3F start(from.x(), from.y(), from.z());
-		Vector3F end(to.x(), to.y(), to.z());
+		Vector3 start(from.x(), from.y(), from.z());
+		Vector3 end(to.x(), to.y(), to.z());
 		CColor ccolor;
 		ccolor.SetFloats(color.x(), color.y(), color.z());
 		m_pLineRenderer->AddLine(start, ccolor, end, ccolor);

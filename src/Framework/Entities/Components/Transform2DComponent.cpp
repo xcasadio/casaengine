@@ -56,12 +56,12 @@ namespace CasaEngine
 	}
 
 
-	Vector2F Transform2DComponent::GetLocalPosition() const
+	Vector2 Transform2DComponent::GetLocalPosition() const
 	{
 		return m_LocalPosition;
 	}
 
-	void Transform2DComponent::SetLocalPosition(Vector2F val)
+	void Transform2DComponent::SetLocalPosition(Vector2 val)
 	{
 		m_LocalPosition = val;
 		m_LocalMatrixChanged = true;
@@ -78,18 +78,18 @@ namespace CasaEngine
 		m_LocalMatrixChanged = true;
 	}
 
-	Vector2F Transform2DComponent::GetLocalScale() const
+	Vector2 Transform2DComponent::GetLocalScale() const
 	{
 		return m_LocalScale;
 	}
 
-	void Transform2DComponent::SetLocalScale(Vector2F val)
+	void Transform2DComponent::SetLocalScale(Vector2 val)
 	{
 		m_LocalScale = val;
 		m_LocalMatrixChanged = true;
 	}
 
-	Vector2F Transform2DComponent::GetPosition() const
+	Vector2 Transform2DComponent::GetPosition() const
 	{
 		return m_pParentTransform == nullptr ? m_LocalPosition : m_LocalPosition + m_pParentTransform->GetPosition();
 	}
@@ -99,7 +99,7 @@ namespace CasaEngine
 		return m_pParentTransform == nullptr ? m_LocalRotation : m_LocalRotation + m_pParentTransform->GetRotation();
 	}
 
-	Vector2F Transform2DComponent::GetScale() const
+	Vector2 Transform2DComponent::GetScale() const
 	{
 		return m_pParentTransform == nullptr ? m_LocalScale : m_LocalScale + m_pParentTransform->GetScale();
 	}

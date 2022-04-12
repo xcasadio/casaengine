@@ -40,8 +40,8 @@ void CapsuleColliderComponent::Initialize()
 void CapsuleColliderComponent::Draw()
 {
 	/*Matrix4 mat = m_pTransform->GetWorldMatrix();
-	Vector3F pos3 = mat.GetTranslation();
-	Vector2F pos(pos3.x, pos3.y);
+	Vector3 pos3 = mat.GetTranslation();
+	Vector2 pos(pos3.x, pos3.y);
 
 	m_pSpriteRenderer->AddSprite(m_pSprite, 
 		pos, m_pTransform->GetRotation(), 

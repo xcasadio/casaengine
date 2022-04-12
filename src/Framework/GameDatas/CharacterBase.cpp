@@ -21,7 +21,7 @@ namespace CasaEngine
 
 		m_SpeedOffSet = 0.0f;
 
-		m_Direction = Vector2F::UnitX();
+		m_Direction = Vector2::UnitX();
 
 		//TODO set after creation by the level configuration
 		m_Speed = 30.0f;
@@ -80,7 +80,7 @@ namespace CasaEngine
 		return m_pController->FSM()->HandleMessage(msg);
 	}
 
-	orientation CharacterBase::GetOrientationFromVector2(const Vector2F v)
+	orientation CharacterBase::GetOrientationFromVector2(const Vector2 v)
 	{
 		unsigned int dir = 0;
 		const float offset = 0.1f;
@@ -126,9 +126,9 @@ namespace CasaEngine
 		return m_pController;
 	}
 
-	void CharacterBase::Move(Vector2F& dir)
+	void CharacterBase::Move(Vector2& dir)
 	{
-		if (dir == Vector2F::Zero())
+		if (dir == Vector2::Zero())
 		{
 			//always when Vector2.Zero to stop movement
 			//else if contact the CharacterBase will continue to move
@@ -137,7 +137,7 @@ namespace CasaEngine
 			// 		MovementRequest request;
 			// 		request.MoveType = STOP;
 			// 		physicalEntity.MovementSystem.QueueRequest(request);
-			physicalEntity.SetVelocity(Vector3F::Zero());
+			physicalEntity.SetVelocity(Vector3::Zero());
 		}
 		else
 		{
@@ -157,8 +157,8 @@ namespace CasaEngine
 			// 		request.Velocity = m_Speed + m_SpeedOffSet;
 			// 		request.Style = mvtStyle;
 			// 		physicalEntity.MovementSystem.QueueRequest(request);
-			physicalEntity.SetVelocity(Vector3F(dir.x, dir.y, 0.0f) * (m_Speed + m_SpeedOffSet));
-			//physicalEntity->applyCentralImpulse(Vector3F(dir_.x, dir_.y, 0.0f) * (m_Speed + m_SpeedOffSet));
+			physicalEntity.SetVelocity(Vector3(dir.x, dir.y, 0.0f) * (m_Speed + m_SpeedOffSet));
+			//physicalEntity->applyCentralImpulse(Vector3(dir_.x, dir_.y, 0.0f) * (m_Speed + m_SpeedOffSet));
 		}
 	}
 
@@ -170,12 +170,12 @@ namespace CasaEngine
 		return m_pAnimatedSprite->SetCurrentAnimation(name);
 	}
 
-	Vector2F CharacterBase::Direction() const
+	Vector2 CharacterBase::Direction() const
 	{
 		return m_Direction;
 	}
 
-	void CharacterBase::Direction(Vector2F val)
+	void CharacterBase::Direction(Vector2 val)
 	{
 		m_Direction = val;
 	}

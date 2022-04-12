@@ -52,13 +52,13 @@ namespace CasaEngine
 				float dy = sinf(innerAngle);
 
 				// Create a vertex.
-				Vector3F normal(dx, dy, 0);
-				Vector3F position = normal * m_Thickness / 2.0f;
+				Vector3 normal(dx, dy, 0);
+				Vector3 position = normal * m_Thickness / 2.0f;
 
 				position = transform.Transform(position);
 				transform.TransformNormal(normal, normal);
 
-				AddVertex(position, normal, Vector2F(static_cast<float>(i) / static_cast<float>(m_Tessellation), static_cast<float>(j) / static_cast<float>(m_Tessellation)));
+				AddVertex(position, normal, Vector2(static_cast<float>(i) / static_cast<float>(m_Tessellation), static_cast<float>(j) / static_cast<float>(m_Tessellation)));
 
 				// And create indices for two triangles.
 				int nextI = (i + 1) % step;

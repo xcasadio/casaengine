@@ -77,7 +77,7 @@ namespace CasaEngine
 		Matrix4 id;
 		id.Identity();
 		bgfx::setTransform(id);
-		//bgfx::setUniform(m_TextureRepetitionUniform,  Vector4F(m_pMaterial->GetTexture0Repeat().x, m_pMaterial->GetTexture0Repeat().y, 1.0f, 1.0f));
+		//bgfx::setUniform(m_TextureRepetitionUniform,  Vector4(m_pMaterial->GetTexture0Repeat().x, m_pMaterial->GetTexture0Repeat().y, 1.0f, 1.0f));
 		bgfx::setState(BGFX_STATE_WRITE_RGB
 			| BGFX_STATE_WRITE_A
 			| BGFX_STATE_BLEND_ALPHA
@@ -86,22 +86,22 @@ namespace CasaEngine
 		submit(0, m_pProgram->Handle());
 	}
 
-	void Line3DRendererComponent::AddLine(const Vector3F& start_, const Vector3F& end_, const CColor& color_)
+	void Line3DRendererComponent::AddLine(const Vector3& start_, const Vector3& end_, const CColor& color_)
 	{
 		AddLine(start_, color_.ToABGR(), end_, color_.ToABGR());
 	}
 
-	void Line3DRendererComponent::AddLine(const Vector3F& start_, const Vector3F& end_, const unsigned int color_)
+	void Line3DRendererComponent::AddLine(const Vector3& start_, const Vector3& end_, const unsigned int color_)
 	{
 		AddLine(start_, color_, end_, color_);
 	}
 
-	void Line3DRendererComponent::AddLine( const Vector3F &start_, const CColor &startColor_, const Vector3F &end_, const CColor &endColor_ )
+	void Line3DRendererComponent::AddLine( const Vector3 &start_, const CColor &startColor_, const Vector3 &end_, const CColor &endColor_ )
 	{
 		AddLine(start_, startColor_.ToABGR(), end_, endColor_.ToABGR());
 	}
 
-	void Line3DRendererComponent::AddLine( const Vector3F &start_, const unsigned int &startColor_, const Vector3F &end_, const unsigned int &endColor_ )
+	void Line3DRendererComponent::AddLine( const Vector3 &start_, const unsigned int &startColor_, const Vector3 &end_, const unsigned int &endColor_ )
 	{
 		const auto pLineData = new LineRenderer3DData();
 

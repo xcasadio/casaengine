@@ -230,8 +230,8 @@ namespace CasaEngine
 	}
 
 	void SpriteRenderer::AddSprite(const Texture* tex_,
-		const RectangleI& posInTex, const Vector2I& origin, const Vector2F& pos,
-		float rot, const Vector2F& scale, const CColor& color, float z_order, eSpriteEffects effects)
+		const RectangleI& posInTex, const Vector2I& origin, const Vector2& pos,
+		float rot, const Vector2& scale, const CColor& color, float z_order, eSpriteEffects effects)
 	{
 		if (tex_ == nullptr)
 		{
@@ -244,12 +244,12 @@ namespace CasaEngine
 		}
 
 		Quaternion quaternionRotation;
-		quaternionRotation.FromAxisAngle(Vector3F::UnitZ(), rot);
+		quaternionRotation.FromAxisAngle(Vector3::UnitZ(), rot);
 		Matrix4 transform;
-		const auto scale3 = Vector3F(scale.x, scale.y, 1.0f);
-		const auto rotationCenter = Vector3F(origin.x, origin.y);
-		const auto translation = Vector3F(pos.x, pos.y, z_order);
-		//transform.SetTranslation(Vector3F(pos.x, pos.y));
+		const auto scale3 = Vector3(scale.x, scale.y, 1.0f);
+		const auto rotationCenter = Vector3(origin.x, origin.y, 0.0f);
+		const auto translation = Vector3(pos.x, pos.y, z_order);
+		//transform.SetTranslation(Vector3(pos.x, pos.y));
 		//transform.CreateScale(scale.x, scale.y, 0.0f);
 		transform.Transformation(nullptr,
 			nullptr, 
@@ -260,8 +260,8 @@ namespace CasaEngine
 		AddSprite(tex_, posInTex, origin, transform, color, effects);
 	}
 
-	void SpriteRenderer::AddSprite(Sprite* pSprite, const Vector2F &pos_, 
-		float rot_, const Vector2F &scale_, const CColor &color_, float ZOrder_, eSpriteEffects effects_)
+	void SpriteRenderer::AddSprite(Sprite* pSprite, const Vector2 &pos_, 
+		float rot_, const Vector2 &scale_, const CColor &color_, float ZOrder_, eSpriteEffects effects_)
 	{
 		if (pSprite->GetTexture2D() == nullptr)
 		{
@@ -272,12 +272,12 @@ namespace CasaEngine
 			pSprite->GetSpriteData()->GetOrigin(), pos_, rot_, scale_, color_, ZOrder_, effects_);
 	}
 
-	void SpriteRenderer::AddSprite(Sprite* pSprite_, const Vector2F& pos_, float rot_, const CColor& color_,
+	void SpriteRenderer::AddSprite(Sprite* pSprite_, const Vector2& pos_, float rot_, const CColor& color_,
 		float ZOrder_, eSpriteEffects effects_)
 	{
 		AddSprite(pSprite_->GetTexture2D(), pSprite_->GetSpriteData()->GetPositionInTexture(),
 			pSprite_->GetSpriteData()->GetOrigin(), pos_, rot_,
-			Vector2F(pSprite_->GetSpriteData()->GetPositionInTexture().w, pSprite_->GetSpriteData()->GetPositionInTexture().h),
+			Vector2(pSprite_->GetSpriteData()->GetPositionInTexture().w, pSprite_->GetSpriteData()->GetPositionInTexture().h),
 			color_, ZOrder_, effects_);
 	}
 }

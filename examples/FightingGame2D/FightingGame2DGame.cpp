@@ -89,9 +89,9 @@ void FightingGame2DGame::LoadContent()
 	auto* pPlayer1 = new BaseEntity();
 	pPlayer1->SetName("player 1");
 	pTransform = new Transform3DComponent(pPlayer1);
-	pTransform->SetLocalPosition(Vector3F(520, 400, 2.0f));
+	pTransform->SetLocalPosition(Vector3(520, 400, 2.0f));
 	auto scale = 1.0f;
-	pTransform->SetLocalScale(Vector3F(scale, scale));
+	pTransform->SetLocalScale(Vector3(scale, scale, 0.0f));
 	pPlayer1->GetComponentMgr()->AddComponent(pTransform);
 
 	auto* pAnimatedSprite = new AnimatedSpriteComponent(pPlayer1);
@@ -113,9 +113,9 @@ void FightingGame2DGame::LoadContent()
 	auto* pPlayer2 = new BaseEntity();
 	pPlayer2->SetName("player 2");
 	pTransform = new Transform3DComponent(pPlayer2);
-	pTransform->SetLocalPosition(Vector3F(820, 400, 2.0f));
+	pTransform->SetLocalPosition(Vector3(820, 400, 2.0f));
 	scale = 1.0f;
-	pTransform->SetLocalScale(Vector3F(scale, scale));
+	pTransform->SetLocalScale(Vector3(scale, scale, 0.0f));
 	pPlayer2->GetComponentMgr()->AddComponent(pTransform);
 
 	pAnimatedSprite = new AnimatedSpriteComponent(pPlayer2);
@@ -133,7 +133,7 @@ void FightingGame2DGame::LoadContent()
 	pCamera->SetName("camera 2D");
 	auto* m_pCamera2D = new Camera2DTargetedComponent(pCamera);
 	pCamera->GetComponentMgr()->AddComponent(m_pCamera2D);
-	m_pCamera2D->SetDeadZoneRatio(Vector2F(0.7f, 0.7f));
+	m_pCamera2D->SetDeadZoneRatio(Vector2(0.7f, 0.7f));
 	m_pCamera2D->SetTargetedEntity(pPlayer1);
 	m_pCamera2D->SetLimits(RectangleI(0, 0, 1500, 800));
 	m_pWorld->AddEntity(pCamera);
@@ -143,7 +143,7 @@ void FightingGame2DGame::LoadContent()
 	auto* pStage = new BaseEntity();
 	pStage->SetName("stage");
 	pTransform = new Transform3DComponent(pStage);
-	pTransform->SetLocalPosition(Vector3F(0, 0, 1.0f));
+	pTransform->SetLocalPosition(Vector3(0, 0, 1.0f));
 	pStage->GetComponentMgr()->AddComponent(pTransform);
 	auto* stage = new Stage(pStage);
 	pStage->GetComponentMgr()->AddComponent(stage);
@@ -224,10 +224,10 @@ void FightingGame2DGame::DisplayCollision(BaseEntity* pEntity)
 					const auto scaleY = transform->GetLocalScale().y;
 					auto rectScaled = RectangleI(rect->x * scaleX, rect->y * scaleY, rect->w * scaleX, rect->h * scaleY);
 
-					auto leftTop = Vector3F(rectScaled.Left(), rectScaled.Top()) + pos;
-					auto leftBottom = Vector3F(rectScaled.Left(), rectScaled.Bottom()) + pos;
-					auto rightTop = Vector3F(rectScaled.Right(), rectScaled.Top()) + pos;
-					auto rightBottom = Vector3F(rectScaled.Right(), rectScaled.Bottom()) + pos;
+					auto leftTop = Vector3(rectScaled.Left(), rectScaled.Top(), 0.0f) + pos;
+					auto leftBottom = Vector3(rectScaled.Left(), rectScaled.Bottom(), 0.0f) + pos;
+					auto rightTop = Vector3(rectScaled.Right(), rectScaled.Top(), 0.0f) + pos;
+					auto rightBottom = Vector3(rectScaled.Right(), rectScaled.Bottom(), 0.0f) + pos;
 
 					line3DRenderer->AddLine(leftTop, rightTop, color);
 					line3DRenderer->AddLine(leftBottom, rightBottom, color);
@@ -252,8 +252,8 @@ void FightingGame2DGame::DisplayPosition(BaseEntity *pEntity)
 	const auto color = CColor::Green;
 	const auto size = 50 / 2.0f;
 
-	line3DRenderer->AddLine(Vector3F(position.x + size, position.y), Vector3F(position.x - size, position.y), color);
-	line3DRenderer->AddLine(Vector3F(position.x, position.y + size), Vector3F(position.x, position.y - size), color);
+	line3DRenderer->AddLine(Vector3(position.x + size, position.y, 0.0f), Vector3(position.x - size, position.y, 0.0f), color);
+	line3DRenderer->AddLine(Vector3(position.x, position.y + size, 0.0f), Vector3(position.x, position.y - size, 0.0f), color);
 }
 
 void FightingGame2DGame::DisplayUI()
@@ -284,11 +284,11 @@ void FightingGame2DGame::DisplayGrid()
 	for (int i = 0; i <= halfNumberOfLines; i++)
 	{
 		auto coord = cellWidth * i;
-		line3DRenderer->AddLine(Vector3F(-halfLength, -coord), Vector3F(halfLength, -coord), gridColor);
-		line3DRenderer->AddLine(Vector3F(-halfLength, coord), Vector3F(halfLength, coord), gridColor);
+		line3DRenderer->AddLine(Vector3(-halfLength, -coord), Vector3(halfLength, -coord), gridColor);
+		line3DRenderer->AddLine(Vector3(-halfLength, coord), Vector3(halfLength, coord), gridColor);
 
-		line3DRenderer->AddLine(Vector3F(-coord, -halfLength), Vector3F(-coord, halfLength), gridColor);
-		line3DRenderer->AddLine(Vector3F(coord, -halfLength), Vector3F(coord, halfLength), gridColor);
+		line3DRenderer->AddLine(Vector3(-coord, -halfLength), Vector3(-coord, halfLength), gridColor);
+		line3DRenderer->AddLine(Vector3(coord, -halfLength), Vector3(coord, halfLength), gridColor);
 	}
 	*/
 }

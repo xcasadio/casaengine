@@ -19,16 +19,16 @@ namespace CasaEngine
 		void Initialize() override;
 		void  Update(const GameTime& gameTime_) override;
 
-		Vector3F Direction() const;
-		Vector3F Right() const;
-		Vector3F Up() const;
-		Vector3F Position() const;
-		void Position(Vector3F val);
+		Vector3 Direction() const;
+		Vector3 Right() const;
+		Vector3 Up() const;
+		Vector3 Position() const;
+		void Position(Vector3 val);
 
 		void ComputeViewMatrix() override;
 
-		Vector3F Target() const;
-		void Target(Vector3F val);
+		Vector3 Target() const;
+		void Target(Vector3 val);
 		float Distance() const;
 		void Distance(float val);
 		float InputDistanceRate() const;
@@ -45,7 +45,7 @@ namespace CasaEngine
 		void RotateClockwise(float angle);
 		void RotateTargetUp(float angle_);
 		void RotateTargetRight(float angle_);
-		void SetCamera(Vector3F position, Vector3F target, Vector3F up);
+		void SetCamera(Vector3 position, Vector3 target, Vector3 up);
 
 		float ArcBallPitch() const;
 		void ArcBallPitch(float val);
@@ -66,7 +66,7 @@ namespace CasaEngine
 			float horizontalOrbit_, float verticalOrbit_, float rollOrbit_, float zoom_);
 
 	private:
-		Vector3F m_Target;
+		Vector3 m_Target;
 		float m_fDistance{};
 
 		Quaternion m_ArcBallOrientation;

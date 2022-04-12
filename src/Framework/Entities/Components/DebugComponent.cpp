@@ -33,9 +33,9 @@ namespace CasaEngine
 			const auto position = GetEntity()->GetComponentMgr()->GetComponent<Transform3DComponent>()->GetLocalPosition();
 			const auto color = CColor::Red;
 			constexpr auto scale = 5.0f;
-			m_LineRenderer->AddLine(position - Vector3F::UnitX() * scale, position + Vector3F::UnitX() * scale, color);
-			m_LineRenderer->AddLine(position - Vector3F::UnitY() * scale, position + Vector3F::UnitY() * scale, color);
-			m_LineRenderer->AddLine(position - Vector3F::UnitZ() * scale, position + Vector3F::UnitZ() * scale, color);
+			m_LineRenderer->AddLine(position - Vector3::UnitX() * scale, position + Vector3::UnitX() * scale, color);
+			m_LineRenderer->AddLine(position - Vector3::UnitY() * scale, position + Vector3::UnitY() * scale, color);
+			m_LineRenderer->AddLine(position - Vector3::UnitZ() * scale, position + Vector3::UnitZ() * scale, color);
 		}
 	}
 

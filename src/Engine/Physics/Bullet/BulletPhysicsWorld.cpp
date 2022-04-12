@@ -34,15 +34,15 @@ namespace CasaEngine
 		delete m_pBulletWorld;
 	}
 
-	void BulletPhysicsWorld::SetGravity(const Vector3F& gravity_)
+	void BulletPhysicsWorld::SetGravity(const Vector3& gravity_)
 	{
 		m_pBulletWorld->setGravity(btVector3(gravity_.x, gravity_.y, gravity_.z));
 	}
 
-	Vector3F BulletPhysicsWorld::GetGravity() const
+	Vector3 BulletPhysicsWorld::GetGravity() const
 	{
 		const auto vec = m_pBulletWorld->getGravity();
-		return Vector3F(vec.x(), vec.y(), vec.z());
+		return Vector3(vec.x(), vec.y(), vec.z());
 	}
 
 	/**
@@ -60,7 +60,7 @@ namespace CasaEngine
 	/**
 	 *
 	 */
-	IRigidBodyContainer* BulletPhysicsWorld::AddRigidBody(const RigidBody* pRigidBody_, Vector3F position)
+	IRigidBodyContainer* BulletPhysicsWorld::AddRigidBody(const RigidBody* pRigidBody_, Vector3 position)
 	{
 		auto mass = pRigidBody_->mass;
 		btTransform startTransform;
@@ -165,7 +165,7 @@ namespace CasaEngine
 	 */
 	btCollisionObject* BulletPhysicsWorld::CreateCollisionObjectFromShape(IShape* pShape_)
 	{
-		Vector3F origin;
+		Vector3 origin;
 		auto* const pbtShape = CreateCollisionShape(pShape_);
 		auto* colShape = new btCollisionObject();
 		colShape->getWorldTransform().setOrigin(btVector3(origin.x, origin.y, origin.z));
@@ -177,7 +177,7 @@ namespace CasaEngine
 	/**
 	 *
 	 */
-	btCollisionObject* BulletPhysicsWorld::CreateCollisionObjectFromShape(btCollisionShape* pshape_, Vector3F center_)
+	btCollisionObject* BulletPhysicsWorld::CreateCollisionObjectFromShape(btCollisionShape* pshape_, Vector3 center_)
 	{
 		auto* colShape = new btCollisionObject();
 		colShape->getWorldTransform().setOrigin(btVector3(center_.x, center_.y, center_.z));
@@ -199,7 +199,7 @@ namespace CasaEngine
 	/**
 	 *
 	 */
-	ICollisionObjectContainer* BulletPhysicsWorld::CreateCollisionShape(const IShape* pShape_, const Vector3F& origin_)
+	ICollisionObjectContainer* BulletPhysicsWorld::CreateCollisionShape(const IShape* pShape_, const Vector3& origin_)
 	{
 		auto* colShape = new btCollisionObject();
 		auto* const b3pShape = CreateCollisionShape(pShape_);

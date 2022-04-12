@@ -2,8 +2,8 @@
 
 namespace CasaEngine
 {
-	InvertedAABBox2D::InvertedAABBox2D(Vector2F tl,
-		Vector2F br) :m_vTopLeft(tl),
+	InvertedAABBox2D::InvertedAABBox2D(Vector2 tl,
+		Vector2 br) :m_vTopLeft(tl),
 		m_vBottomRight(br),
 		m_vCenter((tl + br) / 2.0)
 	{}
@@ -17,8 +17,8 @@ namespace CasaEngine
 			other.Right() < this->Left());
 	}
 
-	Vector2F InvertedAABBox2D::TopLeft() const { return m_vTopLeft; }
-	Vector2F InvertedAABBox2D::BottomRight() const
+	Vector2 InvertedAABBox2D::TopLeft() const { return m_vTopLeft; }
+	Vector2 InvertedAABBox2D::BottomRight() const
 	{
 		return m_vBottomRight;
 	}
@@ -35,7 +35,7 @@ namespace CasaEngine
 
 	double    InvertedAABBox2D::Bottom() const { return m_vBottomRight.y; }
 	double    InvertedAABBox2D::Right() const { return m_vBottomRight.x; }
-	Vector2F InvertedAABBox2D::Center() const { return m_vCenter; }
+	Vector2 InvertedAABBox2D::Center() const { return m_vCenter; }
 
 	void     InvertedAABBox2D::Render(bool /*RenderCenter*/) const
 	{

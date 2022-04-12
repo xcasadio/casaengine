@@ -45,23 +45,23 @@ namespace CasaEngine
 		m_WorldMatrix = val;
 	}
 
-	Vector3F Transform3DComponent::GetCenterOfRotation() const
+	Vector3 Transform3DComponent::GetCenterOfRotation() const
 	{
 		return m_LocalCenterOfRotation;
 	}
 
-	void Transform3DComponent::SetCenterOfRotation(Vector3F val)
+	void Transform3DComponent::SetCenterOfRotation(Vector3 val)
 	{
 		m_LocalCenterOfRotation = val;
 		m_LocalMatrixChanged = true;
 	}
 
-	Vector3F Transform3DComponent::GetLocalPosition() const
+	Vector3 Transform3DComponent::GetLocalPosition() const
 	{
 		return m_LocalPosition;
 	}
 
-	void Transform3DComponent::SetLocalPosition(Vector3F val)
+	void Transform3DComponent::SetLocalPosition(Vector3 val)
 	{
 		m_LocalPosition = val;
 		m_LocalMatrixChanged = true;
@@ -77,18 +77,18 @@ namespace CasaEngine
 		m_LocalMatrixChanged = true;
 	}
 
-	Vector3F Transform3DComponent::GetLocalScale() const
+	Vector3 Transform3DComponent::GetLocalScale() const
 	{
 		return m_LocalScale;
 	}
 
-	void Transform3DComponent::SetLocalScale(Vector3F val)
+	void Transform3DComponent::SetLocalScale(Vector3 val)
 	{
 		m_LocalScale = val;
 		m_LocalMatrixChanged = true;
 	}
 
-	Vector3F Transform3DComponent::GetPosition() const
+	Vector3 Transform3DComponent::GetPosition() const
 	{
 		return m_pParentTransform == nullptr ? m_LocalPosition : m_LocalPosition + m_pParentTransform->GetPosition();
 	}
@@ -98,7 +98,7 @@ namespace CasaEngine
 		return m_pParentTransform == nullptr ? m_LocalRotation : m_LocalRotation * m_pParentTransform->GetRotation();
 	}
 
-	Vector3F Transform3DComponent::GetScale() const
+	Vector3 Transform3DComponent::GetScale() const
 	{
 		return m_pParentTransform == nullptr ? m_LocalScale : m_LocalScale + m_pParentTransform->GetScale();
 	}

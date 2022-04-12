@@ -3,7 +3,7 @@
 
 namespace CasaEngine
 {
-	Box::Box(Vector3F size_, Vector3F center_) :
+	Box::Box(Vector3 size_, Vector3 center_) :
 		IShape(ShapeType::BOX)
 	{
 		m_Center = center_;
@@ -31,22 +31,22 @@ namespace CasaEngine
 		return new Box(*this);
 	}
 
-	Vector3F Box::Size() const
+	Vector3 Box::Size() const
 	{
 		return m_Size;
 	}
 
-	void Box::Size(Vector3F val)
+	void Box::Size(Vector3 val)
 	{
 		m_Size = val;
 	}
 
-	Vector3F Box::Center() const
+	Vector3 Box::Center() const
 	{
 		return m_Center;
 	}
 
-	void Box::Center(Vector3F val)
+	void Box::Center(Vector3 val)
 	{
 		m_Center = val;
 	}

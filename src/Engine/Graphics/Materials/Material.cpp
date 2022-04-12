@@ -10,7 +10,7 @@ namespace CasaEngine
 	 */
 	Material::Material()
 	{
-		m_Texture0Repeat = Vector2F::One();
+		m_Texture0Repeat = Vector2::One();
 		m_pTexture0 = nullptr;
 		m_pTexture1 = nullptr;
 		m_pTexture2 = nullptr;
@@ -64,12 +64,12 @@ namespace CasaEngine
 		m_pTexture0 = pVal_;
 	}
 
-	Vector2F Material::Texture0Repeat() const
+	Vector2 Material::Texture0Repeat() const
 	{
 		return m_Texture0Repeat;
 	}
 
-	void Material::Texture0Repeat(Vector2F val_)
+	void Material::Texture0Repeat(Vector2 val_)
 	{
 		m_Texture0Repeat = val_;
 	}

@@ -106,7 +106,7 @@ namespace CasaEngine
 		bgfx::TextureHandle texture = m_pMaterial->Texture0() != nullptr ? m_pMaterial->Texture0()->Handle() : m_pDefaultTexture->Handle();
 		bgfx::setTexture(0, m_TextureUniform, bgfx::isValid(texture) ? texture : m_pDefaultTexture->Handle());
 
-		bgfx::setUniform(m_TextureRepetitionUniform, Vector4F(m_pMaterial->Texture0Repeat().x, m_pMaterial->Texture0Repeat().y, 1.0f, 1.0f));
+		bgfx::setUniform(m_TextureRepetitionUniform, Vector4(m_pMaterial->Texture0Repeat().x, m_pMaterial->Texture0Repeat().y, 1.0f, 1.0f));
 		//bgfx::setState(BGFX_STATE_DEFAULT);
 		bgfx::setState(BGFX_STATE_WRITE_MASK
 			| BGFX_STATE_DEPTH_TEST_LESS

@@ -18,7 +18,7 @@ namespace CasaEngine
 		public IGameData
 	{
 	public:
-		static orientation GetOrientationFromVector2(Vector2F v);
+		static orientation GetOrientationFromVector2(Vector2 v);
 
 	public:
 		~CharacterBase() override;
@@ -33,10 +33,10 @@ namespace CasaEngine
 		void SetController(IController*);
 		IController* GetController() const;
 
-		void Move(Vector2F& dir);
+		void Move(Vector2& dir);
 
-		Vector2F Direction() const;
-		void Direction(Vector2F val);
+		Vector2 Direction() const;
+		void Direction(Vector2 val);
 
 		orientation GetOrientation() const;
 		void SetOrientation(orientation val);
@@ -54,7 +54,7 @@ namespace CasaEngine
 		IController* m_pController;
 
 		orientation m_Orientation;
-		Vector2F m_Direction;
+		Vector2 m_Direction;
 
 		BaseEntity* m_pEntity;
 		std::map<int, Animation2D*> m_Animations;

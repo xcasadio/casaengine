@@ -13,7 +13,7 @@ namespace CasaEngine
 	{
 	}
 
-	Cone::Cone(const Vector3F& tip, const Vector3F& dir, float height, float baseRadius) : mTip(tip), mDir(dir), mBase(tip + dir * height), mHeight(height), mBaseRadius(baseRadius)
+	Cone::Cone(const Vector3& tip, const Vector3& dir, float height, float baseRadius) : mTip(tip), mDir(dir), mBase(tip + dir * height), mHeight(height), mBaseRadius(baseRadius)
 	{
 	}
 
@@ -28,40 +28,52 @@ namespace CasaEngine
 
 	AABB::AABB(float radius)
 	{
-		max = Vector3F(radius); min = -max;
+		max = Vector3(radius, radius, radius);
+		min = -max;
 	}
 
-	AABB::AABB(const Vector3F& v)
+	AABB::AABB(const Vector3& v)
 	{
 		min = max = v;
 	}
 
-	AABB::AABB(const Vector3F& v, float radius)
+	AABB::AABB(const Vector3& v, float radius)
 	{
-		Vector3F ext(radius); min = v - ext; max = v + ext;
+		Vector3 ext(radius, radius, radius);
+		min = v - ext;
+		max = v + ext;
 	}
 
-	AABB::AABB(const Vector3F& vmin, const Vector3F& vmax)
+	AABB::AABB(const Vector3& vmin, const Vector3& vmax)
 	{
-		min = vmin; max = vmax;
+		min = vmin;
+		max = vmax;
 	}
 
 	AABB::AABB(const AABB& aabb)
 	{
-		min.x = aabb.min.x;			min.y = aabb.min.y;			min.z = aabb.min.z;
-		max.x = aabb.max.x;			max.y = aabb.max.y;			max.z = aabb.max.z;
+		min.x = aabb.min.x;
+		min.y = aabb.min.y;
+		min.z = aabb.min.z;
+
+		max.x = aabb.max.x;
+		max.y = aabb.max.y;
+		max.z = aabb.max.z;
 	}
 
-	AABB::AABB(const Vector3F* points, int num)
+	AABB::AABB(const Vector3* points, int num)
 	{
 		Reset();
 		for (int i = 0; i < num; i++)
+		{
 			Add(points[i]);
+		}
 	}
 
 	void AABB::Reset()
 	{
-		min = Vector3F(1e15f);	max = Vector3F(-1e15f);
+		min = Vector3(1e15f, 1e15f, 1e15f);
+		max = Vector3(-1e15f, -1e15f, -1e15f);
 	}
 
 	bool AABB::IsReset() const
@@ -84,12 +96,12 @@ namespace CasaEngine
 		return min.x < max.x&& min.y < max.y&& min.z < max.z;
 	}
 
-	Vector3F AABB::GetCenter() const
+	Vector3 AABB::GetCenter() const
 	{
 		return (min + max) * 0.5f;
 	}
 
-	Vector3F AABB::GetSize() const
+	Vector3 AABB::GetSize() const
 	{
 		return (max - min) * IsResetSel(0.0f, 1.0f);
 	}
@@ -109,15 +121,15 @@ namespace CasaEngine
 		return IsResetSel(0.0f, (max.x - min.x) * (max.y - min.y) * (max.z - min.z));
 	}
 
-	void AABB::Add(const Vector3F& v)
+	void AABB::Add(const Vector3& v)
 	{
 		min.CheckMin(v);
 		max.CheckMax(v);
 	}
 
-	void AABB::Add(const Vector3F& v, float radius)
+	void AABB::Add(const Vector3& v, float radius)
 	{
-		Vector3F ext(radius);
+		Vector3 ext(radius, radius, radius);
 		min.CheckMin(v - ext);
 		max.CheckMax(v + ext);
 	}
@@ -128,15 +140,15 @@ namespace CasaEngine
 		max.CheckMax(bb.max);
 	}
 
-	void AABB::Move(const Vector3F& v)
+	void AABB::Move(const Vector3& v)
 	{
 		const float moveMult = IsResetSel(0.0f, 1.0f);
-		const Vector3F vMove = v * moveMult;
+		const Vector3 vMove = v * moveMult;
 		min += vMove;
 		max += vMove;
 	}
 
-	void AABB::Expand(Vector3F const& v)
+	void AABB::Expand(Vector3 const& v)
 	{
 		if (!IsReset())
 		{
@@ -182,48 +194,86 @@ namespace CasaEngine
 		}
 	}
 
-	bool AABB::IsOverlapSphereBounds(const Vector3F& pos, float radius) const
+	bool AABB::IsOverlapSphereBounds(const Vector3& pos, float radius) const
 	{
 		CA_ASSERT(min.IsValid(), "IsOverlapSphereBounds() : min is not valid");
 		CA_ASSERT(max.IsValid(), "IsOverlapSphereBounds() : max is not valid");
 		CA_ASSERT(pos.IsValid(), "IsOverlapSphereBounds() : pos is not valid");
 
 		if (pos.x > min.x && pos.x < max.x && pos.y > min.y && pos.y < max.y && pos.z > min.z && pos.z < max.z)
+		{
 			return true;
+		}
 
-		if (pos.x + radius < min.x) return false;
-		if (pos.y + radius < min.y) return false;
-		if (pos.z + radius < min.z) return false;
-		if (pos.x - radius > max.x) return false;
-		if (pos.y - radius > max.y) return false;
-		if (pos.z - radius > max.z) return false;
+		if (pos.x + radius < min.x)
+		{
+			return false;
+		}
+		if (pos.y + radius < min.y)
+		{
+			return false;
+		}
+		if (pos.z + radius < min.z)
+		{
+			return false;
+		}
+		if (pos.x - radius > max.x)
+		{
+			return false;
+		}
+		if (pos.y - radius > max.y)
+		{
+			return false;
+		}
+		if (pos.z - radius > max.z)
+		{
+			return false;
+		}
 		return true;
 	}
 
-	bool AABB::IsContainSphere(const Vector3F& pos, float radius) const
+	bool AABB::IsContainSphere(const Vector3& pos, float radius) const
 	{
 		CA_ASSERT(min.IsValid(), "IsContainSphere() : min is not valid");
 		CA_ASSERT(max.IsValid(), "IsContainSphere() : max is not valid");
 		CA_ASSERT(pos.IsValid(), "IsContainSphere() : pos is not valid");
 
-		if (pos.x - radius < min.x) return false;
-		if (pos.y - radius < min.y) return false;
-		if (pos.z - radius < min.z) return false;
-		if (pos.x + radius > max.x) return false;
-		if (pos.y + radius > max.y) return false;
-		if (pos.z + radius > max.z) return false;
+		if (pos.x - radius < min.x)
+		{
+			return false;
+		}
+		if (pos.y - radius < min.y)
+		{
+			return false;
+		}
+		if (pos.z - radius < min.z)
+		{
+			return false;
+		}
+		if (pos.x + radius > max.x)
+		{
+			return false;
+		}
+		if (pos.y + radius > max.y)
+		{
+			return false;
+		}
+		if (pos.z + radius > max.z)
+		{
+			return false;
+		}
 		return true;
 	}
 
 	AABB AABB::CreateAABBfromCone(const Cone& c)
 	{
 		// Construct AABB for cone base
-		Vector3F baseX = Vector3F(1.f - c.mDir.x * c.mDir.x, c.mDir.x * c.mDir.y, c.mDir.x * c.mDir.z).GetNormalized() * c.mBaseRadius;
-		Vector3F baseY = Vector3F(c.mDir.y * c.mDir.x, 1.f - c.mDir.y * c.mDir.y, c.mDir.y * c.mDir.z).GetNormalized() * c.mBaseRadius;
-		Vector3F baseZ = Vector3F(c.mDir.z * c.mDir.x, c.mDir.z * c.mDir.y, 1.f - c.mDir.z * c.mDir.z).GetNormalized() * c.mBaseRadius;
+		Vector3 baseX = Vector3(1.f - c.mDir.x * c.mDir.x, c.mDir.x * c.mDir.y, c.mDir.x * c.mDir.z).GetNormalized() * c.mBaseRadius;
+		Vector3 baseY = Vector3(c.mDir.y * c.mDir.x, 1.f - c.mDir.y * c.mDir.y, c.mDir.y * c.mDir.z).GetNormalized() * c.mBaseRadius;
+		Vector3 baseZ = Vector3(c.mDir.z * c.mDir.x, c.mDir.z * c.mDir.y, 1.f - c.mDir.z * c.mDir.z).GetNormalized() * c.mBaseRadius;
 
-		Vector3F aabbMax = Vector3F(baseX.x, baseY.y, baseZ.z).Abs();
-		Vector3F aabbMin = -aabbMax;
+		Vector3 aabbMax = Vector3(baseX.x, baseY.y, baseZ.z).Abs();
+		Vector3 aabbMin = -aabbMax;
 
 		AABB result(aabbMin, aabbMax);
 		result.Move(c.mBase);
@@ -234,7 +284,7 @@ namespace CasaEngine
 	}
 
 	template<typename F>
-	AABB AABB::CreateAABBfromOBB(const Vector3F& wpos, const OBB_tpl<F>& obb, float scaling/*=1.0f*/)
+	AABB AABB::CreateAABBfromOBB(const Vector3& wpos, const OBB_tpl<F>& obb, float scaling/*=1.0f*/)
 	{
 		AABB taabb; taabb.SetAABBfromOBB(wpos, obb, scaling); return taabb;
 	}
@@ -246,10 +296,10 @@ namespace CasaEngine
 	}
 
 	template<typename F>
-	void AABB::SetAABBfromOBB(const Vector3F& wpos, const OBB_tpl<F>& obb, float scaling/*=1.0f */)
+	void AABB::SetAABBfromOBB(const Vector3& wpos, const OBB_tpl<F>& obb, float scaling/*=1.0f */)
 	{
-		Vector3F pos = obb.m33 * obb.c * scaling + wpos;
-		Vector3F sz = obb.m33.GetFabs() * obb.h * scaling;
+		Vector3 pos = obb.m33 * obb.c * scaling + wpos;
+		Vector3 sz = obb.m33.GetFabs() * obb.h * scaling;
 		min = pos - sz; max = pos + sz;
 	}
 
@@ -279,8 +329,8 @@ namespace CasaEngine
 	// 			m33.a11=fabsf(m33.a11); m33.a12=fabsf(m33.a12);	m33.a13=fabsf(m33.a13);
 	// 			m33.a21=fabsf(m33.a21); m33.a22=fabsf(m33.a22); m33.a23=fabsf(m33.a23);
 	// 			m33.a31=fabsf(m33.a31); m33.a32=fabsf(m33.a32);	m33.a33=fabsf(m33.a33);
-	// 			Vector3F sz		=	m33*((aabb.max-aabb.min)*0.5f);
-	// 			Vector3F pos	=  qt*((aabb.max+aabb.min)*0.5f);
+	// 			Vector3 sz		=	m33*((aabb.max-aabb.min)*0.5f);
+	// 			Vector3 pos	=  qt*((aabb.max+aabb.min)*0.5f);
 	// 			min = pos-sz;	max = pos+sz;
 	// 		}
 	// 	}
@@ -296,8 +346,8 @@ namespace CasaEngine
 	// 			m33.a21=fabsf(m34.a21); m33.a22=fabsf(m34.a22); m33.a23=fabsf(m34.a23);
 	// 			m33.a31=fabsf(m34.a31); m33.a32=fabsf(m34.a32);	m33.a33=fabsf(m34.a33);
 	//
-	// 			Vector3F sz		=	m33*((aabb.max-aabb.min)*0.5f);
-	// 			Vector3F pos	= m34*((aabb.max+aabb.min)*0.5f);
+	// 			Vector3 sz		=	m33*((aabb.max-aabb.min)*0.5f);
+	// 			Vector3 pos	= m34*((aabb.max+aabb.min)*0.5f);
 	// 			min = pos-sz;	max = pos+sz;
 	// 		}
 	// 	}
@@ -310,11 +360,20 @@ namespace CasaEngine
 		CA_ASSERT(b.max.IsValid(), "IsIntersectBox() : b.max is not valid");
 
 		// Check for intersection on X axis.
-		if (min.x > b.max.x || b.min.x > max.x) return false;
+		if (min.x > b.max.x || b.min.x > max.x)
+		{
+			return false;
+		}
 		// Check for intersection on Y axis.
-		if (min.y > b.max.y || b.min.y > max.y) return false;
+		if (min.y > b.max.y || b.min.y > max.y)
+		{
+			return false;
+		}
 		// Check for intersection on Z axis.
-		if (min.z > b.max.z || b.min.z > max.z) return false;
+		if (min.z > b.max.z || b.min.z > max.z)
+		{
+			return false;
+		}
 		// Boxes overlap in all 3 axises.
 		return true;
 	}
@@ -341,31 +400,49 @@ namespace CasaEngine
 			&& max.x >= b.max.x && max.y >= b.max.y && max.z >= b.max.z;
 	}
 
-	float AABB::GetDistance(Vector3F const& v) const
+	float AABB::GetDistance(Vector3 const& v) const
 	{
 		return sqrt(GetDistanceSqr(v));
 	}
 
-	float AABB::GetDistanceSqr(Vector3F const& v) const
+	float AABB::GetDistanceSqr(Vector3 const& v) const
 	{
-		Vector3F vNear = v;
+		Vector3 vNear = v;
 		vNear.CheckMax(min);
 		vNear.CheckMin(max);
 		return (vNear + v).LengthSquared();
 	}
 
-	bool AABB::IsContainPoint(const Vector3F& pos) const
+	bool AABB::IsContainPoint(const Vector3& pos) const
 	{
 		CA_ASSERT(min.IsValid(), "IsContainPoint() : min is not valid");
 		CA_ASSERT(max.IsValid(), "IsContainPoint() : max is not valid");
 		CA_ASSERT(pos.IsValid(), "IsContainPoint() : pos is not valid");
 
-		if (pos.x < min.x) return false;
-		if (pos.y < min.y) return false;
-		if (pos.z < min.z) return false;
-		if (pos.x > max.x) return false;
-		if (pos.y > max.y) return false;
-		if (pos.z > max.z) return false;
+		if (pos.x < min.x)
+		{
+			return false;
+		}
+		if (pos.y < min.y)
+		{
+			return false;
+		}
+		if (pos.z < min.z)
+		{
+			return false;
+		}
+		if (pos.x > max.x)
+		{
+			return false;
+		}
+		if (pos.y > max.y)
+		{
+			return false;
+		}
+		if (pos.z > max.z)
+		{
+			return false;
+		}
 		return true;
 	}
 
@@ -380,39 +457,75 @@ namespace CasaEngine
 #define MAX_BB	+99999.0f
 #define MIN_BB	-99999.0f
 
-	bool IsMinBB(const Vector3F& v)
+	bool IsMinBB(const Vector3& v)
 	{
-		if (v.x <= MIN_BB) return true;
-		if (v.y <= MIN_BB) return true;
-		if (v.z <= MIN_BB) return true;
+		if (v.x <= MIN_BB)
+		{
+			return true;
+		}
+		if (v.y <= MIN_BB)
+		{
+			return true;
+		}
+		if (v.z <= MIN_BB)
+		{
+			return true;
+		}
 		return false;
 	}
 
-	bool IsMaxBB(const Vector3F& v)
+	bool IsMaxBB(const Vector3& v)
 	{
-		if (v.x >= MAX_BB) return true;
-		if (v.y >= MAX_BB) return true;
-		if (v.z >= MAX_BB) return true;
+		if (v.x >= MAX_BB)
+		{
+			return true;
+		}
+		if (v.y >= MAX_BB)
+		{
+			return true;
+		}
+		if (v.z >= MAX_BB)
+		{
+			return true;
+		}
 		return false;
 	}
 
-	Vector3F SetMaxBB()
+	Vector3 SetMaxBB()
 	{
-		return Vector3F(MAX_BB, MAX_BB, MAX_BB);
+		return Vector3(MAX_BB, MAX_BB, MAX_BB);
 	}
 
-	Vector3F SetMinBB()
+	Vector3 SetMinBB()
 	{
-		return Vector3F(MIN_BB, MIN_BB, MIN_BB);
+		return Vector3(MIN_BB, MIN_BB, MIN_BB);
 	}
 
-	void AddToBounds(const Vector3F& v, Vector3F& mins, Vector3F& maxs)
+	void AddToBounds(const Vector3& v, Vector3& mins, Vector3& maxs)
 	{
-		if (v.x < mins.x)	mins.x = v.x;
-		if (v.x > maxs.x)	maxs.x = v.x;
-		if (v.y < mins.y)	mins.y = v.y;
-		if (v.y > maxs.y)	maxs.y = v.y;
-		if (v.z < mins.z)	mins.z = v.z;
-		if (v.z > maxs.z)	maxs.z = v.z;
+		if (v.x < mins.x)
+		{
+			mins.x = v.x;
+		}
+		if (v.x > maxs.x)
+		{
+			maxs.x = v.x;
+		}
+		if (v.y < mins.y)
+		{
+			mins.y = v.y;
+		}
+		if (v.y > maxs.y)
+		{
+			maxs.y = v.y;
+		}
+		if (v.z < mins.z)
+		{
+			mins.z = v.z;
+		}
+		if (v.z > maxs.z)
+		{
+			maxs.z = v.z;
+		}
 	}
 }

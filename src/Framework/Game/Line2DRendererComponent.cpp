@@ -80,14 +80,14 @@ namespace CasaEngine
 		setVertexBuffer(0, m_VertexBuffer, 0, m_NbLines);
 	}
 
-	void Line2DRendererComponent::AddLine( const Vector2F &start_, const CColor &startColor_, 
-		const Vector2F &end_, const CColor &endColor_ )
+	void Line2DRendererComponent::AddLine( const Vector2 &start_, const CColor &startColor_, 
+		const Vector2 &end_, const CColor &endColor_ )
 	{
 		AddLine(start_, startColor_.ToABGR(), end_, endColor_.ToABGR());
 	}
 
-	void Line2DRendererComponent::AddLine( const Vector2F &start_, const unsigned int &startColor_, 
-		const Vector2F &end_, const unsigned int &endColor_ )
+	void Line2DRendererComponent::AddLine( const Vector2 &start_, const unsigned int &startColor_, 
+		const Vector2 &end_, const unsigned int &endColor_ )
 	{
 		const auto pLineData = ::new LineRenderer2DData();
 
@@ -117,10 +117,10 @@ namespace CasaEngine
 		{
 			const LineRenderer2DData *pLineData = *it;
 
-			pVertices[nbLines * 2 + 0].Position = Vector3F(pLineData->Start.x, pLineData->Start.y);
+			pVertices[nbLines * 2 + 0].Position = Vector3(pLineData->Start.x, pLineData->Start.y, 0);
 			pVertices[nbLines * 2 + 0].Color = pLineData->StartColor;
 
-			pVertices[nbLines * 2 + 1].Position = Vector3F(pLineData->End.x, pLineData->End.y);
+			pVertices[nbLines * 2 + 1].Position = Vector3(pLineData->End.x, pLineData->End.y, 0);
 			pVertices[nbLines * 2 + 1].Color = pLineData->EndColor;
 
 			nbLines++;

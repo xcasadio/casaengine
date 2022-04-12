@@ -19,13 +19,13 @@ namespace CasaEngine
 	class CA_EXPORT PhysicalEntity
 	{
 	private:
-		Vector3F    m_vVelocity;
+		Vector3    m_vVelocity;
 
 		//a normalized vector pointing in the direction the entity is heading. 
-		Vector3F    m_vHeading;
+		Vector3    m_vHeading;
 
 		//a vector perpendicular to the heading vector
-		Vector3F    m_vSide; 
+		Vector3    m_vSide; 
 
 		float       m_fMass;
 
@@ -64,14 +64,14 @@ namespace CasaEngine
 		void SetRigidBody(IRigidBodyContainer *val_);
 
 		//accessors
-		Vector3F  Velocity()const;
-		void      SetVelocity(const Vector3F& NewVel);
+		Vector3  Velocity()const;
+		void      SetVelocity(const Vector3& NewVel);
 
 		float     Mass() const;
 		void      Mass(float mass_);
 
-		Vector3F  Side() const;
-		void      Side(Vector3F side_);
+		Vector3  Side() const;
+		void      Side(Vector3 side_);
 
 		float     MaxSpeed() const;                     
 		void      SetMaxSpeed(float new_speed);
@@ -83,9 +83,9 @@ namespace CasaEngine
 		float     Speed() const;
 		float     SpeedSq() const;
 
-		Vector3F  Heading() const;
-		void      SetHeading(Vector3F new_heading);
-		bool      RotateHeadingToFacePosition(Vector3F target);
+		Vector3  Heading() const;
+		void      SetHeading(Vector3 new_heading);
+		bool      RotateHeadingToFacePosition(Vector3 target);
 
 		float     MaxTurnRate() const;
 		void      SetMaxTurnRate(float val);

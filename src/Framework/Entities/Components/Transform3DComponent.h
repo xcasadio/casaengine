@@ -15,10 +15,10 @@ namespace CasaEngine
 		public TransformComponent
 	{
 	private:
-		Vector3F m_LocalCenterOfRotation;
-		Vector3F m_LocalPosition;
+		Vector3 m_LocalCenterOfRotation;
+		Vector3 m_LocalPosition;
 		Quaternion m_LocalRotation;
-		Vector3F m_LocalScale;
+		Vector3 m_LocalScale;
 		
 		// The parent of this transform component.
 		// In effect this field stores the game object parent.
@@ -33,21 +33,21 @@ namespace CasaEngine
 		void SetLocalMatrix(Matrix4 val) override;
 		void SetWorldMatrix(Matrix4 val) override;
 
-		Vector3F GetCenterOfRotation() const;
-		void SetCenterOfRotation(Vector3F val);
+		Vector3 GetCenterOfRotation() const;
+		void SetCenterOfRotation(Vector3 val);
 		
-		Vector3F GetLocalPosition() const;
-		void SetLocalPosition(Vector3F val);
+		Vector3 GetLocalPosition() const;
+		void SetLocalPosition(Vector3 val);
 
 		Quaternion GetLocalRotation() const;
 		void SetLocalRotation(Quaternion val);
 
-		Vector3F GetLocalScale() const;
-		void SetLocalScale(Vector3F val);
+		Vector3 GetLocalScale() const;
+		void SetLocalScale(Vector3 val);
 
-		Vector3F GetPosition() const;
+		Vector3 GetPosition() const;
 		Quaternion GetRotation() const;
-		Vector3F GetScale() const;
+		Vector3 GetScale() const;
 
 		void Initialize() override;
 		void  Update(const GameTime& gameTime_) override;

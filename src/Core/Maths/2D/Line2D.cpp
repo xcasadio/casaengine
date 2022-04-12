@@ -4,7 +4,7 @@ namespace CasaEngine
 {
 	void Line2D::CalculateNormal()
 	{
-		Vector2F temp = m_vB - m_vA;
+		Vector2 temp = m_vB - m_vA;
 		temp.Normalize();
 
 		m_vN.x = -temp.y;
@@ -13,12 +13,12 @@ namespace CasaEngine
 
 	Line2D::Line2D() {}
 
-	Line2D::Line2D(Vector2F A, Vector2F B) :m_vA(A), m_vB(B)
+	Line2D::Line2D(Vector2 A, Vector2 B) :m_vA(A), m_vB(B)
 	{
 		CalculateNormal();
 	}
 
-	Line2D::Line2D(Vector2F A, Vector2F B, Vector2F N) : m_vA(A), m_vB(B), m_vN(N)
+	Line2D::Line2D(Vector2 A, Vector2 B, Vector2 N) : m_vA(A), m_vB(B), m_vN(N)
 	{ }
 
 	Line2D::Line2D(std::ifstream& in)
@@ -40,16 +40,16 @@ namespace CasaEngine
 		}*/
 	}
 
-	Vector2F Line2D::From()const { return m_vA; }
-	void     Line2D::SetFrom(Vector2F v) { m_vA = v; CalculateNormal(); }
+	Vector2 Line2D::From()const { return m_vA; }
+	void     Line2D::SetFrom(Vector2 v) { m_vA = v; CalculateNormal(); }
 
-	Vector2F Line2D::To()const { return m_vB; }
-	void     Line2D::SetTo(Vector2F v) { m_vB = v; CalculateNormal(); }
+	Vector2 Line2D::To()const { return m_vB; }
+	void     Line2D::SetTo(Vector2 v) { m_vB = v; CalculateNormal(); }
 
-	Vector2F Line2D::Normal()const { return m_vN; }
-	void     Line2D::SetNormal(Vector2F n) { m_vN = n; }
+	Vector2 Line2D::Normal()const { return m_vN; }
+	void     Line2D::SetNormal(Vector2 n) { m_vN = n; }
 
-	Vector2F Line2D::Center()const { return (m_vA + m_vB) / 2.0; }
+	Vector2 Line2D::Center()const { return (m_vA + m_vB) / 2.0; }
 
 	std::ostream& Line2D::Write(std::ostream& os)const
 	{
@@ -65,12 +65,12 @@ namespace CasaEngine
 		/*float x, y;
 
 		in >> x >> y;
-		SetFrom(Vector2F(x, y));
+		SetFrom(Vector2(x, y));
 
 		in >> x >> y;
-		SetTo(Vector2F(x, y));
+		SetTo(Vector2(x, y));
 
 		in >> x >> y;
-		SetNormal(Vector2F(x, y));*/
+		SetNormal(Vector2(x, y));*/
 	}
 }

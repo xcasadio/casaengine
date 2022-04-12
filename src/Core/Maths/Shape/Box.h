@@ -11,19 +11,19 @@ namespace CasaEngine
 		public IShape
 	{
 	public:
-		Box(Vector3F size_ = Vector3F::One(), Vector3F center_ = Vector3F::Zero());
+		Box(Vector3 size_ = Vector3::One(), Vector3 center_ = Vector3::Zero());
 		Box(const Box& rsh);
 		Box& operator=(const Box& rsh);
 
 		virtual IShape* Copy() override;
 
-		Vector3F Size() const;
-		void Size(Vector3F val);
-		Vector3F Center() const;
-		void Center(Vector3F val);
+		Vector3 Size() const;
+		void Size(Vector3 val);
+		Vector3 Center() const;
+		void Center(Vector3 val);
 
 	private:
-		Vector3F m_Center, m_Size;
+		Vector3 m_Center, m_Size;
 	};
 }
 /*

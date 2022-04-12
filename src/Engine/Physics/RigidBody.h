@@ -10,7 +10,7 @@ namespace CasaEngine
 		float			mass;
 
 		IShape*			pCollisionShape;
-		Vector3F		localInertia;
+		Vector3		localInertia;
 		float			linearDamping;
 		float			angularDamping;
 
@@ -34,7 +34,7 @@ namespace CasaEngine
 		RigidBody() :
 			mass(1.0f),
 			pCollisionShape(nullptr),
-			localInertia(Vector3F::Zero()),
+			localInertia(Vector3::Zero()),
 			linearDamping(0.f),
 			angularDamping(0.f),
 			friction(0.5f),

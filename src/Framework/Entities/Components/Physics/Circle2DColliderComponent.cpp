@@ -11,7 +11,7 @@ namespace CasaEngine
 		m_pShape = &m_Circle;
 	}
 
-	void Circle2DColliderComponent::SetCenter(const Vector3F& position)
+	void Circle2DColliderComponent::SetCenter(const Vector3& position)
 	{
 		m_Circle.Center(position);
 	}

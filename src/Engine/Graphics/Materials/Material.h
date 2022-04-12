@@ -22,8 +22,8 @@ namespace CasaEngine
 		Texture* Texture0() const;
 		void Texture0(Texture* pVal);
 
-		Vector2F Texture0Repeat() const;
-		void Texture0Repeat(Vector2F val);
+		Vector2 Texture0Repeat() const;
+		void Texture0Repeat(Vector2 val);
 
 	private:
 
@@ -33,7 +33,7 @@ namespace CasaEngine
 		Texture* m_pTexture3;
 
 	public: // TODO : used only for imgui, do it in another way
-		Vector2F m_Texture0Repeat;
+		Vector2 m_Texture0Repeat;
 	};
 }
 

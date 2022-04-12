@@ -10,29 +10,29 @@ namespace CasaEngine
 	{
 	public:
 		Line2D();
-		Line2D(Vector2F A, Vector2F B);
-		Line2D(Vector2F A, Vector2F B, Vector2F N);
+		Line2D(Vector2 A, Vector2 B);
+		Line2D(Vector2 A, Vector2 B, Vector2 N);
 		Line2D(std::ifstream& in);
 
 		virtual void Render(bool RenderNormals = false) const;
 
-		Vector2F From() const;
-		void     SetFrom(Vector2F v);
+		Vector2 From() const;
+		void     SetFrom(Vector2 v);
 
-		Vector2F To() const;
-		void     SetTo(Vector2F v);
+		Vector2 To() const;
+		void     SetTo(Vector2 v);
 
-		Vector2F Normal() const;
-		void     SetNormal(Vector2F n);
+		Vector2 Normal() const;
+		void     SetNormal(Vector2 n);
 
-		Vector2F Center() const;
+		Vector2 Center() const;
 		
 		std::ostream& Write(std::ostream& os) const;
 		void Read(std::ifstream& in);
 
 	protected:
 
-		Vector2F m_vA, m_vB, m_vN;
+		Vector2 m_vA, m_vB, m_vN;
 		void CalculateNormal();
 	};
 }

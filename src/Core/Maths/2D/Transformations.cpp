@@ -11,14 +11,14 @@ namespace CasaEngine
 	//  given a std::vector of 2D vectors, a position, orientation and scale,
 	//  this function transforms the 2D vectors into the object's world space
 	//------------------------------------------------------------------------
-	std::vector<Vector2F> Transformation::WorldTransform(std::vector<Vector2F>& points,
-		const Vector2F& pos,
-		const Vector2F& forward,
-		const Vector2F& side,
-		const Vector2F& scale)
+	std::vector<Vector2> Transformation::WorldTransform(std::vector<Vector2>& points,
+		const Vector2& pos,
+		const Vector2& forward,
+		const Vector2& side,
+		const Vector2& scale)
 	{
 		//copy the original vertices into the buffer about to be transformed
-		std::vector<Vector2F> TranVector2Fs = points;
+		std::vector<Vector2> TranVector2Fs = points;
 
 		//create a transformation matrix
 		Matrix3 matTransform;
@@ -46,14 +46,14 @@ namespace CasaEngine
 	//  given a std::vector of 3D vectors, a position, orientation and scale,
 	//  this function transforms the 2D vectors into the object's world space
 	//------------------------------------------------------------------------
-	std::vector<Vector3F> Transformation::WorldTransform(std::vector<Vector3F>& points,
-		const Vector3F& pos,
-		const Vector3F& forward,
-		const Vector3F& side,
-		const Vector3F& scale)
+	std::vector<Vector3> Transformation::WorldTransform(std::vector<Vector3>& points,
+		const Vector3& pos,
+		const Vector3& forward,
+		const Vector3& side,
+		const Vector3& scale)
 	{
 		//copy the original vertices into the buffer about to be transformed
-		std::vector<Vector3F> TranVectors = points;
+		std::vector<Vector3> TranVectors = points;
 
 		//create a transformation matrix
 		Matrix4 matTransform, matScale, matRot, matTrans;
@@ -65,7 +65,7 @@ namespace CasaEngine
 		}
 
 		//rotate
-		matRot.CreateFromDirection(forward, side, Vector3F::Up());
+		matRot.CreateFromDirection(forward, side, Vector3::Up());
 
 		//and translate
 		matTrans.CreateTranslation(pos.x, 0.0f, pos.y);
@@ -81,13 +81,13 @@ namespace CasaEngine
 	//
 	//  Transforms a point from the agent's local space into world space
 	//------------------------------------------------------------------------
-	Vector2F Transformation::PointToWorldSpace(const Vector2F& point,
-		const Vector2F& AgentHeading,
-		const Vector2F& AgentSide,
-		const Vector2F& AgentPosition)
+	Vector2 Transformation::PointToWorldSpace(const Vector2& point,
+		const Vector2& AgentHeading,
+		const Vector2& AgentSide,
+		const Vector2& AgentPosition)
 	{
 		//make a copy of the point
-		Vector2F TransPoint = point;
+		Vector2 TransPoint = point;
 
 		//create a transformation matrix
 		Matrix3 matTransform;
@@ -108,12 +108,12 @@ namespace CasaEngine
 	//
 	//  Transforms a vector from the agent's local space into world space
 	//------------------------------------------------------------------------
-	Vector2F Transformation::VectorToWorldSpace(const Vector2F& vec,
-		const Vector2F& AgentHeading,
-		const Vector2F& AgentSide)
+	Vector2 Transformation::VectorToWorldSpace(const Vector2& vec,
+		const Vector2& AgentHeading,
+		const Vector2& AgentSide)
 	{
 		//make a copy of the point
-		Vector2F TransVec = vec;
+		Vector2 TransVec = vec;
 
 		//create a transformation matrix
 		Matrix3 matTransform;
@@ -130,13 +130,13 @@ namespace CasaEngine
 	//--------------------- PointToLocalSpace --------------------------------
 	//
 	//------------------------------------------------------------------------
-	Vector2F Transformation::PointToLocalSpace(const Vector2F& point,
-		Vector2F& AgentHeading,
-		Vector2F& AgentSide,
-		Vector2F& AgentPosition)
+	Vector2 Transformation::PointToLocalSpace(const Vector2& point,
+		Vector2& AgentHeading,
+		Vector2& AgentSide,
+		Vector2& AgentPosition)
 	{
 		//make a copy of the point
-		Vector2F TransPoint = point;
+		Vector2 TransPoint = point;
 
 		//create a transformation matrix
 		Matrix3 matTransform;
@@ -158,12 +158,12 @@ namespace CasaEngine
 	//--------------------- VectorToLocalSpace --------------------------------
 	//
 	//------------------------------------------------------------------------
-	Vector2F Transformation::VectorToLocalSpace(const Vector2F& vec,
-		const Vector2F& AgentHeading,
-		const Vector2F& AgentSide)
+	Vector2 Transformation::VectorToLocalSpace(const Vector2& vec,
+		const Vector2& AgentHeading,
+		const Vector2& AgentSide)
 	{
 		//make a copy of the point
-		Vector2F TransPoint = vec;
+		Vector2 TransPoint = vec;
 
 		//create a transformation matrix
 		Matrix3 matTransform;
@@ -182,7 +182,7 @@ namespace CasaEngine
 	//
 	//  rotates a vector ang rads around the origin
 	//-----------------------------------------------------------------------------
-	void Transformation::Vec2DRotateAroundOrigin(Vector2F& v, float ang)
+	void Transformation::Vec2DRotateAroundOrigin(Vector2& v, float ang)
 	{
 		//create a transformation matrix
 		Matrix3 mat;
@@ -202,17 +202,17 @@ namespace CasaEngine
 	//  of whiskers radiating away from the origin and with equal distance between
 	//  them. (like the spokes of a wheel clipped to a specific segment size)
 	//----------------------------------------------------------------------------
-	std::vector<Vector2F> Transformation::CreateWhiskers(unsigned int  NumWhiskers,
+	std::vector<Vector2> Transformation::CreateWhiskers(unsigned int  NumWhiskers,
 		float        WhiskerLength,
 		float        fov,
-		Vector2F      facing,
-		Vector2F      origin)
+		Vector2      facing,
+		Vector2      origin)
 	{
 		//this is the magnitude of the angle separating each whisker
 		float SectorSize = fov / static_cast<float>(NumWhiskers - 1);
 
-		std::vector<Vector2F> whiskers;
-		Vector2F temp;
+		std::vector<Vector2> whiskers;
+		Vector2 temp;
 		float angle = -fov * 0.5f;
 
 		for (unsigned int w = 0; w < NumWhiskers; ++w)

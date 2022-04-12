@@ -16,11 +16,11 @@ namespace CasaEngine
 
 		void Initialize() override;
 
-		Vector3F Position() const;
-		void Position(Vector3F val);
+		Vector3 Position() const;
+		void Position(Vector3 val);
 
-		Vector3F Target() const;
-		void Target(Vector3F val);
+		Vector3 Target() const;
+		void Target(Vector3 val);
 
 		void Write(std::ostream& os)const;
 		void Read(std::ifstream& is);
@@ -29,6 +29,6 @@ namespace CasaEngine
 		void ComputeViewMatrix() override;
 
 	private:
-		Vector3F m_Target, m_Position;
+		Vector3 m_Target, m_Position;
 	};
 }

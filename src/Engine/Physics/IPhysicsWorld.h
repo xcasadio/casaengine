@@ -19,15 +19,15 @@ namespace CasaEngine
 
 		virtual void Update(const GameTime& gameTime_) = 0;
 
-		virtual void SetGravity(const Vector3F& gravity_) = 0;
-		virtual Vector3F GetGravity() const = 0;
+		virtual void SetGravity(const Vector3& gravity_) = 0;
+		virtual Vector3 GetGravity() const = 0;
 
-		virtual ICollisionObjectContainer* CreateCollisionShape(const IShape* pShape_, const Vector3F& origin_) = 0;
+		virtual ICollisionObjectContainer* CreateCollisionShape(const IShape* pShape_, const Vector3& origin_) = 0;
 
 		virtual void AddCollisionObject(ICollisionObjectContainer*) = 0;
 		virtual void RemoveCollisionObject(ICollisionObjectContainer*) = 0;
 
-		virtual IRigidBodyContainer* AddRigidBody(const RigidBody* pRigidBody_, Vector3F position) = 0;
+		virtual IRigidBodyContainer* AddRigidBody(const RigidBody* pRigidBody_, Vector3 position) = 0;
 		virtual void RemoveRigidBody(IRigidBodyContainer*) = 0;
 	};
 }

@@ -30,7 +30,7 @@ namespace CasaEngine
 	{
 		CA_ASSERT(m_pCollisionObjectContainer == nullptr, "ColliderComponent::Initialize()");
 		m_pCollisionObjectContainer =
-			Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->CreateCollisionShape(GetShape(), Vector3F::Zero());
+			Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->CreateCollisionShape(GetShape(), Vector3::Zero());
 	}
 
 	void ColliderComponent::Update(const GameTime& /*gameTime_*/)

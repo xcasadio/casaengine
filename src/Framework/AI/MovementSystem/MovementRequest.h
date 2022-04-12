@@ -96,7 +96,7 @@ struct MovementRequest
 	};
 
 	MovementRequest()
-		: destination(0)
+		: destination(0, 0, 0)
 		, type(MoveTo)
 		//, callback(0)
 		, entityID(0)
@@ -107,7 +107,7 @@ struct MovementRequest
 	}
 
 	MovementStyle style;
-	Vector3F destination;
+	Vector3 destination;
 	Type type;
 	//Callback callback;
 	EntityId entityID;

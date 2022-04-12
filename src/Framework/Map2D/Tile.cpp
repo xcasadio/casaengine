@@ -35,9 +35,9 @@ namespace CasaEngine
 			pSprite->GetTexture2D(),
 			texUV,
 			pSprite->GetSpriteData()->GetOrigin(),
-			Vector2F(x, y),
+			Vector2(x, y),
 			0.0f,
-			Vector2F::One(),
+			Vector2::One(),
 			CColor::White,
 			z);
 	}

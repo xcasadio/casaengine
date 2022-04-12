@@ -28,7 +28,7 @@ void PlayerStateIdle::Enter(IController* pController_)
 	PlayerController* pPlayerController = dynamic_cast<PlayerController*>(pController_);
 
 	//TODO selon la direction definir l'animation
-	Vector2F joyDir = Vector2F::Zero();
+	Vector2 joyDir = Vector2::Zero();
 	pPlayerController->GetPlayer()->Move(joyDir);
 
 	if (pPlayerController->GetPlayer()->InFuryMode() == true)
@@ -52,7 +52,7 @@ void PlayerStateIdle::Execute(IController* pController_, const GameTime& elpased
 	//PlayerIndex playerIndex = c.PlayerIndex;
 
 	orientation dir;
-	Vector2F joyDir;
+	Vector2 joyDir;
 
 	if (pPlayerController->GetPlayer()->FuryModeEnabling() == true)
 	{
@@ -94,7 +94,7 @@ void PlayerStateIdle::Execute(IController* pController_, const GameTime& elpased
 	}
 	else // used to immobilized the character
 	{
-		joyDir = Vector2F::Zero();
+		joyDir = Vector2::Zero();
 		pPlayerController->GetPlayer()->Move(joyDir);
 
 		//pPlayerController->GetHero()->SetCurrentAnimation(static_cast<int>(Character::AnimationIndices::IDLE));
@@ -153,7 +153,7 @@ void PlayerStateAttack::Enter(IController* pController_)
 
 	// 	pPlayerController->GetHero()->DoANewAttack();
 	// 	pPlayerController->GetHero()->SetComboNumber(0);
-	Vector2F joyDir = Vector2F::Zero();
+	Vector2 joyDir = Vector2::Zero();
 	pPlayerController->GetPlayer()->Move(joyDir);
 
 	/*if (pPlayerController->GetHero()->InFuryMode() == true)

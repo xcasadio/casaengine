@@ -40,12 +40,12 @@ namespace CasaEngine
 		
 		m_pProgram = new Program("vs_3DLines", "fs_3DLines");
 
-		m_Vertices[0].Position = Vector3F::Zero();  m_Vertices[0].Color = CColor::Red.ToABGR();
-		m_Vertices[1].Position = Vector3F::UnitX(); m_Vertices[1].Color = CColor::Red.ToABGR();
-		m_Vertices[2].Position = Vector3F::Zero();  m_Vertices[2].Color = CColor::Green.ToABGR();
-		m_Vertices[3].Position = Vector3F::UnitY(); m_Vertices[3].Color = CColor::Green.ToABGR();
-		m_Vertices[4].Position = Vector3F::Zero();  m_Vertices[4].Color = CColor::Blue.ToABGR();
-		m_Vertices[5].Position = Vector3F::UnitZ(); m_Vertices[5].Color = CColor::Blue.ToABGR();
+		m_Vertices[0].Position = Vector3::Zero();  m_Vertices[0].Color = CColor::Red.ToABGR();
+		m_Vertices[1].Position = Vector3::UnitX(); m_Vertices[1].Color = CColor::Red.ToABGR();
+		m_Vertices[2].Position = Vector3::Zero();  m_Vertices[2].Color = CColor::Green.ToABGR();
+		m_Vertices[3].Position = Vector3::UnitY(); m_Vertices[3].Color = CColor::Green.ToABGR();
+		m_Vertices[4].Position = Vector3::Zero();  m_Vertices[4].Color = CColor::Blue.ToABGR();
+		m_Vertices[5].Position = Vector3::UnitZ(); m_Vertices[5].Color = CColor::Blue.ToABGR();
 
 		m_VertexBuffer = bgfx::createVertexBuffer(bgfx::makeRef(m_Vertices, 6 * sizeof(VertexPositionColor)), VertexPositionColor::ms_layout);
 	}
@@ -90,13 +90,13 @@ namespace CasaEngine
 		Viewport &viewport = pCamera->GetViewport();
 		Matrix4 matProj, matWorld;
 
-		//matWorld.CreateRotationZ(0.5f * Pi);
+		//matWorld.CreateRotationZ(0.5f * PI);
 		//matWorld.CreateTranslation(0.0f, 0.0f, -1.0f);
 		//matWorld.CreateScale(1.0f / (float)CA_DEFAULT_WIDTH, 1.0f / (float)CA_DEFAULT_HEIGHT, 1.0f);
 		//matWorld.CreateScale(0.989f, 1.0f, 1.0f);
-		Vector3F scale(1.0f, 1.0f, 1.0f);
+		Vector3 scale(1.0f, 1.0f, 1.0f);
 		Quaternion rot;
-		rot.FromAxisAngle(Vector3F::UnitZ(), 0.5f * Pi);
+		rot.FromAxisAngle(Vector3::UnitZ(), 0.5f * PI);
 		matWorld.Transformation(
 			nullptr, nullptr, 
 			&scale,

@@ -1,5 +1,4 @@
-#ifndef VECTOR4_H
-#define VECTOR4_H
+#pragma once
 
 #include <iostream>
 
@@ -52,7 +51,7 @@ namespace CasaEngine
 	template <class T> std::ostream& operator <<(std::ostream& Stream, const CVector4<T>& Vector);
 
 	typedef CVector4<int>   Vector4I;
-	typedef CVector4<float> Vector4F;
+	typedef CVector4<float> Vector4;
 
 	template <class T>
 	CVector4<T>::CVector4(T X, T Y, T Z, T W) :
@@ -264,5 +263,3 @@ namespace CasaEngine
 		return Stream << Vector.x << " " << Vector.y << " " << Vector.z << " " << Vector.w;
 	}
 }
-
-#endif

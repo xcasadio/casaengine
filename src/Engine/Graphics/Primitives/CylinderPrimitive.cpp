@@ -11,14 +11,14 @@ namespace CasaEngine
 	/// <summary>
 	/// Helper method computes a point on a circle.
 	/// </summary>
-	Vector3F GetCircleVector(int i_, int tessellation_)
+	Vector3 GetCircleVector(int i_, int tessellation_)
 	{
 		float angle = i_ * MATH_2PI / tessellation_;
 
 		float dx = cosf(angle);
 		float dz = sinf(angle);
 
-		return Vector3F(dx, 0, dz);
+		return Vector3(dx, 0, dz);
 	}
 
 	/**
@@ -37,15 +37,15 @@ namespace CasaEngine
 		}
 
 		m_nbPrimitives = 0;
-		Vector3F normal;
+		Vector3 normal;
 		float heightDiv2 = m_Height / 2.0f;
 		float radius = m_Diameter / 2;
 
 		for (unsigned int i = 0; i < m_Tessellation; i++)
 		{
 			normal = GetCircleVector(i, m_Tessellation);
-			AddVertex(normal * radius + Vector3F::Up() * heightDiv2, normal, Vector2F(1.0f, static_cast<float>(i) / static_cast<float>(m_Tessellation)));
-			AddVertex(normal * radius + Vector3F::Down() * heightDiv2, normal, Vector2F(0.0f, static_cast<float>(i) / static_cast<float>(m_Tessellation)));
+			AddVertex(normal * radius + Vector3::Up() * heightDiv2, normal, Vector2(1.0f, static_cast<float>(i) / static_cast<float>(m_Tessellation)));
+			AddVertex(normal * radius + Vector3::Down() * heightDiv2, normal, Vector2(0.0f, static_cast<float>(i) / static_cast<float>(m_Tessellation)));
 
 			AddIndex(i * 2);
 			AddIndex(i * 2 + 1);
@@ -60,24 +60,24 @@ namespace CasaEngine
 
 		//last points
 		normal = GetCircleVector(m_Tessellation, m_Tessellation);
-		AddVertex(normal * radius + Vector3F::Up() * heightDiv2, normal, Vector2F::One());
-		AddVertex(normal * radius + Vector3F::Down() * heightDiv2, normal, Vector2F(0.0f, 1.0f));
+		AddVertex(normal * radius + Vector3::Up() * heightDiv2, normal, Vector2::One());
+		AddVertex(normal * radius + Vector3::Down() * heightDiv2, normal, Vector2(0.0f, 1.0f));
 
 		// Top center
 		unsigned int indexTop = this->GetCurrentVertex();
-		Vector3F centerTop(0, heightDiv2, 0);
-		AddVertex(centerTop, Vector3F::Up(), Vector2F(0.5f, 0.5f));
+		Vector3 centerTop(0, heightDiv2, 0);
+		AddVertex(centerTop, Vector3::Up(), Vector2(0.5f, 0.5f));
 		// Bottom center
 		unsigned int indexBottom = this->GetCurrentVertex();
-		Vector3F centerBottom(0, -heightDiv2, 0);
-		AddVertex(centerBottom, Vector3F::Down(), Vector2F(0.5f, 0.5f));
+		Vector3 centerBottom(0, -heightDiv2, 0);
+		AddVertex(centerBottom, Vector3::Down(), Vector2(0.5f, 0.5f));
 
 		for (unsigned int i = 0; i < m_Tessellation; i++)
 		{
 			normal = GetCircleVector(i, m_Tessellation);
 			//TODO : UVs must be compute with a circular way
-			AddVertex(normal * radius + Vector3F::Up() * heightDiv2, Vector3F::Up(), Vector2F(1.0f, static_cast<float>(i) / static_cast<float>(m_Tessellation)));
-			AddVertex(normal * radius + Vector3F::Down() * heightDiv2, Vector3F::Down(), Vector2F(0.0f, static_cast<float>(i) / static_cast<float>(m_Tessellation)));
+			AddVertex(normal * radius + Vector3::Up() * heightDiv2, Vector3::Up(), Vector2(1.0f, static_cast<float>(i) / static_cast<float>(m_Tessellation)));
+			AddVertex(normal * radius + Vector3::Down() * heightDiv2, Vector3::Down(), Vector2(0.0f, static_cast<float>(i) / static_cast<float>(m_Tessellation)));
 
 			AddIndex(indexTop);
 			AddIndex(indexTop + i * 2 + 2);
@@ -92,8 +92,8 @@ namespace CasaEngine
 
 		//last points
 		normal = GetCircleVector(m_Tessellation, m_Tessellation);
-		AddVertex(normal * radius + Vector3F::Up() * heightDiv2, Vector3F::Up(), Vector2F(1.0f, 1.0f));
-		AddVertex(normal * radius + Vector3F::Down() * heightDiv2, Vector3F::Down(), Vector2F(0.0f, 1.0f));
+		AddVertex(normal * radius + Vector3::Up() * heightDiv2, Vector3::Up(), Vector2(1.0f, 1.0f));
+		AddVertex(normal * radius + Vector3::Down() * heightDiv2, Vector3::Down(), Vector2(0.0f, 1.0f));
 	}
 
 	/**

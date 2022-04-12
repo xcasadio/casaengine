@@ -22,17 +22,17 @@ namespace CasaEngine
 		SteeringBehaviorComponent* m_pSteering;
 		//some steering behaviors give jerky looking movement. The
 		//following members are used to smooth the vehicle's heading
-		Smoother<Vector2F>*  m_pHeadingSmoother;
+		Smoother<Vector2>*  m_pHeadingSmoother;
 
 		//this vector represents the average of the vehicle's heading
 		//vector smoothed over the last few frames
-		Vector2F             m_vSmoothedHeading;
+		Vector2             m_vSmoothedHeading;
 
 		//when true, smoothing is active
 		bool                 m_bSmoothingOn;
 
 	public:
-		explicit MovingEntity2DComponent(BaseEntity* pEntity_, int smootherSampleSize_ = 10.0f, Vector2F smootherZeroValue_ = Vector2F::Zero());
+		explicit MovingEntity2DComponent(BaseEntity* pEntity_, int smootherSampleSize_ = 10.0f, Vector2 smootherZeroValue_ = Vector2::Zero());
 		virtual ~MovingEntity2DComponent();
 
 		//all entities must implement an Initialize function
@@ -47,7 +47,7 @@ namespace CasaEngine
 
 		SteeringBehaviorComponent* const GetSteering() const;
 
-		Vector2F SmoothedHeading() const;
+		Vector2 SmoothedHeading() const;
 
 		bool IsSmoothingOn() const;
 		void SmoothingOn();

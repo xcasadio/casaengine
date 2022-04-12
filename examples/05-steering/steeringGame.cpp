@@ -121,7 +121,7 @@ void SteeringGame::CreateEntities()
 	// Camera 3D
 	BaseEntity* pCamera = new BaseEntity();
 	m_pCamera3D = new ArcBallCameraComponent(pCamera);
-	m_pCamera3D->SetCamera(Vector3F(0, 20.0f, -50.0f), Vector3F::Zero(), Vector3F::Up());
+	m_pCamera3D->SetCamera(Vector3(0, 20.0f, -50.0f), Vector3::Zero(), Vector3::Up());
 	m_pCamera3D->Distance(15.0f);
 	pCamera->GetComponentMgr()->AddComponent(m_pCamera3D);
 	pCamera->Initialize();
@@ -133,9 +133,9 @@ void SteeringGame::CreateEntities()
 	BaseEntity* pEntity = new BaseEntity();
 	pEntity->SetName("ground");
 	Transform3DComponent* pTransform = new Transform3DComponent(pEntity);
-	pTransform->SetLocalPosition(Vector3F(0.0f, -0.5f, 0.0f));
+	pTransform->SetLocalPosition(Vector3(0.0f, -0.5f, 0.0f));
 	pTransform->SetLocalRotation(0.0f);
-	pTransform->SetLocalScale(Vector3F::One());
+	pTransform->SetLocalScale(Vector3::One());
 	pEntity->GetComponentMgr()->AddComponent(pTransform);
 	MeshComponent* pModelCpt = new MeshComponent(pEntity);
 	BoxPrimitive* pBox = new BoxPrimitive(100.0f, 1.0f, 100.0f);
@@ -143,7 +143,7 @@ void SteeringGame::CreateEntities()
 	//new material
 	Material* pMat = pModel->GetMaterial()->Clone();
 	pMat->Texture0(Texture::loadTexture(Game::Instance().GetMediaManager().FindMedia("ceilingMain_DIF.dds"), BGFX_SAMPLER_MIN_ANISOTROPIC | BGFX_SAMPLER_MAG_ANISOTROPIC));
-	pMat->Texture0Repeat(Vector2F(50, 50));
+	pMat->Texture0Repeat(Vector2(50, 50));
 	pModel->SetMaterial(pMat);
 	//
 	pModelCpt->SetModel(pModel);

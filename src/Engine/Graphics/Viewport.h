@@ -29,8 +29,8 @@ namespace CasaEngine
 		float FarClipPlane() const;
 		void FarClipPlane(float val);
 
-		Vector3F Project(const Vector3F& source, const Matrix4& projection, const Matrix4& view, const Matrix4& world) const;
-		Vector3F Unproject(const Vector3F& source, const Matrix4& projection, const Matrix4& view, const Matrix4& world) const;
+		Vector3 Project(const Vector3& source, const Matrix4& projection, const Matrix4& view, const Matrix4& world) const;
+		Vector3 Unproject(const Vector3& source, const Matrix4& projection, const Matrix4& view, const Matrix4& world) const;
 
 	private:
 		void ComputeAspectRatio();

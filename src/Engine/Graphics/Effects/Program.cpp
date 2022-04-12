@@ -9,15 +9,15 @@ namespace CasaEngine
 	{
 	}
 
-	void Program::SetParameter(const char* pName, const Vector2F& Value)
+	void Program::SetParameter(const char* pName, const Vector2& Value)
 	{
 	}
 
-	void Program::SetParameter(const char* pName, const Vector3F& Value)
+	void Program::SetParameter(const char* pName, const Vector3& Value)
 	{
 	}
 
-	void Program::SetParameter(const char* pName, const Vector4F& Value)
+	void Program::SetParameter(const char* pName, const Vector4& Value)
 	{
 	}
 

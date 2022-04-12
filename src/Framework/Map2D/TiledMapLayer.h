@@ -19,7 +19,7 @@ namespace CasaEngine
 
 		void Initialize(BaseEntity* pEntity);
 		void Update(const GameTime& gameTime_);
-		void Draw(const Vector3F& translation);
+		void Draw(const Vector3& translation);
 
 		Vector2I GetMapSize() const;
 		void SetMapSize(Vector2I& size);

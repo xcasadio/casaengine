@@ -18,15 +18,15 @@ namespace CasaEngine
 	 */
 	struct Cone
 	{
-		Vector3F mTip;
-		Vector3F mDir;
-		Vector3F mBase;
+		Vector3 mTip;
+		Vector3 mDir;
+		Vector3 mBase;
 
 		float mHeight;
 		float mBaseRadius;
 
 		Cone();
-		Cone(const Vector3F& tip, const Vector3F& dir, float height, float baseRadius);
+		Cone(const Vector3& tip, const Vector3& dir, float height, float baseRadius);
 	};
 
 	/**
@@ -34,8 +34,8 @@ namespace CasaEngine
 	 */
 	struct AABB
 	{
-		Vector3F min;
-		Vector3F max;
+		Vector3 min;
+		Vector3 max;
 
 		/// default AABB constructor (without initialization)
 		AABB();
@@ -43,11 +43,11 @@ namespace CasaEngine
 		// AABB aabb(RESET) generates a reset aabb
 		AABB(type_reset);
 		explicit AABB(float radius);
-		explicit AABB(const Vector3F& v);
-		AABB(const Vector3F& v, float radius);
-		AABB(const Vector3F& vmin, const Vector3F& vmax);
+		explicit AABB(const Vector3& v);
+		AABB(const Vector3& v, float radius);
+		AABB(const Vector3& vmin, const Vector3& vmax);
 		AABB(const AABB& aabb);
-		AABB(const Vector3F* points, int num);
+		AABB(const Vector3* points, int num);
 
 		//! Reset Bounding box before calculating bounds.
 		//! These values ensure that Add() functions work correctly for Reset bbs, without additional comparisons.
@@ -63,9 +63,9 @@ namespace CasaEngine
 		//! Check if bounding box has valid, non zero volume
 		bool IsNonZero() const;
 
-		Vector3F GetCenter() const;
+		Vector3 GetCenter() const;
 
-		Vector3F GetSize() const;
+		Vector3 GetSize() const;
 
 		float GetRadius() const;
 
@@ -73,15 +73,15 @@ namespace CasaEngine
 
 		float GetVolume() const;
 
-		void Add(const Vector3F& v);
+		void Add(const Vector3& v);
 
-		void Add(const Vector3F& v, float radius);
+		void Add(const Vector3& v, float radius);
 
 		void Add(const AABB& bb);
 
-		void Move(const Vector3F& v);
+		void Move(const Vector3& v);
 
-		void Expand(Vector3F const& v);
+		void Expand(Vector3 const& v);
 
 		// Augment the box on all sides by a box.
 		void Augment(AABB const& bb);
@@ -91,17 +91,17 @@ namespace CasaEngine
 		void ClipMoveToBox(AABB const& bb);
 
 		//! Check if this bounding box overlap with bounding box of sphere.
-		bool IsOverlapSphereBounds(const Vector3F& pos, float radius) const;
+		bool IsOverlapSphereBounds(const Vector3& pos, float radius) const;
 
 		//! Check if this bounding box contain sphere within itself.
-		bool IsContainSphere(const Vector3F& pos, float radius) const;
+		bool IsContainSphere(const Vector3& pos, float radius) const;
 
 		//! Check if this bounding box contains a point within itself.
-		bool IsContainPoint(const Vector3F& pos) const;
+		bool IsContainPoint(const Vector3& pos) const;
 
-		float GetDistanceSqr(Vector3F const& v) const;
+		float GetDistanceSqr(Vector3 const& v) const;
 
-		float GetDistance(Vector3F const& v) const;
+		float GetDistance(Vector3 const& v) const;
 
 		bool ContainsBox(AABB const& b) const;
 
@@ -141,9 +141,9 @@ namespace CasaEngine
 		*  expanded AABB in world-space
 		*/
 		template<typename F>
-		void SetAABBfromOBB(const Vector3F& wpos, const OBB_tpl<F>& obb, float scaling = 1.0f);
+		void SetAABBfromOBB(const Vector3& wpos, const OBB_tpl<F>& obb, float scaling = 1.0f);
 		template<typename F>
-		static AABB CreateAABBfromOBB(const Vector3F& wpos, const OBB_tpl<F>& obb, float scaling = 1.0f);
+		static AABB CreateAABBfromOBB(const Vector3& wpos, const OBB_tpl<F>& obb, float scaling = 1.0f);
 
 		/* Converts a Cone into a tight fitting AABB */
 		static AABB CreateAABBfromCone(const Cone& c);
@@ -157,14 +157,14 @@ namespace CasaEngine
 	template <typename F> struct OBB_tpl
 	{
 		Matrix3 m33; //orientation vectors
-		Vector3F h;				//half-length-vector
-		Vector3F c;				//center of obb
+		Vector3 h;				//half-length-vector
+		Vector3 c;				//center of obb
 
 		//default OBB constructor (without initialization)
 		inline OBB_tpl() {}
 
-		inline void SetOBB(const Matrix3& matrix, const Vector3F& hlv, const Vector3F& center) { m33 = matrix; h = hlv; c = center; }
-		inline static OBB_tpl<F> CreateOBB(const Matrix3& m33, const Vector3F& hlv, const Vector3F& center)
+		inline void SetOBB(const Matrix3& matrix, const Vector3& hlv, const Vector3& center) { m33 = matrix; h = hlv; c = center; }
+		inline static OBB_tpl<F> CreateOBB(const Matrix3& m33, const Vector3& hlv, const Vector3& center)
 		{
 			OBB_tpl<float> obb; obb.m33 = m33; obb.h = hlv; obb.c = center; return obb;
 		}
@@ -194,15 +194,15 @@ namespace CasaEngine
 	};
 
 	//! checks if this has been set to minBB
-	bool IsMinBB(const Vector3F& v);
+	bool IsMinBB(const Vector3& v);
 
 	//! checks if this has been set to maxBB
-	bool IsMaxBB(const Vector3F& v);
+	bool IsMaxBB(const Vector3& v);
 
-	Vector3F SetMaxBB();
-	Vector3F SetMinBB();
+	Vector3 SetMaxBB();
+	Vector3 SetMinBB();
 
-	void AddToBounds(const Vector3F& v, Vector3F& mins, Vector3F& maxs);
+	void AddToBounds(const Vector3& v, Vector3& mins, Vector3& maxs);
 }
 
 #endif

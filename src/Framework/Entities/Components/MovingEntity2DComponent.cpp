@@ -15,10 +15,10 @@ namespace CasaEngine
 /**
  * 
  */
-MovingEntity2DComponent::MovingEntity2DComponent(BaseEntity* pEntity_, int smootherSampleSize_, Vector2F smootherZeroValue_)
+MovingEntity2DComponent::MovingEntity2DComponent(BaseEntity* pEntity_, int smootherSampleSize_, Vector2 smootherZeroValue_)
 	: Component(pEntity_, MOVING_ENTITY_2D)
 {
-	m_pHeadingSmoother = new Smoother<Vector2F>(smootherSampleSize_, smootherZeroValue_);
+	m_pHeadingSmoother = new Smoother<Vector2>(smootherSampleSize_, smootherZeroValue_);
 }
 
 /**
@@ -61,7 +61,7 @@ SteeringBehaviorComponent* const MovingEntity2DComponent::GetSteering() const
 	return m_pSteering;
 }
 
-Vector2F MovingEntity2DComponent::SmoothedHeading()const
+Vector2 MovingEntity2DComponent::SmoothedHeading()const
 {
 	return m_vSmoothedHeading;
 }

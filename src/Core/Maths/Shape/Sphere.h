@@ -11,10 +11,10 @@ namespace CasaEngine
 	class CA_EXPORT Sphere : public IShape
 	{
 	public:
-		Sphere(Vector3F center_, float radius_);
+		Sphere(Vector3 center_, float radius_);
 
 	private:
-		Vector3F m_Center;
+		Vector3 m_Center;
 		float m_Radius;
 	};
 }

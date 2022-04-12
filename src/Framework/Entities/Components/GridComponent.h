@@ -28,8 +28,8 @@ namespace CasaEngine
 		 */
 		struct TGridPointData
 		{
-			TGridPointData(Vector3F startPos_, CColor startColor_,
-				Vector3F endPos_, CColor endColor_)
+			TGridPointData(Vector3 startPos_, CColor startColor_,
+				Vector3 endPos_, CColor endColor_)
 			{
 				Start = startPos_;
 				StartColor = startColor_;
@@ -37,7 +37,7 @@ namespace CasaEngine
 				EndColor = endColor_;
 			}
 
-			Vector3F Start, End;
+			Vector3 Start, End;
 			CColor StartColor, EndColor;
 		};
 

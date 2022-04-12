@@ -137,7 +137,7 @@ namespace CasaEngine
 	/// \param Center : Centre de rotation
 	///
 	////////////////////////////////////////////////////////////
-	void Matrix3::CreateRotation(float Angle, const Vector2F& Center)
+	void Matrix3::CreateRotation(float Angle, const Vector2& Center)
 	{
 		Matrix3 Tr1, Tr2, Rot;
 
@@ -188,7 +188,7 @@ namespace CasaEngine
 	}
 
 	//create a rotation matrix from a 2D vector
-	void Matrix3::Rotate(const Vector2F& fwd, const Vector2F& side)
+	void Matrix3::Rotate(const Vector2& fwd, const Vector2& side)
 	{
 		Matrix3 mat;
 
@@ -205,9 +205,9 @@ namespace CasaEngine
 	/// \return Vecteur translation
 	///
 	////////////////////////////////////////////////////////////
-	Vector2F Matrix3::GetTranslation() const
+	Vector2 Matrix3::GetTranslation() const
 	{
-		return Vector2F(a13, a23);
+		return Vector2(a13, a23);
 	}
 
 	/////////////////////////////////////////////////////////////
@@ -219,9 +219,9 @@ namespace CasaEngine
 	/// \return Résultat de l'opération
 	///
 	////////////////////////////////////////////////////////////
-	Vector3F Matrix3::Transform(const Vector2F& v, float w) const
+	Vector3 Matrix3::Transform(const Vector2& v, float w) const
 	{
-		return Vector3F(v.x * a11 + v.y * a21 + w * a31,
+		return Vector3(v.x * a11 + v.y * a21 + w * a31,
 			v.x * a12 + v.y * a22 + w * a32,
 			v.x * a13 + v.y * a23 + w * a33);
 	}
@@ -234,15 +234,15 @@ namespace CasaEngine
 	/// \return Résultat de l'opération
 	///
 	////////////////////////////////////////////////////////////
-	Vector3F Matrix3::Transform(const Vector3F& v) const
+	Vector3 Matrix3::Transform(const Vector3& v) const
 	{
-		return Vector3F(v.x * a11 + v.y * a21 + v.z * a31,
+		return Vector3(v.x * a11 + v.y * a21 + v.z * a31,
 			v.x * a12 + v.y * a22 + v.z * a32,
 			v.x * a13 + v.y * a23 + v.z * a33);
 	}
 
 	//applies a 2D transformation matrix to a std::vector of Vector2Ds
-	void Matrix3::TransformVector2List(std::vector<Vector2F>& vPoint_) const
+	void Matrix3::TransformVector2List(std::vector<Vector2>& vPoint_) const
 	{
 		for (unsigned int i = 0; i < vPoint_.size(); ++i)
 		{
@@ -254,7 +254,7 @@ namespace CasaEngine
 	}
 
 	//applies a 2D transformation matrix to a single Vector2D
-	void Matrix3::TransformVector2F(Vector2F& vPoint_) const
+	void Matrix3::TransformVector2F(Vector2& vPoint_) const
 	{
 		float tempX = a11 * vPoint_.x + a21 * vPoint_.y + a31;
 		float tempY = a12 * vPoint_.x + a22 * vPoint_.y + a32;

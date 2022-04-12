@@ -28,7 +28,7 @@ namespace CasaEngine
 	{
 		CA_ASSERT(m_pPhysicsEngine != nullptr, "Initialize the engine before call CreateWorld()")
 		IPhysicsWorld* pWorld = m_pPhysicsEngine->CreateWorld();
-		pWorld->SetGravity(Vector3F::Up() * -10.0f); // default
+		pWorld->SetGravity(Vector3::Up() * -10.0f); // default
 		return pWorld;
 	}
 

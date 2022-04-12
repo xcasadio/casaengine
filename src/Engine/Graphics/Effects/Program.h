@@ -19,9 +19,9 @@ namespace CasaEngine
 	public:
 
 		static void SetParameter(const char* pName, float Value);
-		static void SetParameter(const char* pName, const Vector2F& Value);
-		static void SetParameter(const char* pName, const Vector3F& Value);
-		static void SetParameter(const char* pName, const Vector4F& Value);
+		static void SetParameter(const char* pName, const Vector2& Value);
+		static void SetParameter(const char* pName, const Vector3& Value);
+		static void SetParameter(const char* pName, const Vector4& Value);
 		static void SetParameter(const char* pName, const Matrix4& Value);
 		static void SetParameter(const char* pName, const CColor& Value);
 		static void SetParameter(const char* pName, const Texture* Value);

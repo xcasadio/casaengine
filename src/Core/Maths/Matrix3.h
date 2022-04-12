@@ -57,7 +57,7 @@ namespace CasaEngine
 		//----------------------------------------------------------
 		// Construit une matrice de rotation en spécifiant le centre
 		//----------------------------------------------------------
-		void CreateRotation(float Angle, const Vector2F& Center);
+		void CreateRotation(float Angle, const Vector2& Center);
 
 		//----------------------------------------------------------
 		// Apply a translation
@@ -73,24 +73,24 @@ namespace CasaEngine
 		// Apply a rotation
 		//----------------------------------------------------------
 		void Rotate(float Angle);
-		void Rotate(const Vector2F& fwd, const Vector2F& side);
+		void Rotate(const Vector2& fwd, const Vector2& side);
 
 		//----------------------------------------------------------
 		// Renvoie la translation contenue dans la matrice
 		//----------------------------------------------------------
-		Vector2F GetTranslation() const;
+		Vector2 GetTranslation() const;
 
 		//----------------------------------------------------------
 		// Transforme un vecteur
 		//----------------------------------------------------------
-		Vector3F Transform(const Vector2F& v, float w = 1.0f) const;
-		Vector3F Transform(const Vector3F& v) const;
+		Vector3 Transform(const Vector2& v, float w = 1.0f) const;
+		Vector3 Transform(const Vector3& v) const;
 
 		//----------------------------------------------------------
 		// Transformation
 		//----------------------------------------------------------
-		void TransformVector2List(std::vector<Vector2F>& vPoint_) const;
-		void TransformVector2F(Vector2F& vPoint) const;
+		void TransformVector2List(std::vector<Vector2>& vPoint_) const;
+		void TransformVector2F(Vector2& vPoint) const;
 
 		//----------------------------------------------------------
 		// Opérateurs + et - unaires

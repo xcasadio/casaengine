@@ -31,7 +31,7 @@ namespace CasaEngine
 				{
 					const auto *shape = new RectangleF(0, 0, m_TileSize.x, m_TileSize.y);
 					//auto *shape = new Circle(m_TileSize.x);
-					auto position = Vector3F(x * m_TileSize.x + m_TileSize.x / 2.0f, y * m_TileSize.y + m_TileSize.y / 2.0f);
+					auto position = Vector3(x * m_TileSize.x + m_TileSize.x / 2.0f, y * m_TileSize.y + m_TileSize.y / 2.0f, 0.0f);
 					auto *collisionShape = Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->CreateCollisionShape(shape, position);
 					dynamic_cast<BulletCollisionObjectContainer*>(collisionShape)->GetCollisionObject()->setCollisionFlags(btCollisionObject::CF_STATIC_OBJECT);
 					Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->AddCollisionObject(collisionShape);
@@ -51,7 +51,7 @@ namespace CasaEngine
 		}
 	}
 
-	void TiledMapLayer::Draw(const Vector3F& translation)
+	void TiledMapLayer::Draw(const Vector3& translation)
 	{
 		const float px = translation.x;
 		const float py = translation.y;

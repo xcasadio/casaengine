@@ -118,7 +118,7 @@ namespace CasaEngine
 	template <class T> std::ostream& operator <<(std::ostream& Stream, const CVector2<T>& Vector);
 
 	typedef CVector2<int>   Vector2I;
-	typedef CVector2<float> Vector2F;
+	typedef CVector2<float> Vector2;
 
 	template <class T>
 	CVector2<T> CVector2<T>::Zero()

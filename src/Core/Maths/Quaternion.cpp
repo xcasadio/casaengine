@@ -16,34 +16,47 @@ namespace CasaEngine
 	{
 	}
 
-	Quaternion::Quaternion(const Matrix4& Matrix)
+	Quaternion::Quaternion(const Matrix4& matrix)
 	{
-		FromMatrix(Matrix);
+		FromMatrix(matrix);
 	}
 
-	Quaternion::Quaternion(const Vector3F& Axis, float Angle)
+	Quaternion::Quaternion(const Vector3& axis, float angle) :
+		Quaternion(axis.x, axis.y, axis.z, angle)
 	{
-		FromAxisAngle(Axis, Angle);
+		//FromAxisAngle(axis, angle);
 	}
 
-	float Quaternion::getX() const
+	float Quaternion::GetX() const
 	{
 		return x;
 	}
 
-	float Quaternion::getY() const
+	float Quaternion::GetY() const
 	{
 		return y;
 	}
 
-	float Quaternion::getZ() const
+	float Quaternion::GetZ() const
 	{
 		return z;
 	}
 
-	float Quaternion::getW() const
+	float Quaternion::GetW() const
 	{
 		return w;
+	}
+
+	Quaternion Quaternion::Zero()
+	{
+		return {0.0f, 0.0f, 0.0f, 0.0f};
+	}
+
+	Quaternion Quaternion::CreateIdentity()
+	{
+		Quaternion q;
+		q.Identity();
+		return q;
 	}
 
 	void Quaternion::Identity()
@@ -52,28 +65,195 @@ namespace CasaEngine
 		w = 1.0f;
 	}
 
-	void Quaternion::Normalize()
+	bool Quaternion::IsIdentity() const
 	{
-		const float Norm = x * x + y * y + z * z + w * w;
-
-		if (std::fabs(Norm) > std::numeric_limits<float>::epsilon())
-		{
-			x /= Norm;
-			y /= Norm;
-			z /= Norm;
-			w /= Norm;
-		}
+		return x == 0.0f && y == 0.0f && z == 0.0f && w == 1.0f;
 	}
 
-	Quaternion Quaternion::Conjugate() const
+	void Quaternion::Normalize()
 	{
-		return {-x, -y, -z, w};
+		*this = Normalize(*this);
+	}
+
+	Quaternion Quaternion::Normalize(const Quaternion& q)
+	{
+		Quaternion result;
+		const float ls = q.x * q.x + q.y * q.y + q.z * q.z + q.w * q.w;
+		float invNorm = 1.0f / sqrtf(ls);
+
+		//if (std::fabs(Norm) > Epsilon)
+		{
+			result.x = q.x * invNorm;
+			result.y = q.y * invNorm;
+			result.z = q.z * invNorm;
+			result.w = q.w * invNorm;
+		}
+
+		return result;
+	}
+
+	Quaternion Quaternion::Inverse(const Quaternion& value)
+	{
+		//  -1   (       a              -v       )
+		// q   = ( -------------   ------------- )
+		//       (  a^2 + |v|^2  ,  a^2 + |v|^2  )
+
+		Quaternion ans;
+
+		float ls = value.x * value.x + value.y * value.y + value.z * value.z + value.w * value.w;
+		float invNorm = 1.0f / ls;
+
+		ans.x = -value.x * invNorm;
+		ans.y = -value.y * invNorm;
+		ans.z = -value.z * invNorm;
+		ans.w = value.w * invNorm;
+
+		return ans;
+	}
+
+	float Quaternion::Dot(const Quaternion& q1, const Quaternion& q2)
+	{
+		return q1.x * q2.x +
+			q1.y * q2.y +
+			q1.z * q2.z +
+			q1.w * q2.w;
+	}
+
+	Quaternion Quaternion::Conjugate(const Quaternion &q)
+	{
+		return { -q.x, -q.y, -q.z, q.w };
+	}
+
+	Quaternion Quaternion::Lerp(Quaternion quaternion1, Quaternion quaternion2, float amount)
+	{
+		float t = amount;
+		float t1 = 1.0f - t;
+
+		Quaternion r;
+
+		float dot = quaternion1.x * quaternion2.x + quaternion1.y * quaternion2.y +
+			quaternion1.z * quaternion2.z + quaternion1.w * quaternion2.w;
+
+		if (dot >= 0.0f)
+		{
+			r.x = t1 * quaternion1.x + t * quaternion2.x;
+			r.y = t1 * quaternion1.y + t * quaternion2.y;
+			r.z = t1 * quaternion1.z + t * quaternion2.z;
+			r.w = t1 * quaternion1.w + t * quaternion2.w;
+		}
+		else
+		{
+			r.x = t1 * quaternion1.x - t * quaternion2.x;
+			r.y = t1 * quaternion1.y - t * quaternion2.y;
+			r.z = t1 * quaternion1.z - t * quaternion2.z;
+			r.w = t1 * quaternion1.w - t * quaternion2.w;
+		}
+
+		// normalize it.
+		float ls = r.x * r.x + r.y * r.y + r.z * r.z + r.w * r.w;
+		float invNorm = 1.0f / sqrtf(ls);
+
+		r.x *= invNorm;
+		r.y *= invNorm;
+		r.z *= invNorm;
+		r.w *= invNorm;
+
+		return r;
+	}
+
+	Quaternion Quaternion::Slerp(Quaternion quaternion1, Quaternion quaternion2, float amount)
+	{
+		constexpr float epsilon = 1e-6f;
+
+		float t = amount;
+
+		float cosOmega = quaternion1.x * quaternion2.x + quaternion1.y * quaternion2.y +
+			quaternion1.z * quaternion2.z + quaternion1.w * quaternion2.w;
+
+		bool flip = false;
+
+		if (cosOmega < 0.0f)
+		{
+			flip = true;
+			cosOmega = -cosOmega;
+		}
+
+		float s1, s2;
+
+		if (cosOmega > (1.0f - epsilon))
+		{
+			// Too close, do straight linear interpolation.
+			s1 = 1.0f - t;
+			s2 = (flip) ? -t : t;
+		}
+		else
+		{
+			float omega = acosf(cosOmega);
+			float invSinOmega = 1.0f / sinf(omega);
+
+			s1 = sinf((1.0f - t) * omega) * invSinOmega;
+			s2 = (flip)
+				     ? -sinf(t * omega) * invSinOmega
+				     : sinf(t * omega) * invSinOmega;
+		}
+
+		Quaternion ans;
+
+		ans.x = s1 * quaternion1.x + s2 * quaternion2.x;
+		ans.y = s1 * quaternion1.y + s2 * quaternion2.y;
+		ans.z = s1 * quaternion1.z + s2 * quaternion2.z;
+		ans.w = s1 * quaternion1.w + s2 * quaternion2.w;
+
+		return ans;
+	}
+
+	Quaternion Quaternion::Concatenate(const Quaternion& value1, const Quaternion& value2)
+	{
+		Quaternion ans;
+
+		// Concatenate rotation is actually q2 * q1 instead of q1 * q2.
+		// So that's why value2 goes q1 and value1 goes q2.
+		float q1x = value2.x;
+		float q1y = value2.y;
+		float q1z = value2.z;
+		float q1w = value2.w;
+
+		float q2x = value1.x;
+		float q2y = value1.y;
+		float q2z = value1.z;
+		float q2w = value1.w;
+
+		// cross(av, bv)
+		float cx = q1y * q2z - q1z * q2y;
+		float cy = q1z * q2x - q1x * q2z;
+		float cz = q1x * q2y - q1y * q2x;
+
+		float dot = q1x * q2x + q1y * q2y + q1z * q2z;
+
+		ans.x = q1x * q2w + q2x * q1w + cx;
+		ans.y = q1y * q2w + q2y * q1w + cy;
+		ans.z = q1z * q2w + q2z * q1w + cz;
+		ans.w = q1w * q2w - dot;
+
+		return ans;
+	}
+
+	float Quaternion::Length() const
+	{
+		float ls = x * x + y * y + z * z + w * w;
+
+		return sqrtf(ls);
+	}
+
+	float Quaternion::LengthSquared() const
+	{
+		return x * x + y * y + z * z + w * w;
 	}
 
 	Matrix3 Quaternion::ToMatrix3() const
 	{
 		// 	CA_ASSERT(q.IsValid(0.05f), "Quaternion::ToMatrix3()");
-		// 	Vector3F v2(x, y, z);
+		// 	Vector3 v2(x, y, z);
 		// 	v2 *= 2.0f;
 		// 	float xx=1-v2.x*x;	float yy=v2.y*y;	float xw=v2.x*w;
 		// 	float xy=v2.y*x;	float yz=v2.z*y;	float yw=v2.y*w;
@@ -119,80 +299,104 @@ namespace CasaEngine
 		};
 	}
 
+	Quaternion Quaternion::CreateFromRotationMatrix(const Matrix4& matrix)
+	{
+		Quaternion q;
+		q.FromMatrix(matrix);
+		return q;
+	}
+
 	void Quaternion::FromMatrix(const Matrix4& matrix)
 	{
-		const float Trace = matrix(0, 0) + matrix(1, 1) + matrix(2, 2) + 1;
+		float trace = matrix.m11 + matrix.m22 + matrix.m33;
 
-		if (Trace > 0)
+		if (trace > 0.0f)
 		{
-			const float s = 0.5f / std::sqrt(Trace);
-			x = (matrix(2, 1) - matrix(1, 2)) * s;
-			y = (matrix(0, 2) - matrix(2, 0)) * s;
-			z = (matrix(1, 0) - matrix(0, 1)) * s;
-			w = 0.25f / s;
+			float s = sqrtf(trace + 1.0f);
+			w = s * 0.5f;
+			s = 0.5f / s;
+			x = (matrix.m23 - matrix.m32) * s;
+			y = (matrix.m31 - matrix.m13) * s;
+			z = (matrix.m12 - matrix.m21) * s;
 		}
 		else
 		{
-			if (matrix(0, 0) > matrix(1, 1) && (matrix(0, 0) > matrix(2, 2)))
+			if (matrix.m11 >= matrix.m22 && matrix.m11 >= matrix.m33)
 			{
-				const float s = std::sqrt(1 + matrix(0, 0) - matrix(1, 1) - matrix(2, 2)) * 2;
-				x = 0.5f / s;
-				y = (matrix(0, 1) + matrix(1, 0)) / s;
-				z = (matrix(0, 2) + matrix(2, 0)) / s;
-				w = (matrix(1, 2) + matrix(2, 1)) / s;
+				float s = sqrtf(1.0f + matrix.m11 - matrix.m22 - matrix.m33);
+				float invS = 0.5f / s;
+				x = 0.5f * s;
+				y = (matrix.m12 + matrix.m21) * invS;
+				z = (matrix.m13 + matrix.m31) * invS;
+				w = (matrix.m23 - matrix.m32) * invS;
 			}
-			else if (matrix(1, 1) > matrix(2, 2))
+			else if (matrix.m22 > matrix.m33)
 			{
-				const float s = std::sqrt(1 - matrix(0, 0) + matrix(1, 1) - matrix(2, 2)) * 2;
-				x = (matrix(0, 1) + matrix(1, 0)) / s;
-				y = 0.5f / s;
-				z = (matrix(1, 2) + matrix(2, 1)) / s;
-				w = (matrix(0, 2) + matrix(2, 0)) / s;
+				float s = sqrtf(1.0f + matrix.m22 - matrix.m11 - matrix.m33);
+				float invS = 0.5f / s;
+				x = (matrix.m21 + matrix.m12) * invS;
+				y = 0.5f * s;
+				z = (matrix.m32 + matrix.m23) * invS;
+				w = (matrix.m31 - matrix.m13) * invS;
 			}
 			else
 			{
-				const float s = std::sqrt(1 - matrix(0, 0) - matrix(1, 1) + matrix(2, 2)) * 2;
-				x = (matrix(0, 2) + matrix(2, 0)) / s;
-				y = (matrix(1, 2) + matrix(2, 1)) / s;
-				z = 0.5f / s;
-				w = (matrix(0, 1) + matrix(1, 0)) / s;
+				float s = sqrtf(1.0f + matrix.m33 - matrix.m11 - matrix.m22);
+				float invS = 0.5f / s;
+				x = (matrix.m31 + matrix.m13) * invS;
+				y = (matrix.m32 + matrix.m23) * invS;
+				z = 0.5f * s;
+				w = (matrix.m12 - matrix.m21) * invS;
 			}
 		}
 	}
 
-	void Quaternion::FromAxisAngle(const Vector3F& Axis, float Angle)
+	Quaternion Quaternion::CreateFromAxisAngle(const Vector3& axis, float angle)
 	{
-		const float Cos = std::cos(Angle / 2);
-		const float Sin = std::sin(Angle / 2);
-
-		x = Axis.x * Sin;
-		y = Axis.y * Sin;
-		z = Axis.z * Sin;
-		w = Cos;
-
-		Normalize();
+		Quaternion q;
+		q.FromAxisAngle(axis, angle);
+		return q;
 	}
 
-	void Quaternion::ToAxisAngle(Vector3F& Axis, float& Angle) const
+	void Quaternion::FromAxisAngle(const Vector3& axis, float angle)
 	{
-		Angle = std::acos(w) * 2;
+		float halfAngle = angle * 0.5f;
+		const float Cos = std::cosf(halfAngle);
+		const float Sin = std::sinf(halfAngle);
 
-		const float Norm = std::sqrt(x * x + y * y + z * z);
-		if (std::fabs(Norm) > std::numeric_limits<float>::epsilon())
+		x = axis.x * Sin;
+		y = axis.y * Sin;
+		z = axis.z * Sin;
+		w = Cos;
+	}
+
+	void Quaternion::ToAxisAngle(Vector3& axis, float& angle) const
+	{
+		angle = std::acosf(w) * 2;
+
+		const float Norm = std::sqrtf(x * x + y * y + z * z);
+		if (std::fabs(Norm) > Epsilon)
 		{
-			Axis.x = x / Norm;
-			Axis.y = y / Norm;
-			Axis.z = z / Norm;
+			axis.x = x / Norm;
+			axis.y = y / Norm;
+			axis.z = z / Norm;
 		}
 		else
 		{
-			Axis.x = 0.0f;
-			Axis.y = 1.0f;
-			Axis.z = 0.0f;
+			axis.x = 0.0f;
+			axis.y = 1.0f;
+			axis.z = 0.0f;
 		}
 	}
 
-	void Quaternion::Transform(const Vector3F& value, Vector3F& result) const
+	Vector3 Quaternion::Transform(const Vector3& value) const
+	{
+		Vector3 result;
+		Transform(value, result);
+		return result;
+	}
+
+	void Quaternion::Transform(const Vector3& value, Vector3& result) const
 	{
 		const float x1 = 2 * (y * value.z - z * value.y);
 		const float y1 = 2 * (z * value.x - x * value.z);
@@ -203,23 +407,23 @@ namespace CasaEngine
 		result.z = value.z + z1 * w + (x * y1 - y * x1);
 	}
 
-	void Quaternion::Transform(const std::vector<Vector3F>& sourceArray, std::vector<Vector3F>& destinationArray) const
+	void Quaternion::Transform(const std::vector<Vector3>& sourceArray, std::vector<Vector3>& destinationArray) const
 	{
 		CA_ASSERT(destinationArray.size() >= sourceArray.size(), "The destination array is smaller than the source array.");
 
 		int i = 0;
 
 		for (auto it = sourceArray.cbegin();
-		     it != sourceArray.cend();
-		     ++it)
+			it != sourceArray.cend();
+			++it)
 		{
-			const Vector3F position = *it;
+			const Vector3 position = *it;
 
 			const float x1 = 2 * (y * position.z - z * position.y);
 			const float y1 = 2 * (z * position.x - x * position.z);
 			const float z1 = 2 * (x * position.y - y * position.x);
 
-			destinationArray[i] = Vector3F(
+			destinationArray[i] = Vector3(
 				position.x + x1 * w + (y * z1 - z * y1),
 				position.y + y1 * w + (z * x1 - x * z1),
 				position.z + z1 * w + (x * y1 - y * x1));
@@ -227,39 +431,215 @@ namespace CasaEngine
 		}
 	}
 
-	void Quaternion::CreateFromYawPitchRoll(float X, float Y, float Z)
+	Quaternion Quaternion::CreateFromYawPitchRoll(float X, float Y, float Z)
 	{
-		const Quaternion Qx(Vector3F(1, 0, 0), X);
-		const Quaternion Qy(Vector3F(0, 1, 0), Y);
-		const Quaternion Qz(Vector3F(0, 0, 1), Z);
+		Quaternion q;
+		q.FromYawPitchRoll(X, Y, Z);
+		return q;
+	}
+
+	void Quaternion::FromYawPitchRoll(float yawAngle, float pitchAngle, float rollAngle)
+	{
+		const Quaternion Qx = CreateFromAxisAngle(Vector3::UnitY(), yawAngle);
+		const Quaternion Qy = CreateFromAxisAngle(Vector3::UnitX(), pitchAngle);
+		const Quaternion Qz = CreateFromAxisAngle(Vector3::UnitZ(), rollAngle);
 
 		*this = Qx * Qy * Qz;
 	}
 
-	Quaternion Quaternion::operator *(const Quaternion& quat_) const
+	Quaternion Quaternion::Negate(const Quaternion& q)
 	{
-		return {
-			w * quat_.x + x * quat_.w + y * quat_.z - z * quat_.y,
-			w * quat_.y + y * quat_.w + z * quat_.x - x * quat_.z,
-			w * quat_.z + z * quat_.w + x * quat_.y - y * quat_.x,
-			w * quat_.w - x * quat_.x - y * quat_.y - z * quat_.z
-		};
+		return { -q.x, -q.y, -q.z, -q.w };
 	}
 
-	const Quaternion& Quaternion::operator *=(const Quaternion& q_)
+	Quaternion Quaternion::Add(const Quaternion& value1, const Quaternion& value2)
 	{
-		*this = *this * q_;
+		Quaternion ans;
 
+		ans.x = value1.x + value2.x;
+		ans.y = value1.y + value2.y;
+		ans.z = value1.z + value2.z;
+		ans.w = value1.w + value2.w;
+
+		return ans;
+	}
+
+	Quaternion Quaternion::Subtract(Quaternion value1, Quaternion value2)
+	{
+		Quaternion ans;
+
+		ans.x = value1.x - value2.x;
+		ans.y = value1.y - value2.y;
+		ans.z = value1.z - value2.z;
+		ans.w = value1.w - value2.w;
+
+		return ans;
+	}
+
+	Quaternion Quaternion::Multiply(const Quaternion& value1, const Quaternion& value2)
+	{
+		Quaternion ans;
+
+		float q1x = value1.x;
+		float q1y = value1.y;
+		float q1z = value1.z;
+		float q1w = value1.w;
+
+		float q2x = value2.x;
+		float q2y = value2.y;
+		float q2z = value2.z;
+		float q2w = value2.w;
+
+		// cross(av, bv)
+		float cx = q1y * q2z - q1z * q2y;
+		float cy = q1z * q2x - q1x * q2z;
+		float cz = q1x * q2y - q1y * q2x;
+
+		float dot = q1x * q2x + q1y * q2y + q1z * q2z;
+
+		ans.x = q1x * q2w + q2x * q1w + cx;
+		ans.y = q1y * q2w + q2y * q1w + cy;
+		ans.z = q1z * q2w + q2z * q1w + cz;
+		ans.w = q1w * q2w - dot;
+
+		return ans;
+	}
+
+	Quaternion Quaternion::operator *(const Quaternion& quat) const
+	{
+		return Multiply(*this, quat);
+	}
+
+	const Quaternion& Quaternion::operator *=(const Quaternion& quat)
+	{
+		*this = Multiply(*this, quat);
 		return *this;
 	}
 
-	std::istream& operator >>(std::istream& Stream, Quaternion& q_)
+	Quaternion Quaternion::operator*(float f) const
 	{
-		return Stream >> q_.x >> q_.y >> q_.z >> q_.w;
+		return Multiply(*this, f);
 	}
 
-	std::ostream& operator <<(std::ostream& Stream, const Quaternion& Quaternion)
+	const Quaternion& Quaternion::operator*=(float f)
 	{
-		return Stream << Quaternion.x << " " << Quaternion.y << " " << Quaternion.z << " " << Quaternion.w;
+		*this = Multiply(*this, f);
+		return *this;
+	}
+
+	Quaternion Quaternion::Divide(const Quaternion& value1, const Quaternion& value2)
+	{
+		Quaternion ans;
+
+		float q1x = value1.x;
+		float q1y = value1.y;
+		float q1z = value1.z;
+		float q1w = value1.w;
+
+		//-------------------------------------
+		// Inverse part.
+		float ls = value2.x * value2.x + value2.y * value2.y +
+			value2.z * value2.z + value2.w * value2.w;
+		float invNorm = 1.0f / ls;
+
+		float q2x = -value2.x * invNorm;
+		float q2y = -value2.y * invNorm;
+		float q2z = -value2.z * invNorm;
+		float q2w = value2.w * invNorm;
+
+		//-------------------------------------
+		// Multiply part.
+
+		// cross(av, bv)
+		float cx = q1y * q2z - q1z * q2y;
+		float cy = q1z * q2x - q1x * q2z;
+		float cz = q1x * q2y - q1y * q2x;
+
+		float dot = q1x * q2x + q1y * q2y + q1z * q2z;
+
+		ans.x = q1x * q2w + q2x * q1w + cx;
+		ans.y = q1y * q2w + q2y * q1w + cy;
+		ans.z = q1z * q2w + q2z * q1w + cz;
+		ans.w = q1w * q2w - dot;
+
+		return ans;
+	}
+
+	Quaternion Quaternion::Multiply(Quaternion value1, float value2)
+	{
+		Quaternion ans;
+
+		ans.x = value1.x * value2;
+		ans.y = value1.y * value2;
+		ans.z = value1.z * value2;
+		ans.w = value1.w * value2;
+
+		return ans;
+	}
+
+	Quaternion Quaternion::operator+() const
+	{
+		return *this;
+	}
+
+	Quaternion Quaternion::operator-() const
+	{
+		return Negate(*this);
+	}
+
+	Quaternion Quaternion::operator+(const Quaternion& quat) const
+	{
+		return Add(*this, quat);
+	}
+
+	const Quaternion& Quaternion::operator+=(const Quaternion& quat)
+	{
+		*this = Add(*this, quat);
+		return *this;
+	}
+
+	Quaternion Quaternion::operator-(const Quaternion& quat) const
+	{
+		return Subtract(*this, quat);
+	}
+
+	const Quaternion& Quaternion::operator-=(const Quaternion& quat)
+	{
+		*this = Subtract(*this, quat);
+		return *this;
+	}
+
+	Quaternion Quaternion::operator/(const Quaternion& quat) const
+	{
+		return Divide(*this, quat);
+	}
+
+	const Quaternion& Quaternion::operator/=(const Quaternion& quat)
+	{
+		*this = Divide(*this, quat);
+		return *this;
+	}
+
+	bool Quaternion::operator==(const Quaternion& v) const
+	{
+		return std::fabs(x - v.x) <= Epsilon &&
+			std::fabs(y - v.y) <= Epsilon &&
+			std::fabs(z - v.z) <= Epsilon &&
+			std::fabs(w - v.w) <= Epsilon;
+	}
+
+	bool Quaternion::operator!=(const Quaternion& v) const
+	{
+		return !(*this == v);
+	}
+
+	std::istream& operator >>(std::istream& stream, Quaternion& quat)
+	{
+		return stream >> quat.x >> quat.y >> quat.z >> quat.w;
+	}
+
+	std::ostream& operator <<(std::ostream& stream, const Quaternion& quat)
+	{
+		return stream << quat.x << " " << quat.y << " " << quat.z << " " << quat.w;
 	}
 }

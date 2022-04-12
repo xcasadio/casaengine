@@ -21,7 +21,7 @@ namespace CasaEngine
 	/// Adds a new vertex to the primitive model. This should only be called
 	/// during the initialization process, before InitializePrimitive.
 	/// </summary>
-	void IPrimitive3D::AddVertex(Vector3F position, Vector3F normal, Vector2F UV_)
+	void IPrimitive3D::AddVertex(Vector3 position, Vector3 normal, Vector2 UV_)
 	{
 		VertexPositionNormalTexture v;
 		v.Position = position;

@@ -21,60 +21,60 @@ namespace CasaEngine
 		//  given a std::vector of 2D vectors, a position, orientation and scale,
 		//  this function transforms the 2D vectors into the object's world space
 		//------------------------------------------------------------------------
-		static std::vector<Vector2F> WorldTransform(std::vector<Vector2F>& points,
-			const Vector2F& pos,
-			const Vector2F& forward,
-			const Vector2F& side,
-			const Vector2F& scale);
+		static std::vector<Vector2> WorldTransform(std::vector<Vector2>& points,
+			const Vector2& pos,
+			const Vector2& forward,
+			const Vector2& side,
+			const Vector2& scale);
 
 		//--------------------------- WorldTransform -----------------------------
 		//
 		//  given a std::vector of 2D vectors, a position and  orientation
 		//  this function transforms the 2D vectors into the object's world space
 		//------------------------------------------------------------------------
-		static std::vector<Vector3F> WorldTransform(std::vector<Vector3F>& points,
-			const Vector3F& pos,
-			const Vector3F& forward,
-			const Vector3F& side,
-			const Vector3F& scale);
+		static std::vector<Vector3> WorldTransform(std::vector<Vector3>& points,
+			const Vector3& pos,
+			const Vector3& forward,
+			const Vector3& side,
+			const Vector3& scale);
 
 		//--------------------- PointToWorldSpace --------------------------------
 		//
 		//  Transforms a point from the agent's local space into world space
 		//------------------------------------------------------------------------
-		static Vector2F PointToWorldSpace(const Vector2F& point,
-			const Vector2F& AgentHeading,
-			const Vector2F& AgentSide,
-			const Vector2F& AgentPosition);
+		static Vector2 PointToWorldSpace(const Vector2& point,
+			const Vector2& AgentHeading,
+			const Vector2& AgentSide,
+			const Vector2& AgentPosition);
 
 		//--------------------- VectorToWorldSpace --------------------------------
 		//
 		//  Transforms a vector from the agent's local space into world space
 		//------------------------------------------------------------------------
-		static Vector2F VectorToWorldSpace(const Vector2F& vec,
-			const Vector2F& AgentHeading,
-			const Vector2F& AgentSide);
+		static Vector2 VectorToWorldSpace(const Vector2& vec,
+			const Vector2& AgentHeading,
+			const Vector2& AgentSide);
 
 		//--------------------- PointToLocalSpace --------------------------------
 		//
 		//------------------------------------------------------------------------
-		static Vector2F PointToLocalSpace(const Vector2F& point,
-			Vector2F& AgentHeading,
-			Vector2F& AgentSide,
-			Vector2F& AgentPosition);
+		static Vector2 PointToLocalSpace(const Vector2& point,
+			Vector2& AgentHeading,
+			Vector2& AgentSide,
+			Vector2& AgentPosition);
 
 		//--------------------- VectorToLocalSpace --------------------------------
 		//
 		//------------------------------------------------------------------------
-		static Vector2F VectorToLocalSpace(const Vector2F& vec,
-			const Vector2F& AgentHeading,
-			const Vector2F& AgentSide);
+		static Vector2 VectorToLocalSpace(const Vector2& vec,
+			const Vector2& AgentHeading,
+			const Vector2& AgentSide);
 
 		//-------------------------- Vec2DRotateAroundOrigin --------------------------
 		//
 		//  rotates a vector ang rads around the origin
 		//-----------------------------------------------------------------------------
-		static void Vec2DRotateAroundOrigin(Vector2F& v, float ang);
+		static void Vec2DRotateAroundOrigin(Vector2& v, float ang);
 
 		//------------------------ CreateWhiskers ------------------------------------
 		//
@@ -84,11 +84,11 @@ namespace CasaEngine
 		//  of whiskers radiating away from the origin and with equal distance between
 		//  them. (like the spokes of a wheel clipped to a specific segment size)
 		//----------------------------------------------------------------------------
-		static std::vector<Vector2F> CreateWhiskers(unsigned int  NumWhiskers,
+		static std::vector<Vector2> CreateWhiskers(unsigned int  NumWhiskers,
 			float        WhiskerLength,
 			float        fov,
-			Vector2F      facing,
-			Vector2F      origin);
+			Vector2      facing,
+			Vector2      origin);
 	}; // class transformation
 }
 

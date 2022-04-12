@@ -42,8 +42,8 @@ public:
 private:
 	Mesh* m_Player;         ///< Modèle courant
 	Matrix4       m_Rotation;       ///< Matrice de rotation
-	Vector3F      m_CameraPos;      ///< Position de la caméra
-	Vector3F      m_LightDir;       ///< Direction de la lumière
+	Vector3      m_CameraPos;      ///< Position de la caméra
+	Vector3      m_LightDir;       ///< Direction de la lumière
 	Texture* m_pCartoonShading; ///< Texture de lookup pour le rendu cartoon
 	std::string         m_ShadersType;    ///< Type des shaders actuellement chargés
 	TDescTable          m_ShadersDesc;    ///< Table des descriptions de shaders

@@ -1,14 +1,12 @@
-#ifndef VECTOR3_H
-#define VECTOR3_H
+#pragma once
 
-#include "Math.h"
-
+#include <iosfwd>
 #include <cmath>
 #include <algorithm>
 #include <cmath>
 
+#include "Math.h"
 #include "Maths/ValidNumber.h"
-
 #include "CA_Assert.h"
 #include "Log/LogManager.h"
 
@@ -36,74 +34,68 @@ namespace CasaEngine
 		static T Dot(const CVector3<T>& v1, const CVector3<T>& v2);
 		static CVector3<T> Cross(const CVector3<T>& v1, const CVector3<T>& v2);
 
-		/*static void Transform(const CVector3<T> &position, const Matrix4 &matrix, CVector3<T> &result);
-		static void Transform(const std::vector<CVector3<T> > &sourceArray, const Matrix4 &matrix, std::vector<CVector3<T> > &destinationArray);
-
-		/// <summary>
-		/// Transforms a vector by a quaternion rotation.
-		/// </summary>
-		/// <param name="vec">The vector to transform.</param>
-		/// <param name="quat">The quaternion to rotate the vector by.</param>
-		/// <param name="result">The result of the operation.</param>
-		static void Transform(const CVector3<T> &value, const Quaternion &rotation, CVector3<T> &result);
-
-		/// <summary>
-		/// Transforms an array of vectors by a quaternion rotation.
-		/// </summary>
-		/// <param name="sourceArray">The vectors to transform</param>
-		/// <param name="rotation">The quaternion to rotate the vector by.</param>
-		/// <param name="destinationArray">The result of the operation.</param>
-		static void Transform(const std::vector<CVector3<T> > &sourceArray, const Quaternion &rotation, std::vector<CVector3<T> > &destinationArray);
-
-		static void TransformNormal(const CVector3<T> &normal, const Matrix4 &matrix, CVector3<T> &result);*/
-
-		CVector3(T X = 0, T Y = 0, T Z = 0);
+		CVector3();
+		CVector3(T X, T Y, T Z);
 		void Set(T X, T Y, T Z);
-		T getX() const;
-		T getY() const;
-		T getZ() const;
+		T GetX() const;
+		T GetY() const;
+		T GetZ() const;
 
 		bool IsZero() const;
+
+		static T Distance(CVector3<T> a, CVector3<T> b);
+		static T DistanceSquared(CVector3<T> a, CVector3<T> b);
 
 		T Length() const;
 		T LengthSquared() const;
 
+		static CVector3<T> Normalize(CVector3<T> &vec);
 		void Normalize();
 		CVector3<T> GetNormalized();
 
-		//! check for min bounds
+		static CVector3<T> Min(const CVector3<T>& a, const CVector3<T>& b);
+		static CVector3<T> Max(const CVector3<T>& a, const CVector3<T>& b);
 		void CheckMin(const CVector3<T>& other);
-		//! check for max bounds
 		void CheckMax(const CVector3<T>& other);
 
 		// returns a vector that consists of absolute values of this one's coordinates
+		static CVector3<T> Abs(CVector3<T>);
 		CVector3<T> Abs() const;
+		static CVector3<T> SquareRoot(CVector3<T>& v);
 
 		bool IsValid() const;
 
-		/**
-		 * sets a vector orthogonal to the input vector
-		 *
-		 * Example:
-		 *  Vec3 v;
-		 *  v.SetOrthogonal( i );
-		 */
 		void SetOrthogonal(const CVector3<T>& v);
 		CVector3<T> GetOrthogonal() const;
 
+		static CVector3<T> Reflect(CVector3<T>&vector, CVector3<T>&normal);
+		static CVector3<T> Clamp(CVector3<T> &value1, CVector3<T> &min, CVector3<T> &max);
+		static CVector3<T> Lerp(const CVector3<T>& v1, const CVector3<T>& v2, float t);
+
+		static CVector3<T> Add(const CVector3<T>& v1, const CVector3<T>& v2);
+		static CVector3<T> Subtract(const CVector3<T>& v1, const CVector3<T>& v2);
+		static CVector3<T> Multiply(const CVector3<T>& v1, const CVector3<T>& v2);
+		static CVector3<T> Divide(const CVector3<T>& v1, const CVector3<T>& v2);
+
+		static CVector3<T> Multiply(const CVector3<T>& v1, T d);
+		static CVector3<T> Multiply(T d, const CVector3<T>& v1);
+		static CVector3<T> Divide(const CVector3<T>& v1, T d);
+
+		static CVector3<T> Negate(const CVector3<T>& v);
+
 		CVector3<T> operator +() const;
 		CVector3<T> operator -() const;
-
-		//----------------------------------------------------------
 		CVector3<T> operator +(const CVector3<T>& v) const;
 		CVector3<T> operator -(const CVector3<T>& v) const;
+		CVector3<T> operator * (const CVector3<T>& v);
+		CVector3<T> operator / (const CVector3<T>& v);
+		CVector3<T> operator * (T t);
+		CVector3<T> operator / (T t);
 
 		const CVector3<T>& operator +=(const CVector3<T>& v);
 		const CVector3<T>& operator -=(const CVector3<T>& v);
-
 		const CVector3<T>& operator *=(T t);
 		const CVector3<T>& operator /=(T t);
-
 		bool operator ==(const CVector3<T>& v) const;
 		bool operator !=(const CVector3<T>& v) const;
 
@@ -113,26 +105,39 @@ namespace CasaEngine
 		T operator [] (int index) const { CA_ASSERT(index >= 0 && index <= 2, "Vector3 operator[]"); return ((T*)this)[index]; }
 	};
 
-	//
-	template <class T> CVector3<T>   operator * (const CVector3<T>& v, T t);
-	template <class T> CVector3<T>   operator / (const CVector3<T>& v, T t);
-	template <class T> CVector3<T>   operator * (T t, const CVector3<T>& v);
-	template <class T> std::istream& operator >>(std::istream& Stream, CVector3<T>& Vector);
-	template <class T> std::ostream& operator <<(std::ostream& Stream, const CVector3<T>& Vector);
+	typedef CVector3<int>   Vector3I;
+	typedef CVector3<float> Vector3;
 
-	template <class T> bool IsEquivalent(const CVector3<T>& v0, const CVector3<T>& v1, float epsilon = Epsilon)
+	template <class T>
+	bool operator == (CVector3<T>& v0, CVector3<T>& v1)
 	{
-		return  ((fabs(v0.x - v1.x) <= epsilon) && (fabs(v0.y - v1.y) <= epsilon) && (fabs(v0.z - v1.z) <= epsilon));
+		return IsEquivalent(v0, v1);
 	}
 
-	//
-	typedef CVector3<int>   TVector3I;
-	typedef CVector3<float> Vector3F;
+	template <class T>
+	std::istream& operator >>(std::istream& stream, CVector3<T>& vector)
+	{
+		return stream >> vector.x >> vector.y >> vector.z;
+	}
+
+	template <class T>
+	std::ostream& operator <<(std::ostream& stream, const CVector3<T>& vector)
+	{
+		return stream << vector.x << " " << vector.y << " " << vector.z;
+	}
+
+	template <class T>
+	bool IsEquivalent(const CVector3<T>& v0, const CVector3<T>& v1, float epsilon = Epsilon)
+	{
+		return ((std::fabs(v0.x - v1.x) <= epsilon) &&
+			(std::fabs(v0.y - v1.y) <= epsilon) &&
+			(std::fabs(v0.z - v1.z) <= epsilon));
+	}
 
 	template <class T>
 	CVector3<T> CVector3<T>::Zero()
 	{
-		return CVector3<T>();
+		return CVector3<T>(0, 0, 0);
 	}
 
 	template <class T>
@@ -144,13 +149,13 @@ namespace CasaEngine
 	template <class T>
 	CVector3<T> CVector3<T>::UnitX()
 	{
-		return CVector3<T>(1);
+		return CVector3<T>(1, 0, 0);
 	}
 
 	template <class T>
 	CVector3<T> CVector3<T>::UnitY()
 	{
-		return CVector3<T>(0, 1);
+		return CVector3<T>(0, 1, 0);
 	}
 
 	template <class T>
@@ -196,6 +201,12 @@ namespace CasaEngine
 	}
 
 	template <class T>
+	CVector3<T>::CVector3() :
+		CVector3(0, 0, 0)
+	{
+	}
+
+	template <class T>
 	CVector3<T>::CVector3(T X, T Y, T Z) :
 		x(X),
 		y(Y),
@@ -212,40 +223,58 @@ namespace CasaEngine
 	}
 
 	template <class T>
-	T CVector3<T>::getX() const
+	T CVector3<T>::GetX() const
 	{
 		return x;
 	}
 
 	template <class T>
-	T CVector3<T>::getY() const
+	T CVector3<T>::GetY() const
 	{
 		return y;
 	}
 
 	template <class T>
-	T CVector3<T>::getZ() const
+	T CVector3<T>::GetZ() const
 	{
 		return z;
 	}
 
-	//returns true if both x and y are zero
 	template <class T>
 	bool CVector3<T>::IsZero()const
 	{
-		return LengthSquared() < MinDouble;
+		return LengthSquared() < Epsilon; // std::numeric_limits<T>::epsilon();
+	}
+
+	template <class T>
+	T CVector3<T>::Distance(CVector3<T> a, CVector3<T> b)
+	{
+		return (a - b).Length();
+	}
+
+	template <class T>
+	T CVector3<T>::DistanceSquared(CVector3<T> a, CVector3<T> b)
+	{
+		return (a - b).LengthSquared();
 	}
 
 	template <class T>
 	T CVector3<T>::Length() const
 	{
-		return std::sqrt(static_cast<float>(LengthSquared()));
+		return std::sqrtf(LengthSquared());
 	}
 
 	template <class T>
 	T CVector3<T>::LengthSquared() const
 	{
 		return x * x + y * y + z * z;
+	}
+
+	template <class T>
+	CVector3<T> CVector3<T>::Normalize(CVector3<T>& vec)
+	{
+		vec.Normalize();
+		return vec;
 	}
 
 	template <class T>
@@ -269,6 +298,18 @@ namespace CasaEngine
 		return vec;
 	}
 
+	template <class T>
+	CVector3<T> CVector3<T>::Min(const CVector3<T>& a, const CVector3<T>& b)
+	{
+		return { std::min(a.x, b.x), std::min(a.y, b.y), std::min(a.z, b.z)};
+	}
+
+	template <class T>
+	CVector3<T> CVector3<T>::Max(const CVector3<T>& a, const CVector3<T>& b)
+	{
+		return { std::max(a.x, b.x), std::max(a.y, b.y), std::max(a.z, b.z) };
+	}
+
 	//! check for min bounds
 	template <class T>
 	void CVector3<T>::CheckMin(const CVector3<T>& other)
@@ -288,17 +329,38 @@ namespace CasaEngine
 	}
 
 	template <class T>
+	CVector3<T> CVector3<T>::Abs(CVector3<T> v)
+	{
+		return CVector3<T>(std::fabsf(v.x), std::fabsf(v.y), std::fabsf(v.z));
+	}
+
+	template <class T>
 	CVector3<T> CVector3<T>::Abs() const
 	{
-		return CVector3<T>(fabsf(x), fabsf(y), fabsf(z));
+		return CVector3<T>(std::fabsf(x), std::fabsf(y), std::fabsf(z));
+	}
+
+	template <class T>
+	CVector3<T> CVector3<T>::SquareRoot(CVector3<T>& v)
+	{
+		return CVector3<T>(std::sqrtf(v.x), std::sqrtf(v.y), std::sqrtf(v.z));
 	}
 
 	template <class T>
 	bool CVector3<T>::IsValid() const
 	{
-		if (!NumberValid(x)) return false;
-		if (!NumberValid(y)) return false;
-		if (!NumberValid(z)) return false;
+		if (!NumberValid(x))
+		{
+			return false;
+		}
+		if (!NumberValid(y))
+		{
+			return false;
+		}
+		if (!NumberValid(z))
+		{
+			return false;
+		}
 		return true;
 	}
 
@@ -308,13 +370,108 @@ namespace CasaEngine
 	template <class T>
 	void CVector3<T>::SetOrthogonal(const CVector3<T>& v)
 	{
-		sqr(T(0.9))* (v | v) - v.x * v.x < 0 ? (x = -v.z, y = 0, z = v.x) : (x = 0, y = v.z, z = -v.y);
+		std::sqrtf(T(0.9))* (v | v) - v.x * v.x < 0 ? (x = -v.z, y = 0, z = v.x) : (x = 0, y = v.z, z = -v.y);
 	}
 
 	template <class T>
 	CVector3<T> CVector3<T>::GetOrthogonal() const
 	{
-		return sqr(T(0.9)) * (x * x + y * y + z * z) - x * x < 0 ? CVector3<T>(-z, 0, x) : CVector3<T>(0, z, -y);
+		return std::sqrtf(T(0.9)) * (x * x + y * y + z * z) - x * x < 0 ? CVector3<T>(-z, 0, x) : CVector3<T>(0, z, -y);
+	}
+
+	template <class T>
+	CVector3<T> CVector3<T>::Reflect(CVector3<T>& vector, CVector3<T>& normal)
+	{
+		float dot = Dot(vector, normal);
+		CVector3<T> temp = normal * dot * 2.0f;
+		return vector - temp;
+		/*else
+			{
+				float dot = vector.X * normal.X + vector.Y * normal.Y + vector.Z * normal.Z;
+				float tempX = normal.X * dot * 2f;
+				float tempY = normal.Y * dot * 2f;
+				float tempZ = normal.Z * dot * 2f;
+				return new Vector3(vector.X - tempX, vector.Y - tempY, vector.Z - tempZ);
+			}*/
+	}
+
+	template <class T>
+	CVector3<T> CVector3<T>::Clamp(CVector3<T>& value1, CVector3<T>& min, CVector3<T>& max)
+	{
+		// This compare order is very important!!!
+		// We must follow HLSL behavior in the case user specified min value is bigger than max value.
+
+		float x = value1.x;
+		x = (x > max.x) ? max.x : x;
+		x = (x < min.x) ? min.x : x;
+
+		float y = value1.y;
+		y = (y > max.y) ? max.y : y;
+		y = (y < min.y) ? min.y : y;
+
+		float z = value1.z;
+		z = (z > max.z) ? max.z : z;
+		z = (z < min.z) ? min.z : z;
+
+		return CVector3<T>(x, y, z);
+	}
+
+	template <class T>
+	CVector3<T> CVector3<T>::Lerp(const CVector3<T>& v1, const CVector3<T>& v2, float t)
+	{
+		CVector3<T> v3;
+		v3.x += v1.x + (v2.x - v1.x) * t;
+		v3.y += v1.y + (v2.y - v1.y) * t;
+		v3.z += v1.z + (v2.z - v1.z) * t;
+		return v3;
+	}
+
+	template <class T>
+	CVector3<T> CVector3<T>::Add(const CVector3<T>& v1, const CVector3<T>& v2)
+	{
+		return { v1.x + v2.x, v1.y + v2.y, v1.z + v2.z };
+	}
+
+	template <class T>
+	CVector3<T> CVector3<T>::Subtract(const CVector3<T>& v1, const CVector3<T>& v2)
+	{
+		return { v1.x - v2.x, v1.y - v2.y, v1.z - v2.z };
+	}
+
+	template <class T>
+	CVector3<T> CVector3<T>::Multiply(const CVector3<T>& v1, const CVector3<T>& v2)
+	{
+		return { v1.x * v2.x, v1.y * v2.y, v1.z * v2.z };
+	}
+
+	template <class T>
+	CVector3<T> CVector3<T>::Divide(const CVector3<T>& v1, const CVector3<T>& v2)
+	{
+		return { v1.x / v2.x, v1.y / v2.y, v1.z / v2.z };
+	}
+
+	template <class T>
+	CVector3<T> CVector3<T>::Multiply(const CVector3<T>& v1, T d)
+	{
+		return { v1.x * d, v1.y * d, v1.z * d };
+	}
+
+	template <class T>
+	CVector3<T> CVector3<T>::Multiply(T d, const CVector3<T>& v1)
+	{
+		return { v1.x * d, v1.y * d, v1.z * d };
+	}
+
+	template <class T>
+	CVector3<T> CVector3<T>::Divide(const CVector3<T>& v1, T d)
+	{
+		return { v1.x / d, v1.y / d, v1.z / d };
+	}
+
+	template <class T>
+	CVector3<T> CVector3<T>::Negate(const CVector3<T>& v)
+	{
+		return -v;
 	}
 
 	template <class T>
@@ -332,13 +489,37 @@ namespace CasaEngine
 	template <class T>
 	CVector3<T> CVector3<T>::operator +(const CVector3<T>& v) const
 	{
-		return CVector3<T>(x + v.x, y + v.y, z + v.z);
+		return Add(*this, v);
 	}
 
 	template <class T>
 	CVector3<T> CVector3<T>::operator -(const CVector3<T>& v) const
 	{
-		return CVector3<T>(x - v.x, y - v.y, z - v.z);
+		return Subtract(*this, v);
+	}
+
+	template <class T>
+	CVector3<T> CVector3<T>::operator*(const CVector3<T>& v)
+	{
+		return Multiply(*this, v);
+	}
+
+	template <class T>
+	CVector3<T> CVector3<T>::operator/(const CVector3<T>& v)
+	{
+		return Divide(*this, v);
+	}
+
+	template<class T>
+	CVector3<T> CVector3<T>::operator *(T t)
+	{
+		return CVector3<T>(x * t, y * t, z * t);
+	}
+
+	template<class T>
+	CVector3<T> CVector3<T>::operator /(T t)
+	{
+		return CVector3<T>(x / t, y / t, z / t);
 	}
 
 	template <class T>
@@ -430,18 +611,4 @@ namespace CasaEngine
 	{
 		return v * t;
 	}
-
-	template <class T>
-	std::istream& operator >>(std::istream& Stream, CVector3<T>& Vector)
-	{
-		return Stream >> Vector.x >> Vector.y >> Vector.z;
-	}
-
-	template <class T>
-	std::ostream& operator <<(std::ostream& Stream, const CVector3<T>& Vector)
-	{
-		return Stream << Vector.x << " " << Vector.y << " " << Vector.z;
-	}
 }
-
-#endif

@@ -24,7 +24,7 @@ namespace CasaEngine
 		class LineRenderer3DData
 		{
 		public:
-			Vector3F Start, End;
+			Vector3 Start, End;
 			unsigned long StartColor, EndColor;
 		};
 
@@ -36,10 +36,10 @@ namespace CasaEngine
 		void Update( const GameTime& gameTime_ ) override;
 		void Draw() override;
 
-		void AddLine(const Vector3F& start_, const Vector3F& end_, const CColor& color_);
-		void AddLine(const Vector3F& start_, const Vector3F& end_, const unsigned int color_);
-		void AddLine(const Vector3F &start_, const CColor &startColor_, const Vector3F &end_, const CColor &endColor_);
-		void AddLine(const Vector3F &start_, const unsigned int &startColor_, const Vector3F &end_, const unsigned int &endColor_);
+		void AddLine(const Vector3& start_, const Vector3& end_, const CColor& color_);
+		void AddLine(const Vector3& start_, const Vector3& end_, const unsigned int color_);
+		void AddLine(const Vector3 &start_, const CColor &startColor_, const Vector3 &end_, const CColor &endColor_);
+		void AddLine(const Vector3 &start_, const unsigned int &startColor_, const Vector3 &end_, const unsigned int &endColor_);
 		
 	private:
 		void BuildVB();

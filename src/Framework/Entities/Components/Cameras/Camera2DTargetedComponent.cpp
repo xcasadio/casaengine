@@ -27,7 +27,7 @@ namespace CasaEngine
 				winSize.x * m_DeadZoneRatio.x,
 				winSize.y * m_DeadZoneRatio.y);
 
-			if (deadZone.Intersects(Vector2F(targetPosition.x, targetPosition.y)) == INT_OUT)
+			if (deadZone.Intersects(Vector2(targetPosition.x, targetPosition.y)) == INT_OUT)
 			{
 				if (targetPosition.x < deadZone.Left())
 				{
@@ -81,7 +81,7 @@ namespace CasaEngine
 		m_pTargetedEntity = pTargetedEntity;
 	}
 
-	void Camera2DTargetedComponent::SetDeadZoneRatio(Vector2F deadZoneRatio)
+	void Camera2DTargetedComponent::SetDeadZoneRatio(Vector2 deadZoneRatio)
 	{
 		m_DeadZoneRatio = deadZoneRatio;
 	}

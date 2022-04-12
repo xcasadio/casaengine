@@ -16,28 +16,28 @@ namespace CasaEngine
 
 		//given a plane and a ray this function determins how far along the ray
 		//an interestion occurs. Returns negative if the ray is parallel
-		static float DistanceToRayPlaneIntersection(Vector2F RayOrigin,
-			Vector2F RayHeading,
-			Vector2F PlanePoint,  //any point on the plane
-			Vector2F PlaneNormal);
+		static float DistanceToRayPlaneIntersection(Vector2 RayOrigin,
+			Vector2 RayHeading,
+			Vector2 PlanePoint,  //any point on the plane
+			Vector2 PlaneNormal);
 
 		//------------------------- WhereIsPoint --------------------------------------
 		enum span_type { plane_backside, plane_front, on_plane };
 
-		static span_type WhereIsPoint(Vector2F point,
-			Vector2F PointOnPlane, //any point on the plane
-			Vector2F PlaneNormal);
+		static span_type WhereIsPoint(Vector2 point,
+			Vector2 PointOnPlane, //any point on the plane
+			Vector2 PlaneNormal);
 
 		//-------------------------- GetRayCircleIntersec -----------------------------
-		static float GetRayCircleIntersect(Vector2F RayOrigin,
-			Vector2F RayHeading,
-			Vector2F CircleOrigin,
+		static float GetRayCircleIntersect(Vector2 RayOrigin,
+			Vector2 RayHeading,
+			Vector2 CircleOrigin,
 			float  radius);
 
 		//----------------------------- DoRayCircleIntersect --------------------------
-		static bool DoRayCircleIntersect(Vector2F RayOrigin,
-			Vector2F RayHeading,
-			Vector2F CircleOrigin,
+		static bool DoRayCircleIntersect(Vector2 RayOrigin,
+			Vector2 RayHeading,
+			Vector2 CircleOrigin,
 			float     radius);
 
 		//------------------------------------------------------------------------
@@ -47,24 +47,24 @@ namespace CasaEngine
 		//
 		//  thanks to Dave Eberly for this one.
 		//------------------------------------------------------------------------
-		static bool GetTangentPoints(Vector2F C, float R, Vector2F P, Vector2F& T1, Vector2F& T2);
+		static bool GetTangentPoints(Vector2 C, float R, Vector2 P, Vector2& T1, Vector2& T2);
 
 		//------------------------- DistToLineSegment ----------------------------
 		//
 		//  given a line segment AB and a point P, this function calculates the
 		//  perpendicular distance between them
 		//------------------------------------------------------------------------
-		static float DistToLineSegment(Vector2F A,
-			Vector2F B,
-			Vector2F P);
+		static float DistToLineSegment(Vector2 A,
+			Vector2 B,
+			Vector2 P);
 
 		//------------------------- DistToLineSegmentSq ----------------------------
 		//
 		//  as above, but avoiding sqrt
 		//------------------------------------------------------------------------
-		static float DistToLineSegmentSq(Vector2F A,
-			Vector2F B,
-			Vector2F P);
+		static float DistToLineSegmentSq(Vector2 A,
+			Vector2 B,
+			Vector2 P);
 
 		//--------------------LineIntersection2D-------------------------
 		//
@@ -73,10 +73,10 @@ namespace CasaEngine
 		//
 		//-----------------------------------------------------------------
 
-		static bool LineIntersection2D(Vector2F A,
-			Vector2F B,
-			Vector2F C,
-			Vector2F D);
+		static bool LineIntersection2D(Vector2 A,
+			Vector2 B,
+			Vector2 C,
+			Vector2 D);
 
 		//--------------------LineIntersection2D-------------------------
 		//
@@ -86,10 +86,10 @@ namespace CasaEngine
 		//
 		//-----------------------------------------------------------------
 
-		static bool LineIntersection2D(Vector2F A,
-			Vector2F B,
-			Vector2F C,
-			Vector2F D,
+		static bool LineIntersection2D(Vector2 A,
+			Vector2 B,
+			Vector2 C,
+			Vector2 D,
 			float& dist);
 
 		//-------------------- LineIntersection2D-------------------------
@@ -99,28 +99,28 @@ namespace CasaEngine
 		//  occurs along AB. Also sets the 2d vector point to the point of
 		//  intersection
 		//-----------------------------------------------------------------
-		static bool LineIntersection2D(Vector2F   A,
-			Vector2F   B,
-			Vector2F   C,
-			Vector2F   D,
+		static bool LineIntersection2D(Vector2   A,
+			Vector2   B,
+			Vector2   C,
+			Vector2   D,
 			float& dist,
-			Vector2F& point);
+			Vector2& point);
 
 		//----------------------- ObjectIntersection2D ---------------------------
 		//
 		//  tests two polygons for intersection. *Does not check for enclosure*
 		//------------------------------------------------------------------------
-		static bool ObjectIntersection2D(const std::vector<Vector2F>& object1,
-			const std::vector<Vector2F>& object2);
+		static bool ObjectIntersection2D(const std::vector<Vector2>& object1,
+			const std::vector<Vector2>& object2);
 
 		//----------------------- SegmentObjectIntersection2D --------------------
 		//
 		//  tests a line segment against a polygon for intersection
 		//  *Does not check for enclosure*
 		//------------------------------------------------------------------------
-		static bool SegmentObjectIntersection2D(const Vector2F& A,
-			const Vector2F& B,
-			const std::vector<Vector2F>& object);
+		static bool SegmentObjectIntersection2D(const Vector2& A,
+			const Vector2& B,
+			const std::vector<Vector2>& object);
 
 		//----------------------------- TwoCirclesOverlapped ---------------------
 		//
@@ -133,8 +133,8 @@ namespace CasaEngine
 		//
 		//  Returns true if the two circles overlap
 		//------------------------------------------------------------------------
-		static bool TwoCirclesOverlapped(Vector2F c1, float r1,
-			Vector2F c2, float r2);
+		static bool TwoCirclesOverlapped(Vector2 c1, float r1,
+			Vector2 c2, float r2);
 
 		//--------------------------- TwoCirclesEnclosed ---------------------------
 		//
@@ -177,18 +177,18 @@ namespace CasaEngine
 		//
 		//  returns true if the point p is within the radius of the given circle
 		//------------------------------------------------------------------------
-		static bool PointInCircle(Vector2F Pos,
+		static bool PointInCircle(Vector2 Pos,
 			float    radius,
-			Vector2F p);
+			Vector2 p);
 
 		//--------------------- LineSegmentCircleIntersection ---------------------------
 		//
 		//  returns true if the line segemnt AB intersects with a circle at
 		//  position P with radius radius
 		//------------------------------------------------------------------------
-		static bool   LineSegmentCircleIntersection(Vector2F A,
-			Vector2F B,
-			Vector2F P,
+		static bool   LineSegmentCircleIntersection(Vector2 A,
+			Vector2 B,
+			Vector2 P,
 			float    radius);
 
 		//------------------- GetLineSegmentCircleClosestIntersectionPoint ------------
@@ -199,11 +199,11 @@ namespace CasaEngine
 		//
 		//  returns false if no intersection point is found
 		//-----------------------------------------------------------------------------
-		static bool GetLineSegmentCircleClosestIntersectionPoint(Vector2F A,
-			Vector2F B,
-			Vector2F pos,
+		static bool GetLineSegmentCircleClosestIntersectionPoint(Vector2 A,
+			Vector2 B,
+			Vector2 pos,
 			float    radius,
-			Vector2F& IntersectionPoint);
+			Vector2& IntersectionPoint);
 	};
 }
 

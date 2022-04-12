@@ -84,10 +84,10 @@ namespace CasaEngine
 		return -1.401298E-45f <= num && num <= 1.401298E-45f;
 	}
 
-	Vector3F Viewport::Project(const Vector3F& source, const Matrix4& projection, const Matrix4& view, const Matrix4& world) const
+	Vector3 Viewport::Project(const Vector3& source, const Matrix4& projection, const Matrix4& view, const Matrix4& world) const
 	{
 		Matrix4 mat = Matrix4::Multiply(Matrix4::Multiply(world, view), projection);
-		Vector3F vector = mat.Transform(source); // Vector3F::Transform(source, mat);
+		Vector3 vector = mat.Transform(source); // Vector3::Transform(source, mat);
 		float a = source.x * mat.m14 + source.y * mat.m24 + source.z * mat.m34 + mat.m44;
 		if (!WithinEpsilon(a, 1.0f))
 		{
@@ -99,15 +99,15 @@ namespace CasaEngine
 		return vector;
 	}
 
-	Vector3F Viewport::Unproject(const Vector3F& source, const Matrix4& projection, const Matrix4& view, const Matrix4& world) const
+	Vector3 Viewport::Unproject(const Vector3& source, const Matrix4& projection, const Matrix4& view, const Matrix4& world) const
 	{
-		Vector3F vector = source;
+		Vector3 vector = source;
 		Matrix4 mat = Matrix4::Invert(Matrix4::Multiply(Matrix4::Multiply(world, view), projection));
 		vector.x = (source.x - m_X) / m_Width * 2.0f - 1.0f;
 		vector.y = -((source.y - m_Y) / m_Height * 2.0f - 1.0f);
 		vector.z = (source.z - m_fNearClipPlane) / (m_fFarClipPlane - m_fNearClipPlane);
 
-		vector = mat.Transform(source); // Vector3F.Transform(source, mat);
+		vector = mat.Transform(source); // Vector3.Transform(source, mat);
 		const float a = source.x * mat.m14 + source.y * mat.m24 + source.z * mat.m34 + mat.m44;
 		if (!WithinEpsilon(a, 1.0f))
 		{

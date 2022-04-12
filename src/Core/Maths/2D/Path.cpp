@@ -15,14 +15,14 @@ namespace CasaEngine
 
 	//constructor for creating a path with initial random waypoints. MinX/Y
 	//& MaxX/Y define the bounding box of the path.
-	Path::Path(std::list<Vector2F> path_, bool looped) :
+	Path::Path(std::list<Vector2> path_, bool looped) :
 		m_bLooped(looped)
 	{
 		Set(path_);
 	}
 
 	//returns the current waypoint
-	Vector2F Path::CurrentWaypoint() const
+	Vector2 Path::CurrentWaypoint() const
 	{
 		return *m_CurWaypoint;
 	}
@@ -58,13 +58,13 @@ namespace CasaEngine
 	}
 
 	//adds a waypoint to the end of the path
-	void Path::AddWayPoint(Vector2F new_point)
+	void Path::AddWayPoint(Vector2 new_point)
 	{
 		m_WayPoints.push_back(new_point);
 	}
 
 	//methods for setting the path with either another Path or a list of vectors
-	void Path::Set(std::list<Vector2F> new_path)
+	void Path::Set(std::list<Vector2> new_path)
 	{
 		m_WayPoints = new_path;
 		m_CurWaypoint = m_WayPoints.begin();
@@ -81,7 +81,7 @@ namespace CasaEngine
 		m_WayPoints.clear();
 	}
 
-	std::list<Vector2F> Path::GetPath() const
+	std::list<Vector2> Path::GetPath() const
 	{
 		return m_WayPoints;
 	}
@@ -90,9 +90,9 @@ namespace CasaEngine
 	{
 		/*gdi->OrangePen();
 
-		std::list<Vector2F>::const_iterator it = m_WayPoints.begin();
+		std::list<Vector2>::const_iterator it = m_WayPoints.begin();
 
-		Vector2F wp = *it++;
+		Vector2 wp = *it++;
 
 		while (it != m_WayPoints.end())
 		{

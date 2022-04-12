@@ -61,7 +61,7 @@ void TileMapGame::CreateBackground(World* pWorld)
 	auto *pEntity = new BaseEntity();
 	pEntity->SetName("background");
 	auto *pTrans3D = new Transform3DComponent(pEntity);
-	pTrans3D->SetLocalPosition(Vector3F(0.0f, 0.0f, 1.0f));
+	pTrans3D->SetLocalPosition(Vector3(0.0f, 0.0f, 1.0f));
 	pTrans3D->SetLocalRotation(0.0f);
 
 	//Texture* texture = Texture::loadTexture("Outside_A2.png");
@@ -182,9 +182,9 @@ void TileMapGame::LoadContent()
 	pEntity->SetName("vegeta");
 	auto pTransform = new Transform3DComponent(pEntity);
 	s_pTransform = pTransform;
-	pTransform->SetLocalPosition(Vector3F(500.0f, 250.0f, 1.5f));
+	pTransform->SetLocalPosition(Vector3(500.0f, 250.0f, 1.5f));
 	//pTransform->SetLocalRotation(0.0f);
-	//pTransform->SetLocalScale(Vector3F(43, 76, 1.0f));
+	//pTransform->SetLocalScale(Vector3(43, 76, 1.0f));
 	pEntity->GetComponentMgr()->AddComponent(pTransform);
 	auto pStaticSprite = new StaticSpriteComponent(pEntity);
 	pStaticSprite->SetSpriteID("sprite");
@@ -199,7 +199,7 @@ void TileMapGame::LoadContent()
 	pCamera->SetName("camera 2D");
 	s_pCameraController = new Camera2DTargetedComponent(pCamera);
 	pCamera->GetComponentMgr()->AddComponent(s_pCameraController);
-	s_pCameraController->SetDeadZoneRatio(Vector2F(0.7f, 0.7f));
+	s_pCameraController->SetDeadZoneRatio(Vector2(0.7f, 0.7f));
 	s_pCameraController->SetTargetedEntity(pEntity);
 	s_pCameraController->SetLimits(RectangleI(0, 0, 1500, 800));
 	p_world->AddEntity(pCamera);

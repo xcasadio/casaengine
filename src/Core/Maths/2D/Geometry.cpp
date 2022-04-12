@@ -8,10 +8,10 @@ namespace CasaEngine
 {
 	//given a plane and a ray this function determins how far along the ray
 	//an interestion occurs. Returns negative if the ray is parallel
-	float Geometry::DistanceToRayPlaneIntersection(Vector2F RayOrigin,
-		Vector2F RayHeading,
-		Vector2F PlanePoint,  //any point on the plane
-		Vector2F PlaneNormal)
+	float Geometry::DistanceToRayPlaneIntersection(Vector2 RayOrigin,
+		Vector2 RayHeading,
+		Vector2 PlanePoint,  //any point on the plane
+		Vector2 PlaneNormal)
 	{
 		float d = -PlaneNormal.Dot(PlanePoint);
 		float numer = PlaneNormal.Dot(RayOrigin) + d;
@@ -27,11 +27,11 @@ namespace CasaEngine
 	}
 
 	//------------------------- WhereIsPoint --------------------------------------
-	Geometry::span_type Geometry::WhereIsPoint(Vector2F point,
-		Vector2F PointOnPlane, //any point on the plane
-		Vector2F PlaneNormal)
+	Geometry::span_type Geometry::WhereIsPoint(Vector2 point,
+		Vector2 PointOnPlane, //any point on the plane
+		Vector2 PlaneNormal)
 	{
-		Vector2F dir = PointOnPlane - point;
+		Vector2 dir = PointOnPlane - point;
 
 		float d = dir.Dot(PlaneNormal);
 
@@ -48,12 +48,12 @@ namespace CasaEngine
 	}
 
 	//-------------------------- GetRayCircleIntersec -----------------------------
-	float Geometry::GetRayCircleIntersect(Vector2F RayOrigin,
-		Vector2F RayHeading,
-		Vector2F CircleOrigin,
+	float Geometry::GetRayCircleIntersect(Vector2 RayOrigin,
+		Vector2 RayHeading,
+		Vector2 CircleOrigin,
 		float  radius)
 	{
-		Vector2F ToCircle = CircleOrigin - RayOrigin;
+		Vector2 ToCircle = CircleOrigin - RayOrigin;
 		float length = ToCircle.Length();
 		float v = ToCircle.Dot(RayHeading);
 		float d = radius * radius - (length * length - v * v);
@@ -66,12 +66,12 @@ namespace CasaEngine
 	}
 
 	//----------------------------- DoRayCircleIntersect --------------------------
-	bool Geometry::DoRayCircleIntersect(Vector2F RayOrigin,
-		Vector2F RayHeading,
-		Vector2F CircleOrigin,
+	bool Geometry::DoRayCircleIntersect(Vector2 RayOrigin,
+		Vector2 RayHeading,
+		Vector2 CircleOrigin,
 		float     radius)
 	{
-		Vector2F ToCircle = CircleOrigin - RayOrigin;
+		Vector2 ToCircle = CircleOrigin - RayOrigin;
 		float length = ToCircle.Length();
 		float v = ToCircle.Dot(RayHeading);
 		float d = radius * radius - (length * length - v * v);
@@ -87,9 +87,9 @@ namespace CasaEngine
 	//
 	//  thanks to Dave Eberly for this one.
 	//------------------------------------------------------------------------
-	bool Geometry::GetTangentPoints(Vector2F C, float R, Vector2F P, Vector2F& T1, Vector2F& T2)
+	bool Geometry::GetTangentPoints(Vector2 C, float R, Vector2 P, Vector2& T1, Vector2& T2)
 	{
-		Vector2F PmC = P - C;
+		Vector2 PmC = P - C;
 		float SqrLen = PmC.LengthSquared();
 		float RSqr = R * R;
 		if (SqrLen <= RSqr)
@@ -114,9 +114,9 @@ namespace CasaEngine
 	//  given a line segment AB and a point P, this function calculates the
 	//  perpendicular distance between them
 	//------------------------------------------------------------------------
-	float Geometry::DistToLineSegment(Vector2F A,
-		Vector2F B,
-		Vector2F P)
+	float Geometry::DistToLineSegment(Vector2 A,
+		Vector2 B,
+		Vector2 P)
 	{
 		//if the angle is obtuse between PA and AB is obtuse then the closest
 		//vertex must be A
@@ -131,7 +131,7 @@ namespace CasaEngine
 		if (dotB <= 0) return (B - P).Length();//Vec2DDistance(B, P);
 
 		//calculate the point along AB that is the closest to P
-		Vector2F Point = A + (B - A) * dotA / (dotA + dotB);
+		Vector2 Point = A + (B - A) * dotA / (dotA + dotB);
 
 		//calculate the distance P-Point
 		return (P - Point).Length();//Vec2DDistance(P,Point);
@@ -141,9 +141,9 @@ namespace CasaEngine
 	//
 	//  as above, but avoiding sqrt
 	//------------------------------------------------------------------------
-	float Geometry::DistToLineSegmentSq(Vector2F A,
-		Vector2F B,
-		Vector2F P)
+	float Geometry::DistToLineSegmentSq(Vector2 A,
+		Vector2 B,
+		Vector2 P)
 	{
 		//if the angle is obtuse between PA and AB is obtuse then the closest
 		//vertex must be A
@@ -158,7 +158,7 @@ namespace CasaEngine
 		if (dotB <= 0) return (B - P).LengthSquared();//Vec2DDistanceSq(B, P);
 
 		//calculate the point along AB that is the closest to P
-		Vector2F Point = A + (B - A) * dotA / (dotA + dotB);
+		Vector2 Point = A + (B - A) * dotA / (dotA + dotB);
 
 		//calculate the distance P-Point
 		return (P - Point).LengthSquared();//Vec2DDistanceSq(P,Point);
@@ -171,10 +171,10 @@ namespace CasaEngine
 	//
 	//-----------------------------------------------------------------
 
-	bool Geometry::LineIntersection2D(Vector2F A,
-		Vector2F B,
-		Vector2F C,
-		Vector2F D)
+	bool Geometry::LineIntersection2D(Vector2 A,
+		Vector2 B,
+		Vector2 C,
+		Vector2 D)
 	{
 		float rTop = (A.y - C.y) * (D.x - C.x) - (A.x - C.x) * (D.y - C.y);
 		float sTop = (A.y - C.y) * (B.x - A.x) - (A.x - C.x) * (B.y - A.y);
@@ -208,10 +208,10 @@ namespace CasaEngine
 	//
 	//-----------------------------------------------------------------
 
-	bool Geometry::LineIntersection2D(Vector2F A,
-		Vector2F B,
-		Vector2F C,
-		Vector2F D,
+	bool Geometry::LineIntersection2D(Vector2 A,
+		Vector2 B,
+		Vector2 C,
+		Vector2 D,
 		float& dist)
 	{
 		float rTop = (A.y - C.y) * (D.x - C.x) - (A.x - C.x) * (D.y - C.y);
@@ -249,12 +249,12 @@ namespace CasaEngine
 	//  occurs along AB. Also sets the 2d vector point to the point of
 	//  intersection
 	//-----------------------------------------------------------------
-	bool Geometry::LineIntersection2D(Vector2F   A,
-		Vector2F   B,
-		Vector2F   C,
-		Vector2F   D,
+	bool Geometry::LineIntersection2D(Vector2   A,
+		Vector2   B,
+		Vector2   C,
+		Vector2   D,
 		float& dist,
-		Vector2F& point)
+		Vector2& point)
 	{
 		float rTop = (A.y - C.y) * (D.x - C.x) - (A.x - C.x) * (D.y - C.y);
 		float rBot = (B.x - A.x) * (D.y - C.y) - (B.y - A.y) * (D.x - C.x);
@@ -288,8 +288,8 @@ namespace CasaEngine
 	//
 	//  tests two polygons for intersection. *Does not check for enclosure*
 	//------------------------------------------------------------------------
-	bool Geometry::ObjectIntersection2D(const std::vector<Vector2F>& object1,
-		const std::vector<Vector2F>& object2)
+	bool Geometry::ObjectIntersection2D(const std::vector<Vector2>& object1,
+		const std::vector<Vector2>& object2)
 	{
 		//test each line segment of object1 against each segment of object2
 		for (unsigned int r = 0; r < object1.size() - 1; ++r)
@@ -314,9 +314,9 @@ namespace CasaEngine
 	//  tests a line segment against a polygon for intersection
 	//  *Does not check for enclosure*
 	//------------------------------------------------------------------------
-	bool Geometry::SegmentObjectIntersection2D(const Vector2F& A,
-		const Vector2F& B,
-		const std::vector<Vector2F>& object)
+	bool Geometry::SegmentObjectIntersection2D(const Vector2& A,
+		const Vector2& B,
+		const std::vector<Vector2>& object)
 	{
 		//test AB against each segment of object
 		for (unsigned int r = 0; r < object.size() - 1; ++r)
@@ -352,8 +352,8 @@ namespace CasaEngine
 	//
 	//  Returns true if the two circles overlap
 	//------------------------------------------------------------------------
-	bool Geometry::TwoCirclesOverlapped(Vector2F c1, float r1,
-		Vector2F c2, float r2)
+	bool Geometry::TwoCirclesOverlapped(Vector2 c1, float r1,
+		Vector2 c2, float r2)
 	{
 		float DistBetweenCenters = sqrt((c1.x - c2.x) * (c1.x - c2.x) +
 			(c1.y - c2.y) * (c1.y - c2.y));
@@ -480,16 +480,16 @@ namespace CasaEngine
 	//-----------------------------------------------------------------------
 	float Geometry::CircleArea(float radius)
 	{
-		return Pi * radius * radius;
+		return PI * radius * radius;
 	}
 
 	//----------------------- PointInCircle ----------------------------------
 	//
 	//  returns true if the point p is within the radius of the given circle
 	//------------------------------------------------------------------------
-	bool Geometry::PointInCircle(Vector2F Pos,
+	bool Geometry::PointInCircle(Vector2 Pos,
 		float    radius,
-		Vector2F p)
+		Vector2 p)
 	{
 		float DistFromCenterSquared = (p - Pos).LengthSquared();
 
@@ -506,9 +506,9 @@ namespace CasaEngine
 	//  returns true if the line segemnt AB intersects with a circle at
 	//  position P with radius radius
 	//------------------------------------------------------------------------
-	bool   Geometry::LineSegmentCircleIntersection(Vector2F A,
-		Vector2F B,
-		Vector2F P,
+	bool   Geometry::LineSegmentCircleIntersection(Vector2 A,
+		Vector2 B,
+		Vector2 P,
 		float    radius)
 	{
 		//first determine the distance from the center of the circle to
@@ -530,19 +530,19 @@ namespace CasaEngine
 	//
 	//  returns false if no intersection point is found
 	//-----------------------------------------------------------------------------
-	bool Geometry::GetLineSegmentCircleClosestIntersectionPoint(Vector2F A,
-		Vector2F B,
-		Vector2F pos,
+	bool Geometry::GetLineSegmentCircleClosestIntersectionPoint(Vector2 A,
+		Vector2 B,
+		Vector2 pos,
 		float    radius,
-		Vector2F& IntersectionPoint)
+		Vector2& IntersectionPoint)
 	{
-		Vector2F toBNorm = B - A; //Vec2DNormalize(B-A);
+		Vector2 toBNorm = B - A; //Vec2DNormalize(B-A);
 		toBNorm.Normalize();
 
 		//move the circle into the local space defined by the vector B-A with origin
 		//at A
-		Vector2F toBNormPerp = toBNorm.GetOrthogonal();
-		Vector2F LocalPos = Transformation::PointToLocalSpace(pos, toBNorm, toBNormPerp, A);
+		Vector2 toBNormPerp = toBNorm.GetOrthogonal();
+		Vector2 LocalPos = Transformation::PointToLocalSpace(pos, toBNorm, toBNormPerp, A);
 
 		bool ipFound = false;
 

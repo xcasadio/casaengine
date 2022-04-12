@@ -77,8 +77,8 @@ void ShaderGame::Initialize()
 	//
 	// Ici, les casts sont nécessaires pour lever les ambiguïtés dûes aux surcharges
 	typedef void (Shader::* T1)(const std::string&, float);
-	typedef void (Shader::* T2)(const std::string&, const Vector2F&);
-	typedef void (Shader::* T3)(const std::string&, const Vector3F&);
+	typedef void (Shader::* T2)(const std::string&, const Vector2&);
+	typedef void (Shader::* T3)(const std::string&, const Vector3&);
 	//     Console::Instance().RegisterCommand("vsparam1", Bind(static_cast<T1>(&Shader::SetParameter), m_VertexShader));
 	//     Console::Instance().RegisterCommand("psparam1", Bind(static_cast<T1>(&Shader::SetParameter), m_VertexShader));
 	//     Console::Instance().RegisterCommand("vsparam2", Bind(static_cast<T2>(&Shader::SetParameter), m_VertexShader));
@@ -110,9 +110,9 @@ void ShaderGame::LoadContent()
 	m_pEntity = new BaseEntity();
 	m_pEntity->SetName("ground");
 	Transform3DComponent* pTransform = new Transform3DComponent(m_pEntity);
-	pTransform->SetLocalPosition(Vector3F(0.0f, -0.5f, 0.0f));
+	pTransform->SetLocalPosition(Vector3(0.0f, -0.5f, 0.0f));
 	pTransform->SetLocalRotation(0.0f);
-	pTransform->SetLocalScale(Vector3F::One());
+	pTransform->SetLocalScale(Vector3::One());
 	m_pEntity->GetComponentMgr()->AddComponent(pTransform);
 	MeshComponent* pModelCpt = new MeshComponent(m_pEntity);
 	BoxPrimitive* pBox = new BoxPrimitive(100.0f, 1.0f, 100.0f);
@@ -120,7 +120,7 @@ void ShaderGame::LoadContent()
 	//new material
 	m_pGroundMaterial = pModel->GetMaterial()->Clone();
 	m_pGroundMaterial->Texture0(Texture::loadTexture(Game::Instance().GetMediaManager().FindMedia("ceilingMain_DIF.dds"), BGFX_SAMPLER_MIN_ANISOTROPIC | BGFX_SAMPLER_MAG_ANISOTROPIC));
-	m_pGroundMaterial->Texture0Repeat(Vector2F(50, 50));
+	m_pGroundMaterial->Texture0Repeat(Vector2(50, 50));
 	pModel->SetMaterial(m_pGroundMaterial);
 	//
 	pModelCpt->SetModel(pModel);
@@ -133,7 +133,7 @@ void ShaderGame::LoadContent()
 	//Camera 3D
 	BaseEntity* pCamera = new BaseEntity();
 	m_pCamera3D = new ArcBallCameraComponent(pCamera);
-	m_pCamera3D->SetCamera(Vector3F(0, 25.0f, -80.0f), Vector3F(0.0f, 1.9f, 0.0f), Vector3F::Up());
+	m_pCamera3D->SetCamera(Vector3(0, 25.0f, -80.0f), Vector3(0.0f, 1.9f, 0.0f), Vector3::Up());
 	m_pCamera3D->Distance(7.0f);
 	pCamera->GetComponentMgr()->AddComponent(m_pCamera3D);
 
@@ -144,7 +144,7 @@ void ShaderGame::LoadContent()
 	/*BaseEntity *pEntity = new BaseEntity();
 	pEntity->SetName("FPS Monitoring");
 	Transform2DComponent *pTranform2D = new Transform2DComponent(pEntity);
-	pTranform2D->SetLocalPosition(Vector2F(10.0f, 10.0f));
+	pTranform2D->SetLocalPosition(Vector2(10.0f, 10.0f));
 	pEntity->GetComponentMgr()->AddComponent(pTranform2D);
 	FPSMonitoringComponent *pFPS = new FPSMonitoringComponent(pEntity);
 	pEntity->GetComponentMgr()->AddComponent(pFPS);
@@ -157,9 +157,9 @@ void ShaderGame::LoadContent()
 	m_pModelEntity = new BaseEntity();
 	m_pModelEntity->SetName("model");
 	m_pTrans3D = new Transform3DComponent(m_pModelEntity);
-	m_pTrans3D->SetLocalPosition(Vector3F(0.0f, -5.0f, 0.0f));
+	m_pTrans3D->SetLocalPosition(Vector3(0.0f, -5.0f, 0.0f));
 	m_pTrans3D->SetLocalRotation(0.0f);
-	m_pTrans3D->SetLocalScale(Vector3F::One());
+	m_pTrans3D->SetLocalScale(Vector3::One());
 	m_pModelEntity->GetComponentMgr()->AddComponent(m_pTrans3D);
 	pModelCpt = new MeshComponent(m_pModelEntity);
 
@@ -185,12 +185,12 @@ void ShaderGame::Update(const GameTime& gameTime_)
 	Game::Update(gameTime_);
 
 	Quaternion q1, q2;
-	q1.FromAxisAngle(Vector3F::UnitX(), -MATH_PI_DIV_2);
-	q2.FromAxisAngle(Vector3F::UnitZ(), gameTime_.TotalTime() * 0.005f * Pi);
+	q1.FromAxisAngle(Vector3::UnitX(), -PI_OVER_2);
+	q2.FromAxisAngle(Vector3::UnitZ(), gameTime_.TotalTime() * 0.005f * PI);
 
-	m_pTrans3D->SetLocalPosition(Vector3F(0.0f, 2.4f, 0.0f));
+	m_pTrans3D->SetLocalPosition(Vector3(0.0f, 2.4f, 0.0f));
 	m_pTrans3D->SetLocalRotation(q1 * q2);
-	m_pTrans3D->SetLocalScale(Vector3F(0.1f, 0.1f, 0.1f));
+	m_pTrans3D->SetLocalScale(Vector3(0.1f, 0.1f, 0.1f));
 
 	//UpdateShadersParams(gameTime_);
 }

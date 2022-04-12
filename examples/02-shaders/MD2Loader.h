@@ -52,7 +52,7 @@ private:
 	//----------------------------------------------------------
 	static const int s_MagicId = ('2' << 24) + ('P' << 16) + ('D' << 8) + 'I'; ///< Identifiant magique "IDP2" servant à valider les modèles
 	static const int s_MD2Version = 8;                                            ///< Numéro de version géré
-	static const CasaEngine::Vector3F s_NormalTable[];                                  ///< Table des normales précalculées
+	static const CasaEngine::Vector3 s_NormalTable[];                                  ///< Table des normales précalculées
 
 #if CA_PLATFORM_WINDOWS
 
@@ -123,8 +123,8 @@ private:
 	///----------------------------------------------------------
 	struct TFrame
 	{
-		CasaEngine::Vector3F      Scale;     ///< Facteur d'échelle
-		CasaEngine::Vector3F      Translate; ///< Position
+		CasaEngine::Vector3      Scale;     ///< Facteur d'échelle
+		CasaEngine::Vector3      Translate; ///< Position
 		char                Name[16];  ///< Nom de la frame
 		std::vector<TPoint> Vertices;  ///< Liste des sommets
 	};

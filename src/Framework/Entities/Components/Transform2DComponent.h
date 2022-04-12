@@ -16,11 +16,11 @@ namespace CasaEngine
 		public TransformComponent
 	{
 	private:
-		Vector2F m_LocalPosition;
+		Vector2 m_LocalPosition;
 		
 		// The rotation in local space and in degrees unit.
 		float m_LocalRotation;
-		Vector2F m_LocalScale;
+		Vector2 m_LocalScale;
 		
 		// The parent of this transform component.
 		// In effect this field stores the game object parent.
@@ -35,18 +35,18 @@ namespace CasaEngine
 		void SetLocalMatrix(Matrix4 val) override;
 		void SetWorldMatrix(Matrix4 val) override;
 
-		Vector2F GetLocalPosition() const;
-		void SetLocalPosition(Vector2F val);
+		Vector2 GetLocalPosition() const;
+		void SetLocalPosition(Vector2 val);
 
 		float GetLocalRotation() const;
 		void SetLocalRotation(float val);
 
-		Vector2F GetLocalScale() const;
-		void SetLocalScale(Vector2F val);
+		Vector2 GetLocalScale() const;
+		void SetLocalScale(Vector2 val);
 
-		Vector2F GetPosition() const;
+		Vector2 GetPosition() const;
 		float GetRotation() const;
-		Vector2F GetScale() const;
+		Vector2 GetScale() const;
 
 		void Initialize() override;
 

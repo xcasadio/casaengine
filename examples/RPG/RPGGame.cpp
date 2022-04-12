@@ -94,7 +94,7 @@ void RPGGame::LoadContent()
 	m_pWorld = new World();
 	auto* physicWorld = Game::Instance().GetPhysicsEngine().CreateWorld();
 	m_pWorld->SetPhysicsWorld(physicWorld);
-	physicWorld->SetGravity(Vector3F::Zero());
+	physicWorld->SetGravity(Vector3::Zero());
 	GetGameInfo().SetWorld(m_pWorld);
 
 	CreateAssets(Vector2I(48, 48));
@@ -123,9 +123,9 @@ void RPGGame::CreateMap(World* pWorld)
 	auto* pEntity = new BaseEntity();
 	pEntity->SetName("tiled map");
 	auto* pTrans3D = new Transform3DComponent(pEntity);
-	pTrans3D->SetLocalPosition(Vector3F(0.0f, 0.0f, 1.0f));
+	pTrans3D->SetLocalPosition(Vector3(0.0f, 0.0f, 1.0f));
 	pTrans3D->SetLocalRotation(0.0f);
-	//pTrans3D->SetLocalScale(Vector3F(48, 48, 1.0));
+	//pTrans3D->SetLocalScale(Vector3(48, 48, 1.0));
 
 	auto* pMap = new TiledMapComponent(pEntity);
 	pMap->SetMapSize(Vector2I(30, 11));
@@ -243,9 +243,9 @@ void RPGGame::CreateEnemies(World* pWorld)
 	auto* pEntity = new BaseEntity();
 	pEntity->SetName("octopus 1");
 	auto* pTrans3D = new Transform3DComponent(pEntity);
-	pTrans3D->SetLocalPosition(Vector3F(100.0f, 100.0f, 2.0f));
+	pTrans3D->SetLocalPosition(Vector3(100.0f, 100.0f, 2.0f));
 	pTrans3D->SetLocalRotation(0.0f);
-	//pTrans3D->SetLocalScale(Vector3F(32, 32, 1.0));
+	//pTrans3D->SetLocalScale(Vector3(32, 32, 1.0));
 	pEntity->GetComponentMgr()->AddComponent(pTrans3D);
 
 	//load texture
@@ -301,7 +301,7 @@ void RPGGame::CreateEnemies(World* pWorld)
 
 	//collision
 	auto *colliderComponent = new Circle2DColliderComponent(pEntity);
-	colliderComponent->SetCenter(Vector3F::Zero());
+	colliderComponent->SetCenter(Vector3::Zero());
 	colliderComponent->SetRadius(10.0f);
 	//auto* colliderComponent = new Box2DColliderComponent(pEntity);
 	//colliderComponent->Set(0, 0, 10, 10);
@@ -317,9 +317,9 @@ void RPGGame::CreateSwordman(World* pWorld)
 	auto* pPlayerEntity = new BaseEntity();
 	pPlayerEntity->SetName("player 1");
 	auto* pTrans3D = new Transform3DComponent(pPlayerEntity);
-	pTrans3D->SetLocalPosition(Vector3F(50.0f, 150.0f, 2.0f));
+	pTrans3D->SetLocalPosition(Vector3(50.0f, 150.0f, 2.0f));
 	pTrans3D->SetLocalRotation(0.0f);
-	//pTrans3D->SetLocalScale(Vector3F(tileWidth, tileHeight, 1.0));
+	//pTrans3D->SetLocalScale(Vector3(tileWidth, tileHeight, 1.0));
 	pPlayerEntity->GetComponentMgr()->AddComponent(pTrans3D);
 
 	//textures
@@ -379,7 +379,7 @@ void RPGGame::CreateSwordman(World* pWorld)
 
 	//collision
 	auto *colliderComponent = new Circle2DColliderComponent(pPlayerEntity);
-	colliderComponent->SetCenter(Vector3F::Zero());
+	colliderComponent->SetCenter(Vector3::Zero());
 	colliderComponent->SetRadius(10.0f);
 	//auto* colliderComponent = new Box2DColliderComponent(pPlayerEntity);
 	//colliderComponent->Set(0, 0, 10, 10);
@@ -396,7 +396,7 @@ void RPGGame::CreateSwordman(World* pWorld)
 	auto* m_pCamera2D = new Camera2DTargetedComponent(pCamera);
 	//auto* custom_camera_controller = new Camera3DTargetedComponent(m_pCamera2D);
 	pCamera->GetComponentMgr()->AddComponent(m_pCamera2D);
-	m_pCamera2D->SetDeadZoneRatio(Vector2F(0.7f, 0.7f));
+	m_pCamera2D->SetDeadZoneRatio(Vector2(0.7f, 0.7f));
 	m_pCamera2D->SetTargetedEntity(pPlayerEntity);
 	m_pCamera2D->SetLimits(RectangleI(0, 0, 1500, 800));
 	pWorld->AddEntity(pCamera);
@@ -405,7 +405,7 @@ void RPGGame::CreateSwordman(World* pWorld)
 	//Camera 3D
 	pCamera = new BaseEntity();
 	m_pCamera3D = new ArcBallCameraComponent(pCamera);
-	m_pCamera3D->SetCamera(Vector3F(0, 0.0f, -50.0f), Vector3F::Zero(), -Vector3F::Up());
+	m_pCamera3D->SetCamera(Vector3(0, 0.0f, -50.0f), Vector3::Zero(), -Vector3::Up());
 	m_pCamera3D->Distance(70.0f);
 	m_pCamera3D->InputDistanceRate(4.0f);
 	m_pCamera3D->InputDisplacementRate(30.0f);

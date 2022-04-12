@@ -7,12 +7,12 @@
 namespace CasaEngine
 {
 	constexpr float kPi = 3.1415926535897932384626433832795f;
-	constexpr float Pi = 3.141592654f;
+	constexpr float PI = 3.141592654f;
 	constexpr float MATH_2PI = 6.283185307f;
 	constexpr float MATH_1_DIV_PI = 0.318309886f;
 	constexpr float MATH_1_DIV_2PI = 0.159154943f;
-	constexpr float MATH_PI_DIV_2 = 1.570796327f;
-	constexpr float MATH_PI_DIV_4 = 0.785398163f;
+	constexpr float PI_OVER_2 = 1.570796327f;
+	constexpr float PI_OVER_4 = 0.785398163f;
 
 	constexpr float Epsilon = 4.8875809e-4f;  // smallest such that 1.0 + epsilon != 1.0
 
@@ -27,12 +27,12 @@ namespace CasaEngine
 
 	inline float ToRadian(float degree)
 	{
-		return degree * (Pi / 180.0f);
+		return degree * (PI / 180.0f);
 	}
 
 	inline float ToDegree(float radian)
 	{
-		return radian * (180.0f / Pi);
+		return radian * (180.0f / PI);
 	}
 
 	/**
@@ -93,7 +93,7 @@ namespace CasaEngine
 	//compares two real numbers. Returns true if they are equal
 	inline bool isEqual(float a, float b)
 	{
-		if (fabsf(a - b) < 1E-12)
+		if (fabsf(a - b) < Epsilon)
 		{
 			return true;
 		}
@@ -103,7 +103,7 @@ namespace CasaEngine
 
 	inline bool isEqual(double a, double b)
 	{
-		if (fabs(a - b) < 1E-12)
+		if (fabs(a - b) < Epsilon)
 		{
 			return true;
 		}
@@ -111,13 +111,29 @@ namespace CasaEngine
 		return false;
 	}
 
-	/**
-	 * returns true if the value is a NaN
-	 */
-	template <typename T>
-	bool isNaN(T val)
+	inline float NaN() noexcept
 	{
-		return val != val;
+		return std::numeric_limits<float>::signaling_NaN();
+	}
+
+	template <typename T>
+	bool IsNaN(T val)
+	{
+		return /*std::isnan(val);*/val != val;
+	}
+
+	template <typename T>
+	bool IsPositiveInfinity(T val)
+	{
+		return /*std::isinf(val)*/val >= MaxFloat && val > 0.0f;
+		//return val == std::numeric_limits<float>::max();
+	}
+
+	template <typename T>
+	bool IsNegativeInfinity(T val)
+	{
+		return /*std::isinf(val)*/val <= MaxFloat && val < 0.0f;
+		//return val == std::numeric_limits<float>::lowest();
 	}
 
 	/**
@@ -158,7 +174,7 @@ namespace CasaEngine
 	}
 
 	template<class T>
-	int Sign(T a)
+	T Sign(T a)
 	{
 		return (a < static_cast<T>(0)) ? static_cast<T>(-1) : static_cast<T>(1);
 	}

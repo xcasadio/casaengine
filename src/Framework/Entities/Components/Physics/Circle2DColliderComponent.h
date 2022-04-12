@@ -16,7 +16,7 @@ namespace CasaEngine
 		
 		void Initialize() override;
 
-		void SetCenter(const Vector3F& position);
+		void SetCenter(const Vector3& position);
 		void SetRadius(float radius);
 
 	private:

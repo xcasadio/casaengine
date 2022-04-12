@@ -5,7 +5,7 @@ namespace CasaEngine
 	Circle::Circle() :
 		IShape(ShapeType::CIRCLE2D), m_Radius(1.0f)
 	{
-		m_Center = Vector3F::Zero();
+		m_Center = Vector3::Zero();
 	}
 
 	Circle::Circle(float radius) : Circle()
@@ -29,12 +29,12 @@ namespace CasaEngine
 
 	Circle::~Circle() = default;
 
-	Vector3F Circle::Center() const
+	Vector3 Circle::Center() const
 	{
 		return m_Center;
 	}
 
-	void Circle::Center(const Vector3F val)
+	void Circle::Center(const Vector3 val)
 	{
 		m_Center = val;
 	}

@@ -17,10 +17,10 @@ namespace CasaEngine
 		AddIndex(GetCurrentVertex() + 3);
 		AddIndex(GetCurrentVertex() + 2);
 
-		AddVertex((-Vector3F::UnitZ() * height_ - Vector3F::UnitX() * width_) / 2.0f, Vector3F::Up(), Vector2F::Zero());
-		AddVertex((-Vector3F::UnitZ() * height_ + Vector3F::UnitX() * width_) / 2.0f, Vector3F::Up(), Vector2F::UnitX());
-		AddVertex((Vector3F::UnitZ() * height_ - Vector3F::UnitX() * width_) / 2.0f, Vector3F::Up(), Vector2F::UnitY());
-		AddVertex((Vector3F::UnitZ() * height_ + Vector3F::UnitX() * width_) / 2.0f, Vector3F::Up(), Vector2F::One());
+		AddVertex((-Vector3::UnitZ() * height_ - Vector3::UnitX() * width_) / 2.0f, Vector3::Up(), Vector2::Zero());
+		AddVertex((-Vector3::UnitZ() * height_ + Vector3::UnitX() * width_) / 2.0f, Vector3::Up(), Vector2::UnitX());
+		AddVertex((Vector3::UnitZ() * height_ - Vector3::UnitX() * width_) / 2.0f, Vector3::Up(), Vector2::UnitY());
+		AddVertex((Vector3::UnitZ() * height_ + Vector3::UnitX() * width_) / 2.0f, Vector3::Up(), Vector2::One());
 
 		m_nbPrimitives = 2;
 	}

@@ -12,7 +12,7 @@ namespace CasaEngine
 {
 	struct CA_EXPORT VertexPositionColor
 	{
-		Vector3F     Position;  
+		Vector3     Position;  
 		unsigned int Color;     
 
 		static void init();
@@ -21,8 +21,8 @@ namespace CasaEngine
 
 	struct CA_EXPORT VertexPositionTexture
 	{
-		Vector3F     Position;  
-		Vector2F     TexCoords; 
+		Vector3     Position;  
+		Vector2     TexCoords; 
 
 		static void init();
 		static bgfx::VertexLayout ms_layout;
@@ -30,8 +30,8 @@ namespace CasaEngine
 
 	struct CA_EXPORT VertexPositionColorTexture
 	{
-		Vector3F     Position;  
-		Vector2F     TexCoords; 
+		Vector3     Position;  
+		Vector2     TexCoords; 
 		unsigned int Color;     
 
 		static void init();
@@ -40,9 +40,9 @@ namespace CasaEngine
 
 	struct CA_EXPORT VertexPositionNormalTexture
 	{
-		Vector3F     Position;  
-		Vector3F     Normal;    
-		Vector2F     TexCoords; 
+		Vector3     Position;  
+		Vector3     Normal;    
+		Vector2     TexCoords; 
 
 		static void init();
 		static bgfx::VertexLayout ms_layout;
@@ -50,9 +50,9 @@ namespace CasaEngine
 
 	struct CA_EXPORT VertexPositionColorNormalTexture
 	{
-		Vector3F     Position;  
-		Vector3F     Normal;    
-		Vector2F     TexCoords; 
+		Vector3     Position;  
+		Vector3     Normal;    
+		Vector2     TexCoords; 
 		unsigned int Color{};   
 
 		static void init();

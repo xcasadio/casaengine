@@ -26,6 +26,26 @@ namespace CasaEngine
 		std::ostringstream m_OutStream;
 	};
 
+	template <typename T>
+	CStringBuilder::CStringBuilder(const T& Value)
+	{
+		m_OutStream << Value;
+	}
+
+	template <typename T>
+	CStringBuilder& CStringBuilder::operator ()(const T& Value)
+	{
+		m_OutStream << Value;
+		return *this;
+	}
+
+	inline CStringBuilder::operator std::string() const
+	{
+		return m_OutStream.str();
+	}
+
+	/*****************************************************/
+
 	class CStringExtractor
 	{
 	public:
@@ -36,6 +56,34 @@ namespace CasaEngine
 	private:
 		std::istringstream m_InStream;
 	};
+	inline CStringExtractor::CStringExtractor(const std::string& Text) :
+		m_InStream(Text)
+	{
+	}
+
+	template <typename T>
+	CStringExtractor& CStringExtractor::operator ()(T& Value)
+	{
+		if (!(m_InStream >> std::boolalpha >> Value))
+		{
+			if (m_InStream.eof())
+			{
+				throw CBadConversion("Try to extract a value with an empty string");
+			}
+			throw CBadConversion("Can't convert a \"string\" to a certain type");
+		}
+
+		return *this;
+	}
+
+	inline void CStringExtractor::ThrowIfEOF()
+	{
+		std::string Left;
+		if (std::getline(m_InStream, Left))
+			throw CBadConversion("String too long, \"" + Left + "\" has not been extracted");
+	}
+
+	/**********************************************/
 
 	inline void Split(const std::string& String, std::vector<std::string>& Tokens, const std::string& Delim)
 	{
@@ -76,49 +124,5 @@ namespace CasaEngine
 		std::string Ret(Text.size(), ' ');
 		std::transform(Text.begin(), Text.end(), Ret.begin(), static_cast<int (*)(int)>(std::toupper));
 		return Ret;
-	}
-
-	template <typename T>
-	CStringBuilder::CStringBuilder(const T& Value)
-	{
-		m_OutStream << Value;
-	}
-
-	template <typename T>
-	CStringBuilder& CStringBuilder::operator ()(const T& Value)
-	{
-		m_OutStream << Value;
-		return *this;
-	}
-
-	inline CStringBuilder::operator std::string() const
-	{
-		return m_OutStream.str();
-	}
-
-	inline CStringExtractor::CStringExtractor(const std::string& Text) :
-		m_InStream(Text)
-	{
-	}
-
-	template <typename T>
-	CStringExtractor& CStringExtractor::operator ()(T& Value)
-	{
-		if (!(m_InStream >> std::boolalpha >> Value))
-		{
-			if (m_InStream.eof())
-				throw CBadConversion("Try to extract a value with an empty string");
-			else
-				throw CBadConversion("Can't convert a \"string\" to a certain type");
-		}
-
-		return *this;
-	}
-
-	inline void CStringExtractor::ThrowIfEOF()
-	{
-		std::string Left;
-		if (std::getline(m_InStream, Left))
-			throw CBadConversion("String too long, \"" + Left + "\" has not been extracted");
 	}
 }

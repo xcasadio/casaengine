@@ -14,7 +14,7 @@ namespace CasaEngine
 		void ComputeViewMatrix() override;
 
 		void SetTargetedEntity(BaseEntity* pTargetedEntity);
-		void SetDeadZoneRatio(Vector2F deadZoneRatio);
+		void SetDeadZoneRatio(Vector2 deadZoneRatio);
 		Vector2I GetOffset() const;
 		void SetOffset(Vector2I offset);
 		RectangleI GetLimits() const;
@@ -22,7 +22,7 @@ namespace CasaEngine
 
 	private:
 		BaseEntity* m_pTargetedEntity;
-		Vector2F m_DeadZoneRatio;
+		Vector2 m_DeadZoneRatio;
 		Vector2I m_Offset;
 		RectangleI m_Limits;
 	};

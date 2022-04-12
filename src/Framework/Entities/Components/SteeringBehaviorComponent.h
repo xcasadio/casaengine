@@ -68,30 +68,30 @@ namespace CasaEngine
 		//PhysicComponent* m_pPhysicComponent;
 		MovingEntity2DComponent* m_pMovingEntity;
 		Transform3DComponent *m_pTranform;
-		Vector2F m_Position2D;
+		Vector2 m_Position2D;
 
 		//a pointer to the owner of this instance
 		//BaseEntity*     m_pVehicle;   
 
 		//the steering force created by the combined effect of all
 		//the selected behaviors
-		Vector2F    m_vSteeringForce;
+		Vector2    m_vSteeringForce;
 
 		//these can be used to keep track of friends, pursuers, or prey
 		BaseEntity*     m_pTargetAgent1;
 		BaseEntity*     m_pTargetAgent2;
 
 		//the current target
-		Vector2F    m_vTarget;
+		Vector2    m_vTarget;
 
 		//a vertex buffer to contain the feelers required for wall avoidance  
-		std::vector<Vector2F> m_Feelers;
+		std::vector<Vector2> m_Feelers;
 
 		//====== Steering behavior settings =========
 
 		//the current position on the wander circle the agent is
 		//attempting to steer towards
-		Vector2F     m_vWanderTarget; 
+		Vector2     m_vWanderTarget; 
 
 		//explained above
 		float        m_fWanderJitter;
@@ -147,7 +147,7 @@ namespace CasaEngine
 		//=========================================
 
 		//any offset used for formations or offset pursuit
-		Vector2F     m_vOffset;
+		Vector2     m_vOffset;
 
 		//binary flags to indicate whether or not a behavior should be active
 		int           m_iFlags;
@@ -188,7 +188,7 @@ namespace CasaEngine
 		//void HandleEvent(const Event* pEvent_);
 		// 
 		//calculates and sums the steering forces from any active behaviors
-		Vector2F Calculate(float elapsedTime_);
+		Vector2 Calculate(float elapsedTime_);
 
 		//calculates the component of the steering force that is parallel
 		//with the BaseEntity heading
@@ -204,19 +204,19 @@ namespace CasaEngine
 		//calculated
 		void      RenderAids();
 
-		void      SetTarget(const Vector2F t){m_vTarget = t;}
+		void      SetTarget(const Vector2 t){m_vTarget = t;}
 
 		void      SetTargetAgent1(BaseEntity* Agent){m_pTargetAgent1 = Agent;}
 		void      SetTargetAgent2(BaseEntity* Agent){m_pTargetAgent2 = Agent;}
 
-		void      SetOffset(const Vector2F offset){m_vOffset = offset;}
-		Vector2F  GetOffset()const{return m_vOffset;}
+		void      SetOffset(const Vector2 offset){m_vOffset = offset;}
+		Vector2  GetOffset()const{return m_vOffset;}
 
-		void      SetPath(std::list<Vector2F> new_path){m_pPath->Set(new_path);}
+		void      SetPath(std::list<Vector2> new_path){m_pPath->Set(new_path);}
 		/*void      CreateRandomPath(int num_waypoints, int mx, int my, int cx, int cy)const
 			{m_pPath->CreateRandomPath(num_waypoints, mx, my, cx, cy);}*/
 
-		Vector2F Force()const{return m_vSteeringForce;}
+		Vector2 Force()const{return m_vSteeringForce;}
 
 		void      ToggleSpacePartitioningOnOff(){m_bCellSpaceOn = !m_bCellSpaceOn;}
 		bool      isSpacePartitioningOn()const{return m_bCellSpaceOn;}
@@ -238,7 +238,7 @@ namespace CasaEngine
 		void FollowPathOn(){m_iFlags |= follow_path;}
 		void InterposeOn(BaseEntity* v1, BaseEntity* v2){m_iFlags |= interpose; m_pTargetAgent1 = v1; m_pTargetAgent2 = v2;}
 		void HideOn(BaseEntity* v){m_iFlags |= hide; m_pTargetAgent1 = v;}
-		void OffsetPursuitOn(BaseEntity* v1, const Vector2F offset){m_iFlags |= offset_pursuit; m_vOffset = offset; m_pTargetAgent1 = v1;}  
+		void OffsetPursuitOn(BaseEntity* v1, const Vector2 offset){m_iFlags |= offset_pursuit; m_vOffset = offset; m_pTargetAgent1 = v1;}  
 		void FlockingOn(){CohesionOn(); AlignmentOn(); SeparationOn(); WanderOn();}
 
 		void FleeOff()  {if(On(flee))   m_iFlags ^=flee;}
@@ -278,7 +278,7 @@ namespace CasaEngine
 
 		// GET
 		float DBoxLength()const{return m_fDBoxLength;}
-		const std::vector<Vector2F>& GetFeelers()const{return m_Feelers;}
+		const std::vector<Vector2>& GetFeelers()const{return m_Feelers;}
 
 		float WanderJitter()const{return m_fWanderJitter;}
 		float WanderDistance()const{return m_fWanderDistance;}
@@ -363,7 +363,7 @@ namespace CasaEngine
 		//this function tests if a specific bit of m_iFlags is set
 		bool      On(behavior_type bt){return (m_iFlags & bt) == bt;}
 
-		bool      AccumulateForce(Vector2F &sf, Vector2F ForceToAdd);
+		bool      AccumulateForce(Vector2 &sf, Vector2 ForceToAdd);
 
 		//creates the antenna utilized by the wall avoidance behavior
 		void      CreateFeelers();
@@ -375,66 +375,66 @@ namespace CasaEngine
 			.......................................................*/
 
 		//this behavior moves the agent towards a target position
-		Vector2F Seek(Vector2F TargetPos);
+		Vector2 Seek(Vector2 TargetPos);
 
 		//this behavior returns a vector that moves the agent away
 		//from a target position
-		Vector2F Flee(Vector2F TargetPos);
+		Vector2 Flee(Vector2 TargetPos);
 
 		//this behavior is similar to seek but it attempts to arrive 
 		//at the target position with a zero velocity
-		Vector2F Arrive(Vector2F     TargetPos,
+		Vector2 Arrive(Vector2     TargetPos,
 						Deceleration deceleration);
 
 		//this behavior predicts where an agent will be in time T and seeks
 		//towards that point to intercept it.
-		Vector2F Pursuit(BaseEntity* evader);
+		Vector2 Pursuit(BaseEntity* evader);
 
 		//this behavior maintains a position, in the direction of offset
 		//from the target BaseEntity
-		Vector2F OffsetPursuit(BaseEntity* agent, const Vector2F offset);
+		Vector2 OffsetPursuit(BaseEntity* agent, const Vector2 offset);
 
 		//this behavior attempts to evade a pursuer
-		Vector2F Evade(BaseEntity* pursuer);
+		Vector2 Evade(BaseEntity* pursuer);
 
 		//this behavior makes the agent wander about randomly
-		Vector2F Wander(float elapsedTime_);
+		Vector2 Wander(float elapsedTime_);
 
 		//this returns a steering force which will attempt to keep the agent 
 		//away from any obstacles it may encounter
-		Vector2F ObstacleAvoidance(const std::vector<BaseEntity*>& obstacles);
+		Vector2 ObstacleAvoidance(const std::vector<BaseEntity*>& obstacles);
 
 		//this returns a steering force which will keep the agent away from any
 		//walls it may encounter
-		Vector2F WallAvoidance(const std::vector<Line2D> &walls);
+		Vector2 WallAvoidance(const std::vector<Line2D> &walls);
 
   
 		//given a series of Vector2Ds, this method produces a force that will
 		//move the agent along the waypoints in order
-		Vector2F FollowPath();
+		Vector2 FollowPath();
 
 		//this results in a steering force that attempts to steer the BaseEntity
 		//to the center of the vector connecting two moving agents.
-		Vector2F Interpose(BaseEntity* VehicleA, BaseEntity* VehicleB);
+		Vector2 Interpose(BaseEntity* VehicleA, BaseEntity* VehicleB);
 
 		//given another agent position to hide from and a list of BaseGameEntitys this
 		//method attempts to put an obstacle between itself and its opponent
-		Vector2F Hide(BaseEntity* hunter, const std::vector<BaseEntity*>& obstacles);
+		Vector2 Hide(BaseEntity* hunter, const std::vector<BaseEntity*>& obstacles);
 
 
 		// -- Group Behaviors -- //
 
-		Vector2F Cohesion(const std::vector<BaseEntity*> &agents);
+		Vector2 Cohesion(const std::vector<BaseEntity*> &agents);
   
-		Vector2F Separation(const std::vector<BaseEntity*> &agents);
+		Vector2 Separation(const std::vector<BaseEntity*> &agents);
 
-		Vector2F Alignment(const std::vector<BaseEntity*> &agents);
+		Vector2 Alignment(const std::vector<BaseEntity*> &agents);
 
 		//the following three are the same as above but they use cell-space
 		//partitioning to find the neighbors
-		Vector2F CohesionPlus(const std::vector<BaseEntity*> &agents);
-		Vector2F SeparationPlus(const std::vector<BaseEntity*> &agents);
-		Vector2F AlignmentPlus(const std::vector<BaseEntity*> &agents);
+		Vector2 CohesionPlus(const std::vector<BaseEntity*> &agents);
+		Vector2 SeparationPlus(const std::vector<BaseEntity*> &agents);
+		Vector2 AlignmentPlus(const std::vector<BaseEntity*> &agents);
 
 		/* .......................................................
 
@@ -443,15 +443,15 @@ namespace CasaEngine
 			.......................................................*/
 
 		//calculates and sums the steering forces from any active behaviors
-		Vector2F CalculateWeightedSum(float elapsedTime_);
-		Vector2F CalculatePrioritized(float elapsedTime_);
-		Vector2F CalculateDithered(float elapsedTime_);
+		Vector2 CalculateWeightedSum(float elapsedTime_);
+		Vector2 CalculatePrioritized(float elapsedTime_);
+		Vector2 CalculateDithered(float elapsedTime_);
 
 		//helper method for Hide. Returns a position located on the other
 		//side of an obstacle to the pursuer
-		Vector2F GetHidingPosition(const Vector2F& posOb,
+		Vector2 GetHidingPosition(const Vector2& posOb,
 									const float     radiusOb,
-									const Vector2F& posHunter);
+									const Vector2& posHunter);
 	}; // class SteeringBehaviourComponent
 }
 

@@ -85,9 +85,9 @@ bool PlayerController::IsAttackButtonPressed()
 /**
  *
  */
-orientation PlayerController::GetDirectionFromInput(Vector2F& direction_)
+orientation PlayerController::GetDirectionFromInput(Vector2& direction_)
 {
-	direction_ = Vector2F::Zero();
+	direction_ = Vector2::Zero();
 
 	if (Game::Instance().GetInput().IsKeyDown(sf::Keyboard::Z) == true
 		|| Game::Instance().GetInput().GetJoystickLeftStickY(0) > Character::Deadzone)
@@ -113,7 +113,7 @@ orientation PlayerController::GetDirectionFromInput(Vector2F& direction_)
 
 	direction_.Normalize();
 
-	Vector2F vec = direction_;
+	Vector2 vec = direction_;
 	//vec.y = -vec.y; //inverse to be on screen coordinate
 	return Character::GetOrientationFromVector2(vec);
 }

@@ -65,7 +65,7 @@ private:
 	int m_Defense;
 	int m_DefenseOffSet;
 
-	//Vector2F m_Velocity;
+	//Vector2 m_Velocity;
 	int m_ComboNumber;
 	bool m_IsPlayer;
 

@@ -28,13 +28,13 @@ class MovingEntity : public BaseEntity
 {
 protected:
   
-  Vector2F    m_vVelocity;
+  Vector2    m_vVelocity;
   
   //a normalized vector pointing in the direction the entity is heading. 
-  Vector2F    m_vHeading;
+  Vector2    m_vHeading;
 
   //a vector perpendicular to the heading vector
-  Vector2F    m_vSide; 
+  Vector2    m_vSide; 
 
   float      m_fMass;
   
@@ -51,13 +51,13 @@ protected:
 public:
 
 
-  MovingEntity(Vector2F position,
+  MovingEntity(Vector2 position,
                float   radius,
-               Vector2F velocity,
+               Vector2 velocity,
                float   max_speed,
-               Vector2F heading,
+               Vector2 heading,
                float   mass,
-               Vector2F scale,
+               Vector2 scale,
                float   turn_rate,
                float   max_force):
                                   m_vHeading(heading),
@@ -77,12 +77,12 @@ public:
   virtual ~MovingEntity(){}
 
   //accessors
-  Vector2F  Velocity()const{return m_vVelocity;}
-  void      SetVelocity(const Vector2F& NewVel){m_vVelocity = NewVel;}
+  Vector2  Velocity()const{return m_vVelocity;}
+  void      SetVelocity(const Vector2& NewVel){m_vVelocity = NewVel;}
   
   float    Mass()const{return m_fMass;}
   
-  Vector2F  Side()const{return m_vSide;}
+  Vector2  Side()const{return m_vSide;}
 
   float    MaxSpeed()const{return m_fMaxSpeed;}                       
   void      SetMaxSpeed(float new_speed){m_fMaxSpeed = new_speed;}
@@ -94,9 +94,9 @@ public:
   float    Speed()const{return m_vVelocity.Length();}
   float    SpeedSq()const{return m_vVelocity.LengthSquared();}
   
-  Vector2F  Heading()const{return m_vHeading;}
-  void      SetHeading(Vector2F new_heading);
-  bool      RotateHeadingToFacePosition(Vector2F target);
+  Vector2  Heading()const{return m_vHeading;}
+  void      SetHeading(Vector2 new_heading);
+  bool      RotateHeadingToFacePosition(Vector2 target);
 
   float    MaxTurnRate()const{return m_fMaxTurnRate;}
   void      SetMaxTurnRate(float val){m_fMaxTurnRate = val;}
@@ -112,9 +112,9 @@ public:
 //
 //  returns true when the heading is facing in the desired direction
 //-----------------------------------------------------------------------------
-inline bool MovingEntity::RotateHeadingToFacePosition(Vector2F target)
+inline bool MovingEntity::RotateHeadingToFacePosition(Vector2 target)
 {
-  Vector2F toTarget = target - m_vPosition;
+  Vector2 toTarget = target - m_vPosition;
   toTarget.Normalize();
 
   float dot = m_vHeading.Dot(toTarget);
@@ -155,7 +155,7 @@ inline bool MovingEntity::RotateHeadingToFacePosition(Vector2F target)
 //  new heading is valid this fumction sets the entity's heading and side 
 //  vectors accordingly
 //-----------------------------------------------------------------------------
-inline void MovingEntity::SetHeading(Vector2F new_heading)
+inline void MovingEntity::SetHeading(Vector2 new_heading)
 {
   CA_ASSERT((new_heading.LengthSquared() - 1.0f) < 0.00001f, 
 	  "MovingEntity::SetHeading() : don't use a vector equal to Vector::Zero");

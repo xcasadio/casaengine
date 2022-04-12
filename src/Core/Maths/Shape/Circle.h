@@ -17,15 +17,15 @@ namespace CasaEngine
 		Circle& operator=(const Circle& rsh);
 		~Circle() override;
 
-		Vector3F Center() const;
-		void Center(Vector3F val);
+		Vector3 Center() const;
+		void Center(Vector3 val);
 		float Radius() const;
 		void Radius(float val);
 
 		IShape* Copy() override;
 		
 	private:
-		Vector3F m_Center;
+		Vector3 m_Center;
 		float m_Radius;
 	};
 }

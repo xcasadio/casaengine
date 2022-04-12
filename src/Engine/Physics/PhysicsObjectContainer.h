@@ -17,16 +17,16 @@ namespace CasaEngine
 		virtual void logInfo() = 0;
 #endif // #if defined(CA_DEBUG)
 
-		virtual const Vector3F& getLinearVelocity() const = 0;
-		virtual void setLinearVelocity(const Vector3F& lin_vel) = 0;
+		virtual Vector3 GetLinearVelocity() const = 0;
+		virtual void setLinearVelocity(const Vector3& lin_vel) = 0;
 
-		virtual Vector3F& getAngularVelocity() const = 0;
-		virtual void setAngularVelocity(const Vector3F& ang_vel) = 0;
+		virtual Vector3 getAngularVelocity() const = 0;
+		virtual void setAngularVelocity(const Vector3& ang_vel) = 0;
 
-		virtual Vector3F& getTranslation() const = 0;
-		virtual void setTranslation(const Vector3F& ang_vel) = 0;
+		virtual Vector3 getTranslation() const = 0;
+		virtual void setTranslation(const Vector3& ang_vel) = 0;
 
-		virtual Quaternion& getRotation() const = 0;
+		virtual Quaternion getRotation() const = 0;
 		virtual void setRotation(const Quaternion& rot) = 0;
 	};
 

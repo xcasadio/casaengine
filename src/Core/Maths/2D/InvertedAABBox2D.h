@@ -10,24 +10,24 @@ namespace CasaEngine
 	class CA_EXPORT InvertedAABBox2D
 	{
 	private:
-		Vector2F  m_vTopLeft;
-		Vector2F  m_vBottomRight;
-		Vector2F  m_vCenter;
+		Vector2  m_vTopLeft;
+		Vector2  m_vBottomRight;
+		Vector2  m_vCenter;
 
 	public:
-		InvertedAABBox2D(Vector2F tl, Vector2F br);
+		InvertedAABBox2D(Vector2 tl, Vector2 br);
 
 		//returns true if the bbox described by other intersects with this one
 		bool isOverlappedWith(const InvertedAABBox2D& other)const;
 
-		Vector2F TopLeft()const;
-		Vector2F BottomRight()const;
+		Vector2 TopLeft()const;
+		Vector2 BottomRight()const;
 
 		double    Top() const;
 		double    Left() const;
 		double    Bottom() const;
 		double    Right() const;
-		Vector2F  Center() const;
+		Vector2  Center() const;
 
 		void     Render(bool RenderCenter = false) const;
 	};

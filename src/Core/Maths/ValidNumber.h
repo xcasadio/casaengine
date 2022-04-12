@@ -1,5 +1,4 @@
-#ifndef VALIDNUMBER_H_
-#define VALIDNUMBER_H_
+#pragma once
 
 namespace CasaEngine
 {
@@ -209,5 +208,3 @@ namespace CasaEngine
 	}
 #endif
 }
-
-#endif // VALIDNUMBER_H_
