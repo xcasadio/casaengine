@@ -49,7 +49,7 @@ namespace CasaEngine
 
 	Quaternion Quaternion::Zero()
 	{
-		return {0.0f, 0.0f, 0.0f, 0.0f};
+		return { 0.0f, 0.0f, 0.0f, 0.0f };
 	}
 
 	Quaternion Quaternion::CreateIdentity()
@@ -119,7 +119,7 @@ namespace CasaEngine
 			q1.w * q2.w;
 	}
 
-	Quaternion Quaternion::Conjugate(const Quaternion &q)
+	Quaternion Quaternion::Conjugate(const Quaternion& q)
 	{
 		return { -q.x, -q.y, -q.z, q.w };
 	}
@@ -193,8 +193,8 @@ namespace CasaEngine
 
 			s1 = sinf((1.0f - t) * omega) * invSinOmega;
 			s2 = (flip)
-				     ? -sinf(t * omega) * invSinOmega
-				     : sinf(t * omega) * invSinOmega;
+				? -sinf(t * omega) * invSinOmega
+				: sinf(t * omega) * invSinOmega;
 		}
 
 		Quaternion ans;
@@ -250,55 +250,6 @@ namespace CasaEngine
 		return x * x + y * y + z * z + w * w;
 	}
 
-	Matrix3 Quaternion::ToMatrix3() const
-	{
-		// 	CA_ASSERT(q.IsValid(0.05f), "Quaternion::ToMatrix3()");
-		// 	Vector3 v2(x, y, z);
-		// 	v2 *= 2.0f;
-		// 	float xx=1-v2.x*x;	float yy=v2.y*y;	float xw=v2.x*w;
-		// 	float xy=v2.y*x;	float yz=v2.z*y;	float yw=v2.y*w;
-		// 	float xz=v2.z*x;	float zz=v2.z*z;	float zw=v2.z*w;
-		// 	m00=1.0f-yy-zz;		m01=xy-zw;			m02=xz+yw;
-		// 	m10=xy+zw;			m11=xx-zz;			m12=yz-xw;
-		// 	m20=xz-yw;			m21=yz+xw;			m22=xx-yy;
-
-		const float xx = x * x;
-		const float xy = x * y;
-		const float xz = x * z;
-		const float xw = x * w;
-		const float yy = y * y;
-		const float yz = y * z;
-		const float yw = y * w;
-		const float zz = z * z;
-		const float zw = z * w;
-
-		return {
-			1.0f - 2.0f * (yy + zz), 2.0f * (xy - zw), 2.0f * (xy + yw),
-			2.0f * (xy + zw), 1.0f - 2.0f * (xx + zz), 2.0f * (yz - xw),
-			2.0f * (xz - yw), 2.0f * (yz + xw), 1.0f - 2.0f * (xx + yy)
-		};
-	}
-
-	Matrix4 Quaternion::ToMatrix4() const
-	{
-		const float xx = x * x;
-		const float xy = x * y;
-		const float xz = x * z;
-		const float xw = x * w;
-		const float yy = y * y;
-		const float yz = y * z;
-		const float yw = y * w;
-		const float zz = z * z;
-		const float zw = z * w;
-
-		return {
-			1 - 2 * (yy + zz), 2 * (xy - zw), 2 * (xy + yw), 0,
-			2 * (xy + zw), 1 - 2 * (xx + zz), 2 * (yz - xw), 0,
-			2 * (xz - yw), 2 * (yz + xw), 1 - 2 * (xx + yy), 0,
-			0, 0, 0, 1
-		};
-	}
-
 	Quaternion Quaternion::CreateFromRotationMatrix(const Matrix4& matrix)
 	{
 		Quaternion q;
@@ -319,36 +270,75 @@ namespace CasaEngine
 			y = (matrix.m31 - matrix.m13) * s;
 			z = (matrix.m12 - matrix.m21) * s;
 		}
+		else if (matrix.m11 > matrix.m22 && matrix.m11 > matrix.m33)
+		{
+			float s = sqrtf(1.0f + matrix.m11 - matrix.m22 - matrix.m33);
+			float invS = 0.5f / s;
+			x = 0.5f * s;
+			y = (matrix.m12 + matrix.m21) * invS;
+			z = (matrix.m13 + matrix.m31) * invS;
+			w = (matrix.m23 - matrix.m32) * invS;
+		}
+		else if (matrix.m22 > matrix.m33)
+		{
+			float s = sqrtf(1.0f + matrix.m22 - matrix.m11 - matrix.m33);
+			float invS = 0.5f / s;
+			x = (matrix.m21 + matrix.m12) * invS;
+			y = 0.5f * s;
+			z = (matrix.m32 + matrix.m23) * invS;
+			w = (matrix.m31 - matrix.m13) * invS;
+		}
 		else
 		{
-			if (matrix.m11 >= matrix.m22 && matrix.m11 >= matrix.m33)
-			{
-				float s = sqrtf(1.0f + matrix.m11 - matrix.m22 - matrix.m33);
-				float invS = 0.5f / s;
-				x = 0.5f * s;
-				y = (matrix.m12 + matrix.m21) * invS;
-				z = (matrix.m13 + matrix.m31) * invS;
-				w = (matrix.m23 - matrix.m32) * invS;
-			}
-			else if (matrix.m22 > matrix.m33)
-			{
-				float s = sqrtf(1.0f + matrix.m22 - matrix.m11 - matrix.m33);
-				float invS = 0.5f / s;
-				x = (matrix.m21 + matrix.m12) * invS;
-				y = 0.5f * s;
-				z = (matrix.m32 + matrix.m23) * invS;
-				w = (matrix.m31 - matrix.m13) * invS;
-			}
-			else
-			{
-				float s = sqrtf(1.0f + matrix.m33 - matrix.m11 - matrix.m22);
-				float invS = 0.5f / s;
-				x = (matrix.m31 + matrix.m13) * invS;
-				y = (matrix.m32 + matrix.m23) * invS;
-				z = 0.5f * s;
-				w = (matrix.m12 - matrix.m21) * invS;
-			}
+			float s = sqrtf(1.0f + matrix.m33 - matrix.m11 - matrix.m22);
+			float invS = 0.5f / s;
+			x = (matrix.m31 + matrix.m13) * invS;
+			y = (matrix.m32 + matrix.m23) * invS;
+			z = 0.5f * s;
+			w = (matrix.m12 - matrix.m21) * invS;
 		}
+
+
+		float num8 = (matrix.m11 + matrix.m22) + matrix.m33;
+		Quaternion quaternion;
+		if (num8 > 0.0f)
+		{
+			float num = sqrtf(num8 + 1.0f);
+			quaternion.w = num * 0.5f;
+			num = 0.5f / num;
+			quaternion.x = -(matrix.m23 - matrix.m32) * num; // -
+			quaternion.y = -(matrix.m31 - matrix.m13) * num; // -
+			quaternion.z = -(matrix.m12 - matrix.m21) * num; // -
+		}
+		else if ((matrix.m11 >= matrix.m22) && (matrix.m11 >= matrix.m33))
+		{
+			float num7 = sqrtf(1.0 + matrix.m11 - matrix.m22 - matrix.m33);
+			float num4 = 0.5f / num7;
+			quaternion.x = 0.5f * num7;
+			quaternion.y = (matrix.m12 + matrix.m21) * num4;
+			quaternion.z = (matrix.m13 + matrix.m31) * num4;
+			quaternion.w = -(matrix.m23 - matrix.m32) * num4; // -
+		}
+		else if (matrix.m22 > matrix.m33)
+		{
+			float num6 = sqrtf(1.0 + matrix.m22 - matrix.m11 - matrix.m33);
+			float num3 = 0.5f / num6;
+			quaternion.x = (matrix.m21 + matrix.m12) * num3;
+			quaternion.y = 0.5f * num6;
+			quaternion.z = (matrix.m32 + matrix.m23) * num3;
+			quaternion.w = -(matrix.m31 - matrix.m13) * num3; // -
+		}
+		else
+		{
+			float num5 = sqrtf(1.0 + matrix.m33 - matrix.m11 - matrix.m22);
+			float num2 = 0.5f / num5;
+			quaternion.x = (matrix.m31 + matrix.m13) * num2;
+			quaternion.y = (matrix.m32 + matrix.m23) * num2;
+			quaternion.z = 0.5f * num5;
+			quaternion.w = -(matrix.m12 - matrix.m21) * num2; // -
+		}
+
+		*this = quaternion;
 	}
 
 	Quaternion Quaternion::CreateFromAxisAngle(const Vector3& axis, float angle)

@@ -37,9 +37,6 @@ namespace CasaEngine
 		float Length() const;
 		float LengthSquared() const;
 
-		Matrix3 ToMatrix3() const;
-		Matrix4 ToMatrix4() const;
-
 		static Quaternion CreateFromRotationMatrix(const Matrix4& matrix);
 		void FromMatrix(const Matrix4& matrix);
 		static Quaternion CreateFromAxisAngle(const Vector3& axis, float angle);

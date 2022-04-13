@@ -244,8 +244,8 @@ namespace CasaEngine
 
 		bool operator ==(const Matrix4& m) const;
 		bool operator !=(const Matrix4& m) const;
-		Matrix4& operator +(const Matrix4& matrix2);
-		Matrix4& operator /(const Matrix4& matrix2);
+		Matrix4 operator +(const Matrix4& matrix2);
+		Matrix4 operator /(const Matrix4& matrix2);
 		Matrix4 operator /(float divider);
 		Matrix4 operator *(const Matrix4& matrix2);
 		const Matrix4& operator *=(const Matrix4& m);

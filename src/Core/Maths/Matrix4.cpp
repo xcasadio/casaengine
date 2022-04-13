@@ -13,7 +13,7 @@ namespace CasaEngine
 
 	Matrix4::Matrix4(float m11, float m12, float m13, float m14, float m21, float m22, float m23, float m24, float m31,
 		float m32, float m33, float m34, float m41, float m42, float m43, float m44) :
-		m11(m11), m12(m12), m13(m13), m14(m14),m21(m21), m22(m22), m23(m23), m24(m24), m31(m31), m32(m32), m33(m33),
+		m11(m11), m12(m12), m13(m13), m14(m14), m21(m21), m22(m22), m23(m23), m24(m24), m31(m31), m32(m32), m33(m33),
 		m34(m34), m41(m41), m42(m42), m43(m43), m44(m44)
 	{
 
@@ -250,7 +250,7 @@ namespace CasaEngine
 
 		if (pscalingrotation)
 		{
-			m4 = pscalingrotation->ToMatrix4();
+			m4 = CreateFromQuaternion(*pscalingrotation); // pscalingrotation->ToMatrix4();
 			m2 = Invert(m4);
 		}
 		if (pscaling)
@@ -259,7 +259,7 @@ namespace CasaEngine
 		}
 		if (protation)
 		{
-			m6 = protation->ToMatrix4();
+			m6 = CreateFromQuaternion(*protation); //protation->ToMatrix4();
 		}
 
 		m5 = CreateTranslation(psc.x - prc.x, psc.y - prc.y, psc.z - prc.z);
@@ -467,28 +467,76 @@ namespace CasaEngine
 	{
 		Matrix4 result;
 
-		const float x = axis.x;
-		const float y = axis.y;
-		const float z = axis.z;
-		const float num2 = sinf(angle);
-		const float num = cosf(angle);
-		const float num11 = x * x;
-		const float num10 = y * y;
-		const float num9 = z * z;
-		const float num8 = x * y;
-		const float num7 = x * z;
-		const float num6 = y * z;
-		result.m11 = num11 + num * (1.0f - num11);
-		result.m12 = num8 - num * num8 + num2 * z;
-		result.m13 = num7 - num * num7 - num2 * y;
+		//const float x = axis.x;
+		//const float y = axis.y;
+		//const float z = axis.z;
+		//const float num2 = sinf(angle);
+		//const float num = cosf(angle);
+		//const float num11 = x * x;
+		//const float num10 = y * y;
+		//const float num9 = z * z;
+		//const float num8 = x * y;
+		//const float num7 = x * z;
+		//const float num6 = y * z;
+		//result.m11 = num11 + num * (1.0f - num11);
+		//result.m12 = num8 - num * num8 + num2 * z;
+		//result.m13 = num7 - num * num7 - num2 * y;
+		//result.m14 = 0.0f;
+		//result.m21 = num8 - num * num8 - num2 * z;
+		//result.m22 = num10 + num * (1.0f - num10);
+		//result.m23 = num6 - num * num6 + num2 * x;
+		//result.m24 = 0.0f;
+		//result.m31 = num7 - num * num7 + num2 * y;
+		//result.m32 = num6 - num * num6 - num2 * x;
+		//result.m33 = num9 + num * (1.0f - num9);
+		//result.m34 = 0.0f;
+		//result.m41 = 0.0f;
+		//result.m42 = 0.0f;
+		//result.m43 = 0.0f;
+		//result.m44 = 1.0f;
+
+		// a: angle
+			// x, y, z: unit vector for axis.
+			//
+			// Rotation matrix M can compute by using below equation.
+			//
+			//        T               T
+			//  M = uu + (cos a)( I-uu ) + (sin a)S
+			//
+			// Where:
+			//
+			//  u = ( x, y, z )
+			//
+			//      [  0 -z  y ]
+			//  S = [  z  0 -x ]
+			//      [ -y  x  0 ]
+			//
+			//      [ 1 0 0 ]
+			//  I = [ 0 1 0 ]
+			//      [ 0 0 1 ]
+			//
+			//
+			//     [  xx+cosa*(1-xx)   yx-cosa*yx-sina*z zx-cosa*xz+sina*y ]
+			// M = [ xy-cosa*yx+sina*z    yy+cosa(1-yy)  yz-cosa*yz-sina*x ]
+			//     [ zx-cosa*zx-sina*y zy-cosa*zy+sina*x   zz+cosa*(1-zz)  ]
+			//
+		float x = axis.x, y = axis.y, z = axis.z;
+		float sa = sinf(angle);
+		float ca = cosf(angle);
+		float xx = x * x, yy = y * y, zz = z * z;
+		float xy = x * y, xz = x * z, yz = y * z;
+
+		result.m11 = xx + ca * (1.0f - xx);
+		result.m12 = xy - ca * xy + sa * z;
+		result.m13 = xz - ca * xz - sa * y;
 		result.m14 = 0.0f;
-		result.m21 = num8 - num * num8 - num2 * z;
-		result.m22 = num10 + num * (1.0f - num10);
-		result.m23 = num6 - num * num6 + num2 * x;
+		result.m21 = xy - ca * xy - sa * z;
+		result.m22 = yy + ca * (1.0f - yy);
+		result.m23 = yz - ca * yz + sa * x;
 		result.m24 = 0.0f;
-		result.m31 = num7 - num * num7 + num2 * y;
-		result.m32 = num6 - num * num6 - num2 * x;
-		result.m33 = num9 + num * (1.0f - num9);
+		result.m31 = xz - ca * xz + sa * y;
+		result.m32 = yz - ca * yz - sa * x;
+		result.m33 = zz + ca * (1.0f - zz);
 		result.m34 = 0.0f;
 		result.m41 = 0.0f;
 		result.m42 = 0.0f;
@@ -502,26 +550,28 @@ namespace CasaEngine
 	{
 		Matrix4 result;
 
-		const float num9 = quaternion.x * quaternion.x;
-		const float num8 = quaternion.y * quaternion.y;
-		const float num7 = quaternion.z * quaternion.z;
-		const float num6 = quaternion.x * quaternion.y;
-		const float num5 = quaternion.z * quaternion.w;
-		const float num4 = quaternion.z * quaternion.x;
-		const float num3 = quaternion.y * quaternion.w;
-		const float num2 = quaternion.y * quaternion.z;
-		const float num = quaternion.x * quaternion.w;
-		result.m11 = 1.0f - 2.0f * (num8 + num7);
-		result.m12 = 2.0f * (num6 + num5);
-		result.m13 = 2.0f * (num4 - num3);
+		const float xx = quaternion.x * quaternion.x;
+		const float yy = quaternion.y * quaternion.y;
+		const float zz = quaternion.z * quaternion.z;
+
+		const float xy = quaternion.x * quaternion.y;
+		const float wz = quaternion.z * quaternion.w;
+		const float xz = quaternion.z * quaternion.x;
+		const float wy = quaternion.y * quaternion.w;
+		const float yz = quaternion.y * quaternion.z;
+		const float wx = quaternion.x * quaternion.w;
+
+		result.m11 = 1.0f - 2.0f * (yy + zz);
+		result.m12 = 2.0f * (xy + wz);
+		result.m13 = 2.0f * (xz - wy);
 		result.m14 = 0.0f;
-		result.m21 = 2.0f * (num6 - num5);
-		result.m22 = 1.0f - 2.0f * (num7 + num9);
-		result.m23 = 2.0f * (num2 + num);
+		result.m21 = 2.0f * (xy - wz);
+		result.m22 = 1.0f - 2.0f * (zz + xx);
+		result.m23 = 2.0f * (yz + wx);
 		result.m24 = 0.0f;
-		result.m31 = 2.0f * (num4 + num3);
-		result.m32 = 2.0f * (num2 - num);
-		result.m33 = 1.0f - 2.0f * (num8 + num9);
+		result.m31 = 2.0f * (xz + wy);
+		result.m32 = 2.0f * (yz - wx);
+		result.m33 = 1.0f - 2.0f * (yy + xx);
 		result.m34 = 0.0f;
 		result.m41 = 0.0f;
 		result.m42 = 0.0f;
@@ -751,15 +801,31 @@ namespace CasaEngine
 
 	Matrix4 Matrix4::CreateRotationX(float radians)
 	{
-		Matrix4 result = CreateIdentity();
+		Matrix4 result;
 
-		const auto val1 = cosf(radians);
-		const auto val2 = sinf(radians);
+		const auto cos = cosf(radians);
+		const auto sin = sinf(radians);
 
-		result.m22 = val1;
-		result.m23 = val2;
-		result.m32 = -val2;
-		result.m33 = val1;
+		// [  1  0  0  0 ]
+		// [  0  c  s  0 ]
+		// [  0 -s  c  0 ]
+		// [  0  0  0  1 ]
+		result.m11 = 1.0f;
+		result.m12 = 0.0f;
+		result.m13 = 0.0f;
+		result.m14 = 0.0f;
+		result.m21 = 0.0f;
+		result.m22 = cos;
+		result.m23 = sin;
+		result.m24 = 0.0f;
+		result.m31 = 0.0f;
+		result.m32 = -sin;
+		result.m33 = cos;
+		result.m34 = 0.0f;
+		result.m41 = 0.0f;
+		result.m42 = 0.0f;
+		result.m43 = 0.0f;
+		result.m44 = 1.0f;
 
 		return result;
 	}
@@ -768,11 +834,11 @@ namespace CasaEngine
 	{
 		Matrix4 result;
 
-		float c = std::cosf(radians);
-		float s = std::sinf(radians);
+		const float c = std::cosf(radians);
+		const float s = std::sinf(radians);
 
-		float y = centerPoint.y * (1.0f - c) + centerPoint.z * s;
-		float z = centerPoint.z * (1.0f - c) - centerPoint.y * s;
+		const float y = centerPoint.y * (1.0f - c) + centerPoint.z * s;
+		const float z = centerPoint.z * (1.0f - c) - centerPoint.y * s;
 
 		// [  1  0  0  0 ]
 		// [  0  c  s  0 ]
@@ -817,11 +883,11 @@ namespace CasaEngine
 	{
 		Matrix4 result;
 
-		float c = std::cosf(radians);
-		float s = std::sinf(radians);
+		const float c = std::cosf(radians);
+		const float s = std::sinf(radians);
 
-		float x = centerPoint.x * (1.0f - c) - centerPoint.z * s;
-		float z = centerPoint.z * (1.0f - c) + centerPoint.x * s;
+		const float x = centerPoint.x * (1.0f - c) - centerPoint.z * s;
+		const float z = centerPoint.z * (1.0f - c) + centerPoint.x * s;
 
 		// [  c  0 -s  0 ]
 		// [  0  1  0  0 ]
@@ -1265,7 +1331,7 @@ namespace CasaEngine
 		return result;
 	}
 
-	bool Matrix4::operator==(const Matrix4& m) const
+	bool Matrix4::operator ==(const Matrix4& m) const
 	{
 		constexpr float epsilon = Epsilon; // std::numeric_limits<float>::epsilon();
 		return std::fabs(m11 - m.m11) < epsilon && std::fabs(m12 - m.m12) < epsilon &&
@@ -1278,110 +1344,112 @@ namespace CasaEngine
 			std::fabs(m43 - m.m43) < epsilon && std::fabs(m44 - m.m44) < epsilon;
 	}
 
-	bool Matrix4::operator!=(const Matrix4& m) const
+	bool Matrix4::operator !=(const Matrix4& m) const
 	{
 		return !(*this == m);
 	}
 
-	Matrix4& Matrix4::operator+(const Matrix4& matrix2)
+	Matrix4 Matrix4::operator +(const Matrix4& matrix2)
 	{
-		m11 += matrix2.m11;
-		m12 += matrix2.m12;
-		m13 += matrix2.m13;
-		m14 += matrix2.m14;
-		m21 += matrix2.m21;
-		m22 += matrix2.m22;
-		m23 += matrix2.m23;
-		m24 += matrix2.m24;
-		m31 += matrix2.m31;
-		m32 += matrix2.m32;
-		m33 += matrix2.m33;
-		m34 += matrix2.m34;
-		m41 += matrix2.m41;
-		m42 += matrix2.m42;
-		m43 += matrix2.m43;
-		m44 += matrix2.m44;
-		return *this;
+		//Matrix4 result = *this;
+		//result.m11 += matrix2.m11;
+		//result.m12 += matrix2.m12;
+		//result.m13 += matrix2.m13;
+		//result.m14 += matrix2.m14;
+		//result.m21 += matrix2.m21;
+		//result.m22 += matrix2.m22;
+		//result.m23 += matrix2.m23;
+		//result.m24 += matrix2.m24;
+		//result.m31 += matrix2.m31;
+		//result.m32 += matrix2.m32;
+		//result.m33 += matrix2.m33;
+		//result.m34 += matrix2.m34;
+		//result.m41 += matrix2.m41;
+		//result.m42 += matrix2.m42;
+		//result.m43 += matrix2.m43;
+		//result.m44 += matrix2.m44;
+		return Add(*this, matrix2);
 	}
 
-	Matrix4& Matrix4::operator/(const Matrix4& matrix2)
+	Matrix4 Matrix4::operator/(const Matrix4& matrix2)
 	{
-		m11 /= matrix2.m11;
-		m12 /= matrix2.m12;
-		m13 /= matrix2.m13;
-		m14 /= matrix2.m14;
-		m21 /= matrix2.m21;
-		m22 /= matrix2.m22;
-		m23 /= matrix2.m23;
-		m24 /= matrix2.m24;
-		m31 /= matrix2.m31;
-		m32 /= matrix2.m32;
-		m33 /= matrix2.m33;
-		m34 /= matrix2.m34;
-		m41 /= matrix2.m41;
-		m42 /= matrix2.m42;
-		m43 /= matrix2.m43;
-		m44 /= matrix2.m44;
-		return *this;
+		//Matrix4 result = *this;
+		//result.m11 /= matrix2.m11;
+		//result.m12 /= matrix2.m12;
+		//result.m13 /= matrix2.m13;
+		//result.m14 /= matrix2.m14;
+		//result.m21 /= matrix2.m21;
+		//result.m22 /= matrix2.m22;
+		//result.m23 /= matrix2.m23;
+		//result.m24 /= matrix2.m24;
+		//result.m31 /= matrix2.m31;
+		//result.m32 /= matrix2.m32;
+		//result.m33 /= matrix2.m33;
+		//result.m34 /= matrix2.m34;
+		//result.m41 /= matrix2.m41;
+		//result.m42 /= matrix2.m42;
+		//result.m43 /= matrix2.m43;
+		//result.m44 /= matrix2.m44;
+		return Divide(*this, matrix2);
 	}
 
 	Matrix4 Matrix4::operator/(float divider)
 	{
-		const float num = 1.0f / divider;
-		m11 *= num;
-		m12 *= num;
-		m13 *= num;
-		m14 *= num;
-		m21 *= num;
-		m22 *= num;
-		m23 *= num;
-		m24 *= num;
-		m31 *= num;
-		m32 *= num;
-		m33 *= num;
-		m34 *= num;
-		m41 *= num;
-		m42 *= num;
-		m43 *= num;
-		m44 *= num;
-		return *this;
+		//const float num = 1.0f / divider;
+		//m11 *= num;
+		//m12 *= num;
+		//m13 *= num;
+		//m14 *= num;
+		//m21 *= num;
+		//m22 *= num;
+		//m23 *= num;
+		//m24 *= num;
+		//m31 *= num;
+		//m32 *= num;
+		//m33 *= num;
+		//m34 *= num;
+		//m41 *= num;
+		//m42 *= num;
+		//m43 *= num;
+		//m44 *= num;
+		return Divide(*this, divider);
 	}
 
 	Matrix4 Matrix4::operator*(const Matrix4& matrix2)
 	{
-		const auto a11 = m11 * matrix2.m11 + m12 * matrix2.m21 + m13 * matrix2.m31 + m14 * matrix2.m41;
-		const auto a12 = m11 * matrix2.m12 + m12 * matrix2.m22 + m13 * matrix2.m32 + m14 * matrix2.m42;
-		const auto a13 = m11 * matrix2.m13 + m12 * matrix2.m23 + m13 * matrix2.m33 + m14 * matrix2.m43;
-		const auto a14 = m11 * matrix2.m14 + m12 * matrix2.m24 + m13 * matrix2.m34 + m14 * matrix2.m44;
-		const auto a21 = m21 * matrix2.m11 + m22 * matrix2.m21 + m23 * matrix2.m31 + m24 * matrix2.m41;
-		const auto a22 = m21 * matrix2.m12 + m22 * matrix2.m22 + m23 * matrix2.m32 + m24 * matrix2.m42;
-		const auto a23 = m21 * matrix2.m13 + m22 * matrix2.m23 + m23 * matrix2.m33 + m24 * matrix2.m43;
-		const auto a24 = m21 * matrix2.m14 + m22 * matrix2.m24 + m23 * matrix2.m34 + m24 * matrix2.m44;
-		const auto a31 = m31 * matrix2.m11 + m32 * matrix2.m21 + m33 * matrix2.m31 + m34 * matrix2.m41;
-		const auto a32 = m31 * matrix2.m12 + m32 * matrix2.m22 + m33 * matrix2.m32 + m34 * matrix2.m42;
-		const auto a33 = m31 * matrix2.m13 + m32 * matrix2.m23 + m33 * matrix2.m33 + m34 * matrix2.m43;
-		const auto a34 = m31 * matrix2.m14 + m32 * matrix2.m24 + m33 * matrix2.m34 + m34 * matrix2.m44;
-		const auto a41 = m41 * matrix2.m11 + m42 * matrix2.m21 + m43 * matrix2.m31 + m44 * matrix2.m41;
-		const auto a42 = m41 * matrix2.m12 + m42 * matrix2.m22 + m43 * matrix2.m32 + m44 * matrix2.m42;
-		const auto a43 = m41 * matrix2.m13 + m42 * matrix2.m23 + m43 * matrix2.m33 + m44 * matrix2.m43;
-		const auto a44 = m41 * matrix2.m14 + m42 * matrix2.m24 + m43 * matrix2.m34 + m44 * matrix2.m44;
-		m11 = a11;
-		m12 = a12;
-		m13 = a13;
-		m14 = a14;
-		m21 = a21;
-		m22 = a22;
-		m23 = a23;
-		m24 = a24;
-		m31 = a31;
-		m32 = a32;
-		m33 = a33;
-		m34 = a34;
-		m41 = a41;
-		m42 = a42;
-		m43 = a43;
-		m44 = a44;
-		return *this;
+		//const auto a11 = m11 * matrix2.m11 + m12 * matrix2.m21 + m13 * matrix2.m31 + m14 * matrix2.m41;
+		//const auto a12 = m11 * matrix2.m12 + m12 * matrix2.m22 + m13 * matrix2.m32 + m14 * matrix2.m42;
+		//const auto a13 = m11 * matrix2.m13 + m12 * matrix2.m23 + m13 * matrix2.m33 + m14 * matrix2.m43;
+		//const auto a14 = m11 * matrix2.m14 + m12 * matrix2.m24 + m13 * matrix2.m34 + m14 * matrix2.m44;
+		//const auto a21 = m21 * matrix2.m11 + m22 * matrix2.m21 + m23 * matrix2.m31 + m24 * matrix2.m41;
+		//const auto a22 = m21 * matrix2.m12 + m22 * matrix2.m22 + m23 * matrix2.m32 + m24 * matrix2.m42;
+		//const auto a23 = m21 * matrix2.m13 + m22 * matrix2.m23 + m23 * matrix2.m33 + m24 * matrix2.m43;
+		//const auto a24 = m21 * matrix2.m14 + m22 * matrix2.m24 + m23 * matrix2.m34 + m24 * matrix2.m44;
+		//const auto a31 = m31 * matrix2.m11 + m32 * matrix2.m21 + m33 * matrix2.m31 + m34 * matrix2.m41;
+		//const auto a32 = m31 * matrix2.m12 + m32 * matrix2.m22 + m33 * matrix2.m32 + m34 * matrix2.m42;
+		//const auto a33 = m31 * matrix2.m13 + m32 * matrix2.m23 + m33 * matrix2.m33 + m34 * matrix2.m43;
+		//const auto a34 = m31 * matrix2.m14 + m32 * matrix2.m24 + m33 * matrix2.m34 + m34 * matrix2.m44;
+		//const auto a41 = m41 * matrix2.m11 + m42 * matrix2.m21 + m43 * matrix2.m31 + m44 * matrix2.m41;
+		//const auto a42 = m41 * matrix2.m12 + m42 * matrix2.m22 + m43 * matrix2.m32 + m44 * matrix2.m42;
+		//const auto a43 = m41 * matrix2.m13 + m42 * matrix2.m23 + m43 * matrix2.m33 + m44 * matrix2.m43;
+		//const auto a44 = m41 * matrix2.m14 + m42 * matrix2.m24 + m43 * matrix2.m34 + m44 * matrix2.m44;
+		//m11 = a11;
+		//m12 = a12;
+		//m13 = a13;
+		//m14 = a14;
+		//m21 = a21;
+		//m22 = a22;
+		//m23 = a23;
+		//m24 = a24;
+		//m31 = a31;
+		//m32 = a32;
+		//m33 = a33;
+		//m34 = a34;
+		//m41 = a41;
+		//m42 = a42;
+		//m43 = a43;
+		//m44 = a44;
+		return Multiply(*this, matrix2);
 	}
 
 	const Matrix4& Matrix4::operator*=(const Matrix4& m)
@@ -1392,65 +1460,65 @@ namespace CasaEngine
 
 	Matrix4 Matrix4::operator*(float scaleFactor)
 	{
-		m11 *= scaleFactor;
-		m12 *= scaleFactor;
-		m13 *= scaleFactor;
-		m14 *= scaleFactor;
-		m21 *= scaleFactor;
-		m22 *= scaleFactor;
-		m23 *= scaleFactor;
-		m24 *= scaleFactor;
-		m31 *= scaleFactor;
-		m32 *= scaleFactor;
-		m33 *= scaleFactor;
-		m34 *= scaleFactor;
-		m41 *= scaleFactor;
-		m42 *= scaleFactor;
-		m43 *= scaleFactor;
-		m44 *= scaleFactor;
-		return *this;
+		//m11 *= scaleFactor;
+		//m12 *= scaleFactor;
+		//m13 *= scaleFactor;
+		//m14 *= scaleFactor;
+		//m21 *= scaleFactor;
+		//m22 *= scaleFactor;
+		//m23 *= scaleFactor;
+		//m24 *= scaleFactor;
+		//m31 *= scaleFactor;
+		//m32 *= scaleFactor;
+		//m33 *= scaleFactor;
+		//m34 *= scaleFactor;
+		//m41 *= scaleFactor;
+		//m42 *= scaleFactor;
+		//m43 *= scaleFactor;
+		//m44 *= scaleFactor;
+		return Multiply(*this, scaleFactor);
 	}
 
 	Matrix4 Matrix4::operator-(const Matrix4& matrix2)
 	{
-		m11 -= matrix2.m11;
-		m12 -= matrix2.m12;
-		m13 -= matrix2.m13;
-		m14 -= matrix2.m14;
-		m21 -= matrix2.m21;
-		m22 -= matrix2.m22;
-		m23 -= matrix2.m23;
-		m24 -= matrix2.m24;
-		m31 -= matrix2.m31;
-		m32 -= matrix2.m32;
-		m33 -= matrix2.m33;
-		m34 -= matrix2.m34;
-		m41 -= matrix2.m41;
-		m42 -= matrix2.m42;
-		m43 -= matrix2.m43;
-		m44 -= matrix2.m44;
-		return *this;
+		//m11 -= matrix2.m11;
+		//m12 -= matrix2.m12;
+		//m13 -= matrix2.m13;
+		//m14 -= matrix2.m14;
+		//m21 -= matrix2.m21;
+		//m22 -= matrix2.m22;
+		//m23 -= matrix2.m23;
+		//m24 -= matrix2.m24;
+		//m31 -= matrix2.m31;
+		//m32 -= matrix2.m32;
+		//m33 -= matrix2.m33;
+		//m34 -= matrix2.m34;
+		//m41 -= matrix2.m41;
+		//m42 -= matrix2.m42;
+		//m43 -= matrix2.m43;
+		//m44 -= matrix2.m44;
+		return Subtract(*this, matrix2);
 	}
 
 	Matrix4 Matrix4::operator-()
 	{
-		m11 = -m11;
-		m12 = -m12;
-		m13 = -m13;
-		m14 = -m14;
-		m21 = -m21;
-		m22 = -m22;
-		m23 = -m23;
-		m24 = -m24;
-		m31 = -m31;
-		m32 = -m32;
-		m33 = -m33;
-		m34 = -m34;
-		m41 = -m41;
-		m42 = -m42;
-		m43 = -m43;
-		m44 = -m44;
-		return *this;
+		//m11 = -m11;
+		//m12 = -m12;
+		//m13 = -m13;
+		//m14 = -m14;
+		//m21 = -m21;
+		//m22 = -m22;
+		//m23 = -m23;
+		//m24 = -m24;
+		//m31 = -m31;
+		//m32 = -m32;
+		//m33 = -m33;
+		//m34 = -m34;
+		//m41 = -m41;
+		//m42 = -m42;
+		//m43 = -m43;
+		//m44 = -m44;
+		return Negate(*this);
 	}
 
 	Matrix4 Matrix4::Subtract(Matrix4 matrix1, Matrix4 matrix2)
@@ -1565,7 +1633,7 @@ namespace CasaEngine
 
 		return result;
 	}
-	
+
 	std::istream& operator >>(std::istream& stream, Matrix4& m)
 	{
 		return stream >> m.m11 >> m.m12 >> m.m13 >> m.m14 >>
