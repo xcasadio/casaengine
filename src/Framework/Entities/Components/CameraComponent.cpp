@@ -26,7 +26,7 @@ namespace CasaEngine
 		m_Viewport.Width(1.0f);
 		m_Viewport.Height(1.0f);
 		m_Viewport.NearClipPlane(0.1f);
-		m_Viewport.FarClipPlane(1000.0f);
+		m_Viewport.FarClipPlane(100000.0f);
 	}
 
 	CameraComponent::~CameraComponent()

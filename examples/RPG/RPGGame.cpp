@@ -123,7 +123,7 @@ void RPGGame::CreateMap(World* pWorld)
 	auto* pEntity = new BaseEntity();
 	pEntity->SetName("tiled map");
 	auto* pTrans3D = new Transform3DComponent(pEntity);
-	pTrans3D->SetLocalPosition(Vector3(0.0f, 0.0f, 1.0f));
+	pTrans3D->SetLocalPosition(Vector3(0.0f, 0.0f, 0.0f));
 	pTrans3D->SetLocalRotation(0.0f);
 	//pTrans3D->SetLocalScale(Vector3(48, 48, 1.0));
 
@@ -243,7 +243,7 @@ void RPGGame::CreateEnemies(World* pWorld)
 	auto* pEntity = new BaseEntity();
 	pEntity->SetName("octopus 1");
 	auto* pTrans3D = new Transform3DComponent(pEntity);
-	pTrans3D->SetLocalPosition(Vector3(100.0f, 100.0f, 2.0f));
+	pTrans3D->SetLocalPosition(Vector3(100.0f, 100.0f, 0.1f));
 	pTrans3D->SetLocalRotation(0.0f);
 	//pTrans3D->SetLocalScale(Vector3(32, 32, 1.0));
 	pEntity->GetComponentMgr()->AddComponent(pTrans3D);
@@ -317,7 +317,7 @@ void RPGGame::CreateSwordman(World* pWorld)
 	auto* pPlayerEntity = new BaseEntity();
 	pPlayerEntity->SetName("player 1");
 	auto* pTrans3D = new Transform3DComponent(pPlayerEntity);
-	pTrans3D->SetLocalPosition(Vector3(50.0f, 150.0f, 2.0f));
+	pTrans3D->SetLocalPosition(Vector3(50.0f, 150.0f, 0.1f));
 	pTrans3D->SetLocalRotation(0.0f);
 	//pTrans3D->SetLocalScale(Vector3(tileWidth, tileHeight, 1.0));
 	pPlayerEntity->GetComponentMgr()->AddComponent(pTrans3D);
@@ -392,20 +392,20 @@ void RPGGame::CreateSwordman(World* pWorld)
 	
 	//Camera 2D
 	auto* pCamera = new BaseEntity();
-	pCamera->SetName("camera 2D");
-	auto* m_pCamera2D = new Camera2DTargetedComponent(pCamera);
-	//auto* custom_camera_controller = new Camera3DTargetedComponent(m_pCamera2D);
-	pCamera->GetComponentMgr()->AddComponent(m_pCamera2D);
-	m_pCamera2D->SetDeadZoneRatio(Vector2(0.7f, 0.7f));
-	m_pCamera2D->SetTargetedEntity(pPlayerEntity);
-	m_pCamera2D->SetLimits(RectangleI(0, 0, 1500, 800));
+	pCamera->SetName("camera targeted");
+	//auto* m_pCameraTargeted = new Camera2DTargetedComponent(pCamera);
+	auto* m_pCameraTargeted = new Camera3DTargetedComponent(pCamera);
+	pCamera->GetComponentMgr()->AddComponent(m_pCameraTargeted);
+	m_pCameraTargeted->SetDeadZoneRatio(Vector2(0.7f, 0.7f));
+	m_pCameraTargeted->SetTargetedEntity(pPlayerEntity);
+	m_pCameraTargeted->SetLimits(RectangleI(0, 0, 1500, 800));
 	pWorld->AddEntity(pCamera);
-	GetGameInfo().SetActiveCamera(m_pCamera2D);
+	GetGameInfo().SetActiveCamera(m_pCameraTargeted);
 
 	//Camera 3D
 	pCamera = new BaseEntity();
 	m_pCamera3D = new ArcBallCameraComponent(pCamera);
-	m_pCamera3D->SetCamera(Vector3(0, 0.0f, -50.0f), Vector3::Zero(), -Vector3::Up());
+	m_pCamera3D->SetCamera(Vector3(0, 0.0f, -50.0f), Vector3(0, 10.0f, 0.0f), Vector3::Up());
 	m_pCamera3D->Distance(70.0f);
 	m_pCamera3D->InputDistanceRate(4.0f);
 	m_pCamera3D->InputDisplacementRate(30.0f);

@@ -73,7 +73,7 @@ namespace CasaEngine
 
 	void Camera2DTargetedComponent::ComputeViewMatrix()
 	{
-		m_ViewMatrix = Matrix4::CreateTranslation(-m_Offset.x, -m_Offset.y, 0.0f);
+		m_ViewMatrix = Matrix4::CreateTranslation(-m_Offset.x, -m_Offset.y, -50.0f);
 	}
 
 	void Camera2DTargetedComponent::SetTargetedEntity(BaseEntity* pTargetedEntity)

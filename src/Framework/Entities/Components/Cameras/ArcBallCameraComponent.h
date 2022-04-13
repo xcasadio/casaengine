@@ -73,6 +73,6 @@ namespace CasaEngine
 
 		float m_fInputDistanceRate;		
 		float m_fInputTurnRate, m_fInputDisplacementRate;
-		float m_fArcBallYaw{}, m_fArcBallPitch{};
+		float m_fArcBallYaw, m_fArcBallPitch;
 	};
 }

@@ -12,6 +12,7 @@ namespace CasaEngine
 		Camera3DComponent(entity, CAMERA_3D_TARGETED),
 		m_pTargetedEntity(nullptr)
 	{
+		m_Offset = -Game::Instance().GetWindowSize() / 2;
 	}
 
 	void Camera3DTargetedComponent::Update(const GameTime& gameTime_)
@@ -75,23 +76,27 @@ namespace CasaEngine
 
 	void Camera3DTargetedComponent::ComputeViewMatrix()
 	{
-		m_ViewMatrix.CreateFromDirection(Vector3::UnitZ(), Vector3::UnitX(), -Vector3::UnitY());
+		//const float d_yfov_tan = 0.267949192431123f;
+		const float w = m_Viewport.Width() * Game::Instance().GetWindowSize().x;
+		const float h = m_Viewport.Height() * Game::Instance().GetWindowSize().y;
+		//const float aspect = w / h;
+		//const float midx = w * 0.5f;
+		//const float midy = h * 0.5f;
+		//const float z = midx / (aspect * d_yfov_tan);
 		
-		/*const float d_yfov_tan = 0.267949192431123f;
-		auto& viewport = this->Camera()->GetViewport();
-		const float w = static_cast<float>(viewport.Width() * Game::Instance().GetWindowSize().x);
-		const float h = static_cast<float>(viewport.Height() * Game::Instance().GetWindowSize().y);
-		const float aspect = w / h;
-		const float midx = w * 0.5f;
-		const float midy = h * 0.5f;
-		const float z = midx / (aspect * d_yfov_tan);*/
+		//float fovy = ToDegree(FOV()); // field of view - degrees
+		//float aspect = w / h;
+		//float zNearClip = 0.1f;
+		//float zFarClip = h * 2.0f;
+		//float fH = tanf(ToRadian(fovy) / 2.0f) * zNearClip;
+		//float fW = fH * aspect;
+		//glFrustum(-fW, fW, -fH, fH, zNearClip, zFarClip);
+		//float nCameraDistance = sqrtf(h * h - 0.25f * h * h);
 
-		auto fov = FOV();
-		fov = ToDegree(fov);
-		const float z = (Game::Instance().GetWindowSize().x / 2.0f) / std::tan(fov / 2.0f);		
-		//viewMatrix_.Translation(-m_Offset.x, -m_Offset.y, z);
+		auto fov = FOV() * 0.5f; //ToDegree(FOV()) * 0.5f;
+		const float z = -(h * 0.5f) / std::tanf(fov);
+		//z = -1.0f / (2.0f * std::tanf(fov) / h);
 
-		m_ViewMatrix.Identity();
 		Vector3 pos(-m_Offset.x, -m_Offset.y, z);
 		Vector3 target(-m_Offset.x, -m_Offset.y, 0.0f);
 		Vector3 up = -Vector3::UnitY();

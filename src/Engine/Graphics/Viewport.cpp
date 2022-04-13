@@ -14,7 +14,7 @@ namespace CasaEngine
 	}
 
 	Viewport::Viewport(float x, float y, float width, float height) :
-		m_X(x), m_Y(y), m_Width(width), m_Height(height), m_fNearClipPlane(0.1f), m_fFarClipPlane(100.0f)
+		m_X(x), m_Y(y), m_Width(width), m_Height(height), m_fNearClipPlane(0.1f), m_fFarClipPlane(10000.0f)
 	{
 	}
 

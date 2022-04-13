@@ -110,7 +110,7 @@ namespace CasaEngine
 		//bgfx::setState(BGFX_STATE_DEFAULT);
 		bgfx::setState(BGFX_STATE_WRITE_MASK
 			| BGFX_STATE_DEPTH_TEST_LESS
-			| BGFX_STATE_CULL_CW);
+			| BGFX_STATE_CULL_CCW);
 		
 		bgfx::submit(0, handle_);
 	}
