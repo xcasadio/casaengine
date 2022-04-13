@@ -8,6 +8,7 @@
 **/Editor Debug/**
 **/Editor Release/**
 *.csproj.*
+*.sln.*
 *.suo
 *.sdf
 *.opensdf
@@ -15,6 +16,8 @@
 *.db
 *.VC.*
 **/.vs/**
+**/build/windows/packages/**
+
 
 # Android #
 ###################
