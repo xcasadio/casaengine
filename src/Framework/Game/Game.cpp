@@ -35,8 +35,13 @@
 
 #include <dear-imgui/imgui.h>
 
+#include "DisplayDebugInfoGameComponent.h"
+#include "Line2DRendererComponent.h"
+#include "Line3DRendererComponent.h"
+#include "MeshRendererGameComponent.h"
+#include "Sprite/SpriteRenderer.h"
 #include "Tools/InGameLogger.h"
-#include "UI/imguiAdapter.h"
+#include "UI/ImguiAdapter.h"
 
 namespace CasaEngine
 {
@@ -446,7 +451,7 @@ namespace CasaEngine
 
 	void Game::EndRun()
 	{
-		imguiAdapter::imguiDestroy();
+		ImguiAdapter::Destroy();
 	}
 
 	void Game::Initialize()
@@ -469,8 +474,7 @@ namespace CasaEngine
 		// 		CA_ERROR("Can't load the Gameplay module %s\n", m_EngineSettings.GameplayDLL.c_str());
 		// 	}
 
-		m_DisplayDebugInfo.Initialize();
-		imguiAdapter::imguiCreate();
+		ImguiAdapter::Create();
 		m_Console.Initialize();
 		m_Initialized = true;
 	}
@@ -483,28 +487,41 @@ namespace CasaEngine
 		}
 	}
 
-	void Game::BeginUpdate(const GameTime& gameTime_)
+	void Game::BeginUpdate(const GameTime& gameTime)
 	{
+		ImGuiIO& io = ImGui::GetIO();
+		io.DeltaTime = gameTime.FrameTime();
+
+		m_DebugSystem.Update(gameTime);
+
 		if (m_GameInfo.GetWorld() != nullptr)
 		{
-			m_GameInfo.GetWorld()->Update(gameTime_);
+			m_GameInfo.GetWorld()->Update(gameTime);
 		}
 
 		for (auto* component : m_Components)
 		{
-			component->Update(gameTime_);
+			component->Update(gameTime);
 		}
 
-		m_InGameLogger.Update(gameTime_);
-		m_DebugSystem.Update(gameTime_);
-		m_DisplayDebugInfo.Update(gameTime_);
-
-		ImGuiIO& io = ImGui::GetIO();
-		io.DeltaTime = gameTime_.FrameTime();
+		m_InGameLogger.Update(gameTime);
 	}
 
-	void Game::Update(const GameTime& gameTime_)
+	void Game::Update(const GameTime& gameTime)
 	{
+	}
+
+	void Game::AddDebugComponents()
+	{
+		AddComponent(new DisplayDebugInfoGameComponent(this));
+	}
+
+	void Game::AddUsualComponents()
+	{
+		AddComponent(new Line2DRendererComponent(this));
+		AddComponent(new Line3DRendererComponent(this));
+		AddComponent(new SpriteRenderer(this));
+		AddComponent(new MeshRendererGameComponent(this));
 	}
 
 	void Game::BeginDraw()
@@ -512,8 +529,8 @@ namespace CasaEngine
 		m_Renderer.BeginDraw();
 		
 		ImGuiIO& io = ImGui::GetIO();
-		io.DisplaySize = ImVec2(GetEngineSettings().WindowWidth, GetEngineSettings().WindowHeight);
-		imguiAdapter::imguiBeginFrame(GetEngineSettings().WindowWidth, GetEngineSettings().WindowHeight);
+		io.DisplaySize = ImVec2(GetWindowSize().x, GetWindowSize().y);
+		ImguiAdapter::BeginFrame(io.DisplaySize.x, io.DisplaySize.y);
 
 		if (m_GameInfo.GetWorld() != nullptr)
 		{
@@ -533,9 +550,8 @@ namespace CasaEngine
 
 	void Game::EndDraw()
 	{
-		m_DisplayDebugInfo.Draw();
 		m_Console.Draw();
-		imguiAdapter::imguiEndFrame();
+		ImguiAdapter::EndFrame();
 		m_Renderer.EndDraw();
 	}
 
@@ -585,10 +601,10 @@ namespace CasaEngine
 			component_->Initialize();
 		}
 
-		auto pDGC = dynamic_cast<DrawableGameComponent*>(component_);
-		if (pDGC != nullptr)
+		auto *drawable_game_component = dynamic_cast<DrawableGameComponent*>(component_);
+		if (drawable_game_component != nullptr)
 		{
-			m_DrawableComponents.push_back(pDGC);
+			m_DrawableComponents.push_back(drawable_game_component);
 			std::sort(m_DrawableComponents.begin(), m_DrawableComponents.end(), sortDrawableGameComponent);
 		}
 	}
@@ -606,14 +622,14 @@ namespace CasaEngine
 			}
 		}
 
-		auto pDGC = dynamic_cast<DrawableGameComponent*>(component_);
-		if (pDGC != nullptr)
+		auto *drawable_game_component = dynamic_cast<DrawableGameComponent*>(component_);
+		if (drawable_game_component != nullptr)
 		{
 			for (auto it = m_DrawableComponents.begin();
 				it != m_DrawableComponents.end();
 				++it)
 			{
-				if (*it == pDGC)
+				if (*it == drawable_game_component)
 				{
 					m_DrawableComponents.erase(it);
 					break;

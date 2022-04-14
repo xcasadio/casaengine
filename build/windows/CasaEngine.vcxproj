@@ -351,8 +351,8 @@
     <ClInclude Include="..\..\src\Framework\Entities\ComponentTypeEnum.h" />
     <ClInclude Include="..\..\src\Framework\Entities\EntityManager.h" />
     <ClInclude Include="..\..\src\Framework\Entities\Events\BaseEntityEvents.h" />
-    <ClInclude Include="..\..\src\Framework\Entities\Events\DebugToolEvents.h" />
     <ClInclude Include="..\..\src\Framework\Entities\Physics\PhysicalEntity.h" />
+    <ClInclude Include="..\..\src\Framework\Game\DisplayDebugInfoGameComponent.h" />
     <ClInclude Include="..\..\src\Framework\Game\DrawableGameComponent.h" />
     <ClInclude Include="..\..\src\Framework\Game\Editor\GameEditor.h" />
     <ClInclude Include="..\..\src\Framework\Game\Game.h" />
@@ -382,10 +382,9 @@
     <ClInclude Include="..\..\src\Framework\Tools\Bullet\BulletPhysicsDebugDraw.h" />
     <ClInclude Include="..\..\src\Framework\Tools\DebugOptions.h" />
     <ClInclude Include="..\..\src\Framework\Tools\DebugSystem.h" />
-    <ClInclude Include="..\..\src\Framework\Tools\DisplayDebugInfo.h" />
     <ClInclude Include="..\..\src\Framework\Tools\InGameLogger.h" />
     <ClInclude Include="..\..\src\Framework\UI\Console.h" />
-    <ClInclude Include="..\..\src\Framework\UI\imguiAdapter.h" />
+    <ClInclude Include="..\..\src\Framework\UI\ImguiAdapter.h" />
     <ClInclude Include="..\..\src\Framework\UI\imgui\common.h" />
     <ClInclude Include="..\..\src\Framework\UI\imgui\droidsans.ttf.h" />
     <ClInclude Include="..\..\src\Framework\UI\imgui\fs_imgui_image.bin.h" />
@@ -525,8 +524,8 @@
     <ClCompile Include="..\..\src\Framework\Entities\Components\TransformComponent.cpp" />
     <ClCompile Include="..\..\src\Framework\Entities\EntityManager.cpp" />
     <ClCompile Include="..\..\src\Framework\Entities\Events\BaseEntityEvents.cpp" />
-    <ClCompile Include="..\..\src\Framework\Entities\Events\DebugToolEvents.cpp" />
     <ClCompile Include="..\..\src\Framework\Entities\Physics\PhysicalEntity.cpp" />
+    <ClCompile Include="..\..\src\Framework\Game\DisplayDebugInfoGameComponent.cpp" />
     <ClCompile Include="..\..\src\Framework\Game\DrawableGameComponent.cpp" />
     <ClCompile Include="..\..\src\Framework\Game\Editor\GameEditor.cpp" />
     <ClCompile Include="..\..\src\Framework\Game\Game.cpp" />
@@ -554,10 +553,9 @@
     <ClCompile Include="..\..\src\Framework\Tools\Bullet\BulletPhysicsDebugDraw.cpp" />
     <ClCompile Include="..\..\src\Framework\Tools\DebugOptions.cpp" />
     <ClCompile Include="..\..\src\Framework\Tools\DebugSystem.cpp" />
-    <ClCompile Include="..\..\src\Framework\Tools\DisplayDebugInfo.cpp" />
     <ClCompile Include="..\..\src\Framework\Tools\InGameLogger.cpp" />
     <ClCompile Include="..\..\src\Framework\UI\Console.cpp" />
-    <ClCompile Include="..\..\src\Framework\UI\imguiAdapter.cpp" />
+    <ClCompile Include="..\..\src\Framework\UI\ImguiAdapter.cpp" />
     <ClCompile Include="..\..\src\Framework\UI\imgui\bgfx-imgui.cpp" />
     <ClCompile Include="..\..\src\Framework\World\World.cpp" />
   </ItemGroup>
@@ -571,7 +569,6 @@
     <None Include="..\..\external\dear-imgui\widgets\markdown.inl" />
     <None Include="..\..\external\dear-imgui\widgets\memory_editor.inl" />
     <None Include="..\..\external\dear-imgui\widgets\range_slider.inl" />
-    <None Include="..\..\src\Framework\Game\Game.inl" />
     <None Include="..\..\src\Framework\UI\imgui\common.sh" />
     <None Include="..\..\src\Framework\UI\imgui\fs_imgui_image.sc" />
     <None Include="..\..\src\Framework\UI\imgui\fs_ocornut_imgui.sc" />

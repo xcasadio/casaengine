@@ -1,5 +1,4 @@
-#ifndef _MeshRendererGameComponent_H_
-#define _MeshRendererGameComponent_H_
+#pragma once
 
 #include "CA_Export.h"
 #include "GameTime.h"
@@ -44,5 +43,3 @@ namespace CasaEngine
 	};
 
 }
-
-#endif

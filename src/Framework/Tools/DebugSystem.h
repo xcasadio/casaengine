@@ -1,9 +1,7 @@
-#ifndef _DEBUGSYSTEM_H_
-#define _DEBUGSYSTEM_H_
+#pragma once
 
 #include "CA_Export.h"
 #include "GameTime.h"
-
 
 namespace CasaEngine
 {
@@ -11,18 +9,20 @@ namespace CasaEngine
     {
 	public :
 		DebugSystem();
-		~DebugSystem() = default;
 
 		void Update(const GameTime& gameTime_);
-		int GetFPS() const;
+		float GetFPS() const;
+		float GetMinFPS() const;
+		float GetMaxFPS() const;
+		float GetAverageFPS() const;
 		
 	private:
-		float m_fFPSTime;
-		int m_iFPSCount;
-		float m_fFPSLastDelta;
-		int m_iLastFPSCount;
+		unsigned int m_offset;
+		float m_min;
+		float m_max;
+		float m_avg;
+		static constexpr unsigned int numSamples = 100;
+		float m_lastGameTimes[numSamples];
 	};
 
 }
-
-#endif

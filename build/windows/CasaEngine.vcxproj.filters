@@ -115,9 +115,6 @@
     <Filter Include="Framework\Entities\Components\Physics">
       <UniqueIdentifier>{cf1e9f0d-b9d0-4bb8-a0d4-7cf91ce77ae2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Framework\Entities\DebugTools">
-      <UniqueIdentifier>{efeb3097-3498-4e1f-9768-8157cc44164e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Framework\Entities\Events">
       <UniqueIdentifier>{fc30f0a1-3e4b-4039-8241-5b977b4d0eb2}</UniqueIdentifier>
     </Filter>
@@ -645,9 +642,6 @@
     <ClInclude Include="..\..\src\Framework\Entities\Events\BaseEntityEvents.h">
       <Filter>Framework\Entities\Events</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Entities\Events\DebugToolEvents.h">
-      <Filter>Framework\Entities\Events</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Framework\Entities\Physics\PhysicalEntity.h">
       <Filter>Framework\Entities\Physics</Filter>
     </ClInclude>
@@ -750,9 +744,6 @@
     <ClInclude Include="..\..\src\Framework\UI\Console.h">
       <Filter>Framework\UI</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Tools\DisplayDebugInfo.h">
-      <Filter>Framework\Tools</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Framework\Tools\DebugOptions.h">
       <Filter>Framework\Tools</Filter>
     </ClInclude>
@@ -777,7 +768,7 @@
     <ClInclude Include="..\..\src\Framework\Map2D\TiledMapComponent.h">
       <Filter>Framework\Map2D</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\UI\imguiAdapter.h">
+    <ClInclude Include="..\..\src\Framework\UI\ImguiAdapter.h">
       <Filter>Framework\UI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Framework\Entities\Components\Cameras\Camera2DTargetedComponent.h">
@@ -923,6 +914,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Framework\Entities\Components\Cameras\Camera3DLookAtComponent.h">
       <Filter>Framework\Entities\Components\Cameras</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Framework\Game\DisplayDebugInfoGameComponent.h">
+      <Filter>Framework\Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1199,9 +1193,6 @@
     <ClCompile Include="..\..\src\Framework\Entities\Events\BaseEntityEvents.cpp">
       <Filter>Framework\Entities\Events</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Framework\Entities\Events\DebugToolEvents.cpp">
-      <Filter>Framework\Entities\Events</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Framework\Entities\Physics\PhysicalEntity.cpp">
       <Filter>Framework\Entities\Physics</Filter>
     </ClCompile>
@@ -1295,9 +1286,6 @@
     <ClCompile Include="..\..\src\Framework\UI\Console.cpp">
       <Filter>Framework\UI</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Framework\Tools\DisplayDebugInfo.cpp">
-      <Filter>Framework\Tools</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Framework\Tools\DebugOptions.cpp">
       <Filter>Framework\Tools</Filter>
     </ClCompile>
@@ -1325,7 +1313,7 @@
     <ClCompile Include="..\..\src\Core\ContainerUtil.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Framework\UI\imguiAdapter.cpp">
+    <ClCompile Include="..\..\src\Framework\UI\ImguiAdapter.cpp">
       <Filter>Framework\UI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Framework\Entities\Components\Cameras\Camera2DTargetedComponent.cpp">
@@ -1403,11 +1391,11 @@
     <ClCompile Include="..\..\src\Framework\Entities\Components\Cameras\Camera3DLookAtComponent.cpp">
       <Filter>Framework\Entities\Components\Cameras</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Framework\Game\DisplayDebugInfoGameComponent.cpp">
+      <Filter>Framework\Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\src\Framework\Game\Game.inl">
-      <Filter>Framework\Game</Filter>
-    </None>
     <None Include="..\..\src\Framework\UI\imgui\fs_imgui_image.sc">
       <Filter>Framework\UI\imgui</Filter>
     </None>

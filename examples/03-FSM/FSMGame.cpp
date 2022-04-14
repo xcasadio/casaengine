@@ -1,5 +1,3 @@
-#include <string>
-
 #include "FSMGame.h"
 #include "Game/GameInfo.h"
 #include "Log/LoggerFile.h"
@@ -8,24 +6,16 @@
 
 using namespace CasaEngine;
 
-/**
- *
- */
+
 FSMGame::FSMGame()
 {
 	Logging.AddLogger(new LoggerFile("Out.log"));
 }
 
-/**
- *
- */
 FSMGame::~FSMGame()
 {
 }
 
-/**
- *
- */
 void FSMGame::Initialize()
 {
 	GetMediaManager().AddSearchPath("../../examples/resources");
@@ -34,6 +24,9 @@ void FSMGame::Initialize()
 	GetMediaManager().AddSearchPath("../../examples/resources/shaders");
 	GetMediaManager().AddSearchPath("../../examples/resources/spriteSheet");
 	GetMediaManager().AddSearchPath("../../examples/resources/fonts");
+
+	AddDebugComponents();
+	AddUsualComponents();
 
 	GetGameInfo().SetWorld(new World());
 

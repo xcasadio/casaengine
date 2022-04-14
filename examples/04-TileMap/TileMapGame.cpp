@@ -27,15 +27,13 @@ Transform3DComponent* s_pTransform;
 Camera2DTargetedComponent* s_pCameraController;
 
 
-TileMapGame::TileMapGame() :
-	m_pSpriteRenderer(nullptr)
+TileMapGame::TileMapGame()
 {
 	Logging.AddLogger(new LoggerFile("Out.log"));
 }
 
 TileMapGame::~TileMapGame()
 {
-	delete m_pSpriteRenderer;
 }
 
 void TileMapGame::Initialize()
@@ -49,9 +47,8 @@ void TileMapGame::Initialize()
 	GetMediaManager().AddSearchPath("../../examples/resources/tileset");
 	GetMediaManager().AddSearchPath("../../examples/resources/fonts");
 
-	m_pSpriteRenderer = new SpriteRenderer(this);
-	AddComponent(m_pSpriteRenderer);
-	AddComponent(new Line3DRendererComponent(this));
+	AddDebugComponents();
+	AddUsualComponents();
 
 	Game::Initialize();
 }

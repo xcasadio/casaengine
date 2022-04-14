@@ -26,32 +26,15 @@
 
 using namespace CasaEngine;
 
-/**
- *
- */
-SteeringGame::SteeringGame() :
-	m_pLine3DRenderer(nullptr),
-	m_pWorld(nullptr),
-	m_pModelRenderer(nullptr)
+SteeringGame::SteeringGame()
 {
 	Logging.AddLogger(new LoggerFile("Out.log"));
 }
 
-/**
- *
- */
 SteeringGame::~SteeringGame()
 {
-	if (m_pModelRenderer != nullptr) delete m_pModelRenderer;
-	if (m_pLine3DRenderer != nullptr) delete m_pLine3DRenderer;
-
-	//Game::Instance().GetEntityManager().Clear();
-	//PhysicsEngine::Destroy();
 }
 
-/**
- *
- */
 void SteeringGame::Initialize()
 {
 	Game::Instance().GetMediaManager().AddSearchPath("../../examples/resources");
@@ -62,14 +45,12 @@ void SteeringGame::Initialize()
 	Game::Instance().GetMediaManager().AddSearchPath("../../examples/resources/script");
 	Game::Instance().GetMediaManager().AddSearchPath("../../examples/resources/fonts");
 
-	AddGameComponents();
+	AddDebugComponents();
+	AddUsualComponents();
 
 	Game::Initialize();
 }
 
-/**
- *
- */
 void SteeringGame::LoadContent()
 {
 	Game::LoadContent();
@@ -82,37 +63,16 @@ void SteeringGame::LoadContent()
 	CreateBoids();
 }
 
-/**
- *
- */
 void SteeringGame::Update(const GameTime& gameTime_)
 {
 	Game::Update(gameTime_);
 }
 
-/**
- *
- */
 void SteeringGame::Draw()
 {
 	Game::Draw();
 }
 
-/**
- *
- */
-void SteeringGame::AddGameComponents()
-{
-	m_pModelRenderer = new MeshRendererGameComponent(this);
-	m_pLine3DRenderer = new Line3DRendererComponent(this);
-
-	AddComponent(m_pModelRenderer);
-	AddComponent(m_pLine3DRenderer);
-}
-
-/**
- *
- */
 void SteeringGame::CreateEntities()
 {
 	m_pProgram = new Program("vs_mesh", "fs_mesh");
@@ -155,9 +115,6 @@ void SteeringGame::CreateEntities()
 	m_pWorld->AddEntity(pEntity);
 }
 
-/**
- *
- */
 void SteeringGame::CreateBoids()
 {
 	BaseEntity* pEntity = new BaseEntity();

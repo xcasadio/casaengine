@@ -1,10 +1,8 @@
-#ifndef ANIMATION2DPLAYER2DGAME_H_
-#define ANIMATION2DPLAYER2DGAME_H_
+#pragma once
 
 #include "GameTime.h"
 #include "Game/Game.h"
 
-#include "Sprite/SpriteRenderer.h"
 #include "World/World.h"
 #include "Entities/Components/AnimatedSpriteComponent.h"
 
@@ -25,7 +23,6 @@ public:
 	void Draw();
 
 private:
-	void AddGameComponent();
 	void LoadAnimations(AnimatedSpriteComponent* pAnimatedComponent);
 	void LoadSprites();
 	void DisplayGrid();
@@ -35,8 +32,6 @@ private:
 	void DisplayUI();
 
 private:
-	SpriteRenderer* m_pSpriteRenderer;
-
 	BaseEntity* m_pEntity;
 	AnimatedSpriteComponent* m_pAnimatedSprite;
 	World* m_pWorld;
@@ -45,5 +40,3 @@ private:
 	int m_FrameIndexSelected, m_LastFrameIndexSelected;
 	int m_CollisionIndexSelected, m_LastCollisionIndexSelected;
 };
-
-#endif

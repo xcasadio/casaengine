@@ -1,5 +1,4 @@
-#ifndef SHADERGAME_H
-#define SHADERGAME_H
+#pragma once
 
 #include <Graphics/Textures/Texture.h>
 #include "GameTime.h"
@@ -11,10 +10,6 @@
 #include "Entities/Components/Cameras/Camera2DComponent.h"
 #include "Entities/Components/Transform3DComponent.h"
 #include "Entities/Components/Cameras/ArcBallCameraComponent.h"
-#include "Entities/Components/Cameras/Camera3DLookAtComponent.h"
-#include "Tools/DebugSystem.h"
-#include "Game/Line2DRendererComponent.h"
-#include "Game/Line3DRendererComponent.h"
 #include "Graphics/Effects/Program.h"
 #include "Graphics/Materials/Material.h"
 #include "Graphics/Mesh/Mesh.h"
@@ -51,10 +46,6 @@ private:
 	Program* m_pProgram;
 	Texture* m_pCartoonShadingTextureHandle;
 
-	DebugSystem* m_pDebugSystem;
-	Line2DRendererComponent* m_pLine2DRenderer;
-	Line3DRendererComponent* m_pLine3DRenderer;
-
 	BaseEntity* m_pEntity; //, *m_pCamera;
 	ArcBallCameraComponent* m_pCamera3D;
 	BaseEntity* m_pModelEntity;
@@ -62,5 +53,3 @@ private:
 	World* m_pWorld;
 	Material* m_pGroundMaterial;
 };
-
-#endif

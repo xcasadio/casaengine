@@ -1,5 +1,4 @@
-#ifndef FightingGame2DGAME_H_
-#define FightingGame2DGAME_H_
+#pragma once
 
 #include "GameTime.h"
 #include "Game/Game.h"
@@ -24,7 +23,6 @@ public:
 	void Draw();
 
 private:
-	void AddGameComponent();
 	std::vector<Animation2DData> LoadAnimations();
 	void LoadSprites();
 	void DisplayGrid();
@@ -37,5 +35,3 @@ private:
 private:
 	World* m_pWorld;
 };
-
-#endif

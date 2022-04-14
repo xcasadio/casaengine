@@ -17,12 +17,9 @@
 #include "Entities/Components/GridComponent.h"
 #include "Entities/Components/MeshComponent.h"
 #include "Entities/Components/ScriptComponent.h"
-#include "Entities/Components/StaticSpriteComponent.h"
 #include "Entities/Components/Transform3DComponent.h"
 #include "Game/Game.h"
 #include "Game/GameInfo.h"
-#include "Game/Input.h"
-#include "GameTime.h"
 #include "ScriptCharacter.h"
 
 #include "Graphics/Textures/Texture.h"
@@ -43,23 +40,15 @@
 using namespace CasaEngine;
 
 RPGGame::RPGGame() :
-	m_pSpriteRenderer(nullptr),
 	m_pAnimatedSprite(nullptr),
 	m_pGroundTexture(nullptr),
-	m_pLine2DRenderer(nullptr),
-	m_pLine3DRenderer(nullptr),
-	m_pWorld(nullptr),
-	m_pModelRenderer(nullptr)
+	m_pWorld(nullptr)
 {
 	Logging.AddLogger(new LoggerFile("Out.log"));
 }
 
 RPGGame::~RPGGame()
 {
-	delete m_pModelRenderer;
-	delete m_pSpriteRenderer;
-	delete m_pLine2DRenderer;
-	delete m_pLine3DRenderer;
 	delete m_pGroundTexture;
 }
 
@@ -78,7 +67,8 @@ void RPGGame::Initialize()
 	GetMediaManager().AddSearchPath("../../examples/resources/fonts");
 	GetMediaManager().AddSearchPath("../../examples/resources/tileset");
 
-	AddGameComponent();
+	AddDebugComponents();
+	AddUsualComponents();
 
 	Game::Initialize();
 	//GetDebugOptions().ShowLogInGame = true;
@@ -103,19 +93,6 @@ void RPGGame::LoadContent()
 	CreateSwordman(m_pWorld);
 
 	m_pWorld->Initialize();
-}
-
-
-void RPGGame::AddGameComponent()
-{
-	m_pLine2DRenderer = new Line2DRendererComponent(this);
-	m_pLine3DRenderer = new Line3DRendererComponent(this);	
-	m_pSpriteRenderer = new SpriteRenderer(this);
-
-	//AddComponent(m_pModelRenderer);
-	AddComponent(m_pSpriteRenderer);
-	AddComponent(m_pLine2DRenderer);
-	AddComponent(m_pLine3DRenderer);
 }
 
 void RPGGame::CreateMap(World* pWorld)

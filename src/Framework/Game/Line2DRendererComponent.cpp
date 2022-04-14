@@ -15,6 +15,8 @@
 
 #include <vector>
 
+#include "Graphics/Vertices/VertexType.h"
+
 namespace CasaEngine
 {
 	static const unsigned int NbLineMax = 1024;
@@ -37,7 +39,7 @@ namespace CasaEngine
 
 	void Line2DRendererComponent::OnLoadContent() 
 	{
-		m_VertexBuffer = createDynamicVertexBuffer(NbLineMax * 2, VertexPositionColor::ms_layout);
+		m_VertexBuffer = bgfx::createDynamicVertexBuffer(NbLineMax * 2, VertexPositionColor::ms_layout);
 		//m_pEffect = IRenderer::Get().CreateEffectFromFile("line_renderer");
 	}
 

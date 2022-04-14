@@ -1,11 +1,7 @@
-#ifndef STEERINGGAME_H_
-#define STEERINGGAME_H_
+#pragma once
 
 #include "Entities/BaseEntity.h"
-#include "Entities/Components/AnimatedSpriteComponent.h"
 #include "Game/Game.h"
-#include "Game/Line3DRendererComponent.h"
-#include "Game/MeshRendererGameComponent.h"
 #include "GameTime.h"
 #include "Entities/Components/Cameras/ArcBallCameraComponent.h"
 #include "World/World.h"
@@ -13,9 +9,6 @@
 
 using namespace CasaEngine;
 
-/**
- *
- */
 class SteeringGame :
 	public Game
 {
@@ -34,15 +27,9 @@ private:
 	void CreateEntities();
 	void CreateBoids();
 
-private:
-	MeshRendererGameComponent* m_pModelRenderer;
-	Line3DRendererComponent* m_pLine3DRenderer;
-
 	std::vector<BaseEntity*> m_Entities;
 	ArcBallCameraComponent* m_pCamera3D;
 	World* m_pWorld;
 
 	Program* m_pProgram;
 };
-
-#endif

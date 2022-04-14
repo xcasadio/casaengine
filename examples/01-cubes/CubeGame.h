@@ -1,5 +1,4 @@
-#ifndef CUBEGAME_H_
-#define CUBEGAME_H_
+#pragma once
 
 #include "Game/Game.h"
 #include "Graphics/Effects/Program.h"
@@ -14,9 +13,9 @@ public:
 
 	void Initialize() override;
 	void LoadContent() override;
+	void Draw() override;
+	
 
 private:
 	Program* m_pProgram;
 };
-
-#endif

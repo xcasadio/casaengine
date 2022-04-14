@@ -1,5 +1,4 @@
-#ifndef PROGRAM_H
-#define PROGRAM_H
+#pragma once
 
 #include "Maths/Vector2.h"
 #include "Maths/Vector3.h"
@@ -17,20 +16,19 @@ namespace CasaEngine
 	class CA_EXPORT Program
 	{
 	public:
-
-		static void SetParameter(const char* pName, float Value);
-		static void SetParameter(const char* pName, const Vector2& Value);
-		static void SetParameter(const char* pName, const Vector3& Value);
-		static void SetParameter(const char* pName, const Vector4& Value);
-		static void SetParameter(const char* pName, const Matrix4& Value);
-		static void SetParameter(const char* pName, const CColor& Value);
-		static void SetParameter(const char* pName, const Texture* Value);
-
-	public:
 		Program(const char* _vsName, const char* _fsName);
 		Program(bgfx::ProgramHandle handle_);
 
 		virtual ~Program();
+
+		void SetParameter(const char* pName, float Value);
+		void SetParameter(const char* pName, const Vector2& Value);
+		void SetParameter(const char* pName, const Vector3& Value);
+		void SetParameter(const char* pName, const Vector4& Value);
+		void SetParameter(const char* pName, const Matrix4& Value);
+		void SetParameter(const char* pName, const CColor& Value);
+		void SetParameter(const char* pName, const Texture* Value);
+
 		bgfx::ProgramHandle Handle() const;
 
 	private:
@@ -38,5 +36,3 @@ namespace CasaEngine
 		Shader* m_pVs, * m_pFs;
 	};
 }
-
-#endif

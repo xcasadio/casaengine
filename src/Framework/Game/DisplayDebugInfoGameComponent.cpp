@@ -1,43 +1,45 @@
 #include "Base.h"
-#include <bgfx/bgfx.h>
 
-#include "DisplayDebugInfo.h"
-
-#include <dear-imgui/imgui.h>
-
-#include "Entities/Components/CameraComponent.h"
+#include "Game/DisplayDebugInfoGameComponent.h"
 #include "Game/Game.h"
-#include "Game/GameInfo.h"
 #include "GameTime.h"
-#include "Graphics/Color.h"
-#include "Maths/Vector3.h"
-#include "Entities/EntityManager.h"
-#include "InGameLogger.h"
+#include "Graphics/Mesh/Mesh.h"
+#include "Maths/Matrix4.h"
+#include "GameInfo.h"
+#include "Entities/Components/CameraComponent.h"
+
 
 namespace CasaEngine
 {
-	void ShowUI4AllComponents(BaseEntity *pEntity);
+	void ShowUI4AllComponents(BaseEntity* pEntity);
 	void DrawAxis(bgfx::VertexBufferHandle vertexHandle_, bgfx::ProgramHandle program_handle);
 	void ShowFPS();
 	void ShowDebugWindow();
 
-	DisplayDebugInfo::DisplayDebugInfo() :
+	DisplayDebugInfoGameComponent::DisplayDebugInfoGameComponent(Game* pGame_) :
+		DrawableGameComponent(pGame_),
 		m_pProgram(nullptr),
 		m_VertexBuffer(),
 		m_Vertices{}
 	{
+		DrawOrder(10);
+		UpdateOrder(10);
 	}
 
-	DisplayDebugInfo::~DisplayDebugInfo()
+	DisplayDebugInfoGameComponent::~DisplayDebugInfoGameComponent()
 	{
-		Release();
+		delete m_pProgram;
+		m_pProgram = nullptr;
+		bgfx::destroy(m_VertexBuffer);
+		m_VertexBuffer = BGFX_INVALID_HANDLE;
 	}
 
-	void DisplayDebugInfo::Initialize() 
-	{ 
+	void DisplayDebugInfoGameComponent::OnLoadContent()
+	{
+		//defined uniq view id 
 		bgfx::setViewName(1, "DisplayDebugInfo");
 		//bgfx::setView(1, true);
-		
+
 		m_pProgram = new Program("vs_3DLines", "fs_3DLines");
 
 		m_Vertices[0].Position = Vector3::Zero();  m_Vertices[0].Color = CColor::Red.ToABGR();
@@ -50,18 +52,11 @@ namespace CasaEngine
 		m_VertexBuffer = bgfx::createVertexBuffer(bgfx::makeRef(m_Vertices, 6 * sizeof(VertexPositionColor)), VertexPositionColor::ms_layout);
 	}
 
-	void DisplayDebugInfo::Release()
+	void DisplayDebugInfoGameComponent::Update(const GameTime& /*gameTime_*/)
 	{
-		delete m_pProgram;
-		m_pProgram = nullptr;
-		bgfx::destroy(m_VertexBuffer);
-		m_VertexBuffer = BGFX_INVALID_HANDLE;
 	}
 
-	void DisplayDebugInfo::Update(const GameTime& /*gameTime_*/)
-	{ }
-
-	void DisplayDebugInfo::Draw()
+	void DisplayDebugInfoGameComponent::Draw()
 	{
 		if (Game::Instance().GetDebugOptions().ShowAxis == true)
 		{
@@ -84,10 +79,11 @@ namespace CasaEngine
 		}
 	}
 
+
 	void DrawAxis(bgfx::VertexBufferHandle vertexHandle_, bgfx::ProgramHandle program_handle)
 	{
-		CameraComponent *pCamera = Game::Instance().GetGameInfo().GetActiveCamera();
-		Viewport &viewport = pCamera->GetViewport();
+		CameraComponent* pCamera = Game::Instance().GetGameInfo().GetActiveCamera();
+		Viewport& viewport = pCamera->GetViewport();
 		Matrix4 matProj, matWorld;
 
 		//matWorld.CreateRotationZ(0.5f * PI);
@@ -98,9 +94,9 @@ namespace CasaEngine
 		Quaternion rot;
 		rot.FromAxisAngle(Vector3::UnitZ(), 0.5f * PI);
 		matWorld.Transformation(
-			nullptr, nullptr, 
+			nullptr, nullptr,
 			&scale,
-			nullptr, 
+			nullptr,
 			&rot, //rotation
 			nullptr);
 
@@ -117,19 +113,18 @@ namespace CasaEngine
 		bgfx::setTransform(matWorld);
 
 		bgfx::setVertexBuffer(0, vertexHandle_);
-		bgfx::setState(BGFX_STATE_WRITE_RGB	| BGFX_STATE_MSAA | BGFX_STATE_PT_LINES);
+		bgfx::setState(BGFX_STATE_WRITE_RGB | BGFX_STATE_MSAA | BGFX_STATE_PT_LINES);
 		bgfx::submit(1, program_handle);
 	}
 
 	void ShowFPS()
 	{
-		ImGui::SetNextWindowPos(ImVec2(10,10));
-		
-		if (ImGui::Begin("FPS", nullptr,  ImGuiWindowFlags_NoTitleBar|ImGuiWindowFlags_NoResize|ImGuiWindowFlags_NoMove|ImGuiWindowFlags_NoSavedSettings))
+		ImGui::SetNextWindowPos(ImVec2(10, 10));
+		if (ImGui::Begin("FPS", nullptr, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoSavedSettings))
 		{
-			ImGui::Text("FPS: %d", Game::Instance().GetDebugSystem().GetFPS());
+			ImGui::Text("%3.1f FPS     ", Game::Instance().GetDebugSystem().GetFPS());
 		}
-		
+
 		ImGui::End();
 	}
 
@@ -139,8 +134,8 @@ namespace CasaEngine
 
 		if (ImGui::Begin("Debug window"))
 		{
-			ImGui::BeginChild("ScrollingRegion", ImVec2(0,0)); //-ImGui::GetItemsLineHeightWithSpacing()));
-			ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(4,1)); // Tighten spacing
+			ImGui::BeginChild("ScrollingRegion", ImVec2(0, 0)); //-ImGui::GetItemsLineHeightWithSpacing()));
+			ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(4, 1)); // Tighten spacing
 
 			// debug options
 			if (ImGui::CollapsingHeader("debug options", ImGuiTreeNodeFlags_CollapsingHeader))
@@ -169,7 +164,7 @@ namespace CasaEngine
 
 				// right
 				ImGui::BeginGroup();
-				BaseEntity *pEntity = Game::Instance().GetEntityManager().GetFirstSelectedEntity();
+				BaseEntity* pEntity = Game::Instance().GetEntityManager().GetFirstSelectedEntity();
 
 				if (pEntity != nullptr)
 				{
@@ -198,13 +193,13 @@ namespace CasaEngine
 		ImGui::End();
 	}
 
-	void ShowUI4AllComponents(BaseEntity *pEntity)
+	void ShowUI4AllComponents(BaseEntity* pEntity)
 	{
-		const std::vector<Component *> &cpts = pEntity->GetComponentMgr()->Components();
+		const std::vector<Component*>& cpts = pEntity->GetComponentMgr()->Components();
 
 		for (auto it = cpts.cbegin();
-		     it != cpts.cend(); 
-		     ++it)
+			it != cpts.cend();
+			++it)
 		{
 			(*it)->ShowDebugWidget();
 		}

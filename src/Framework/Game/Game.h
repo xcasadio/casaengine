@@ -1,36 +1,32 @@
-#ifndef GAME_H
-#define GAME_H
+#pragma once
 
 #include "CA_Export.h"
-#include "Resources/MediaManager.h"
-
-#include "GameTime.h"
-#include "Game/GameComponent.h"
-#include "Game/DrawableGameComponent.h"
+#include "DynamicModule.h"
 #include "EngineSettings.h"
+#include "GameInfo.h"
+#include "GameTime.h"
+#include "Input.h"
+#include "AI/Messaging/MessageDispatcher.h"
+#include "Assets/AssetManager.h"
+#include "Entities/EntityManager.h"
+#include "EventHandler/GlobalEventSet.h"
+#include "Game/DrawableGameComponent.h"
+#include "Game/GameComponent.h"
+#include "GameDatas/GameDataFactory.h"
 #include "Graphics/Renderer/Renderer.h"
-#include "SFML/Window/Window.hpp"
+#include "Physics/PhysicsEngine.h"
+#include "Resources/MediaManager.h"
+#include "Script/ScriptEngine.h"
+#include "Tools/DebugOptions.h"
+#include "Tools/DebugSystem.h"
+#include "Tools/InGameLogger.h"
+#include "UI/Console.h"
 
+#include "imgui.h"
+#include "SFML/Window/Window.hpp"
 #if CA_PLATFORM_DESKTOP
 #	include "SFML/Window/WindowHandle.hpp"
 #endif
-
-#include "Input.h"
-#include "Script/ScriptEngine.h"
-#include "DynamicModule.h"
-#include "GameInfo.h"
-#include "imgui.h"
-#include "AI/Messaging/MessageDispatcher.h"
-#include "Assets/AssetManager.h"
-#include "GameDatas/GameDataFactory.h"
-#include "EventHandler/GlobalEventSet.h"
-#include "UI/Console.h"
-#include "Tools/DisplayDebugInfo.h"
-#include "Tools/DebugSystem.h"
-#include "Tools/DebugOptions.h"
-#include "Entities/EntityManager.h"
-#include "Physics/PhysicsEngine.h"
-#include "Tools/InGameLogger.h"
 
 namespace CasaEngine
 {
@@ -92,7 +88,11 @@ namespace CasaEngine
 
 		virtual void Initialize();
 		virtual void LoadContent();
-		virtual void Update(const GameTime& gameTime_);
+		virtual void Update(const GameTime& gameTime);
+
+
+		void AddDebugComponents();
+		void AddUsualComponents();
 
 	private:
 		void MakeWindow();
@@ -115,12 +115,12 @@ namespace CasaEngine
 #if CA_PLATFORM_MOBILE
 	public:
 #endif
-		void BeginUpdate(const GameTime& game_time);
+		void BeginUpdate(const GameTime& gameTime);
 		void FrameLoop();
 
 	private:
 		void Resize();
-		void OnWindowResized(unsigned int height, unsigned int width);
+		void OnWindowResized(unsigned int width, unsigned int height);
 		void HandleWindowEvents();
 
 	private:
@@ -140,7 +140,6 @@ namespace CasaEngine
 		EngineSettings		m_EngineSettings;
 
 		DebugSystem m_DebugSystem;
-		DisplayDebugInfo m_DisplayDebugInfo;
 		Console m_Console;
 		DebugOptions m_DebugOptions;
 		GlobalEventSet* m_pGlobalEventSet;
@@ -159,8 +158,22 @@ namespace CasaEngine
 		sf::Window* m_pWindow;
 	};
 
-#include "Game.inl"
+	template <class T>
+	T* Game::GetGameComponent() const
+	{
+		T* res = nullptr;
+
+		for (auto* component : m_Components)
+		{
+			res = dynamic_cast<T*>(component);
+
+			if (res != nullptr)
+			{
+				break;
+			}
+		}
+
+		return res;
+	}
 
 }
-
-#endif

@@ -15,7 +15,6 @@
 #include "Entities/Components/Transform3DComponent.h"
 #include "Game/Game.h"
 #include "Game/GameInfo.h"
-#include "Game/Input.h"
 #include "GameTime.h"
 
 #include "Log/LoggerFile.h"
@@ -34,7 +33,6 @@ std::vector<std::string> last_animation_names;
 std::vector<char*> animation_names;
 
 Animation2DPlayerGame::Animation2DPlayerGame() :
-	m_pSpriteRenderer(nullptr),
 	m_pAnimatedSprite(nullptr),
 	m_pWorld(nullptr),
 	m_AnimationIndexSelected(0),
@@ -49,7 +47,6 @@ Animation2DPlayerGame::Animation2DPlayerGame() :
 
 Animation2DPlayerGame::~Animation2DPlayerGame()
 {
-	delete m_pSpriteRenderer;
 }
 
 void Animation2DPlayerGame::Initialize()
@@ -65,7 +62,8 @@ void Animation2DPlayerGame::Initialize()
 	GetMediaManager().AddSearchPath("../../examples/resources/fonts");
 	GetMediaManager().AddSearchPath("../../examples/resources/tileset");
 
-	AddGameComponent();
+	AddDebugComponents();
+	AddUsualComponents();
 
 	Game::Initialize();
 
@@ -438,13 +436,4 @@ void Animation2DPlayerGame::Draw()
 	Game::Draw();
 
 	DisplayUI();
-}
-
-void Animation2DPlayerGame::AddGameComponent()
-{
-	auto* line3DRenderer = new Line3DRendererComponent(this);
-	m_pSpriteRenderer = new SpriteRenderer(this);
-
-	AddComponent(m_pSpriteRenderer);
-	AddComponent(line3DRenderer);
 }

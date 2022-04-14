@@ -57,21 +57,13 @@ void FightingGame2DGame::Initialize()
 	GetMediaManager().AddSearchPath("../../examples/resources/tileset");
 	GetMediaManager().AddSearchPath("../../examples/resources/fighting_game");
 
-	AddGameComponent();
+	AddDebugComponents();
+	AddUsualComponents();
 
 	Game::Initialize();
 
 	//GetDebugOptions().IsDebugActivated = true;
 	//GetDebugOptions().ShowLogInGame = true;
-}
-
-void FightingGame2DGame::AddGameComponent()
-{
-	auto* const line3DRenderer = new Line3DRendererComponent(this);
-	auto* const pSpriteRenderer = new SpriteRenderer(this);
-
-	AddComponent(pSpriteRenderer);
-	AddComponent(line3DRenderer);
 }
 
 void FightingGame2DGame::LoadContent()

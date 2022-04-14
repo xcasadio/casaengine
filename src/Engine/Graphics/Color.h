@@ -1,5 +1,4 @@
-#ifndef COLOR_H
-#define COLOR_H
+#pragma once
 
 #include <iostream>
 #include "CA_Export.h"
@@ -227,5 +226,3 @@ namespace CasaEngine
 		static const CColor MenuHighlight;
 	};
 }
-
-#endif // COLOR_H

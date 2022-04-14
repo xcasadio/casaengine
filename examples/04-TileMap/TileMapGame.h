@@ -1,12 +1,9 @@
-#ifndef TILEMAPGAME_H_
-#define TILEMAPGAME_H_
+#pragma once
 
 #include "Game/Game.h"
-#include "Sprite/SpriteRenderer.h"
 #include "World/World.h"
 
 using namespace CasaEngine;
-
 
 class TileMapGame :
 	public Game
@@ -20,9 +17,4 @@ public:
 	void LoadContent() override;
 	void Draw() override;
 	void Update(const GameTime& gameTime_) override;
-
-private:
-	SpriteRenderer* m_pSpriteRenderer;
 };
-
-#endif

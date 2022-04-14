@@ -1,5 +1,4 @@
-#ifndef _SPRITERENDERER_H_
-#define _SPRITERENDERER_H_
+#pragma once
 
 #include "CA_Export.h"
 
@@ -17,6 +16,8 @@
 #include "Sprite/SpriteTypes.h"
 
 #include <vector>
+
+#include "Graphics/Effects/Program.h"
 
 namespace CasaEngine
 {
@@ -83,5 +84,3 @@ namespace CasaEngine
 		VertexPositionColorTexture *m_pDatas{};
 	};
 }
-
-#endif

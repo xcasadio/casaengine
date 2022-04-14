@@ -50,11 +50,11 @@ namespace CasaEngine
 		//Keyboard
 		if (Game::Instance().GetInput().IsKeyDown(sf::Keyboard::Right) == true)
 		{
-			rightAxis = -step;
+			rightAxis = step;
 		}
 		else if (Game::Instance().GetInput().IsKeyDown(sf::Keyboard::Left) == true)
 		{
-			rightAxis = step;
+			rightAxis = -step;
 		}
 
 		if (Game::Instance().GetInput().IsKeyDown(sf::Keyboard::Up) == true)

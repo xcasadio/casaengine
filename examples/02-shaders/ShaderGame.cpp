@@ -14,7 +14,7 @@
 #include "Log/LoggerFile.h"
 #include "Maths/Math.h"
 #include "Maths/Quaternion.h"
-#include "UI/imguiAdapter.h"
+#include "UI/ImguiAdapter.h"
 
 using namespace CasaEngine;
 
@@ -34,14 +34,8 @@ void ShaderGame::Initialize()
 	GetMediaManager().AddSearchPath("../../examples/resources/spriteSheet");
 	GetMediaManager().AddSearchPath("../../examples/resources/fonts");
 
-	Game::Initialize();
-
-	m_pLine2DRenderer = new Line2DRendererComponent(this);
-	m_pLine3DRenderer = new Line3DRendererComponent(this);
-
-	AddComponent(new MeshRendererGameComponent(this));
-	AddComponent(m_pLine2DRenderer);
-	AddComponent(m_pLine3DRenderer);
+	AddDebugComponents();
+	AddUsualComponents();
 
 	m_pWorld = new World();
 	GetGameInfo().SetWorld(m_pWorld);
@@ -96,6 +90,9 @@ void ShaderGame::Initialize()
 	m_ShadersDesc["scale"] = "Effect \"lighting by vertex + modify scale\"";
 	m_ShadersDesc["negative"] = "Effect \"negative\"";
 	m_ShadersDesc["grey"] = "Effect \"grey scale\"";
+
+
+	Game::Initialize();
 }
 
 void ShaderGame::LoadContent()
@@ -139,19 +136,6 @@ void ShaderGame::LoadContent()
 
 	m_pWorld->AddEntity(pCamera);
 	GetGameInfo().SetActiveCamera(m_pCamera3D);
-
-	//FPS
-	/*BaseEntity *pEntity = new BaseEntity();
-	pEntity->SetName("FPS Monitoring");
-	Transform2DComponent *pTranform2D = new Transform2DComponent(pEntity);
-	pTranform2D->SetLocalPosition(Vector2(10.0f, 10.0f));
-	pEntity->GetComponentMgr()->AddComponent(pTranform2D);
-	FPSMonitoringComponent *pFPS = new FPSMonitoringComponent(pEntity);
-	pEntity->GetComponentMgr()->AddComponent(pFPS);
-	pEntity->Initialize();
-
-	m_pWorld->AddEntity(pEntity);
-	pEntity->Initialize();*/
 
 	//Mesh
 	m_pModelEntity = new BaseEntity();

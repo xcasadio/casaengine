@@ -1,24 +1,19 @@
-#ifndef FSMGAME_H_
-#define FSMGAME_H_
+#pragma once
 
 #include "Game/Game.h"
 
 using namespace CasaEngine;
 
-/**
- *
- */
+
 class FSMGame :
 	public Game
 {
 public:
 	FSMGame();
-	~FSMGame();
+	~FSMGame() override;
 
 	void Initialize() override;
 
 private:
 	BaseEntity* m_pBob, * m_pElsa;
 };
-
-#endif
