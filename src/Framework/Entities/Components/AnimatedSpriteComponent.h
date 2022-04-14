@@ -24,7 +24,7 @@ namespace CasaEngine
 	private:
 		SpriteRenderer*	m_pSpriteRenderer;
 		Transform3DComponent* m_pTransform;
-		CColor m_Color;		
+		Color m_Color;		
 		eSpriteEffects m_SpriteEffect;
 		Animation2D *m_pCurrentAnim;
 
@@ -36,8 +36,8 @@ namespace CasaEngine
 	public:
 		AnimatedSpriteComponent(BaseEntity* pEntity_);
 
-		CColor GetColor() const;
-		void SetColor(CColor val);
+		Color GetColor() const;
+		void SetColor(Color val);
 		eSpriteEffects GetSpriteEffect() const;
 		void SetSpriteEffect(eSpriteEffects val);
 

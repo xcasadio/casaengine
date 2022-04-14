@@ -31,7 +31,7 @@ namespace CasaEngine
 		if (m_DisplayPosition)
 		{
 			const auto position = GetEntity()->GetComponentMgr()->GetComponent<Transform3DComponent>()->GetLocalPosition();
-			const auto color = CColor::Red;
+			const auto color = Color::Red;
 			constexpr auto scale = 5.0f;
 			m_LineRenderer->AddLine(position - Vector3::UnitX() * scale, position + Vector3::UnitX() * scale, color);
 			m_LineRenderer->AddLine(position - Vector3::UnitY() * scale, position + Vector3::UnitY() * scale, color);

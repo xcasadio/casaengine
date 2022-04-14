@@ -28,7 +28,7 @@ namespace CasaEngine
 		CA_ASSERT(m_pLineRenderer != nullptr, "BulletPhysicsDebugDraw : please call Initialize() before call drawXXX() function");
 		Vector3 start(from.x(), from.y(), from.z());
 		Vector3 end(to.x(), to.y(), to.z());
-		CColor ccolor;
+		Color ccolor;
 		ccolor.SetFloats(color.x(), color.y(), color.z());
 		m_pLineRenderer->AddLine(start, ccolor, end, ccolor);
 	}
@@ -45,7 +45,7 @@ namespace CasaEngine
 
 		Vector3 start(from.x(), from.y(), from.z());
 		Vector3 end(to.x(), to.y(), to.z());
-		CColor ccolor;
+		Color ccolor;
 		ccolor.SetFloats(color.x(), color.y(), color.z());
 		m_pLineRenderer->AddLine(start, ccolor, end, ccolor);
 	}

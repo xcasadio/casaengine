@@ -71,7 +71,7 @@ Mesh* CMD2Loader::LoadFromFile(IFile* pFile_)
 			v.Position.y = Vert.y * Frames[0].Scale.y + Frames[0].Translate.y;
 			v.Position.z = Vert.z * Frames[0].Scale.z + Frames[0].Translate.z;
 			v.Normal = s_NormalTable[Vert.n];
-			//v.Color       = IRenderer::Get().ConvertColor(CColor::White);
+			//v.Color       = IRenderer::Get().ConvertColor(Color::White);
 			v.TexCoords.x = TexC.u / static_cast<float>(Header.TexWidth);
 			v.TexCoords.y = TexC.v / static_cast<float>(Header.TexHeight);
 

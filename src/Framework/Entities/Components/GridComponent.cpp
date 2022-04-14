@@ -91,22 +91,22 @@ namespace CasaEngine
 			m_bNeedToUpdateBuffers = false;
 		
 			m_Vertices.clear();
-			CColor color;
+			Color color;
 
 			//Initialize the custom vertex values for the lines.
 			for (int x = m_iSize; x > 0; x--)
 			{
 				if (x % 10 == 0)
 				{
-					color = CColor::DarkBlue;
+					color = Color::DarkBlue;
 				}
 				else if (x % 5 == 0)
 				{
-					color = CColor::DarkGray;
+					color = Color::DarkGray;
 				}
 				else
 				{
-					color = CColor::DimGray;
+					color = Color::DimGray;
 				}
 
 				m_Vertices.push_back(TGridPointData(
@@ -126,7 +126,7 @@ namespace CasaEngine
 					Vector3(-static_cast<float>(m_iSize), 0.0f, -static_cast<float>(x)), color));
 			}
 
-			color = CColor::DarkBlue;
+			color = Color::DarkBlue;
 
 			m_Vertices.push_back(TGridPointData(
 				Vector3(-static_cast<float>(m_iSize), 0.0f, 0.0f), color,

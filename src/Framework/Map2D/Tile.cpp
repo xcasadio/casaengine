@@ -38,7 +38,7 @@ namespace CasaEngine
 			Vector2(x, y),
 			0.0f,
 			Vector2::One(),
-			CColor::White,
+			Color::White,
 			z);
 	}
 }

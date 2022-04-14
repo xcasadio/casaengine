@@ -24,7 +24,7 @@ namespace CasaEngine
 		: Component(pEntity_, ANIMATED_SPRITE),
 		m_pSpriteRenderer(nullptr),
 		m_pTransform(nullptr),
-		m_Color(CColor::White),
+		m_Color(Color::White),
 		m_SpriteEffect(eSpriteEffects::SPRITE_EFFECT_NONE),
 		m_pCurrentAnim(nullptr)
 	{
@@ -43,12 +43,12 @@ namespace CasaEngine
 		m_SpriteID = val;
 	}*/
 
-	CColor AnimatedSpriteComponent::GetColor() const
+	Color AnimatedSpriteComponent::GetColor() const
 	{
 		return m_Color;
 	}
 
-	void AnimatedSpriteComponent::SetColor(CColor val)
+	void AnimatedSpriteComponent::SetColor(Color val)
 	{
 		m_Color = val;
 	}

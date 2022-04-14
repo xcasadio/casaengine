@@ -25,7 +25,7 @@ namespace CasaEngine
 	{
 	}
 
-	void Program::SetParameter(const char* pName, const CColor& Value)
+	void Program::SetParameter(const char* pName, const Color& Value)
 	{
 	}
 

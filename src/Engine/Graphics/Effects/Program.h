@@ -26,7 +26,7 @@ namespace CasaEngine
 		void SetParameter(const char* pName, const Vector3& Value);
 		void SetParameter(const char* pName, const Vector4& Value);
 		void SetParameter(const char* pName, const Matrix4& Value);
-		void SetParameter(const char* pName, const CColor& Value);
+		void SetParameter(const char* pName, const Color& Value);
 		void SetParameter(const char* pName, const Texture* Value);
 
 		bgfx::ProgramHandle Handle() const;

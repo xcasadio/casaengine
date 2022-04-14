@@ -285,7 +285,7 @@ void Animation2DPlayerGame::DisplayCollisions()
 				if (coll.GetShape()->Type() == ShapeType::RECTANGLE)
 				{
 					auto* rect = dynamic_cast<RectangleI*>(coll.GetShape());
-					auto color = coll.GetType() == CollisionType::Defense ? CColor::Blue : CColor::Red;
+					auto color = coll.GetType() == CollisionType::Defense ? Color::Blue : Color::Red;
 					auto pos = transform->GetLocalPosition();
 					const auto scaleX = transform->GetLocalScale().x;
 					const auto scaleY = transform->GetLocalScale().y;
@@ -310,7 +310,7 @@ void Animation2DPlayerGame::DisplayPosition()
 {
 	auto* line3DRenderer = this->GetGameComponent<Line3DRendererComponent>();
 	const auto position = m_pEntity->GetComponentMgr()->GetComponent<Transform3DComponent>()->GetLocalPosition();
-	const auto color = CColor::Green;
+	const auto color = Color::Green;
 	const auto size = 500 / 2.0f;
 
 	line3DRenderer->AddLine(Vector3(position.x + size, position.y, 0.0f), Vector3(position.x - size, position.y, 0.0f), color);
@@ -412,7 +412,7 @@ void Animation2DPlayerGame::DisplayGrid()
 	const auto halfNumberOfLines = 100 >> 1;
 	const auto cellWidth = 10.0f;
 	const auto halfLength = halfNumberOfLines * cellWidth;
-	const auto gridColor = CColor::DimGray;
+	const auto gridColor = Color::DimGray;
 
 	auto* line3DRenderer = this->GetGameComponent<Line3DRendererComponent>();
 	for (auto i = 0; i <= halfNumberOfLines; i++)
@@ -425,9 +425,9 @@ void Animation2DPlayerGame::DisplayGrid()
 		line3DRenderer->AddLine(Vector3(coord, -halfLength, 0.0f), Vector3(coord, halfLength, 0.0f), gridColor);
 	}
 	/*
-	line3DRenderer->AddLine(Vector3::Zero(), CColor::Red, Vector3::UnitX(), CColor::Red);
-	line3DRenderer->AddLine(Vector3::Zero(), CColor::Green, Vector3::UnitY(), CColor::Green);
-	line3DRenderer->AddLine(Vector3::Zero(), CColor::Blue, Vector3::UnitZ(), CColor::Blue);
+	line3DRenderer->AddLine(Vector3::Zero(), Color::Red, Vector3::UnitX(), Color::Red);
+	line3DRenderer->AddLine(Vector3::Zero(), Color::Green, Vector3::UnitY(), Color::Green);
+	line3DRenderer->AddLine(Vector3::Zero(), Color::Blue, Vector3::UnitZ(), Color::Blue);
 	*/
 }
 

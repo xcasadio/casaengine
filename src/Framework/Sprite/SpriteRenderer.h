@@ -56,17 +56,17 @@ namespace CasaEngine
 		void Update(const GameTime& gametime_) override;
 		void Draw() override;
 
-		void AddSprite(const Sprite* sprite, const Matrix4& transform, const CColor& color_, eSpriteEffects effects_ =
+		void AddSprite(const Sprite* sprite, const Matrix4& transform, const Color& color_, eSpriteEffects effects_ =
 			               eSpriteEffects::SPRITE_EFFECT_NONE);
-		void AddSprite(const Texture* tex_, const RectangleI& posInTex, const Vector2I& origin, const Matrix4& transform, const CColor& color_,
+		void AddSprite(const Texture* tex_, const RectangleI& posInTex, const Vector2I& origin, const Matrix4& transform, const Color& color_,
 		               eSpriteEffects effects_ = eSpriteEffects::SPRITE_EFFECT_NONE);
 		void AddSprite(const Texture *tex_, 
 			const RectangleI &posInTex, const Vector2I &origin, const Vector2 &pos,
-			float rot, const Vector2 &scale, const CColor &color, float ZOrder_, eSpriteEffects effects = eSpriteEffects::SPRITE_EFFECT_NONE);
+			float rot, const Vector2 &scale, const Color &color, float ZOrder_, eSpriteEffects effects = eSpriteEffects::SPRITE_EFFECT_NONE);
 		void AddSprite(Sprite* pSprite, const Vector2 &pos_, 
-			float rot_, const Vector2 &scale_, const CColor &color_, float ZOrder_, eSpriteEffects effects_ = eSpriteEffects::SPRITE_EFFECT_NONE);
+			float rot_, const Vector2 &scale_, const Color &color_, float ZOrder_, eSpriteEffects effects_ = eSpriteEffects::SPRITE_EFFECT_NONE);
 		void AddSprite(Sprite* pSprite_, const Vector2& pos_,
-				float rot_, const CColor& color_, float ZOrder_, eSpriteEffects effects_ = eSpriteEffects::SPRITE_EFFECT_NONE);
+				float rot_, const Color& color_, float ZOrder_, eSpriteEffects effects_ = eSpriteEffects::SPRITE_EFFECT_NONE);
 
 	private:
 		void UpdateBuffer();

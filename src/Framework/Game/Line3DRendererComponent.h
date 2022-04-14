@@ -36,9 +36,9 @@ namespace CasaEngine
 		void Update( const GameTime& gameTime_ ) override;
 		void Draw() override;
 
-		void AddLine(const Vector3& start_, const Vector3& end_, const CColor& color_);
+		void AddLine(const Vector3& start_, const Vector3& end_, const Color& color_);
 		void AddLine(const Vector3& start_, const Vector3& end_, const unsigned int color_);
-		void AddLine(const Vector3 &start_, const CColor &startColor_, const Vector3 &end_, const CColor &endColor_);
+		void AddLine(const Vector3 &start_, const Color &startColor_, const Vector3 &end_, const Color &endColor_);
 		void AddLine(const Vector3 &start_, const unsigned int &startColor_, const Vector3 &end_, const unsigned int &endColor_);
 		
 	private:

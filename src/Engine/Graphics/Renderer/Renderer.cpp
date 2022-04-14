@@ -51,7 +51,7 @@ namespace CasaEngine
 
 		SetClearColor(0
 			, BGFX_CLEAR_COLOR | BGFX_CLEAR_DEPTH | BGFX_CLEAR_STENCIL
-			, CColor::CornflowerBlue
+			, Color::CornflowerBlue
 			, 1.0f
 			, 0);
 
@@ -112,7 +112,7 @@ namespace CasaEngine
 	}
 #endif
 
-	void IRenderer::SetClearColor(unsigned char index_, unsigned short flags, CColor val, float depth, unsigned char stencil) const
+	void IRenderer::SetClearColor(unsigned char index_, unsigned short flags, Color val, float depth, unsigned char stencil) const
 	{
 		bgfx::setViewClear(index_, flags, val.ToRGBA(), depth, stencil);
 	}

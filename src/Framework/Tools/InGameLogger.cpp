@@ -9,7 +9,7 @@
 
 namespace CasaEngine
 {
-	void InGameLogger::AddLog(float delay_, CColor color, const char *fmt, ...)
+	void InGameLogger::AddLog(float delay_, Color color, const char *fmt, ...)
 	{
 		static char s_buffer[1024];
 		va_list Params;

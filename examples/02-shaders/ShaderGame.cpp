@@ -247,8 +247,8 @@ void ShaderGame::SetShadersDefaults()
 {
 	//     if (m_ShadersType == "cartoon")
 	//     {
-	//         //m_PixelShader.SetParameter("color", CColor::White);
-	// 		m_VertexShader.SetParameter("color", CColor::White);
+	//         //m_PixelShader.SetParameter("color", Color::White);
+	// 		m_VertexShader.SetParameter("color", Color::White);
 	//     }
 	//     else if (m_ShadersType == "scale")
 	//     {

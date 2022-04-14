@@ -82,8 +82,8 @@ namespace CasaEngine
 		setVertexBuffer(0, m_VertexBuffer, 0, m_NbLines);
 	}
 
-	void Line2DRendererComponent::AddLine( const Vector2 &start_, const CColor &startColor_, 
-		const Vector2 &end_, const CColor &endColor_ )
+	void Line2DRendererComponent::AddLine( const Vector2 &start_, const Color &startColor_, 
+		const Vector2 &end_, const Color &endColor_ )
 	{
 		AddLine(start_, startColor_.ToABGR(), end_, endColor_.ToABGR());
 	}

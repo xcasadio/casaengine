@@ -21,7 +21,7 @@ namespace CasaEngine
 
 		void Resize(unsigned int width_, unsigned height_);
 
-		void SetClearColor(unsigned char index_, unsigned short flags, CColor val, float depth = 1.0f, unsigned char stencil = 0) const;
+		void SetClearColor(unsigned char index_, unsigned short flags, Color val, float depth = 1.0f, unsigned char stencil = 0) const;
 
 		bool IsDeviceLost() const;
 		void SetDeviceLost();

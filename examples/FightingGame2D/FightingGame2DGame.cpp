@@ -210,7 +210,7 @@ void FightingGame2DGame::DisplayCollision(BaseEntity* pEntity)
 				if (coll.GetShape()->Type() == ShapeType::RECTANGLE)
 				{
 					auto* rect = dynamic_cast<RectangleI*>(coll.GetShape());
-					auto color = coll.GetType() == CollisionType::Defense ? CColor::Blue : CColor::Red;
+					auto color = coll.GetType() == CollisionType::Defense ? Color::Blue : Color::Red;
 					auto pos = transform->GetLocalPosition();
 					const auto scaleX = transform->GetLocalScale().x;
 					const auto scaleY = transform->GetLocalScale().y;
@@ -241,7 +241,7 @@ void FightingGame2DGame::DisplayPosition(BaseEntity *pEntity)
 {
 	auto* line3DRenderer = this->GetGameComponent<Line3DRendererComponent>();
 	const auto position = pEntity->GetComponentMgr()->GetComponent<Transform3DComponent>()->GetLocalPosition();
-	const auto color = CColor::Green;
+	const auto color = Color::Green;
 	const auto size = 50 / 2.0f;
 
 	line3DRenderer->AddLine(Vector3(position.x + size, position.y, 0.0f), Vector3(position.x - size, position.y, 0.0f), color);
@@ -270,7 +270,7 @@ void FightingGame2DGame::DisplayGrid()
 	auto halfNumberOfLines = 100 >> 1;
 	auto cellWidth = 10.0f;
 	auto halfLength = halfNumberOfLines * cellWidth;
-	auto gridColor = CColor::DimGray;
+	auto gridColor = Color::DimGray;
 
 	auto line3DRenderer = this->GetGameComponent<Line3DRendererComponent>();
 	for (int i = 0; i <= halfNumberOfLines; i++)

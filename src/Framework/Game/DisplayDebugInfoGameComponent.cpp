@@ -42,12 +42,12 @@ namespace CasaEngine
 
 		m_pProgram = new Program("vs_3DLines", "fs_3DLines");
 
-		m_Vertices[0].Position = Vector3::Zero();  m_Vertices[0].Color = CColor::Red.ToABGR();
-		m_Vertices[1].Position = Vector3::UnitX(); m_Vertices[1].Color = CColor::Red.ToABGR();
-		m_Vertices[2].Position = Vector3::Zero();  m_Vertices[2].Color = CColor::Green.ToABGR();
-		m_Vertices[3].Position = Vector3::UnitY(); m_Vertices[3].Color = CColor::Green.ToABGR();
-		m_Vertices[4].Position = Vector3::Zero();  m_Vertices[4].Color = CColor::Blue.ToABGR();
-		m_Vertices[5].Position = Vector3::UnitZ(); m_Vertices[5].Color = CColor::Blue.ToABGR();
+		m_Vertices[0].Position = Vector3::Zero();  m_Vertices[0].Color = Color::Red.ToABGR();
+		m_Vertices[1].Position = Vector3::UnitX(); m_Vertices[1].Color = Color::Red.ToABGR();
+		m_Vertices[2].Position = Vector3::Zero();  m_Vertices[2].Color = Color::Green.ToABGR();
+		m_Vertices[3].Position = Vector3::UnitY(); m_Vertices[3].Color = Color::Green.ToABGR();
+		m_Vertices[4].Position = Vector3::Zero();  m_Vertices[4].Color = Color::Blue.ToABGR();
+		m_Vertices[5].Position = Vector3::UnitZ(); m_Vertices[5].Color = Color::Blue.ToABGR();
 
 		m_VertexBuffer = bgfx::createVertexBuffer(bgfx::makeRef(m_Vertices, 6 * sizeof(VertexPositionColor)), VertexPositionColor::ms_layout);
 	}

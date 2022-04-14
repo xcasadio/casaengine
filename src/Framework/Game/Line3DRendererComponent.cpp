@@ -86,7 +86,7 @@ namespace CasaEngine
 		submit(0, m_pProgram->Handle());
 	}
 
-	void Line3DRendererComponent::AddLine(const Vector3& start_, const Vector3& end_, const CColor& color_)
+	void Line3DRendererComponent::AddLine(const Vector3& start_, const Vector3& end_, const Color& color_)
 	{
 		AddLine(start_, color_.ToABGR(), end_, color_.ToABGR());
 	}
@@ -96,7 +96,7 @@ namespace CasaEngine
 		AddLine(start_, color_, end_, color_);
 	}
 
-	void Line3DRendererComponent::AddLine( const Vector3 &start_, const CColor &startColor_, const Vector3 &end_, const CColor &endColor_ )
+	void Line3DRendererComponent::AddLine( const Vector3 &start_, const Color &startColor_, const Vector3 &end_, const Color &endColor_ )
 	{
 		AddLine(start_, startColor_.ToABGR(), end_, endColor_.ToABGR());
 	}

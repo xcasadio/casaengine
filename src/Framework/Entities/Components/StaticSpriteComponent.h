@@ -22,7 +22,7 @@ namespace CasaEngine
 		Sprite* m_pSprite;
 		SpriteRenderer*	m_pSpriteRenderer;
 		Transform3DComponent* m_pTransform;
-		CColor m_Color;		
+		Color m_Color;		
 		eSpriteEffects m_SpriteEffect;
 
 	public:
@@ -32,8 +32,8 @@ namespace CasaEngine
 		std::string GetSpriteID() const;
 		void SetSpriteID(std::string val);
 
-		CColor GetColor() const;
-		void SetColor(CColor val);
+		Color GetColor() const;
+		void SetColor(Color val);
 		eSpriteEffects GetSpriteEffect() const;
 		void SetSpriteEffect(eSpriteEffects val);
 

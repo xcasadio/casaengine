@@ -17,7 +17,7 @@ using namespace CasaEngine;
 
 void Log(const char* name, const char* msg)
 {
-	IN_GAME_LOG(logDelay, CColor::Green, "%s: %s", name, msg);
+	IN_GAME_LOG(logDelay, Color::Green, "%s: %s", name, msg);
 }
 
 //------------------------------------------------------------------------methods for EnterMineAndDigForNugget

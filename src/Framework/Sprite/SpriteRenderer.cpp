@@ -139,7 +139,7 @@ namespace CasaEngine
 		update(m_VertexBuffer, 0, bgfx::makeRef(m_pDatas, size));
 	}
 
-	void SpriteRenderer::AddSprite(const Sprite* sprite, const Matrix4& transform, const CColor& color_, eSpriteEffects effects_)
+	void SpriteRenderer::AddSprite(const Sprite* sprite, const Matrix4& transform, const Color& color_, eSpriteEffects effects_)
 	{
 		if (sprite == nullptr)
 		{
@@ -150,7 +150,7 @@ namespace CasaEngine
 	}
 
 	void SpriteRenderer::AddSprite(const Texture* tex_,
-	                               const RectangleI& posInTex, const Vector2I& origin, const Matrix4& transform, const CColor& color_, eSpriteEffects effects_)
+	                               const RectangleI& posInTex, const Vector2I& origin, const Matrix4& transform, const Color& color_, eSpriteEffects effects_)
 	{
 		if (tex_ == nullptr)
 		{
@@ -231,7 +231,7 @@ namespace CasaEngine
 
 	void SpriteRenderer::AddSprite(const Texture* tex_,
 		const RectangleI& posInTex, const Vector2I& origin, const Vector2& pos,
-		float rot, const Vector2& scale, const CColor& color, float z_order, eSpriteEffects effects)
+		float rot, const Vector2& scale, const Color& color, float z_order, eSpriteEffects effects)
 	{
 		if (tex_ == nullptr)
 		{
@@ -261,7 +261,7 @@ namespace CasaEngine
 	}
 
 	void SpriteRenderer::AddSprite(Sprite* pSprite, const Vector2 &pos_, 
-		float rot_, const Vector2 &scale_, const CColor &color_, float ZOrder_, eSpriteEffects effects_)
+		float rot_, const Vector2 &scale_, const Color &color_, float ZOrder_, eSpriteEffects effects_)
 	{
 		if (pSprite->GetTexture2D() == nullptr)
 		{
@@ -272,7 +272,7 @@ namespace CasaEngine
 			pSprite->GetSpriteData()->GetOrigin(), pos_, rot_, scale_, color_, ZOrder_, effects_);
 	}
 
-	void SpriteRenderer::AddSprite(Sprite* pSprite_, const Vector2& pos_, float rot_, const CColor& color_,
+	void SpriteRenderer::AddSprite(Sprite* pSprite_, const Vector2& pos_, float rot_, const Color& color_,
 		float ZOrder_, eSpriteEffects effects_)
 	{
 		AddSprite(pSprite_->GetTexture2D(), pSprite_->GetSpriteData()->GetPositionInTexture(),

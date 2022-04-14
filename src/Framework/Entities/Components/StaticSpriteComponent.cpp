@@ -39,12 +39,12 @@ namespace CasaEngine
 		m_pSprite = new Sprite(*Game::Instance().GetAssetManager().GetAsset<SpriteData>(m_SpriteID));
 	}
 
-	CColor StaticSpriteComponent::GetColor() const
+	Color StaticSpriteComponent::GetColor() const
 	{
 		return m_Color;
 	}
 
-	void StaticSpriteComponent::SetColor(CColor val)
+	void StaticSpriteComponent::SetColor(Color val)
 	{
 		m_Color = val;
 	}

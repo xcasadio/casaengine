@@ -20,7 +20,7 @@ namespace CasaEngine
 	{
 	public:
 
-		void AddLog(float delay, CColor color, const char* fmt, ...);
+		void AddLog(float delay, Color color, const char* fmt, ...);
 		void Update(const GameTime& gameTime_);
 		void ShowWindow();
 
@@ -29,7 +29,7 @@ namespace CasaEngine
 		{
 			float delay{}; // in ms
 			const char* text{};
-			CColor color;
+			Color color;
 		};
 
 		std::vector<LogData> m_Lines;
