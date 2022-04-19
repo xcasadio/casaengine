@@ -768,7 +768,7 @@
     <ClInclude Include="..\..\src\Framework\Map2D\TiledMapComponent.h">
       <Filter>Framework\Map2D</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\UI\ImguiAdapter.h">
+    <ClInclude Include="..\..\src\Framework\UI\ImGuiAdapter.h">
       <Filter>Framework\UI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Framework\Entities\Components\Cameras\Camera2DTargetedComponent.h">
@@ -1313,7 +1313,7 @@
     <ClCompile Include="..\..\src\Core\ContainerUtil.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Framework\UI\ImguiAdapter.cpp">
+    <ClCompile Include="..\..\src\Framework\UI\ImGuiAdapter.cpp">
       <Filter>Framework\UI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Framework\Entities\Components\Cameras\Camera2DTargetedComponent.cpp">

@@ -148,8 +148,32 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Editor Debug|x64'">
     <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>EDITOR;BX_CONFIG_DEBUG;USE_BULLET_PHYSICS;x64;NOMINMAX;_DEBUG;_WINDOWS;_USRDLL;__STDC_LIMIT_MACROS;__STDC_FORMAT_MACROS;__STDC_CONSTANT_MACROS;_SCL_SECURE=0;_SECURE_SCL=0;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_WIN32;_WIN64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../../src/Core;../../src/Engine;../../src/Framework;../../external/bgfx/include/;../../external/bimg/include;../../external/bx/include;../../external/bx/include/compat/msvc;../../external/bullet/include;..\..\external\SFML\include;../../external/ib-compress;../../external/stb;../../external/;../../external/dear-imgui;../../external/cereal/include</AdditionalIncludeDirectories>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MinimalRebuild>false</MinimalRebuild>
+      <UndefinePreprocessorDefinitions>
+      </UndefinePreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>Bullet3Collision_Debug.lib;Bullet3Common_Debug.lib;Bullet3Dynamics_Debug.lib;Bullet3Geometry_Debug.lib;Bullet3OpenCL_clew_Debug.lib;BulletCollision_Debug.lib;BulletDynamics_Debug.lib;BulletSoftBody_Debug.lib;LinearMath_Debug.lib;sfml-audio-d.lib;sfml-network-d.lib;sfml-system-d.lib;sfml-window-d.lib;bgfxDebug.lib;bimgDebug.lib;bimg_decodeDebug.lib;bx.lib;lua_d.lib;toluapp_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)$(Configuration)\;../../external/bgfx/win64_vs2010;../../external/bullet/lib/windows;..\..\external\GLU 1.3;..\..\external\SFML\lib;../../external/tolua++-1.0.93/lib/windows;../../external/lua-5.1.4/lib/windows;../../external/CEGUI/lib;../../external/SFML/lib/x64</AdditionalLibraryDirectories>
+      <Profile>false</Profile>
+      <OptimizeReferences>false</OptimizeReferences>
+      <IgnoreSpecificDefaultLibraries>msvcprtd.lib;MSVCRTD.lib</IgnoreSpecificDefaultLibraries>
+    </Link>
+    <Lib>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+      <AdditionalLibraryDirectories>../../external/bgfx/lib</AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\..\external\dear-imgui\imconfig.h" />
@@ -384,7 +408,7 @@
     <ClInclude Include="..\..\src\Framework\Tools\DebugSystem.h" />
     <ClInclude Include="..\..\src\Framework\Tools\InGameLogger.h" />
     <ClInclude Include="..\..\src\Framework\UI\Console.h" />
-    <ClInclude Include="..\..\src\Framework\UI\ImguiAdapter.h" />
+    <ClInclude Include="..\..\src\Framework\UI\ImGuiAdapter.h" />
     <ClInclude Include="..\..\src\Framework\UI\imgui\common.h" />
     <ClInclude Include="..\..\src\Framework\UI\imgui\droidsans.ttf.h" />
     <ClInclude Include="..\..\src\Framework\UI\imgui\fs_imgui_image.bin.h" />
@@ -555,7 +579,7 @@
     <ClCompile Include="..\..\src\Framework\Tools\DebugSystem.cpp" />
     <ClCompile Include="..\..\src\Framework\Tools\InGameLogger.cpp" />
     <ClCompile Include="..\..\src\Framework\UI\Console.cpp" />
-    <ClCompile Include="..\..\src\Framework\UI\ImguiAdapter.cpp" />
+    <ClCompile Include="..\..\src\Framework\UI\ImGuiAdapter.cpp" />
     <ClCompile Include="..\..\src\Framework\UI\imgui\bgfx-imgui.cpp" />
     <ClCompile Include="..\..\src\Framework\World\World.cpp" />
   </ItemGroup>
