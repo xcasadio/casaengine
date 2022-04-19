@@ -137,7 +137,7 @@ namespace CasaEngineTests
         EXPECT_EQ(expected, actual);
     }
 
-    // A test for Normalize (Quaternion)
+    // A test for Normalized (Quaternion)
 
     TEST(Quaternion, NormalizeTest)
     {
@@ -148,8 +148,8 @@ namespace CasaEngineTests
         EXPECT_EQ(expected, actual);
     }
 
-    // A test for Normalize (Quaternion)
-    // Normalize zero length quaternion
+    // A test for Normalized (Quaternion)
+    // Normalized zero length quaternion
 
     TEST(Quaternion, NormalizeTest1)
     {

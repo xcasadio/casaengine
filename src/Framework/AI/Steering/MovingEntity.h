@@ -139,8 +139,8 @@ inline bool MovingEntity::RotateHeadingToFacePosition(Vector2 target)
   //notice how the direction of rotation has to be determined when creating
   //the rotation matrix
 	RotationMatrix.Rotate(angle * m_vHeading.Sign(toTarget));	
-  RotationMatrix.TransformVector2F(m_vHeading);
-  RotationMatrix.TransformVector2F(m_vVelocity);
+  RotationMatrix.TransformVector(m_vHeading);
+  RotationMatrix.TransformVector(m_vVelocity);
 
   //finally recreate m_vSide
   m_vSide = m_vHeading.GetOrthogonal();

@@ -204,7 +204,7 @@ namespace CasaEngine
 				{     
 					Transform2DComponent *pTrans = (*it)->GetComponentMgr()->template GetComponent<Transform2DComponent>();
 
-					if (pTrans->GetPosition().DistanceSq(TargetPos) <
+					if (pTrans->GetPosition().DistanceSquared(TargetPos) <
 						QueryRadius*QueryRadius)
 					{
 						*curNbor++ = *it;

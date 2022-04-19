@@ -678,7 +678,7 @@ Vector2 SteeringBehaviorComponent::CalculateDithered(float elapsedTime_)
 Vector2 SteeringBehaviorComponent::Seek(Vector2 TargetPos)
 {
 //   Vector2 DesiredVelocity = TargetPos - m_Position2D;
-//   DesiredVelocity.Normalize();
+//   DesiredVelocity.Normalized();
 //   DesiredVelocity *= this->GetEntity()->GetPhysicalEntity().MaxSpeed();
 // 
 //   return (DesiredVelocity - this->GetEntity()->GetPhysicalEntity().Velocity());
@@ -701,7 +701,7 @@ Vector2 SteeringBehaviorComponent::Flee(Vector2 TargetPos)
 //   */
 // 
 //   Vector2 DesiredVelocity = m_Position2D - TargetPos;
-//   DesiredVelocity.Normalize();
+//   DesiredVelocity.Normalized();
 //   DesiredVelocity *= this->GetEntity()->GetPhysicalEntity().MaxSpeed();
 // 
 //   return (DesiredVelocity - this->GetEntity()->GetPhysicalEntity().Velocity());
@@ -829,7 +829,7 @@ Vector2 SteeringBehaviorComponent::Wander(float elapsedTime_)
 //                               RandomClamped() * JitterThisTimeSlice);
 // 
 //   //reproject this new vector back on to a unit circle
-//   m_vWanderTarget.Normalize();
+//   m_vWanderTarget.Normalized();
 // 
 //   //increase the length of the vector to the same as the radius
 //   //of the wander circle
@@ -1113,7 +1113,7 @@ Vector2 SteeringBehaviorComponent::Separation(const std::vector<BaseEntity*>& /*
     {
       Vector2 ToAgent = pos - neighbors[a]->GetComponentMgr()->GetComponent<Transform2DComponent>()->GetPosition();
 	  float l = ToAgent.Length();
-	  ToAgent.Normalize();
+	  ToAgent.Normalized();
 
       //scale the force inversely proportional to the agents distance  
       //from its neighbor.
@@ -1208,7 +1208,7 @@ Vector2 SteeringBehaviorComponent::Cohesion(const std::vector<BaseEntity*>& /*ne
 
   //the magnitude of cohesion is usually much larger than separation or
   //allignment so it usually helps to normalize it.
-  SteeringForce.Normalize();*/
+  SteeringForce.Normalized();*/
   return SteeringForce;
 }
 
@@ -1240,7 +1240,7 @@ Vector2 SteeringBehaviorComponent::SeparationPlus(const std::vector<BaseEntity*>
 //     {
 //       Vector2 ToAgent = pos - pV->GetComponentMgr()->GetComponent<Transform2DComponent>()->GetPosition();
 // 	  float l = ToAgent.Length();
-// 	  ToAgent.Normalize();
+// 	  ToAgent.Normalized();
 // 
 //       //scale the force inversely proportional to the agents distance  
 //       //from its neighbor.
@@ -1332,7 +1332,7 @@ Vector2 SteeringBehaviorComponent::CohesionPlus(const std::vector<BaseEntity*>& 
 // 
 // 	//the magnitude of cohesion is usually much larger than separation or
 // 	//allignment so it usually helps to normalize it.
-// 	SteeringForce.Normalize();
+// 	SteeringForce.Normalized();
 	return SteeringForce;
 }
 
@@ -1357,7 +1357,7 @@ CasaEngine::Vector2 SteeringBehaviorComponent::Interpose( BaseEntity* AgentA, Ba
 //   //taken to reach the mid way point at the current time at at max speed.
 //   Vector2 MidPoint = (pATrans2D->GetPosition() + pBTrans2D->GetPosition()) / 2.0f;
 // 
-//   float TimeToReachMidPoint = m_Position2D.DistanceSq(MidPoint) /
+//   float TimeToReachMidPoint = m_Position2D.DistanceSquared(MidPoint) /
 //                                this->GetEntity()->GetPhysicalEntity().MaxSpeed();
 // 
 //   //now we have T, we assume that agent A and agent B will continue on a
@@ -1402,7 +1402,7 @@ CasaEngine::Vector2 SteeringBehaviorComponent::Hide( BaseEntity* hunter,
 //             
 // 	//work in distance-squared space to find the closest hiding
 // 	//spot to the agent
-// 	float dist = HidingSpot.DistanceSq(m_Position2D);
+// 	float dist = HidingSpot.DistanceSquared(m_Position2D);
 // 
 // 	if (dist < DistToClosest)
 // 	{

@@ -190,7 +190,7 @@ void      PhysicalEntity::SetMaxTurnRate(float val){m_fMaxTurnRate = val;}
 inline bool PhysicalEntity::RotateHeadingToFacePosition(Vector3 target)
 {
 // 	Vector3 toTarget = target - m_pTransform->GetPosition();
-// 	toTarget.Normalize();
+// 	toTarget.Normalized();
 // 
 // 	//first determine the angle between the heading vector and the target
 // 	float angle = acos(m_vHeading.Dot(toTarget));

@@ -653,7 +653,7 @@ namespace CasaEngineTests
         EXPECT_EQ(expected, actual);
     }
 
-    // A test for Normalize (Vector3f)
+    // A test for Normalized (Vector3f)
 
     TEST(Vector3, NormalizeTest)
     {
@@ -667,8 +667,8 @@ namespace CasaEngineTests
         EXPECT_EQ(expected, actual);
     }
 
-    // A test for Normalize (Vector3f)
-    // Normalize vector of length one
+    // A test for Normalized (Vector3f)
+    // Normalized vector of length one
 
     TEST(Vector3, NormalizeTest1)
     {
@@ -679,8 +679,8 @@ namespace CasaEngineTests
         EXPECT_EQ(expected, actual);
     }
 
-    // A test for Normalize (Vector3f)
-    // Normalize vector of length zero
+    // A test for Normalized (Vector3f)
+    // Normalized vector of length zero
 
     TEST(Vector3, NormalizeTest2)
     {

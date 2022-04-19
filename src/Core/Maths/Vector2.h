@@ -1,5 +1,4 @@
-#ifndef VECTOR2_H
-#define VECTOR2_H
+#pragma once
 
 #include <iostream>
 #include <cereal/access.hpp>
@@ -7,6 +6,10 @@
 
 namespace CasaEngine
 {
+	class Matrix4;
+	class Quaternion;
+
+
 	template <class T>
 	class CVector2
 	{
@@ -26,7 +29,9 @@ namespace CasaEngine
 		T Length() const;
 		T LengthSquared() const;
 		void Normalize();
-		
+		static CVector2<T> Normalized(const CVector2<T>& v1);
+
+		static float Dot(const CVector2<T>& v1, const CVector2<T>& v2);
 		float Dot(const CVector2<T>& v2)const;
 
 		/*
@@ -37,55 +42,51 @@ namespace CasaEngine
 		enum { clockwise = 1, anticlockwise = -1 };
 
 		int       Sign(const CVector2<T>& v2)const;
-
-		/*
-		 * returns the vector that is perpendicular to this one.
-		 */
 		CVector2<T>  GetOrthogonal() const;
-
-		/*
-		 * adjusts x and y so that the length of the vector does not exceed max
-		 */
 		void      Truncate(float max);
 
-		/*
-		 * returns the distance between this vector and th one passed as a parameter
-		 */
+		static float Distance(const CVector2<T>& v1, const CVector2<T>& v2);
+		static float DistanceSquared(const CVector2<T>& v1, const CVector2<T>& v2);
 		float    Distance(const CVector2<T>& v2)const;
+		float    DistanceSquared(const CVector2<T>& v2)const;
 
-		/*
-		 * squared version of above.
-		 */
-		float    DistanceSq(const CVector2<T>& v2)const;
+		void      Reflect(const CVector2<T>& normal);
+		static CVector2<T> Reflect(const CVector2<T>& vector, const CVector2<T>& normal);
+		static CVector2<T> Clamp(const CVector2<T>& value1, const CVector2<T>& min, const CVector2<T>& max);
+		static CVector2<T> Lerp(const CVector2<T>& value1, const CVector2<T>& value2, float amount);
+		static CVector2<T> Min(const CVector2<T>& v1, const CVector2<T>& v2);
+		static CVector2<T> Max(const CVector2<T>& v1, const CVector2<T>& v2);
+		static CVector2<T> Abs(const CVector2<T>& v);
+		CVector2<T> GetReverse()const;
 
-		/*
-		 * given a normalized vector this method reflects the vector it
-		 * is operating upon. (like the path of a ball bouncing off a wall)
-		 */
-		void      Reflect(const CVector2<T>& norm);
+		static CVector2<T> Transform(CVector2<T> position, Matrix4 matrix);
+		static CVector2<T> TransformNormal(CVector2<T> normal, Matrix4 matrix);
+		static CVector2<T> Transform(CVector2<T> value, Quaternion rotation);
 
-		/*
-		 * returns the vector that is the reverse of this vector
-		 */
-		CVector2<T>  GetReverse()const;
-
+		CVector2<T> operator =(const CVector2<T>& v);
 		CVector2<T> operator +() const;
 		CVector2<T> operator -() const;
-
 		CVector2<T> operator +(const CVector2<T>& v) const;
 		CVector2<T> operator -(const CVector2<T>& v) const;
-
 		const CVector2<T>& operator +=(const CVector2<T>& v);
 		const CVector2<T>& operator -=(const CVector2<T>& v);
-
+		CVector2<T> operator /(const CVector2<T>& v) const;
+		CVector2<T> operator *(const CVector2<T> &v) const;
 		CVector2<T> operator *(T t) const;
 		CVector2<T> operator /(T t) const;
-
 		const CVector2<T>& operator *=(T t);
 		const CVector2<T>& operator /=(T t);
-
 		bool operator ==(const CVector2<T>& v) const;
 		bool operator !=(const CVector2<T>& v) const;
+
+		static CVector2<T> Add(CVector2<T> left, CVector2<T> right);
+		static CVector2<T> Subtract(CVector2<T> left, CVector2<T> right);
+		static CVector2<T> Multiply(CVector2<T> left, CVector2<T> right);
+		static CVector2<T> Multiply(CVector2<T> left, T right);
+		static CVector2<T> Multiply(T left, CVector2<T> right);
+		static CVector2<T> Divide(CVector2<T> left, CVector2<T> right);
+		static CVector2<T> Divide(CVector2<T> left, T divisor);
+		static CVector2<T> Negate(CVector2<T> value);
 
 		operator T* ();
 
@@ -202,6 +203,20 @@ namespace CasaEngine
 	}
 
 	template <class T>
+	CVector2<T> CVector2<T>::Normalized(const CVector2<T>& v1)
+	{
+		CVector2<T> result = v1;
+		result.Normalize();
+		return result;
+	}
+
+	template <class T>
+	float CVector2<T>::Dot(const CVector2<T>& v1, const CVector2<T>& v2)
+	{
+		return v1.Dot(v2);
+	}
+
+	template <class T>
 	float CVector2<T>::Dot(const CVector2<T>& v2) const
 	{
 		return x * v2.x + y * v2.y;
@@ -238,7 +253,7 @@ namespace CasaEngine
 
 	//  calculates the euclidean distance squared between two vectors
 	template <class T>
-	float CVector2<T>::DistanceSq(const CVector2<T>& v2) const
+	float CVector2<T>::DistanceSquared(const CVector2<T>& v2) const
 	{
 		const float ySeparation = v2.y - y;
 		const float xSeparation = v2.x - x;
@@ -258,14 +273,73 @@ namespace CasaEngine
 		}
 	}
 
+	template <class T>
+	float CVector2<T>::Distance(const CVector2<T>& v1, const CVector2<T>& v2)
+	{
+		return v1.Distance(v2);
+	}
+
+	template <class T>
+	float CVector2<T>::DistanceSquared(const CVector2<T>& v1, const CVector2<T>& v2)
+	{
+		return v1.DistanceSquared(v2);
+	}
+
 	//  given a normalized vector this method reflects the vector it
 	//  is operating upon. (like the path of a ball bouncing off a wall)
 	template <class T>
-	void CVector2<T>::Reflect(const CVector2<T>& norm)
+	void CVector2<T>::Reflect(const CVector2<T>& normal)
 	{
-		CVector2<T> res = norm.GetReverse() * (2.0f * Dot(norm));
-		x += res.x;
-		y += res.y;
+		*this = Reflect(*this, normal);
+	}
+
+	template <class T>
+	CVector2<T> CVector2<T>::Reflect(const CVector2<T>& vector, const CVector2<T>& normal)
+	{
+		float dot = Dot(vector, normal);
+		return vector - (2.0f * dot * normal);
+	}
+
+	template <class T>
+	CVector2<T> CVector2<T>::Clamp(const CVector2<T>& value1, const CVector2<T>& min, const CVector2<T>& max)
+	{
+		// This compare order is very important!!!
+		// We must follow HLSL behavior in the case user specified min value is bigger than max value.
+		float x = value1.x;
+		x = (x > max.x) ? max.x : x;
+		x = (x < min.x) ? min.x : x;
+
+		float y = value1.y;
+		y = (y > max.y) ? max.y : y;
+		y = (y < min.y) ? min.y : y;
+
+		return { x, y };
+	}
+
+	template <class T>
+	CVector2<T> CVector2<T>::Lerp(const CVector2<T>& value1, const CVector2<T>& value2, float amount)
+	{
+		return {
+			value1.x + (value2.x - value1.x) * amount,
+			value1.y + (value2.y - value1.y) * amount };
+	}
+
+	template <class T>
+	CVector2<T> CVector2<T>::Min(const CVector2<T>& v1, const CVector2<T>& v2)
+	{
+		return { std::min(v1.x, v2.x), std::min(v1.y, v2.y) };
+	}
+
+	template <class T>
+	CVector2<T> CVector2<T>::Max(const CVector2<T>& v1, const CVector2<T>& v2)
+	{
+		return { std::max(v1.x, v2.x), std::max(v1.y, v2.y) };
+	}
+
+	template <class T>
+	CVector2<T> CVector2<T>::Abs(const CVector2<T> &v)
+	{
+		return CVector2<T>(std::fabsf(v.x), std::fabsf(v.y));
 	}
 
 	//  returns the vector that is the reverse of this vector
@@ -273,6 +347,48 @@ namespace CasaEngine
 	CVector2<T> CVector2<T>::GetReverse() const
 	{
 		return CVector2<T>(-this->x, -this->y);
+	}
+
+	template <class T>
+	CVector2<T> CVector2<T>::Transform(CVector2<T> position, Matrix4 matrix)
+	{
+		return {
+			position.x * matrix.m11 + position.y * matrix.m21 + matrix.m41,
+			position.x * matrix.m12 + position.y * matrix.m22 + matrix.m42 };
+	}
+
+	template <class T>
+	CVector2<T> CVector2<T>::TransformNormal(CVector2<T> normal, Matrix4 matrix)
+	{
+		return {
+			normal.x * matrix.m11 + normal.y * matrix.m21,
+			normal.x * matrix.m12 + normal.y * matrix.m22 };
+	}
+
+	template <class T>
+	CVector2<T> CVector2<T>::Transform(CVector2<T> value, Quaternion rotation)
+	{
+		float x2 = rotation.x + rotation.x;
+		float y2 = rotation.y + rotation.y;
+		float z2 = rotation.z + rotation.z;
+
+		float wz2 = rotation.w * z2;
+		float xx2 = rotation.x * x2;
+		float xy2 = rotation.x * y2;
+		float yy2 = rotation.y * y2;
+		float zz2 = rotation.z * z2;
+
+		return {
+			value.x * (1.0f - yy2 - zz2) + value.y * (xy2 - wz2),
+			value.x * (xy2 + wz2) + value.y * (1.0f - xx2 - zz2) };
+	}
+
+	template <class T>
+	CVector2<T> CVector2<T>::operator=(const CVector2<T>& v)
+	{
+		x = v.x;
+		y = v.y;
+		return *this;
 	}
 
 	template <class T>
@@ -318,6 +434,18 @@ namespace CasaEngine
 	}
 
 	template <class T>
+	CVector2<T> CVector2<T>::operator/(const CVector2<T>& v) const
+	{
+		return CVector2<T>(x / v.x, y / v.y);
+	}
+
+	template <class T>
+	CVector2<T> CVector2<T>::operator*(const CVector2<T>& v) const
+	{
+		return CVector2<T>(x * v.x, y * v.y);
+	}
+
+	template <class T>
 	CVector2<T> CVector2<T>::operator *(T t) const
 	{
 		return CVector2<T>(x * t, y * t);
@@ -358,6 +486,54 @@ namespace CasaEngine
 	bool CVector2<T>::operator !=(const CVector2<T>& v) const
 	{
 		return !(*this == v);
+	}
+
+	template <class T>
+	CVector2<T> CVector2<T>::Add(CVector2<T> left, CVector2<T> right)
+	{
+		return left + right;
+	}
+
+	template <class T>
+	CVector2<T> CVector2<T>::Subtract(CVector2<T> left, CVector2<T> right)
+	{
+		return left - right;
+	}
+
+	template <class T>
+	CVector2<T> CVector2<T>::Multiply(CVector2<T> left, CVector2<T> right)
+	{
+		return left * right;
+	}
+
+	template <class T>
+	CVector2<T> CVector2<T>::Multiply(CVector2<T> left, T right)
+	{
+		return left * right;
+	}
+
+	template <class T>
+	CVector2<T> CVector2<T>::Multiply(T left, CVector2<T> right)
+	{
+		return left * right;
+	}
+
+	template <class T>
+	CVector2<T> CVector2<T>::Divide(CVector2<T> left, CVector2<T> right)
+	{
+		return left / right;
+	}
+
+	template <class T>
+	CVector2<T> CVector2<T>::Divide(CVector2<T> left, T divisor)
+	{
+		return left / divisor;
+	}
+
+	template <class T>
+	CVector2<T> CVector2<T>::Negate(CVector2<T> value)
+	{
+		return -value;
 	}
 
 	template <class T>
@@ -408,5 +584,3 @@ namespace CasaEngine
 		return Stream << Vector.x << " " << Vector.y;
 	}
 }
-
-#endif

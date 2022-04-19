@@ -36,7 +36,7 @@ namespace CasaEngine
 		matTransform.Translate(pos.x, pos.y);
 
 		//now transform the object's vertices
-		matTransform.TransformVector2List(TranVector2Fs);
+		matTransform.TransformVectors(TranVector2Fs);
 
 		return TranVector2Fs;
 	}
@@ -99,7 +99,7 @@ namespace CasaEngine
 		matTransform.Translate(AgentPosition.x, AgentPosition.y);
 
 		//now transform the vertices
-		matTransform.TransformVector2F(TransPoint);
+		matTransform.TransformVector(TransPoint);
 
 		return TransPoint;
 	}
@@ -122,7 +122,7 @@ namespace CasaEngine
 		matTransform.Rotate(AgentHeading, AgentSide);
 
 		//now transform the vertices
-		matTransform.TransformVector2F(TransVec);
+		matTransform.TransformVector(TransVec);
 
 		return TransVec;
 	}
@@ -150,7 +150,7 @@ namespace CasaEngine
 		matTransform.a31 = Tx;				matTransform.a32 = Ty;
 
 		//now transform the vertices
-		matTransform.TransformVector2F(TransPoint);
+		matTransform.TransformVector(TransPoint);
 
 		return TransPoint;
 	}
@@ -173,7 +173,7 @@ namespace CasaEngine
 		matTransform.a21 = AgentHeading.y; matTransform.a22 = AgentSide.y;
 
 		//now transform the vertices
-		matTransform.TransformVector2F(TransPoint);
+		matTransform.TransformVector(TransPoint);
 
 		return TransPoint;
 	}
@@ -191,7 +191,7 @@ namespace CasaEngine
 		mat.Rotate(ang);
 
 		//now transform the object's vertices
-		mat.TransformVector2F(v);
+		mat.TransformVector(v);
 	}
 
 	//------------------------ CreateWhiskers ------------------------------------

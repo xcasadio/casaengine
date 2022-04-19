@@ -303,7 +303,7 @@ namespace CasaEngine
 		//create a new aspect based on pitch and yaw
 		m_ArcBallOrientation = q1 * q2;
 		//normalize to reduce errors
-		//orientation.Normalize(); ??
+		//orientation.Normalized(); ??
 	}
 
 	/// <summary>
@@ -346,7 +346,7 @@ namespace CasaEngine
 		//rotate the aspect by the angle
 		m_ArcBallOrientation = m_ArcBallOrientation * q1;
 		//normalize to reduce errors
-		//m_ArcBallOrientation.Normalize();
+		//m_ArcBallOrientation.Normalized();
 		*/
 	}
 
