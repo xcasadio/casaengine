@@ -261,11 +261,9 @@ void Animation2DPlayerGame::Update(const GameTime& gameTime_)
 		m_LastAnimationIndexSelected = m_AnimationIndexSelected;
 	}
 
-	Game::Update(gameTime_);
+	m_FrameIndexSelected = m_pAnimatedSprite->GetCurrentFrameIndex();
 
-	//DisplayGrid();
-	DisplayCollisions();
-	DisplayPosition();
+	Game::Update(gameTime_);
 }
 
 void Animation2DPlayerGame::DisplayCollisions()
@@ -325,7 +323,7 @@ void Animation2DPlayerGame::RenameAnimation(const char* old_name, const char* ne
 
 void Animation2DPlayerGame::DisplayUI()
 {
-	ImGui::SetNextWindowSize(ImVec2(300, 400), ImGuiCond_FirstUseEver);
+	ImGui::SetNextWindowSize(ImVec2(400, 400), ImGuiCond_FirstUseEver);
 	ImGui::SetNextWindowPos(ImVec2(0, 0));
 
 	if (ImGui::Begin("Animation Player"))
@@ -362,7 +360,17 @@ void Animation2DPlayerGame::DisplayUI()
 			}
 		}
 
-		ImGui::Combo("Frames", &m_FrameIndexSelected, new const char* [] { "test" }, 1);
+		std::vector<const char*> frameNames;
+		for (const auto& frame : m_pAnimatedSprite->GetCurrentAnimation()->GetAnimation2DData()->GetFrames())
+		{
+			auto str = frame.GetSpriteId();
+			auto* writable = new char[str.size() + 1];
+			std::copy(str.begin(), str.end(), writable);
+			writable[str.size()] = '\0';
+			frameNames.push_back(writable);
+		}
+		int defaultIndex = 0;
+		ImGui::Combo("Frames", m_FrameIndexSelected > 0 ? &m_FrameIndexSelected : &defaultIndex, &frameNames[0], frameNames.size());
 
 		std::vector<const char*> collisionNames;
 		auto* frames = m_pAnimatedSprite->GetCurrentAnimation();
@@ -379,7 +387,7 @@ void Animation2DPlayerGame::DisplayUI()
 			writable[str.size()] = '\0';
 			collisionNames.push_back(writable);
 		}
-		ImGui::Combo("Collisions", &m_CollisionIndexSelected, &collisionNames[0], spriteData->GetCollisions().size());
+		ImGui::Combo("Collisions", &m_CollisionIndexSelected, &collisionNames[0], collisionNames.size());
 
 		ImGui::Button("+");
 		ImGui::SameLine();
@@ -433,7 +441,10 @@ void Animation2DPlayerGame::DisplayGrid()
 
 void Animation2DPlayerGame::Draw()
 {
-	Game::Draw();
-
+	//DisplayGrid();
+	DisplayCollisions();
+	DisplayPosition();
 	DisplayUI();
+
+	Game::Draw();
 }

@@ -1,32 +1,34 @@
-#include "ImguiAdapter.h"
+#include "ImGuiAdapter.h"
 #include "imgui/bgfx-imgui.h"
 
 namespace CasaEngine
 {
-	std::map<int, int> ImguiAdapter::m_Vars;
+	std::map<int, int> ImGuiAdapter::m_Vars;
 
-	void ImguiAdapter::Create(float _fontSize)
+	void ImGuiAdapter::Create(float _fontSize)
 	{
 		::imguiCreate(_fontSize);
 	}
 
-	void ImguiAdapter::Destroy()
+	void ImGuiAdapter::Destroy()
 	{
 		::imguiDestroy();
 	}
 
-	void ImguiAdapter::BeginFrame(unsigned short _width, unsigned short _height, unsigned char _view /*= 255*/)
+	void ImGuiAdapter::BeginFrame(unsigned short _width, unsigned short _height, unsigned char _view /*= 255*/)
 	{
+		ImGuiIO& io = ImGui::GetIO();
+		io.DisplaySize = ImVec2(_width, _height);
 		//Get status of mouse and keyboard
 		::imguiBeginFrame(0, 0, 0, 0, _width, _height);
 	}
 
-	void ImguiAdapter::EndFrame()
+	void ImGuiAdapter::EndFrame()
 	{
 		::imguiEndFrame();
 	}
 
-	void ImguiAdapter::DisplayUI4Material(Material &mat_, int x_, int y_, int width_, int height_, bool enabled_)
+	void ImGuiAdapter::DisplayUI4Material(Material &mat_, int x_, int y_, int width_, int height_, bool enabled_)
 	{
 		int id = (int)(&mat_);
 

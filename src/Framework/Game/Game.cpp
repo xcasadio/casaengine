@@ -41,7 +41,7 @@
 #include "MeshRendererGameComponent.h"
 #include "Sprite/SpriteRenderer.h"
 #include "Tools/InGameLogger.h"
-#include "UI/ImguiAdapter.h"
+#include "UI/ImGuiAdapter.h"
 
 namespace CasaEngine
 {
@@ -295,8 +295,6 @@ namespace CasaEngine
 	void Game::HandleWindowEvents()
 	{
 		sf::Event event;
-		bool handled = false;
-
 		m_Input.Update();
 
 		ImGuiIO& io = ImGui::GetIO();
@@ -309,6 +307,15 @@ namespace CasaEngine
 			{
 			case sf::Event::Closed:
 				Exit();
+				break;
+
+			case sf::Event::GainedFocus:
+				io.AppFocusLost = false;
+				break;
+
+			case sf::Event::LostFocus:
+				io.ClearInputKeys();
+				io.AppFocusLost = true;
 				break;
 
 			case sf::Event::Resized:
@@ -348,7 +355,6 @@ namespace CasaEngine
 				}
 				break;
 
-#ifndef EDITOR
 			case sf::Event::KeyReleased:
 				addKeyEvent(event, io, false);
 
@@ -390,7 +396,6 @@ namespace CasaEngine
 			case sf::Event::MouseWheelScrolled:
 				io.AddMouseWheelEvent(0.0f, event.mouseWheelScroll.delta);
 				break;
-#endif
 			}
 		}
 	}
@@ -451,7 +456,7 @@ namespace CasaEngine
 
 	void Game::EndRun()
 	{
-		ImguiAdapter::Destroy();
+		ImGuiAdapter::Destroy();
 	}
 
 	void Game::Initialize()
@@ -474,7 +479,7 @@ namespace CasaEngine
 		// 		CA_ERROR("Can't load the Gameplay module %s\n", m_EngineSettings.GameplayDLL.c_str());
 		// 	}
 
-		ImguiAdapter::Create();
+		ImGuiAdapter::Create();
 		m_Console.Initialize();
 		m_Initialized = true;
 	}
@@ -503,8 +508,6 @@ namespace CasaEngine
 		{
 			component->Update(gameTime);
 		}
-
-		m_InGameLogger.Update(gameTime);
 	}
 
 	void Game::Update(const GameTime& gameTime)
@@ -528,9 +531,7 @@ namespace CasaEngine
 	{
 		m_Renderer.BeginDraw();
 		
-		ImGuiIO& io = ImGui::GetIO();
-		io.DisplaySize = ImVec2(GetWindowSize().x, GetWindowSize().y);
-		ImguiAdapter::BeginFrame(io.DisplaySize.x, io.DisplaySize.y);
+		ImGuiAdapter::BeginFrame(GetWindowSize().x, GetWindowSize().y);
 
 		if (m_GameInfo.GetWorld() != nullptr)
 		{
@@ -551,7 +552,7 @@ namespace CasaEngine
 	void Game::EndDraw()
 	{
 		m_Console.Draw();
-		ImguiAdapter::EndFrame();
+		ImGuiAdapter::EndFrame();
 		m_Renderer.EndDraw();
 	}
 

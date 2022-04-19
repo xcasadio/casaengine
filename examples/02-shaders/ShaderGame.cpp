@@ -14,7 +14,7 @@
 #include "Log/LoggerFile.h"
 #include "Maths/Math.h"
 #include "Maths/Quaternion.h"
-#include "UI/ImguiAdapter.h"
+#include "UI/ImGuiAdapter.h"
 
 using namespace CasaEngine;
 

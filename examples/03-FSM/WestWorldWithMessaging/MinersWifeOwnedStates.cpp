@@ -10,13 +10,12 @@
 #include "DateTime.h"
 #include "AI\Messaging\MessageDispatcher.h"
 #include "Tools\InGameLogger.h"
-#include "Config.h"
 
 using namespace CasaEngine;
 
 void LogWife(const char* name, const char* msg)
 {
-	IN_GAME_LOG(logDelay, Color::AliceBlue, "%s: %s", name, msg);
+	IN_GAME_LOG(Color::AliceBlue, "%s: %s", name, msg);
 }
 
 //-----------------------------------------------------------------------Global state

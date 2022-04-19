@@ -22,6 +22,7 @@ namespace CasaEngine
 
 		void RegisterEntity(BaseEntity* NewEntity);
 		BaseEntity* GetEntityFromID(int id) const;
+		BaseEntity* GetEntityFromName(const char *name) const;
 
 		EntityMap::const_iterator cbegin() const;
 		EntityMap::const_iterator cend() const;

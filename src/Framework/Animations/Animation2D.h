@@ -1,5 +1,4 @@
-#ifndef _ANIMATION2D_H_
-#define _ANIMATION2D_H_
+#pragma once
 
 #include "CA_Export.h"
 #include "Animation.h"
@@ -29,6 +28,9 @@ namespace CasaEngine
 		Animation2DData* m_pAnimation2DData;
 
 #if EDITOR
+	public:
+		Animation2DData* GetAnimation2DData();
+
 	private:
 		static const int m_Version; // load version
 
@@ -36,5 +38,3 @@ namespace CasaEngine
 		
 	};
 }
-
-#endif

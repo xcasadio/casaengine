@@ -1,5 +1,4 @@
-#ifndef INPUT_H_
-#define INPUT_H_
+#pragma once
 
 #include <SFML/Window/Event.hpp>
 
@@ -78,7 +77,4 @@ namespace CasaEngine
 		float m_LastJoystickAxis[sf::Joystick::Count][sf::Joystick::AxisCount];
 		bool  m_LastTouchDown[2];
 	};
-
 }
-
-#endif

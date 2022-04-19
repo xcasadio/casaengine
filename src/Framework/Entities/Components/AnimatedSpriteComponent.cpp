@@ -101,11 +101,11 @@ namespace CasaEngine
 		return SetCurrentAnimation(std::string(name_));
 	}
 
-	bool AnimatedSpriteComponent::SetCurrentAnimation(std::string name_)
+	bool AnimatedSpriteComponent::SetCurrentAnimation(std::string name)
 	{
 		for (unsigned int i = 0; i < m_AnimationList.size(); i++)
 		{
-			if (m_AnimationList[i]->GetAnimationData()->GetName() == name_)
+			if (m_AnimationList[i]->GetAnimationData()->GetName() == name)
 			{
 				SetCurrentAnimation(i);
 				return true;
@@ -124,6 +124,27 @@ namespace CasaEngine
 		}
 
 		return m_pCurrentAnim->CurrentFrame();
+	}
+
+	int AnimatedSpriteComponent::GetCurrentFrameIndex() const
+	{
+		if (m_pCurrentAnim == nullptr)
+		{
+			return -1;
+		}
+
+		int i = 0;
+		for (const auto& frame : m_pCurrentAnim->GetAnimation2DData()->GetFrames())
+		{
+			if (frame.GetSpriteId() == m_pCurrentAnim->CurrentFrame())
+			{
+				return i;
+			}
+
+			i++;
+		}
+
+		return -1;
 	}
 
 	Animation2D* AnimatedSpriteComponent::GetCurrentAnimation()

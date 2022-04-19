@@ -8,32 +8,33 @@ namespace CasaEngine
 	{
 	}
 
-	Color::Color(unsigned char r, unsigned char g, unsigned char b, unsigned char a)
+	Color::Color(unsigned char r, unsigned char g, unsigned char b, unsigned char a) :
+		m_Color(0)
 	{
 		Set(r, g, b, a);
 	}
 
 	void Color::SetFloats(float r, float g, float b, float a)
 	{
-		int R = static_cast<int>(r * 255.0f);
-		int G = static_cast<int>(g * 255.0f);
-		int B = static_cast<int>(b * 255.0f);
-		int A = static_cast<int>(a * 255.0f);
+		const int R = static_cast<int>(r * 255.0f);
+		const int G = static_cast<int>(g * 255.0f);
+		const int B = static_cast<int>(b * 255.0f);
+		const int A = static_cast<int>(a * 255.0f);
 
 		SetInt(R, G, B, A);
 	}
 
 	void Color::Set(unsigned char r, unsigned char g, unsigned char b, unsigned char a)
 	{
-		m_Color = (a << 24) | (r << 16) | (g << 8) | (b << 0);
+		m_Color = a << 24 | r << 16 | g << 8 | b << 0;
 	}
 
 	void Color::SetInt(int r, int g, int b, int a)
 	{
-		unsigned char R = static_cast<unsigned char>((r >= 0) ? (r <= 255 ? r : 255) : 0);
-		unsigned char G = static_cast<unsigned char>((g >= 0) ? (g <= 255 ? g : 255) : 0);
-		unsigned char B = static_cast<unsigned char>((b >= 0) ? (b <= 255 ? b : 255) : 0);
-		unsigned char A = static_cast<unsigned char>((a >= 0) ? (a <= 255 ? a : 255) : 0);
+		const auto R = static_cast<unsigned char>(r >= 0 ? (r <= 255 ? r : 255) : 0);
+		const auto G = static_cast<unsigned char>(g >= 0 ? (g <= 255 ? g : 255) : 0);
+		const auto B = static_cast<unsigned char>(b >= 0 ? (b <= 255 ? b : 255) : 0);
+		const auto A = static_cast<unsigned char>(a >= 0 ? (a <= 255 ? a : 255) : 0);
 
 		Set(R, G, B, A);
 	}
@@ -50,10 +51,10 @@ namespace CasaEngine
 
 	const Color& Color::operator +=(const Color& c)
 	{
-		int R = GetRed() + c.GetRed();
-		int G = GetGreen() + c.GetGreen();
-		int B = GetBlue() + c.GetBlue();
-		int A = GetAlpha() + c.GetAlpha();
+		const int R = GetRed() + c.GetRed();
+		const int G = GetGreen() + c.GetGreen();
+		const int B = GetBlue() + c.GetBlue();
+		const int A = GetAlpha() + c.GetAlpha();
 
 		SetInt(R, G, B, A);
 
@@ -62,10 +63,10 @@ namespace CasaEngine
 
 	const Color& Color::operator -=(const Color& c)
 	{
-		int R = GetRed() - c.GetRed();
-		int G = GetGreen() - c.GetGreen();
-		int B = GetBlue() - c.GetBlue();
-		int A = GetAlpha() - c.GetAlpha();
+		const int R = GetRed() - c.GetRed();
+		const int G = GetGreen() - c.GetGreen();
+		const int B = GetBlue() - c.GetBlue();
+		const int A = GetAlpha() - c.GetAlpha();
 
 		SetInt(R, G, B, A);
 
@@ -74,10 +75,10 @@ namespace CasaEngine
 
 	Color Color::operator +(const Color& c) const
 	{
-		int R = GetRed() + c.GetRed();
-		int G = GetGreen() + c.GetGreen();
-		int B = GetBlue() + c.GetBlue();
-		int A = GetAlpha() + c.GetAlpha();
+		const int R = GetRed() + c.GetRed();
+		const int G = GetGreen() + c.GetGreen();
+		const int B = GetBlue() + c.GetBlue();
+		const int A = GetAlpha() + c.GetAlpha();
 
 		Color Ret;
 		Ret.SetInt(R, G, B, A);
@@ -87,10 +88,10 @@ namespace CasaEngine
 
 	Color Color::operator -(const Color& c) const
 	{
-		int R = GetRed() - c.GetRed();
-		int G = GetGreen() - c.GetGreen();
-		int B = GetBlue() - c.GetBlue();
-		int A = GetAlpha() - c.GetAlpha();
+		const int R = GetRed() - c.GetRed();
+		const int G = GetGreen() - c.GetGreen();
+		const int B = GetBlue() - c.GetBlue();
+		const int A = GetAlpha() - c.GetAlpha();
 
 		Color Ret;
 		Ret.SetInt(R, G, B, A);
@@ -100,10 +101,10 @@ namespace CasaEngine
 
 	Color Color::operator *(float v) const
 	{
-		int R = static_cast<int>(GetRed() * v);
-		int G = static_cast<int>(GetGreen() * v);
-		int B = static_cast<int>(GetBlue() * v);
-		int A = static_cast<int>(GetAlpha() * v);
+		const int R = static_cast<int>(GetRed() * v);
+		const int G = static_cast<int>(GetGreen() * v);
+		const int B = static_cast<int>(GetBlue() * v);
+		const int A = static_cast<int>(GetAlpha() * v);
 
 		Color Ret;
 		Ret.SetInt(R, G, B, A);
@@ -113,10 +114,10 @@ namespace CasaEngine
 
 	const Color& Color::operator *=(float v)
 	{
-		int R = static_cast<int>(GetRed() * v);
-		int G = static_cast<int>(GetGreen() * v);
-		int B = static_cast<int>(GetBlue() * v);
-		int A = static_cast<int>(GetAlpha() * v);
+		const int R = static_cast<int>(GetRed() * v);
+		const int G = static_cast<int>(GetGreen() * v);
+		const int B = static_cast<int>(GetBlue() * v);
+		const int A = static_cast<int>(GetAlpha() * v);
 
 		SetInt(R, G, B, A);
 
@@ -130,7 +131,7 @@ namespace CasaEngine
 
 	const Color& Color::operator /=(float v)
 	{
-		return *this *= (1.0f / v);
+		return *this *= 1.0f / v;
 	}
 
 	Color Color::Add(const Color& c) const
@@ -140,12 +141,12 @@ namespace CasaEngine
 
 	Color Color::Modulate(const Color& c) const
 	{
-		unsigned char R = static_cast<unsigned char>(GetRed() * c.GetRed() / 255);
-		unsigned char G = static_cast<unsigned char>(GetGreen() * c.GetGreen() / 255);
-		unsigned char B = static_cast<unsigned char>(GetBlue() * c.GetBlue() / 255);
-		unsigned char A = static_cast<unsigned char>(GetAlpha() * c.GetAlpha() / 255);
+		const auto R = static_cast<unsigned char>(GetRed() * c.GetRed() / 255);
+		const auto G = static_cast<unsigned char>(GetGreen() * c.GetGreen() / 255);
+		const auto B = static_cast<unsigned char>(GetBlue() * c.GetBlue() / 255);
+		const auto A = static_cast<unsigned char>(GetAlpha() * c.GetAlpha() / 255);
 
-		return Color(R, G, B, A);
+		return {R, G, B, A};
 	}
 
 	unsigned char Color::GetAlpha() const
@@ -183,18 +184,18 @@ namespace CasaEngine
 
 	unsigned int Color::ToABGR() const
 	{
-		return ((GetRed() << 0)
-			| (GetGreen() << 8)
-			| (GetBlue() << 16)
-			| (GetAlpha() << 24));
+		return GetRed() << 0
+			| GetGreen() << 8
+			| GetBlue() << 16
+			| GetAlpha() << 24;
 	}
 
 	unsigned int Color::ToRGBA() const
 	{
-		return ((GetAlpha() << 0)
-			| (GetBlue() << 8)
-			| (GetGreen() << 16)
-			| (GetRed() << 24));
+		return GetAlpha() << 0
+			| GetBlue() << 8
+			| GetGreen() << 16
+			| GetRed() << 24;
 	}
 
 	unsigned int Color::ToARGB() const

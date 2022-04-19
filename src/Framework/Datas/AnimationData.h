@@ -15,7 +15,7 @@ namespace CasaEngine
 	{
 	public:
 		AnimationData();
-		~AnimationData();
+		~AnimationData() override;
 		
 		AnimationType GetAnimationType() const;
 		void SetAnimationType(AnimationType type);

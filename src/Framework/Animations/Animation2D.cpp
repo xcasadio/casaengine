@@ -43,9 +43,9 @@ namespace CasaEngine
 
 	void Animation2D::Reset()
 	{
-		for (unsigned int i=0; i<m_Events.size(); i++)
+		for (const auto& m_Event : m_Events)
 		{
-			auto *pFrameEvent = dynamic_cast<SetFrameEvent *>(m_Events[i]);
+			auto *pFrameEvent = dynamic_cast<SetFrameEvent *>(m_Event);
 			if (pFrameEvent != nullptr)
 			{
 				CurrentFrame(pFrameEvent->FrameID());
@@ -65,4 +65,12 @@ namespace CasaEngine
 
 		fireEvent(FrameChangeEvent::GetEventName(), FrameChangeEvent(m_CurrentFrame));
 	}
+
+#if EDITOR
+	Animation2DData* Animation2D::GetAnimation2DData()
+	{
+		return m_pAnimation2DData;
+	}
+#endif
+	
 }

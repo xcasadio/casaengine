@@ -15,7 +15,7 @@ namespace CasaEngine
 		AnimationEvent();
 		AnimationEvent(const AnimationEvent& rsh);
 		AnimationEvent& operator = (const AnimationEvent& rsh);
-		~AnimationEvent();
+		virtual ~AnimationEvent();
 
 		virtual AnimationEvent* Copy() = 0;
 		

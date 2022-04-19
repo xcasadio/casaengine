@@ -1,5 +1,4 @@
-#ifndef _ANIMATION2DDATA_H_
-#define _ANIMATION2DDATA_H_
+#pragma once
 
 #include "CA_Export.h"
 #include "Datas/FrameData.h"
@@ -16,7 +15,7 @@ namespace CasaEngine
 		Animation2DData();
 		Animation2DData(const Animation2DData& rsh);
 		Animation2DData& operator=(const Animation2DData& rsh);
-		~Animation2DData();
+		~Animation2DData() override;
 
 		std::vector<FrameData>& GetFrames();
 		void AddFrame(FrameData& frame);
@@ -45,5 +44,3 @@ namespace CasaEngine
 		}
 	};
 }
-
-#endif

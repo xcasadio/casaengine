@@ -19,9 +19,22 @@ namespace CasaEngine
 		auto ent = m_EntityMap.find(id);
 
 		//assert that the entity is a member of the map
-		CA_ASSERT(ent != m_EntityMap.end(), "<EntityManager::GetEntityFromID>: invalid ID");
+		CA_ASSERT(ent != m_EntityMap.end(), "<EntityManager::GetEntityFromID>: invalid ID")
 
 		return ent->second;
+	}
+
+	BaseEntity* EntityManager::GetEntityFromName(const char* name) const
+	{
+		for (auto pair : m_EntityMap)
+		{
+			if (std::string(pair.second->GetName()) == std::string(name))
+			{
+				return pair.second;
+			}
+		}
+
+		return nullptr;
 	}
 
 	EntityManager::EntityIterator EntityManager::cbegin() const

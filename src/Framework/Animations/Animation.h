@@ -1,5 +1,4 @@
-#ifndef _ANIMATION_H_
-#define _ANIMATION_H_
+#pragma once
 
 #include "CA_Export.h"
 #include <vector>
@@ -13,7 +12,7 @@ namespace CasaEngine
 		public EventSet
 	{
 	public:
-		virtual ~Animation();
+		~Animation() override;
 
 		virtual void Initialize();
 
@@ -45,5 +44,3 @@ namespace CasaEngine
 		
 	};
 }
-
-#endif

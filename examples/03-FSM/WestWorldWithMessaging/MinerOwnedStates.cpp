@@ -3,7 +3,6 @@
 #include "Locations.h"
 #include "MessageTypes.h"
 #include "..\FSMGame.h"
-#include "Config.h"
 
 #include "AI\Messaging\Telegram.h"
 #include "AI\Messaging\MessageDispatcher.h"
@@ -17,7 +16,7 @@ using namespace CasaEngine;
 
 void Log(const char* name, const char* msg)
 {
-	IN_GAME_LOG(logDelay, Color::Green, "%s: %s", name, msg);
+	IN_GAME_LOG(Color::Green, "%s: %s", name, msg);
 }
 
 //------------------------------------------------------------------------methods for EnterMineAndDigForNugget

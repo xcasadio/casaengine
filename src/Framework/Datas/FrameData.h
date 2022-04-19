@@ -1,5 +1,4 @@
-#ifndef _FRAMEDATA_H_
-#define _FRAMEDATA_H_
+#pragma once
 
 #include "CA_Export.h"
 #include <string>
@@ -50,5 +49,3 @@ namespace CasaEngine
 		}
 	};
 }
-
-#endif

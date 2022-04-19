@@ -24,7 +24,7 @@ namespace CasaEngine
 	{
 		std::vector<AnimationEvent *>::iterator it;
 
-		for (it = m_Events.begin(); it != m_Events.end(); it++)
+		for (it = m_Events.begin(); it != m_Events.end(); ++it)
 		{
 			delete (*it);
 		}

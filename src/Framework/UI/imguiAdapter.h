@@ -6,7 +6,7 @@
 
 namespace CasaEngine
 {
-	class CA_EXPORT ImguiAdapter
+	class CA_EXPORT ImGuiAdapter
 	{
 	public:
 		static void Create(float _fontSize = 18.0f);

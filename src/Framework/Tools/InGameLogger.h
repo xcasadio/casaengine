@@ -1,48 +1,42 @@
-#ifndef INGAMELOGGER_H
-#define INGAMELOGGER_H
+#pragma once
 
 #include "CompilationConfig.h"
 
 #if defined(CA_IN_GAME_LOGGER)
 
-#include <vector>
+#include <deque>
 
 #include "CA_Export.h"
-#include "GameTime.h"
 #include "Graphics/Color.h"
 
 namespace CasaEngine
 {
 	//TODO : create component
-#define IN_GAME_LOG(delay, color, fmt, ...) Game::Instance().GetInGameLogger().AddLog(delay, color, fmt, ##__VA_ARGS__)
+#define IN_GAME_LOG(delay, color, fmt, ...) Game::Instance().GetInGameLogger().AddLog(color, fmt, ##__VA_ARGS__)
 
 	class CA_EXPORT InGameLogger
 	{
 	public:
+		InGameLogger();
 
-		void AddLog(float delay, Color color, const char* fmt, ...);
-		void Update(const GameTime& gameTime_);
+		void AddLog(Color color, const char* fmt, ...);
 		void ShowWindow();
 
 	private:
 		struct LogData
 		{
-			float delay{}; // in ms
+			//float delay{}; // in ms
 			const char* text{};
 			Color color;
 		};
 
-		std::vector<LogData> m_Lines;
+		std::deque<LogData> m_Lines;
+		unsigned int MaxLines;
 	};
-
 }
-
 
 #else
 
-#define InGameLog(delay, fmt, ...) Game::Instance().GetInGameLogger().AddLog(delay, fmt, ##__VA_ARGS__)
-#define InGameLogUpdate(gameTime_) Game::Instance().GetInGameLogger().Update(gameTime_)
-
-#endif
+#define InGameLog(color, fmt, ...) //Game::Instance().GetInGameLogger().AddLog(color, fmt, ##__VA_ARGS__)
 
 #endif

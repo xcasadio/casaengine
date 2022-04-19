@@ -14,13 +14,13 @@ class Animation2DPlayerGame :
 public:
 
 	Animation2DPlayerGame();
-	~Animation2DPlayerGame();
+	~Animation2DPlayerGame() override;
 
-	void Initialize();
+	void Initialize() override;
 	void copy_animations_name();
-	void LoadContent();
-	void Update(const CasaEngine::GameTime& gameTime_);
-	void Draw();
+	void LoadContent() override;
+	void Update(const CasaEngine::GameTime& gameTime_) override;
+	void Draw() override;
 
 private:
 	void LoadAnimations(AnimatedSpriteComponent* pAnimatedComponent);
