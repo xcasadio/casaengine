@@ -37,6 +37,7 @@ namespace CasaEngine
 
 #if EDITOR
 	public:
+		float *CurrentTimePtr();
 		void CurrentTime(float val);
 		void RemoveEvent(AnimationEvent *event_);
 		void SortEventList();

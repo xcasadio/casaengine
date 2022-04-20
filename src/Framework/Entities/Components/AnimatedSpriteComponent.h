@@ -1,5 +1,4 @@
-#ifndef ANIMATED_SPRITECOMPONENT_H
-#define ANIMATED_SPRITECOMPONENT_H
+#pragma once
 
 #include <string>
 #include <vector>
@@ -64,5 +63,3 @@ namespace CasaEngine
 		bool OnAnimationFinished(const EventArgs &e);
 	};
 }
-
-#endif

@@ -88,8 +88,8 @@ void Animation2DPlayerGame::LoadContent()
 	auto* pEntity = new BaseEntity();
 	m_pEntity = pEntity;
 	auto* pTransform = new Transform3DComponent(pEntity);
-	pTransform->SetLocalPosition(Vector3(520, 400, 1.0f));
-	const auto scale = 1.0f;
+	pTransform->SetLocalPosition(Vector3(520, 400, 0.0f));
+	const auto scale = 2.0f;
 	pTransform->SetLocalScale(Vector3(scale, scale, 0.0f));
 	pEntity->GetComponentMgr()->AddComponent(pTransform);
 
@@ -263,6 +263,13 @@ void Animation2DPlayerGame::Update(const GameTime& gameTime_)
 
 	m_FrameIndexSelected = m_pAnimatedSprite->GetCurrentFrameIndex();
 
+	if (!m_pEntity->IsEnabled())
+	{
+		m_pEntity->IsEnabled(true);
+		m_pEntity->Update(GameTime());
+		m_pEntity->IsEnabled(false);
+	}
+
 	Game::Update(gameTime_);
 }
 
@@ -275,7 +282,7 @@ void Animation2DPlayerGame::DisplayCollisions()
 		if (GetAssetManager().Contains(anim->CurrentFrame()))
 		{
 			auto* spriteData = GetAssetManager().GetAsset<SpriteData>(anim->CurrentFrame());
-			auto* line3DRenderer = this->GetGameComponent<Line3DRendererComponent>();
+			auto* line3DRenderer = GetGameComponent<Line3DRendererComponent>();
 			auto* transform = m_pEntity->GetComponentMgr()->GetComponent<Transform3DComponent>();
 
 			for (auto coll : spriteData->GetCollisions())
@@ -289,7 +296,7 @@ void Animation2DPlayerGame::DisplayCollisions()
 					const auto scaleY = transform->GetLocalScale().y;
 					auto rectScaled = RectangleI(rect->x * scaleX, rect->y * scaleY, rect->w * scaleX, rect->h * scaleY);
 
-					auto leftTop = Vector3(rectScaled.Left(), rectScaled.Top(), 0.0f) + pos;
+					auto leftTop = Vector3(rectScaled.Left() - 1.0f, rectScaled.Top(), 0.0f) + pos;
 					auto leftBottom = Vector3(rectScaled.Left(), rectScaled.Bottom(), 0.0f) + pos;
 					auto rightTop = Vector3(rectScaled.Right(), rectScaled.Top(), 0.0f) + pos;
 					auto rightBottom = Vector3(rectScaled.Right(), rectScaled.Bottom(), 0.0f) + pos;
@@ -340,6 +347,39 @@ void Animation2DPlayerGame::DisplayUI()
 			m_pEntity->IsEnabled(false);
 		}
 
+		std::ostringstream oss;
+		oss << "time (total :" << m_pAnimatedSprite->GetCurrentAnimation()->TotalTime() << " ms)";
+		ImGui::SliderFloat(oss.str().c_str(),
+			m_pAnimatedSprite->GetCurrentAnimation()->CurrentTimePtr(), 
+			0.0f, 
+			m_pAnimatedSprite->GetCurrentAnimation()->TotalTime(), "%.3f", ImGuiSliderFlags_AlwaysClamp);
+
+		ImGui::Separator();
+
+		auto transform_3d_component = m_pEntity->GetComponentMgr()->GetComponent<Transform3DComponent>();
+		auto local_scale = transform_3d_component->GetLocalScale();
+
+		ImGui::Text("Zoom x%d", (int)transform_3d_component->GetLocalScale().x);
+		ImGui::SameLine();
+
+		if (ImGui::Button("+"))
+		{
+			local_scale.x++;
+			local_scale.y++;
+			transform_3d_component->SetLocalScale(local_scale);
+		}
+
+		ImGui::SameLine();
+
+		if (ImGui::Button("-"))
+		{
+			local_scale.x = std::max(--local_scale.x, 1.0f);
+			local_scale.y = std::max(--local_scale.y, 1.0f);
+			transform_3d_component->SetLocalScale(local_scale);
+		}
+
+		ImGui::Separator();
+
 		ImGui::Combo("Animations", &m_AnimationIndexSelected, &animation_names[0], animation_names.size()/*IM_ARRAYSIZE(items)*/);
 		ImGui::SameLine();
 		auto editing_animation = ImGui::Button("edit");
@@ -350,7 +390,7 @@ void Animation2DPlayerGame::DisplayUI()
 			{
 				auto* animation_name = animation_names[m_AnimationIndexSelected];
 				ImGui::Text("Edit name:");
-				ImGui::InputText("##edit", animation_name, IM_ARRAYSIZE(animation_name));
+				ImGui::InputText("##edit", animation_name, std::strlen(animation_name));
 				if (ImGui::Button("Close"))
 				{
 					RenameAnimation(last_animation_names[m_AnimationIndexSelected].c_str(), animation_names[m_AnimationIndexSelected]);
@@ -369,8 +409,25 @@ void Animation2DPlayerGame::DisplayUI()
 			writable[str.size()] = '\0';
 			frameNames.push_back(writable);
 		}
-		int defaultIndex = 0;
-		ImGui::Combo("Frames", m_FrameIndexSelected > 0 ? &m_FrameIndexSelected : &defaultIndex, &frameNames[0], frameNames.size());
+
+		if (ImGui::BeginCombo("Frames"/*"##combo"*/, m_FrameIndexSelected >= 0 ? frameNames[m_FrameIndexSelected] : nullptr))
+		{
+			for (int n = 0; n < frameNames.size(); n++)
+			{
+				if (ImGui::Selectable(frameNames[n], m_FrameIndexSelected == n))
+				{
+					//m_FrameIndexSelected = frameNames[n];
+				}
+
+				if (m_FrameIndexSelected == n)
+				{
+					ImGui::SetItemDefaultFocus();
+				}
+			}
+			
+			ImGui::EndCombo();			
+		}
+		//ImGui::Combo("Frames", m_FrameIndexSelected >= 0 ? &m_FrameIndexSelected : &defaultIndex, &frameNames[0], frameNames.size());
 
 		std::vector<const char*> collisionNames;
 		auto* frames = m_pAnimatedSprite->GetCurrentAnimation();
@@ -387,16 +444,31 @@ void Animation2DPlayerGame::DisplayUI()
 			writable[str.size()] = '\0';
 			collisionNames.push_back(writable);
 		}
-		ImGui::Combo("Collisions", &m_CollisionIndexSelected, &collisionNames[0], collisionNames.size());
+		if (ImGui::BeginCombo("Collisions"/*"##combo"*/, m_CollisionIndexSelected >= 0 ? collisionNames[m_CollisionIndexSelected] : nullptr))
+		{
+			for (int n = 0; n < collisionNames.size(); n++)
+			{
+				if (ImGui::Selectable(collisionNames[n], m_CollisionIndexSelected == n))
+				{
+					//m_CollisionIndexSelected = n;
+				}
 
-		ImGui::Button("+");
-		ImGui::SameLine();
-		ImGui::Button("-");
+				if (m_CollisionIndexSelected == n)
+				{
+					ImGui::SetItemDefaultFocus();
+				}
+			}
 
+			ImGui::EndCombo();
+		}
+
+		ImGui::Text("Move collision"); ImGui::SameLine();
 		ImGui::ArrowButton("left", ImGuiDir_::ImGuiDir_Left); ImGui::SameLine();
 		ImGui::ArrowButton("right", ImGuiDir_::ImGuiDir_Right); ImGui::SameLine();
 		ImGui::ArrowButton("up", ImGuiDir_::ImGuiDir_Up); ImGui::SameLine();
 		ImGui::ArrowButton("down", ImGuiDir_::ImGuiDir_Down);
+
+		ImGui::Separator();
 
 		if (ImGui::Button("Save"))
 		{
@@ -415,33 +487,9 @@ void Animation2DPlayerGame::DisplayUI()
 	ImGui::End();
 }
 
-void Animation2DPlayerGame::DisplayGrid()
-{
-	const auto halfNumberOfLines = 100 >> 1;
-	const auto cellWidth = 10.0f;
-	const auto halfLength = halfNumberOfLines * cellWidth;
-	const auto gridColor = Color::DimGray;
-
-	auto* line3DRenderer = this->GetGameComponent<Line3DRendererComponent>();
-	for (auto i = 0; i <= halfNumberOfLines; i++)
-	{
-		const auto coord = cellWidth * i;
-		line3DRenderer->AddLine(Vector3(-halfLength, -coord, 0.0f), Vector3(halfLength, -coord, 0.0f), gridColor);
-		line3DRenderer->AddLine(Vector3(-halfLength, coord, 0.0f), Vector3(halfLength, coord, 0.0f), gridColor);
-
-		line3DRenderer->AddLine(Vector3(-coord, -halfLength, 0.0f), Vector3(-coord, halfLength, 0.0f), gridColor);
-		line3DRenderer->AddLine(Vector3(coord, -halfLength, 0.0f), Vector3(coord, halfLength, 0.0f), gridColor);
-	}
-	/*
-	line3DRenderer->AddLine(Vector3::Zero(), Color::Red, Vector3::UnitX(), Color::Red);
-	line3DRenderer->AddLine(Vector3::Zero(), Color::Green, Vector3::UnitY(), Color::Green);
-	line3DRenderer->AddLine(Vector3::Zero(), Color::Blue, Vector3::UnitZ(), Color::Blue);
-	*/
-}
 
 void Animation2DPlayerGame::Draw()
 {
-	//DisplayGrid();
 	DisplayCollisions();
 	DisplayPosition();
 	DisplayUI();

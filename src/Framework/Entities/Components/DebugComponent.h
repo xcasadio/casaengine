@@ -1,5 +1,4 @@
-#ifndef DebugComponent_H_
-#define DebugComponent_H_
+#pragma once
 
 #include "CA_Export.h"
 #include "Game/Line3DRendererComponent.h"
@@ -18,12 +17,9 @@ namespace CasaEngine
 
 		bool DisplayPosition() const;
 		void DisplayPosition(bool val);
-
 		
 	private:
 		bool m_DisplayPosition;
 		Line3DRendererComponent* m_LineRenderer;
 	};
 }
-
-#endif

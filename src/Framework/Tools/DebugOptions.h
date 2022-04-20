@@ -1,5 +1,4 @@
-#ifndef DEBUGOPTIONS_H
-#define DEBUGOPTIONS_H
+#pragma once
 
 #include "CA_Export.h"
 #include <string>
@@ -10,7 +9,6 @@ namespace CasaEngine
 	{
 	public:
 		DebugOptions();
-		~DebugOptions();
 
 		void Show(std::string &item_, bool val);
 		void Activate(std::string &item_, bool val);
@@ -19,8 +17,6 @@ namespace CasaEngine
 		bool ShowAxis;
 		bool ShowFPS;
 		bool IsDebugActivated;
-
+		bool ShowGrid;
 	};
 }
-
-#endif

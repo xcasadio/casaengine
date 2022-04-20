@@ -22,9 +22,7 @@ namespace CasaEngine
 
 	Animation::~Animation()
 	{
-		std::vector<AnimationEvent *>::iterator it;
-
-		for (it = m_Events.begin(); it != m_Events.end(); ++it)
+		for (auto it = m_Events.begin(); it != m_Events.end(); ++it)
 		{
 			delete (*it);
 		}
@@ -37,7 +35,7 @@ namespace CasaEngine
 
 	float Animation::TotalTime() const 
 	{
-		if (m_Events.size() > 0)
+		if (!m_Events.empty())
 		{
 			return m_Events.back()->Time();
 		}
@@ -114,6 +112,11 @@ namespace CasaEngine
 
 #if EDITOR
 
+	float* Animation::CurrentTimePtr()
+	{
+		return &m_CurrentTime;
+	}
+
 	void Animation::CurrentTime(float val) 
 	{ 
 		m_CurrentTime = val; 
@@ -125,7 +128,7 @@ namespace CasaEngine
 
 		for (it = m_Events.begin();
 			it != m_Events.end();
-			it++)
+			++it)
 		{
 			if ((*it) == event_)
 			{

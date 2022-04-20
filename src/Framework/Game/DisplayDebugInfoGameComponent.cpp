@@ -16,6 +16,7 @@
 namespace CasaEngine
 {
 	void ShowUI4AllComponents(BaseEntity* pEntity);
+	void DrawGrid(GridOrientation orientation, Line3DRendererComponent *line3DRenderer);
 	void DrawAxis(bgfx::VertexBufferHandle vertexHandle_, bgfx::ProgramHandle program_handle);
 	void ShowFPS();
 	void ShowDebugWindow();
@@ -54,6 +55,8 @@ namespace CasaEngine
 		m_Vertices[5].Position = Vector3::UnitZ(); m_Vertices[5].Color = Color::Blue.ToABGR();
 
 		m_VertexBuffer = bgfx::createVertexBuffer(bgfx::makeRef(m_Vertices, 6 * sizeof(VertexPositionColor)), VertexPositionColor::ms_layout);
+
+		m_Line3DRenderer = GetGame()->GetGameComponent<Line3DRendererComponent>();
 	}
 
 	void DisplayDebugInfoGameComponent::Update(const GameTime& /*gameTime_*/)
@@ -80,6 +83,11 @@ namespace CasaEngine
 		if (Game::Instance().GetDebugOptions().ShowLogInGame == true)
 		{
 			Game::Instance().GetInGameLogger().ShowWindow();
+		}
+
+		if (Game::Instance().GetDebugOptions().ShowGrid == true)
+		{
+			DrawGrid(m_Orientation, m_Line3DRenderer);
 		}
 	}
 
@@ -516,5 +524,45 @@ namespace CasaEngine
 		{
 			(*it)->ShowDebugWidget();
 		}
+	}
+
+	void DrawGrid(GridOrientation orientation, Line3DRendererComponent* line3DRenderer)
+	{
+		constexpr auto halfNumberOfLines = 100 >> 1;
+		constexpr auto cellWidth = 10.0f;
+		constexpr auto halfLength = halfNumberOfLines * cellWidth;
+		const auto gridColor = Color::DimGray;
+
+		for (auto i = 0; i <= halfNumberOfLines; i++)
+		{
+			const auto coord = cellWidth * i;
+
+			switch (orientation)
+			{
+			case GridOrientation::XY:
+				line3DRenderer->AddLine(Vector3(-halfLength, -coord, 0.0f), Vector3(halfLength, -coord, 0.0f), gridColor);
+				line3DRenderer->AddLine(Vector3(-halfLength, coord, 0.0f), Vector3(halfLength, coord, 0.0f), gridColor);
+				line3DRenderer->AddLine(Vector3(-coord, -halfLength, 0.0f), Vector3(-coord, halfLength, 0.0f), gridColor);
+				line3DRenderer->AddLine(Vector3(coord, -halfLength, 0.0f), Vector3(coord, halfLength, 0.0f), gridColor);
+				break;
+			case GridOrientation::XZ:
+				line3DRenderer->AddLine(Vector3(-halfLength, 0.0f, -coord), Vector3(halfLength, 0.0f, -coord), gridColor);
+				line3DRenderer->AddLine(Vector3(-halfLength, 0.0f, coord), Vector3(halfLength, 0.0f, coord), gridColor);
+				line3DRenderer->AddLine(Vector3(-coord, 0.0f, -halfLength), Vector3(-coord, 0.0f, halfLength), gridColor);
+				line3DRenderer->AddLine(Vector3(coord, 0.0f, -halfLength), Vector3(coord, 0.0f, halfLength), gridColor);
+				break;
+			case GridOrientation::YZ:
+				line3DRenderer->AddLine(Vector3(0.0f, -halfLength, -coord), Vector3(0.0f, halfLength, -coord), gridColor);
+				line3DRenderer->AddLine(Vector3(0.0f, -halfLength, coord), Vector3(0.0f, halfLength, coord), gridColor);
+				line3DRenderer->AddLine(Vector3(0.0f, -coord, -halfLength), Vector3(0.0f, -coord, halfLength), gridColor);
+				line3DRenderer->AddLine(Vector3(0.0f, coord, -halfLength), Vector3(0.0f, coord, halfLength), gridColor);
+				break;
+			}
+		}
+		/*
+		m_Line3DRenderer->AddLine(Vector3::Zero(), Color::Red, Vector3::UnitX(), Color::Red);
+		m_Line3DRenderer->AddLine(Vector3::Zero(), Color::Green, Vector3::UnitY(), Color::Green);
+		m_Line3DRenderer->AddLine(Vector3::Zero(), Color::Blue, Vector3::UnitZ(), Color::Blue);
+		*/
 	}
 }

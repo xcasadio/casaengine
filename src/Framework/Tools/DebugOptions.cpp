@@ -4,28 +4,16 @@
 
 namespace CasaEngine
 {
-	/**
-	 * 
-	 */
-	DebugOptions::DebugOptions()
-	{
-		IsDebugActivated = false;
-		ShowAxis = false;
-		ShowFPS = false;
-		ShowLogInGame = false;
-	}
-
-	/**
-	 * 
-	 */
-	DebugOptions::~DebugOptions()
+	DebugOptions::DebugOptions() :
+		ShowLogInGame(false),
+		ShowAxis(false),
+		ShowFPS(false),
+		IsDebugActivated(false),
+		ShowGrid(false)
 	{
 	}
 
-	/**
-	 * 
-	 */
-	void DebugOptions::Activate(std::string &item_, bool val)
+	void DebugOptions::Activate(std::string& item_, bool val)
 	{
 		if (item_ == "editor")
 		{
@@ -33,10 +21,7 @@ namespace CasaEngine
 		}
 	}
 
-	/**
-	 * 
-	 */
-	void DebugOptions::Show(std::string &item_, bool val)
+	void DebugOptions::Show(std::string& item_, bool val)
 	{
 		if (item_ == "axis")
 		{
@@ -51,5 +36,4 @@ namespace CasaEngine
 			ShowLogInGame = val;
 		}
 	}
-
 }

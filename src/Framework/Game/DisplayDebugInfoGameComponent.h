@@ -3,6 +3,7 @@
 #include "CA_Export.h"
 #include "GameTime.h"
 #include "DrawableGameComponent.h"
+#include "Line3DRendererComponent.h"
 #include "Maths/Matrix4.h"
 #include "Graphics/Mesh/Mesh.h"
 
@@ -12,6 +13,13 @@
 namespace CasaEngine
 {
 	class Game;
+
+	enum class GridOrientation
+	{
+		XY,
+		XZ,
+		YZ
+	};
 
 	class CA_EXPORT DisplayDebugInfoGameComponent :
 		public DrawableGameComponent
@@ -28,5 +36,8 @@ namespace CasaEngine
 		Program* m_pProgram;
 		bgfx::VertexBufferHandle m_VertexBuffer;
 		VertexPositionColor m_Vertices[6];
+
+		Line3DRendererComponent* m_Line3DRenderer;
+		GridOrientation m_Orientation;
 	};
 }

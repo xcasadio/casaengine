@@ -24,7 +24,7 @@ Character::Character(BaseEntity* pEntity) : CasaEngine::CharacterBase(pEntity)
 
 	m_HPMax = 100;
 	m_MPMax = 100;
-	m_Speed = 100.0f;
+	m_Speed = 30.0f;
 }
 
 Character::~Character()

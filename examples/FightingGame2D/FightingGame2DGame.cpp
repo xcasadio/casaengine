@@ -264,30 +264,9 @@ void FightingGame2DGame::DisplayUI()
 	}*/
 }
 
-void FightingGame2DGame::DisplayGrid()
-{
-	/*
-	auto halfNumberOfLines = 100 >> 1;
-	auto cellWidth = 10.0f;
-	auto halfLength = halfNumberOfLines * cellWidth;
-	auto gridColor = Color::DimGray;
-
-	auto line3DRenderer = this->GetGameComponent<Line3DRendererComponent>();
-	for (int i = 0; i <= halfNumberOfLines; i++)
-	{
-		auto coord = cellWidth * i;
-		line3DRenderer->AddLine(Vector3(-halfLength, -coord), Vector3(halfLength, -coord), gridColor);
-		line3DRenderer->AddLine(Vector3(-halfLength, coord), Vector3(halfLength, coord), gridColor);
-
-		line3DRenderer->AddLine(Vector3(-coord, -halfLength), Vector3(-coord, halfLength), gridColor);
-		line3DRenderer->AddLine(Vector3(coord, -halfLength), Vector3(coord, halfLength), gridColor);
-	}
-	*/
-}
-
 void FightingGame2DGame::Draw()
 {
-	Game::Draw();
-
 	DisplayUI();
+
+	Game::Draw();
 }
