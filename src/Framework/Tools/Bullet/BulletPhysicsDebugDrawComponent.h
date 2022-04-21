@@ -1,5 +1,4 @@
-#ifndef BULLETPHYSICSDEBUGDRAW_H_
-#define BULLETPHYSICSDEBUGDRAW_H_
+#pragma once
 
 #include "CA_Export.h"
 #include "LinearMath\btIDebugDraw.h"
@@ -7,14 +6,19 @@
 
 namespace CasaEngine
 {
-	class CA_EXPORT BulletPhysicsDebugDraw :
-		public btIDebugDraw
+	class CA_EXPORT BulletPhysicsDebugDrawComponent :
+		public btIDebugDraw, public DrawableGameComponent
 	{
 	public:
-		BulletPhysicsDebugDraw();
-		~BulletPhysicsDebugDraw();
+		BulletPhysicsDebugDrawComponent(Game* game);
 
-		void Initialize();
+		void Initialize() override;
+		void OnLoadContent() override;
+		void Update(const GameTime& gameTime_) override;
+		void Draw() override;
+
+		void clearLines() override;
+		void flushLines() override;
 		void drawLine(const btVector3& from, const btVector3& to, const btVector3& color) override;
 		void drawContactPoint(const btVector3& PointOnB, const btVector3& normalOnB, btScalar distance, int lifeTime, const btVector3& color) override;
 		void reportErrorWarning(const char* warningString) override;
@@ -23,9 +27,16 @@ namespace CasaEngine
 		int getDebugMode() const override;
 
 	private:
+		struct LineData
+		{
+			Vector3 start, end;
+			Color color;
+		};
+
 		Line3DRendererComponent* m_pLineRenderer;
 		int m_debugMode;
+		std::vector<LineData> lines;
+
+		void AddLine(const Vector3 &start, const Vector3& end, const Color& color);
 	};
 }
-
-#endif

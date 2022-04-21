@@ -41,6 +41,7 @@
 #include "MeshRendererGameComponent.h"
 #include "Sprite/SpriteRenderer.h"
 #include "Tools/InGameLogger.h"
+#include "Tools/Bullet/BulletPhysicsDebugDrawComponent.h"
 #include "UI/ImGuiAdapter.h"
 
 namespace CasaEngine
@@ -517,6 +518,7 @@ namespace CasaEngine
 	void Game::AddDebugComponents()
 	{
 		AddComponent(new DisplayDebugInfoGameComponent(this));
+		AddComponent(new BulletPhysicsDebugDrawComponent(this));
 	}
 
 	void Game::AddUsualComponents()

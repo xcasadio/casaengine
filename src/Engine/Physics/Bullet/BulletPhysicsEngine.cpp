@@ -11,7 +11,8 @@
 #include "BulletCollision/NarrowPhaseCollision/btMinkowskiPenetrationDepthSolver.h"
 #include "Bullet3Common/b3Logging.h"
 #include "BulletPhysicsWorld.h"
-#include "Tools/Bullet/BulletPhysicsDebugDraw.h"
+#include "Game/Game.h"
+#include "Tools/Bullet/BulletPhysicsDebugDrawComponent.h"
 
 namespace CasaEngine
 {
@@ -19,52 +20,22 @@ namespace CasaEngine
 	void b3CustomWarning(const char* msg);
 	void b3CustomError(const char* msg);
 
-	/**
-	 *
-	 */
-	BulletPhysicsEngine::BulletPhysicsEngine()
+	BulletPhysicsEngine::BulletPhysicsEngine() :
+		m_pCollisionConfig(nullptr),
+		m_pDispatcher(nullptr),
+		m_pOverlappingPairCache(nullptr),
+		m_pConstraintSolver(nullptr)
 	{
-		m_pCollisionConfig = nullptr;
-		m_pDispatcher = nullptr;
-		m_pOverlappingPairCache = nullptr;
-		m_pConstraintSolver = nullptr;
-		m_pIDebugDraw = nullptr;
 	}
 
-	/**
-	 *
-	 */
 	BulletPhysicsEngine::~BulletPhysicsEngine()
 	{
-		if (m_pCollisionConfig != nullptr)
-		{
-			delete m_pCollisionConfig;
-		}
-
-		if (m_pDispatcher != nullptr)
-		{
-			delete m_pDispatcher;
-		}
-
-		if (m_pOverlappingPairCache != nullptr)
-		{
-			delete m_pOverlappingPairCache;
-		}
-
-		if (m_pConstraintSolver != nullptr)
-		{
-			delete m_pConstraintSolver;
-		}
-
-		if (m_pIDebugDraw != nullptr)
-		{
-			delete m_pIDebugDraw;
-		}
+		delete m_pCollisionConfig;
+		delete m_pDispatcher;
+		delete m_pOverlappingPairCache;
+		delete m_pConstraintSolver;
 	}
 
-	/**
-	 *
-	 */
 	void BulletPhysicsEngine::Initialize()
 	{
 		b3SetCustomPrintfFunc(b3CustomPrintf);
@@ -93,9 +64,6 @@ namespace CasaEngine
 		m_pDispatcher->registerCollisionCreateFunc(BOX_2D_SHAPE_PROXYTYPE, BOX_2D_SHAPE_PROXYTYPE, new btBox2dBox2dCollisionAlgorithm::CreateFunc());
 	}
 
-	/**
-	 *
-	 */
 	IPhysicsWorld* BulletPhysicsEngine::CreateWorld()
 	{
 		CA_ASSERT(m_pCollisionConfig != nullptr
@@ -105,32 +73,25 @@ namespace CasaEngine
 			"PhysicsEngine::CreateWorld() : Please call Initialize() before");
 
 		BulletPhysicsWorld* pWorld = new BulletPhysicsWorld(m_pCollisionConfig, m_pDispatcher, m_pOverlappingPairCache, m_pConstraintSolver);
-		BulletPhysicsDebugDraw* pDebugDraw = new BulletPhysicsDebugDraw();
-		pDebugDraw->Initialize();
-		m_pIDebugDraw = pDebugDraw;
-		pWorld->setDebugDraw(m_pIDebugDraw);
+		BulletPhysicsDebugDrawComponent* pDebugDraw = Game::Instance().GetGameComponent<BulletPhysicsDebugDrawComponent>();
+
+		if (pDebugDraw != nullptr)
+		{
+			pWorld->setDebugDraw(pDebugDraw);
+		}
 		return pWorld;
 	}
 
-	/**
-	 *
-	 */
 	void b3CustomPrintf(const char* msg)
 	{
 		CA_INFO("[BULLET] %s\n", msg);
 	}
 
-	/**
-	 *
-	 */
 	void b3CustomWarning(const char* msg)
 	{
 		CA_WARN("[BULLET] %s\n", msg);
 	}
 
-	/**
-	 *
-	 */
 	void b3CustomError(const char* msg)
 	{
 		CA_ERROR("[BULLET] %s\n", msg);

@@ -127,7 +127,7 @@ void RPGGame::CreateMap(World* pWorld)
 	{
 		tiles[4 + pMap->GetMapSize().x * x]->IsWall(true);
 	}
-	
+
 	//wall
 	/*for (int x = 0; x < pMap->GetMapSize().x; ++x)
 	{
@@ -252,7 +252,7 @@ void RPGGame::CreateEnemies(World* pWorld)
 
 		for (auto& frame : anim.frames)
 		{
-			auto* frameData = new FrameData(); 
+			auto* frameData = new FrameData();
 			std::ostringstream spriteName;
 			spriteName << "octopus_" << frame.sprite_id;
 			frameData->SetSpriteId(spriteName.str());
@@ -277,7 +277,7 @@ void RPGGame::CreateEnemies(World* pWorld)
 	pEntity->GetComponentMgr()->AddComponent(debugComponent);
 
 	//collision
-	auto *colliderComponent = new Circle2DColliderComponent(pEntity);
+	auto* colliderComponent = new Circle2DColliderComponent(pEntity);
 	colliderComponent->SetCenter(Vector3::Zero());
 	colliderComponent->SetRadius(10.0f);
 	//auto* colliderComponent = new Box2DColliderComponent(pEntity);
@@ -355,7 +355,7 @@ void RPGGame::CreateSwordman(World* pWorld)
 	pPlayerEntity->GetComponentMgr()->AddComponent(scriptComponent);
 
 	//collision
-	auto *colliderComponent = new Circle2DColliderComponent(pPlayerEntity);
+	auto* colliderComponent = new Circle2DColliderComponent(pPlayerEntity);
 	colliderComponent->SetCenter(Vector3::Zero());
 	colliderComponent->SetRadius(10.0f);
 	//auto* colliderComponent = new Box2DColliderComponent(pPlayerEntity);
@@ -366,7 +366,7 @@ void RPGGame::CreateSwordman(World* pWorld)
 	auto* debugComponent = new DebugComponent(pPlayerEntity);
 	debugComponent->DisplayPosition(true);
 	pPlayerEntity->GetComponentMgr()->AddComponent(debugComponent);
-	
+
 	//Camera 2D
 	auto* pCamera = new BaseEntity();
 	pCamera->SetName("camera targeted");

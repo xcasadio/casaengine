@@ -18,6 +18,7 @@ namespace CasaEngine
 		virtual ~IPhysicsWorld();
 
 		virtual void Update(const GameTime& gameTime_) = 0;
+		virtual void Draw() = 0;
 
 		virtual void SetGravity(const Vector3& gravity_) = 0;
 		virtual Vector3 GetGravity() const = 0;

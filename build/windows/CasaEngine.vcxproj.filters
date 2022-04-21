@@ -720,7 +720,7 @@
     <ClInclude Include="..\..\src\Framework\Tools\DebugSystem.h">
       <Filter>Framework\Tools</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Tools\Bullet\BulletPhysicsDebugDraw.h">
+    <ClInclude Include="..\..\src\Framework\Tools\Bullet\BulletPhysicsDebugDrawComponent.h">
       <Filter>Framework\Tools\Bullet</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Framework\World\World.h">
@@ -1259,7 +1259,7 @@
     <ClCompile Include="..\..\src\Framework\Tools\DebugSystem.cpp">
       <Filter>Framework\Tools</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Framework\Tools\Bullet\BulletPhysicsDebugDraw.cpp">
+    <ClCompile Include="..\..\src\Framework\Tools\Bullet\BulletPhysicsDebugDrawComponent.cpp">
       <Filter>Framework\Tools\Bullet</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Framework\World\World.cpp">

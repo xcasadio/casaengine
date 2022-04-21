@@ -108,6 +108,11 @@ namespace CasaEngine
 
 	void World::WorldComponent::Draw()
 	{
+		if (m_pWorld->GetPhysicsWorld() != nullptr)
+		{
+			m_pWorld->GetPhysicsWorld()->Draw();
+		}
+
 		for (auto it = m_pWorld->GetEntities().begin();
 		     it != m_pWorld->GetEntities().end();
 		     ++it)

@@ -403,7 +403,7 @@
     <ClInclude Include="..\..\src\Framework\Sprite\Sprite.h" />
     <ClInclude Include="..\..\src\Framework\Sprite\SpriteRenderer.h" />
     <ClInclude Include="..\..\src\Framework\Sprite\SpriteTypes.h" />
-    <ClInclude Include="..\..\src\Framework\Tools\Bullet\BulletPhysicsDebugDraw.h" />
+    <ClInclude Include="..\..\src\Framework\Tools\Bullet\BulletPhysicsDebugDrawComponent.h" />
     <ClInclude Include="..\..\src\Framework\Tools\DebugOptions.h" />
     <ClInclude Include="..\..\src\Framework\Tools\DebugSystem.h" />
     <ClInclude Include="..\..\src\Framework\Tools\InGameLogger.h" />
@@ -574,7 +574,7 @@
     <ClCompile Include="..\..\src\Framework\Sprite\Collision.cpp" />
     <ClCompile Include="..\..\src\Framework\Sprite\Sprite.cpp" />
     <ClCompile Include="..\..\src\Framework\Sprite\SpriteRenderer.cpp" />
-    <ClCompile Include="..\..\src\Framework\Tools\Bullet\BulletPhysicsDebugDraw.cpp" />
+    <ClCompile Include="..\..\src\Framework\Tools\Bullet\BulletPhysicsDebugDrawComponent.cpp" />
     <ClCompile Include="..\..\src\Framework\Tools\DebugOptions.cpp" />
     <ClCompile Include="..\..\src\Framework\Tools\DebugSystem.cpp" />
     <ClCompile Include="..\..\src\Framework\Tools\InGameLogger.cpp" />

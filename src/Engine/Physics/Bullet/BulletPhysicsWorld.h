@@ -1,5 +1,4 @@
-#ifndef BULLETPHYSICSWORLD_H_
-#define BULLETPHYSICSWORLD_H_
+#pragma once
 
 #include "CA_Export.h"
 
@@ -34,6 +33,7 @@ namespace CasaEngine
 		~BulletPhysicsWorld() override;
 
 		void Update(const GameTime& gameTime_) override;
+		void Draw() override;
 
 		void SetGravity(const Vector3& gravity_) override;
 		Vector3 GetGravity() const override;
@@ -62,5 +62,3 @@ namespace CasaEngine
 		btDynamicsWorldExt* m_pBulletWorld;
 	};
 }
-
-#endif // BULLETPHYSICSWORLD_H_

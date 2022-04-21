@@ -1,5 +1,4 @@
-#ifndef BULLETPHYSICSENGINE_H_
-#define BULLETPHYSICSENGINE_H_
+#pragma once
 
 #include "CA_Export.h"
 
@@ -22,16 +21,13 @@ namespace CasaEngine
 		btCollisionDispatcher* m_pDispatcher;
 		btBroadphaseInterface* m_pOverlappingPairCache;
 		btSequentialImpulseConstraintSolver* m_pConstraintSolver;
-		btIDebugDraw* m_pIDebugDraw;
 
 	public:
 		BulletPhysicsEngine();
-		~BulletPhysicsEngine();
+		~BulletPhysicsEngine() override;
 
 		void Initialize() override;
 
 		IPhysicsWorld* CreateWorld() override;
 	};
 }
-
-#endif // BULLETPHYSICSENGINE_H_

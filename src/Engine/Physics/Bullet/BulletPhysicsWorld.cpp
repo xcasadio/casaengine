@@ -44,22 +44,17 @@ namespace CasaEngine
 		const auto vec = m_pBulletWorld->getGravity();
 		return Vector3(vec.x(), vec.y(), vec.z());
 	}
-
-	/**
-	 *
-	 */
+	
 	void BulletPhysicsWorld::Update(const GameTime& gameTime_)
 	{
 		m_pBulletWorld->stepSimulation(gameTime_.FrameTime());
+	}
 
-		//TODO: use a flag to des/activate debug drawing
-		// optional but useful: debug drawing
+	void BulletPhysicsWorld::Draw()
+	{
 		m_pBulletWorld->debugDrawWorld();
 	}
 
-	/**
-	 *
-	 */
 	IRigidBodyContainer* BulletPhysicsWorld::AddRigidBody(const RigidBody* pRigidBody_, Vector3 position)
 	{
 		auto mass = pRigidBody_->mass;
