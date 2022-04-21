@@ -5,7 +5,7 @@
       <Configuration>Debug</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
-	<ProjectConfiguration Include="Editor Debug|x64">
+    <ProjectConfiguration Include="Editor Debug|x64">
       <Configuration>Editor Debug</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>

@@ -15,7 +15,7 @@ using namespace CasaEngine;
 
 void LogWife(const char* name, const char* msg)
 {
-	IN_GAME_LOG(Color::AliceBlue, "%s: %s", name, msg);
+	//IN_GAME_LOG(Color::AliceBlue, "%s: %s", name, msg);
 }
 
 //-----------------------------------------------------------------------Global state
