@@ -15,21 +15,16 @@ class FightingGame2DGame :
 public:
 
 	FightingGame2DGame();
-	~FightingGame2DGame();
+	~FightingGame2DGame() override;
 
-	void Initialize();
-	void LoadContent();
-	void Update(const CasaEngine::GameTime& gameTime_);
-	void Draw();
+	void Initialize() override;
+	void LoadContent() override;
+	void Update(const GameTime& gameTime_) override;
+	void Draw() override;
 
 private:
 	std::vector<Animation2DData> LoadAnimations();
 	void LoadSprites();
-	void DisplayGrid();
-	void DisplayCollisions();
-	void DisplayCollision(BaseEntity* pEntity);
-	void DisplayPositions();
-	void DisplayPosition(BaseEntity* pEntity);
 	void DisplayUI();
 
 private:

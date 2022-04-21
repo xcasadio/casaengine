@@ -24,6 +24,7 @@
 #include <IO/File.h>
 #include <save_load_types.h>
 #include "../../external/dear-imgui/imgui.h"
+#include "Entities/Components/DebugComponent.h"
 #include "Entities/Components/Cameras/Camera2DComponent.h"
 #include "Entities/Components/Cameras/Camera2DTargetedComponent.h"
 
@@ -98,6 +99,12 @@ void Animation2DPlayerGame::LoadContent()
 	LoadSprites();
 	LoadAnimations(m_pAnimatedSprite);
 	m_pAnimatedSprite->SetCurrentAnimation(1);
+
+	auto *debugComponent = new DebugComponent(pEntity);
+	debugComponent->DisplayAnimation2DCollisions(true);
+	debugComponent->DisplayPosition(true);
+	pEntity->GetComponentMgr()->AddComponent(debugComponent);
+
 	m_pWorld->AddEntity(pEntity);
 
 	//Camera 2D
@@ -273,55 +280,6 @@ void Animation2DPlayerGame::Update(const GameTime& gameTime_)
 	Game::Update(gameTime_);
 }
 
-void Animation2DPlayerGame::DisplayCollisions()
-{
-	auto* anim = m_pAnimatedSprite->GetCurrentAnimation();
-	if (anim != nullptr)
-	{
-		//anim->GetName()
-		if (GetAssetManager().Contains(anim->CurrentFrame()))
-		{
-			auto* spriteData = GetAssetManager().GetAsset<SpriteData>(anim->CurrentFrame());
-			auto* line3DRenderer = GetGameComponent<Line3DRendererComponent>();
-			auto* transform = m_pEntity->GetComponentMgr()->GetComponent<Transform3DComponent>();
-
-			for (auto coll : spriteData->GetCollisions())
-			{
-				if (coll.GetShape()->Type() == ShapeType::RECTANGLE)
-				{
-					auto* rect = dynamic_cast<RectangleI*>(coll.GetShape());
-					auto color = coll.GetType() == CollisionType::Defense ? Color::Blue : Color::Red;
-					auto pos = transform->GetLocalPosition();
-					const auto scaleX = transform->GetLocalScale().x;
-					const auto scaleY = transform->GetLocalScale().y;
-					auto rectScaled = RectangleI(rect->x * scaleX, rect->y * scaleY, rect->w * scaleX, rect->h * scaleY);
-
-					auto leftTop = Vector3(rectScaled.Left() - 1.0f, rectScaled.Top(), 0.0f) + pos;
-					auto leftBottom = Vector3(rectScaled.Left(), rectScaled.Bottom(), 0.0f) + pos;
-					auto rightTop = Vector3(rectScaled.Right(), rectScaled.Top(), 0.0f) + pos;
-					auto rightBottom = Vector3(rectScaled.Right(), rectScaled.Bottom(), 0.0f) + pos;
-
-					line3DRenderer->AddLine(leftTop, rightTop, color);
-					line3DRenderer->AddLine(leftBottom, rightBottom, color);
-					line3DRenderer->AddLine(leftTop, leftBottom, color);
-					line3DRenderer->AddLine(rightTop, rightBottom, color);
-				}
-			}
-		}
-	}
-}
-
-void Animation2DPlayerGame::DisplayPosition()
-{
-	auto* line3DRenderer = this->GetGameComponent<Line3DRendererComponent>();
-	const auto position = m_pEntity->GetComponentMgr()->GetComponent<Transform3DComponent>()->GetLocalPosition();
-	const auto color = Color::Green;
-	const auto size = 500 / 2.0f;
-
-	line3DRenderer->AddLine(Vector3(position.x + size, position.y, 0.0f), Vector3(position.x - size, position.y, 0.0f), color);
-	line3DRenderer->AddLine(Vector3(position.x, position.y + size, 0.0f), Vector3(position.x, position.y - size, 0.0f), color);
-}
-
 void Animation2DPlayerGame::RenameAnimation(const char* old_name, const char* new_name)
 {
 	GetAssetManager().Rename(old_name, new_name);
@@ -490,8 +448,6 @@ void Animation2DPlayerGame::DisplayUI()
 
 void Animation2DPlayerGame::Draw()
 {
-	DisplayCollisions();
-	DisplayPosition();
 	DisplayUI();
 
 	Game::Draw();

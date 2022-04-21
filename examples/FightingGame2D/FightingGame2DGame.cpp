@@ -26,6 +26,7 @@
 #include "Sprite/SpriteTypes.h"
 #include <IO/File.h>
 #include "../../external/dear-imgui/imgui.h"
+#include "Entities/Components/DebugComponent.h"
 #include "Entities/Components/ScriptComponent.h"
 #include "Entities/Components/Cameras/Camera2DTargetedComponent.h"
 #include "Stages/Stage.h"
@@ -99,6 +100,12 @@ void FightingGame2DGame::LoadContent()
 	auto* pScriptCharacter = new ScriptCharacter(pPlayer1, new Player(pPlayer1));
 	scriptComponent->SetScriptObject(pScriptCharacter);
 	pPlayer1->GetComponentMgr()->AddComponent(scriptComponent);
+
+	auto* debugComponent = new DebugComponent(pPlayer1);
+	debugComponent->DisplayAnimation2DCollisions(true);
+	debugComponent->DisplayPosition(true);
+	pPlayer1->GetComponentMgr()->AddComponent(debugComponent);
+
 	m_pWorld->AddEntity(pPlayer1);
 
 	//player 2
@@ -118,6 +125,12 @@ void FightingGame2DGame::LoadContent()
 	}
 	pAnimatedSprite->SetCurrentAnimation("idle");
 	pAnimatedSprite->SetSpriteEffect(eSpriteEffects::SPRITE_EFFECT_FLIP_HORIZONTALLY);
+
+	debugComponent = new DebugComponent(pPlayer2);
+	debugComponent->DisplayAnimation2DCollisions(true);
+	debugComponent->DisplayPosition(true);
+	pPlayer2->GetComponentMgr()->AddComponent(debugComponent);
+
 	m_pWorld->AddEntity(pPlayer2);
 
 	//Camera 2D
@@ -182,71 +195,8 @@ void FightingGame2DGame::LoadSprites()
 void FightingGame2DGame::Update(const GameTime& gameTime_)
 {
 	Game::Update(gameTime_);
-
-	DisplayCollisions();
-	DisplayPositions();
 }
 
-void FightingGame2DGame::DisplayCollisions()
-{
-	DisplayCollision(m_pWorld->GetEntityByName("player 1"));
-	DisplayCollision(m_pWorld->GetEntityByName("player 2"));
-}
-
-void FightingGame2DGame::DisplayCollision(BaseEntity* pEntity)
-{
-	auto* const anim = pEntity->GetComponentMgr()->GetComponent<AnimatedSpriteComponent>()->GetCurrentAnimation();
-	if (anim != nullptr)
-	{
-		//anim->GetName()
-		if (GetAssetManager().Contains(anim->CurrentFrame()))
-		{
-			auto* spriteData = GetAssetManager().GetAsset<SpriteData>(anim->CurrentFrame());
-			auto* line3DRenderer = this->GetGameComponent<Line3DRendererComponent>();
-			auto* const transform = pEntity->GetComponentMgr()->GetComponent<Transform3DComponent>();
-
-			for (const auto& coll : spriteData->GetCollisions())
-			{
-				if (coll.GetShape()->Type() == ShapeType::RECTANGLE)
-				{
-					auto* rect = dynamic_cast<RectangleI*>(coll.GetShape());
-					auto color = coll.GetType() == CollisionType::Defense ? Color::Blue : Color::Red;
-					auto pos = transform->GetLocalPosition();
-					const auto scaleX = transform->GetLocalScale().x;
-					const auto scaleY = transform->GetLocalScale().y;
-					auto rectScaled = RectangleI(rect->x * scaleX, rect->y * scaleY, rect->w * scaleX, rect->h * scaleY);
-
-					auto leftTop = Vector3(rectScaled.Left(), rectScaled.Top(), 0.0f) + pos;
-					auto leftBottom = Vector3(rectScaled.Left(), rectScaled.Bottom(), 0.0f) + pos;
-					auto rightTop = Vector3(rectScaled.Right(), rectScaled.Top(), 0.0f) + pos;
-					auto rightBottom = Vector3(rectScaled.Right(), rectScaled.Bottom(), 0.0f) + pos;
-
-					line3DRenderer->AddLine(leftTop, rightTop, color);
-					line3DRenderer->AddLine(leftBottom, rightBottom, color);
-					line3DRenderer->AddLine(leftTop, leftBottom, color);
-					line3DRenderer->AddLine(rightTop, rightBottom, color);
-				}
-			}
-		}
-	}
-}
-
-void FightingGame2DGame::DisplayPositions()
-{
-	DisplayPosition(m_pWorld->GetEntityByName("player 1"));
-	DisplayPosition(m_pWorld->GetEntityByName("player 2"));
-}
-
-void FightingGame2DGame::DisplayPosition(BaseEntity *pEntity)
-{
-	auto* line3DRenderer = this->GetGameComponent<Line3DRendererComponent>();
-	const auto position = pEntity->GetComponentMgr()->GetComponent<Transform3DComponent>()->GetLocalPosition();
-	const auto color = Color::Green;
-	const auto size = 50 / 2.0f;
-
-	line3DRenderer->AddLine(Vector3(position.x + size, position.y, 0.0f), Vector3(position.x - size, position.y, 0.0f), color);
-	line3DRenderer->AddLine(Vector3(position.x, position.y + size, 0.0f), Vector3(position.x, position.y - size, 0.0f), color);
-}
 
 void FightingGame2DGame::DisplayUI()
 {

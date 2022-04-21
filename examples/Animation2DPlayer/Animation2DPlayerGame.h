@@ -25,8 +25,6 @@ public:
 private:
 	void LoadAnimations(AnimatedSpriteComponent* pAnimatedComponent);
 	void LoadSprites();
-	void DisplayCollisions();
-	void DisplayPosition();
 	void RenameAnimation(const char* old_name, const char* new_name);
 	void DisplayUI();
 
