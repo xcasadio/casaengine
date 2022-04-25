@@ -18,7 +18,6 @@
     <ClInclude Include="..\..\examples\RPG\CharacterEnum.h" />
     <ClInclude Include="..\..\examples\RPG\CustomComponentType.h" />
     <ClInclude Include="..\..\examples\RPG\EnemyStates.h" />
-    <ClInclude Include="..\..\examples\RPG\MessageType.h" />
     <ClInclude Include="..\..\examples\RPG\PlayerController.h" />
     <ClInclude Include="..\..\examples\RPG\PlayerStates.h" />
     <ClInclude Include="..\..\examples\RPG\RPGGame.h" />

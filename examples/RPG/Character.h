@@ -1,5 +1,4 @@
-#ifndef CHARACTER_H_
-#define CHARACTER_H_
+#pragma once
 
 #include <map>
 #include <queue>
@@ -20,14 +19,15 @@ class Character :
 	public CharacterBase
 {
 public:
-	static const int Deadzone = 20;
+	static constexpr int Deadzone = 20;
 
 public:
-	virtual ~Character();
+	~Character() override;
 
-	virtual void Initialize();
-	void Update(const GameTime& gameTime_);
-	void Draw();
+	void Initialize() override;
+	void Update(const GameTime& gameTime_) override;
+	void Draw() override;
+	bool HandleMessage(const Telegram& msg) override;
 
 	void SetAnimationParameters(unsigned int numberOfDir_, unsigned int animationDirMask_);
 	void SetAnimationDirectionOffset(orientation dir_, int offset_);
@@ -43,7 +43,6 @@ protected:
 private:
 	int GetAnimationDirectionOffset();
 
-private:
 	CharacterType m_Type;
 	// 	AttackType m_AttackType;
 	// 	bool m_IsAttackCharging;
@@ -52,22 +51,22 @@ private:
 	//
 	int m_HPMax;
 	int m_HPMaxOffSet;
-	int m_HP;
+	int m_HP{};
 	int m_HPOffSet;
 	//
 	int m_MPMax;
 	int m_MPMaxOffSet;
-	int m_MP;
+	int m_MP{};
 	int m_MPOffSet;
 	//
 	int m_Strength;
 	int m_StrengthOffSet;
-	int m_Defense;
+	int m_Defense{};
 	int m_DefenseOffSet;
 
 	//Vector2 m_Velocity;
-	int m_ComboNumber;
-	bool m_IsPlayer;
+	int m_ComboNumber{};
+	bool m_IsPlayer{};
 
 	//	TeamInfo m_TeamInfo;
 
@@ -79,5 +78,3 @@ private:
 	//std::vector<Entity *> m_EntityAlreadyAttacked;
 	Sprite* m_pLastSprite;
 };
-
-#endif

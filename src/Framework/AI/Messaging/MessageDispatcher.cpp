@@ -8,8 +8,6 @@
 
 #include "Game/Game.h"
 
-using std::set;
-
 namespace CasaEngine
 {
 	//uncomment below to send message info to the debug window

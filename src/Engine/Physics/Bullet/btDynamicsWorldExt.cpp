@@ -9,17 +9,11 @@
 
 namespace CasaEngine
 {
-	/**
-	 *
-	 */
 	btDynamicsWorldExt::btDynamicsWorldExt(btDispatcher* dispatcher, btBroadphaseInterface* broadphase, btConstraintSolver* constraintSolver, btCollisionConfiguration* collisionConfiguration) :
 		btDiscreteDynamicsWorld(dispatcher, broadphase, constraintSolver, collisionConfiguration)
 	{
 	}
 
-	/**
-	 *
-	 */
 	void btDynamicsWorldExt::debugDrawObject(const btTransform& worldTransform, const btCollisionShape* shape, const btVector3& color)
 	{
 		switch (shape->getShapeType())

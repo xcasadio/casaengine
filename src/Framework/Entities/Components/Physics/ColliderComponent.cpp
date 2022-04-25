@@ -67,7 +67,7 @@ namespace CasaEngine
 		auto* rigidBody = new RigidBody();
 		rigidBody->mass = mass;
 		rigidBody->pCollisionShape = m_pShape;
-		IRigidBodyContainer* pContainer = Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->AddRigidBody(rigidBody, transform->GetPosition());
+		IRigidBodyContainer* pContainer = Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->AddRigidBody(GetEntity(), rigidBody, transform->GetPosition());
 		GetEntity()->GetPhysicalEntity().SetRigidBody(pContainer);
 	}
 }

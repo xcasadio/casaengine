@@ -33,7 +33,9 @@ namespace CasaEngine
 					//auto *shape = new Circle(m_TileSize.x);
 					auto position = Vector3(x * m_TileSize.x + m_TileSize.x / 2.0f, y * m_TileSize.y + m_TileSize.y / 2.0f, 0.0f);
 					auto *collisionShape = Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->CreateCollisionShape(shape, position);
-					dynamic_cast<BulletCollisionObjectContainer*>(collisionShape)->GetCollisionObject()->setCollisionFlags(btCollisionObject::CF_STATIC_OBJECT);
+					auto * bullet_collision_object_container = dynamic_cast<BulletCollisionObjectContainer*>(collisionShape);
+					bullet_collision_object_container->GetCollisionObject()->setUserPointer(pEntity);
+					bullet_collision_object_container->GetCollisionObject()->setCollisionFlags(btCollisionObject::CF_STATIC_OBJECT);
 					Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->AddCollisionObject(collisionShape);
 				}
 			}

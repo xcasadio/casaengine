@@ -1,5 +1,4 @@
-#ifndef IPHYSICSWORLD_H_
-#define IPHYSICSWORLD_H_
+#pragma once
 
 #include "CA_Export.h"
 
@@ -8,6 +7,7 @@
 #include "GameTime.h"
 #include "RigidBody.h"
 #include "PhysicsObjectContainer.h"
+#include "Entities/BaseEntity.h"
 
 namespace CasaEngine
 {
@@ -28,9 +28,7 @@ namespace CasaEngine
 		virtual void AddCollisionObject(ICollisionObjectContainer*) = 0;
 		virtual void RemoveCollisionObject(ICollisionObjectContainer*) = 0;
 
-		virtual IRigidBodyContainer* AddRigidBody(const RigidBody* pRigidBody_, Vector3 position) = 0;
+		virtual IRigidBodyContainer* AddRigidBody(BaseEntity* entity, const RigidBody* pRigidBody_, Vector3 position) = 0;
 		virtual void RemoveRigidBody(IRigidBodyContainer*) = 0;
 	};
 }
-
-#endif

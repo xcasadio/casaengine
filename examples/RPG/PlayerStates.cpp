@@ -2,27 +2,17 @@
 #include "Game\Game.h"
 #include "PlayerController.h"
 #include "CharacterEnum.h"
-#include "MessageType.h"
+#include "GameDatas/MessageType.h"
 
-//////////////////////////////////////////////////////////////////////////
 
-/**
- *
- */
 PlayerStateIdle::PlayerStateIdle()
 {
 }
 
-/**
- *
- */
 PlayerStateIdle::~PlayerStateIdle()
 {
 }
 
-/**
- *
- */
 void PlayerStateIdle::Enter(IController* pController_)
 {
 	PlayerController* pPlayerController = dynamic_cast<PlayerController*>(pController_);
@@ -43,9 +33,6 @@ void PlayerStateIdle::Enter(IController* pController_)
 	}
 }
 
-/**
- *
- */
 void PlayerStateIdle::Execute(IController* pController_, const GameTime& elpasedTime_)
 {
 	PlayerController* pPlayerController = dynamic_cast<PlayerController*>(pController_);
@@ -102,16 +89,10 @@ void PlayerStateIdle::Execute(IController* pController_, const GameTime& elpased
 	}
 }
 
-/**
- *
- */
 void PlayerStateIdle::Exit(IController* pController_)
 {
 }
 
-/**
- *
- */
 bool PlayerStateIdle::OnMessage(IController* pController_, const Telegram&)
 {
 	return false;
@@ -119,23 +100,15 @@ bool PlayerStateIdle::OnMessage(IController* pController_, const Telegram&)
 
 //////////////////////////////////////////////////////////////////////////
 
-/**
- *
- */
+
 PlayerStateAttack::PlayerStateAttack()
 {
 }
 
-/**
- *
- */
 PlayerStateAttack::~PlayerStateAttack()
 {
 }
 
-/**
- *
- */
 void PlayerStateAttack::Enter(IController* pController_)
 {
 	PlayerController* pPlayerController = dynamic_cast<PlayerController*>(pController_);
@@ -167,9 +140,6 @@ void PlayerStateAttack::Enter(IController* pController_)
 	}
 }
 
-/**
- *
- */
 void PlayerStateAttack::Execute(IController* pController_, const GameTime& elpasedTime_)
 {
 	//PlayerController* pPlayerController = dynamic_cast<PlayerController*>(pController_);
@@ -198,21 +168,15 @@ void PlayerStateAttack::Execute(IController* pController_, const GameTime& elpas
 	//     }
 }
 
-/**
- *
- */
 void PlayerStateAttack::Exit(IController* pController_)
 {
 }
 
-/**
- *
- */
 bool PlayerStateAttack::OnMessage(IController* pController_, const Telegram& msg)
 {
 	PlayerController* pPlayerController = dynamic_cast<PlayerController*>(pController_);
 
-	if (msg.Msg == ANIMATION_FINISHED)
+	if (msg.Msg == (int)MessageType::ANIMATION_FINISHED)
 	{
 		//		if (pPlayerController->GetHero()->AttackType() == AttackType::Melee)
 		{

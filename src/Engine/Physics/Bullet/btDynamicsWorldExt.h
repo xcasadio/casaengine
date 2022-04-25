@@ -1,5 +1,4 @@
-#ifndef BTDYNAMICSWORLDEXT_H_
-#define BTDYNAMICSWORLDEXT_H_
+#pragma once
 
 #include "CA_Export.h"
 
@@ -18,8 +17,6 @@ namespace CasaEngine
 	public:
 		btDynamicsWorldExt(btDispatcher* dispatcher, btBroadphaseInterface* broadphase, btConstraintSolver* constraintSolver, btCollisionConfiguration* collisionConfiguration);
 
-		void debugDrawObject(const btTransform& worldTransform, const btCollisionShape* shape, const btVector3& color);
+		void debugDrawObject(const btTransform& worldTransform, const btCollisionShape* shape, const btVector3& color) override;
 	};
 }
-
-#endif // BTDYNAMICSWORLDEXT_H_

@@ -1,5 +1,4 @@
-#ifndef MESSAGE_DISPATCHER_H
-#define MESSAGE_DISPATCHER_H
+#pragma once
 
 #include "AI/Messaging/Telegram.h"
 #include "CA_Export.h"
@@ -45,5 +44,3 @@ namespace CasaEngine
 	};
 
 }
-
-#endif

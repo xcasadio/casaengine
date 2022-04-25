@@ -918,6 +918,9 @@
     <ClInclude Include="..\..\src\Framework\Game\DisplayDebugInfoGameComponent.h">
       <Filter>Framework\Game</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Framework\GameDatas\MessageType.h">
+      <Filter>Framework\GameDatas</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Core\DateTime.cpp">
@@ -1077,9 +1080,6 @@
       <Filter>Engine\Physics\Bullet</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Physics\Bullet\BulletPhysicsEngine.cpp">
-      <Filter>Engine\Physics\Bullet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Physics\Bullet\BulletPhysicsWorld.cpp">
       <Filter>Engine\Physics\Bullet</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\GameTime.cpp">
@@ -1393,6 +1393,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Framework\Game\DisplayDebugInfoGameComponent.cpp">
       <Filter>Framework\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Physics\Bullet\BulletPhysicsWorld.cpp">
+      <Filter>Engine\Physics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

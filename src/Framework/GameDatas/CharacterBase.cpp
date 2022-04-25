@@ -8,7 +8,8 @@
 
 namespace CasaEngine
 {
-	CharacterBase::CharacterBase(BaseEntity* pEntity)
+	CharacterBase::CharacterBase(BaseEntity* pEntity):
+		m_Orientation()
 	{
 		AnimatedSpriteComponent* pAnimatedSprite = pEntity->GetComponentMgr()->GetComponent<AnimatedSpriteComponent>();
 
@@ -124,6 +125,11 @@ namespace CasaEngine
 	IController* CharacterBase::GetController() const
 	{
 		return m_pController;
+	}
+
+	BaseEntity* CharacterBase::GetEntity()
+	{
+		return m_pEntity;
 	}
 
 	void CharacterBase::Move(Vector2& dir)

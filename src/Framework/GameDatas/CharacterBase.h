@@ -1,5 +1,4 @@
-#ifndef CharacterBase_H_
-#define CharacterBase_H_
+#pragma once
 
 #include <map>
 #include <queue>
@@ -32,6 +31,7 @@ namespace CasaEngine
 
 		void SetController(IController*);
 		IController* GetController() const;
+		BaseEntity* GetEntity();
 
 		void Move(Vector2& dir);
 
@@ -49,6 +49,7 @@ namespace CasaEngine
 
 		float m_Speed;
 		float m_SpeedOffSet;
+		int m_Group;
 	
 	private:
 		IController* m_pController;
@@ -61,5 +62,3 @@ namespace CasaEngine
 		std::queue<Telegram> m_MessageQueue;
 	};
 }
-
-#endif

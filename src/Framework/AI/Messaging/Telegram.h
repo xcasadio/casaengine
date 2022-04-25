@@ -1,24 +1,11 @@
-#ifndef TELEGRAM_H
-#define TELEGRAM_H
+#pragma once
 
-//------------------------------------------------------------------------
-//
-//  Name:   Telegram.h
-//
-//  Desc:   This defines a telegram. A telegram is a data structure that
-//          records information required to dispatch messages. Messages 
-//          are used by game agents to communicate with each other.
-//
-//  Author: Mat Buckland (fup@ai-junkie.com)
-//
-//------------------------------------------------------------------------
 #include <iostream>
 #include <math.h>
 #include "CA_Export.h"
 
 namespace CasaEngine
 {
-
 	struct CA_EXPORT Telegram
 	{
 		//the entity that sent this telegram
@@ -37,12 +24,9 @@ namespace CasaEngine
 		double       DispatchTime;
 
 		//any additional information that may accompany the message
-		const void*        ExtraInfo;
+		const void* ExtraInfo;
 
-		/**
-		 * 
-		 */
-		Telegram():
+		Telegram() :
 			Sender(-1),
 			Receiver(-1),
 			Msg(-1),
@@ -51,19 +35,15 @@ namespace CasaEngine
 		{
 		}
 
-		/**
-		 * 
-		 */
-		Telegram(double time, int sender, int receiver, int msg, void*  info = nullptr) : 
+		Telegram(double time, int sender, int receiver, int msg, void* info = nullptr) :
 			Sender(sender),
 			Receiver(receiver),
 			Msg(msg),
 			DispatchTime(time),
 			ExtraInfo(info)
 		{}
- 
-	};
 
+	};
 
 	//these telegrams will be stored in a priority queue. Therefore the >
 	//operator needs to be overloaded so that the PQ can sort the telegrams
@@ -74,28 +54,28 @@ namespace CasaEngine
 
 	inline bool operator==(const Telegram& t1, const Telegram& t2)
 	{
-	  return fabs(t1.DispatchTime-t2.DispatchTime) < SmallestDelay &&
-			  t1.Sender == t2.Sender        &&
-			  t1.Receiver == t2.Receiver    &&
-			  t1.Msg == t2.Msg;
+		return fabs(t1.DispatchTime - t2.DispatchTime) < SmallestDelay &&
+			t1.Sender == t2.Sender &&
+			t1.Receiver == t2.Receiver &&
+			t1.Msg == t2.Msg;
 	}
 
 	inline bool operator<(const Telegram& t1, const Telegram& t2)
 	{
-	  if (t1 == t2)
-	  {
-		return false;
-	  }
-		
-	  return  t1.DispatchTime < t2.DispatchTime;
+		if (t1 == t2)
+		{
+			return false;
+		}
+
+		return  t1.DispatchTime < t2.DispatchTime;
 	}
 
 	inline std::ostream& operator<<(std::ostream& os, const Telegram& t)
 	{
-	  os << "time: " << t.DispatchTime << "  Sender: " << t.Sender
-		 << "   Receiver: " << t.Receiver << "   Msg: " << t.Msg;
+		os << "time: " << t.DispatchTime << "  Sender: " << t.Sender
+			<< "   Receiver: " << t.Receiver << "   Msg: " << t.Msg;
 
-	  return os;
+		return os;
 	}
 
 	//handy helper function for dereferencing the ExtraInfo field of the Telegram 
@@ -103,10 +83,7 @@ namespace CasaEngine
 	template <class T>
 	T DereferenceToType(void* p)
 	{
-	  return *static_cast<T*>(p);
+		return *static_cast<T*>(p);
 	}
 
 }
-
-
-#endif

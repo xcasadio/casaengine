@@ -1,5 +1,4 @@
-#ifndef SCRIPTPLAYER_H_
-#define SCRIPTPLAYER_H_
+#pragma once
 
 #include "Character.h"
 #include "Script\IScriptObject.h"
@@ -14,7 +13,7 @@ public:
 
 public:
 	ScriptCharacter(BaseEntity* pEntity_, Character* pCharacter);
-	~ScriptCharacter();
+	~ScriptCharacter() override;
 
 	void OnInitialize() override;
 	void OnUpdate(const GameTime& gameTime_) override;
@@ -23,5 +22,3 @@ public:
 private:
 	Character* m_pCharacter;
 };
-
-#endif

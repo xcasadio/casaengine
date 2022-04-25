@@ -376,6 +376,7 @@
     <ClInclude Include="..\..\src\Framework\Entities\EntityManager.h" />
     <ClInclude Include="..\..\src\Framework\Entities\Events\BaseEntityEvents.h" />
     <ClInclude Include="..\..\src\Framework\Entities\Physics\PhysicalEntity.h" />
+    <ClInclude Include="..\..\src\Framework\GameDatas\MessageType.h" />
     <ClInclude Include="..\..\src\Framework\Game\DisplayDebugInfoGameComponent.h" />
     <ClInclude Include="..\..\src\Framework\Game\DrawableGameComponent.h" />
     <ClInclude Include="..\..\src\Framework\Game\Editor\GameEditor.h" />

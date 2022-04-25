@@ -1,5 +1,4 @@
-#ifndef COLLIDERCOMPONENT_H_
-#define COLLIDERCOMPONENT_H_
+#pragma once
 
 #include <iosfwd>
 
@@ -12,9 +11,6 @@
 
 namespace CasaEngine
 {
-	/*
-	 *
-	 */
 	class CA_EXPORT ColliderComponent :
 		public Component
 	{
@@ -48,5 +44,3 @@ namespace CasaEngine
 		ICollisionObjectContainer* m_pCollisionObjectContainer;
 	};
 }
-
-#endif

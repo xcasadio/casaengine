@@ -1,5 +1,4 @@
-#ifndef COMPONENTMANAGER_H_
-#define COMPONENTMANAGER_H_
+#pragma once
 
 #include <iosfwd>
 #include <vector>
@@ -77,5 +76,3 @@ namespace CasaEngine
 		bool HandleMessage(const Telegram& msg);
 	};
 }
-
-#endif

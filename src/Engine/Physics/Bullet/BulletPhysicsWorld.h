@@ -40,7 +40,7 @@ namespace CasaEngine
 
 		void setDebugDraw(btIDebugDraw* pIDebugDraw_);
 
-		IRigidBodyContainer* AddRigidBody(const RigidBody* pRigidBody_, Vector3 position) override;
+		IRigidBodyContainer* AddRigidBody(BaseEntity* entity, const RigidBody* pRigidBody_, Vector3 position) override;
 		void RemoveRigidBody(IRigidBodyContainer* pObj_) override;
 
 		void AddCollisionObject(ICollisionObjectContainer* pObj_) override;
@@ -60,5 +60,6 @@ namespace CasaEngine
 	private:
 		//btDiscreteDynamicsWorld* m_pBulletWorld;
 		btDynamicsWorldExt* m_pBulletWorld;
+		btCollisionDispatcher* dispatcher_;
 	};
 }

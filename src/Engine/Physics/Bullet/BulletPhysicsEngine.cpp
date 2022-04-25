@@ -52,7 +52,7 @@ namespace CasaEngine
 		m_pOverlappingPairCache = new btDbvtBroadphase();
 
 		///the default constraint solver. For parallel processing you can use a different solver (see Extras/BulletMultiThreaded)
-		m_pConstraintSolver = new btSequentialImpulseConstraintSolver;
+		m_pConstraintSolver = new btSequentialImpulseConstraintSolver();
 
 		//TODO : create function to activate 2D
 		btVoronoiSimplexSolver* simplex = new btVoronoiSimplexSolver();

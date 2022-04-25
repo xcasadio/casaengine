@@ -2,9 +2,8 @@
 
 namespace CasaEngine
 {
-	ITile::ITile()
+	ITile::ITile() : m_IsWall(false)
 	{
-		m_IsWall = false;
 	}
 	
 	void ITile::Initialize()

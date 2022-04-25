@@ -6,15 +6,28 @@
 #include "Log\LogManager.h"
 #include "Entities\Events\BaseEntityEvents.h"
 #include "EventHandler\Event.h"
-#include "MessageType.h"
 #include "Assets\AssetManager.h"
 #include "Entities\Physics\PhysicalEntity.h"
 #include "AI\MovementSystem\MovementRequest.h"
 #include "Entities\Events\BaseEntityEvents.h"
 #include "EventHandler\Event.h"
+#include "GameDatas/MessageType.h"
 
 
-Character::Character(BaseEntity* pEntity) : CasaEngine::CharacterBase(pEntity)
+Character::Character(BaseEntity* pEntity) :
+	CharacterBase(pEntity),
+	m_HPMax(100),
+	m_HPMaxOffSet(0.0f),
+	m_HPOffSet(0.0f),
+	m_MPMax(100),
+	m_MPMaxOffSet(0.0f),
+	m_MPOffSet(0.0f),
+	m_Strength(10),
+	m_StrengthOffSet(0.0f),
+	m_DefenseOffSet(0.0f),
+	m_NumberOfDirection(8),
+	m_AnimationDirectionMask(0),
+	m_pLastSprite(nullptr)
 {
 	m_pAnimatedSprite->subscribeEvent(
 		AnimationFinishedEvent::GetEventName(),
@@ -22,22 +35,6 @@ Character::Character(BaseEntity* pEntity) : CasaEngine::CharacterBase(pEntity)
 	m_pAnimatedSprite->subscribeEvent(
 		FrameChangeEvent::GetEventName(),
 		Event::Subscriber(&Character::OnFrameChangedEvent, this));
-	
-	m_pLastSprite = nullptr;
-
-	m_NumberOfDirection = 8;
-	m_AnimationDirectionMask = 0;
-
-	int m_HPMaxOffSet = 0.0f;
-	int m_HPOffSet = 0.0f;
-	int m_MPMaxOffSet = 0.0f;
-	int m_MPOffSet = 0.0f;
-	int m_StrengthOffSet = 0.0f;
-	int m_DefenseOffSet = 0.0f;
-
-	m_Strength = 10;
-	m_HPMax = 100;
-	m_MPMax = 100;
 
 	SetAnimationDirectionOffset(DOWN, static_cast<int>(AnimationDirectionOffset::DOWN));
 	//SetAnimationDirectionOffset(DOWN_LEFT, static_cast<int>(AnimationDirectionOffset::DOWN_LEFT));
@@ -50,9 +47,7 @@ Character::Character(BaseEntity* pEntity) : CasaEngine::CharacterBase(pEntity)
 	SetAnimationParameters(4, -1);
 }
 
-Character::~Character()
-{
-}
+Character::~Character() = default;
 
 void Character::Initialize()
 {
@@ -85,6 +80,16 @@ void Character::Draw()
 {
 }
 
+bool Character::HandleMessage(const Telegram& msg)
+{
+	if (msg.ExtraInfo != nullptr && msg.Msg == (int)MessageType::COLLISION)
+	{
+		
+	}
+
+	return CharacterBase::HandleMessage(msg);
+}
+
 void Character::SetAnimationParameters(unsigned int numberOfDir_, unsigned int animationDirMask_)
 {
 	m_NumberOfDirection = numberOfDir_;
@@ -94,6 +99,11 @@ void Character::SetAnimationParameters(unsigned int numberOfDir_, unsigned int a
 void Character::SetAnimationDirectionOffset(orientation dir_, int offset_)
 {
 	m_AnimationDirectionOffset[static_cast<int>(dir_)] = offset_;
+}
+
+int Character::GetAnimationDirectionOffset()
+{
+	return 0;
 }
 
 bool Character::SetCurrentAnimationByName(const char* name)
@@ -134,7 +144,7 @@ bool Character::OnAnimationFinished(const EventArgs& e_)
 
 	//event.ID();
 	Telegram msg;
-	msg.Msg = ANIMATION_FINISHED;
+	msg.Msg = (int)MessageType::ANIMATION_FINISHED;
 	msg.ExtraInfo = &event;
 	QueueMessage(msg);
 
@@ -147,7 +157,7 @@ bool Character::OnFrameChangedEvent(const EventArgs& e_)
 
 	//event.ID();
 	Telegram msg;
-	msg.Msg = FRAME_CHANGE_EVENT;
+	msg.Msg = (int)MessageType::FRAME_CHANGE_EVENT;
 	msg.ExtraInfo = &event;
 	QueueMessage(msg);
 

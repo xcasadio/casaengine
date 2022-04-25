@@ -1,5 +1,4 @@
-#ifndef ISCRIPTOBJECT_H_
-#define ISCRIPTOBJECT_H_
+#pragma once
 
 #include "CA_Export.h"
 #include "Entities\BaseEntity.h"
@@ -10,13 +9,10 @@ namespace CasaEngine
 	typedef unsigned int ScriptObjectClassID;
 	typedef unsigned int ScriptObjectID;
 
-	/**
-	 *
-	 */
 	class CA_EXPORT IScriptObject
 	{
 	public:
-		virtual ~IScriptObject() {}
+		virtual ~IScriptObject() = default;
 
 		BaseEntity* GetEntity() const;
 
@@ -32,5 +28,3 @@ namespace CasaEngine
 	};
 
 }
-
-#endif

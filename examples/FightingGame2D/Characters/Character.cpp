@@ -5,12 +5,12 @@
 #include "Log\LogManager.h"
 #include "Entities\Events\BaseEntityEvents.h"
 #include "EventHandler\Event.h"
-#include "MessageType.h"
 #include "Assets\AssetManager.h"
 #include "Entities\Physics\PhysicalEntity.h"
 #include "AI\MovementSystem\MovementRequest.h"
 #include "Entities\Events\BaseEntityEvents.h"
 #include "EventHandler\Event.h"
+#include "GameDatas/MessageType.h"
 
 
 Character::Character(BaseEntity* pEntity) : CasaEngine::CharacterBase(pEntity)
@@ -100,6 +100,8 @@ bool Character::OnAnimationFinished(const EventArgs& e_)
 
 	//event.ID();
 	Telegram msg;
+	msg.Sender = GetEntity()->ID();
+	msg.Receiver = GetEntity()->ID();
 	//msg.Msg = ANIMATION_FINISHED;
 	msg.ExtraInfo = &event;
 	QueueMessage(msg);
@@ -113,6 +115,8 @@ bool Character::OnFrameChangedEvent(const EventArgs& e_)
 
 	//event.ID();
 	Telegram msg;
+	msg.Sender = GetEntity()->ID();
+	msg.Receiver = GetEntity()->ID();
 	msg.Msg = static_cast<int>(MessageType::FRAME_CHANGE_EVENT);
 	msg.ExtraInfo = &event;
 	QueueMessage(msg);

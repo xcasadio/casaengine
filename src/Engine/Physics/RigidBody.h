@@ -1,5 +1,4 @@
-#ifndef RIGIDBODY_H_
-#define RIGIDBODY_H_
+#pragma once
 
 #include "CA_Export.h"
 
@@ -50,5 +49,3 @@ namespace CasaEngine
 		{}
 	};
 }
-
-#endif

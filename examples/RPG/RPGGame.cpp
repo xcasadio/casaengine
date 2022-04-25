@@ -6,6 +6,8 @@
 
 #include "RPGGame.h"
 
+#include <BulletCollision/CollisionDispatch/btCollisionObject.h>
+
 #include "Player.h"
 #include "Enemy.h"
 #include "EnemyController.h"
@@ -36,6 +38,7 @@
 #include "Entities/Components/Cameras/Camera3DTargetedComponent.h"
 #include "Entities/Components/Physics/Box2DColliderComponent.h"
 #include "Entities/Components/Physics/Circle2DColliderComponent.h"
+#include "Physics/Bullet/BulletObjectsContainer.h"
 
 using namespace CasaEngine;
 
@@ -127,6 +130,15 @@ void RPGGame::CreateMap(World* pWorld)
 	{
 		tiles[4 + pMap->GetMapSize().x * x]->IsWall(true);
 	}
+	//TEST create box
+	const auto* shape = new RectangleF(0, 0, 48, 48);
+	//auto *shape = new Circle(m_TileSize.x);
+	auto position = Vector3(10, 10, 0.0f);
+	auto* collisionShape = Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->CreateCollisionShape(shape, position);
+	auto * bullet_collision_object_container = dynamic_cast<BulletCollisionObjectContainer*>(collisionShape);
+	bullet_collision_object_container->GetCollisionObject()->setUserPointer(pEntity);
+	bullet_collision_object_container->GetCollisionObject()->setCollisionFlags(btCollisionObject::CF_NO_CONTACT_RESPONSE);
+	Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->AddCollisionObject(collisionShape);
 
 	//wall
 	/*for (int x = 0; x < pMap->GetMapSize().x; ++x)

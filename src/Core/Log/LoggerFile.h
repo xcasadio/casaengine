@@ -1,5 +1,4 @@
-#ifndef LOGGERFILE_H
-#define LOGGERFILE_H
+#pragma once
 
 #include <Log/Logger.h>
 #include <fstream>
@@ -12,10 +11,10 @@ namespace CasaEngine
 	{
 	public:
 		LoggerFile(const char* pFilename_ = "Output.log");
-		~LoggerFile();
+		~LoggerFile() override;
 
 	private:
-		void Write(TLogVerbosity verbose_, const std::string& Message) override;
+		void Write(TLogVerbosity verbose, const std::string& Message) override;
 		void Write(const std::string& Message);
 
 	private:
@@ -23,5 +22,3 @@ namespace CasaEngine
 		char m_TempBuffer[32];
 	};
 }
-
-#endif
