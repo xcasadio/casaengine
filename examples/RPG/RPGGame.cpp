@@ -77,9 +77,6 @@ void RPGGame::Initialize()
 	//GetDebugOptions().ShowLogInGame = true;
 }
 
-/**
- *
- */
 void RPGGame::LoadContent()
 {
 	Game::LoadContent();
@@ -218,7 +215,6 @@ void RPGGame::CreateAssets(Vector2I tileSize)
 	}
 }
 
-
 const auto frame_delay = 0.64f * 5.0f;
 
 void RPGGame::CreateEnemies(World* pWorld)
@@ -302,7 +298,7 @@ void RPGGame::CreateEnemies(World* pWorld)
 void RPGGame::CreateSwordman(World* pWorld)
 {
 	//player
-	const auto tileWidth = 48, tileHeight = 48;
+	constexpr auto tileWidth = 48, tileHeight = 48;
 	auto* pPlayerEntity = new BaseEntity();
 	pPlayerEntity->SetName("player 1");
 	auto* pTrans3D = new Transform3DComponent(pPlayerEntity);

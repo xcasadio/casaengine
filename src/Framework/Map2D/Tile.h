@@ -1,5 +1,4 @@
-#ifndef TILE_H_
-#define TILE_H_
+#pragma once
 
 #include <GameTime.h>
 
@@ -20,7 +19,7 @@ namespace CasaEngine
 
 	protected:
 		ITile();
-		void Draw(Sprite* pSprite, float x, float y, float z, RectangleI uvOffset) const;
+		void Draw(const Sprite* sprite, float x, float y, float z, RectangleI uvOffset) const;
 
 	private:
 		SpriteRenderer* m_pSpriteRenderer = nullptr;
@@ -28,5 +27,3 @@ namespace CasaEngine
 	};
 
 }
-
-#endif

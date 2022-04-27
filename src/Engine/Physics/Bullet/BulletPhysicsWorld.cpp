@@ -155,10 +155,10 @@ namespace CasaEngine
 		m_pBulletWorld->removeCollisionObject(pColObj_);
 	}
 
-	btCollisionObject* BulletPhysicsWorld::CreateCollisionObjectFromShape(IShape* pShape_)
+	btCollisionObject* BulletPhysicsWorld::CreateCollisionObjectFromShape(IShape* shape)
 	{
 		Vector3 origin;
-		auto* const pbtShape = CreateCollisionShape(pShape_);
+		auto* const pbtShape = CreateCollisionShape(shape);
 		auto* colShape = new btCollisionObject();
 		colShape->getWorldTransform().setOrigin(btVector3(origin.x, origin.y, origin.z));
 		colShape->setCollisionShape(pbtShape);
@@ -166,11 +166,11 @@ namespace CasaEngine
 		return colShape;
 	}
 
-	btCollisionObject* BulletPhysicsWorld::CreateCollisionObjectFromShape(btCollisionShape* pshape_, Vector3 center_)
+	btCollisionObject* BulletPhysicsWorld::CreateCollisionObjectFromShape(btCollisionShape* shape, Vector3 center)
 	{
 		auto* colShape = new btCollisionObject();
-		colShape->getWorldTransform().setOrigin(btVector3(center_.x, center_.y, center_.z));
-		colShape->setCollisionShape(pshape_);
+		colShape->getWorldTransform().setOrigin(btVector3(center.x, center.y, center.z));
+		colShape->setCollisionShape(shape);
 		return colShape;
 	}
 

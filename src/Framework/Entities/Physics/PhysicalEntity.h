@@ -1,5 +1,4 @@
-#ifndef PHYSICALENTITY_H_
-#define PHYSICALENTITY_H_
+#pragma once
 
 #include "CA_Export.h"
 
@@ -96,5 +95,3 @@ namespace CasaEngine
 	};
 
 }
-
-#endif

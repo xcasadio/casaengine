@@ -54,8 +54,8 @@ namespace CasaEngine
 		btCollisionShape* CreateCollisionShape(const IShape* pShape_);
 		void RemoveCollisionObject(btCollisionObject* pShape_);
 
-		btCollisionObject* CreateCollisionObjectFromShape(IShape* pShape_);
-		btCollisionObject* CreateCollisionObjectFromShape(btCollisionShape* pshape_, Vector3 center_);
+		btCollisionObject* CreateCollisionObjectFromShape(IShape* shape);
+		btCollisionObject* CreateCollisionObjectFromShape(btCollisionShape* shape, Vector3 center);
 
 	private:
 		//btDiscreteDynamicsWorld* m_pBulletWorld;
