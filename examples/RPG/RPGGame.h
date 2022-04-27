@@ -1,11 +1,13 @@
 #pragma once
 
+#include "load_save_types.h"
 #include "Graphics/Textures/Texture.h"
 #include "Game/Game.h"
 
 #include "World/World.h"
 #include "Entities/Components/AnimatedSpriteComponent.h"
 #include "Entities/Components/Cameras/ArcBallCameraComponent.h"
+#include "Map2D/TiledMapComponent.h"
 
 using namespace CasaEngine;
 

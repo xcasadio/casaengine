@@ -5,6 +5,7 @@
 namespace CasaEngine
 {
 	DebugOptions::DebugOptions() :
+		ShowPhysicsDebug(false),
 		ShowLogInGame(false),
 		ShowAxis(false),
 		ShowFPS(false),

@@ -34,12 +34,11 @@ namespace CasaEngine
 
 	void TiledMapComponent::Draw()
 	{
-		auto translation = m_pTransform3DComponent->GetWorldMatrix().Translation();
+		const auto translation = m_pTransform3DComponent->GetWorldMatrix().Translation();
 
 		for (auto* pLayer : m_Layers)
 		{
 			pLayer->Draw(translation);
-			translation.z += 0.01f;
 		}
 	}
 

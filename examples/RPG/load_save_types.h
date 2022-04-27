@@ -1,5 +1,6 @@
-#ifndef LOAD_SAVE_TYPES_H_
-#define LOAD_SAVE_TYPES_H_
+#pragma once
+
+#include "Maths/Rectangle.h"
 
 using namespace CasaEngine;
 
@@ -375,14 +376,14 @@ private:
 typedef struct {
 	//OSL_IMAGE* img; // image contenant toutes les tiles
 	//OSL_MAP* couche1, * couche2, * couche3, * couche4; // map format OSLIB
-	int* tabCouche1, * tabCouche2, /**tabCouche3,*/* tabCouche4; // tableau avec numero correspondant aux tiles dans l'image img
-	int* couche1Type;//, *couche2Type, *couche3Type, *couche4Type; // pour les collisions 11111 => premier chiffre collision ou pas
+	//int* tabCouche1, * tabCouche2, /**tabCouche3,*/* tabCouche4; // tableau avec numero correspondant aux tiles dans l'image img
+	//int* couche1Type;//, *couche2Type, *couche3Type, *couche4Type; // pour les collisions 11111 => premier chiffre collision ou pas
 	//int *couche1Topo, *couche2Topo, *couche3Topo, *couche4Topo; // relief pour ralentir les perso
 
-	int worldX, worldY; // coordonnees de la map dans le monde
-	int nbrSortie; // nombre de sortie_to_delete
-	_mapExit* sortie_to_delete; // tableau de nombre
-	int zone; // zone dans laquelle se trouve la map
+	//int worldX, worldY; // coordonnees de la map dans le monde
+	//int nbrSortie; // nombre de sortie_to_delete
+	//_mapExit* sortie_to_delete; // tableau de nombre
+	//int zone; // zone dans laquelle se trouve la map
 
 	//OSL_SOUND* bgm;// musique de la map
 	//
@@ -392,6 +393,7 @@ typedef struct {
 	std::vector<int> tile_type_layer_1;
 	std::vector<int> tile_layer_1;
 	std::vector<int> tile_layer_2;
+	std::vector<int> auto_tile_layer;
 	std::vector<int> tile_layer_4;
 	std::vector<ennemy_map_info> ennemy_info;
 
@@ -408,6 +410,7 @@ private:
 		ar(CEREAL_NVP(tile_type_layer_1));
 		ar(CEREAL_NVP(tile_layer_1));
 		ar(CEREAL_NVP(tile_layer_2));
+		ar(CEREAL_NVP(auto_tile_layer));
 		ar(CEREAL_NVP(tile_layer_4));
 		ar(CEREAL_NVP(ennemy_info));
 	}
@@ -422,6 +425,7 @@ private:
 		ar(CEREAL_NVP(tile_type_layer_1));
 		ar(CEREAL_NVP(tile_layer_1));
 		ar(CEREAL_NVP(tile_layer_2));
+		ar(CEREAL_NVP(auto_tile_layer));
 		ar(CEREAL_NVP(tile_layer_4));
 		ar(CEREAL_NVP(ennemy_info));
 	}
@@ -432,5 +436,3 @@ typedef struct { // pas encore definie
 	//char *imgCharge; // pour savoir quel image charge
 	//char *musicCharge;
 } _script;
-
-#endif

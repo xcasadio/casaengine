@@ -33,9 +33,12 @@ namespace CasaEngine
 
 	void BulletPhysicsDebugDrawComponent::Draw()
 	{
-		for (auto & line : lines)
+		if (GetGame()->GetDebugOptions().ShowPhysicsDebug)
 		{
-			m_pLineRenderer->AddLine(line.start, line.end, line.color);
+			for (auto& line : lines)
+			{
+				m_pLineRenderer->AddLine(line.start, line.end, line.color);
+			}
 		}
 	}
 

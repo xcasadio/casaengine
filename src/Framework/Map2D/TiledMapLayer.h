@@ -33,9 +33,13 @@ namespace CasaEngine
 		void SetTile(int x, int y, ITile* pTile);
 		ITile* GetTile(int x, int y) const;
 
+		void SetZOffset(float value);
+		float GetZOffset() const;
+
 	private:
 		Vector2I m_MapSize;
 		Vector2I m_TileSize;
 		std::vector<ITile*> m_Tiles;
+		float zOffset;
 	};
 }

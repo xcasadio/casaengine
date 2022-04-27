@@ -13,6 +13,7 @@ namespace CasaEngine
 		void Show(std::string &item_, bool val);
 		void Activate(std::string &item_, bool val);
 
+		bool ShowPhysicsDebug;
 		bool ShowLogInGame;
 		bool ShowAxis;
 		bool ShowFPS;

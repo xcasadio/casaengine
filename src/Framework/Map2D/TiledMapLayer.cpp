@@ -8,7 +8,8 @@
 
 namespace CasaEngine
 {
-	TiledMapLayer::TiledMapLayer()
+	TiledMapLayer::TiledMapLayer():
+		zOffset(0)
 	{
 	}
 
@@ -66,7 +67,9 @@ namespace CasaEngine
 				if (m_Tiles[x + y * m_MapSize.x] != nullptr)
 				{
 					m_Tiles[x + y * m_MapSize.x]->Draw(
-						px + x * m_TileSize.x, py + y * m_TileSize.y, z,
+						px + x * m_TileSize.x, 
+						py + y * m_TileSize.y, 
+						z + zOffset,
 						RectangleI(0, 0, m_TileSize.x, m_TileSize.y));
 				}
 			}
@@ -121,7 +124,16 @@ namespace CasaEngine
 			return nullptr;
 		}
 
-		//check limits
 		return m_Tiles[x + y * m_MapSize.x];
+	}
+
+	void TiledMapLayer::SetZOffset(float value)
+	{
+		zOffset = value;
+	}
+
+	float TiledMapLayer::GetZOffset() const
+	{
+		return zOffset;
 	}
 }

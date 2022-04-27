@@ -73,7 +73,7 @@ void RPGGame::Initialize()
 	AddUsualComponents();
 
 	Game::Initialize();
-	//GetDebugOptions().ShowLogInGame = true;
+	GetDebugOptions().ShowPhysicsDebug = false;
 }
 
 void RPGGame::LoadContent()
@@ -86,7 +86,7 @@ void RPGGame::LoadContent()
 	physicWorld->SetGravity(Vector3::Zero());
 	GetGameInfo().SetWorld(m_pWorld);
 
-	CreateAssets(Vector2I(48, 48));
+	CreateAssets(Vector2I(32, 32));
 	CreateMap(m_pWorld);
 	CreateEnemies(m_pWorld);
 	CreateSwordman(m_pWorld);
@@ -94,8 +94,51 @@ void RPGGame::LoadContent()
 	m_pWorld->Initialize();
 }
 
+void CreateLayer(const std::vector<int>& tilesId, TiledMapComponent* pMap, float zOffset)
+{
+	auto* layer = new TiledMapLayer();
+	layer->SetZOffset(zOffset);
+	std::vector<ITile*> tiles;
+	for (int y = 0; y < pMap->GetMapSize().y; ++y)
+	{
+		for (int x = 0; x < pMap->GetMapSize().x; ++x)
+		{
+			const auto tile_id = tilesId[y * pMap->GetMapSize().x + x];
+			std::ostringstream name;
+			name << "tile1_" << (tile_id % 16) << "_" << (int)(tile_id / 16);
+			auto* sprite = Game::Instance().GetAssetManager().GetAsset<SpriteData>(name.str());
+			auto* tile = new StaticTile(new Sprite(*sprite));
+			tiles.push_back(tile);
+		}
+	}
+	layer->SetTiles(tiles);
+	pMap->AddLayer(layer);
+}
+
 void RPGGame::CreateMap(World* pWorld)
 {
+	IFile* pFile = Game::Instance().GetMediaManager().FindMedia("map_1_1.json", true);
+	std::ifstream is(pFile->Fullname());
+	cereal::JSONInputArchive ar(is);
+	_map map_datas;
+	ar(cereal::make_nvp("map", map_datas));
+	auto tileSize = Vector2I(32, 32);
+	//create sprite
+	for (int y = 0; y < 6; ++y)
+	{
+		for (int x = 0; x < 16; ++x)
+		{
+			auto* pSprite = new SpriteData();
+			pSprite->SetName("grass1");
+			pSprite->SetPositionInTexture(RectangleI(x * tileSize.x, y * tileSize.y, tileSize.x, tileSize.y));
+			pSprite->SetAssetFileName(map_datas.tile_set); //16x6 tiles
+			std::ostringstream name;
+			name << "tile1_" << x << "_" << y;
+			GetAssetManager().AddAsset(new Asset(name.str(), pSprite));
+		}
+	}
+
+	//create map
 	auto* pEntity = new BaseEntity();
 	pEntity->SetName("tiled map");
 	auto* pTrans3D = new Transform3DComponent(pEntity);
@@ -104,32 +147,25 @@ void RPGGame::CreateMap(World* pWorld)
 	//pTrans3D->SetLocalScale(Vector3(48, 48, 1.0));
 
 	auto* pMap = new TiledMapComponent(pEntity);
-	pMap->SetMapSize(Vector2I(30, 11));
-	pMap->SetTileSize(Vector2I(48, 48));
+	pMap->SetMapSize(Vector2I(map_datas.sizeX, map_datas.sizeY));
+	pMap->SetTileSize(Vector2I(32, 32));
 
 	//layer 1
-	auto* layer = new TiledMapLayer();
-	std::vector<ITile*> tiles;
-	for (int y = 0; y < pMap->GetMapSize().y; ++y)
-	{
-		for (int x = 0; x < pMap->GetMapSize().x; ++x)
-		{
-			auto* sprite = GetAssetManager().GetAsset<SpriteData>("grass1");
-			auto* tile = new StaticTile(new Sprite(*sprite));
-			tiles.push_back(tile);
-		}
-	}
-	layer->SetTiles(tiles);
-	pMap->AddLayer(layer);
+	CreateLayer(map_datas.tile_layer_1, pMap, 0);
+	CreateLayer(map_datas.tile_layer_2, pMap, 0.01f);
+	CreateLayer(map_datas.tile_layer_4, pMap, 1.0f);
 
-	//wall
-	for (int x = 0; x < 5; ++x)
+	for (int i = 0; i < map_datas.tile_type_layer_1.size(); ++i)
 	{
-		tiles[4 + pMap->GetMapSize().x * x]->IsWall(true);
+		if (map_datas.tile_type_layer_1[i] == 1)
+		{
+			pMap->GetLayer(0)->GetTiles()[i]->IsWall(true);
+		}
 	}
 
 	//TEST create box
-	const auto* shape = new Rectangle(0, 0, 48, 48);
+	/*
+	const auto* shape = new CasaEngine::Rectangle(0, 0, 48, 48);
 	//auto *shape = new Circle(m_TileSize.x);
 	auto position = Vector3(10, 10, 0.0f);
 	auto* collisionShape = Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->CreateCollisionShape(shape, position);
@@ -137,7 +173,8 @@ void RPGGame::CreateMap(World* pWorld)
 	bullet_collision_object_container->GetCollisionObject()->setUserPointer(pEntity);
 	bullet_collision_object_container->GetCollisionObject()->setCollisionFlags(btCollisionObject::CF_NO_CONTACT_RESPONSE);
 	Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->AddCollisionObject(collisionShape);
-
+	*/
+	/*
 	//layer 2
 	layer = new TiledMapLayer();
 	tiles.clear();
@@ -173,11 +210,7 @@ void RPGGame::CreateMap(World* pWorld)
 	}
 	layer->SetTiles(tiles);
 	pMap->AddLayer(layer);
-
-	//layer 3
-	/*layer = new TiledMapLayer();
-	layer->SetTiles(tiles);
-	pMap->AddLayer(layer);*/
+	*/
 
 	pEntity->GetComponentMgr()->AddComponent(pTrans3D);
 	pEntity->GetComponentMgr()->AddComponent(pMap);
