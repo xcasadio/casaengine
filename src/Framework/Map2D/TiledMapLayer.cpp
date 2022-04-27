@@ -29,7 +29,7 @@ namespace CasaEngine
 				auto* tile = m_Tiles[x + y * m_MapSize.x];
 				if (tile != nullptr && tile->IsWall())
 				{
-					const auto *shape = new RectangleF(0, 0, m_TileSize.x, m_TileSize.y);
+					const auto *shape = new Rectangle(0, 0, m_TileSize.x, m_TileSize.y);
 					//auto *shape = new Circle(m_TileSize.x);
 					auto position = Vector3(x * m_TileSize.x + m_TileSize.x / 2.0f, y * m_TileSize.y + m_TileSize.y / 2.0f, 0.0f);
 					auto *collisionShape = Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->CreateCollisionShape(shape, position);

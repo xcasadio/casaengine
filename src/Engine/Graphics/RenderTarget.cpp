@@ -21,12 +21,12 @@ namespace CasaEngine
 	{
 	}
 
-	RectangleF RenderTarget::GetArea() const
+	Rectangle RenderTarget::GetArea() const
 	{
 		return m_Area;
 	}
 
-	void RenderTarget::SetArea(const RectangleF& val)
+	void RenderTarget::SetArea(const Rectangle& val)
 	{
 		m_Area = val;
 		CA_TRACE("RenderTarget(%p) area = %d %d %d %d\n", this, m_Area.x, m_Area.y, m_Area.Right(), m_Area.Bottom());

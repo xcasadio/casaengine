@@ -22,7 +22,7 @@ namespace CasaEngine
 		void Read (std::ifstream& is) override;
 
 	private:
-		RectangleF m_Box;
+		Rectangle m_Box;
 	};
 
 }

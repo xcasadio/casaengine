@@ -22,7 +22,7 @@ namespace CasaEngine
 			CA_ASSERT(transform_3d_component != nullptr, "cameracomponent : the target need to have a Transform3DComponent");
 			const auto targetPosition = transform_3d_component->GetPosition();
 
-			const RectangleF deadZone(m_Offset.x + static_cast<float>(winSize.x) * (1.0f - m_DeadZoneRatio.x) / 2.0f,
+			const Rectangle deadZone(m_Offset.x + static_cast<float>(winSize.x) * (1.0f - m_DeadZoneRatio.x) / 2.0f,
 				m_Offset.y + static_cast<float>(winSize.y) * (1.0f - m_DeadZoneRatio.y) / 2.0f,
 				winSize.x * m_DeadZoneRatio.x,
 				winSize.y * m_DeadZoneRatio.y);

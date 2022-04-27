@@ -794,7 +794,7 @@ namespace CasaEngine
 		return result;
 	}
 
-	Matrix4 Matrix4::CreatePerspectiveOffCenter(RectangleF viewingVolume, float nearPlaneDistance, float farPlaneDistance)
+	Matrix4 Matrix4::CreatePerspectiveOffCenter(Rectangle viewingVolume, float nearPlaneDistance, float farPlaneDistance)
 	{
 		return CreatePerspectiveOffCenter(viewingVolume.Left(), viewingVolume.Right(), viewingVolume.Bottom(), viewingVolume.Top(), nearPlaneDistance, farPlaneDistance);
 	}

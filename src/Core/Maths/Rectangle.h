@@ -73,7 +73,7 @@ namespace CasaEngine
 	template <class T> std::ostream& operator <<(std::ostream& Stream, const CRectangle<T>& Rect);
 
 	typedef CRectangle<int> RectangleI;
-	typedef CRectangle<float> RectangleF;
+	typedef CRectangle<float> Rectangle;
 
 	template <class T>
 	CRectangle<T>::CRectangle() : IShape(ShapeType::RECTANGLE),
@@ -208,9 +208,9 @@ namespace CasaEngine
 #include <cereal/types/polymorphic.hpp>
 
 CEREAL_REGISTER_TYPE_WITH_NAME(CasaEngine::RectangleI, "rectangleI");
-CEREAL_REGISTER_TYPE_WITH_NAME(CasaEngine::RectangleF, "rectangleF");
+CEREAL_REGISTER_TYPE_WITH_NAME(CasaEngine::Rectangle, "rectangleF");
 
 CEREAL_REGISTER_POLYMORPHIC_RELATION(CasaEngine::IShape, CasaEngine::RectangleI);
-CEREAL_REGISTER_POLYMORPHIC_RELATION(CasaEngine::IShape, CasaEngine::RectangleF);
+CEREAL_REGISTER_POLYMORPHIC_RELATION(CasaEngine::IShape, CasaEngine::Rectangle);
 */
 #endif

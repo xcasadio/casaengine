@@ -183,7 +183,7 @@ namespace CasaEngine
 		/// <param name="nearPlaneDistance">Distance to the near plane.</param>
 		/// <param name="farPlaneDistance">Distance to the far plane.</param>
 		/// <returns>The new <see cref="Matrix"/> for customized perspective view.</returns>
-		static Matrix4 CreatePerspectiveOffCenter(RectangleF viewingVolume, float nearPlaneDistance, float farPlaneDistance);
+		static Matrix4 CreatePerspectiveOffCenter(Rectangle viewingVolume, float nearPlaneDistance, float farPlaneDistance);
 
 		static Matrix4 CreateRotationX(float radians);
 		static Matrix4 CreateRotationX(float radians, Vector3 centerPoint);

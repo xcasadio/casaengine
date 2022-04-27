@@ -15,7 +15,7 @@ namespace CasaEngine
 		const ViewportTarget& operator = (const ViewportTarget& rsh_);
 
 		void Release();
-		void Create(const RectangleF& rect);
+		void Create(const Rectangle& rect);
 		void Activate();
 		void Deactivate();
 		bool IsImageryCache() const;

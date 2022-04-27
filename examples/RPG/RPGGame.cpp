@@ -43,8 +43,10 @@
 using namespace CasaEngine;
 
 RPGGame::RPGGame() :
-	m_pAnimatedSprite(nullptr),
 	m_pGroundTexture(nullptr),
+	m_pEntity(nullptr),
+	m_pAnimatedSprite(nullptr),
+	m_pCamera3D(nullptr),
 	m_pWorld(nullptr)
 {
 	Logging.AddLogger(new LoggerFile("Out.log"));
@@ -55,9 +57,6 @@ RPGGame::~RPGGame()
 	delete m_pGroundTexture;
 }
 
-/**
- *
- */
 void RPGGame::Initialize()
 {
 	GetMediaManager().AddSearchPath("../../examples/resources");
@@ -123,25 +122,21 @@ void RPGGame::CreateMap(World* pWorld)
 	layer->SetTiles(tiles);
 	pMap->AddLayer(layer);
 
+	//wall
 	for (int x = 0; x < 5; ++x)
 	{
 		tiles[4 + pMap->GetMapSize().x * x]->IsWall(true);
 	}
+
 	//TEST create box
-	const auto* shape = new RectangleF(0, 0, 48, 48);
+	const auto* shape = new Rectangle(0, 0, 48, 48);
 	//auto *shape = new Circle(m_TileSize.x);
 	auto position = Vector3(10, 10, 0.0f);
 	auto* collisionShape = Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->CreateCollisionShape(shape, position);
-	auto * bullet_collision_object_container = dynamic_cast<BulletCollisionObjectContainer*>(collisionShape);
+	auto* bullet_collision_object_container = dynamic_cast<BulletCollisionObjectContainer*>(collisionShape);
 	bullet_collision_object_container->GetCollisionObject()->setUserPointer(pEntity);
 	bullet_collision_object_container->GetCollisionObject()->setCollisionFlags(btCollisionObject::CF_NO_CONTACT_RESPONSE);
 	Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->AddCollisionObject(collisionShape);
-
-	//wall
-	/*for (int x = 0; x < pMap->GetMapSize().x; ++x)
-	{
-		tiles[x + pMap->GetMapSize().x * 6]->IsWall(true);
-	}*/
 
 	//layer 2
 	layer = new TiledMapLayer();

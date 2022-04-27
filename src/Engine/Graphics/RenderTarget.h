@@ -13,8 +13,8 @@ namespace CasaEngine
 		const RenderTarget& operator = (const RenderTarget& rsh_);
 		virtual ~RenderTarget();
 
-		RectangleF GetArea() const;
-		void SetArea(const RectangleF& val);
+		Rectangle GetArea() const;
+		void SetArea(const Rectangle& val);
 
 		virtual void Release() = 0;
 		virtual void Activate() = 0;
@@ -24,7 +24,7 @@ namespace CasaEngine
 		virtual bool IsRenderingInverted() const = 0;
 
 	protected:
-		RectangleF m_Area;
+		Rectangle m_Area;
 	};
 }
 

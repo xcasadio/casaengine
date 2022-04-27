@@ -25,7 +25,7 @@ namespace CasaEngine
 	{
 	}
 
-	void ViewportTarget::Create(const RectangleF& rect)
+	void ViewportTarget::Create(const Rectangle& rect)
 	{
 		SetArea(rect);
 	}
