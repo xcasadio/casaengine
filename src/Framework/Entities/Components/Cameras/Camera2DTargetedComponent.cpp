@@ -29,6 +29,8 @@ namespace CasaEngine
 
 			if (deadZone.Intersects(Vector2(targetPosition.x, targetPosition.y)) == INT_OUT)
 			{
+				m_needToComputeViewMatrix = true;
+
 				if (targetPosition.x < deadZone.Left())
 				{
 					m_Offset.x -= deadZone.Left() - targetPosition.x;
