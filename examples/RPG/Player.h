@@ -1,20 +1,16 @@
-#ifndef HERO_H_
-#define HERO_H_
+#pragma once
 
 #include "Character.h"
 #include "Entities\Components\AnimatedSpriteComponent.h"
 
 using namespace CasaEngine;
 
-/**
- *
- */
 class Player :
 	public Character
 {
 public:
 	Player(BaseEntity* pEntity);
-	virtual ~Player();
+	~Player() override = default;
 
 	void Initialize() override;
 
@@ -37,8 +33,8 @@ public:
 	float FurySpeed() const;
 	void FurySpeed(float val);
 
-	bool FuryModeDesabling() const;
-	void FuryModeDesabling(bool val);
+	bool FuryModeDisabling() const;
+	void FuryModeDisabling(bool val);
 
 	bool FuryModeEnabling() const;
 	void FuryModeEnabling(bool val);
@@ -49,6 +45,9 @@ public:
 	int MaxFuryPoint() const;
 	void MaxFuryPoint(int val);
 
+	void AttachWeapon();
+	void UnAttachWeapon();
+
 private:
 	int m_FuryPoint;
 	float m_FuryPointDecrease;
@@ -57,9 +56,7 @@ private:
 	int m_FuryDef;
 	float m_FurySpeed;
 	bool m_FuryModeEnabling;
-	bool m_FuryModeDesabling;
+	bool m_FuryModeDisabling;
 	bool m_InFuryMode;
 	int m_MaxFuryPoint;
 };
-
-#endif

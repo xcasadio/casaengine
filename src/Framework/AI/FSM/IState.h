@@ -1,5 +1,4 @@
-#ifndef STATE_H_
-#define STATE_H_
+#pragma once
 
 #include "GameTime.h"
 
@@ -11,14 +10,12 @@ namespace CasaEngine
 	class IState
 	{
 	public:
-		virtual ~IState(){}
+		IState() = default;
+		virtual ~IState() = default;
 
 		virtual void Enter(entity_type*) = 0;
 		virtual void Execute(entity_type*, const GameTime &elapsedTime_) = 0;
 		virtual void Exit(entity_type*) = 0;
 		virtual bool OnMessage(entity_type*, const Telegram&) = 0;
 	};
-
 }
-
-#endif

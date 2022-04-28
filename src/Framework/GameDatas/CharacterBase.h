@@ -41,6 +41,9 @@ namespace CasaEngine
 		orientation GetOrientation() const;
 		void SetOrientation(orientation val);
 
+		float Speed() const;
+		void Speed(float val);
+
 	protected:
 		CharacterBase(BaseEntity* pEntity);
 		void QueueMessage(Telegram& msg);

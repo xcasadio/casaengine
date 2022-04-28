@@ -5,95 +5,28 @@
 #include "GameDatas/MessageType.h"
 
 
-PlayerStateIdle::PlayerStateIdle()
+
+PlayerStateGlobal::PlayerStateGlobal() = default;
+
+PlayerStateGlobal::~PlayerStateGlobal() = default;
+
+void PlayerStateGlobal::Enter(IController * pController_) {}
+
+void PlayerStateGlobal::Execute(IController * pController_, const GameTime & elpasedTime)
 {
-}
+	auto* pPlayerController = dynamic_cast<PlayerController*>(pController_);
 
-PlayerStateIdle::~PlayerStateIdle()
-{
-}
-
-void PlayerStateIdle::Enter(IController* pController_)
-{
-	PlayerController* pPlayerController = dynamic_cast<PlayerController*>(pController_);
-
-	//TODO selon la direction definir l'animation
-	Vector2 joyDir = Vector2::Zero();
-	pPlayerController->GetPlayer()->Move(joyDir);
-
-	if (pPlayerController->GetPlayer()->InFuryMode() == true)
+	//check dying
+	if (pPlayerController->GetPlayer()->IsDead())
 	{
-		//pPlayerController->GetHero()->SetCurrentAnimation(static_cast<int>(Character::AnimationIndices::FURY_IDLE));
-		pPlayerController->GetPlayer()->SetCurrentAnimationByName("swordman_stand");
-	}
-	else
-	{
-		//pPlayerController->GetHero()->SetCurrentAnimation(static_cast<int>(Character::AnimationIndices::IDLE));
-		pPlayerController->GetPlayer()->SetCurrentAnimationByName("swordman_stand");
-	}
-}
-
-void PlayerStateIdle::Execute(IController* pController_, const GameTime& elpasedTime_)
-{
-	PlayerController* pPlayerController = dynamic_cast<PlayerController*>(pController_);
-	//PlayerIndex playerIndex = c.PlayerIndex;
-
-	orientation dir;
-	Vector2 joyDir;
-
-	if (pPlayerController->GetPlayer()->FuryModeEnabling() == true)
-	{
-		pPlayerController->FSM()->ChangeState(pPlayerController->GetState(TO_FURY_MODE));
+		//state dying
 		return;
 	}
-	else if (pPlayerController->GetPlayer()->FuryModeDesabling() == true)
-	{
-		pPlayerController->FSM()->ChangeState(pPlayerController->GetState(TO_NORMAL_MODE));
-		return;
-	}
-	else if (pPlayerController->IsAttackButtonPressed() == true)
-	{
-		pPlayerController->FSM()->ChangeState(pPlayerController->GetState(ATTACK_1));
-		return;
-	}
-
-	dir = pPlayerController->GetDirectionFromInput(joyDir);
-
-	if (dir != 0)
-	{
-		pPlayerController->GetPlayer()->SetOrientation(dir);
-	}
-
-	if (joyDir.x != 0.0f || joyDir.y != 0.0f)
-	{
-		//pPlayerController->FSM()->ChangeState(pPlayerController->GetState((int)PlayerControllerState::MOVING));
-		//return;
-		/*if (charac.InFuryMode == true)
-		{
-			controller.Character.SetCurrentAnimation((int)Character.Character.AnimationIndices.FuryModeRun);
-		}
-		else
-		{*/
-		pPlayerController->GetPlayer()->Move(joyDir);
-		//pPlayerController->GetHero()->SetCurrentAnimation(static_cast<int>(Character::AnimationIndices::RUN));
-		pPlayerController->GetPlayer()->SetCurrentAnimationByName("swordman_walk");
-		//}
-	}
-	else // used to immobilized the character
-	{
-		joyDir = Vector2::Zero();
-		pPlayerController->GetPlayer()->Move(joyDir);
-
-		//pPlayerController->GetHero()->SetCurrentAnimation(static_cast<int>(Character::AnimationIndices::IDLE));
-		pPlayerController->GetPlayer()->SetCurrentAnimationByName("swordman_stand");
-	}
 }
 
-void PlayerStateIdle::Exit(IController* pController_)
-{
-}
+void PlayerStateGlobal::Exit(IController * pController_) {}
 
-bool PlayerStateIdle::OnMessage(IController* pController_, const Telegram&)
+bool PlayerStateGlobal::OnMessage(IController * pController_, const Telegram & msg)
 {
 	return false;
 }
@@ -101,46 +34,136 @@ bool PlayerStateIdle::OnMessage(IController* pController_, const Telegram&)
 //////////////////////////////////////////////////////////////////////////
 
 
-PlayerStateAttack::PlayerStateAttack()
+PlayerStateIdle::PlayerStateIdle() = default;
+
+PlayerStateIdle::~PlayerStateIdle() = default;
+
+void PlayerStateIdle::Enter(IController * pController_)
+{
+	auto* pPlayerController = dynamic_cast<PlayerController*>(pController_);
+	Vector2 joyDir = Vector2::Zero();
+	pPlayerController->GetPlayer()->Move(joyDir);
+	pPlayerController->GetPlayer()->SetCurrentAnimationByName("swordman_stand");
+}
+
+void PlayerStateIdle::Execute(IController * pController_, const GameTime & elpasedTime_)
+{
+	auto* pPlayerController = dynamic_cast<PlayerController*>(pController_);
+
+	Vector2 joyDir;
+	const orientation dir = pPlayerController->GetDirectionFromInput(joyDir);
+
+	if (dir != 0)
+	{
+		pPlayerController->GetPlayer()->SetOrientation(dir);
+	}
+
+	if (pPlayerController->IsAttackButtonPressed() == true)
+	{
+		pPlayerController->FSM()->ChangeState(pPlayerController->GetState(ATTACK_1));
+		return;
+	}
+
+	if (joyDir.x != 0.0f || joyDir.y != 0.0f)
+	{
+		pPlayerController->GetPlayer()->Move(joyDir);
+		pPlayerController->FSM()->ChangeState(pPlayerController->GetState(MOVING));
+	}
+}
+
+void PlayerStateIdle::Exit(IController * pController_)
 {
 }
 
-PlayerStateAttack::~PlayerStateAttack()
+bool PlayerStateIdle::OnMessage(IController * pController_, const Telegram&)
 {
+	return false;
 }
 
-void PlayerStateAttack::Enter(IController* pController_)
-{
-	PlayerController* pPlayerController = dynamic_cast<PlayerController*>(pController_);
+//////////////////////////////////////////////////////////////////////////
 
+PlayerStateWalking::PlayerStateWalking() = default;
+
+PlayerStateWalking::~PlayerStateWalking() = default;
+
+void PlayerStateWalking::Enter(IController * pController_)
+{
+	auto* pPlayerController = dynamic_cast<PlayerController*>(pController_);
+	pPlayerController->GetPlayer()->SetCurrentAnimationByName("swordman_walk");
+}
+
+void PlayerStateWalking::Execute(IController * pController_, const GameTime & elpasedTime_)
+{
+	auto* pPlayerController = dynamic_cast<PlayerController*>(pController_);
+
+	Vector2 joyDir;
+	const orientation dir = pPlayerController->GetDirectionFromInput(joyDir);
+
+	if (dir != 0)
+	{
+		pPlayerController->GetPlayer()->SetOrientation(dir);
+	}
+
+	if (pPlayerController->IsAttackButtonPressed() == true)
+	{
+		pPlayerController->FSM()->ChangeState(pPlayerController->GetState(ATTACK_1));
+		return;
+	}
+
+	if (joyDir.x != 0.0f || joyDir.y != 0.0f)
+	{
+		pPlayerController->GetPlayer()->Move(joyDir);
+	}
+	else
+	{
+		pPlayerController->FSM()->ChangeState(pPlayerController->GetState(IDLE));
+	}
+}
+
+void PlayerStateWalking::Exit(IController * pController_)
+{
+	auto* pPlayerController = dynamic_cast<PlayerController*>(pController_);
+	pPlayerController->GetPlayer()->Move(Vector2::Zero());
+}
+
+bool PlayerStateWalking::OnMessage(IController * pController_, const Telegram & msg)
+{
+	/*
+	auto* pPlayerController = dynamic_cast<PlayerController*>(pController_);
+
+	if (msg.Msg == static_cast<int>(MessageType::ANIMATION_FINISHED))
+	{
+		pPlayerController->FSM()->ChangeState(pPlayerController->GetState(static_cast<int>(IDLE)));
+		return true;
+	}
+	*/
+	return false;
+}
+
+
+//////////////////////////////////////////////////////////////////////////
+
+PlayerStateAttack::PlayerStateAttack() = default;
+
+PlayerStateAttack::~PlayerStateAttack() = default;
+
+void PlayerStateAttack::Enter(IController * pController_)
+{
+	auto* pPlayerController = dynamic_cast<PlayerController*>(pController_);
+	//equip sword
+	pPlayerController->GetPlayer()->AttachWeapon();
 	//ranged attack reset
+
 // 	pPlayerController->GetHero()->AttackChargingValue(0.0f);
 // 	pPlayerController->GetHero()->IsAttackReleasing(false);
 // 	pPlayerController->GetHero()->AttackCharging(false);
 
-	if (pPlayerController->GetPlayer()->FuryModeDesabling() == true)
-	{
-		pPlayerController->FSM()->ChangeState(pPlayerController->GetState(TO_NORMAL_MODE));
-		return;
-	}
-
-	// 	pPlayerController->GetHero()->DoANewAttack();
-	// 	pPlayerController->GetHero()->SetComboNumber(0);
 	Vector2 joyDir = Vector2::Zero();
 	pPlayerController->GetPlayer()->Move(joyDir);
-
-	/*if (pPlayerController->GetHero()->InFuryMode() == true)
-	{
-		pPlayerController->GetHero()->SetCurrentAnimation(static_cast<int>(Character::AnimationIndices::FURY_ATTACK1));
-	}
-	else*/
-	{
-		//pPlayerController->GetHero()->SetCurrentAnimation(static_cast<int>(Character::AnimationIndices::ATTACK1));
-		pPlayerController->GetPlayer()->SetCurrentAnimationByName("swordman_attack");
-	}
+	pPlayerController->GetPlayer()->SetCurrentAnimationByName("swordman_attack");
 }
 
-void PlayerStateAttack::Execute(IController* pController_, const GameTime& elpasedTime_)
+void PlayerStateAttack::Execute(IController * pController_, const GameTime & elpasedTime_)
 {
 	//PlayerController* pPlayerController = dynamic_cast<PlayerController*>(pController_);
 
@@ -168,13 +191,17 @@ void PlayerStateAttack::Execute(IController* pController_, const GameTime& elpas
 	//     }
 }
 
-void PlayerStateAttack::Exit(IController* pController_)
+void PlayerStateAttack::Exit(IController * pController_)
 {
+	auto* pPlayerController = dynamic_cast<PlayerController*>(pController_);
+
+	//unequip sword
+	pPlayerController->GetPlayer()->UnAttachWeapon();
 }
 
-bool PlayerStateAttack::OnMessage(IController* pController_, const Telegram& msg)
+bool PlayerStateAttack::OnMessage(IController * pController_, const Telegram & msg)
 {
-	PlayerController* pPlayerController = dynamic_cast<PlayerController*>(pController_);
+	auto* pPlayerController = dynamic_cast<PlayerController*>(pController_);
 
 	if (msg.Msg == (int)MessageType::ANIMATION_FINISHED)
 	{

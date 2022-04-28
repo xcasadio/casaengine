@@ -8,24 +8,24 @@ namespace CasaEngine
 	IController::IController(CharacterBase* pCharacter) :
 		m_FSM(this), m_pCharacter(pCharacter)
 	{
-		CA_ASSERT(m_pCharacter != nullptr, ":IController() : Character is null");
+		CA_ASSERT(m_pCharacter != nullptr, "IController() : Character is null")
 	}
 
-	IState<IController>* IController::GetState(int stateId_)
+	IState<IController>* IController::GetState(int stateId)
 	{
-		return m_States[stateId_];
+		return m_States[stateId];
 	}
 
-	void IController::AddState(int stateId_, IState<IController>* pState_)
+	void IController::AddState(int stateId, IState<IController>* state)
 	{
-		CA_ASSERT(m_States.find(stateId_) == m_States.end(), "Controller::AddState() : the id %d already exist", stateId_);
+		CA_ASSERT(m_States.find(stateId) == m_States.end(), "Controller::AddState() : the id %d already exist", stateId)
 
-		m_States[stateId_] = pState_;
+		m_States[stateId] = state;
 	}
 
-	void IController::Update(const GameTime elapsedTime_)
+	void IController::Update(const GameTime& elapsedTime)
 	{
-		m_FSM.Update(elapsedTime_);
+		m_FSM.Update(elapsedTime);
 	}
 
 	StateMachine<IController>* IController::FSM()

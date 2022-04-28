@@ -386,7 +386,9 @@ void RPGGame::CreateSwordman(World* pWorld)
 	pWorld->AddEntity(pPlayerEntity);
 
 	auto* scriptComponent = new ScriptComponent(pPlayerEntity);
-	auto* pScriptCharacter = new ScriptCharacter(pPlayerEntity, new Player(pPlayerEntity));
+	auto player = new Player(pPlayerEntity);
+	player->Speed(50.0f);
+	auto* pScriptCharacter = new ScriptCharacter(pPlayerEntity, player);
 	scriptComponent->SetScriptObject(pScriptCharacter);
 	pPlayerEntity->GetComponentMgr()->AddComponent(scriptComponent);
 

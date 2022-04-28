@@ -1,5 +1,4 @@
-#ifndef EnemyController_H_
-#define EnemyController_H_
+#pragma once
 
 #include "GameDatas/IController.h"
 #include "GameTime.h"
@@ -21,7 +20,5 @@ public:
 	~EnemyController();
 
 	void Initialize() override;
-	void Update(const GameTime elapsedTime_) override;
+	void Update(const GameTime& elapsedTime_) override;
 };
-
-#endif

@@ -4,24 +4,15 @@
 #include "EnemyController.h"
 #include "EnemyStates.h"
 
-/**
- *
- */
 EnemyController::EnemyController(Character* pCharacter) :
 	IController(pCharacter)
 {
 }
 
-/**
- *
- */
 EnemyController::~EnemyController()
 {
 }
 
-/**
- *
- */
 void EnemyController::Initialize()
 {
 	auto state_idle = new EnemyStateIdle();
@@ -44,7 +35,7 @@ void EnemyController::Initialize()
 /**
  *
  */
-void EnemyController::Update(const GameTime elapsedTime_)
+void EnemyController::Update(const GameTime& elapsedTime_)
 {
 	//if (m_InputComponent.IsGamePadConnected(m_PlayerIndex) == true)
 	{

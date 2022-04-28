@@ -1,5 +1,4 @@
-#ifndef ICONTROLLER_H_
-#define ICONTROLLER_H_
+#pragma once
 
 #include <map>
 
@@ -14,10 +13,12 @@ namespace CasaEngine
 	class IController
 	{
 	public:
+		virtual ~IController() = default;
+
 		StateMachine<IController>* FSM();
-		IState<IController>* GetState(int stateId_);
-		void AddState(int stateId_, IState<IController>* pState_);
-		virtual void Update(const GameTime elapsedTime_);
+		IState<IController>* GetState(int stateId);
+		void AddState(int stateId, IState<IController>* state);
+		virtual void Update(const GameTime& elapsedTime);
 		CharacterBase* GetCharacter() const;
 
 		virtual void Initialize() = 0;
@@ -31,5 +32,3 @@ namespace CasaEngine
 		CharacterBase* m_pCharacter;
 	};
 }
-	
-#endif

@@ -5,9 +5,7 @@
 #include "PlayerStates.h"
 #include "Character.h"
 
-/**
- *
- */
+
 PlayerController::PlayerController(Player* pHero_, PlayerIndex index_) :
 	IController(pHero_)
 {
@@ -17,16 +15,9 @@ PlayerController::PlayerController(Player* pHero_, PlayerIndex index_) :
 	CA_ASSERT(m_pPlayer != nullptr, "PlayerController() : Player is null");
 }
 
-/**
- *
- */
-PlayerController::~PlayerController()
-{
-}
+PlayerController::~PlayerController() = default;
 
-/**
- *
- */
+
 void PlayerController::Initialize()
 {
 	auto player_state_idle = new PlayerStateIdle();
@@ -44,7 +35,7 @@ void PlayerController::Initialize()
 /**
  *
  */
-void PlayerController::Update(const GameTime elapsedTime_)
+void PlayerController::Update(const GameTime& elapsedTime_)
 {
 	//if (m_InputComponent.IsGamePadConnected(m_PlayerIndex) == true)
 	{

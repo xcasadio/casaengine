@@ -52,6 +52,20 @@ Character::~Character() = default;
 void Character::Initialize()
 {
 	CharacterBase::Initialize();
+
+	m_HP = m_HPMax;
+	m_MP = m_MPMax;
+
+	m_HPMaxOffSet = 0;
+	m_HPOffSet = 0;
+	m_MPMaxOffSet = 0;
+	m_MPOffSet = 0;
+	m_StrengthOffSet = 0;
+	m_DefenseOffSet = 0;
+	m_ComboNumber = 0;
+	m_IsPlayer = false;
+
+
 	/*foreach (KeyValuePair<int, Animation2D> pair in m_Animations)
 	{
 		//Event
@@ -99,6 +113,11 @@ void Character::SetAnimationParameters(unsigned int numberOfDir_, unsigned int a
 void Character::SetAnimationDirectionOffset(orientation dir_, int offset_)
 {
 	m_AnimationDirectionOffset[static_cast<int>(dir_)] = offset_;
+}
+
+bool Character::IsDead() const
+{
+	return m_HP <= 0;
 }
 
 int Character::GetAnimationDirectionOffset()

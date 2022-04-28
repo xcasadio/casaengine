@@ -1,5 +1,4 @@
-#ifndef PLAYERSTATES_H_
-#define PLAYERSTATES_H_
+#pragma once
 
 #include "GameTime.h"
 #include "AI\FSM\IState.h"
@@ -9,6 +8,7 @@ using namespace CasaEngine;
 
 typedef enum PlayerControllerState
 {
+	GLOBAL,
 	IDLE,
 	MOVING,
 	ATTACK_1,
@@ -22,15 +22,29 @@ typedef enum PlayerControllerState
 	TO_NORMAL_MODE,
 } PlayerControllerState;
 
-/**
- *
- */
+
+class PlayerStateGlobal :
+	public IState<IController>
+{
+public:
+	PlayerStateGlobal();
+	~PlayerStateGlobal() override;
+
+	void Enter(IController* pController_) override;
+	void Execute(IController* pController_, const GameTime& elpasedTime) override;
+	void Exit(IController* pController_) override;
+	bool OnMessage(IController* pController_, const Telegram& msg) override;
+
+private:
+};
+
+
 class PlayerStateIdle :
 	public IState<IController>
 {
 public:
 	PlayerStateIdle();
-	~PlayerStateIdle();
+	~PlayerStateIdle() override;
 
 	void Enter(IController* pController_) override;
 	void Execute(IController* pController_, const GameTime& elpasedTime_) override;
@@ -40,15 +54,29 @@ public:
 private:
 };
 
-/**
- *
- */
+
+class PlayerStateWalking :
+	public IState<IController>
+{
+public:
+	PlayerStateWalking();
+	~PlayerStateWalking() override;
+
+	void Enter(IController* pController_) override;
+	void Execute(IController* pController_, const GameTime& elpasedTime_) override;
+	void Exit(IController* pController_) override;
+	bool OnMessage(IController* pController_, const Telegram& msg) override;
+
+private:
+};
+
+
 class PlayerStateAttack :
 	public IState<IController>
 {
 public:
 	PlayerStateAttack();
-	~PlayerStateAttack();
+	~PlayerStateAttack() override;
 
 	void Enter(IController* pController_) override;
 	void Execute(IController* pController_, const GameTime& elpasedTime_) override;
@@ -57,5 +85,3 @@ public:
 
 private:
 };
-
-#endif

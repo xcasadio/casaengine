@@ -1,5 +1,4 @@
-#ifndef PLAYERCONTROLLER_H_
-#define PLAYERCONTROLLER_H_
+#pragma once
 
 #include "GameDatas/IController.h"
 #include "GameTime.h"
@@ -18,7 +17,7 @@ public:
 	~PlayerController();
 
 	void Initialize() override;
-	void Update(const GameTime elapsedTime_) override;
+	void Update(const GameTime& elapsedTime_) override;
 
 	Player* GetPlayer() const;
 
@@ -32,4 +31,3 @@ private:
 	Player* m_pPlayer;
 };
 
-#endif

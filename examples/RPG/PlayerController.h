@@ -1,5 +1,4 @@
-#ifndef PLAYERCONTROLLER_H_
-#define PLAYERCONTROLLER_H_
+#pragma once
 
 #include "GameDatas/IController.h"
 #include "GameTime.h"
@@ -16,10 +15,10 @@ class PlayerController :
 {
 public:
 	PlayerController(Player* pHero, PlayerIndex index_);
-	~PlayerController();
+	~PlayerController() override;
 
 	void Initialize() override;
-	void Update(const GameTime elapsedTime_) override;
+	void Update(const GameTime& elapsedTime) override;
 
 	Player* GetPlayer() const;
 
@@ -32,5 +31,3 @@ private:
 	PlayerIndex m_PlayerIndex;
 	Player* m_pHero;
 };
-
-#endif

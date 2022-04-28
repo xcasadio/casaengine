@@ -15,16 +15,10 @@ namespace CasaEngine
 
 		CA_ASSERT(pAnimatedSprite != nullptr, "CharacterBase() : AnimatedSpriteComponent is null");
 		m_pAnimatedSprite = pAnimatedSprite;
-
 		m_pEntity = pEntity;
-
 		m_pController = nullptr;
-
 		m_SpeedOffSet = 0.0f;
-
 		m_Direction = Vector2::UnitX();
-
-		//TODO set after creation by the level configuration
 		m_Speed = 30.0f;
 	}
 
@@ -120,6 +114,16 @@ namespace CasaEngine
 	void CharacterBase::SetOrientation(const orientation val)
 	{
 		m_Orientation = val;
+	}
+
+	float CharacterBase::Speed() const
+	{
+		return m_Speed;
+	}
+
+	void CharacterBase::Speed(float val)
+	{
+		m_Speed = val;
 	}
 
 	IController* CharacterBase::GetController() const

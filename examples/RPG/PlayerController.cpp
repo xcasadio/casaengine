@@ -6,36 +6,26 @@
 #include "CharacterEnum.h"
 #include "Character.h"
 
-/**
- *
- */
+
 PlayerController::PlayerController(Player* pHero_, PlayerIndex index_) :
-	IController(pHero_)
+	IController(pHero_),
+	m_PlayerIndex(index_),
+	m_pHero(pHero_)
 {
-	m_PlayerIndex = index_;
-	m_pHero = pHero_;
 	//pEntity_->IsPlayer(true);
 
 	CA_ASSERT(m_pHero != nullptr, ":PlayerController() : Player is null");
 }
 
-/**
- *
- */
-PlayerController::~PlayerController()
-{
-}
+PlayerController::~PlayerController() = default;
 
-/**
- *
- */
 void PlayerController::Initialize()
 {
 	auto player_state_idle = new PlayerStateIdle();
 	auto player_state_attack = new PlayerStateAttack();
 
 	AddState(IDLE, player_state_idle);
-	// 	AddState((int)PlayerControllerState::MOVING, new PlayerRunState());
+	AddState(MOVING, new PlayerStateWalking());
 	AddState(ATTACK_1, player_state_attack);
 	// 	AddState((int)PlayerControllerState::ATTACK_2, new PlayerAttack2State());
 	// 	AddState((int)PlayerControllerState::ATTACK_3, new PlayerAttack3State());
@@ -45,12 +35,10 @@ void PlayerController::Initialize()
 	GetPlayer()->SetOrientation(RIGHT);
 	//Character.Animation2DPlayer.SetCurrentAnimationByID((int)AnimationIndex.IdleRight);
 	FSM()->SetCurrentState(GetState(IDLE));
+	FSM()->SetGlobalState(new PlayerStateGlobal());
 }
 
-/**
- *
- */
-void PlayerController::Update(const GameTime elapsedTime_)
+void PlayerController::Update(const GameTime& elapsedTime_)
 {
 	//if (m_InputComponent.IsGamePadConnected(m_PlayerIndex) == true)
 	{
@@ -64,9 +52,6 @@ void PlayerController::Update(const GameTime elapsedTime_)
 	IController::Update(elapsedTime_);
 }
 
-/**
- *
- */
 bool PlayerController::IsAttackButtonJustPressed()
 {
 	// 	if (m_InputComponent.IsGamePadConnected(m_PlayerIndex) == true)
@@ -76,9 +61,6 @@ bool PlayerController::IsAttackButtonJustPressed()
 	return Game::Instance().GetInput().IsKeyJustDown(sf::Keyboard::Space);
 }
 
-/**
- *
- */
 bool PlayerController::IsAttackButtonPressed()
 {
 	/*if (m_InputComponent.IsGamePadConnected(m_PlayerIndex) == true)
@@ -88,9 +70,6 @@ bool PlayerController::IsAttackButtonPressed()
 	return Game::Instance().GetInput().IsKeyDown(sf::Keyboard::Space);
 }
 
-/**
- *
- */
 orientation PlayerController::GetDirectionFromInput(Vector2& direction_)
 {
 	direction_ = Vector2::Zero();
@@ -124,9 +103,6 @@ orientation PlayerController::GetDirectionFromInput(Vector2& direction_)
 	return Character::GetOrientationFromVector2(vec);
 }
 
-/**
- *
- */
 Player* PlayerController::GetPlayer() const
 {
 	return m_pHero;

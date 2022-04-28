@@ -1,6 +1,4 @@
-#ifndef HERO_H_
-#define HERO_H_
-
+#pragma once
 #include "Character.h"
 #include "Entities\Components\AnimatedSpriteComponent.h"
 
@@ -10,11 +8,9 @@ class Player :
 {
 public:
 	Player(CasaEngine::BaseEntity* pEntity);
-	virtual ~Player();
+	~Player() override;
 
 	void Initialize() override;
 
 private:
 };
-
-#endif

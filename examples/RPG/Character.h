@@ -37,6 +37,8 @@ public:
 	bool OnFrameChangedEvent(const EventArgs& e_);
 	bool OnAnimationFinished(const EventArgs& e_);
 
+	bool IsDead() const;
+
 protected:
 	Character(BaseEntity* pEntity);
 
@@ -51,22 +53,22 @@ private:
 	//
 	int m_HPMax;
 	int m_HPMaxOffSet;
-	int m_HP{};
+	int m_HP;
 	int m_HPOffSet;
 	//
 	int m_MPMax;
 	int m_MPMaxOffSet;
-	int m_MP{};
+	int m_MP;
 	int m_MPOffSet;
 	//
 	int m_Strength;
 	int m_StrengthOffSet;
-	int m_Defense{};
+	int m_Defense;
 	int m_DefenseOffSet;
 
 	//Vector2 m_Velocity;
-	int m_ComboNumber{};
-	bool m_IsPlayer{};
+	int m_ComboNumber;
+	bool m_IsPlayer;
 
 	//	TeamInfo m_TeamInfo;
 

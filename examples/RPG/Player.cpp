@@ -2,21 +2,19 @@
 #include "Player.h"
 #include "PlayerController.h"
 
-/**
- *
- */
-Player::Player(BaseEntity* pEntity) :
-	Character(pEntity)
-{
-	m_FuryPoint = 0;
-	m_FuryPointDecrease = 0.0f;
-	m_InBleedingMode = false;
-}
 
-/**
- *
- */
-Player::~Player()
+Player::Player(BaseEntity* pEntity) :
+	Character(pEntity),
+	m_FuryPoint(0),
+	m_FuryPointDecrease(0.0f),
+	m_InBleedingMode(false),
+	m_FuryForce(0),
+	m_FuryDef(0),
+	m_FurySpeed(0),
+	m_FuryModeEnabling(false),
+	m_FuryModeDisabling(false),
+	m_InFuryMode(false),
+	m_MaxFuryPoint(0)
 {
 }
 
@@ -95,14 +93,14 @@ void Player::FurySpeed(float val)
 	m_FurySpeed = val;
 }
 
-bool Player::FuryModeDesabling() const
+bool Player::FuryModeDisabling() const
 {
-	return m_FuryModeDesabling;
+	return m_FuryModeDisabling;
 }
 
-void Player::FuryModeDesabling(bool val)
+void Player::FuryModeDisabling(bool val)
 {
-	m_FuryModeDesabling = val;
+	m_FuryModeDisabling = val;
 }
 
 bool Player::FuryModeEnabling() const
@@ -133,4 +131,14 @@ int Player::MaxFuryPoint() const
 void Player::MaxFuryPoint(int val)
 {
 	m_MaxFuryPoint = val;
+}
+
+void Player::AttachWeapon()
+{
+
+}
+
+void Player::UnAttachWeapon()
+{
+
 }
