@@ -62,7 +62,7 @@ namespace CasaEngine
 							{
 								auto* rect = dynamic_cast<RectangleI*>(coll.GetShape());
 								auto color = coll.GetType() == CollisionType::Defense ? Color::Blue : Color::Red;
-								auto pos = transform->GetLocalPosition();
+								auto pos = transform->GetWorldMatrix().Translation();
 								const auto scaleX = transform->GetLocalScale().x;
 								const auto scaleY = transform->GetLocalScale().y;
 								auto rectScaled = RectangleI(rect->x * scaleX, rect->y * scaleY, rect->w * scaleX, rect->h * scaleY);

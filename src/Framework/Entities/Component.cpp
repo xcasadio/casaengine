@@ -7,19 +7,14 @@
 
 namespace CasaEngine
 {
-	Component::Component(BaseEntity* pEntity_, int type)
+	Component::Component(BaseEntity* entity, int type)
 	{
-		CA_ASSERT(pEntity_ != nullptr,
-			"Component::Component() : BaseEntity is nullptr");
-
-		m_pEntity = pEntity_;
+		CA_ASSERT(entity != nullptr, "Component::Component() : BaseEntity is nullptr");
+		m_pEntity = entity;
 		m_Type = type;
 	}
 
-	Component::~Component()
-	{
-		//Do nothing
-	}
+	Component::~Component() = default;
 
 	BaseEntity* Component::GetEntity()
 	{
@@ -28,13 +23,11 @@ namespace CasaEngine
 
 	bool Component::HandleMessage(const Telegram& /*msg*/)
 	{
-		//Do nothing
 		return false;
 	}
 
 	void Component::Draw()
 	{
-		//Do nothing
 	}
 
 	int Component::Type() const
@@ -42,11 +35,9 @@ namespace CasaEngine
 		return m_Type;
 	}
 
-	/**
-	 * Editor
-	 */
+#if EDITOR
 	void Component::ShowDebugWidget()
 	{
-		// Do nothing
 	}
+#endif
 }

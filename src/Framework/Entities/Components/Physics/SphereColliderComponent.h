@@ -1,5 +1,4 @@
-#ifndef SPHERECOLLIDERCOMPONENT_H_
-#define SPHERECOLLIDERCOMPONENT_H_
+#pragma once
 
 #include <iosfwd>
 
@@ -8,9 +7,6 @@
 
 namespace CasaEngine
 {
-	/*
-	 *	
-	 */
 	class CA_EXPORT SphereColliderComponent :
 		public ColliderComponent
 	{
@@ -18,27 +14,12 @@ namespace CasaEngine
 
 	public:
 		SphereColliderComponent(BaseEntity* pEntity_);
-		virtual ~SphereColliderComponent();
+		~SphereColliderComponent() override;
 
-		//all entities must implement an Initialize function
-		void Initialize();
+		void Initialize() override;
 
-		/**
-		 * 
-		 */
-		void Draw();
-
-		//all entities can communicate using messages. They are sent
-		//using the MessageDispatcher singleton class
-		//void HandleEvent(const Event* pEvent_);
-
-		//entities should be able to read/write their data to a stream
-		void Write(std::ostream&  os)const;
-		void Read (std::ifstream& is);
+		void Write(std::ostream&  os)const override;
+		void Read (std::ifstream& is) override;
 	};
 
 }
-
-#endif // SPHERECOLLIDERCOMPONENT_H_
-
-

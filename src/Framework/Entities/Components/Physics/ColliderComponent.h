@@ -11,17 +11,10 @@
 
 namespace CasaEngine
 {
+
 	class CA_EXPORT ColliderComponent :
 		public Component
 	{
-	private:
-		//PhysicMaterial* m_pPhysicMaterial;
-		bool m_IsTrigger;
-		float m_Mass;
-
-	protected:
-		IShape* m_pShape;
-
 	public:
 		~ColliderComponent() override;
 
@@ -33,14 +26,21 @@ namespace CasaEngine
 		float Mass() const;
 		void Mass(float val);
 
+		AxisConstraints AxisConstraint() const;
+		void AxisConstraint(AxisConstraints val);
+
 		virtual void Write(std::ostream& os)const;
 		virtual void Read(std::ifstream& is);
 
 	protected:
+		IShape* m_pShape;
+
 		ColliderComponent(BaseEntity* pEntity_, int type_);
 		void CreateAndSetRigidBody(float mass);
 
 	private:
+		AxisConstraints axisConstraint;
+		float m_Mass;
 		ICollisionObjectContainer* m_pCollisionObjectContainer;
 	};
 }

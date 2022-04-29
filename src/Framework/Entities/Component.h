@@ -1,5 +1,4 @@
-#ifndef COMPONENT_H_
-#define COMPONENT_H_
+#pragma once
 
 #include "CA_Export.h"
 
@@ -15,21 +14,20 @@ namespace CasaEngine
 	public:
 		virtual ~Component();
 
-		int Type() const;
-
-		virtual bool HandleMessage(const Telegram& msg);
-
 		virtual void Initialize() = 0;
 		virtual void Update(const GameTime& gameTime_) = 0;
 		virtual void Draw();
+		virtual bool HandleMessage(const Telegram& msg);
 		
 		BaseEntity* GetEntity();
+		int Type() const;
 
-		//Editor
+#if EDITOR
 		virtual void ShowDebugWidget();
+#endif
 
 	protected:
-		Component(BaseEntity* pEntity_, int type_);
+		Component(BaseEntity* entity, int type);
 
 	private:
 		BaseEntity* m_pEntity;
@@ -37,5 +35,3 @@ namespace CasaEngine
 	};
 
 }
-
-#endif

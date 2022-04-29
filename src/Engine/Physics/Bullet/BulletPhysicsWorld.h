@@ -40,7 +40,7 @@ namespace CasaEngine
 
 		void setDebugDraw(btIDebugDraw* pIDebugDraw_);
 
-		IRigidBodyContainer* AddRigidBody(BaseEntity* entity, const RigidBody* pRigidBody_, Vector3 position) override;
+		IRigidBodyContainer* AddRigidBody(BaseEntity* entity, const RigidBody* pRigidBody_, const Vector3& position) override;
 		void RemoveRigidBody(IRigidBodyContainer* pObj_) override;
 
 		void AddCollisionObject(ICollisionObjectContainer* pObj_) override;
@@ -52,7 +52,7 @@ namespace CasaEngine
 		void AddCollisionObject(btCollisionObject* pColObj_);
 		//btCollisionShape *CreateCollisionShape(const MeshComponentColliper *pMeshCollider_);
 		btCollisionShape* CreateCollisionShape(const IShape* pShape_);
-		void RemoveCollisionObject(btCollisionObject* pShape_);
+		void RemoveCollisionObject(btCollisionObject* pColObj_);
 
 		btCollisionObject* CreateCollisionObjectFromShape(IShape* shape);
 		btCollisionObject* CreateCollisionObjectFromShape(btCollisionShape* shape, Vector3 center);

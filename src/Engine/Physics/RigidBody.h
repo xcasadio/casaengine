@@ -4,14 +4,23 @@
 
 namespace CasaEngine
 {
+	enum class AxisConstraints
+	{
+		NONE,
+		XY,
+		XZ,
+		YZ
+	};
+
 	struct CA_EXPORT RigidBody
 	{
 		float			mass;
 
 		IShape*			pCollisionShape;
-		Vector3		localInertia;
+		Vector3			localInertia;
 		float			linearDamping;
 		float			angularDamping;
+		AxisConstraints axisConstraint;
 
 		///best simulation results when friction is non-zero
 		float			friction;

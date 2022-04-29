@@ -31,9 +31,9 @@ namespace CasaEngine
 		return m_Type;
 	}
 
-	void Collision::SetType(CollisionType val)
+	void Collision::SetType(CollisionType type)
 	{
-		m_Type = val;
+		m_Type = type;
 	}
 
 	IShape* Collision::GetShape() const
@@ -41,8 +41,8 @@ namespace CasaEngine
 		return m_pShape;
 	}
 
-	void Collision::SetShape(IShape *val)
+	void Collision::SetShape(IShape *shape)
 	{
-		m_pShape = val;
+		m_pShape = shape;
 	}
 }

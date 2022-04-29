@@ -1,5 +1,4 @@
-#ifndef CIRCLE2DCOLLIDERCOMPONENT_H_
-#define CIRCLE2DCOLLIDERCOMPONENT_H_
+#pragma once
 
 #include "CA_Export.h"
 #include "ColliderComponent.h"
@@ -24,7 +23,3 @@ namespace CasaEngine
 	};
 
 }
-
-#endif // CIRCLE2DCOLLIDERCOMPONENT_H_
-
-

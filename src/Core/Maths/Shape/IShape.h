@@ -1,5 +1,4 @@
-#ifndef ISHAPE_H
-#define ISHAPE_H
+#pragma once
 
 #include "CA_Export.h"
 #include "ShapeType.h"
@@ -41,5 +40,3 @@ namespace CasaEngine
 		}
 	};
 }
-
-#endif

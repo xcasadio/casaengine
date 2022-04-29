@@ -1,5 +1,4 @@
-#ifndef BOXCOLLIDERCOMPONENT_H_
-#define BOXCOLLIDERCOMPONENT_H_
+#pragma once
 
 #include <iosfwd>
 
@@ -18,24 +17,14 @@ namespace CasaEngine
 
 	public:
 		BoxColliderComponent(BaseEntity* pEntity_);
-		~BoxColliderComponent();
+		~BoxColliderComponent() override;
 
-		//all entities must implement an Initialize function
-		void Initialize();
-		void Draw();
+		void Initialize() override;
+		void Draw() override;
 		Box Shape() const;
 
-		//all entities can communicate using messages. They are sent
-		//using the MessageDispatcher singleton class
-		//void HandleEvent(const Event* pEvent_);
-
-		//entities should be able to read/write their data to a stream
-		void Write(std::ostream&  os)const;
-		void Read (std::ifstream& is);
+		void Write(std::ostream&  os)const override;
+		void Read (std::ifstream& is) override;
 	};
 
 }
-
-#endif // BOXCOLLIDERCOMPONENT_H_
-
-

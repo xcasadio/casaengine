@@ -61,7 +61,7 @@ namespace CasaEngine
 		m_pBulletWorld->debugDrawWorld();
 	}
 
-	IRigidBodyContainer* BulletPhysicsWorld::AddRigidBody(BaseEntity* entity, const RigidBody* pRigidBody_, Vector3 position)
+	IRigidBodyContainer* BulletPhysicsWorld::AddRigidBody(BaseEntity* entity, const RigidBody* pRigidBody_, const Vector3& position)
 	{
 		auto mass = pRigidBody_->mass;
 		btTransform startTransform;
@@ -91,11 +91,20 @@ namespace CasaEngine
 		body = new btRigidBody(rbInfo);
 		//body->setContactProcessingThreshold(colShape->getContactBreakingThreshold());
 		//body->setActivationState(ISLAND_SLEEPING);
-		//body->setLinearFactor(btVector3(1,1,0));
 		body->setSleepingThresholds(0.0, 0.0);
-		body->setAngularFactor(0.0);
-		body->setUserPointer(entity);
+		//TODO : config to apply constraint in axis (0 = non move)
+		switch (pRigidBody_->axisConstraint)
+		{
+			case AxisConstraints::XY: body->setLinearFactor(btVector3(1, 1, 0)); break;
+			case AxisConstraints::XZ: body->setLinearFactor(btVector3(1, 0, 1)); break;
+			case AxisConstraints::YZ: body->setLinearFactor(btVector3(0, 1, 1)); break;
+			case AxisConstraints::NONE:
+			default: body->setLinearFactor(btVector3(1, 1, 1));
+		}
 
+		body->setAngularFactor(0.0); // no rotation
+
+		body->setUserPointer(entity);
 		m_pBulletWorld->addRigidBody(body);
 		//body->setActivationState(ISLAND_SLEEPING);
 

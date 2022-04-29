@@ -1,5 +1,4 @@
-#ifndef RIGIDBODYCOMPONENT_H_
-#define RIGIDBODYCOMPONENT_H_
+#pragma once
 
 #include <vector>
 
@@ -27,7 +26,7 @@ namespace CasaEngine
 	public:
 		RigidBodyComponent(BaseEntity* pEntity_);
 
-		void Initialize();
+		void Initialize() override;
 		void Update(const GameTime& gameTime_) override;
 
 		bool HandleMessage(const Telegram& msg) override;
@@ -39,5 +38,3 @@ namespace CasaEngine
 		void RemoveShape(ColliderComponent* pShape_);
 	};
 }
-
-#endif

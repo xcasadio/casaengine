@@ -12,18 +12,16 @@ namespace CasaEngine
 {
 	ColliderComponent::ColliderComponent(BaseEntity* pEntity_, int type_)
 		: Component(pEntity_, type_),
-		m_IsTrigger(false),
 		m_pShape(nullptr),
+		axisConstraint(AxisConstraints::NONE),
+		m_Mass(0),
 		m_pCollisionObjectContainer(nullptr)
 	{
 	}
 
 	ColliderComponent::~ColliderComponent()
 	{
-		if (m_pCollisionObjectContainer != nullptr)
-		{
-			delete m_pCollisionObjectContainer;
-		}
+		delete m_pCollisionObjectContainer;
 	}
 
 	void ColliderComponent::Initialize()
@@ -55,6 +53,16 @@ namespace CasaEngine
 		m_Mass = val;
 	}
 
+	AxisConstraints ColliderComponent::AxisConstraint() const
+	{
+		return axisConstraint;
+	}
+
+	void ColliderComponent::AxisConstraint(AxisConstraints val)
+	{
+		axisConstraint = val;
+	}
+
 	IShape* ColliderComponent::GetShape() const
 	{
 		return m_pShape;
@@ -67,6 +75,7 @@ namespace CasaEngine
 		auto* rigidBody = new RigidBody();
 		rigidBody->mass = mass;
 		rigidBody->pCollisionShape = m_pShape;
+		rigidBody->axisConstraint = axisConstraint;
 		IRigidBodyContainer* pContainer = Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->AddRigidBody(GetEntity(), rigidBody, transform->GetPosition());
 		GetEntity()->GetPhysicalEntity().SetRigidBody(pContainer);
 	}

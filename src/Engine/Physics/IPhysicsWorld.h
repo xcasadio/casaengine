@@ -28,7 +28,7 @@ namespace CasaEngine
 		virtual void AddCollisionObject(ICollisionObjectContainer*) = 0;
 		virtual void RemoveCollisionObject(ICollisionObjectContainer*) = 0;
 
-		virtual IRigidBodyContainer* AddRigidBody(BaseEntity* entity, const RigidBody* pRigidBody_, Vector3 position) = 0;
+		virtual IRigidBodyContainer* AddRigidBody(BaseEntity* entity, const RigidBody* pRigidBody_, const Vector3& position) = 0;
 		virtual void RemoveRigidBody(IRigidBodyContainer*) = 0;
 	};
 }
