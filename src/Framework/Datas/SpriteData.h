@@ -1,5 +1,4 @@
-#ifndef _SPRITEDATA_H_
-#define _SPRITEDATA_H_
+#pragma once
 
 #include "CA_Export.h"
 #include "Maths/Rectangle.h"
@@ -74,4 +73,3 @@ CEREAL_REGISTER_TYPE_WITH_NAME(CasaEngine::SpriteData, "sprite_data");
 CEREAL_REGISTER_TYPE(CasaEngine::SpriteData);
 CEREAL_REGISTER_POLYMORPHIC_RELATION(CasaEngine::IAssetable, CasaEngine::SpriteData);
 */
-#endif

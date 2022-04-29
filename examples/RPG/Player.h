@@ -48,6 +48,8 @@ public:
 	void AttachWeapon();
 	void UnAttachWeapon();
 
+	void SetWeapon(BaseEntity* weapon);
+
 private:
 	int m_FuryPoint;
 	float m_FuryPointDecrease;
@@ -59,4 +61,6 @@ private:
 	bool m_FuryModeDisabling;
 	bool m_InFuryMode;
 	int m_MaxFuryPoint;
+
+	BaseEntity* m_Weapon;
 };

@@ -125,12 +125,12 @@ int Character::GetAnimationDirectionOffset()
 	return 0;
 }
 
-bool Character::SetCurrentAnimationByName(const char* name)
+std::string Character::GetAnimationNameWithOrientation(const char* name, orientation orientation)
 {
 	std::ostringstream name_with_direction;
 	name_with_direction << name;
 
-	switch (GetOrientation())
+	switch (orientation)
 	{
 	case orientation::DOWN:
 	case orientation::DOWN_LEFT:
@@ -153,7 +153,13 @@ bool Character::SetCurrentAnimationByName(const char* name)
 		break;
 	}
 
-	return SetCurrentAnimation(name_with_direction.str().c_str());
+	return name_with_direction.str();
+}
+
+bool Character::SetCurrentAnimationByName(const char* name)
+{
+	std::string name_with_direction = GetAnimationNameWithOrientation(name, GetOrientation());
+	return SetCurrentAnimation(name_with_direction.c_str());
 }
 
 

@@ -1,5 +1,4 @@
-#ifndef _AnimationData_H_
-#define _AnimationData_H_
+#pragma once
 
 #include "CA_Export.h"
 #include "Assets/Assetable.h"
@@ -45,5 +44,3 @@ namespace CasaEngine
 		}
 	};
 }
-
-#endif

@@ -15,12 +15,12 @@ namespace CasaEngine
 		~Animation() override;
 
 		virtual void Initialize();
+		void Update(float elapsedTime_);
 
 		void AddEvent(AnimationEvent* event_);
 		float TotalTime() const;
 		float CurrentTime() const;
-
-		void Update(float elapsedTime_);
+		virtual void Reset();
 
 		AnimationData* GetAnimationData();
 		

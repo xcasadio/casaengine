@@ -14,7 +14,8 @@ Player::Player(BaseEntity* pEntity) :
 	m_FuryModeEnabling(false),
 	m_FuryModeDisabling(false),
 	m_InFuryMode(false),
-	m_MaxFuryPoint(0)
+	m_MaxFuryPoint(0),
+	m_Weapon(nullptr)
 {
 }
 
@@ -135,10 +136,21 @@ void Player::MaxFuryPoint(int val)
 
 void Player::AttachWeapon()
 {
-
+	m_Weapon->IsEnabled(true);
+	m_Weapon->IsVisible(true);
+	auto *animated_sprite_component = m_Weapon->GetComponentMgr()->GetComponent<AnimatedSpriteComponent>();
+	std::string name_with_direction = GetAnimationNameWithOrientation("baton_attack1", GetOrientation());
+	animated_sprite_component->SetCurrentAnimation(name_with_direction, true);
 }
 
 void Player::UnAttachWeapon()
 {
+	m_Weapon->IsEnabled(false);
+	m_Weapon->IsVisible(false);
+}
 
+void Player::SetWeapon(BaseEntity* weapon)
+{
+	m_Weapon = weapon;
+	m_Weapon->SetParent(GetEntity());
 }

@@ -48,9 +48,9 @@ namespace CasaEngine
 		//using the MessageDispatcher singleton class
 		//void HandleEvent(const Event* pEvent_);
 
-		void SetCurrentAnimation(int index_);
-		bool SetCurrentAnimation(std::string name);
-		bool SetCurrentAnimation(const char *name_);
+		void SetCurrentAnimation(int index_, bool forceReset = false);
+		bool SetCurrentAnimation(std::string name, bool forceReset = false);
+		bool SetCurrentAnimation(const char *name_, bool forceReset = false);
 		std::string GetCurrentFrameName();
 		int GetCurrentFrameIndex() const;
 		Animation2D *GetCurrentAnimation();

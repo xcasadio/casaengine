@@ -1,5 +1,4 @@
-#ifndef CHARACTER_H_
-#define CHARACTER_H_
+#pragma once
 
 #include <map>
 
@@ -16,11 +15,11 @@ public:
 	static const int Deadzone = 20;
 
 public:
-	virtual ~Character();
+	~Character() override;
 
-	virtual void Initialize();
-	void Update(const CasaEngine::GameTime& gameTime_);
-	void Draw();
+	void Initialize() override;
+	void Update(const CasaEngine::GameTime& gameTime_) override;
+	void Draw() override;
 
 	bool SetCurrentAnimationByName(const char* name);
 
@@ -39,5 +38,3 @@ private:
 
 	std::map<int, CasaEngine::Animation2D*> m_Animations;
 };
-
-#endif

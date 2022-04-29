@@ -48,6 +48,11 @@ namespace CasaEngine
 		return m_CurrentTime; 
 	}
 
+	void Animation::Reset()
+	{
+		m_CurrentTime = 0.0f;
+	}
+
 	AnimationData* Animation::GetAnimationData()
 	{
 		return m_pAnimationData;

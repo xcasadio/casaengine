@@ -52,6 +52,8 @@ namespace CasaEngine
 				break;
 			}
 		}
+
+		Animation::Reset();
 	}
 
 	const char* Animation2D::CurrentFrame() const 

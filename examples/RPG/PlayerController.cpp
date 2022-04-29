@@ -21,12 +21,9 @@ PlayerController::~PlayerController() = default;
 
 void PlayerController::Initialize()
 {
-	auto player_state_idle = new PlayerStateIdle();
-	auto player_state_attack = new PlayerStateAttack();
-
-	AddState(IDLE, player_state_idle);
+	AddState(IDLE, new PlayerStateIdle());
 	AddState(MOVING, new PlayerStateWalking());
-	AddState(ATTACK_1, player_state_attack);
+	AddState(ATTACK_1, new PlayerStateAttack());
 	// 	AddState((int)PlayerControllerState::ATTACK_2, new PlayerAttack2State());
 	// 	AddState((int)PlayerControllerState::ATTACK_3, new PlayerAttack3State());
 	// 	AddState((int)PlayerControllerState::TO_FURY_MODE, new PlayerToFuryState());
@@ -34,8 +31,8 @@ void PlayerController::Initialize()
 
 	GetPlayer()->SetOrientation(RIGHT);
 	//Character.Animation2DPlayer.SetCurrentAnimationByID((int)AnimationIndex.IdleRight);
-	FSM()->SetCurrentState(GetState(IDLE));
 	FSM()->SetGlobalState(new PlayerStateGlobal());
+	FSM()->ChangeState(GetState(IDLE));
 }
 
 void PlayerController::Update(const GameTime& elapsedTime_)

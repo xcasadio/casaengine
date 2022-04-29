@@ -243,7 +243,62 @@ void RPGGame::CreateAssets(Vector2I tileSize)
 	}
 }
 
-const auto frame_delay = 0.64f * 5.0f;
+void CreateSprite(const std::string tileSetName, const std::vector<_sprite>& sprites, const char* prefix)
+{
+	int id = 0;
+
+	for (auto& sprite : sprites)
+	{
+		auto* pSprite = new SpriteData();
+		std::ostringstream name;
+		name << prefix << sprite.id;
+		id++;
+		pSprite->SetName(name.str());
+		pSprite->SetPositionInTexture(RectangleI(sprite.x, sprite.y, sprite.w, sprite.h));
+		pSprite->SetOrigin(Vector2I(sprite.px, sprite.py));
+
+		for (auto& coll : sprite.att)
+		{
+			Collision collision;
+			collision.SetType(CollisionType::Attack);
+			collision.SetShape(new CasaEngine::RectangleI(coll.x - sprite.px, coll.y - sprite.py, coll.w, coll.h));
+			pSprite->GetCollisions().push_back(collision);
+		}
+
+		for (auto& coll : sprite.def)
+		{
+			Collision collision;
+			collision.SetType(CollisionType::Defense);
+			collision.SetShape(new CasaEngine::RectangleI(coll.x - sprite.px, coll.y - sprite.py, coll.w, coll.h));
+			pSprite->GetCollisions().push_back(collision);
+		}
+
+		pSprite->SetAssetFileName(tileSetName);
+		Game::Instance().GetAssetManager().AddAsset(new Asset(name.str(), pSprite));
+	}
+}
+
+void CreateAnimations(const char* prefix, AnimatedSpriteComponent* pAnimatedComponent, const std::vector<animation>& animations)
+{
+	for (auto& anim : animations)
+	{
+		auto* pAnim = new Animation2DData();
+		pAnim->SetName(anim.name);
+
+		for (auto& frame : anim.frames)
+		{
+			auto* frameData = new FrameData();
+			std::ostringstream spriteName;
+			spriteName << prefix << frame.sprite_id;
+			frameData->SetSpriteId(spriteName.str());
+			frameData->SetDuration(frame.delay);
+			pAnim->AddFrame(*frameData);
+		}
+
+		Game::Instance().GetAssetManager().AddAsset(new Asset(pAnim->GetName(), pAnim));
+		pAnimatedComponent->AddAnimation(new Animation2D(*pAnim));
+	}
+}
 
 void RPGGame::CreateEnemies(World* pWorld)
 {
@@ -261,47 +316,12 @@ void RPGGame::CreateEnemies(World* pWorld)
 	//pTrans3D->SetLocalScale(Vector3(32, 32, 1.0));
 	pEntity->GetComponentMgr()->AddComponent(pTrans3D);
 
-	//load texture
-	//auto texture = Texture::loadTexture(ennemi_datas.tile_set.c_str());
-	//load sprite
-	int id = 0;
-	for (auto& sprite : ennemi_datas.sprites)
-	{
-		auto* pSprite = new SpriteData();
-		std::ostringstream name;
-		name << "octopus_" << sprite.id;
-		id++;
-		pSprite->SetName(name.str());
-		pSprite->SetPositionInTexture(RectangleI(sprite.x, sprite.y, sprite.w, sprite.h));
-		pSprite->SetOrigin(Vector2I(12, 20));
-		pSprite->SetAssetFileName(ennemi_datas.tile_set);
-		GetAssetManager().AddAsset(new Asset(name.str(), pSprite));
-	}
+	CreateSprite(ennemi_datas.tile_set, ennemi_datas.sprites, "octopus_");
 
 	auto* pAnimatedComponent = new AnimatedSpriteComponent(pEntity);
-	//load anim
-	for (auto& anim : ennemi_datas.animations)
-	{
-		auto* pAnim = new Animation2DData();
-		pAnim->SetAnimationType(AnimationType::Loop);
-		pAnim->SetName(anim.name);
-
-		for (auto& frame : anim.frames)
-		{
-			auto* frameData = new FrameData();
-			std::ostringstream spriteName;
-			spriteName << "octopus_" << frame.sprite_id;
-			frameData->SetSpriteId(spriteName.str());
-			frameData->SetDuration(frame_delay);
-			pAnim->AddFrame(*frameData);
-		}
-
-		GetAssetManager().AddAsset(new Asset(pAnim->GetName(), pAnim));
-		pAnimatedComponent->AddAnimation(new Animation2D(*pAnim));
-	}
-
+	CreateAnimations("octopus_", pAnimatedComponent, ennemi_datas.animations);
+	
 	pEntity->GetComponentMgr()->AddComponent(pAnimatedComponent);
-	//pAnimatedComponent->SetCurrentAnimation(0);
 
 	auto* scriptComponent = new ScriptComponent(pEntity);
 	auto* pScriptCharacter = new ScriptCharacter(pEntity, new Enemy(pEntity));
@@ -309,13 +329,15 @@ void RPGGame::CreateEnemies(World* pWorld)
 	pEntity->GetComponentMgr()->AddComponent(scriptComponent);
 
 	auto* debugComponent = new DebugComponent(pEntity);
-	debugComponent->DisplayPosition(true);
+	debugComponent->DisplayPosition(false);
+	debugComponent->DisplayAnimation2DCollisions(true);
 	pEntity->GetComponentMgr()->AddComponent(debugComponent);
 
 	//collision
 	auto* colliderComponent = new Circle2DColliderComponent(pEntity);
 	colliderComponent->SetCenter(Vector3::Zero());
 	colliderComponent->SetRadius(10.0f);
+	colliderComponent->AxisConstraint(AxisConstraints::XY);
 	//auto* colliderComponent = new Box2DColliderComponent(pEntity);
 	//colliderComponent->Set(0, 0, 10, 10);
 	pEntity->GetComponentMgr()->AddComponent(colliderComponent);
@@ -325,68 +347,68 @@ void RPGGame::CreateEnemies(World* pWorld)
 
 void RPGGame::CreateSwordman(World* pWorld)
 {
+	//create weapon
+	auto* weaponEntity = new BaseEntity();
+	weaponEntity->SetName("sword");
+	auto* pTrans3D = new Transform3DComponent(weaponEntity);
+	weaponEntity->GetComponentMgr()->AddComponent(pTrans3D);
+	auto* debugComponent = new DebugComponent(weaponEntity);
+	debugComponent->DisplayPosition(false);
+	debugComponent->DisplayAnimation2DCollisions(true);
+	weaponEntity->GetComponentMgr()->AddComponent(debugComponent);
+
+	IFile* pFile = Game::Instance().GetMediaManager().FindMedia("baton.json", true);
+	std::ifstream isstream(pFile->Fullname());
+	cereal::JSONInputArchive json(isstream);
+	_weapon weapon_data;
+	json(cereal::make_nvp("weapon", weapon_data));
+
+	CreateSprite(weapon_data.tile_set, weapon_data.sprites, "sword_");
+
+	auto* pAnimatedComponent = new AnimatedSpriteComponent(weaponEntity);
+	CreateAnimations("sword_", pAnimatedComponent, weapon_data.animations);
+
+	weaponEntity->GetComponentMgr()->AddComponent(pAnimatedComponent);
+	weaponEntity->IsEnabled(false);
+	weaponEntity->IsVisible(false);
+	pWorld->AddEntity(weaponEntity);
+
+	//auto* scriptComponent = new ScriptComponent(weaponEntity);
+	//auto weapon = new Weapon(weaponEntity);
+	//auto* pScriptCharacter = new ScriptCharacter(weaponEntity, player);
+	//scriptComponent->SetScriptObject(pScriptCharacter);
+	//weaponEntity->GetComponentMgr()->AddComponent(scriptComponent);
+
+	////////////////////////////////////////////////////////////
 	//player
 	constexpr auto tileWidth = 48, tileHeight = 48;
 	auto* pPlayerEntity = new BaseEntity();
 	pPlayerEntity->SetName("player 1");
-	auto* pTrans3D = new Transform3DComponent(pPlayerEntity);
+	pTrans3D = new Transform3DComponent(pPlayerEntity);
 	pTrans3D->SetLocalPosition(Vector3(50.0f, 150.0f, 0.1f));
 	pTrans3D->SetLocalRotation(0.0f);
 	//pTrans3D->SetLocalScale(Vector3(tileWidth, tileHeight, 1.0));
 	pPlayerEntity->GetComponentMgr()->AddComponent(pTrans3D);
 
-	//textures
-	IFile* pFile = Game::Instance().GetMediaManager().FindMedia("player.json", true);
+	//read file
+	pFile = Game::Instance().GetMediaManager().FindMedia("player.json", true);
 	std::ifstream is(pFile->Fullname());
 	cereal::JSONInputArchive ar(is);
 	_joueur player_datas;
 	ar(cereal::make_nvp("swordman", player_datas));
 
 	//create sprite
-	//auto texture = Texture::loadTexture(player_datas.tile_set.c_str());
-	//load sprite
-	int id = 0;
-	for (auto& sprite : player_datas.sprites)
-	{
-		auto* pSprite = new SpriteData();
-		std::ostringstream name;
-		name << "player_" << sprite.id;
-		id++;
-		pSprite->SetName(name.str());
-		pSprite->SetPositionInTexture(RectangleI(sprite.x, sprite.y, sprite.w, sprite.h));
-		pSprite->SetOrigin(Vector2I(24, 38));
-		pSprite->SetAssetFileName(player_datas.tile_set);
-		GetAssetManager().AddAsset(new Asset(name.str(), pSprite));
-	}
+	CreateSprite(player_datas.tile_set, player_datas.sprites, "player_");
 
-	//load anim
-	auto* pAnimatedComponent = new AnimatedSpriteComponent(pPlayerEntity);
-	for (auto& anim : player_datas.animations)
-	{
-		auto* pAnim = new Animation2DData();
-		pAnim->SetAnimationType(AnimationType::Loop);
-		pAnim->SetName(anim.name);
-
-		for (auto& frame : anim.frames)
-		{
-			auto* frameData = new FrameData();
-			std::ostringstream spriteName;
-			spriteName << "player_" << frame.sprite_id;
-			frameData->SetSpriteId(spriteName.str());
-			frameData->SetDuration(frame_delay);
-			pAnim->AddFrame(*frameData);
-		}
-
-		GetAssetManager().AddAsset(new Asset(pAnim->GetName(), pAnim));
-		pAnimatedComponent->AddAnimation(new Animation2D(*pAnim));
-	}
+	pAnimatedComponent = new AnimatedSpriteComponent(pPlayerEntity);
+	CreateAnimations("player_", pAnimatedComponent, player_datas.animations);
 
 	pPlayerEntity->GetComponentMgr()->AddComponent(pAnimatedComponent);
-	//pAnimatedComponent->SetCurrentAnimation("stand_down");
 	pWorld->AddEntity(pPlayerEntity);
 
 	auto* scriptComponent = new ScriptComponent(pPlayerEntity);
 	auto player = new Player(pPlayerEntity);
+	player->SetWeapon(weaponEntity);
 	player->Speed(50.0f);
 	auto* pScriptCharacter = new ScriptCharacter(pPlayerEntity, player);
 	scriptComponent->SetScriptObject(pScriptCharacter);
@@ -396,13 +418,15 @@ void RPGGame::CreateSwordman(World* pWorld)
 	auto* colliderComponent = new Circle2DColliderComponent(pPlayerEntity);
 	colliderComponent->SetCenter(Vector3::Zero());
 	colliderComponent->SetRadius(10.0f);
+	colliderComponent->AxisConstraint(AxisConstraints::XY);
 	//auto* colliderComponent = new Box2DColliderComponent(pPlayerEntity);
 	//colliderComponent->Set(0, 0, 10, 10);
 	pPlayerEntity->GetComponentMgr()->AddComponent(colliderComponent);
 
 	//debug
-	auto* debugComponent = new DebugComponent(pPlayerEntity);
-	debugComponent->DisplayPosition(true);
+	debugComponent = new DebugComponent(pPlayerEntity);
+	debugComponent->DisplayPosition(false);
+	debugComponent->DisplayAnimation2DCollisions(true);
 	pPlayerEntity->GetComponentMgr()->AddComponent(debugComponent);
 
 	//Camera 2D

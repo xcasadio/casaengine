@@ -29,7 +29,7 @@ void PlayerController::Initialize()
 
 	GetPlayer()->SetOrientation(RIGHT);
 	//Character.Animation2DPlayer.SetCurrentAnimationByID((int)AnimationIndex.IdleRight);
-	FSM()->SetCurrentState(GetState(IDLE));
+	FSM()->ChangeState(GetState(IDLE));
 }
 
 /**

@@ -22,6 +22,8 @@ public:
 	static constexpr int Deadzone = 20;
 
 public:
+	static std::string GetAnimationNameWithOrientation(const char* name, orientation orientation);
+
 	~Character() override;
 
 	void Initialize() override;

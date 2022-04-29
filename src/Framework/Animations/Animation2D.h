@@ -16,7 +16,7 @@ namespace CasaEngine
 		//EventHandler OnEndAnimationReached;
 
 		void Initialize() override;
-		void Reset();
+		void Reset() override;
 		
 		const char* CurrentFrame() const;
 		void CurrentFrame(const char* val);

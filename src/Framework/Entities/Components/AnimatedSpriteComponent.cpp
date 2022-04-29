@@ -63,13 +63,18 @@ namespace CasaEngine
 		m_SpriteEffect = val;
 	}
 
-	void AnimatedSpriteComponent::SetCurrentAnimation(int index_)
+	void AnimatedSpriteComponent::SetCurrentAnimation(int index_, bool forceReset)
 	{
 		// if the animation is already set we do nothing
 		if (m_pCurrentAnim != nullptr
 			/*&& m_pCurrentAnim->ID() == m_AnimationList[index_]->ID()*/
 			&& m_pCurrentAnim->GetAnimationData()->GetName() == m_AnimationList[index_]->GetAnimationData()->GetName())
 		{
+			if (forceReset)
+			{
+				m_pCurrentAnim->Reset();
+			}
+
 			return;
 		}
 
@@ -96,18 +101,18 @@ namespace CasaEngine
 			Event::Subscriber(&AnimatedSpriteComponent::OnAnimationFinished, this));
 	}
 
-	bool AnimatedSpriteComponent::SetCurrentAnimation(const char * name_)
+	bool AnimatedSpriteComponent::SetCurrentAnimation(const char * name_, bool forceReset)
 	{
 		return SetCurrentAnimation(std::string(name_));
 	}
 
-	bool AnimatedSpriteComponent::SetCurrentAnimation(std::string name)
+	bool AnimatedSpriteComponent::SetCurrentAnimation(std::string name, bool forceReset)
 	{
 		for (unsigned int i = 0; i < m_AnimationList.size(); i++)
 		{
 			if (m_AnimationList[i]->GetAnimationData()->GetName() == name)
 			{
-				SetCurrentAnimation(i);
+				SetCurrentAnimation(i, forceReset);
 				return true;
 			}
 		}

@@ -102,6 +102,7 @@ void PlayerStateWalking::Execute(IController * pController_, const GameTime & el
 	if (dir != 0)
 	{
 		pPlayerController->GetPlayer()->SetOrientation(dir);
+		pPlayerController->GetPlayer()->SetCurrentAnimationByName("swordman_walk");
 	}
 
 	if (pPlayerController->IsAttackButtonPressed() == true)

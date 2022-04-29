@@ -111,6 +111,8 @@ private:
 		ar(CEREAL_NVP(y));
 		ar(CEREAL_NVP(w));
 		ar(CEREAL_NVP(h));
+		ar(CEREAL_NVP(px));
+		ar(CEREAL_NVP(py));
 		ar(CEREAL_NVP(att));
 		ar(CEREAL_NVP(def));
 	}
@@ -211,6 +213,42 @@ typedef struct {
 	int delaiAction;// tps entre chaque action
 	int delaiAttaque;// tps entre chaque attaque
 } _IA;
+
+typedef struct {
+	std::string tile_set;
+	std::string name;
+	std::vector<animation> animations;
+	std::vector<_sprite> sprites;
+	int speed;
+	int spirit;
+	int strength;
+private:
+	friend class cereal::access;
+
+	template <class Archive>
+	void save(Archive& ar) const
+	{
+		ar(CEREAL_NVP(tile_set));
+		ar(CEREAL_NVP(name));
+		ar(CEREAL_NVP(strength));
+		ar(CEREAL_NVP(spirit));
+		ar(CEREAL_NVP(speed));
+		ar(CEREAL_NVP(sprites));
+		ar(CEREAL_NVP(animations));
+	}
+
+	template <class Archive>
+	void load(Archive& ar)
+	{
+		ar(CEREAL_NVP(tile_set));
+		ar(CEREAL_NVP(name));
+		ar(CEREAL_NVP(strength));
+		ar(CEREAL_NVP(spirit));
+		ar(CEREAL_NVP(speed));
+		ar(CEREAL_NVP(sprites));
+		ar(CEREAL_NVP(animations));
+	}
+} _weapon;
 
 typedef struct _ennemi {
 	std::string tile_set;
