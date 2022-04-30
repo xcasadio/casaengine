@@ -37,12 +37,12 @@ namespace CasaEngine
 
 	}
 
-	RigidBody& RigidBodyComponent::GetRigidBody()
+	RigidBodyParameters& RigidBodyComponent::GetRigidBody()
 	{
 		return m_RigidBody;
 	}
 
-	void RigidBodyComponent::SetRigidBody(RigidBody& val)
+	void RigidBodyComponent::SetRigidBody(RigidBodyParameters& val)
 	{
 		m_RigidBody = val;
 	}

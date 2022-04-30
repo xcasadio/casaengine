@@ -289,7 +289,7 @@
     <ClInclude Include="..\..\src\Engine\Physics\IPhysicsWorld.h" />
     <ClInclude Include="..\..\src\Engine\Physics\PhysicsEngine.h" />
     <ClInclude Include="..\..\src\Engine\Physics\PhysicsObjectContainer.h" />
-    <ClInclude Include="..\..\src\Engine\Physics\RigidBody.h" />
+    <ClInclude Include="..\..\src\Engine\Physics\RigidBodyParameters.h" />
     <ClInclude Include="..\..\src\Engine\Resources\MediaManager.h" />
     <ClInclude Include="..\..\src\Framework\AI\FSM\IState.h" />
     <ClInclude Include="..\..\src\Framework\AI\FSM\StateMachine.h" />

@@ -12,7 +12,7 @@ namespace CasaEngine
 		YZ
 	};
 
-	struct CA_EXPORT RigidBody
+	struct CA_EXPORT RigidBodyParameters
 	{
 		float			mass;
 
@@ -39,7 +39,7 @@ namespace CasaEngine
 		float			additionalAngularDampingThresholdSqr;
 		float			additionalAngularDampingFactor;
 
-		RigidBody() :
+		RigidBodyParameters() :
 			mass(1.0f),
 			pCollisionShape(nullptr),
 			localInertia(Vector3::Zero()),

@@ -16,10 +16,6 @@
 
 namespace CasaEngine
 {
-	/**
-	 * The world that contains physics entities.
-	 * It is a adapter to the bullet dynamics world
-	 */
 	class CA_EXPORT BulletPhysicsWorld :
 		public IPhysicsWorld
 	{
@@ -40,7 +36,7 @@ namespace CasaEngine
 
 		void setDebugDraw(btIDebugDraw* pIDebugDraw_);
 
-		IRigidBodyContainer* AddRigidBody(BaseEntity* entity, const RigidBody* pRigidBody_, const Vector3& position) override;
+		IRigidBodyContainer* AddRigidBody(BaseEntity* entity, const RigidBodyParameters* pRigidBody_, const Vector3& position) override;
 		void RemoveRigidBody(IRigidBodyContainer* pObj_) override;
 
 		void AddCollisionObject(ICollisionObjectContainer* pObj_) override;

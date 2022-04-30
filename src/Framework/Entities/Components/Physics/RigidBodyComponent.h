@@ -6,7 +6,7 @@
 #include "GameTime.h"
 #include "Entities/Component.h"
 #include "ColliderComponent.h"
-#include "Physics/RigidBody.h"
+#include "Physics/RigidBodyParameters.h"
 
 #include "AI/Messaging/Telegram.h"
 
@@ -21,7 +21,7 @@ namespace CasaEngine
 		bool m_IsKinematic;
 
 		std::vector<ColliderComponent*> m_ListShapes;
-		RigidBody m_RigidBody;
+		RigidBodyParameters m_RigidBody;
 
 	public:
 		RigidBodyComponent(BaseEntity* pEntity_);
@@ -31,8 +31,8 @@ namespace CasaEngine
 
 		bool HandleMessage(const Telegram& msg) override;
 
-		RigidBody& GetRigidBody();
-		void SetRigidBody(RigidBody& val);
+		RigidBodyParameters& GetRigidBody();
+		void SetRigidBody(RigidBodyParameters& val);
 
 		void AddShape(ColliderComponent* pShape_);
 		void RemoveShape(ColliderComponent* pShape_);

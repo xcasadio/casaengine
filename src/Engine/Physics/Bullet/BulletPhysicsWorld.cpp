@@ -45,6 +45,9 @@ namespace CasaEngine
 	{
 		m_pBulletWorld->stepSimulation(gameTime_.FrameTime());
 
+		//m_pBulletWorld->contactPairTest()
+		//m_pBulletWorld->contactTest()
+
 		for (int i=0; i<dispatcher_->getNumManifolds(); i++)
 		{
 			const auto *manifold = dispatcher_->getInternalManifoldPointer()[i];
@@ -61,7 +64,7 @@ namespace CasaEngine
 		m_pBulletWorld->debugDrawWorld();
 	}
 
-	IRigidBodyContainer* BulletPhysicsWorld::AddRigidBody(BaseEntity* entity, const RigidBody* pRigidBody_, const Vector3& position)
+	IRigidBodyContainer* BulletPhysicsWorld::AddRigidBody(BaseEntity* entity, const RigidBodyParameters* pRigidBody_, const Vector3& position)
 	{
 		auto mass = pRigidBody_->mass;
 		btTransform startTransform;

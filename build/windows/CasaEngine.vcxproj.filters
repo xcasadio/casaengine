@@ -444,7 +444,7 @@
     <ClInclude Include="..\..\src\Engine\Physics\PhysicsObjectContainer.h">
       <Filter>Engine\Physics</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Physics\RigidBody.h">
+    <ClInclude Include="..\..\src\Engine\Physics\RigidBodyParameters.h">
       <Filter>Engine\Physics</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Engine\Physics\Bullet\btDynamicsWorldExt.h">

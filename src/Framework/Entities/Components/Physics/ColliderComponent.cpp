@@ -72,7 +72,7 @@ namespace CasaEngine
 	{
 		auto* transform = GetEntity()->GetComponentMgr()->GetComponent<Transform3DComponent>();
 		CA_ASSERT(transform != nullptr, "Circle2DColliderComponent::Initialize() can't find the Transform3DComponent. Please add it before add a Circle2DColliderComponent");
-		auto* rigidBody = new RigidBody();
+		auto* rigidBody = new RigidBodyParameters();
 		rigidBody->mass = mass;
 		rigidBody->pCollisionShape = m_pShape;
 		rigidBody->axisConstraint = axisConstraint;
