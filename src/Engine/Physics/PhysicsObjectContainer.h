@@ -1,5 +1,4 @@
-#ifndef PHYSICSOBJECTCONTAINER_H_
-#define PHYSICSOBJECTCONTAINER_H_
+#pragma once
 
 #include "CA_Export.h"
 #include "Maths\Vector3.h"
@@ -37,5 +36,3 @@ namespace CasaEngine
 		virtual ~ICollisionObjectContainer() {}
 	};
 }
-
-#endif

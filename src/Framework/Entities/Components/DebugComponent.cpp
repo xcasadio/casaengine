@@ -65,7 +65,11 @@ namespace CasaEngine
 								auto pos = transform->GetWorldMatrix().Translation();
 								const auto scaleX = transform->GetLocalScale().x;
 								const auto scaleY = transform->GetLocalScale().y;
-								auto rectScaled = RectangleI(rect->x * scaleX, rect->y * scaleY, rect->w * scaleX, rect->h * scaleY);
+								auto rectScaled = RectangleI(
+									(rect->x - spriteData->GetOrigin().x) * scaleX ,
+									(rect->y - spriteData->GetOrigin().y) * scaleY,
+									rect->w * scaleX, 
+									rect->h * scaleY);
 
 								auto leftTop = Vector3(rectScaled.Left() - 1.0f, rectScaled.Top(), 0.0f) + pos;
 								auto leftBottom = Vector3(rectScaled.Left(), rectScaled.Bottom(), 0.0f) + pos;

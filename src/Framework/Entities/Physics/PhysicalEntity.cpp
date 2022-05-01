@@ -67,62 +67,6 @@ namespace CasaEngine
 		}
 	}
 
-	void PhysicalEntity::AddSpritePhysics(Sprite* pSprite_)
-	{
-		//TODO
-		return;
-		/*if (m_LastSpriteID == pSprite_->GetName())
-		{
-			return;
-		}
-
-		m_LastSpriteID = pSprite_->GetName();
-		*/
-		//
-		if (m_SpriteCollisionObjects.find(m_LastSpriteID) == m_SpriteCollisionObjects.end())
-		{
-			//m_SpriteCollisionObjects[m_LastSpriteID] = std::vector<ICollisionObjectContainer *>();
-
-			//TODO : compute the position of the shape with the offset of the sprite
-			auto* pTrans = m_pEntity->GetComponentMgr()->GetComponent<Transform3DComponent>();
-			Vector3 pos = pTrans->GetLocalPosition();
-			Vector2 origin(static_cast<float>(pSprite_->GetSpriteData()->GetOrigin().x) / 100.0f, static_cast<float>(pSprite_->GetSpriteData()->GetOrigin().y) / 100.0f);
-			Vector3 posWithOrigin(pos.x - origin.x, pos.y + origin.y, pos.z);
-
-			std::vector<IShape*>::iterator itShape;
-			for (auto coll : pSprite_->GetSpriteData()->GetCollisions())
-			{
-				ICollisionObjectContainer* pObj =
-					Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->CreateCollisionShape(coll.GetShape(), posWithOrigin);
-				m_SpriteCollisionObjects[m_LastSpriteID].push_back(pObj);
-			}
-		}
-		else
-		{
-			std::vector<ICollisionObjectContainer*>::iterator it;
-
-			for (it = m_SpriteCollisionObjects[m_LastSpriteID].begin();
-				it != m_SpriteCollisionObjects[m_LastSpriteID].end();
-				it++)
-			{
-				Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->AddCollisionObject(*it);
-			}
-		}
-	}
-
-	void PhysicalEntity::RemoveSpritePhysics(Sprite* pSprite_)
-	{
-		if (m_SpriteCollisionObjects.find(m_LastSpriteID) != m_SpriteCollisionObjects.end())
-		{
-			for (auto itColObj = m_SpriteCollisionObjects[m_LastSpriteID].begin();
-				itColObj != m_SpriteCollisionObjects[m_LastSpriteID].end();
-				++itColObj)
-			{
-				Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->RemoveCollisionObject(*itColObj);
-			}
-		}
-	}
-
 	IRigidBodyContainer* PhysicalEntity::GetRigidBody()
 	{
 		return m_pRigidBody;

@@ -20,7 +20,7 @@ namespace CasaEngine
 		SpriteData();
 		SpriteData(const SpriteData& rsh);
 		SpriteData& operator=(const SpriteData& rsh);
-		~SpriteData();
+		~SpriteData() override;
 
 		RectangleI GetPositionInTexture() const;
 		Vector2I GetOrigin() const;

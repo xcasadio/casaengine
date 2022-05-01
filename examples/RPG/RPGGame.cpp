@@ -73,7 +73,7 @@ void RPGGame::Initialize()
 	AddUsualComponents();
 
 	Game::Initialize();
-	GetDebugOptions().ShowPhysicsDebug = false;
+	GetDebugOptions().ShowPhysicsDebug = true;
 }
 
 void RPGGame::LoadContent()
@@ -261,7 +261,7 @@ void CreateSprite(const std::string tileSetName, const std::vector<_sprite>& spr
 		{
 			Collision collision;
 			collision.SetType(CollisionType::Attack);
-			collision.SetShape(new CasaEngine::RectangleI(coll.x - sprite.px, coll.y - sprite.py, coll.w, coll.h));
+			collision.SetShape(new CasaEngine::RectangleI(coll.x /* - sprite.px*/, coll.y /* - sprite.py*/, coll.w, coll.h));
 			pSprite->GetCollisions().push_back(collision);
 		}
 
@@ -269,7 +269,7 @@ void CreateSprite(const std::string tileSetName, const std::vector<_sprite>& spr
 		{
 			Collision collision;
 			collision.SetType(CollisionType::Defense);
-			collision.SetShape(new CasaEngine::RectangleI(coll.x - sprite.px, coll.y - sprite.py, coll.w, coll.h));
+			collision.SetShape(new CasaEngine::RectangleI(coll.x /* - sprite.px */ , coll.y /* - sprite.py */ , coll.w, coll.h));
 			pSprite->GetCollisions().push_back(collision);
 		}
 
@@ -291,7 +291,7 @@ void CreateAnimations(const char* prefix, AnimatedSpriteComponent* pAnimatedComp
 			std::ostringstream spriteName;
 			spriteName << prefix << frame.sprite_id;
 			frameData->SetSpriteId(spriteName.str());
-			frameData->SetDuration(frame.delay);
+			frameData->SetDuration(frame.delay * 5);
 			pAnim->AddFrame(*frameData);
 		}
 
@@ -444,7 +444,7 @@ void RPGGame::CreateSwordman(World* pWorld)
 	//Camera 3D
 	pCamera = new BaseEntity();
 	m_pCamera3D = new ArcBallCameraComponent(pCamera);
-	m_pCamera3D->SetCamera(Vector3(0, 0.0f, -50.0f), Vector3(0, 10.0f, 0.0f), Vector3::Up());
+	m_pCamera3D->SetCamera(Vector3(0, 0.0f, -50.0f), Vector3(0, 10.0f, 0.0f), -Vector3::Up());
 	m_pCamera3D->Distance(70.0f);
 	m_pCamera3D->InputDistanceRate(4.0f);
 	m_pCamera3D->InputDisplacementRate(30.0f);

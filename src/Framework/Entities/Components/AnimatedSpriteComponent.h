@@ -2,6 +2,7 @@
 
 #include <string>
 #include <vector>
+#include <map>
 
 #include "CA_Export.h"
 #include "Entities/Component.h"
@@ -31,6 +32,9 @@ namespace CasaEngine
 
 		Event::Connection m_FrameChangedConnection;
 		Event::Connection m_AnimFinishedConnection;
+
+		std::map<std::string, std::vector<ICollisionObjectContainer*>> m_CollisionObjectByFrameId;
+		std::string m_LastFrameId;
 
 	public:
 		AnimatedSpriteComponent(BaseEntity* pEntity_);

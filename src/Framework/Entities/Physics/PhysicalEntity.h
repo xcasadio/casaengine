@@ -53,12 +53,6 @@ namespace CasaEngine
 
 		void Update(GameTime time_);
 
-		void AddCollisionObject(ICollisionObjectContainer *pObject_);
-		void RemoveCollisionObject(ICollisionObjectContainer *pObject_);
-
-		void AddSpritePhysics(Sprite *pSprite_);
-		void RemoveSpritePhysics(Sprite *pSprite_);
-
 		IRigidBodyContainer *GetRigidBody();
 		void SetRigidBody(IRigidBodyContainer *val_);
 
