@@ -1535,8 +1535,8 @@ void SteeringBehaviorComponent::RenderAids( )
   if (this->GetEntity()->GetPhysicalEntity().MaxForce() < 0) GetEntity()->SetMaxForce(0.0f);
   if (GetEntity()->MaxSpeed() < 0) GetEntity()->SetMaxSpeed(0.0f);
   
-  if (GetEntity()->ID() == 0){ gdi->TextAtPos(5,NextSlot,"MaxForce(Ins/Del):"); gdi->TextAtPos(160,NextSlot,ttos(this->GetEntity()->GetPhysicalEntity().MaxForce()/Prm.SteeringForceTweaker)); NextSlot+=SlotSize;}
-  if (GetEntity()->ID() == 0){ gdi->TextAtPos(5,NextSlot,"MaxSpeed(Home/End):"); gdi->TextAtPos(160,NextSlot,ttos(GetEntity()->MaxSpeed()));NextSlot+=SlotSize;}
+  if (GetEntity()->Id() == 0){ gdi->TextAtPos(5,NextSlot,"MaxForce(Ins/Del):"); gdi->TextAtPos(160,NextSlot,ttos(this->GetEntity()->GetPhysicalEntity().MaxForce()/Prm.SteeringForceTweaker)); NextSlot+=SlotSize;}
+  if (GetEntity()->Id() == 0){ gdi->TextAtPos(5,NextSlot,"MaxSpeed(Home/End):"); gdi->TextAtPos(160,NextSlot,ttos(GetEntity()->MaxSpeed()));NextSlot+=SlotSize;}
 
   //render the steering force
   if (Game::Instance().GetGameInfo().GetWorld()->RenderSteeringForce())
@@ -1557,9 +1557,9 @@ void SteeringBehaviorComponent::RenderAids( )
     if (KEYDOWN('N')){m_fWanderRadius-=2.0f*GetEntity()->TimeElapsed(); Clamp(m_fWanderRadius, 0.0f, 100.0f);}
 
  
-    if (GetEntity()->ID() == 0){ gdi->TextAtPos(5,NextSlot, "Jitter(F/V): "); gdi->TextAtPos(160, NextSlot, ttos(m_fWanderJitter));NextSlot+=SlotSize;}
-    if (GetEntity()->ID() == 0) {gdi->TextAtPos(5,NextSlot,"Distance(G/B): "); gdi->TextAtPos(160, NextSlot, ttos(m_fWanderDistance));NextSlot+=SlotSize;}
-    if (GetEntity()->ID() == 0) {gdi->TextAtPos(5,NextSlot,"Radius(H/N): ");gdi->TextAtPos(160, NextSlot,  ttos(m_fWanderRadius));NextSlot+=SlotSize;}
+    if (GetEntity()->Id() == 0){ gdi->TextAtPos(5,NextSlot, "Jitter(F/V): "); gdi->TextAtPos(160, NextSlot, ttos(m_fWanderJitter));NextSlot+=SlotSize;}
+    if (GetEntity()->Id() == 0) {gdi->TextAtPos(5,NextSlot,"Distance(G/B): "); gdi->TextAtPos(160, NextSlot, ttos(m_fWanderDistance));NextSlot+=SlotSize;}
+    if (GetEntity()->Id() == 0) {gdi->TextAtPos(5,NextSlot,"Radius(H/N): ");gdi->TextAtPos(160, NextSlot,  ttos(m_fWanderRadius));NextSlot+=SlotSize;}
 
     
     //calculate the center of the wander circle
@@ -1685,7 +1685,7 @@ void SteeringBehaviorComponent::RenderAids( )
   
   if (On(separation))
   {
-    if (GetEntity()->ID() == 0){ gdi->TextAtPos(5, NextSlot, "Separation(S/X):");gdi->TextAtPos(160,NextSlot, ttos(m_fWeightSeparation/Prm.SteeringForceTweaker));NextSlot+=SlotSize;}
+    if (GetEntity()->Id() == 0){ gdi->TextAtPos(5, NextSlot, "Separation(S/X):");gdi->TextAtPos(160,NextSlot, ttos(m_fWeightSeparation/Prm.SteeringForceTweaker));NextSlot+=SlotSize;}
 
     if (KEYDOWN('S')){m_fWeightSeparation += 200*GetEntity()->TimeElapsed(); Clamp(m_fWeightSeparation, 0.0f, 50.0f * Prm.SteeringForceTweaker);}
     if (KEYDOWN('X')){m_fWeightSeparation -= 200*GetEntity()->TimeElapsed();Clamp(m_fWeightSeparation, 0.0f, 50.0f * Prm.SteeringForceTweaker);}
@@ -1693,7 +1693,7 @@ void SteeringBehaviorComponent::RenderAids( )
 
   if (On(allignment))
   {
-    if (GetEntity()->ID() == 0) {gdi->TextAtPos(5, NextSlot, "Alignment(A/Z):"); gdi->TextAtPos(160, NextSlot, ttos(m_fWeightAlignment/Prm.SteeringForceTweaker));NextSlot+=SlotSize;}
+    if (GetEntity()->Id() == 0) {gdi->TextAtPos(5, NextSlot, "Alignment(A/Z):"); gdi->TextAtPos(160, NextSlot, ttos(m_fWeightAlignment/Prm.SteeringForceTweaker));NextSlot+=SlotSize;}
 
     if (KEYDOWN('A')){m_fWeightAlignment += 200*GetEntity()->TimeElapsed();Clamp(m_fWeightAlignment, 0.0f, 50.0f * Prm.SteeringForceTweaker);}
     if (KEYDOWN('Z')){m_fWeightAlignment -= 200*GetEntity()->TimeElapsed();Clamp(m_fWeightAlignment, 0.0f, 50.0f * Prm.SteeringForceTweaker);}
@@ -1701,7 +1701,7 @@ void SteeringBehaviorComponent::RenderAids( )
 
   if (On(cohesion))
   {
-    if (GetEntity()->ID() == 0) {gdi->TextAtPos(5, NextSlot, "Cohesion(D/C):"); gdi->TextAtPos(160, NextSlot, ttos(m_fWeightCohesion/Prm.SteeringForceTweaker));NextSlot+=SlotSize;}
+    if (GetEntity()->Id() == 0) {gdi->TextAtPos(5, NextSlot, "Cohesion(D/C):"); gdi->TextAtPos(160, NextSlot, ttos(m_fWeightCohesion/Prm.SteeringForceTweaker));NextSlot+=SlotSize;}
     if (KEYDOWN('D')){m_fWeightCohesion += 200*GetEntity()->TimeElapsed();Clamp(m_fWeightCohesion, 0.0f, 50.0f * Prm.SteeringForceTweaker);}
     if (KEYDOWN('C')){m_fWeightCohesion -= 200*GetEntity()->TimeElapsed();Clamp(m_fWeightCohesion, 0.0f, 50.0f * Prm.SteeringForceTweaker);}
   }
@@ -1709,7 +1709,7 @@ void SteeringBehaviorComponent::RenderAids( )
   if (On(follow_path))
   { 
     float sd = sqrt(m_fWaypointSeekDistSq);
-    if (GetEntity()->ID() == 0){ gdi->TextAtPos(5, NextSlot, "SeekDistance(D/C):");gdi->TextAtPos(160, NextSlot,ttos(sd));NextSlot+=SlotSize;}
+    if (GetEntity()->Id() == 0){ gdi->TextAtPos(5, NextSlot, "SeekDistance(D/C):");gdi->TextAtPos(160, NextSlot,ttos(sd));NextSlot+=SlotSize;}
     
     if (KEYDOWN('D')){m_fWaypointSeekDistSq += 1.0;}
     if (KEYDOWN('C')){m_fWaypointSeekDistSq -= 1.0; Clamp(m_fWaypointSeekDistSq, 0.0f, 400.0f);}

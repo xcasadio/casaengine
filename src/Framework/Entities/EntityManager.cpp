@@ -19,7 +19,7 @@ namespace CasaEngine
 		auto ent = m_EntityMap.find(id);
 
 		//assert that the entity is a member of the map
-		CA_ASSERT(ent != m_EntityMap.end(), "<EntityManager::GetEntityFromID>: invalid ID")
+		CA_ASSERT(ent != m_EntityMap.end(), "<EntityManager::GetEntityFromID>: invalid Id")
 
 		return ent->second;
 	}
@@ -49,12 +49,12 @@ namespace CasaEngine
 
 	void EntityManager::RemoveEntity(BaseEntity* pEntity)
 	{
-		m_EntityMap.erase(m_EntityMap.find(pEntity->ID()));
+		m_EntityMap.erase(m_EntityMap.find(pEntity->Id()));
 	}
 
 	void EntityManager::RegisterEntity(BaseEntity* NewEntity)
 	{
-		m_EntityMap.insert(std::make_pair(NewEntity->ID(), NewEntity));
+		m_EntityMap.insert(std::make_pair(NewEntity->Id(), NewEntity));
 	}
 
 	void EntityManager::Clear()

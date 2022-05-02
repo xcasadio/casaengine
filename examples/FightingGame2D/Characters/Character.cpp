@@ -98,10 +98,10 @@ bool Character::OnAnimationFinished(const EventArgs& e_)
 {
 	const auto& event = static_cast<const AnimationFinishedEvent&>(e_);
 
-	//event.ID();
+	//event.Id();
 	Telegram msg;
-	msg.Sender = GetEntity()->ID();
-	msg.Receiver = GetEntity()->ID();
+	msg.Sender = GetEntity()->Id();
+	msg.Receiver = GetEntity()->Id();
 	//msg.Msg = ANIMATION_FINISHED;
 	msg.ExtraInfo = &event;
 	QueueMessage(msg);
@@ -115,8 +115,8 @@ bool Character::OnFrameChangedEvent(const EventArgs& e_)
 
 	//event.ID();
 	Telegram msg;
-	msg.Sender = GetEntity()->ID();
-	msg.Receiver = GetEntity()->ID();
+	msg.Sender = GetEntity()->Id();
+	msg.Receiver = GetEntity()->Id();
 	msg.Msg = static_cast<int>(MessageType::FRAME_CHANGE_EVENT);
 	msg.ExtraInfo = &event;
 	QueueMessage(msg);

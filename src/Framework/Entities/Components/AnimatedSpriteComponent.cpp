@@ -67,12 +67,10 @@ namespace CasaEngine
 		m_SpriteEffect = val;
 	}
 
-	void AnimatedSpriteComponent::SetCurrentAnimation(int index_, bool forceReset)
+	void AnimatedSpriteComponent::SetCurrentAnimation(Animation2D* anim, bool forceReset)
 	{
-		// if the animation is already set we do nothing
 		if (m_pCurrentAnim != nullptr
-			/*&& m_pCurrentAnim->ID() == m_AnimationList[index_]->ID()*/
-			&& m_pCurrentAnim->GetAnimationData()->GetName() == m_AnimationList[index_]->GetAnimationData()->GetName())
+			&& m_pCurrentAnim->GetAnimationData()->GetName() == anim->GetAnimationData()->GetName())
 		{
 			if (forceReset)
 			{
@@ -95,7 +93,7 @@ namespace CasaEngine
 			}
 		}
 
-		m_pCurrentAnim = m_AnimationList[index_];
+		m_pCurrentAnim = anim;
 		m_pCurrentAnim->Reset();
 
 		m_FrameChangedConnection = m_pCurrentAnim->subscribeEvent(FrameChangeEvent::GetEventName(),
@@ -105,18 +103,23 @@ namespace CasaEngine
 			Event::Subscriber(&AnimatedSpriteComponent::OnAnimationFinished, this));
 	}
 
+	void AnimatedSpriteComponent::SetCurrentAnimation(int index_, bool forceReset)
+	{
+		SetCurrentAnimation(m_AnimationList[index_], forceReset);
+	}
+
 	bool AnimatedSpriteComponent::SetCurrentAnimation(const char * name_, bool forceReset)
 	{
 		return SetCurrentAnimation(std::string(name_));
 	}
 
-	bool AnimatedSpriteComponent::SetCurrentAnimation(std::string name, bool forceReset)
+	bool AnimatedSpriteComponent::SetCurrentAnimation(const std::string& name, bool forceReset)
 	{
-		for (unsigned int i = 0; i < m_AnimationList.size(); i++)
+		for (const auto& anim : m_AnimationList)
 		{
-			if (m_AnimationList[i]->GetAnimationData()->GetName() == name)
+			if (anim->GetAnimationData()->GetName() == name)
 			{
-				SetCurrentAnimation(i, forceReset);
+				SetCurrentAnimation(anim, forceReset);
 				return true;
 			}
 		}
@@ -171,13 +174,22 @@ namespace CasaEngine
 
 		if (Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld() != nullptr)
 		{
-			//TODO : create all shapes from collisions
 			for (auto* animation : m_AnimationList)
 			{
 				for (auto& frame : dynamic_cast<Animation2DData*>(animation->GetAnimationData())->GetFrames())
 				{
+					if (m_CollisionObjectByFrameId.find(frame.GetSpriteId()) == m_CollisionObjectByFrameId.end())
+					{
+						m_CollisionObjectByFrameId[frame.GetSpriteId()] = std::vector<ICollisionObjectContainer*>();
+					}
+					else
+					{
+						continue; // already added
+					}
+
 					for (auto& collision : Game::Instance().GetAssetManager().GetAsset<SpriteData>(frame.GetSpriteId())->GetCollisions())
 					{
+						//TODO : remove
 						if (collision.GetType() == Defense)
 						{
 							continue;
@@ -199,16 +211,10 @@ namespace CasaEngine
 						bt_collision_object->setCollisionFlags(btCollisionObject::CF_NO_CONTACT_RESPONSE);
 						bt_collision_object->setUserPointer(GetEntity());
 
-						if (m_CollisionObjectByFrameId.find(frame.GetSpriteId()) == m_CollisionObjectByFrameId.end())
-						{
-							m_CollisionObjectByFrameId[frame.GetSpriteId()] = std::vector<ICollisionObjectContainer*>();
-						}
-
 						m_CollisionObjectByFrameId[frame.GetSpriteId()].push_back(pObj);
 					}
 				}
 			}
-			
 		}
 	}
 
@@ -250,52 +256,59 @@ namespace CasaEngine
 		return m_AnimationList;
 	}
 
+	void AnimatedSpriteComponent::RemoveCollisionsFromLastFrame()
+	{
+		if (m_CollisionObjectByFrameId.find(m_LastFrameId) != m_CollisionObjectByFrameId.end())
+		{
+			for (auto* collObj : m_CollisionObjectByFrameId[m_LastFrameId])
+			{
+				Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->RemoveCollisionObject(collObj);
+			}
+		}
+	}
+
+	void AnimatedSpriteComponent::AddCollisionsFromFrame(const std::string &spriteId, const std::vector<ICollisionObjectContainer*>& collisionObjects)
+	{
+		auto* transform_3d_component = this->GetEntity()->GetComponentMgr()->GetComponent<Transform3DComponent>();
+		auto translation = transform_3d_component->GetWorldMatrix().Translation();
+		auto* sprite_data = Game::Instance().GetAssetManager().GetAsset<SpriteData>(spriteId);
+
+		for (auto* collObj : collisionObjects)
+		{
+			auto* bullet_collision_object_container = dynamic_cast<BulletCollisionObjectContainer*> (collObj);
+			auto* bt_collision_object = bullet_collision_object_container->GetCollisionObject();
+			auto bt_collision_shape = bt_collision_object->getCollisionShape();
+			
+			if (bt_collision_shape != nullptr) //btBoxShape works with half length
+			{
+				auto* bt_box_shape = static_cast<btBoxShape*>(bt_collision_shape);
+				if (bt_box_shape != nullptr)
+				{
+					auto half_extents_with_margin = bt_box_shape->getHalfExtentsWithMargin();
+					translation.x += half_extents_with_margin.x();
+					translation.y += half_extents_with_margin.y();
+				}
+			}	
+			bt_collision_object->getWorldTransform().setOrigin(btVector3(translation.x - sprite_data->GetOrigin().x, translation.y - sprite_data->GetOrigin().y, translation.z));
+			Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->AddCollisionObject(collObj);
+		}
+	}
+
 	bool AnimatedSpriteComponent::OnFrameChanged(const EventArgs& e)
 	{
 		const auto& event = static_cast<const FrameChangeEvent&>(e);
 
 		if (Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld() != nullptr)
 		{
-			if (!m_LastFrameId.empty())
-			{
-				if (m_CollisionObjectByFrameId.find(m_LastFrameId) != m_CollisionObjectByFrameId.end())
-				{
-					for (auto* collObj : m_CollisionObjectByFrameId[m_LastFrameId])
-					{
-						Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->RemoveCollisionObject(collObj);
-					}
-				}
-			}
+			RemoveCollisionsFromLastFrame();
 
 			if (m_CollisionObjectByFrameId.find(event.ID()) != m_CollisionObjectByFrameId.end())
 			{
-				auto* transform_3d_component = this->GetEntity()->GetComponentMgr()->GetComponent<Transform3DComponent>();
-				auto translation = transform_3d_component->GetWorldMatrix().Translation();
-				auto sprite_data = Game::Instance().GetAssetManager().GetAsset<SpriteData>(event.ID());
-
-				for (auto* collObj : m_CollisionObjectByFrameId[event.ID()])
-				{
-					auto* bullet_collision_object_container = dynamic_cast<BulletCollisionObjectContainer*> (collObj);
-					auto* bt_collision_object = bullet_collision_object_container->GetCollisionObject();
-					//TODO : pour les box shape, bullet fonctionne en moité de longueur 
-					/*if (bt_collision_object->getCollisionShape() != nullptr)
-					{
-						auto* bt_box_shape = static_cast<btBoxShape*>(bt_collision_object->getCollisionShape());
-						if (bt_box_shape != nullptr)
-						{
-							auto half_extents_with_margin = bt_box_shape->getHalfExtentsWithMargin();
-							translation.x -= half_extents_with_margin.x();
-							translation.y -= half_extents_with_margin.y();
-						}
-					}*/				
-					bt_collision_object->getWorldTransform().setOrigin(btVector3(translation.x - sprite_data->GetOrigin().x, translation.y - sprite_data->GetOrigin().y, translation.z));
-					Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->AddCollisionObject(collObj);
-				}
-
+				AddCollisionsFromFrame(event.ID(), m_CollisionObjectByFrameId[event.ID()]);
 			}
-		}
 
-		m_LastFrameId = event.ID();
+			m_LastFrameId = event.ID();
+		}
 
 		fireEvent(FrameChangeEvent::GetEventName(), const_cast<EventArgs&>(e));
 

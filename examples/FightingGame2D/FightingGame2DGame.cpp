@@ -83,7 +83,7 @@ void FightingGame2DGame::LoadContent()
 	pPlayer1->SetName("player 1");
 	pTransform = new Transform3DComponent(pPlayer1);
 	pTransform->SetLocalPosition(Vector3(520, 400, 2.0f));
-	auto scale = 1.0f;
+	auto scale = 2.0f;
 	pTransform->SetLocalScale(Vector3(scale, scale, 0.0f));
 	pPlayer1->GetComponentMgr()->AddComponent(pTransform);
 

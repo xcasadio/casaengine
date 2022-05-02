@@ -144,8 +144,8 @@ void GoHomeAndSleepTilRested::Enter(MinerComponent* pMiner)
 
 		//let the wife know I'm home
 		Game::Instance().GetMessageDispatcher().DispatchMsg(SEND_MSG_IMMEDIATELY, //time delay
-			pMiner->GetEntity()->ID(),        //ID of sender
-			pMiner->GetWifeID(),            //ID of recipient
+			pMiner->GetEntity()->Id(),        //Id of sender
+			pMiner->GetWifeID(),            //Id of recipient
 			Msg_HiHoneyImHome,   //the message
 			NO_ADDITIONAL_INFO);
 	}
@@ -179,7 +179,7 @@ bool GoHomeAndSleepTilRested::OnMessage(MinerComponent* pMiner, const Telegram& 
 	{
 	case Msg_StewReady:
 		CA_DEBUG("Message handled by (%d)%s\n",
-			pMiner->GetEntity()->ID(), pMiner->GetEntity()->GetName());
+			pMiner->GetEntity()->Id(), pMiner->GetEntity()->GetName());
 
 		//SetTextColor(FOREGROUND_RED|FOREGROUND_INTENSITY);
 

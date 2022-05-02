@@ -26,8 +26,8 @@ Character::Character(BaseEntity* pEntity) :
 	m_StrengthOffSet(0.0f),
 	m_DefenseOffSet(0.0f),
 	m_NumberOfDirection(8),
-	m_AnimationDirectionMask(0),
-	m_pLastSprite(nullptr)
+	m_AnimationDirectionMask(0)
+	//m_pLastSprite(nullptr)
 {
 	m_pAnimatedSprite->subscribeEvent(
 		AnimationFinishedEvent::GetEventName(),
@@ -98,7 +98,10 @@ bool Character::HandleMessage(const Telegram& msg)
 {
 	if (msg.ExtraInfo != nullptr && msg.Msg == (int)MessageType::COLLISION)
 	{
-		
+		if (this->GetEntity()->Id() == msg.Sender || this->GetEntity()->Id() == msg.Receiver)
+		{
+			
+		}
 	}
 
 	return CharacterBase::HandleMessage(msg);

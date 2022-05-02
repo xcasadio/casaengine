@@ -34,7 +34,7 @@ namespace CasaEngine
 		void SetGravity(const Vector3& gravity_) override;
 		Vector3 GetGravity() const override;
 
-		void setDebugDraw(btIDebugDraw* pIDebugDraw_);
+		void setDebugDraw(btIDebugDraw* IDebugDraw);
 
 		IRigidBodyContainer* AddRigidBody(BaseEntity* entity, const RigidBodyParameters* pRigidBody_, const Vector3& position) override;
 		void RemoveRigidBody(IRigidBodyContainer* pObj_) override;
@@ -42,20 +42,20 @@ namespace CasaEngine
 		void AddCollisionObject(ICollisionObjectContainer* pObj_) override;
 		void RemoveCollisionObject(ICollisionObjectContainer* pObj_) override;
 
-		ICollisionObjectContainer* CreateCollisionShape(const IShape* pShape_, const Vector3& origin_) override;
+		ICollisionObjectContainer* CreateCollisionShape(const IShape* shape_, const Vector3& origin_) override;
 
 	private:
 		void AddCollisionObject(btCollisionObject* pColObj_);
 		//btCollisionShape *CreateCollisionShape(const MeshComponentColliper *pMeshCollider_);
 		btCollisionShape* CreateCollisionShape(const IShape* pShape_);
-		void RemoveCollisionObject(btCollisionObject* pColObj_);
+		void RemoveCollisionObject(btCollisionObject* collisionObject);
 
 		btCollisionObject* CreateCollisionObjectFromShape(IShape* shape);
 		btCollisionObject* CreateCollisionObjectFromShape(btCollisionShape* shape, Vector3 center);
 
 	private:
-		//btDiscreteDynamicsWorld* m_pBulletWorld;
-		btDynamicsWorldExt* m_pBulletWorld;
-		btCollisionDispatcher* dispatcher_;
+		//btDiscreteDynamicsWorld* _bulletWorld;
+		btDynamicsWorldExt* _bulletWorld;
+		btCollisionDispatcher* _dispatcher;
 	};
 }

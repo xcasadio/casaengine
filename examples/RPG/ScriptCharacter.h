@@ -17,6 +17,7 @@ public:
 
 	void OnInitialize() override;
 	void OnUpdate(const GameTime& gameTime_) override;
+	bool HandleMessage(const Telegram& msg) override;
 	void OnDestroy() override;
 
 private:

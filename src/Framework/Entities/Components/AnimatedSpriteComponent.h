@@ -52,8 +52,9 @@ namespace CasaEngine
 		//using the MessageDispatcher singleton class
 		//void HandleEvent(const Event* pEvent_);
 
+		void SetCurrentAnimation(Animation2D *anim, bool forceReset = false);
 		void SetCurrentAnimation(int index_, bool forceReset = false);
-		bool SetCurrentAnimation(std::string name, bool forceReset = false);
+		bool SetCurrentAnimation(const std::string& name, bool forceReset = false);
 		bool SetCurrentAnimation(const char *name_, bool forceReset = false);
 		std::string GetCurrentFrameName();
 		int GetCurrentFrameIndex() const;
@@ -61,6 +62,8 @@ namespace CasaEngine
 
 		void AddAnimation(Animation2D *pAnim_);
 		std::vector<Animation2D*>& GetAnimations();
+		void RemoveCollisionsFromLastFrame();
+		void AddCollisionsFromFrame(const std::string& spriteId, const std::vector<ICollisionObjectContainer*>& collisionObjects);
 
 		//Event
 		bool OnFrameChanged(const EventArgs &e);

@@ -47,7 +47,7 @@ bool WifesGlobalState::OnMessage(MinersWifeComponent* wife, const Telegram& msg)
 	case Msg_HiHoneyImHome:
 	{
 		CA_DEBUG("Message handled by (%d)%s\n",
-			wife->GetEntity()->ID(), wife->GetEntity()->GetName());
+			wife->GetEntity()->Id(), wife->GetEntity()->GetName());
 		LogWife(wife->GetEntity()->GetName(), "Hi honey. Let me make you some of mah fine country stew");
 		wife->GetFSM()->ChangeState(CookStew::Instance());
 	}
@@ -149,8 +149,8 @@ void CookStew::Enter(MinersWifeComponent* wife)
 		//send a delayed message myself so that I know when to take the stew
 		//out of the oven
 		Game::Instance().GetMessageDispatcher().DispatchMsg(1.5f,                  //time delay
-			wife->GetEntity()->ID(),           //sender ID
-			wife->GetEntity()->ID(),           //receiver ID
+			wife->GetEntity()->Id(),           //sender Id
+			wife->GetEntity()->Id(),           //receiver Id
 			Msg_StewReady,        //msg
 			NO_ADDITIONAL_INFO);
 
@@ -177,12 +177,12 @@ bool CookStew::OnMessage(MinersWifeComponent* wife, const Telegram& msg)
 	case Msg_StewReady:
 	{
 		CA_DEBUG("Message received by (%d)%s at time: %s",
-			wife->GetEntity()->ID(), wife->GetEntity()->GetName(), DateTime::Now().GetCurrentTime().c_str());
+			wife->GetEntity()->Id(), wife->GetEntity()->GetName(), DateTime::Now().GetCurrentTime().c_str());
 		LogWife(wife->GetEntity()->GetName(), "StewReady! Lets eat");
 
 		//let hubby know the stew is ready
 		Game::Instance().GetMessageDispatcher().DispatchMsg(SEND_MSG_IMMEDIATELY,
-			wife->GetEntity()->ID(),
+			wife->GetEntity()->Id(),
 			wife->GetMinerID(),
 			Msg_StewReady,
 			NO_ADDITIONAL_INFO);

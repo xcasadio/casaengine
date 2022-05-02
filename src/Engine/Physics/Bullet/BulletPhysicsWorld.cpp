@@ -20,48 +20,48 @@ namespace CasaEngine
 		btBroadphaseInterface* pOverlappingPairCache_,
 		btSequentialImpulseConstraintSolver* pConstraintSolver_) :
 		IPhysicsWorld(),
-		m_pBulletWorld(new btDynamicsWorldExt(pDispatcher_, pOverlappingPairCache_, pConstraintSolver_, pConfig_)),
-		dispatcher_(pDispatcher_)
+		_bulletWorld(new btDynamicsWorldExt(pDispatcher_, pOverlappingPairCache_, pConstraintSolver_, pConfig_)),
+		_dispatcher(pDispatcher_)
 	{
 	}
 
 	BulletPhysicsWorld::~BulletPhysicsWorld()
 	{
-		delete m_pBulletWorld;
+		delete _bulletWorld;
 	}
 
 	void BulletPhysicsWorld::SetGravity(const Vector3& gravity_)
 	{
-		m_pBulletWorld->setGravity(btVector3(gravity_.x, gravity_.y, gravity_.z));
+		_bulletWorld->setGravity(btVector3(gravity_.x, gravity_.y, gravity_.z));
 	}
 
 	Vector3 BulletPhysicsWorld::GetGravity() const
 	{
-		const auto vec = m_pBulletWorld->getGravity();
+		const auto vec = _bulletWorld->getGravity();
 		return {vec.x(), vec.y(), vec.z()};
 	}
 	
 	void BulletPhysicsWorld::Update(const GameTime& gameTime_)
 	{
-		m_pBulletWorld->stepSimulation(gameTime_.FrameTime());
+		_bulletWorld->stepSimulation(gameTime_.FrameTime());
 
-		//m_pBulletWorld->contactPairTest()
-		//m_pBulletWorld->contactTest()
+		//_bulletWorld->contactPairTest()
+		//_bulletWorld->contactTest()
 
-		for (int i=0; i<dispatcher_->getNumManifolds(); i++)
+		for (int i=0; i<_dispatcher->getNumManifolds(); i++)
 		{
-			const auto *manifold = dispatcher_->getInternalManifoldPointer()[i];
+			const auto *manifold = _dispatcher->getInternalManifoldPointer()[i];
 			auto *entity1 = static_cast<BaseEntity*>(manifold->getBody0()->getUserPointer());
 			auto *entity2 = static_cast<BaseEntity*>(manifold->getBody1()->getUserPointer());
 
-			entity1->HandleMessage(Telegram(0.0, entity1->ID(), entity2->ID(), 1, nullptr));
+			entity1->HandleMessage(Telegram(0.0, entity1->Id(), entity2->Id(), 1, nullptr));
 			//entity->GetComponentMgr()->GetComponent<>()
 		}
 	}
 
 	void BulletPhysicsWorld::Draw()
 	{
-		m_pBulletWorld->debugDrawWorld();
+		_bulletWorld->debugDrawWorld();
 	}
 
 	IRigidBodyContainer* BulletPhysicsWorld::AddRigidBody(BaseEntity* entity, const RigidBodyParameters* pRigidBody_, const Vector3& position)
@@ -108,7 +108,7 @@ namespace CasaEngine
 		body->setAngularFactor(0.0); // no rotation
 
 		body->setUserPointer(entity);
-		m_pBulletWorld->addRigidBody(body);
+		_bulletWorld->addRigidBody(body);
 		//body->setActivationState(ISLAND_SLEEPING);
 
 		return new BulletRigidBodyContainer(body);
@@ -116,7 +116,7 @@ namespace CasaEngine
 
 	void BulletPhysicsWorld::AddCollisionObject(btCollisionObject* pColObj_)
 	{
-		m_pBulletWorld->addCollisionObject(pColObj_);
+		_bulletWorld->addCollisionObject(pColObj_);
 	}
 
 	btCollisionShape* BulletPhysicsWorld::CreateCollisionShape(const IShape* pShape_)
@@ -162,17 +162,16 @@ namespace CasaEngine
 		}
 	}
 
-	void BulletPhysicsWorld::RemoveCollisionObject(btCollisionObject* pColObj_)
+	void BulletPhysicsWorld::RemoveCollisionObject(btCollisionObject* collisionObject)
 	{
-		m_pBulletWorld->removeCollisionObject(pColObj_);
+		_bulletWorld->removeCollisionObject(collisionObject);
 	}
 
 	btCollisionObject* BulletPhysicsWorld::CreateCollisionObjectFromShape(IShape* shape)
 	{
-		Vector3 origin;
 		auto* const pbtShape = CreateCollisionShape(shape);
 		auto* colShape = new btCollisionObject();
-		colShape->getWorldTransform().setOrigin(btVector3(origin.x, origin.y, origin.z));
+		colShape->getWorldTransform().setOrigin(btVector3(0, 0, 0));
 		colShape->setCollisionShape(pbtShape);
 
 		return colShape;
@@ -180,24 +179,24 @@ namespace CasaEngine
 
 	btCollisionObject* BulletPhysicsWorld::CreateCollisionObjectFromShape(btCollisionShape* shape, Vector3 center)
 	{
-		auto* colShape = new btCollisionObject();
-		colShape->getWorldTransform().setOrigin(btVector3(center.x, center.y, center.z));
-		colShape->setCollisionShape(shape);
-		return colShape;
+		auto* collision_object = new btCollisionObject();
+		collision_object->getWorldTransform().setOrigin(btVector3(center.x, center.y, center.z));
+		collision_object->setCollisionShape(shape);
+		return collision_object;
 	}
 
-	void BulletPhysicsWorld::setDebugDraw(btIDebugDraw* pIDebugDraw_)
+	void BulletPhysicsWorld::setDebugDraw(btIDebugDraw* IDebugDraw)
 	{
-		if (m_pBulletWorld != nullptr)
+		if (_bulletWorld != nullptr)
 		{
-			m_pBulletWorld->setDebugDrawer(pIDebugDraw_);
+			_bulletWorld->setDebugDrawer(IDebugDraw);
 		}
 	}
 
-	ICollisionObjectContainer* BulletPhysicsWorld::CreateCollisionShape(const IShape* pShape_, const Vector3& origin_)
+	ICollisionObjectContainer* BulletPhysicsWorld::CreateCollisionShape(const IShape* shape_, const Vector3& origin_)
 	{
 		auto* colShape = new btCollisionObject();
-		auto* const b3pShape = CreateCollisionShape(pShape_);
+		auto* const b3pShape = CreateCollisionShape(shape_);
 		colShape->getWorldTransform().setOrigin(btVector3(origin_.x, origin_.y, origin_.z));
 		colShape->setCollisionShape(b3pShape);
 		colShape->setCollisionFlags(btCollisionObject::CF_DYNAMIC_OBJECT);
@@ -214,12 +213,12 @@ namespace CasaEngine
 	void BulletPhysicsWorld::RemoveCollisionObject(ICollisionObjectContainer* pObj_)
 	{
 		auto* const pColl = dynamic_cast<BulletCollisionObjectContainer*>(pObj_);
-		m_pBulletWorld->removeCollisionObject(pColl->GetCollisionObject());
+		_bulletWorld->removeCollisionObject(pColl->GetCollisionObject());
 	}
 
 	void BulletPhysicsWorld::RemoveRigidBody(IRigidBodyContainer* pObj_)
 	{
 		auto* const pRB = dynamic_cast<BulletRigidBodyContainer*>(pObj_);
-		m_pBulletWorld->removeRigidBody(pRB->GetRigidBody());
+		_bulletWorld->removeRigidBody(pRB->GetRigidBody());
 	}
 }

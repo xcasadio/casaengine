@@ -23,7 +23,7 @@ namespace CasaEngine
 		virtual void SetGravity(const Vector3& gravity_) = 0;
 		virtual Vector3 GetGravity() const = 0;
 
-		virtual ICollisionObjectContainer* CreateCollisionShape(const IShape* pShape_, const Vector3& origin_) = 0;
+		virtual ICollisionObjectContainer* CreateCollisionShape(const IShape* shape_, const Vector3& origin_) = 0;
 
 		virtual void AddCollisionObject(ICollisionObjectContainer*) = 0;
 		virtual void RemoveCollisionObject(ICollisionObjectContainer*) = 0;

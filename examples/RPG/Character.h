@@ -80,5 +80,5 @@ private:
 	std::map<int, int> m_AnimationDirectionOffset;
 
 	//std::vector<Entity *> m_EntityAlreadyAttacked;
-	Sprite* m_pLastSprite;
+	//Sprite* m_pLastSprite;
 };

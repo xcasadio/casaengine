@@ -40,7 +40,7 @@ namespace CasaEngine
 		delete m_pComponentManager;
 	}
 
-	EntityId BaseEntity::ID() const
+	EntityId BaseEntity::Id() const
 	{
 		return m_ID;
 	}

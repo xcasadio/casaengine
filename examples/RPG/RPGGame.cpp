@@ -291,7 +291,7 @@ void CreateAnimations(const char* prefix, AnimatedSpriteComponent* pAnimatedComp
 			std::ostringstream spriteName;
 			spriteName << prefix << frame.sprite_id;
 			frameData->SetSpriteId(spriteName.str());
-			frameData->SetDuration(frame.delay * 5);
+			frameData->SetDuration(frame.delay);
 			pAnim->AddFrame(*frameData);
 		}
 

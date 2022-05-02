@@ -1,5 +1,4 @@
-#ifndef SCRIPTCOMPONENT_H_
-#define SCRIPTCOMPONENT_H_
+#pragma once
 
 #include "CA_Export.h"
 #include "Entities\Component.h"
@@ -12,18 +11,16 @@ namespace CasaEngine
 	{
 	public:
 		ScriptComponent(BaseEntity* pEntity_);
-		virtual ~ScriptComponent();
+		~ScriptComponent() override;
 
-		void Initialize();
-		void Update( const GameTime& gameTime_ );
+		void Initialize() override;
+		void Update(const GameTime& gameTime_) override;
+		bool HandleMessage(const Telegram& msg) override;
 
-
-		void SetScriptObject(IScriptObject *);
+		void SetScriptObject(IScriptObject*);
 
 	private:
-		IScriptObject *m_pScriptObject;
+		IScriptObject* m_pScriptObject;
 		ScriptObjectClassID m_ClassID; //  the object classID used by this script
 	};
 }
-
-#endif

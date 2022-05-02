@@ -22,8 +22,8 @@ namespace CasaEngine
 		if (!pReceiver->HandleMessage(telegram))
 		{
 			//telegram could not be handled
-			CA_DEBUG("MessageDispatcher::Discharge() : Message not handled, receiver ID (%d)%s\n",
-				pReceiver->ID(), pReceiver->GetName());
+			CA_DEBUG("MessageDispatcher::Discharge() : Message not handled, receiver Id (%d)%s\n",
+				pReceiver->Id(), pReceiver->GetName());
 		}
 	}
 
@@ -50,7 +50,7 @@ namespace CasaEngine
 		//make sure the receiver is valid
 		if (pReceiver == nullptr)
 		{
-			CA_WARN("MessageDispatcher::DispatchMsg() : No Receiver with ID of %d found\n", receiver);
+			CA_WARN("MessageDispatcher::DispatchMsg() : No Receiver with Id of %d found\n", receiver);
 			return;
 		}
 
@@ -105,7 +105,7 @@ namespace CasaEngine
 			if (pReceiver != nullptr)
 			{
 				CA_DEBUG("Queued telegram ready for dispatch: sent to (%d)%s. Msg is %d\n",
-					pReceiver->ID(), pReceiver->GetName(), telegram.Msg);
+					pReceiver->Id(), pReceiver->GetName(), telegram.Msg);
 
 				//send the telegram to the recipient
 				Discharge(pReceiver, telegram);

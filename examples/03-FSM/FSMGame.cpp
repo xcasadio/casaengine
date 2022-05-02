@@ -43,8 +43,8 @@ void FSMGame::Initialize()
 	m_pBob->SetName("Miner");
 	m_pElsa->SetName("Miner's wife");
 
-	pMiner->SetWifeID(m_pElsa->ID());
-	pMinersWife->SetMinerID(m_pBob->ID());
+	pMiner->SetWifeID(m_pElsa->Id());
+	pMinersWife->SetMinerID(m_pBob->Id());
 
 	GetDebugOptions().ShowLogInGame = true;
 

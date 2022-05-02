@@ -40,7 +40,7 @@ namespace CasaEngine
 		//using the MessageDispatcher singleton class
 		bool HandleMessage(const Telegram& msg);
 
-		EntityId ID() const; 
+		EntityId Id() const; 
 
 		const char *GetName() const;
 		void SetName(std::string &val);
@@ -58,7 +58,7 @@ namespace CasaEngine
 
 	private:
 
-		//this is the next valid ID. Each time a BaseEntity is instantiated
+		//this is the next valid Id. Each time a BaseEntity is instantiated
 		//this value is updated
 		static EntityId m_iNextValidID;
 

@@ -71,7 +71,7 @@ namespace CasaEngine
 									rect->w * scaleX, 
 									rect->h * scaleY);
 
-								auto leftTop = Vector3(rectScaled.Left() - 1.0f, rectScaled.Top(), 0.0f) + pos;
+								auto leftTop = Vector3(rectScaled.Left(), rectScaled.Top(), 0.0f) + pos;
 								auto leftBottom = Vector3(rectScaled.Left(), rectScaled.Bottom(), 0.0f) + pos;
 								auto rightTop = Vector3(rectScaled.Right(), rectScaled.Top(), 0.0f) + pos;
 								auto rightBottom = Vector3(rectScaled.Right(), rectScaled.Bottom(), 0.0f) + pos;

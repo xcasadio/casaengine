@@ -18,6 +18,7 @@ namespace CasaEngine
 
 		virtual void OnInitialize() = 0;
 		virtual void OnUpdate(const GameTime& gameTime_) = 0;
+		virtual bool HandleMessage(const Telegram& msg) = 0;
 		virtual void OnDestroy() = 0;
 
 	protected:

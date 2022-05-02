@@ -7,18 +7,12 @@
 
 namespace CasaEngine
 {
-	/**
-	 *
-	 */
 	ScriptComponent::ScriptComponent(BaseEntity* pEntity_) :
 		Component(pEntity_, SCRIPT)
 	{
 		m_pScriptObject = nullptr;
 	}
 
-	/**
-	 *
-	 */
 	ScriptComponent::~ScriptComponent()
 	{
 		if (m_pScriptObject != nullptr)
@@ -28,9 +22,6 @@ namespace CasaEngine
 		}
 	}
 
-	/**
-	 *
-	 */
 	void ScriptComponent::Initialize()
 	{
 		//m_pScriptObject = Game::Instance().GetScriptEngine().CreateScriptObjectFromClassID(m_ClassID, GetEntity());
@@ -45,9 +36,6 @@ namespace CasaEngine
 		}
 	}
 
-	/**
-	 *
-	 */
 	void ScriptComponent::Update(const GameTime& gameTime_)
 	{
 		if (m_pScriptObject != nullptr)
@@ -56,9 +44,19 @@ namespace CasaEngine
 		}
 	}
 
+	bool ScriptComponent::HandleMessage(const Telegram& msg)
+	{
+		if (m_pScriptObject != nullptr)
+		{
+			m_pScriptObject->HandleMessage(msg);
+		}
+
+		return Component::HandleMessage(msg);
+	}
+
 	void ScriptComponent::SetScriptObject(IScriptObject* pScriptObject)
 	{
 		m_pScriptObject = pScriptObject;
 	}
-	
+
 }

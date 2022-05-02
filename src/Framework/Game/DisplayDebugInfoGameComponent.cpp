@@ -487,7 +487,7 @@ namespace CasaEngine
 				if (pEntity != nullptr)
 				{
 					ImGui::BeginChild("item view", ImVec2(0, ImGui::GetTextLineHeightWithSpacing())); // Leave room for 1 line below us
-					ImGui::Text("Object selected : %s (%d)", pEntity->GetName(), pEntity->ID());
+					ImGui::Text("Object selected : %s (%d)", pEntity->GetName(), pEntity->Id());
 					ImGui::Separator();
 
 					ShowUI4AllComponents(pEntity);
