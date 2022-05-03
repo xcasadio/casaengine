@@ -15,8 +15,8 @@ namespace CasaEngine
 
 	Collision& Collision::operator=(const Collision& rsh)
 	{
-		m_Type = rsh.m_Type;
-		m_pShape = rsh.m_pShape->Copy();
+		_type = rsh._type;
+		_shape = rsh._shape->Copy();
 
 		return *this;
 	}
@@ -28,21 +28,21 @@ namespace CasaEngine
 
 	CollisionType Collision::GetType() const
 	{
-		return m_Type;
+		return _type;
 	}
 
 	void Collision::SetType(CollisionType type)
 	{
-		m_Type = type;
+		_type = type;
 	}
 
 	IShape* Collision::GetShape() const
 	{
-		return m_pShape;
+		return _shape;
 	}
 
 	void Collision::SetShape(IShape *shape)
 	{
-		m_pShape = shape;
+		_shape = shape;
 	}
 }
