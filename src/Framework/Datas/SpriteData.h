@@ -3,13 +3,12 @@
 #include "CA_Export.h"
 #include "Maths/Rectangle.h"
 #include "Maths/Vector2.h"
-
-#include <string>
 #include "Assets/Assetable.h"
 #include <Sprite/Collision.h>
-
 #include <cereal/access.hpp>
 #include <cereal/types/vector.hpp>
+
+#include <string>
 
 namespace CasaEngine
 {

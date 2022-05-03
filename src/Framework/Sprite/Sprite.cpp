@@ -18,7 +18,7 @@ namespace CasaEngine
 		}
 		else
 		{
-			auto textureFile = Game::Instance().GetMediaManager().FindMedia(spriteData.GetAssetFileName().c_str(), true);
+			auto* textureFile = Game::Instance().GetMediaManager().FindMedia(spriteData.GetAssetFileName().c_str(), true);
 			texture = Texture::loadTexture(textureFile);
 			_textureCache.insert(std::make_pair(spriteData.GetAssetFileName(), texture));
 		}

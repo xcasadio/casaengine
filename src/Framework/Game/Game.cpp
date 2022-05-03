@@ -517,7 +517,9 @@ namespace CasaEngine
 
 	void Game::AddDebugComponents()
 	{
+#if EDITOR
 		AddComponent(new DisplayDebugInfoGameComponent(this));
+#endif
 		AddComponent(new BulletPhysicsDebugDrawComponent(this));
 	}
 

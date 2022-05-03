@@ -1,11 +1,10 @@
-#ifndef _SPRITE_H_
-#define _SPRITE_H_
+#pragma once
 
 #include "CA_Export.h"
 #include "Graphics/Textures/Texture.h"
+#include <Datas/SpriteData.h>
 
 #include <string>
-#include <Datas/SpriteData.h>
 
 namespace CasaEngine
 {
@@ -25,5 +24,3 @@ namespace CasaEngine
 		SpriteData *m_pSpriteData;
 	};
 }
-
-#endif
