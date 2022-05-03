@@ -254,9 +254,30 @@ void Animation2DPlayerGame::LoadSprites()
 	ar(cereal::make_nvp("sprites", spriteDatas));
 
 	for (auto& data : spriteDatas)
-	{
+	{/*
+		std::vector<Collision> collisions;
+
+		for (auto& coll : data.GetCollisions())
+		{
+			auto* rectangle = dynamic_cast<RectangleI *>(coll.GetShape());
+			rectangle->x += data.GetOrigin().x;
+			rectangle->y += data.GetOrigin().y;
+			collisions.push_back(coll);
+		}
+
+		data.GetCollisions().clear();
+
+		for (auto& coll : collisions)
+		{
+			data.GetCollisions().push_back(coll);
+		}
+		*/
 		GetAssetManager().AddAsset(new Asset(data.GetName(), data.Copy()));
 	}
+
+	//std::ofstream os("C:\\Users\\casad\\dev\\repo\\casaengine\\examples\\resources\\datas\\sprites_cop.json");
+	//cereal::JSONOutputArchive ar2(os);
+	//ar2(cereal::make_nvp("sprites", spriteDatas));
 }
 
 void Animation2DPlayerGame::Update(const GameTime& gameTime_)
@@ -288,6 +309,7 @@ void Animation2DPlayerGame::RenameAnimation(const char* old_name, const char* ne
 
 void Animation2DPlayerGame::DisplayUI()
 {
+#if EDITOR
 	ImGui::SetNextWindowSize(ImVec2(400, 400), ImGuiCond_FirstUseEver);
 	ImGui::SetNextWindowPos(ImVec2(0, 0));
 
@@ -443,6 +465,7 @@ void Animation2DPlayerGame::DisplayUI()
 	}
 
 	ImGui::End();
+#endif
 }
 
 

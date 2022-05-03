@@ -53,16 +53,16 @@ namespace CasaEngine
 
 		for (int i=0; i<_dispatcher->getNumManifolds(); i++)
 		{
-			const auto *manifold = _dispatcher->getInternalManifoldPointer()[i];
+			/*const auto* manifold = _dispatcher->getInternalManifoldPointer()[i];
 			auto *collisionParameters1 = static_cast<CollisionParameters*>(manifold->getBody0()->getUserPointer());
 			auto *collisionParameters2 = static_cast<CollisionParameters*>(manifold->getBody1()->getUserPointer());
 
-			collisionParameters1->entity->	HandleMessage(
+			collisionParameters1->entity->HandleMessage(
 				Telegram(0.0, 
 					collisionParameters1->entity->Id(),  
 					collisionParameters2->entity->Id(), 
 					(int)MessageType::COLLISION,
-					collisionParameters1));
+					collisionParameters1));*/
 			/*
 			collisionParameters2->_entity->HandleMessage(
 				Telegram(0.0,
