@@ -11,6 +11,9 @@
 #include "btBulletDynamicsCommon.h"
 #include "BulletObjectsContainer.h"
 #include "Entities/BaseEntity.h"
+#include "Game/Game.h"
+#include "GameDatas/MessageType.h"
+#include "Sprite/CollisionParameters.h"
 
 namespace CasaEngine
 {
@@ -51,11 +54,23 @@ namespace CasaEngine
 		for (int i=0; i<_dispatcher->getNumManifolds(); i++)
 		{
 			const auto *manifold = _dispatcher->getInternalManifoldPointer()[i];
-			auto *entity1 = static_cast<BaseEntity*>(manifold->getBody0()->getUserPointer());
-			auto *entity2 = static_cast<BaseEntity*>(manifold->getBody1()->getUserPointer());
+			auto *collisionParameters1 = static_cast<CollisionParameters*>(manifold->getBody0()->getUserPointer());
+			auto *collisionParameters2 = static_cast<CollisionParameters*>(manifold->getBody1()->getUserPointer());
 
-			entity1->HandleMessage(Telegram(0.0, entity1->Id(), entity2->Id(), 1, nullptr));
-			//entity->GetComponentMgr()->GetComponent<>()
+			collisionParameters1->entity->	HandleMessage(
+				Telegram(0.0, 
+					collisionParameters1->entity->Id(),  
+					collisionParameters2->entity->Id(), 
+					(int)MessageType::COLLISION,
+					collisionParameters1));
+			/*
+			collisionParameters2->_entity->HandleMessage(
+				Telegram(0.0,
+					collisionParameters2->_entity->Id(),
+					collisionParameters1->_entity->Id(),
+					(int)MessageType::COLLISION,
+					collisionParameters2));
+			*/
 		}
 	}
 

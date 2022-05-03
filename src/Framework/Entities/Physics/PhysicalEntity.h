@@ -2,14 +2,15 @@
 
 #include "CA_Export.h"
 
-#include <iosfwd>
-#include <string>
 #include "Maths/Vector3.h"
 #include "Physics/PhysicsObjectContainer.h"
 #include "Sprite/Sprite.h"
 #include <map>
 #include <vector>
 #include "GameTime.h"
+
+#include <iosfwd>
+#include <string>
 
 namespace CasaEngine
 {
@@ -24,7 +25,7 @@ namespace CasaEngine
 		Vector3    m_vHeading;
 
 		//a vector perpendicular to the heading vector
-		Vector3    m_vSide; 
+		Vector3    m_vSide;
 
 		float       m_fMass;
 
@@ -38,23 +39,23 @@ namespace CasaEngine
 		//the maximum rate (radians per second)this vehicle can rotate         
 		float       m_fMaxTurnRate;
 
-		std::vector<ICollisionObjectContainer *> m_CollisionObjectContainers;
-		IRigidBodyContainer *m_pRigidBody;
+		std::vector<ICollisionObjectContainer*> m_CollisionObjectContainers;
+		IRigidBodyContainer* m_pRigidBody;
 
 		// Sprite ID, list of physics object
-		std::map<std::string, std::vector<ICollisionObjectContainer *> > m_SpriteCollisionObjects;
+		std::map<std::string, std::vector<ICollisionObjectContainer*> > m_SpriteCollisionObjects;
 		std::string m_LastSpriteID;
 
-		BaseEntity *m_pEntity;
+		BaseEntity* m_pEntity;
 
 	public:
-		PhysicalEntity(BaseEntity *pEntity_);
+		PhysicalEntity(BaseEntity* pEntity_);
 		~PhysicalEntity();
 
-		void Update(GameTime time_);
+		void Update(const GameTime& time_);
 
-		IRigidBodyContainer *GetRigidBody();
-		void SetRigidBody(IRigidBodyContainer *val_);
+		IRigidBodyContainer* GetRigidBody();
+		void SetRigidBody(IRigidBodyContainer* val_);
 
 		//accessors
 		Vector3  Velocity()const;
@@ -66,7 +67,7 @@ namespace CasaEngine
 		Vector3  Side() const;
 		void      Side(Vector3 side_);
 
-		float     MaxSpeed() const;                     
+		float     MaxSpeed() const;
 		void      SetMaxSpeed(float new_speed);
 
 		float     MaxForce() const;
@@ -84,8 +85,8 @@ namespace CasaEngine
 		void      SetMaxTurnRate(float val);
 
 		//entities should be able to read/write their data to a stream
-		void Write(std::ostream&  os);
-		void Read (std::ifstream& is);
+		void Write(std::ostream& os);
+		void Read(std::ifstream& is);
 	};
 
 }

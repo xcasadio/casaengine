@@ -22,22 +22,22 @@ namespace CasaEngine
 		public EventSet
 	{
 	private:
-		SpriteRenderer*	m_pSpriteRenderer;
-		Transform3DComponent* m_pTransform;
-		Color m_Color;		
-		eSpriteEffects m_SpriteEffect;
-		Animation2D *m_pCurrentAnim;
+		SpriteRenderer*	_spriteRenderer;
+		Transform3DComponent* _transform;
+		Color _color;		
+		eSpriteEffects _spriteEffect;
+		Animation2D *_currentAnim;
 
-		std::vector<Animation2D *> m_AnimationList;
+		std::vector<Animation2D *> _animationList;
 
-		Event::Connection m_FrameChangedConnection;
-		Event::Connection m_AnimFinishedConnection;
+		Event::Connection _frameChangedConnection;
+		Event::Connection _animFinishedConnection;
 
-		std::map<std::string, std::vector<ICollisionObjectContainer*>> m_CollisionObjectByFrameId;
-		std::string m_LastFrameId;
+		std::map<std::string, std::vector<ICollisionObjectContainer*>> _collisionObjectByFrameId;
+		std::string _lastFrameId;
 
 	public:
-		AnimatedSpriteComponent(BaseEntity* pEntity_);
+		AnimatedSpriteComponent(BaseEntity* entity_);
 
 		Color GetColor() const;
 		void SetColor(Color val);
@@ -63,7 +63,6 @@ namespace CasaEngine
 		void AddAnimation(Animation2D *pAnim_);
 		std::vector<Animation2D*>& GetAnimations();
 		void RemoveCollisionsFromLastFrame();
-		void AddCollisionsFromFrame(const std::string& spriteId, const std::vector<ICollisionObjectContainer*>& collisionObjects);
 
 		//Event
 		bool OnFrameChanged(const EventArgs &e);

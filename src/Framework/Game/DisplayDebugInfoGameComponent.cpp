@@ -15,6 +15,7 @@
 
 namespace CasaEngine
 {
+#if EDITOR
 	void ShowUI4AllComponents(BaseEntity* pEntity);
 	void DrawGrid(GridOrientation orientation, Line3DRendererComponent *line3DRenderer);
 	void DrawAxis(bgfx::VertexBufferHandle vertexHandle_, bgfx::ProgramHandle program_handle);
@@ -565,4 +566,5 @@ namespace CasaEngine
 		m_Line3DRenderer->AddLine(Vector3::Zero(), Color::Blue, Vector3::UnitZ(), Color::Blue);
 		*/
 	}
+#endif
 }

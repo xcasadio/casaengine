@@ -46,7 +46,6 @@ namespace CasaEngine
 
 	private:
 		void AddCollisionObject(btCollisionObject* pColObj_);
-		//btCollisionShape *CreateCollisionShape(const MeshComponentColliper *pMeshCollider_);
 		btCollisionShape* CreateCollisionShape(const IShape* pShape_);
 		void RemoveCollisionObject(btCollisionObject* collisionObject);
 
@@ -54,7 +53,6 @@ namespace CasaEngine
 		btCollisionObject* CreateCollisionObjectFromShape(btCollisionShape* shape, Vector3 center);
 
 	private:
-		//btDiscreteDynamicsWorld* _bulletWorld;
 		btDynamicsWorldExt* _bulletWorld;
 		btCollisionDispatcher* _dispatcher;
 	};

@@ -1,4 +1,3 @@
-
 #include "Base.h"
 #include "PhysicalEntity.h"
 #include <string>
@@ -8,8 +7,6 @@
 #include "Entities\Components\Transform3DComponent.h"
 #include "Entities\BaseEntity.h"
 #include "Game/Game.h"
-#include "Maths\Vector2.h"
-
 
 namespace CasaEngine
 {
@@ -27,15 +24,14 @@ namespace CasaEngine
 
 	PhysicalEntity::~PhysicalEntity()
 	{
-		std::map<std::string, std::vector<ICollisionObjectContainer*> >::iterator it;
-		for (it = m_SpriteCollisionObjects.begin();
+		for (std::map<std::string, std::vector<ICollisionObjectContainer*>>::iterator it = m_SpriteCollisionObjects.begin();
 			it != m_SpriteCollisionObjects.end();
-			it++)
+			++it)
 		{
 			std::vector<ICollisionObjectContainer*>::iterator itColObj;
 			for (itColObj = it->second.begin();
 				itColObj != it->second.end();
-				itColObj++)
+				++itColObj)
 			{
 				Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->RemoveCollisionObject(*itColObj);
 				delete* itColObj;
@@ -43,7 +39,7 @@ namespace CasaEngine
 		}
 	}
 
-	void PhysicalEntity::Update(GameTime gameTime_)
+	void PhysicalEntity::Update(const GameTime& gameTime_)
 	{
 		auto* pTrans = m_pEntity->GetComponentMgr()->GetComponent<Transform3DComponent>();
 

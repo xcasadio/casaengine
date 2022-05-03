@@ -12,6 +12,7 @@
 
 namespace CasaEngine
 {
+#if EDITOR
 	class Game;
 
 	enum class GridOrientation
@@ -40,4 +41,5 @@ namespace CasaEngine
 		Line3DRendererComponent* m_Line3DRenderer;
 		GridOrientation m_Orientation;
 	};
+#endif
 }

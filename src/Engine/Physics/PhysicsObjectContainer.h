@@ -10,7 +10,7 @@ namespace CasaEngine
 	class CA_EXPORT IRigidBodyContainer
 	{
 	public:
-		virtual ~IRigidBodyContainer() {}
+		virtual ~IRigidBodyContainer();
 
 #if defined(CA_DEBUG)
 		virtual void logInfo() = 0;
@@ -33,6 +33,6 @@ namespace CasaEngine
 	class CA_EXPORT ICollisionObjectContainer
 	{
 	public:
-		virtual ~ICollisionObjectContainer() {}
+		virtual ~ICollisionObjectContainer();
 	};
 }
