@@ -121,7 +121,7 @@ bool Character::OnFrameChangedEvent(const EventArgs& e_)
 	msg.ExtraInfo = &event;
 	QueueMessage(msg);
 
-	//PhysicalEntity& physicalEntity = m_pEntity->GetPhysicalEntity();
+	//PhysicalEntity& physicalEntity = _entity->GetPhysicalEntity();
 	//Sprite* pNewSprite = new Sprite(*Game::Instance().GetAssetManager().GetAsset<SpriteData>(event.ID()));
 
 	//physicalEntity.AddSpritePhysics(pNewSprite);

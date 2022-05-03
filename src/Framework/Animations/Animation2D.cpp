@@ -68,11 +68,9 @@ namespace CasaEngine
 		fireEvent(FrameChangeEvent::GetEventName(), FrameChangeEvent(m_CurrentFrame));
 	}
 
-#if EDITOR
 	Animation2DData* Animation2D::GetAnimation2DData()
 	{
 		return m_pAnimation2DData;
 	}
-#endif
 	
 }

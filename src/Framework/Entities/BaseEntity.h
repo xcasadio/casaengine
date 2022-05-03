@@ -1,24 +1,16 @@
-#ifndef BASEENTITY_H
-#define BASEENTITY_H
+#pragma once
 
 #include "CA_Export.h"
-
-#include <iosfwd>
-
 #include "AI/Messaging/Telegram.h"
 #include "GameTime.h"
 #include "ComponentManager.h"
 #include "EventHandler/EventSet.h"
-#include "Parsers/Xml/tinyxml2.h"
-
 #include "Physics/PhysicalEntity.h"
 
+#include <iosfwd>
 
 namespace CasaEngine
 {
-	typedef unsigned int EntityId;					// Unique identifier for each entity instance.
-	#define INVALID_ENTITYID ((EntityId)(0))
-	
 	class CA_EXPORT BaseEntity :
 		public EventSet
 	{  
@@ -40,7 +32,7 @@ namespace CasaEngine
 		//using the MessageDispatcher singleton class
 		bool HandleMessage(const Telegram& msg);
 
-		EntityId Id() const; 
+		unsigned int Id() const;
 
 		const char *GetName() const;
 		void SetName(std::string &val);
@@ -50,28 +42,27 @@ namespace CasaEngine
 		void IsEnabled(bool val);
 		bool IsVisible() const;
 		void IsVisible(bool val);
-
-		virtual void Read (const tinyxml2::XMLElement& xmlElt);
+		
 		virtual void Read (std::ifstream& is);
-		virtual void Write(tinyxml2::XMLElement& xmlElt);
 		virtual void Write(std::ostream&  os);
 
 	private:
 
 		//this is the next valid Id. Each time a BaseEntity is instantiated
 		//this value is updated
-		static EntityId m_iNextValidID;
+		static unsigned int _nextValidId;
 
 		//every entity must have a unique identifying number
-		EntityId m_ID;
+		unsigned int _id;
 		// if the object depend on an other object (transform)
-		BaseEntity* m_pParent; 
+		BaseEntity* _parent; 
 		// manager of all components of this BaseEntity
-		ComponentManager* m_pComponentManager;
-		PhysicalEntity m_PhysicalEntity;
+		ComponentManager* _componentManager;
+		PhysicalEntity _physicalEntity;
 
-		std::string m_Name;
-		bool m_bIsEnabled, m_bIsVisible;
+		std::string _name;
+		bool _isEnabled;
+		bool _isVisible;
 
 #ifdef EDITOR
 	public:
@@ -84,5 +75,3 @@ namespace CasaEngine
 	};
 
 }
-
-#endif

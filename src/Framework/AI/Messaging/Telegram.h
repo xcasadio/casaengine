@@ -1,41 +1,33 @@
 #pragma once
 
+#include "CA_Export.h"
+
 #include <iostream>
 #include <math.h>
-#include "CA_Export.h"
 
 namespace CasaEngine
 {
 	struct CA_EXPORT Telegram
 	{
-		//the entity that sent this telegram
-		int          Sender;
-
-		//the entity that is to receive this telegram
-		int          Receiver;
-
-		//the message itself. These are all enumerated in the file
-		//"MessageTypes.h"
-		int          Msg;
-
+		unsigned int          Sender;
+		unsigned int          Receiver;
+		unsigned int          Msg;
 		//messages can be dispatched immediately or delayed for a specified amount
 		//of time. If a delay is necessary this field is stamped with the time 
 		//the message should be dispatched.
 		double       DispatchTime;
-
-		//any additional information that may accompany the message
 		const void* ExtraInfo;
 
 		Telegram() :
-			Sender(-1),
-			Receiver(-1),
-			Msg(-1),
+			Sender(0),
+			Receiver(0),
+			Msg(0),
 			DispatchTime(-1),
 			ExtraInfo(nullptr)
 		{
 		}
 
-		Telegram(double time, int sender, int receiver, int msg, void* info = nullptr) :
+		Telegram(double time, unsigned int sender, unsigned int receiver, unsigned int msg, void* info = nullptr) :
 			Sender(sender),
 			Receiver(receiver),
 			Msg(msg),
@@ -49,7 +41,7 @@ namespace CasaEngine
 	//operator needs to be overloaded so that the PQ can sort the telegrams
 	//by time priority. Note how the times must be smaller than
 	//SmallestDelay apart before two Telegrams are considered unique.
-	const double SmallestDelay = 0.25;
+	constexpr double SmallestDelay = 0.25;
 
 
 	inline bool operator==(const Telegram& t1, const Telegram& t2)
@@ -72,18 +64,7 @@ namespace CasaEngine
 
 	inline std::ostream& operator<<(std::ostream& os, const Telegram& t)
 	{
-		os << "time: " << t.DispatchTime << "  Sender: " << t.Sender
-			<< "   Receiver: " << t.Receiver << "   Msg: " << t.Msg;
-
+		os << "time: " << t.DispatchTime << "  Sender: " << t.Sender << "   Receiver: " << t.Receiver << "   Msg: " << t.Msg;
 		return os;
 	}
-
-	//handy helper function for dereferencing the ExtraInfo field of the Telegram 
-	//to the required type.
-	template <class T>
-	T DereferenceToType(void* p)
-	{
-		return *static_cast<T*>(p);
-	}
-
 }

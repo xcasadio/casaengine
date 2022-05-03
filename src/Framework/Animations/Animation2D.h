@@ -21,16 +21,15 @@ namespace CasaEngine
 		const char* CurrentFrame() const;
 		void CurrentFrame(const char* val);
 
+		Animation2DData* GetAnimation2DData();
+
 	private:
 		void NotifyFrameListener(const char* frameID_);
 
 		const char* m_CurrentFrame;
 		Animation2DData* m_pAnimation2DData;
-
+		
 #if EDITOR
-	public:
-		Animation2DData* GetAnimation2DData();
-
 	private:
 		static const int m_Version; // load version
 

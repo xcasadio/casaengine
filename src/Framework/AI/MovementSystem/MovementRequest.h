@@ -110,7 +110,7 @@ struct MovementRequest
 	Vector3 destination;
 	Type type;
 	//Callback callback;
-	EntityId entityID;
+	unsigned int entityID;
 	//MNMDangersFlags dangersFlags;
 	bool considerActorsAsPathObstacles;
 	float lengthToTrimFromThePathEnd;

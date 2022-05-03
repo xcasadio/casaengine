@@ -8,24 +8,22 @@
 
 #include "Game/Game.h"
 
-
-
 namespace CasaEngine
 {
-	EntityId BaseEntity::m_iNextValidID = 0;
+	unsigned int BaseEntity::_nextValidId = 0;
 	
 	BaseEntity::BaseEntity() :
-		m_ID(m_iNextValidID), m_pParent(nullptr),
-		m_pComponentManager(new ComponentManager(this)),
-		m_PhysicalEntity(this),
-		m_bIsEnabled(true),
-		m_bIsVisible(true)
+		_id(_nextValidId), _parent(nullptr),
+		_componentManager(new ComponentManager(this)),
+		_physicalEntity(this),
+		_isEnabled(true),
+		_isVisible(true)
 	{
-		m_iNextValidID++;
+		_nextValidId++;
 
 		std::ostringstream s;
-		s << "entity_" << m_ID;
-		m_Name = s.str();
+		s << "entity_" << _id;
+		_name = s.str();
 
 		addEvent(EntityParentChangeEvent::GetEventName());
 		Game::Instance().GetEntityManager().RegisterEntity(this);
@@ -37,104 +35,99 @@ namespace CasaEngine
 
 	BaseEntity::~BaseEntity()
 	{
-		delete m_pComponentManager;
+		delete _componentManager;
 	}
 
-	EntityId BaseEntity::Id() const
+	unsigned int BaseEntity::Id() const
 	{
-		return m_ID;
+		return _id;
 	}
 
 	BaseEntity* BaseEntity::GetParent() const 
 	{ 
-		return m_pParent; 
+		return _parent; 
 	}
 
 	void BaseEntity::SetParent(BaseEntity* val) 
 	{ 
-		m_pParent = val;
+		_parent = val;
 
-		EntityParentChangeEvent event(this, m_pParent);
+		EntityParentChangeEvent event(this, _parent);
 		fireEvent(EntityParentChangeEvent::GetEventName(), event);
 	}
 
 	ComponentManager* BaseEntity::GetComponentMgr()
 	{ 
-		return m_pComponentManager;
+		return _componentManager;
 	}
 
 	bool BaseEntity::HandleMessage(const Telegram& msg)
 	{
-		return m_pComponentManager->HandleMessage(msg);
+		return _componentManager->HandleMessage(msg);
 	}
 
 	void BaseEntity::Update(const GameTime& gameTime_)
 	{
-		if (m_bIsEnabled == false)
+		if (_isEnabled == false)
 		{
 			return;
 		}
 
-		m_PhysicalEntity.Update(gameTime_);
-		m_pComponentManager->Update(gameTime_);
+		_physicalEntity.Update(gameTime_);
+		_componentManager->Update(gameTime_);
 	}
 
 	void BaseEntity::Draw()
 	{
-		if (m_bIsVisible == false)
+		if (_isVisible == false)
 		{
 			return;
 		}
 
-		m_pComponentManager->Draw();
+		_componentManager->Draw();
 	}
 
 	const char *BaseEntity::GetName() const 
 	{ 
-		return m_Name.c_str();
+		return _name.c_str();
 	}
 
 	void BaseEntity::SetName(std::string &val)
 	{
-		m_Name = val;
+		_name = val;
 	}
 
 	void BaseEntity::SetName(const char * val) 
 	{
-		m_Name = val;
+		_name = val;
 	}
 
 	void BaseEntity::Initialize()
 	{
-		m_pComponentManager->InitializeComponents();
+		_componentManager->InitializeComponents();
 	}
 
 	bool BaseEntity::IsEnabled() const
 	{
-		return m_bIsEnabled;
+		return _isEnabled;
 	}
 
 	void BaseEntity::IsEnabled( bool val )
 	{
-		m_bIsEnabled = val;
+		_isEnabled = val;
 	}
 
 	bool BaseEntity::IsVisible() const
 	{
-		return m_bIsVisible;
+		return _isVisible;
 	}
 
 	void BaseEntity::IsVisible( bool val )
 	{
-		m_bIsVisible = val;
+		_isVisible = val;
 	}
 
 	void BaseEntity::Read (std::ifstream& /*is*/)
-	{
-
-	}
-
-	void BaseEntity::Read (const tinyxml2::XMLElement& xmlElt)
 	{
 
 	}
@@ -144,14 +137,9 @@ namespace CasaEngine
 
 	}
 
-	void BaseEntity::Write(tinyxml2::XMLElement& xmlElt)
-	{
-
-	}
-
 	PhysicalEntity & BaseEntity::GetPhysicalEntity()
 	{
-		return m_PhysicalEntity;
+		return _physicalEntity;
 	}
 	
 #ifdef EDITOR

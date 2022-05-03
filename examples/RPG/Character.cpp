@@ -3,6 +3,7 @@
 #include "CharacterEnum.h"
 #include "CA_Assert.h"
 #include "PlayerController.h"
+#include "ScriptCharacter.h"
 #include "Log\LogManager.h"
 #include "Entities\Events\BaseEntityEvents.h"
 #include "EventHandler\Event.h"
@@ -98,9 +99,14 @@ bool Character::HandleMessage(const Telegram& msg)
 {
 	if (msg.ExtraInfo != nullptr && msg.Msg == (int)MessageType::COLLISION)
 	{
-		if (this->GetEntity()->Id() == msg.Sender || this->GetEntity()->Id() == msg.Receiver)
+		if (GetEntity()->Id() == msg.Sender || GetEntity()->Id() == msg.Receiver)
 		{
-			
+			auto* otherEntity = GetEntity()->Id() == msg.Sender ? Game::Instance().GetEntityManager().GetEntityFromID(msg.Receiver) : Game::Instance().GetEntityManager().GetEntityFromID(msg.Sender);
+			auto* script_character = otherEntity->GetComponentMgr()->GetComponent<ScriptCharacter>();
+			auto* otherCharacter = script_character->GetCharacter();
+
+			//si je suis une arme alors c'est le parent que je dois invoquer
+			//creer un character pour l'arme du coup
 		}
 	}
 
@@ -189,7 +195,7 @@ bool Character::OnFrameChangedEvent(const EventArgs& e_)
 	msg.ExtraInfo = &event;
 	QueueMessage(msg);
 
-	//PhysicalEntity& physicalEntity = m_pEntity->GetPhysicalEntity();
+	//PhysicalEntity& physicalEntity = _entity->GetPhysicalEntity();
 	//Sprite* pNewSprite = new Sprite(*Game::Instance().GetAssetManager().GetAsset<SpriteData>(event.ID()));
 
 	//physicalEntity.AddSpritePhysics(pNewSprite);
