@@ -33,14 +33,14 @@ namespace CasaEngine
 		virtual void Read(std::ifstream& is);
 
 	protected:
-		IShape* m_pShape;
+		IShape* _shape;
 
-		ColliderComponent(BaseEntity* pEntity_, int type_);
+		ColliderComponent(BaseEntity* entity_, int type_);
 		void CreateAndSetRigidBody(float mass);
 
 	private:
-		AxisConstraints axisConstraint;
-		float m_Mass;
-		ICollisionObjectContainer* m_pCollisionObjectContainer;
+		AxisConstraints _axisConstraint;
+		float _mass;
+		ICollisionObjectContainer* _collisionObjectContainer;
 	};
 }

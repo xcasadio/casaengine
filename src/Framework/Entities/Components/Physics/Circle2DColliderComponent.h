@@ -10,7 +10,7 @@ namespace CasaEngine
 		public ColliderComponent
 	{
 	public:
-		Circle2DColliderComponent(BaseEntity* pEntity_);
+		Circle2DColliderComponent(BaseEntity* entity_);
 		~Circle2DColliderComponent() override = default;
 		
 		void Initialize() override;
@@ -19,7 +19,7 @@ namespace CasaEngine
 		void SetRadius(float radius);
 
 	private:
-		Circle m_Circle;
+		Circle _circle;
 	};
 
 }

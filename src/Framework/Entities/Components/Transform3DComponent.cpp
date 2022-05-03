@@ -153,9 +153,7 @@ namespace CasaEngine
 		}
 	}
 
-	/**
-	 * Editor
-	 */
+#if EDITOR
 	void Transform3DComponent::ShowDebugWidget()
 	{
 		/*
@@ -183,6 +181,7 @@ namespace CasaEngine
 		}
 		*/
 	}
+#endif
 
 	void Transform3DComponent::Write(std::ostream& /*os*/) const
 	{

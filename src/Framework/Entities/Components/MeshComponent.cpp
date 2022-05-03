@@ -15,10 +15,10 @@ namespace CasaEngine
 {
 	MeshComponent::MeshComponent(BaseEntity* pEntity_)
 		: Component(pEntity_, MODEL_3D),
-		  m_pTransform(nullptr),
-		  m_pModel(nullptr),
-		  m_pProgram(nullptr),
-		  m_pModelRenderer(nullptr)
+		m_pTransform(nullptr),
+		m_pModel(nullptr),
+		m_pProgram(nullptr),
+		m_pModelRenderer(nullptr)
 	{
 
 	}
@@ -75,9 +75,7 @@ namespace CasaEngine
 
 	}
 
-	/**
-	 * Editor
-	 */
+#if EDITOR
 	void MeshComponent::ShowDebugWidget()
 	{
 		/*
@@ -102,4 +100,5 @@ namespace CasaEngine
 		}
 		*/
 	}
+#endif
 }

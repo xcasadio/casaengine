@@ -12,17 +12,17 @@ namespace CasaEngine
 		public ColliderComponent
 	{
 	public:
-		Box2DColliderComponent(BaseEntity* pEntity_);
+		Box2DColliderComponent(BaseEntity* entity_);
 		~Box2DColliderComponent() override = default;
 
 		void Initialize() override;
 		void Set(float left, float top, float width, float height);
 
-		void Write(std::ostream&  os)const override;
+		void Write(std::ostream& os)const override;
 		void Read (std::ifstream& is) override;
 
 	private:
-		Rectangle m_Box;
+		Rectangle _box;
 	};
 
 }

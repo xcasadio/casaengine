@@ -10,25 +10,24 @@
 
 namespace CasaEngine
 {
-	ColliderComponent::ColliderComponent(BaseEntity* pEntity_, int type_)
-		: Component(pEntity_, type_),
-		m_pShape(nullptr),
-		axisConstraint(AxisConstraints::NONE),
-		m_Mass(0),
-		m_pCollisionObjectContainer(nullptr)
+	ColliderComponent::ColliderComponent(BaseEntity* entity_, int type_)
+		: Component(entity_, type_),
+		_shape(nullptr),
+		_axisConstraint(AxisConstraints::NONE),
+		_mass(0),
+		_collisionObjectContainer(nullptr)
 	{
 	}
 
 	ColliderComponent::~ColliderComponent()
 	{
-		delete m_pCollisionObjectContainer;
+		delete _collisionObjectContainer;
 	}
 
 	void ColliderComponent::Initialize()
 	{
-		CA_ASSERT(m_pCollisionObjectContainer == nullptr, "ColliderComponent::Initialize()");
-		m_pCollisionObjectContainer =
-			Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->CreateCollisionShape(GetShape(), Vector3::Zero());
+		CA_ASSERT(_collisionObjectContainer == nullptr, "ColliderComponent::Initialize()");
+		_collisionObjectContainer = Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->CreateCollisionShape(GetShape(), Vector3::Zero());
 	}
 
 	void ColliderComponent::Update(const GameTime& /*gameTime_*/)
@@ -45,37 +44,37 @@ namespace CasaEngine
 
 	float ColliderComponent::Mass() const
 	{
-		return m_Mass;
+		return _mass;
 	}
 
 	void ColliderComponent::Mass(float val)
 	{
-		m_Mass = val;
+		_mass = val;
 	}
 
 	AxisConstraints ColliderComponent::AxisConstraint() const
 	{
-		return axisConstraint;
+		return _axisConstraint;
 	}
 
 	void ColliderComponent::AxisConstraint(AxisConstraints val)
 	{
-		axisConstraint = val;
+		_axisConstraint = val;
 	}
 
 	IShape* ColliderComponent::GetShape() const
 	{
-		return m_pShape;
+		return _shape;
 	}
 
 	void ColliderComponent::CreateAndSetRigidBody(float mass)
 	{
 		auto* transform = GetEntity()->GetComponentMgr()->GetComponent<Transform3DComponent>();
-		CA_ASSERT(transform != nullptr, "Circle2DColliderComponent::Initialize() can't find the Transform3DComponent. Please add it before add a Circle2DColliderComponent");
+		CA_ASSERT(transform != nullptr, "ColliderComponent::Initialize() can't find the Transform3DComponent.");
 		auto* rigidBody = new RigidBodyParameters();
 		rigidBody->mass = mass;
-		rigidBody->pCollisionShape = m_pShape;
-		rigidBody->axisConstraint = axisConstraint;
+		rigidBody->collisionShape = _shape;
+		rigidBody->axisConstraint = _axisConstraint;
 		IRigidBodyContainer* pContainer = Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->AddRigidBody(GetEntity(), rigidBody, transform->GetPosition());
 		GetEntity()->GetPhysicalEntity().SetRigidBody(pContainer);
 	}

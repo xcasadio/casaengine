@@ -136,7 +136,7 @@ namespace CasaEngine
 	unsigned int File::Seek(unsigned int off_, SeekDir dir_)
 	{
 		CA_ASSERT(m_Stream.is_open() == true, "Try to read a file which is not opened");
-		std::ios::seekdir dir;
+		std::ios::seekdir dir = std::ios::beg;
 
 		switch (dir_)
 		{
@@ -151,13 +151,9 @@ namespace CasaEngine
 		case SeekDir::SEEKDIR_END:
 			dir = std::ios::end;
 			break;
-
-		default:
-			dir = std::ios::beg;
-			break;
 		}
 
 		m_Stream.seekg(off_, dir);
-		return m_Stream.tellg();
+		return static_cast<long>(m_Stream.tellg());
 	}
 }

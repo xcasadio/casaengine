@@ -1,5 +1,4 @@
-#ifndef MeshComponent_H_
-#define MeshComponent_H_
+#pragma once
 
 #include "CA_Export.h"
 #include "GameTime.h"
@@ -30,8 +29,9 @@ namespace CasaEngine
 
 		void Write(std::ostream&  os)const;
 		void Read (std::ifstream& is);
-
+#if EDITOR
 		void ShowDebugWidget() override;
+#endif
 	private:
 		TransformComponent* m_pTransform;
 		Mesh *m_pModel;
@@ -40,5 +40,3 @@ namespace CasaEngine
 	};
 
 }
-
-#endif

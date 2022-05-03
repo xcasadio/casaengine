@@ -16,7 +16,7 @@ namespace CasaEngine
 	{
 		float			mass;
 
-		IShape*			pCollisionShape;
+		IShape*			collisionShape;
 		Vector3			localInertia;
 		float			linearDamping;
 		float			angularDamping;
@@ -41,10 +41,11 @@ namespace CasaEngine
 
 		RigidBodyParameters() :
 			mass(1.0f),
-			pCollisionShape(nullptr),
+			collisionShape(nullptr),
 			localInertia(Vector3::Zero()),
 			linearDamping(0.f),
 			angularDamping(0.f),
+			axisConstraint(AxisConstraints::NONE),
 			friction(0.5f),
 			rollingFriction(0.0f),
 			restitution(0.f),
@@ -55,6 +56,7 @@ namespace CasaEngine
 			additionalLinearDampingThresholdSqr(0.01f),
 			additionalAngularDampingThresholdSqr(0.01f),
 			additionalAngularDampingFactor(0.01f)
-		{}
+		{
+		}
 	};
 }

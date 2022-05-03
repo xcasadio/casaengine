@@ -8,10 +8,10 @@
 
 namespace CasaEngine
 {
-	Box2DColliderComponent::Box2DColliderComponent(BaseEntity* pEntity_)
-		: ColliderComponent(pEntity_, BOX2D_COLLIDER)
+	Box2DColliderComponent::Box2DColliderComponent(BaseEntity* entity_)
+		: ColliderComponent(entity_, BOX2D_COLLIDER)
 	{
-		m_pShape = &m_Box;
+		_shape = &_box;
 	}
 
 	void Box2DColliderComponent::Initialize()
@@ -21,7 +21,7 @@ namespace CasaEngine
 
 	void Box2DColliderComponent::Set(float left, float top, float width, float height)
 	{
-		m_Box.Set(left, top, width, height);
+		_box.Set(left, top, width, height);
 	}
 
 	void Box2DColliderComponent::Write(std::ostream& /*os*/) const

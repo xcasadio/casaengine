@@ -54,7 +54,9 @@ namespace CasaEngine
 
 		bool OnParentChange(const EventArgs &e);
 
+#if EDITOR
 		void ShowDebugWidget() override;
+#endif
 
 		void Write(std::ostream&  os)const override;
 		void Read (std::ifstream& is) override;

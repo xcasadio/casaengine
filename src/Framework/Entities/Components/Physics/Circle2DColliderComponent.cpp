@@ -5,20 +5,20 @@
 
 namespace CasaEngine
 {
-	Circle2DColliderComponent::Circle2DColliderComponent(BaseEntity* pEntity_)
-		: ColliderComponent(pEntity_, CIRCLE2D_COLLIDER)
+	Circle2DColliderComponent::Circle2DColliderComponent(BaseEntity* entity_)
+		: ColliderComponent(entity_, CIRCLE2D_COLLIDER)
 	{
-		m_pShape = &m_Circle;
+		_shape = &_circle;
 	}
 
 	void Circle2DColliderComponent::SetCenter(const Vector3& position)
 	{
-		m_Circle.Center(position);
+		_circle.Center(position);
 	}
 
 	void Circle2DColliderComponent::SetRadius(float radius)
 	{
-		m_Circle.Radius(radius);
+		_circle.Radius(radius);
 	}
 
 	void Circle2DColliderComponent::Initialize()
