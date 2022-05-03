@@ -233,7 +233,7 @@ namespace CasaEngineTests
 
         actual = a / b;
 
-        EXPECT_TRUE(expected == actual, $"Quaternion::operator / did not return the expected value: expected {expected} actual {actual}");
+        EXPECT_TRUE(expected == actual);
     }
 
     // A test for operator + (Quaternion, Quaternion)
@@ -248,7 +248,7 @@ namespace CasaEngineTests
 
         actual = a + b;
 
-        EXPECT_TRUE(expected == actual, $"Quaternion::operator + did not return the expected value: expected {expected} actual {actual}");
+        EXPECT_TRUE(expected == actual);
     }
 
     // A test for Quaternion (float, float, float, float)

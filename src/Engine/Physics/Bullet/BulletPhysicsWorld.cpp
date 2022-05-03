@@ -76,7 +76,7 @@ namespace CasaEngine
 		btRigidBody::btRigidBodyConstructionInfo rbInfo(mass, 0, 0);
 		btRigidBody* body = nullptr;
 		
-		btCollisionShape* pShape = CreateCollisionShape(pRigidBody_->pCollisionShape);
+		btCollisionShape* pShape = CreateCollisionShape(pRigidBody_->collisionShape);
 
 		startTransform.setOrigin(btVector3(position.x, position.y, position.z));
 

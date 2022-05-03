@@ -205,7 +205,8 @@ namespace CasaEngineTests
 		a.m42 = 0.86f;
 		a.m43 = 4.0f;
 		a.m44 = 1.0f;
-		Matrix4 i = Matrix4::Invert(i);
+		Matrix4 i;
+		i = Matrix4::Invert(i);
 
 		const float detA = a.Determinant();
 		const float detI = i.Determinant();
