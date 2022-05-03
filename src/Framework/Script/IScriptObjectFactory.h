@@ -22,7 +22,7 @@ namespace CasaEngine
 
 	private:
 		ScriptObjectFactoryID m_ID;
-		//std::string m_Name;
+		//std::string _name;
 	};
 
 

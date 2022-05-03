@@ -12,7 +12,7 @@ public:
 	static const ScriptObjectClassID ClassID;
 
 public:
-	ScriptCharacter(BaseEntity* pEntity_, Character* pCharacter);
+	ScriptCharacter(BaseEntity* entity, Character* character);
 	~ScriptCharacter() override;
 
 	void OnInitialize() override;

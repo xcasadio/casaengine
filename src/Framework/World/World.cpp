@@ -57,15 +57,7 @@ namespace CasaEngine
 	{
 	}
 
-	void World::Read(const tinyxml2::XMLElement& xmlElt)
-	{
-	}
-
 	void World::Write(std::ostream& os)
-	{
-	}
-
-	void World::Write(tinyxml2::XMLElement& xmlElt)
 	{
 	}
 

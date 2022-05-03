@@ -88,8 +88,8 @@ namespace CasaEngine
 			return;
 		}
 
-		const auto width = uv_offset.w / 2.0f;
-		const auto height = uv_offset.h / 2.0f;
+		const auto width = uv_offset.w >> 1;
+		const auto height = uv_offset.h >> 1;
 
 		//trivial case
 		if (mask == mask_all)

@@ -12,7 +12,7 @@ public:
 	static const ScriptObjectClassID ClassID;
 
 public:
-	ScriptCharacter(BaseEntity* pEntity_, Character* pCharacter);
+	ScriptCharacter(BaseEntity* entity, Character* character);
 	~ScriptCharacter() override;
 
 	void OnInitialize() override;
@@ -20,6 +20,8 @@ public:
 	bool HandleMessage(const Telegram& msg) override;
 	void OnDestroy() override;
 
+	Character* GetCharacter();
+
 private:
-	Character* m_pCharacter;
+	Character* _character;
 };

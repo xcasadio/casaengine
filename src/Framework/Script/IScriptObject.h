@@ -22,10 +22,10 @@ namespace CasaEngine
 		virtual void OnDestroy() = 0;
 
 	protected:
-		IScriptObject(BaseEntity* pEntity_);
+		IScriptObject(BaseEntity* entity_);
 
 	private:
-		BaseEntity* m_pEntity;
+		BaseEntity* _entity;
 	};
 
 }

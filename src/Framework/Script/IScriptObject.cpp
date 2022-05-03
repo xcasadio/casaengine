@@ -3,14 +3,14 @@
 
 namespace CasaEngine
 {
-	IScriptObject::IScriptObject(BaseEntity* pEntity_)
+	IScriptObject::IScriptObject(BaseEntity* entity_)
 	{
-		CA_ASSERT(pEntity_ != nullptr, "IScriptObject::IScriptObject()");
-		m_pEntity = pEntity_;
+		CA_ASSERT(entity_ != nullptr, "IScriptObject::IScriptObject()");
+		_entity = entity_;
 	}
 	
 	BaseEntity* IScriptObject::GetEntity() const
 	{
-		return m_pEntity;
+		return _entity;
 	}
 }

@@ -19,7 +19,7 @@ namespace CasaEngine
 
 	protected:
 		ITile();
-		void Draw(const Sprite* sprite, float x, float y, float z, RectangleI uvOffset) const;
+		void Draw(const Sprite* sprite, float x, float y, float z, const RectangleI& uvOffset) const;
 
 	private:
 		SpriteRenderer* m_pSpriteRenderer = nullptr;

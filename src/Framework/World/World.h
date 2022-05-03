@@ -31,8 +31,6 @@ namespace CasaEngine
 
 		void Write(std::ostream& os) override;
 		void Read(std::ifstream& is) override;
-		void Read (const tinyxml2::XMLElement& xmlElt) override;
-		void Write(tinyxml2::XMLElement& xmlElt) override;
 
 	private:
 		std::vector<BaseEntity *> m_Entities;
