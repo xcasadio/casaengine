@@ -491,6 +491,7 @@
     <ClCompile Include="..\..\src\Engine\Physics\Bullet\BulletPhysicsWorld.cpp" />
     <ClCompile Include="..\..\src\Engine\Physics\IPhysicsWorld.cpp" />
     <ClCompile Include="..\..\src\Engine\Physics\PhysicsEngine.cpp" />
+    <ClCompile Include="..\..\src\Engine\Physics\PhysicsObjectContainer.cpp" />
     <ClCompile Include="..\..\src\Engine\Resources\MediaManager.cpp" />
     <ClCompile Include="..\..\src\Framework\AI\Fuzzy\FuzzyModule.cpp" />
     <ClCompile Include="..\..\src\Framework\AI\Fuzzy\FuzzyOperators.cpp" />

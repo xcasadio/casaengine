@@ -1397,6 +1397,9 @@
     <ClCompile Include="..\..\src\Engine\Physics\Bullet\BulletPhysicsWorld.cpp">
       <Filter>Engine\Physics</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Physics\PhysicsObjectContainer.cpp">
+      <Filter>Engine\Physics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\src\Framework\UI\imgui\fs_imgui_image.sc">

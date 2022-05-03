@@ -265,7 +265,6 @@ Global
 		{4E752D6F-7F15-4D94-BA59-7D6D11A7B5A2}.Editor Debug|Mixed Platforms.ActiveCfg = Debug|x64
 		{4E752D6F-7F15-4D94-BA59-7D6D11A7B5A2}.Editor Debug|Mixed Platforms.Build.0 = Debug|x64
 		{4E752D6F-7F15-4D94-BA59-7D6D11A7B5A2}.Editor Debug|x64.ActiveCfg = Editor Debug|x64
-		{4E752D6F-7F15-4D94-BA59-7D6D11A7B5A2}.Editor Debug|x64.Build.0 = Editor Debug|x64
 		{4E752D6F-7F15-4D94-BA59-7D6D11A7B5A2}.Editor Debug|x86.ActiveCfg = Debug|Win32
 		{4E752D6F-7F15-4D94-BA59-7D6D11A7B5A2}.Editor Debug|x86.Build.0 = Debug|Win32
 		{4E752D6F-7F15-4D94-BA59-7D6D11A7B5A2}.Editor Release|Mixed Platforms.ActiveCfg = Release|x64
