@@ -401,6 +401,7 @@
     <ClInclude Include="..\..\src\Framework\Script\ScriptEngine.h" />
     <ClInclude Include="..\..\src\Framework\SpacePartitioning\CellSpacePartition.h" />
     <ClInclude Include="..\..\src\Framework\Sprite\Collision.h" />
+    <ClInclude Include="..\..\src\Framework\Sprite\CollisionParameters.h" />
     <ClInclude Include="..\..\src\Framework\Sprite\Sprite.h" />
     <ClInclude Include="..\..\src\Framework\Sprite\SpritePhysicsHelper.h" />
     <ClInclude Include="..\..\src\Framework\Sprite\SpriteRenderer.h" />
