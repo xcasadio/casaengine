@@ -1,6 +1,6 @@
 #pragma once
 
-#include "AI/Messaging/Telegram.h"
+#include "Messaging/Telegram.h"
 #include "CA_Export.h"
 #include "GameTime.h"
 

@@ -88,9 +88,6 @@
     <Filter Include="Framework\AI\Graph">
       <UniqueIdentifier>{27f37ab8-ea33-43be-85dd-977a9ead06e3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Framework\AI\Messaging">
-      <UniqueIdentifier>{22780eec-7574-4f9c-9f68-133da3310743}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Framework\AI\MovementSystem">
       <UniqueIdentifier>{d92398f7-6c05-41c6-b677-70eff4c05f6d}</UniqueIdentifier>
     </Filter>
@@ -177,6 +174,9 @@
     </Filter>
     <Filter Include="3rdparty\dear-imgui\widgets">
       <UniqueIdentifier>{df3edde7-6b3a-4adc-ad44-e829c31c0ac2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Messaging">
+      <UniqueIdentifier>{0d11d7c5-a82c-4478-99b7-1d1377425f2d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -536,12 +536,6 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Framework\AI\Graph\SparseGraph.h">
       <Filter>Framework\AI\Graph</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Framework\AI\Messaging\MessageDispatcher.h">
-      <Filter>Framework\AI\Messaging</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Framework\AI\Messaging\Telegram.h">
-      <Filter>Framework\AI\Messaging</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Framework\AI\MovementSystem\IMovementSystem.h">
       <Filter>Framework\AI\MovementSystem</Filter>
@@ -933,6 +927,12 @@
     <ClInclude Include="..\..\src\Framework\GameDatas\Character2DBase.h">
       <Filter>Framework\GameDatas</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Framework\Messaging\MessageDispatcher.h">
+      <Filter>Framework\Messaging</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Framework\Messaging\Telegram.h">
+      <Filter>Framework\Messaging</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Core\DateTime.cpp">
@@ -1120,9 +1120,6 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Framework\AI\Fuzzy\FuzzyVariable.cpp">
       <Filter>Framework\AI\Fuzzy</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Framework\AI\Messaging\MessageDispatcher.cpp">
-      <Filter>Framework\AI\Messaging</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Framework\Animations\Animation.cpp">
       <Filter>Framework\Animations</Filter>
@@ -1421,11 +1418,14 @@
     <ClCompile Include="..\..\src\Engine\Physics\CollisionParameters.cpp">
       <Filter>Engine\Physics</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Framework\AI\Messaging\Telegram.cpp">
-      <Filter>Framework\AI\Messaging</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Framework\GameDatas\Character2DBase.cpp">
       <Filter>Framework\GameDatas</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Framework\Messaging\MessageDispatcher.cpp">
+      <Filter>Framework\Messaging</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Framework\Messaging\Telegram.cpp">
+      <Filter>Framework\Messaging</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

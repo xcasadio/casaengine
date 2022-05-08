@@ -2,7 +2,7 @@
 
 #include "CA_Export.h"
 
-#include "AI/Messaging/Telegram.h"
+#include "Messaging/Telegram.h"
 #include "GameTime.h"
 
 namespace CasaEngine

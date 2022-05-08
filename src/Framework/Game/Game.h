@@ -6,7 +6,7 @@
 #include "GameInfo.h"
 #include "GameTime.h"
 #include "Input.h"
-#include "AI/Messaging/MessageDispatcher.h"
+#include "Messaging/MessageDispatcher.h"
 #include "Assets/AssetManager.h"
 #include "Entities/EntityManager.h"
 #include "EventHandler/GlobalEventSet.h"

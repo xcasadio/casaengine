@@ -4,8 +4,8 @@
 #include "MessageTypes.h"
 #include "..\FSMGame.h"
 
-#include "AI\Messaging\Telegram.h"
-#include "AI\Messaging\MessageDispatcher.h"
+#include "Messaging\Telegram.h"
+#include "Messaging\MessageDispatcher.h"
 #include "Log\LogManager.h"
 #include "DateTime.h"
 #include "Tools\InGameLogger.h"

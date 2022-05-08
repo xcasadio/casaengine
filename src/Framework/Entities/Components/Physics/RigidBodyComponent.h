@@ -8,7 +8,7 @@
 #include "ColliderComponent.h"
 #include "Physics/RigidBodyParameters.h"
 
-#include "AI/Messaging/Telegram.h"
+#include "Messaging/Telegram.h"
 
 namespace CasaEngine
 {

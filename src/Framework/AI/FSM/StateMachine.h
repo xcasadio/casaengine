@@ -1,7 +1,7 @@
 #pragma once
 
 #include "IState.h"
-#include "AI/Messaging/Telegram.h"
+#include "Messaging/Telegram.h"
 #include "Log/LogManager.h"
 
 #include <string>

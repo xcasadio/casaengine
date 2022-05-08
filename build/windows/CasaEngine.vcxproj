@@ -318,8 +318,6 @@
     <ClInclude Include="..\..\src\Framework\AI\Graph\HandyGraphFunctions.h" />
     <ClInclude Include="..\..\src\Framework\AI\Graph\NodeTypeEnumerations.h" />
     <ClInclude Include="..\..\src\Framework\AI\Graph\SparseGraph.h" />
-    <ClInclude Include="..\..\src\Framework\AI\Messaging\MessageDispatcher.h" />
-    <ClInclude Include="..\..\src\Framework\AI\Messaging\Telegram.h" />
     <ClInclude Include="..\..\src\Framework\AI\MovementSystem\IMovementSystem.h" />
     <ClInclude Include="..\..\src\Framework\AI\MovementSystem\MovementRequest.h" />
     <ClInclude Include="..\..\src\Framework\AI\MovementSystem\MovementStyle.h" />
@@ -399,6 +397,8 @@
     <ClInclude Include="..\..\src\Framework\Map2D\Tile.h" />
     <ClInclude Include="..\..\src\Framework\Map2D\TiledMapComponent.h" />
     <ClInclude Include="..\..\src\Framework\Map2D\TiledMapLayer.h" />
+    <ClInclude Include="..\..\src\Framework\Messaging\MessageDispatcher.h" />
+    <ClInclude Include="..\..\src\Framework\Messaging\Telegram.h" />
     <ClInclude Include="..\..\src\Framework\Project\ProjectManager.h" />
     <ClInclude Include="..\..\src\Framework\Script\IScriptObject.h" />
     <ClInclude Include="..\..\src\Framework\Script\IScriptObjectFactory.h" />
@@ -508,8 +508,6 @@
     <ClCompile Include="..\..\src\Framework\AI\Fuzzy\FuzzySet_Singleton.cpp" />
     <ClCompile Include="..\..\src\Framework\AI\Fuzzy\FuzzySet_Triangle.cpp" />
     <ClCompile Include="..\..\src\Framework\AI\Fuzzy\FuzzyVariable.cpp" />
-    <ClCompile Include="..\..\src\Framework\AI\Messaging\MessageDispatcher.cpp" />
-    <ClCompile Include="..\..\src\Framework\AI\Messaging\Telegram.cpp" />
     <ClCompile Include="..\..\src\Framework\Animations\Animation.cpp" />
     <ClCompile Include="..\..\src\Framework\Animations\Animation2D.cpp" />
     <ClCompile Include="..\..\src\Framework\Animations\Animation2DPlayer.cpp" />
@@ -578,6 +576,8 @@
     <ClCompile Include="..\..\src\Framework\Map2D\Tile.cpp" />
     <ClCompile Include="..\..\src\Framework\Map2D\TiledMapComponent.cpp" />
     <ClCompile Include="..\..\src\Framework\Map2D\TiledMapLayer.cpp" />
+    <ClCompile Include="..\..\src\Framework\Messaging\MessageDispatcher.cpp" />
+    <ClCompile Include="..\..\src\Framework\Messaging\Telegram.cpp" />
     <ClCompile Include="..\..\src\Framework\Project\ProjectManager.cpp" />
     <ClCompile Include="..\..\src\Framework\Script\IScriptObject.cpp" />
     <ClCompile Include="..\..\src\Framework\Script\IScriptObjectFactory.cpp" />
