@@ -33,7 +33,7 @@ public:
 protected:
 	Character(BaseEntity* pEntity);
 
-	void CollideWith(BaseEntity* otherEntity, CollisionParametersBetween2Entities* collisionParams) override;
+	void CollideWith(CollisionParameters* collisionParameters, BaseEntity* otherEntity, CollisionParameters* otherCollisionParameters) override;
 
 private:	
 

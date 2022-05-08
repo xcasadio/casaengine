@@ -31,7 +31,7 @@ namespace CasaEngine
 	protected:
 		CharacterBase(BaseEntity* pEntity);
 
-		virtual void CollideWith(BaseEntity* otherEntity, CollisionParametersBetween2Entities* collisionParams) = 0;
+		virtual void CollideWith(CollisionParameters *collisionParameters, BaseEntity* otherEntity, CollisionParameters* otherCollisionParameters) = 0;
 		void QueueMessage(Telegram& msg);
 	
 	private:

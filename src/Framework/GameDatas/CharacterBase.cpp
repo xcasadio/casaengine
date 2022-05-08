@@ -54,7 +54,12 @@ namespace CasaEngine
 				&& msg.Sender != msg.Receiver)
 			{
 				auto* otherEntity = GetEntity()->Id() == msg.Sender ? Game::Instance().GetEntityManager().GetEntityFromID(msg.Receiver) : Game::Instance().GetEntityManager().GetEntityFromID(msg.Sender);
-				CollideWith(otherEntity, static_cast<CollisionParametersBetween2Entities*>(msg.ExtraInfo));
+				auto* collisionParameters = static_cast<CollisionParametersBetween2Entities*>(msg.ExtraInfo);
+
+				CollideWith(
+					collisionParameters->CollisionParameters1()->GetEntity()->Id() == GetEntity()->Id() ? collisionParameters->CollisionParameters1() : collisionParameters->CollisionParameters2(),
+					otherEntity, 
+					collisionParameters->CollisionParameters1()->GetEntity()->Id() == otherEntity->Id() ? collisionParameters->CollisionParameters1() : collisionParameters->CollisionParameters2());
 			}
 		}
 

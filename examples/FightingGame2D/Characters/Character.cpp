@@ -40,7 +40,7 @@ void Character::Draw()
 	Character2DBase::Draw();
 }
 
-void Character::CollideWith(BaseEntity* otherEntity, CollisionParametersBetween2Entities* collisionParams)
+void Character::CollideWith(CollisionParameters* collisionParameters, BaseEntity* otherEntity, CollisionParameters* otherCollisionParameters)
 {
 
 }

@@ -15,6 +15,7 @@
 #include "GameDatas/MessageType.h"
 #include "Entities\Components\ScriptComponent.h"
 #include <Physics/CollisionParametersBetween2Entities.h>
+#include <Map2D/TiledMapComponent.h>
 
 
 Character::Character(BaseEntity* pEntity) :
@@ -67,8 +68,35 @@ bool Character::IsDead() const
 	return m_HP <= 0;
 }
 
-void Character::CollideWith(BaseEntity* otherEntity, CollisionParametersBetween2Entities* collisionParams)
+void Character::CollideWith(CollisionParameters* collisionParameters, BaseEntity* otherEntity, CollisionParameters* otherCollisionParameters)
 {
+	//hit by other
+	if (collisionParameters->GetCollision()->GetType() == CollisionHitType::Defense
+		&& otherCollisionParameters->GetCollision()->GetType() == CollisionHitType::Attack)
+	{
+		auto* scriptComponent = otherEntity->GetComponentMgr()->GetComponent<ScriptComponent>();
+		if (scriptComponent != nullptr)
+		{
+			auto* script_character = dynamic_cast<ScriptCharacter*>(scriptComponent->GetScriptObject());
+
+			if (script_character != nullptr)
+			{
+				auto* otherCharacter = script_character->GetCharacter();
+
+				//state hit
+				//Hit(otherCharacter);
+			}
+		}
+	}
+	//hit other
+	else if (collisionParameters->GetCollision()->GetType() == CollisionHitType::Attack
+		&& otherCollisionParameters->GetCollision()->GetType() == CollisionHitType::Defense)
+	{
+		auto* tileMap = otherEntity->GetComponentMgr()->GetComponent<TiledMapComponent>();
+		//tileMap->
+
+	}
+
 	//si je suis une arme alors c'est le parent que je dois invoquer
 	//creer un character pour l'arme du coup
 	//TODO : creer GetScriptObject pour l'arme qui appelera le character parent
