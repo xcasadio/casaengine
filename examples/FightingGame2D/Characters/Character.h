@@ -1,15 +1,14 @@
 #pragma once
 
-#include <map>
-
-#include "Animations\Animation2D.h"
-#include "Entities\Component.h"
-#include "Entities\Components\AnimatedSpriteComponent.h"
 #include "GameDatas/CharacterBase.h"
+#include "GameDatas\Character2DBase.h"
+#include "Entities\BaseEntity.h"
+#include "GameTime.h"
 
+using namespace CasaEngine;
 
 class Character :
-	public CasaEngine::CharacterBase
+	public Character2DBase
 {
 public:
 	static const int Deadzone = 20;
@@ -18,16 +17,13 @@ public:
 	~Character() override;
 
 	void Initialize() override;
-	void Update(const CasaEngine::GameTime& gameTime_) override;
+	void Update(const GameTime& gameTime_) override;
 	void Draw() override;
 
-	bool SetCurrentAnimationByName(const char* name);
-
-	bool OnFrameChangedEvent(const CasaEngine::EventArgs& e_);
-	bool OnAnimationFinished(const CasaEngine::EventArgs& e_);
-
 protected:
-	Character(CasaEngine::BaseEntity* pEntity);
+	Character(BaseEntity* pEntity);
+
+	void CollideWith(BaseEntity* otherEntity, CollisionParametersBetween2Entities* collisionParams) override;
 
 private:
 	int m_HPMax;
@@ -35,6 +31,4 @@ private:
 	//
 	int m_MPMax;
 	int m_MP;
-
-	std::map<int, CasaEngine::Animation2D*> m_Animations;
 };

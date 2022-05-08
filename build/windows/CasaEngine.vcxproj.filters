@@ -795,9 +795,6 @@
     <ClInclude Include="..\..\src\Framework\Datas\FrameData.h">
       <Filter>Framework\Datas</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Sprite\Collision.h">
-      <Filter>Framework\Sprite</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Framework\Animations\AnimationType.h">
       <Filter>Framework\Animations</Filter>
     </ClInclude>
@@ -924,8 +921,17 @@
     <ClInclude Include="..\..\src\Framework\Sprite\SpritePhysicsHelper.h">
       <Filter>Framework\Sprite</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Sprite\CollisionParameters.h">
-      <Filter>Framework\Sprite</Filter>
+    <ClInclude Include="..\..\src\Engine\Physics\CollisionParametersBetween2Entities.h">
+      <Filter>Engine\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Physics\Collision.h">
+      <Filter>Engine\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Physics\CollisionParameters.h">
+      <Filter>Engine\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Framework\GameDatas\Character2DBase.h">
+      <Filter>Framework\GameDatas</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1346,9 +1352,6 @@
     <ClCompile Include="..\..\src\Framework\Datas\FrameData.cpp">
       <Filter>Framework\Datas</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Framework\Sprite\Collision.cpp">
-      <Filter>Framework\Sprite</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Framework\Datas\AnimationData.cpp">
       <Filter>Framework\Datas</Filter>
     </ClCompile>
@@ -1408,6 +1411,21 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Physics\PhysicsObjectContainer.cpp">
       <Filter>Engine\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Physics\CollisionParametersBetween2Entities.cpp">
+      <Filter>Engine\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Physics\Collision.cpp">
+      <Filter>Engine\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Physics\CollisionParameters.cpp">
+      <Filter>Engine\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Framework\AI\Messaging\Telegram.cpp">
+      <Filter>Framework\AI\Messaging</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Framework\GameDatas\Character2DBase.cpp">
+      <Filter>Framework\GameDatas</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

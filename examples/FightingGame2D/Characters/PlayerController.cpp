@@ -27,7 +27,7 @@ void PlayerController::Initialize()
 	AddState(MOVING, player_state_walking);
 	//AddState(static_cast<int>(ATTACK_1), player_state_attack);
 
-	GetPlayer()->SetOrientation(RIGHT);
+	GetPlayer()->SetOrientation(Orientation::RIGHT);
 	//Character.Animation2DPlayer.SetCurrentAnimationByID((int)AnimationIndex.IdleRight);
 	FSM()->ChangeState(GetState(IDLE));
 }
@@ -76,7 +76,7 @@ bool PlayerController::IsAttackButtonPressed()
 /**
  *
  */
-orientation PlayerController::GetDirectionFromInput(Vector2& direction_)
+Orientation PlayerController::GetDirectionFromInput(Vector2& direction_)
 {
 	direction_ = Vector2::Zero();
 

@@ -13,36 +13,19 @@
 #include "Entities\Events\BaseEntityEvents.h"
 #include "EventHandler\Event.h"
 #include "GameDatas/MessageType.h"
+#include "Entities\Components\ScriptComponent.h"
+#include <Physics/CollisionParametersBetween2Entities.h>
 
 
 Character::Character(BaseEntity* pEntity) :
-	CharacterBase(pEntity),
-	m_HPMax(100),
-	m_HPMaxOffSet(0.0f),
-	m_HPOffSet(0.0f),
-	m_MPMax(100),
-	m_MPMaxOffSet(0.0f),
-	m_MPOffSet(0.0f),
-	m_Strength(10),
-	m_StrengthOffSet(0.0f),
-	m_DefenseOffSet(0.0f),
-	m_NumberOfDirection(8),
-	m_AnimationDirectionMask(0)
-	//m_pLastSprite(nullptr)
+	Character2DBase(pEntity)
 {
-	m_pAnimatedSprite->subscribeEvent(
-		AnimationFinishedEvent::GetEventName(),
-		Event::Subscriber(&Character::OnAnimationFinished, this));
-	m_pAnimatedSprite->subscribeEvent(
-		FrameChangeEvent::GetEventName(),
-		Event::Subscriber(&Character::OnFrameChangedEvent, this));
-
-	SetAnimationDirectionOffset(DOWN, static_cast<int>(AnimationDirectionOffset::DOWN));
+	SetAnimationDirectionOffset(Orientation::DOWN, static_cast<int>(AnimationDirectionOffset::DOWN));
 	//SetAnimationDirectionOffset(DOWN_LEFT, static_cast<int>(AnimationDirectionOffset::DOWN_LEFT));
 	//SetAnimationDirectionOffset(DOWN_RIGHT, static_cast<int>(AnimationDirectionOffset::DOWN_RIGHT));
-	SetAnimationDirectionOffset(RIGHT, static_cast<int>(AnimationDirectionOffset::RIGHT));
-	SetAnimationDirectionOffset(LEFT, static_cast<int>(AnimationDirectionOffset::LEFT));
-	SetAnimationDirectionOffset(UP, static_cast<int>(AnimationDirectionOffset::UP));
+	SetAnimationDirectionOffset(Orientation::RIGHT, static_cast<int>(AnimationDirectionOffset::RIGHT));
+	SetAnimationDirectionOffset(Orientation::LEFT, static_cast<int>(AnimationDirectionOffset::LEFT));
+	SetAnimationDirectionOffset(Orientation::UP, static_cast<int>(AnimationDirectionOffset::UP));
 	//SetAnimationDirectionOffset(UP_LEFT, static_cast<int>(AnimationDirectionOffset::UP_LEFT));
 	//SetAnimationDirectionOffset(UP_RIGHT, static_cast<int>(AnimationDirectionOffset::UP_RIGHT));
 	SetAnimationParameters(4, -1);
@@ -52,76 +35,31 @@ Character::~Character() = default;
 
 void Character::Initialize()
 {
-	CharacterBase::Initialize();
+	Character2DBase::Initialize();
+
+	m_HPMax = 100;
+	m_HPMaxOffSet = 0;
+	m_HPOffSet = 0;
+	m_MPMax = 100;
+	m_MPMaxOffSet = 0;
+	m_MPOffSet = 0;
+	m_Strength = 10;
+	m_StrengthOffSet = 0;
+	m_DefenseOffSet = 0;
 
 	m_HP = m_HPMax;
 	m_MP = m_MPMax;
 
-	m_HPMaxOffSet = 0;
-	m_HPOffSet = 0;
-	m_MPMaxOffSet = 0;
-	m_MPOffSet = 0;
-	m_StrengthOffSet = 0;
-	m_DefenseOffSet = 0;
 	m_ComboNumber = 0;
-	m_IsPlayer = false;
-
-
-	/*foreach (KeyValuePair<int, Animation2D> pair in m_Animations)
-	{
-		//Event
-		pair.Value.InitializeEvent();
-
-		//sprite
-		GameInfo.Instance.Asset2DManager.AddSprite2DToLoadingList(pair.Value);
-	}
-
-	InitializePhysics(physicWorld_);
-
-	Collision2DManager.Instance.RegisterObject(this);
-
-	m_ShapeRendererComponent = GameHelper.GetDrawableGameComponent<ShapeRendererComponent>(GameInfo.Instance.Game);
-
-	HP = HPMax;
-	MP = MPMax;*/
 }
 
 void Character::Update(const GameTime& gameTime_)
 {
-	CharacterBase::Update(gameTime_);
+	Character2DBase::Update(gameTime_);
 }
 
 void Character::Draw()
 {
-}
-
-bool Character::HandleMessage(const Telegram& msg)
-{
-	if (msg.ExtraInfo != nullptr && msg.Msg == (int)MessageType::COLLISION)
-	{
-		if (GetEntity()->Id() == msg.Sender || GetEntity()->Id() == msg.Receiver)
-		{
-			auto* otherEntity = GetEntity()->Id() == msg.Sender ? Game::Instance().GetEntityManager().GetEntityFromID(msg.Receiver) : Game::Instance().GetEntityManager().GetEntityFromID(msg.Sender);
-			auto* script_character = otherEntity->GetComponentMgr()->GetComponent<ScriptCharacter>();
-			auto* otherCharacter = script_character->GetCharacter();
-
-			//si je suis une arme alors c'est le parent que je dois invoquer
-			//creer un character pour l'arme du coup
-		}
-	}
-
-	return CharacterBase::HandleMessage(msg);
-}
-
-void Character::SetAnimationParameters(unsigned int numberOfDir_, unsigned int animationDirMask_)
-{
-	m_NumberOfDirection = numberOfDir_;
-	m_AnimationDirectionMask = animationDirMask_;
-}
-
-void Character::SetAnimationDirectionOffset(orientation dir_, int offset_)
-{
-	m_AnimationDirectionOffset[static_cast<int>(dir_)] = offset_;
 }
 
 bool Character::IsDead() const
@@ -129,76 +67,26 @@ bool Character::IsDead() const
 	return m_HP <= 0;
 }
 
-int Character::GetAnimationDirectionOffset()
+void Character::CollideWith(BaseEntity* otherEntity, CollisionParametersBetween2Entities* collisionParams)
 {
-	return 0;
-}
-
-std::string Character::GetAnimationNameWithOrientation(const char* name, orientation orientation)
-{
-	std::ostringstream name_with_direction;
-	name_with_direction << name;
-
-	switch (orientation)
+	//si je suis une arme alors c'est le parent que je dois invoquer
+	//creer un character pour l'arme du coup
+	//TODO : creer GetScriptObject pour l'arme qui appelera le character parent
+	if (otherEntity->GetParent() != nullptr)
 	{
-	case orientation::DOWN:
-	case orientation::DOWN_LEFT:
-	case orientation::DOWN_RIGHT:
-		name_with_direction << "_down";
-		break;
-
-	case orientation::RIGHT:
-		name_with_direction << "_right";
-		break;
-
-	case orientation::LEFT:
-		name_with_direction << "_left";
-		break;
-
-	case orientation::UP:
-	case orientation::UP_LEFT:
-	case orientation::UP_RIGHT:
-		name_with_direction << "_up";
-		break;
+		otherEntity = otherEntity->GetParent();
 	}
 
-	return name_with_direction.str();
-}
+	auto* scriptComponent = otherEntity->GetComponentMgr()->GetComponent<ScriptComponent>();
+	if (scriptComponent != nullptr)
+	{
+		auto* script_character = dynamic_cast<ScriptCharacter*>(scriptComponent->GetScriptObject());
 
-bool Character::SetCurrentAnimationByName(const char* name)
-{
-	std::string name_with_direction = GetAnimationNameWithOrientation(name, GetOrientation());
-	return SetCurrentAnimation(name_with_direction.c_str());
-}
+		if (script_character != nullptr)
+		{
+			auto* otherCharacter = script_character->GetCharacter();
 
 
-bool Character::OnAnimationFinished(const EventArgs& e_)
-{
-	const auto& event = static_cast<const AnimationFinishedEvent&>(e_);
-
-	//event.ID();
-	Telegram msg;
-	msg.Msg = (int)MessageType::ANIMATION_FINISHED;
-	msg.ExtraInfo = &event;
-	QueueMessage(msg);
-
-	return false;
-}
-
-bool Character::OnFrameChangedEvent(const EventArgs& e_)
-{
-	const auto& event = static_cast<const AnimationFinishedEvent&>(e_);
-
-	//event.ID();
-	Telegram msg;
-	msg.Msg = (int)MessageType::FRAME_CHANGE_EVENT;
-	msg.ExtraInfo = &event;
-	QueueMessage(msg);
-
-	//PhysicalEntity& physicalEntity = _entity->GetPhysicalEntity();
-	//Sprite* pNewSprite = new Sprite(*Game::Instance().GetAssetManager().GetAsset<SpriteData>(event.ID()));
-
-	//physicalEntity.AddSpritePhysics(pNewSprite);
-
-	return false;
+		}
+	}
 }

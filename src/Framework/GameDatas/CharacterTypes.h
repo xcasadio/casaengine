@@ -1,8 +1,6 @@
-#ifndef CHARACTER_TYPES_H_
-#define CHARACTER_TYPES_H_
+#pragma once
 
-
-enum orientation
+enum class Orientation : int
 {
 	UP = 0x1,
 	DOWN = 0x2,
@@ -15,5 +13,15 @@ enum orientation
 	DOWN_RIGHT = RIGHT | DOWN
 };
 
-
-#endif
+// Respect the order of the enum CharacterAnimation
+enum class AnimationDirectionOffset : int
+{
+	RIGHT = 0,
+	LEFT = 1,
+	UP = 2,
+	DOWN = 3,
+	UP_RIGHT = 4,
+	DOWN_RIGHT = 5,
+	UP_LEFT = 6,
+	DOWN_LEFT = 7,
+};

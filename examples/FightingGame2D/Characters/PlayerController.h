@@ -24,7 +24,7 @@ public:
 	bool IsAttackButtonJustPressed();
 	bool IsAttackButtonPressed();
 
-	orientation GetDirectionFromInput(Vector2& direction_);
+	Orientation GetDirectionFromInput(Vector2& direction_);
 
 private:
 	PlayerIndex m_PlayerIndex;

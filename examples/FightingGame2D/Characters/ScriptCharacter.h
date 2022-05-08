@@ -2,6 +2,8 @@
 
 #include "Character.h"
 #include "Script\IScriptObject.h"
+#include "GameTime.h"
+#include "AI\Messaging\Telegram.h"
 
 using namespace CasaEngine;
 

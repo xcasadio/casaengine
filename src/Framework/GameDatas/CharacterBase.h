@@ -1,6 +1,5 @@
 #pragma once
 
-#include <map>
 #include <queue>
 
 #include "CharacterTypes.h"
@@ -10,15 +9,13 @@
 #include "Entities\Components\AnimatedSpriteComponent.h"
 #include "GameDatas\IGameData.h"
 #include "Maths\Vector2.h"
+#include <Physics/CollisionParametersBetween2Entities.h>
 
 namespace CasaEngine
 {
 	class CharacterBase :
 		public IGameData
 	{
-	public:
-		static orientation GetOrientationFromVector2(Vector2 v);
-
 	public:
 		~CharacterBase() override;
 
@@ -27,41 +24,20 @@ namespace CasaEngine
 		virtual void Draw();
 		virtual bool HandleMessage(const Telegram& msg);
 
-		bool SetCurrentAnimation(const char* name) const;
-
 		void SetController(IController*);
 		IController* GetController() const;
 		BaseEntity* GetEntity();
 
-		void Move(Vector2& dir);
-
-		Vector2 Direction() const;
-		void Direction(Vector2 val);
-
-		orientation GetOrientation() const;
-		void SetOrientation(orientation val);
-
-		float Speed() const;
-		void Speed(float val);
-
 	protected:
 		CharacterBase(BaseEntity* pEntity);
+
+		virtual void CollideWith(BaseEntity* otherEntity, CollisionParametersBetween2Entities* collisionParams) = 0;
 		void QueueMessage(Telegram& msg);
-
-		AnimatedSpriteComponent* m_pAnimatedSprite;
-
-		float m_Speed;
-		float m_SpeedOffSet;
-		int m_Group;
 	
 	private:
 		IController* m_pController;
-
-		orientation m_Orientation;
-		Vector2 m_Direction;
-
 		BaseEntity* m_pEntity;
-		std::map<int, Animation2D*> m_Animations;
 		std::queue<Telegram> m_MessageQueue;
+		bool m_IsPlayer;
 	};
 }

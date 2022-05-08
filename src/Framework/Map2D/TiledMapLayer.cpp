@@ -5,6 +5,7 @@
 #include "Maths/Shape/Circle.h"
 #include "Physics/Bullet/BulletObjectsContainer.h"
 #include "Sprite/SpriteRenderer.h"
+#include "Physics/CollisionParameters.h"
 
 namespace CasaEngine
 {
@@ -13,7 +14,7 @@ namespace CasaEngine
 	{
 	}
 
-	void TiledMapLayer::Initialize(BaseEntity* pEntity)
+	void TiledMapLayer::Initialize(BaseEntity* entity)
 	{
 		for (auto* tile : m_Tiles)
 		{
@@ -23,6 +24,8 @@ namespace CasaEngine
 			}
 		}
 
+		auto* physicsWorld = Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld();
+
 		for (int y = 0; y < m_MapSize.y; ++y)
 		{
 			for (int x = 0; x < m_MapSize.x; ++x)
@@ -30,14 +33,11 @@ namespace CasaEngine
 				auto* tile = m_Tiles[x + y * m_MapSize.x];
 				if (tile != nullptr && tile->IsWall())
 				{
-					const auto *shape = new Rectangle(0, 0, m_TileSize.x, m_TileSize.y);
+					auto *shape = new Rectangle(0, 0, m_TileSize.x, m_TileSize.y);
 					//auto *shape = new Circle(m_TileSize.x);
 					auto position = Vector3(x * m_TileSize.x + m_TileSize.x / 2.0f, y * m_TileSize.y + m_TileSize.y / 2.0f, 0.0f);
-					auto *collisionShape = Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->CreateCollisionShape(shape, position);
-					auto * bullet_collision_object_container = dynamic_cast<BulletCollisionObjectContainer*>(collisionShape);
-					bullet_collision_object_container->GetCollisionObject()->setUserPointer(pEntity);
-					bullet_collision_object_container->GetCollisionObject()->setCollisionFlags(btCollisionObject::CF_STATIC_OBJECT);
-					Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->AddCollisionObject(collisionShape);
+					auto *collisionShape = physicsWorld->CreateCollisionShape(entity, shape, position, CollisionHitType::Unknown, CollisionFlags::Static);
+					physicsWorld->AddCollisionObject(collisionShape);
 				}
 			}
 		}

@@ -260,7 +260,7 @@ void CreateSprite(const std::string tileSetName, const std::vector<_sprite>& spr
 		for (auto& coll : sprite.att)
 		{
 			Collision collision;
-			collision.SetType(CollisionType::Attack);
+			collision.SetType(CollisionHitType::Attack);
 			collision.SetShape(new CasaEngine::RectangleI(coll.x /* - sprite.px*/, coll.y /* - sprite.py*/, coll.w, coll.h));
 			pSprite->GetCollisions().push_back(collision);
 		}
@@ -268,7 +268,7 @@ void CreateSprite(const std::string tileSetName, const std::vector<_sprite>& spr
 		for (auto& coll : sprite.def)
 		{
 			Collision collision;
-			collision.SetType(CollisionType::Defense);
+			collision.SetType(CollisionHitType::Defense);
 			collision.SetShape(new CasaEngine::RectangleI(coll.x /* - sprite.px */ , coll.y /* - sprite.py */ , coll.w, coll.h));
 			pSprite->GetCollisions().push_back(collision);
 		}

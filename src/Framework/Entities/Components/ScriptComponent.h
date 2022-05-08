@@ -18,6 +18,7 @@ namespace CasaEngine
 		bool HandleMessage(const Telegram& msg) override;
 
 		void SetScriptObject(IScriptObject*);
+		IScriptObject* GetScriptObject();
 
 	private:
 		IScriptObject* m_pScriptObject;

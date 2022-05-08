@@ -22,13 +22,14 @@ EnemyStateIdle::~EnemyStateIdle()
  */
 void EnemyStateIdle::Enter(IController* pController_)
 {
-	pController_->GetCharacter()->Move(Vector2::Zero());
-	pController_->GetCharacter()->SetOrientation(orientation::RIGHT);
+	auto* character = dynamic_cast<Character*>(pController_->GetCharacter());
+	character->Move(Vector2::Zero());
+	character->SetOrientation(Orientation::RIGHT);
 	//set animation stand
 	/*orientation dir = (orientation)(1 << (rand() % 4));
 	pController_->GetCharacter()->SetOrientation(dir);*/
 	//pController_->GetCharacter()->SetCurrentAnimation(static_cast<int>(Character::AnimationIndices::IDLE));
-	dynamic_cast<Character *>(pController_->GetCharacter())->SetCurrentAnimationByName("octopus_stand");
+	character->SetCurrentAnimationByNameWithOrientation("octopus_stand");
 }
 
 /**
@@ -44,10 +45,11 @@ void EnemyStateIdle::Execute(IController* pController_, const GameTime& elpasedT
 	}
 	else if (rand() % 100 == 7)
 	{
-		orientation dir = (orientation)(1 << (rand() % 4));
-		pController_->GetCharacter()->SetOrientation(dir);
+		Orientation dir = (Orientation)(1 << (rand() % 4));
+		auto* character = dynamic_cast<Character*>(pController_->GetCharacter());
+		character->SetOrientation(dir);
 		//pController_->GetCharacter()->SetCurrentAnimation(static_cast<int>(Character::AnimationIndices::IDLE));
-		dynamic_cast<Character*>(pController_->GetCharacter())->SetCurrentAnimationByName("octopus_stand");
+		character->SetCurrentAnimationByNameWithOrientation("octopus_stand");
 	}
 	else if (rand() % 100 == 8)
 	{
@@ -91,7 +93,8 @@ void EnemyStateWalking::Enter(IController* pController_)
 {
 	//set animation stand
 	//pController_->GetCharacter()->SetCurrentAnimation(static_cast<int>(Character::AnimationIndices::RUN)); // direction
-	dynamic_cast<Character*>(pController_->GetCharacter())->SetCurrentAnimationByName("octopus_walk");
+	auto* character = dynamic_cast<Character*>(pController_->GetCharacter());
+	character->SetCurrentAnimationByNameWithOrientation("octopus_walk");
 }
 
 /**
@@ -100,18 +103,19 @@ void EnemyStateWalking::Enter(IController* pController_)
 void EnemyStateWalking::Execute(IController* pController_, const GameTime& elpasedTime_)
 {
 	//arrive to the target
-	auto dir = pController_->GetCharacter()->GetOrientation();
+	auto* character = dynamic_cast<Character*>(pController_->GetCharacter());
+	auto dir = character->GetOrientation();
 	Vector2 newDir;
 
 	switch (dir)
 	{
-	case UP: newDir = -Vector2::UnitY();
+	case Orientation::UP: newDir = -Vector2::UnitY();
 		break;
-	case DOWN: newDir = Vector2::UnitY();
+	case Orientation::DOWN: newDir = Vector2::UnitY();
 		break;
-	case LEFT: newDir = -Vector2::UnitX();
+	case Orientation::LEFT: newDir = -Vector2::UnitX();
 		break;
-	case RIGHT: newDir = Vector2::UnitX();
+	case Orientation::RIGHT: newDir = Vector2::UnitX();
 		break;
 		/*case UP_LEFT: newDir = -Vector2::UnitY() - Vector2::UnitX();
 			break;
@@ -124,7 +128,7 @@ void EnemyStateWalking::Execute(IController* pController_, const GameTime& elpas
 	default:
 		break;
 	}
-	pController_->GetCharacter()->Move(newDir);
+	character->Move(newDir);
 
 	if (rand() % 100 == 7)
 	{

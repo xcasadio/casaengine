@@ -1,10 +1,12 @@
 #include "Base.h"
 
-#include "Sprite/Collision.h"
+#include "Physics/Collision.h"
 
 namespace CasaEngine
 {
-	Collision::Collision()
+	Collision::Collision() :
+		_type(CollisionHitType::Unknown),
+		_shape(nullptr)
 	{
 	}
 
@@ -26,12 +28,12 @@ namespace CasaEngine
 		return new Collision(*this);
 	}
 
-	CollisionType Collision::GetType() const
+	CollisionHitType Collision::GetType() const
 	{
 		return _type;
 	}
 
-	void Collision::SetType(CollisionType type)
+	void Collision::SetType(CollisionHitType type)
 	{
 		_type = type;
 	}

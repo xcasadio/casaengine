@@ -34,9 +34,9 @@ void PlayerStateIdle::Execute(IController* pController_, const GameTime& elpased
 		return;
 	}
 
-	const orientation dir = pPlayerController->GetDirectionFromInput(joyDir);
+	const Orientation dir = pPlayerController->GetDirectionFromInput(joyDir);
 
-	if (dir != 0)
+	if ((int)dir != 0)
 	{
 		pPlayerController->GetPlayer()->SetOrientation(dir);
 	}

@@ -39,9 +39,6 @@
     <ClInclude Include="..\..\examples\FightingGame2D\Characters\PlayerStates.h">
       <Filter>Characters</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\examples\FightingGame2D\Characters\MessageType.h">
-      <Filter>Characters</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\examples\FightingGame2D\Characters\Player.h">
       <Filter>Characters</Filter>
     </ClInclude>

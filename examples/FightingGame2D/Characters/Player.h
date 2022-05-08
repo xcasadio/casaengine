@@ -1,16 +1,16 @@
 #pragma once
-#include "Character.h"
-#include "Entities\Components\AnimatedSpriteComponent.h"
 
+#include "Character.h"
+#include "Entities/BaseEntity.h"
+
+using namespace CasaEngine;
 
 class Player :
 	public Character
 {
 public:
-	Player(CasaEngine::BaseEntity* pEntity);
+	Player(BaseEntity* pEntity);
 	~Player() override;
 
 	void Initialize() override;
-
-private:
 };

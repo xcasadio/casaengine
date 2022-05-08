@@ -41,6 +41,5 @@ namespace CasaEngine
 	private:
 		AxisConstraints _axisConstraint;
 		float _mass;
-		ICollisionObjectContainer* _collisionObjectContainer;
 	};
 }

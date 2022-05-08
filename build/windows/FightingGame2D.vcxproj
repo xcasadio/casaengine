@@ -38,7 +38,6 @@
   <ItemGroup>
     <ClInclude Include="..\..\examples\FightingGame2D\Characters\Character.h" />
     <ClInclude Include="..\..\examples\FightingGame2D\Characters\Player.h" />
-    <ClInclude Include="..\..\examples\FightingGame2D\Characters\MessageType.h" />
     <ClInclude Include="..\..\examples\FightingGame2D\Characters\PlayerController.h" />
     <ClInclude Include="..\..\examples\FightingGame2D\Characters\PlayerStates.h" />
     <ClInclude Include="..\..\examples\FightingGame2D\Characters\ScriptCharacter.h" />

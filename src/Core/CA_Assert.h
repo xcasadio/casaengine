@@ -1,5 +1,4 @@
-#ifndef CA_ASSERT_H_
-#define CA_ASSERT_H_
+#pragma once
 
 #include "CompilationConfig.h"
 
@@ -22,6 +21,4 @@
 
 #else
 #   define CA_ASSERT( x, format, ...)
-#endif
-
 #endif

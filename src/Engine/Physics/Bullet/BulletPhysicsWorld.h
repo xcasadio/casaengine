@@ -13,6 +13,7 @@
 #include "btDynamicsWorldExt.h"
 
 #include "Physics\PhysicsObjectContainer.h"
+#include "..\Collision.h"
 
 namespace CasaEngine
 {
@@ -42,7 +43,7 @@ namespace CasaEngine
 		void AddCollisionObject(ICollisionObjectContainer* pObj_) override;
 		void RemoveCollisionObject(ICollisionObjectContainer* pObj_) override;
 
-		ICollisionObjectContainer* CreateCollisionShape(const IShape* shape_, const Vector3& origin_) override;
+		ICollisionObjectContainer* CreateCollisionShape(BaseEntity * entity, IShape * shape_, const Vector3& origin_, CollisionHitType hitType = CollisionHitType::Unknown, CollisionFlags flags = CollisionFlags::Dynamic) override;
 
 	private:
 		void AddCollisionObject(btCollisionObject* pColObj_);

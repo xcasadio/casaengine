@@ -9,8 +9,16 @@
 
 namespace CasaEngine
 {
-	enum class CollisionType 
+	enum class CollisionFlags
 	{
+		Static = 0,
+		Dynamic,
+		NoResponse
+	};
+
+	enum class CollisionHitType
+	{
+		Unknown = 0,
 		Attack = 1,
 		Defense
 	};
@@ -23,15 +31,15 @@ namespace CasaEngine
 		Collision& operator=(const Collision& rsh);
 		~Collision() = default;
 
-		CollisionType GetType() const;
-		void SetType(CollisionType type);
+		CollisionHitType GetType() const;
+		void SetType(CollisionHitType type);
 		IShape* GetShape() const;
 		void SetShape(IShape *shape);
 
 		Collision* Copy() const;
 
 	private:
-		CollisionType _type;
+		CollisionHitType _type;
 		IShape *_shape;
 
 		friend class cereal::access;

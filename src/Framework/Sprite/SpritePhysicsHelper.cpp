@@ -3,7 +3,7 @@
 
 #include <BulletCollision/CollisionShapes/btBoxShape.h>
 
-#include "CollisionParameters.h"
+#include "Physics/CollisionParameters.h"
 #include "Game/Game.h"
 #include "Physics/Bullet/BulletObjectsContainer.h"
 #include "Physics/Bullet/BulletPhysicsWorld.h"
@@ -17,7 +17,7 @@ namespace CasaEngine
 		for (auto& collision : Game::Instance().GetAssetManager().GetAsset<SpriteData>(spriteId)->GetCollisions())
 		{
 			//TODO : remove
-			if (collision.GetType() == CollisionType::Defense)
+			if (collision.GetType() == CollisionHitType::Defense)
 			{
 				continue;
 			}
@@ -32,12 +32,10 @@ namespace CasaEngine
 				}
 			}
 
-			auto* pObj = Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->CreateCollisionShape(shape, Vector3::Zero());
+			auto* pObj = Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->CreateCollisionShape(entity, shape, Vector3::Zero(), collision.GetType(), CollisionFlags::NoResponse);
 			auto* bt_collision_object = dynamic_cast<BulletCollisionObjectContainer*>(pObj)->GetCollisionObject();
 			bt_collision_object->setCollisionFlags(btCollisionObject::CF_NO_CONTACT_RESPONSE);
-			auto* collision_parameters = new CollisionParameters();
-			collision_parameters->entity = entity;
-			collision_parameters->collision = &collision;
+			auto* collision_parameters = new CollisionParameters(entity, &collision);
 			bt_collision_object->setUserPointer(collision_parameters);
 
 			collisions.push_back(pObj);

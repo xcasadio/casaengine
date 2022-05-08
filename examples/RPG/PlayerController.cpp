@@ -29,7 +29,7 @@ void PlayerController::Initialize()
 	// 	AddState((int)PlayerControllerState::TO_FURY_MODE, new PlayerToFuryState());
 	// 	AddState((int)PlayerControllerState::TO_NORMAL_MODE, new PlayerToNormalState());
 
-	GetPlayer()->SetOrientation(RIGHT);
+	GetPlayer()->SetOrientation(Orientation::RIGHT);
 	//Character.Animation2DPlayer.SetCurrentAnimationByID((int)AnimationIndex.IdleRight);
 	FSM()->SetGlobalState(new PlayerStateGlobal());
 	FSM()->ChangeState(GetState(IDLE));
@@ -67,7 +67,7 @@ bool PlayerController::IsAttackButtonPressed()
 	return Game::Instance().GetInput().IsKeyDown(sf::Keyboard::Space);
 }
 
-orientation PlayerController::GetDirectionFromInput(Vector2& direction_)
+Orientation PlayerController::GetDirectionFromInput(Vector2& direction_)
 {
 	direction_ = Vector2::Zero();
 

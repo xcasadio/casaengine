@@ -59,4 +59,9 @@ namespace CasaEngine
 		m_pScriptObject = pScriptObject;
 	}
 
+	CasaEngine::IScriptObject* ScriptComponent::GetScriptObject()
+	{
+		return m_pScriptObject;
+	}
+
 }

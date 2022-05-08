@@ -1,5 +1,4 @@
-#ifndef CHARACTER_ENUM_H_
-#define CHARACTER_ENUM_H_
+#pragma once
 
 /**
  * Define the type of controller for each type of character
@@ -221,17 +220,3 @@ enum class AnimationIndex
 	FURY_DEAD_DOWN_LEFT,
 };
 
-// Respect the order of the enum CharacterAnimation
-enum class AnimationDirectionOffset
-{
-	RIGHT = 0,
-	LEFT = 1,
-	UP = 2,
-	DOWN = 3,
-	UP_RIGHT = 4,
-	DOWN_RIGHT = 5,
-	UP_LEFT = 6,
-	DOWN_LEFT = 7,
-};
-
-#endif

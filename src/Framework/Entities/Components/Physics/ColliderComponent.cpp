@@ -14,20 +14,16 @@ namespace CasaEngine
 		: Component(entity_, type_),
 		_shape(nullptr),
 		_axisConstraint(AxisConstraints::NONE),
-		_mass(0),
-		_collisionObjectContainer(nullptr)
+		_mass(0)
 	{
 	}
 
 	ColliderComponent::~ColliderComponent()
 	{
-		delete _collisionObjectContainer;
 	}
 
 	void ColliderComponent::Initialize()
 	{
-		CA_ASSERT(_collisionObjectContainer == nullptr, "ColliderComponent::Initialize()");
-		_collisionObjectContainer = Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->CreateCollisionShape(GetShape(), Vector3::Zero());
 	}
 
 	void ColliderComponent::Update(const GameTime& /*gameTime_*/)
@@ -69,13 +65,12 @@ namespace CasaEngine
 
 	void ColliderComponent::CreateAndSetRigidBody(float mass)
 	{
-		auto* transform = GetEntity()->GetComponentMgr()->GetComponent<Transform3DComponent>();
-		CA_ASSERT(transform != nullptr, "ColliderComponent::Initialize() can't find the Transform3DComponent.");
+		auto position = GetEntity()->GetComponentMgr()->GetComponent<Transform3DComponent>()->GetPosition();
 		auto* rigidBody = new RigidBodyParameters();
 		rigidBody->mass = mass;
 		rigidBody->collisionShape = _shape;
 		rigidBody->axisConstraint = _axisConstraint;
-		IRigidBodyContainer* pContainer = Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->AddRigidBody(GetEntity(), rigidBody, transform->GetPosition());
+		IRigidBodyContainer* pContainer = Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->AddRigidBody(GetEntity(), rigidBody, position);
 		GetEntity()->GetPhysicalEntity().SetRigidBody(pContainer);
 	}
 }

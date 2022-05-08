@@ -43,7 +43,7 @@ void PlayerStateIdle::Enter(IController * pController_)
 	auto* pPlayerController = dynamic_cast<PlayerController*>(pController_);
 	Vector2 joyDir = Vector2::Zero();
 	pPlayerController->GetPlayer()->Move(joyDir);
-	pPlayerController->GetPlayer()->SetCurrentAnimationByName("swordman_stand");
+	pPlayerController->GetPlayer()->SetCurrentAnimationByNameWithOrientation("swordman_stand");
 }
 
 void PlayerStateIdle::Execute(IController * pController_, const GameTime & elpasedTime_)
@@ -51,9 +51,9 @@ void PlayerStateIdle::Execute(IController * pController_, const GameTime & elpas
 	auto* pPlayerController = dynamic_cast<PlayerController*>(pController_);
 
 	Vector2 joyDir;
-	const orientation dir = pPlayerController->GetDirectionFromInput(joyDir);
+	const Orientation dir = pPlayerController->GetDirectionFromInput(joyDir);
 
-	if (dir != 0)
+	if ((int)dir != 0)
 	{
 		pPlayerController->GetPlayer()->SetOrientation(dir);
 	}
@@ -89,7 +89,7 @@ PlayerStateWalking::~PlayerStateWalking() = default;
 void PlayerStateWalking::Enter(IController * pController_)
 {
 	auto* pPlayerController = dynamic_cast<PlayerController*>(pController_);
-	pPlayerController->GetPlayer()->SetCurrentAnimationByName("swordman_walk");
+	pPlayerController->GetPlayer()->SetCurrentAnimationByNameWithOrientation("swordman_walk");
 }
 
 void PlayerStateWalking::Execute(IController * pController_, const GameTime & elpasedTime_)
@@ -97,12 +97,12 @@ void PlayerStateWalking::Execute(IController * pController_, const GameTime & el
 	auto* pPlayerController = dynamic_cast<PlayerController*>(pController_);
 
 	Vector2 joyDir;
-	const orientation dir = pPlayerController->GetDirectionFromInput(joyDir);
+	const Orientation dir = pPlayerController->GetDirectionFromInput(joyDir);
 
-	if (dir != 0)
+	if ((int)dir != 0)
 	{
 		pPlayerController->GetPlayer()->SetOrientation(dir);
-		pPlayerController->GetPlayer()->SetCurrentAnimationByName("swordman_walk");
+		pPlayerController->GetPlayer()->SetCurrentAnimationByNameWithOrientation("swordman_walk");
 	}
 
 	if (pPlayerController->IsAttackButtonPressed() == true)
@@ -161,7 +161,7 @@ void PlayerStateAttack::Enter(IController * pController_)
 
 	Vector2 joyDir = Vector2::Zero();
 	pPlayerController->GetPlayer()->Move(joyDir);
-	pPlayerController->GetPlayer()->SetCurrentAnimationByName("swordman_attack");
+	pPlayerController->GetPlayer()->SetCurrentAnimationByNameWithOrientation("swordman_attack");
 }
 
 void PlayerStateAttack::Execute(IController * pController_, const GameTime & elpasedTime_)

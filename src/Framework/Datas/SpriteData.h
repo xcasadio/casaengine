@@ -4,7 +4,7 @@
 #include "Maths/Rectangle.h"
 #include "Maths/Vector2.h"
 #include "Assets/Assetable.h"
-#include <Sprite/Collision.h>
+#include <Physics/Collision.h>
 #include <cereal/access.hpp>
 #include <cereal/types/vector.hpp>
 
