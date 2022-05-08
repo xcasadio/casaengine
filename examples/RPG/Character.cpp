@@ -84,7 +84,7 @@ void Character::CollideWith(CollisionParameters* collisionParameters, BaseEntity
 				auto* otherCharacter = script_character->GetCharacter();
 
 				//state hit
-				//Hit(otherCharacter);
+				//HitBy(otherCharacter);
 			}
 		}
 	}
@@ -92,9 +92,22 @@ void Character::CollideWith(CollisionParameters* collisionParameters, BaseEntity
 	else if (collisionParameters->GetCollision()->GetType() == CollisionHitType::Attack
 		&& otherCollisionParameters->GetCollision()->GetType() == CollisionHitType::Defense)
 	{
-		auto* tileMap = otherEntity->GetComponentMgr()->GetComponent<TiledMapComponent>();
+		auto* scriptComponent = otherEntity->GetComponentMgr()->GetComponent<ScriptComponent>();
+		if (scriptComponent != nullptr)
+		{
+			auto* scriptObject = scriptComponent->GetScriptObject();
+			if (scriptObject != nullptr)
+			{
+				//Hit(scriptObject); // par exemple tile
+			}
+		}
+		/*auto* tileMap = otherEntity->GetComponentMgr()->GetComponent<TiledMapComponent>();
 		//tileMap->
+		auto* tile = otherEntity->GetComponentMgr()->GetComponent<TiledComponent>();
+		if (tile->IsDesctructible())
+		{
 
+		}*/
 	}
 
 	//si je suis une arme alors c'est le parent que je dois invoquer
