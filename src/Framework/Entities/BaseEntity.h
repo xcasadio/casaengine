@@ -6,6 +6,7 @@
 #include "ComponentManager.h"
 #include "EventHandler/EventSet.h"
 #include "Physics/PhysicalEntity.h"
+#include "Components/Coordinates.h"
 
 #include <iosfwd>
 
@@ -28,15 +29,14 @@ namespace CasaEngine
 		void Update(const GameTime& gameTime_);
 		void Draw();
 
-		//all entities can communicate using messages. They are sent
-		//using the MessageDispatcher singleton class
-		bool HandleMessage(const Telegram& msg);
+		bool HandleMessage(const Telegram& msg); //all entities can communicate using messages. They are sent using the MessageDispatcher singleton class
 
 		unsigned int Id() const;
-
 		const char *GetName() const;
 		void SetName(std::string &val);
 		void SetName(const char *val);
+
+		Coordinates& GetCoordinates();
 
 		bool IsEnabled() const;
 		void IsEnabled(bool val);
@@ -47,18 +47,13 @@ namespace CasaEngine
 		virtual void Write(std::ostream&  os);
 
 	private:
-
-		//this is the next valid Id. Each time a BaseEntity is instantiated
-		//this value is updated
 		static unsigned int _nextValidId;
 
-		//every entity must have a unique identifying number
 		unsigned int _id;
-		// if the object depend on an other object (transform)
-		BaseEntity* _parent; 
-		// manager of all components of this BaseEntity
+		BaseEntity* _parent; // if the object depend on an other object (transform)
 		ComponentManager* _componentManager;
-		PhysicalEntity _physicalEntity;
+		Coordinates _coordinates;
+		PhysicalEntity _physicalEntity; // TODO : remove this
 
 		std::string _name;
 		bool _isEnabled;
@@ -69,9 +64,12 @@ namespace CasaEngine
 		bool IsSelected() const;
 		void IsSelected(bool val);
 
+		bool IsPersistent() const;
+		void IsPersistent(bool val);
+
 	public:
-		bool m_IsSelected;
+		bool _isSelected;
+		bool _isPersistent;
 #endif
 	};
-
 }

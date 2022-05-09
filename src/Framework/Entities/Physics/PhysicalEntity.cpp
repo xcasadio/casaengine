@@ -4,7 +4,6 @@
 #include "CA_Assert.h"
 #include "Log\LogManager.h"
 #include "Game\GameInfo.h"
-#include "Entities\Components\Transform3DComponent.h"
 #include "Entities\BaseEntity.h"
 #include "Game/Game.h"
 
@@ -41,25 +40,20 @@ namespace CasaEngine
 
 	void PhysicalEntity::Update(const GameTime& gameTime_)
 	{
-		auto* pTrans = m_pEntity->GetComponentMgr()->GetComponent<Transform3DComponent>();
-
-		if (pTrans != nullptr)
+		if (m_pRigidBody != nullptr)
 		{
-			if (m_pRigidBody != nullptr)
-			{
 #if defined(CA_DEBUG)
-				//m_pRigidBody->logInfo();
+			//m_pRigidBody->logInfo();
 #endif // #if defined(CA_DEBUG)
-				m_pRigidBody->setLinearVelocity(m_vVelocity);
+			m_pRigidBody->setLinearVelocity(m_vVelocity);
 
-				//ignore parent
-				pTrans->SetLocalPosition(m_pRigidBody->getTranslation());
-				pTrans->SetLocalRotation(m_pRigidBody->getRotation());
-			}
-			else if (!m_vVelocity.IsZero())
-			{
-				pTrans->SetLocalPosition(pTrans->GetLocalPosition() + m_vVelocity * gameTime_.FrameTime());
-			}
+			//ignore parent
+			m_pEntity->GetCoordinates().SetLocalPosition(m_pRigidBody->getTranslation());
+			m_pEntity->GetCoordinates().SetLocalRotation(m_pRigidBody->getRotation());
+		}
+		else if (!m_vVelocity.IsZero())
+		{
+			m_pEntity->GetCoordinates().SetLocalPosition(m_pEntity->GetCoordinates().GetLocalPosition() + m_vVelocity * gameTime_.FrameTime());
 		}
 	}
 

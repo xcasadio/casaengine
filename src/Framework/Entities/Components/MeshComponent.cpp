@@ -5,17 +5,13 @@
 #include "Assets/AssetManager.h"
 #include "Maths/Matrix4.h"
 #include "MeshComponent.h"
-
 #include "StringUtils.h"
-
-#include "TransformComponent.h"
 #include "Game/MeshRendererGameComponent.h"
 
 namespace CasaEngine
 {
 	MeshComponent::MeshComponent(BaseEntity* pEntity_)
 		: Component(pEntity_, MODEL_3D),
-		m_pTransform(nullptr),
 		m_pModel(nullptr),
 		m_pProgram(nullptr),
 		m_pModelRenderer(nullptr)
@@ -25,9 +21,6 @@ namespace CasaEngine
 
 	void MeshComponent::Initialize()
 	{
-		m_pTransform = GetEntity()->GetComponentMgr()->GetComponent<TransformComponent>();
-		CA_ASSERT(m_pTransform != nullptr, "MeshComponent::Initialize() can't find the TransformComponent. Please add it before add a MeshComponent");
-
 		m_pModelRenderer = Game::Instance().GetGameComponent<MeshRendererGameComponent>();
 		CA_ASSERT(m_pModelRenderer != nullptr, "MeshComponent::Initialize() can't find the MeshRendererGameComponent.");
 	}
@@ -61,7 +54,7 @@ namespace CasaEngine
 		CA_ASSERT(m_pModel != nullptr, "MeshComponent::Draw() : m_pModel is nullptr");
 		CA_ASSERT(m_pModelRenderer != nullptr, "MeshComponent::Draw() : m_pModelRenderer is nullptr");
 
-		Matrix4 mat = m_pTransform->GetWorldMatrix();
+		Matrix4 mat = GetEntity()->GetCoordinates().GetWorldMatrix();
 		m_pModelRenderer->AddModel(m_pModel, mat, m_pProgram);
 	}
 

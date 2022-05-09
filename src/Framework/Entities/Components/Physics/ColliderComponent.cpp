@@ -1,11 +1,7 @@
 #include "Base.h"
 #include "Entities/BaseEntity.h"
-
 #include "ColliderComponent.h"
-
-#include "Entities/Components/Transform3DComponent.h"
 #include "Game/Game.h"
-
 #include "Game/GameInfo.h"
 
 namespace CasaEngine
@@ -65,7 +61,7 @@ namespace CasaEngine
 
 	void ColliderComponent::CreateAndSetRigidBody(float mass)
 	{
-		auto position = GetEntity()->GetComponentMgr()->GetComponent<Transform3DComponent>()->GetPosition();
+		auto position = GetEntity()->GetCoordinates().GetPosition();
 		auto* rigidBody = new RigidBodyParameters();
 		rigidBody->mass = mass;
 		rigidBody->collisionShape = _shape;

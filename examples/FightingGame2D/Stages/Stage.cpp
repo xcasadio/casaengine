@@ -2,7 +2,6 @@
 #include "StageInfo.h"
 #include "StageLayer.h"
 #include "Entities/ComponentTypeEnum.h"
-#include "Entities/Components/Transform3DComponent.h"
 #include "Game/Game.h"
 #include "Sprite/SpriteRenderer.h"
 
@@ -35,8 +34,6 @@ void Stage::Update(const GameTime& gameTime_)
 
 void Stage::Draw()
 {
-	auto* transform = GetEntity()->GetComponentMgr()->GetComponent<Transform3DComponent>();
-	
 	Matrix4 matrix;
 	matrix.Identity();
 	float offsetX = 0;

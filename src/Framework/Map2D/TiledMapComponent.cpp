@@ -2,22 +2,17 @@
 
 #include "Assets/AssetManager.h"
 #include "Entities/ComponentTypeEnum.h"
-#include "Entities/Components/Transform3DComponent.h"
 #include "Game/Game.h"
 
 namespace CasaEngine
 {
 	TiledMapComponent::TiledMapComponent(BaseEntity* pEntity_)
 		: Component(pEntity_, ComponentType::TILED_MAP)
-		, m_pTransform3DComponent(nullptr)
 	{
 	}
 
 	void TiledMapComponent::Initialize()
 	{
-		m_pTransform3DComponent = GetEntity()->GetComponentMgr()->GetComponent<Transform3DComponent>();
-		CA_ASSERT(m_pTransform3DComponent != nullptr, "entity must contain a Transform3DComponent")
-		
 		for (auto* pLayer : m_Layers)
 		{
 			pLayer->Initialize(GetEntity());
@@ -34,7 +29,7 @@ namespace CasaEngine
 
 	void TiledMapComponent::Draw()
 	{
-		const auto translation = m_pTransform3DComponent->GetWorldMatrix().Translation();
+		const auto translation = GetEntity()->GetCoordinates().GetWorldMatrix().Translation();
 
 		for (auto* pLayer : m_Layers)
 		{

@@ -24,7 +24,6 @@
 
 #include "Maths\2D\InvertedAABBox2D.h"
 #include "Maths\Vector2.h"
-#include "Entities\Components\Transform2DComponent.h"
 
 namespace CasaEngine
 {
@@ -176,16 +175,13 @@ namespace CasaEngine
 	//  neighbor list
 	//------------------------------------------------------------------------
 	template<class entity>
-	void CellSpacePartition<entity>::CalculateNeighbors(Vector2 TargetPos,
-														float   QueryRadius)
+	void CellSpacePartition<entity>::CalculateNeighbors(Vector2 TargetPos, float QueryRadius)
 	{
 		//create an iterator and set it to the beginning of the neighbor vector
 		typename std::vector<entity>::iterator curNbor = m_Neighbors.begin();
   
-		//create the query box that is the bounding box of the target's query
-		//area
-		InvertedAABBox2D QueryBox(TargetPos - Vector2(QueryRadius, QueryRadius),
-								TargetPos + Vector2(QueryRadius, QueryRadius));
+		//create the query box that is the bounding box of the target's query area
+		InvertedAABBox2D QueryBox(TargetPos - Vector2(QueryRadius, QueryRadius), TargetPos + Vector2(QueryRadius, QueryRadius));
 
 		//iterate through each cell and test to see if its bounding box overlaps
 		//with the query box. If it does and it also contains entities then
@@ -195,17 +191,15 @@ namespace CasaEngine
 		{
 			//test to see if this cell contains members and if it overlaps the
 			//query box
-			if (curCell->BBox.isOverlappedWith(QueryBox) &&
-				!curCell->Members.empty())
+			if (curCell->BBox.isOverlappedWith(QueryBox) && !curCell->Members.empty())
 			{
 				//add any entities found within query radius to the neighbor list
 				typename  std::list<entity>::iterator it = curCell->Members.begin();
 				for (it; it!=curCell->Members.end(); ++it)
-				{     
-					Transform2DComponent *pTrans = (*it)->GetComponentMgr()->template GetComponent<Transform2DComponent>();
+				{
+					auto position = (*it)->GetCoordinates().GetPosition();
 
-					if (pTrans->GetPosition().DistanceSquared(TargetPos) <
-						QueryRadius*QueryRadius)
+					if (Vector2(position.x, position.y).DistanceSquared(TargetPos) < QueryRadius * QueryRadius)
 					{
 						*curNbor++ = *it;
 					}

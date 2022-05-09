@@ -3,7 +3,6 @@
 #include "Assets/AssetManager.h"
 #include "Game/Game.h"
 #include "Sprite/Sprite.h"
-#include "Sprite/SpriteRenderer.h"
 
 namespace CasaEngine
 {
@@ -32,6 +31,7 @@ namespace CasaEngine
 	{
 		if (m_pAnimation != nullptr)
 		{
+			//TODO : load all sprite in initialization function
 			auto* pSprite = new Sprite(*Game::Instance().GetAssetManager().GetAsset<SpriteData>(m_pAnimation->CurrentFrame()));
 			ITile::Draw(pSprite, x, y, z, uvOffset);
 		}

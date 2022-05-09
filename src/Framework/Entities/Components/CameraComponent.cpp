@@ -4,10 +4,10 @@
 #include "CameraComponent.h"
 
 #include "Game/Game.h"
-#include "Transform2DComponent.h"
 
 #include "EventHandler/GlobalEventSet.h"
 #include "EventHandler/Event.h"
+#include "../Events/BaseEntityEvents.h"
 
 namespace CasaEngine
 {

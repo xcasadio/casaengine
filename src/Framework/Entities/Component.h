@@ -33,5 +33,4 @@ namespace CasaEngine
 		BaseEntity* m_pEntity;
 		int m_Type;
 	};
-
 }

@@ -4,7 +4,6 @@
 
 #include "Entities\Components\Cameras\ArcBallCameraComponent.h"
 #include "Entities\Components\MeshComponent.h"
-#include "Entities\Components\Transform3DComponent.h"
 #include "Game\GameInfo.h"
 #include "Game\MeshRendererGameComponent.h"
 #include "Graphics\Primitives\BoxPrimitive.h"
@@ -60,7 +59,6 @@ void CubeGame::LoadContent()
 
 	const float delta = 3.0f;
 	BaseEntity* pEntity;
-	Transform3DComponent* pTransform;
 	MeshComponent* pModelCpt;
 	IPrimitive3D* pPrimitive;
 	Mesh* pModel;
@@ -68,11 +66,9 @@ void CubeGame::LoadContent()
 	//Cylinder
 	pEntity = new BaseEntity();
 	pEntity->SetName("cylinder");
-	pTransform = new Transform3DComponent(pEntity);
-	pTransform->SetLocalPosition(Vector3(-delta, 0.5f, 0.0f));
-	pTransform->SetLocalRotation(0.0f);
-	pTransform->SetLocalScale(Vector3::One());
-	pEntity->GetComponentMgr()->AddComponent(pTransform);
+	pEntity->GetCoordinates().SetLocalPosition(Vector3(-delta, 0.5f, 0.0f));
+	pEntity->GetCoordinates().SetLocalRotation(0.0f);
+	pEntity->GetCoordinates().SetLocalScale(Vector3::One());
 	pModelCpt = new MeshComponent(pEntity);
 	pPrimitive = new CylinderPrimitive();
 	pModel = pPrimitive->CreateModel();
@@ -85,11 +81,9 @@ void CubeGame::LoadContent()
 	//Box
 	pEntity = new BaseEntity();
 	pEntity->SetName("box");
-	pTransform = new Transform3DComponent(pEntity);
-	pTransform->SetLocalPosition(Vector3(0.0f, 0.5f, delta));
-	pTransform->SetLocalRotation(0.0f);
-	pTransform->SetLocalScale(Vector3::One());
-	pEntity->GetComponentMgr()->AddComponent(pTransform);
+	pEntity->GetCoordinates().SetLocalPosition(Vector3(0.0f, 0.5f, delta));
+	pEntity->GetCoordinates().SetLocalRotation(0.0f);
+	pEntity->GetCoordinates().SetLocalScale(Vector3::One());
 	pModelCpt = new MeshComponent(pEntity);
 	pPrimitive = new BoxPrimitive();
 	pModel = pPrimitive->CreateModel();
@@ -102,11 +96,9 @@ void CubeGame::LoadContent()
 	//Sphere
 	pEntity = new BaseEntity();
 	pEntity->SetName("sphere");
-	pTransform = new Transform3DComponent(pEntity);
-	pTransform->SetLocalPosition(Vector3(delta, 0.5f, 0.0f));
-	pTransform->SetLocalRotation(0.0f);
-	pTransform->SetLocalScale(Vector3::One());
-	pEntity->GetComponentMgr()->AddComponent(pTransform);
+	pEntity->GetCoordinates().SetLocalPosition(Vector3(delta, 0.5f, 0.0f));
+	pEntity->GetCoordinates().SetLocalRotation(0.0f);
+	pEntity->GetCoordinates().SetLocalScale(Vector3::One());
 	pModelCpt = new MeshComponent(pEntity);
 	pPrimitive = new SpherePrimitive();
 	pModel = pPrimitive->CreateModel();
@@ -119,11 +111,9 @@ void CubeGame::LoadContent()
 	//ground
 	pEntity = new BaseEntity();
 	pEntity->SetName("ground");
-	pTransform = new Transform3DComponent(pEntity);
-	pTransform->SetLocalPosition(Vector3(0.0f, 0.0f, 0.0f));
-	pTransform->SetLocalRotation(0.0f);
-	pTransform->SetLocalScale(Vector3::One());
-	pEntity->GetComponentMgr()->AddComponent(pTransform);
+	pEntity->GetCoordinates().SetLocalPosition(Vector3(0.0f, 0.0f, 0.0f));
+	pEntity->GetCoordinates().SetLocalRotation(0.0f);
+	pEntity->GetCoordinates().SetLocalScale(Vector3::One());
 	pModelCpt = new MeshComponent(pEntity);
 	pPrimitive = new PlanePrimitive(100.0f, 100.0f);
 	pModel = pPrimitive->CreateModel();
@@ -144,8 +134,7 @@ void CubeGame::LoadContent()
 
 void gizmo(const float* _view, const float* _proj, BaseEntity *entity)
 {
-	auto transform_3d_component = entity->GetComponentMgr()->GetComponent<Transform3DComponent>();
-	float* entityMatrix = transform_3d_component->GetLocalMatrix();
+	float* entityMatrix = entity->GetCoordinates().GetLocalMatrix();
 
 	//Vector3 position = transform_3d_component->GetLocalPosition();
 	//float rotation[3] = { 0.0f, 0.0f, 0.0f };
@@ -174,5 +163,4 @@ void CubeGame::Draw()
 	gizmo(_view, _proj, this->GetEntityManager().GetEntityFromName("box"));
 
 	Game::Draw();
-	
 }

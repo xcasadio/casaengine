@@ -1,5 +1,4 @@
-#ifndef STATICSPRITECOMPONENT_H_
-#define STATICSPRITECOMPONENT_H_
+#pragma once
 
 #include <string>
 #include <iosfwd>
@@ -10,7 +9,6 @@
 #include "Sprite/SpriteRenderer.h"
 #include "Graphics/Color.h"
 #include "Sprite/SpriteTypes.h"
-#include "Transform3DComponent.h"
 
 namespace CasaEngine
 {
@@ -18,12 +16,11 @@ namespace CasaEngine
 		public Component
 	{
 	private:
-		std::string m_SpriteID;
-		Sprite* m_pSprite;
-		SpriteRenderer*	m_pSpriteRenderer;
-		Transform3DComponent* m_pTransform;
-		Color m_Color;		
-		eSpriteEffects m_SpriteEffect;
+		std::string _spriteId;
+		Sprite* _sprite;
+		SpriteRenderer*	_spriteRenderer;
+		Color _color;		
+		eSpriteEffects _spriteEffect;
 
 	public:
 		StaticSpriteComponent(BaseEntity* pEntity_);
@@ -41,7 +38,4 @@ namespace CasaEngine
 		void Update(const GameTime& gameTime_);
 		void Draw();
 	};
-
 }
-
-#endif

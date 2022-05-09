@@ -5,7 +5,6 @@
 
 #include "Entities\Components\Cameras\ArcBallCameraComponent.h"
 #include "Entities\Components\MeshComponent.h"
-#include "Entities\Components\Transform3DComponent.h"
 #include "GameTime.h"
 #include "Animations/SetFrameEvent.h"
 #include "Assets/Asset.h"
@@ -23,7 +22,7 @@
 #include "Entities/Components/DebugComponent.h"
 #include "../../external/dear-imgui/imgui.h"
 
-Transform3DComponent* s_pTransform;
+BaseEntity* s_entity;
 Camera2DTargetedComponent* s_pCameraController;
 
 
@@ -55,11 +54,10 @@ void TileMapGame::Initialize()
 
 void TileMapGame::CreateBackground(World* pWorld)
 {
-	auto *pEntity = new BaseEntity();
+	auto* pEntity = new BaseEntity();
 	pEntity->SetName("background");
-	auto *pTrans3D = new Transform3DComponent(pEntity);
-	pTrans3D->SetLocalPosition(Vector3(0.0f, 0.0f, 1.0f));
-	pTrans3D->SetLocalRotation(0.0f);
+	pEntity->GetCoordinates().SetLocalPosition(Vector3(0.0f, 0.0f, 1.0f));
+	pEntity->GetCoordinates().SetLocalRotation(0.0f);
 
 	//Texture* texture = Texture::loadTexture("Outside_A2.png");
 	constexpr int size = 48; // 32
@@ -157,7 +155,6 @@ void TileMapGame::CreateBackground(World* pWorld)
 	layer->SetTiles(tiles);
 	pMap->AddLayer(layer);
 	
-	pEntity->GetComponentMgr()->AddComponent(pTrans3D);
 	pEntity->GetComponentMgr()->AddComponent(pMap);
 	pWorld->AddEntity(pEntity);
 }
@@ -175,21 +172,16 @@ void TileMapGame::LoadContent()
 	pSprite->SetName("sprite");
 	GetAssetManager().AddAsset(new Asset(pSprite->GetName(), pSprite));
 
-	auto pEntity = new BaseEntity();
-	pEntity->SetName("vegeta");
-	auto pTransform = new Transform3DComponent(pEntity);
-	s_pTransform = pTransform;
-	pTransform->SetLocalPosition(Vector3(500.0f, 250.0f, 1.5f));
-	//pTransform->SetLocalRotation(0.0f);
-	//pTransform->SetLocalScale(Vector3(43, 76, 1.0f));
-	pEntity->GetComponentMgr()->AddComponent(pTransform);
-	auto pStaticSprite = new StaticSpriteComponent(pEntity);
+	s_entity = new BaseEntity();
+	s_entity->SetName("vegeta");
+	s_entity->GetCoordinates().SetLocalPosition(Vector3(500.0f, 250.0f, 1.5f));
+	auto pStaticSprite = new StaticSpriteComponent(s_entity);
 	pStaticSprite->SetSpriteID("sprite");
-	pEntity->GetComponentMgr()->AddComponent(pStaticSprite);
-	auto* debugComponent = new DebugComponent(pEntity);
+	s_entity->GetComponentMgr()->AddComponent(pStaticSprite);
+	auto* debugComponent = new DebugComponent(s_entity);
 	debugComponent->DisplayPosition(true);
-	pEntity->GetComponentMgr()->AddComponent(debugComponent);
-	p_world->AddEntity(pEntity);
+	s_entity->GetComponentMgr()->AddComponent(debugComponent);
+	p_world->AddEntity(s_entity);
 
 	//Camera 2D
 	auto pCamera = new BaseEntity();
@@ -197,7 +189,7 @@ void TileMapGame::LoadContent()
 	s_pCameraController = new Camera2DTargetedComponent(pCamera);
 	pCamera->GetComponentMgr()->AddComponent(s_pCameraController);
 	s_pCameraController->SetDeadZoneRatio(Vector2(0.7f, 0.7f));
-	s_pCameraController->SetTargetedEntity(pEntity);
+	s_pCameraController->SetTargetedEntity(s_entity);
 	s_pCameraController->SetLimits(RectangleI(0, 0, 1500, 800));
 	p_world->AddEntity(pCamera);
 	GetGameInfo().SetActiveCamera(s_pCameraController);
@@ -209,7 +201,7 @@ void TileMapGame::LoadContent()
 
 void TileMapGame::Update(const GameTime& gameTime_)
 {
-	auto position = s_pTransform->GetLocalPosition();
+	auto position = s_entity->GetCoordinates().GetLocalPosition();
 	const auto speed = 5;
 
 	if (std::abs(GetInput().GetJoystickLeftStickY(0)) > 20)
@@ -238,7 +230,7 @@ void TileMapGame::Update(const GameTime& gameTime_)
 		position.x += speed * -1;
 	}
 
-	s_pTransform->SetLocalPosition(position);
+	s_entity->GetCoordinates().SetLocalPosition(position);
 
 	Game::Update(gameTime_);
 }
@@ -249,7 +241,7 @@ void TileMapGame::Draw()
 
 	if (ImGui::Begin("Info", nullptr, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoSavedSettings))
 	{
-		ImGui::Text("player position : % .0f, % .0f", s_pTransform->GetPosition().x, s_pTransform->GetPosition().y);
+		ImGui::Text("player position : % .0f, % .0f", s_entity->GetCoordinates().GetPosition().x, s_entity->GetCoordinates().GetPosition().y);
 		ImGui::Text("camera offset: %d, %d", s_pCameraController->GetOffset().x, s_pCameraController->GetOffset().y);
 	}
 

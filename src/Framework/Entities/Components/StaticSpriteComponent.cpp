@@ -11,14 +11,12 @@
 #include "Graphics/Color.h"
 #include "Assets/AssetManager.h"
 
-
 namespace CasaEngine
 {
 	StaticSpriteComponent::StaticSpriteComponent(BaseEntity* pEntity_)
 		: Component(pEntity_, STATIC_SPRITE),
-		m_pSpriteRenderer(nullptr),
-		m_pSprite(nullptr),
-		m_pTransform(nullptr)
+		_spriteRenderer(nullptr),
+		_sprite(nullptr)
 	{
 
 	}
@@ -30,44 +28,39 @@ namespace CasaEngine
 
 	std::string StaticSpriteComponent::GetSpriteID() const
 	{
-		return m_SpriteID;
+		return _spriteId;
 	}
 
 	void StaticSpriteComponent::SetSpriteID(std::string val)
 	{
-		m_SpriteID = val;
-		m_pSprite = new Sprite(*Game::Instance().GetAssetManager().GetAsset<SpriteData>(m_SpriteID));
+		_spriteId = val;
+		_sprite = new Sprite(*Game::Instance().GetAssetManager().GetAsset<SpriteData>(_spriteId));
 	}
 
 	Color StaticSpriteComponent::GetColor() const
 	{
-		return m_Color;
+		return _color;
 	}
 
 	void StaticSpriteComponent::SetColor(Color val)
 	{
-		m_Color = val;
+		_color = val;
 	}
 
 	eSpriteEffects StaticSpriteComponent::GetSpriteEffect() const
 	{
-		return m_SpriteEffect;
+		return _spriteEffect;
 	}
 
 	void StaticSpriteComponent::SetSpriteEffect(eSpriteEffects val)
 	{
-		m_SpriteEffect = val;
+		_spriteEffect = val;
 	}
 
 	void StaticSpriteComponent::Initialize()
 	{
-		m_pSpriteRenderer = Game::Instance().GetGameComponent<SpriteRenderer>();
-		CA_ASSERT(m_pSpriteRenderer != nullptr,
-			"StaticSpriteComponent::Initialize() can't find the component SpriteRenderer");
-
-		m_pTransform = GetEntity()->GetComponentMgr()->GetComponent<Transform3DComponent>();
-		CA_ASSERT(m_pTransform != nullptr,
-			"StaticSpriteComponent::Initialize() can't find the Transform2DComponent. Please add it before add a StaticSpriteComponent");
+		_spriteRenderer = Game::Instance().GetGameComponent<SpriteRenderer>();
+		CA_ASSERT(_spriteRenderer != nullptr, "StaticSpriteComponent::Initialize() can't find the component SpriteRenderer");
 	}
 
 	void StaticSpriteComponent::Update(const GameTime& /*gameTime_*/)
@@ -76,6 +69,6 @@ namespace CasaEngine
 
 	void StaticSpriteComponent::Draw()
 	{
-		m_pSpriteRenderer->AddSprite(m_pSprite, m_pTransform->GetWorldMatrix(), m_Color, m_SpriteEffect);
+		_spriteRenderer->AddSprite(_sprite, GetEntity()->GetCoordinates().GetWorldMatrix(), _color, _spriteEffect);
 	}
 }

@@ -624,13 +624,7 @@
     <ClInclude Include="..\..\src\Framework\Entities\Components\SteeringBehaviorComponent.h">
       <Filter>Framework\Entities\Components</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Entities\Components\Transform2DComponent.h">
-      <Filter>Framework\Entities\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Entities\Components\Transform3DComponent.h">
-      <Filter>Framework\Entities\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Entities\Components\TransformComponent.h">
+    <ClInclude Include="..\..\src\Framework\Entities\Components\Coordinates.h">
       <Filter>Framework\Entities\Components</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Framework\Entities\Events\BaseEntityEvents.h">
@@ -1190,13 +1184,7 @@
     <ClCompile Include="..\..\src\Framework\Entities\Components\SteeringBehaviorComponent.cpp">
       <Filter>Framework\Entities\Components</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Framework\Entities\Components\Transform2DComponent.cpp">
-      <Filter>Framework\Entities\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Framework\Entities\Components\Transform3DComponent.cpp">
-      <Filter>Framework\Entities\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Framework\Entities\Components\TransformComponent.cpp">
+    <ClCompile Include="..\..\src\Framework\Entities\Components\Coordinates.cpp">
       <Filter>Framework\Entities\Components</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Framework\Entities\Events\BaseEntityEvents.cpp">

@@ -8,7 +8,6 @@
 #include "World/World.h"
 
 #include "Entities/Components/Cameras/Camera2DComponent.h"
-#include "Entities/Components/Transform3DComponent.h"
 #include "Entities/Components/Cameras/ArcBallCameraComponent.h"
 #include "Graphics/Effects/Program.h"
 #include "Graphics/Materials/Material.h"
@@ -35,13 +34,13 @@ public:
 	typedef std::map<std::string, std::string> TDescTable;
 
 private:
-	Mesh* m_Player;         ///< Modèle courant
-	Matrix4       m_Rotation;       ///< Matrice de rotation
-	Vector3      m_CameraPos;      ///< Position de la caméra
-	Vector3      m_LightDir;       ///< Direction de la lumière
-	Texture* m_pCartoonShading; ///< Texture de lookup pour le rendu cartoon
-	std::string         m_ShadersType;    ///< Type des shaders actuellement chargés
-	TDescTable          m_ShadersDesc;    ///< Table des descriptions de shaders
+	Mesh* m_Player;
+	Matrix4       m_Rotation;
+	Vector3      m_CameraPos;
+	Vector3      m_LightDir;
+	Texture* m_pCartoonShading;
+	std::string         m_ShadersType;
+	TDescTable          m_ShadersDesc;
 
 	Program* m_pProgram;
 	Texture* m_pCartoonShadingTextureHandle;
@@ -49,7 +48,6 @@ private:
 	BaseEntity* m_pEntity; //, *m_pCamera;
 	ArcBallCameraComponent* m_pCamera3D;
 	BaseEntity* m_pModelEntity;
-	Transform3DComponent* m_pTrans3D;
 	World* m_pWorld;
 	Material* m_pGroundMaterial;
 };

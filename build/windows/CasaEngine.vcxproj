@@ -365,9 +365,7 @@
     <ClInclude Include="..\..\src\Framework\Entities\Components\ScriptComponent.h" />
     <ClInclude Include="..\..\src\Framework\Entities\Components\StaticSpriteComponent.h" />
     <ClInclude Include="..\..\src\Framework\Entities\Components\SteeringBehaviorComponent.h" />
-    <ClInclude Include="..\..\src\Framework\Entities\Components\Transform2DComponent.h" />
-    <ClInclude Include="..\..\src\Framework\Entities\Components\Transform3DComponent.h" />
-    <ClInclude Include="..\..\src\Framework\Entities\Components\TransformComponent.h" />
+    <ClInclude Include="..\..\src\Framework\Entities\Components\Coordinates.h" />
     <ClInclude Include="..\..\src\Framework\Entities\EntityManager.h" />
     <ClInclude Include="..\..\src\Framework\Entities\Events\BaseEntityEvents.h" />
     <ClInclude Include="..\..\src\Framework\Entities\Physics\PhysicalEntity.h" />
@@ -546,9 +544,7 @@
     <ClCompile Include="..\..\src\Framework\Entities\Components\ScriptComponent.cpp" />
     <ClCompile Include="..\..\src\Framework\Entities\Components\StaticSpriteComponent.cpp" />
     <ClCompile Include="..\..\src\Framework\Entities\Components\SteeringBehaviorComponent.cpp" />
-    <ClCompile Include="..\..\src\Framework\Entities\Components\Transform2DComponent.cpp" />
-    <ClCompile Include="..\..\src\Framework\Entities\Components\Transform3DComponent.cpp" />
-    <ClCompile Include="..\..\src\Framework\Entities\Components\TransformComponent.cpp" />
+    <ClCompile Include="..\..\src\Framework\Entities\Components\Coordinates.cpp" />
     <ClCompile Include="..\..\src\Framework\Entities\EntityManager.cpp" />
     <ClCompile Include="..\..\src\Framework\Entities\Events\BaseEntityEvents.cpp" />
     <ClCompile Include="..\..\src\Framework\Entities\Physics\PhysicalEntity.cpp" />

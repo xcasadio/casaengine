@@ -13,7 +13,6 @@
 #include "Entities/Components/AnimatedSpriteComponent.h"
 #include "Entities/Components/GridComponent.h"
 #include "Entities/Components/StaticSpriteComponent.h"
-#include "Entities/Components/Transform3DComponent.h"
 #include "Game/Game.h"
 #include "Game/GameInfo.h"
 #include "Game/Input.h"
@@ -76,16 +75,12 @@ void FightingGame2DGame::LoadContent()
 	m_pWorld = new World();
 	GetGameInfo().SetWorld(m_pWorld);
 
-	Transform3DComponent* pTransform = nullptr;
-
 	//player 1
 	auto* pPlayer1 = new BaseEntity();
 	pPlayer1->SetName("player 1");
-	pTransform = new Transform3DComponent(pPlayer1);
-	pTransform->SetLocalPosition(Vector3(520, 400, 2.0f));
+	pPlayer1->GetCoordinates().SetLocalPosition(Vector3(520, 400, 2.0f));
 	auto scale = 2.0f;
-	pTransform->SetLocalScale(Vector3(scale, scale, 0.0f));
-	pPlayer1->GetComponentMgr()->AddComponent(pTransform);
+	pPlayer1->GetCoordinates().SetLocalScale(Vector3(scale, scale, 0.0f));
 
 	auto* pAnimatedSprite = new AnimatedSpriteComponent(pPlayer1);
 	pPlayer1->GetComponentMgr()->AddComponent(pAnimatedSprite);
@@ -111,11 +106,9 @@ void FightingGame2DGame::LoadContent()
 	//player 2
 	auto* pPlayer2 = new BaseEntity();
 	pPlayer2->SetName("player 2");
-	pTransform = new Transform3DComponent(pPlayer2);
-	pTransform->SetLocalPosition(Vector3(820, 400, 2.0f));
+	pPlayer2->GetCoordinates().SetLocalPosition(Vector3(820, 400, 2.0f));
 	scale = 1.0f;
-	pTransform->SetLocalScale(Vector3(scale, scale, 0.0f));
-	pPlayer2->GetComponentMgr()->AddComponent(pTransform);
+	pPlayer2->GetCoordinates().SetLocalScale(Vector3(scale, scale, 0.0f));
 
 	pAnimatedSprite = new AnimatedSpriteComponent(pPlayer2);
 	pPlayer2->GetComponentMgr()->AddComponent(pAnimatedSprite);
@@ -147,9 +140,7 @@ void FightingGame2DGame::LoadContent()
 	//stage
 	auto* pStage = new BaseEntity();
 	pStage->SetName("stage");
-	pTransform = new Transform3DComponent(pStage);
-	pTransform->SetLocalPosition(Vector3(0, 0, 1.0f));
-	pStage->GetComponentMgr()->AddComponent(pTransform);
+	pStage->GetCoordinates().SetLocalPosition(Vector3(0, 0, 1.0f));
 	auto* stage = new Stage(pStage);
 	pStage->GetComponentMgr()->AddComponent(stage);
 	m_pWorld->AddEntity(pStage);

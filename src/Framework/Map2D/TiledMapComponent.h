@@ -1,12 +1,10 @@
-#ifndef TILEDMAPCOMPONENT_H_
-#define TILEDMAPCOMPONENT_H_
+#pragma once
 
 #include <vector>
 
 #include "TiledMapLayer.h"
 #include "Animations/Animation2D.h"
 #include "Entities/Component.h"
-#include "Entities/Components/Transform3DComponent.h"
 #include "Maths/Vector2.h"
 
 namespace CasaEngine
@@ -36,8 +34,5 @@ namespace CasaEngine
 		Vector2I m_MapSize;
 		Vector2I m_TileSize;
 		std::vector<TiledMapLayer*> m_Layers;
-		Transform3DComponent* m_pTransform3DComponent;
 	};
 }
-
-#endif

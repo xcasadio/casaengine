@@ -3,7 +3,6 @@
 #include "DebugComponent.h"
 
 #include "AnimatedSpriteComponent.h"
-#include "Transform3DComponent.h"
 #include "Entities/ComponentTypeEnum.h"
 #include "Game/Game.h"
 #include "Game/Line3DRendererComponent.h"
@@ -32,7 +31,7 @@ namespace CasaEngine
 	{
 		if (m_DisplayPosition)
 		{
-			const auto position = GetEntity()->GetComponentMgr()->GetComponent<Transform3DComponent>()->GetWorldMatrix().Translation();
+			const auto position = GetEntity()->GetCoordinates().GetWorldMatrix().Translation();
 			const auto color = Color::Red;
 			constexpr auto scale = 50.0f / 2.0f;
 			m_LineRenderer->AddLine(position - Vector3::UnitX() * scale, position + Vector3::UnitX() * scale, color);
@@ -54,7 +53,6 @@ namespace CasaEngine
 					{
 						auto* spriteData = Game::Instance().GetAssetManager().GetAsset<SpriteData>(anim->CurrentFrame());
 						auto* line3DRenderer = Game::Instance().GetGameComponent<Line3DRendererComponent>();
-						auto* transform = GetEntity()->GetComponentMgr()->GetComponent<Transform3DComponent>();
 
 						for (auto coll : spriteData->GetCollisions())
 						{
@@ -62,9 +60,9 @@ namespace CasaEngine
 							{
 								auto* rect = dynamic_cast<RectangleI*>(coll.GetShape());
 								auto color = coll.GetType() == CollisionHitType::Defense ? Color::Blue : Color::Red;
-								auto pos = transform->GetWorldMatrix().Translation();
-								const auto scaleX = transform->GetLocalScale().x;
-								const auto scaleY = transform->GetLocalScale().y;
+								auto pos = GetEntity()->GetCoordinates().GetWorldMatrix().Translation();
+								const auto scaleX = GetEntity()->GetCoordinates().GetLocalScale().x;
+								const auto scaleY = GetEntity()->GetCoordinates().GetLocalScale().y;
 								auto rectScaled = RectangleI(
 									(rect->x - spriteData->GetOrigin().x) * scaleX ,
 									(rect->y - spriteData->GetOrigin().y) * scaleY,

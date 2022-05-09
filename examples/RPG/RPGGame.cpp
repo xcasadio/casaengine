@@ -19,7 +19,6 @@
 #include "Entities/Components/GridComponent.h"
 #include "Entities/Components/MeshComponent.h"
 #include "Entities/Components/ScriptComponent.h"
-#include "Entities/Components/Transform3DComponent.h"
 #include "Game/Game.h"
 #include "Game/GameInfo.h"
 #include "ScriptCharacter.h"
@@ -141,9 +140,8 @@ void RPGGame::CreateMap(World* pWorld)
 	//create map
 	auto* pEntity = new BaseEntity();
 	pEntity->SetName("tiled map");
-	auto* pTrans3D = new Transform3DComponent(pEntity);
-	pTrans3D->SetLocalPosition(Vector3(0.0f, 0.0f, 0.0f));
-	pTrans3D->SetLocalRotation(0.0f);
+	pEntity->GetCoordinates().SetLocalPosition(Vector3(0.0f, 0.0f, 0.0f));
+	pEntity->GetCoordinates().SetLocalRotation(0.0f);
 	//pTrans3D->SetLocalScale(Vector3(48, 48, 1.0));
 
 	auto* pMap = new TiledMapComponent(pEntity);
@@ -212,7 +210,6 @@ void RPGGame::CreateMap(World* pWorld)
 	pMap->AddLayer(layer);
 	*/
 
-	pEntity->GetComponentMgr()->AddComponent(pTrans3D);
 	pEntity->GetComponentMgr()->AddComponent(pMap);
 	pWorld->AddEntity(pEntity);
 }
@@ -310,11 +307,9 @@ void RPGGame::CreateEnemies(World* pWorld)
 
 	auto* pEntity = new BaseEntity();
 	pEntity->SetName("octopus 1");
-	auto* pTrans3D = new Transform3DComponent(pEntity);
-	pTrans3D->SetLocalPosition(Vector3(100.0f, 100.0f, 0.1f));
-	pTrans3D->SetLocalRotation(0.0f);
+	pEntity->GetCoordinates().SetLocalPosition(Vector3(100.0f, 100.0f, 0.1f));
+	pEntity->GetCoordinates().SetLocalRotation(0.0f);
 	//pTrans3D->SetLocalScale(Vector3(32, 32, 1.0));
-	pEntity->GetComponentMgr()->AddComponent(pTrans3D);
 
 	CreateSprite(ennemi_datas.tile_set, ennemi_datas.sprites, "octopus_");
 
@@ -350,8 +345,6 @@ void RPGGame::CreateSwordman(World* pWorld)
 	//create weapon
 	auto* weaponEntity = new BaseEntity();
 	weaponEntity->SetName("sword");
-	auto* pTrans3D = new Transform3DComponent(weaponEntity);
-	weaponEntity->GetComponentMgr()->AddComponent(pTrans3D);
 	auto* debugComponent = new DebugComponent(weaponEntity);
 	debugComponent->DisplayPosition(false);
 	debugComponent->DisplayAnimation2DCollisions(true);
@@ -384,11 +377,8 @@ void RPGGame::CreateSwordman(World* pWorld)
 	constexpr auto tileWidth = 48, tileHeight = 48;
 	auto* pPlayerEntity = new BaseEntity();
 	pPlayerEntity->SetName("player 1");
-	pTrans3D = new Transform3DComponent(pPlayerEntity);
-	pTrans3D->SetLocalPosition(Vector3(50.0f, 150.0f, 0.1f));
-	pTrans3D->SetLocalRotation(0.0f);
-	//pTrans3D->SetLocalScale(Vector3(tileWidth, tileHeight, 1.0));
-	pPlayerEntity->GetComponentMgr()->AddComponent(pTrans3D);
+	pPlayerEntity->GetCoordinates().SetLocalPosition(Vector3(50.0f, 150.0f, 0.1f));
+	pPlayerEntity->GetCoordinates().SetLocalRotation(0.0f);
 
 	//read file
 	pFile = Game::Instance().GetMediaManager().FindMedia("player.json", true);

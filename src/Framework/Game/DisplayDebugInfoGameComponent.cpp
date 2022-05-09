@@ -476,7 +476,7 @@ namespace CasaEngine
 				{
 					char label[128];
 					sprintf(label, "%s (%d)", it->second->GetName(), it->first);
-					ImGui::Selectable(label, &it->second->m_IsSelected); //ImGui::SameLine(100); ImGui::Text(" 2,345 bytes");
+					ImGui::Selectable(label, &it->second->_isSelected); //ImGui::SameLine(100); ImGui::Text(" 2,345 bytes");
 				}
 				ImGui::EndChild();
 				ImGui::SameLine();

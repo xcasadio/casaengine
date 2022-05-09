@@ -1,9 +1,7 @@
-#ifndef ANIMATED_TILE_H_
-#define ANIMATED_TILE_H_
+#pragma once
 
 #include "Tile.h"
 #include "Animations/Animation2D.h"
-#include "Sprite/SpriteRenderer.h"
 
 namespace CasaEngine
 {
@@ -23,5 +21,3 @@ namespace CasaEngine
 		Animation2D* m_pAnimation;
 	};
 }
-
-#endif

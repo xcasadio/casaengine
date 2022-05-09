@@ -1,6 +1,5 @@
 #include "TiledMapLayer.h"
 #include "TiledMapComponent.h"
-#include "Entities/Components/Transform3DComponent.h"
 #include "Game/Game.h"
 #include "Maths/Shape/Circle.h"
 #include "Physics/Bullet/BulletObjectsContainer.h"

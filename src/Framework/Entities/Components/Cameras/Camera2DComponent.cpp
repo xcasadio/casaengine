@@ -3,7 +3,6 @@
 #include "Camera2DComponent.h"
 #include "Maths/Matrix4.h"
 #include "Entities/ComponentTypeEnum.h"
-#include "Entities/Components/Transform3DComponent.h"
 #include "Game/Game.h"
 
 namespace CasaEngine
@@ -35,7 +34,7 @@ namespace CasaEngine
 
 	void Camera2DComponent::ComputeViewMatrix()
 	{
-		const auto position = GetEntity()->GetComponentMgr()->GetComponent<Transform3DComponent>()->GetPosition();
+		auto position = GetEntity()->GetCoordinates().GetPosition();
 		m_ViewMatrix = Matrix4::CreateTranslation(position.x, position.y, position.z);
 	}
 }

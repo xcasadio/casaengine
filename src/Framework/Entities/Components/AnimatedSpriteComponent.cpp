@@ -2,7 +2,6 @@
 
 #include "AnimatedSpriteComponent.h"
 #include "Base.h"
-#include "Transform3DComponent.h"
 #include "Animations/Animation2D.h"
 #include "Assets/AssetManager.h"
 #include "Entities/BaseEntity.h"
@@ -15,6 +14,7 @@
 #include "Sprite/SpritePhysicsHelper.h"
 #include "Sprite/SpriteRenderer.h"
 #include "Sprite/SpriteTypes.h"
+#include "../Events/BaseEntityEvents.h"
 
 
 namespace CasaEngine
@@ -22,7 +22,6 @@ namespace CasaEngine
 	AnimatedSpriteComponent::AnimatedSpriteComponent(BaseEntity* entity_)
 		: Component(entity_, ANIMATED_SPRITE),
 		_spriteRenderer(nullptr),
-		_transform(nullptr),
 		_color(Color::White),
 		_spriteEffect(eSpriteEffects::SPRITE_EFFECT_NONE),
 		_currentAnim(nullptr)
@@ -165,9 +164,6 @@ namespace CasaEngine
 		_spriteRenderer = Game::Instance().GetGameComponent<SpriteRenderer>();
 		CA_ASSERT(_spriteRenderer != nullptr, "AnimatedSpriteComponent::Initialize() can't find the component SpriteRenderer");
 
-		_transform = GetEntity()->GetComponentMgr()->GetComponent<Transform3DComponent>();
-		CA_ASSERT(_transform != nullptr, "AnimatedSpriteComponent::Initialize() can't find the Transform2DComponent. Please add it before add a AnimatedSpriteComponent");
-
 		if (Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld() != nullptr)
 		{
 			for (auto* animation : _animationList)
@@ -197,7 +193,7 @@ namespace CasaEngine
 	{
 		if (_currentAnim != nullptr)
 		{
-			auto worldMatrix  = _transform->GetWorldMatrix();
+			auto worldMatrix  = GetEntity()->GetCoordinates().GetWorldMatrix();
 			_spriteRenderer->AddSprite(
 				//TODO : load all sprites in a dictionary<name, sprite>
 				new Sprite(*Game::Instance().GetAssetManager().GetAsset<SpriteData>(_currentAnim->CurrentFrame())),
@@ -242,11 +238,9 @@ namespace CasaEngine
 		{
 			RemoveCollisionsFromLastFrame();
 
-			auto transform_3d_component = GetEntity()->GetComponentMgr()->GetComponent<Transform3DComponent>();
-
 			if (_collisionObjectByFrameId.find(event.ID()) != _collisionObjectByFrameId.end())
 			{
-				SpritePhysicsHelper::AddCollisionsFromSprite(transform_3d_component->GetWorldMatrix().Translation(), event.ID(), _collisionObjectByFrameId[event.ID()]);
+				SpritePhysicsHelper::AddCollisionsFromSprite(GetEntity()->GetCoordinates().GetWorldMatrix().Translation(), event.ID(), _collisionObjectByFrameId[event.ID()]);
 			}
 
 			_lastFrameId = event.ID();

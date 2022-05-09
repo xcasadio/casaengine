@@ -1,5 +1,4 @@
-#ifndef STEERING_BEHAVIOUR_COMPONENT_H_
-#define STEERING_BEHAVIOUR_COMPONENT_H_
+#pragma once
 
 #include <list>
 #include <vector>
@@ -13,28 +12,16 @@
 #include "Maths/2D/Line2D.h"
 #include "Maths/2D/Path.h"
 #include "MovingEntity2DComponent.h"
-#include "Transform3DComponent.h"
 #include "Maths/Vector2.h"
 
 
 namespace CasaEngine
 {
-	//--------------------------- Constants ----------------------------------
+	const float WanderRad    = 1.2f; //the radius of the constraining circle for the wander behavior
+	const float WanderDist   = 2.0f; //distance the wander circle is projected in front of the agent
+	const float WanderJitterPerSec = 80.0f; //the maximum amount of displacement along the circle each frame
+	const float WaypointSeekDist   = 20.f; //used in path following
 
-	//the radius of the constraining circle for the wander behavior
-	const float WanderRad    = 1.2f;
-	//distance the wander circle is projected in front of the agent
-	const float WanderDist   = 2.0f;
-	//the maximum amount of displacement along the circle each frame
-	const float WanderJitterPerSec = 80.0f;
-
-	//used in path following
-	const float WaypointSeekDist   = 20.f;  
-
-
-	/**
-	 *	
-	 */
 	class CA_EXPORT SteeringBehaviorComponent :
 		public Component
 	{
@@ -67,7 +54,6 @@ namespace CasaEngine
 	private:
 		//PhysicComponent* m_pPhysicComponent;
 		MovingEntity2DComponent* m_pMovingEntity;
-		Transform3DComponent *m_pTranform;
 		Vector2 m_Position2D;
 
 		//a pointer to the owner of this instance
@@ -454,5 +440,3 @@ namespace CasaEngine
 									const Vector2& posHunter);
 	}; // class SteeringBehaviourComponent
 }
-
-#endif // STEERING_BEHAVIOUR_COMPONENT_H_

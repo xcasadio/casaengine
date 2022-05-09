@@ -8,7 +8,6 @@
 #include "Game/Line2DRendererComponent.h"
 #include "Game/Line3DRendererComponent.h"
 #include "GameTime.h"
-#include "Entities/Components/Transform3DComponent.h"
 #include "Graphics/Mesh/Mesh.h"
 #include "Graphics/Primitives/BoxPrimitive.h"
 #include "Log/LoggerFile.h"
@@ -106,11 +105,9 @@ void ShaderGame::LoadContent()
 	//ground
 	m_pEntity = new BaseEntity();
 	m_pEntity->SetName("ground");
-	Transform3DComponent* pTransform = new Transform3DComponent(m_pEntity);
-	pTransform->SetLocalPosition(Vector3(0.0f, -0.5f, 0.0f));
-	pTransform->SetLocalRotation(0.0f);
-	pTransform->SetLocalScale(Vector3::One());
-	m_pEntity->GetComponentMgr()->AddComponent(pTransform);
+	m_pEntity->GetCoordinates().SetLocalPosition(Vector3(0.0f, -0.5f, 0.0f));
+	m_pEntity->GetCoordinates().SetLocalRotation(0.0f);
+	m_pEntity->GetCoordinates().SetLocalScale(Vector3::One());
 	MeshComponent* pModelCpt = new MeshComponent(m_pEntity);
 	BoxPrimitive* pBox = new BoxPrimitive(100.0f, 1.0f, 100.0f);
 	Mesh* pModel = pBox->CreateModel();
@@ -140,11 +137,9 @@ void ShaderGame::LoadContent()
 	//Mesh
 	m_pModelEntity = new BaseEntity();
 	m_pModelEntity->SetName("model");
-	m_pTrans3D = new Transform3DComponent(m_pModelEntity);
-	m_pTrans3D->SetLocalPosition(Vector3(0.0f, -5.0f, 0.0f));
-	m_pTrans3D->SetLocalRotation(0.0f);
-	m_pTrans3D->SetLocalScale(Vector3::One());
-	m_pModelEntity->GetComponentMgr()->AddComponent(m_pTrans3D);
+	m_pModelEntity->GetCoordinates().SetLocalPosition(Vector3(0.0f, -5.0f, 0.0f));
+	m_pModelEntity->GetCoordinates().SetLocalRotation(0.0f);
+	m_pModelEntity->GetCoordinates().SetLocalScale(Vector3::One());
 	pModelCpt = new MeshComponent(m_pModelEntity);
 
 	CMD2Loader loader;
@@ -172,9 +167,9 @@ void ShaderGame::Update(const GameTime& gameTime_)
 	q1.FromAxisAngle(Vector3::UnitX(), -PI_OVER_2);
 	q2.FromAxisAngle(Vector3::UnitZ(), gameTime_.TotalTime() * 0.005f * PI);
 
-	m_pTrans3D->SetLocalPosition(Vector3(0.0f, 2.4f, 0.0f));
-	m_pTrans3D->SetLocalRotation(q1 * q2);
-	m_pTrans3D->SetLocalScale(Vector3(0.1f, 0.1f, 0.1f));
+	m_pModelEntity->GetCoordinates().SetLocalPosition(Vector3(0.0f, 2.4f, 0.0f));
+	m_pModelEntity->GetCoordinates().SetLocalRotation(q1 * q2);
+	m_pModelEntity->GetCoordinates().SetLocalScale(Vector3(0.1f, 0.1f, 0.1f));
 
 	//UpdateShadersParams(gameTime_);
 }

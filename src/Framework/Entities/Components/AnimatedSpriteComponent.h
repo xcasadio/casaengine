@@ -10,7 +10,6 @@
 #include "Graphics/Color.h"
 #include "Sprite/SpriteRenderer.h"
 #include "Sprite/SpriteTypes.h"
-#include "Transform3DComponent.h"
 #include "Animations/Animation2D.h"
 #include "EventHandler\EventSet.h"
 #include "EventHandler/Event.h"
@@ -23,7 +22,6 @@ namespace CasaEngine
 	{
 	private:
 		SpriteRenderer*	_spriteRenderer;
-		Transform3DComponent* _transform;
 		Color _color;		
 		eSpriteEffects _spriteEffect;
 		Animation2D *_currentAnim;

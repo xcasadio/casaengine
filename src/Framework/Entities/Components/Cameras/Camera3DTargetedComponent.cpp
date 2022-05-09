@@ -2,8 +2,6 @@
 
 #include "Camera3DComponent.h"
 #include "Entities/ComponentTypeEnum.h"
-#include "Entities/Components/Transform2DComponent.h"
-#include "Entities/Components/Transform3DComponent.h"
 #include "Game/Game.h"
 
 namespace CasaEngine
@@ -21,9 +19,7 @@ namespace CasaEngine
 		{
 			auto viewport = GetViewport();
 			const auto winSize = Game::Instance().GetWindowSize();
-			auto* const transform_3d_component = m_pTargetedEntity->GetComponentMgr()->GetComponent<Transform3DComponent>();
-			CA_ASSERT(transform_3d_component != nullptr, "cameracomponent : the target need to have a Transform3DComponent");
-			const auto targetPosition = transform_3d_component->GetPosition();
+			const auto targetPosition = GetEntity()->GetCoordinates().GetPosition();
 
 			const Rectangle deadZone(m_Offset.x + static_cast<float>(winSize.x) * (1.0f - m_DeadZoneRatio.x) / 2.0f,
 				m_Offset.y + static_cast<float>(winSize.y) * (1.0f - m_DeadZoneRatio.y) / 2.0f,

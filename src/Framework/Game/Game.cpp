@@ -43,6 +43,7 @@
 #include "Tools/InGameLogger.h"
 #include "Tools/Bullet/BulletPhysicsDebugDrawComponent.h"
 #include "UI/ImGuiAdapter.h"
+#include <Entities/Events/BaseEntityEvents.h>
 
 namespace CasaEngine
 {

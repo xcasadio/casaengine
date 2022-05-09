@@ -1,5 +1,4 @@
-#ifndef STAGELAYER_H_
-#define STAGELAYER_H_
+#pragma once
 
 #include "Sprite/SpriteRenderer.h"
 
@@ -19,5 +18,3 @@ private:
 	Stage* m_pStage;
 	std::vector<CasaEngine::Texture*> m_Textures;
 };
-
-#endif

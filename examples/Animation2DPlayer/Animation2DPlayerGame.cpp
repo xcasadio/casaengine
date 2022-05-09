@@ -12,7 +12,6 @@
 #include "Entities/Components/AnimatedSpriteComponent.h"
 #include "Entities/Components/GridComponent.h"
 #include "Entities/Components/StaticSpriteComponent.h"
-#include "Entities/Components/Transform3DComponent.h"
 #include "Game/Game.h"
 #include "Game/GameInfo.h"
 #include "GameTime.h"
@@ -88,11 +87,9 @@ void Animation2DPlayerGame::LoadContent()
 	//Entity
 	auto* pEntity = new BaseEntity();
 	m_pEntity = pEntity;
-	auto* pTransform = new Transform3DComponent(pEntity);
-	pTransform->SetLocalPosition(Vector3(520, 400, 0.0f));
+	pEntity->GetCoordinates().SetLocalPosition(Vector3(520, 400, 0.0f));
 	const auto scale = 2.0f;
-	pTransform->SetLocalScale(Vector3(scale, scale, 0.0f));
-	pEntity->GetComponentMgr()->AddComponent(pTransform);
+	pEntity->GetCoordinates().SetLocalScale(Vector3(scale, scale, 0.0f));
 
 	m_pAnimatedSprite = new AnimatedSpriteComponent(pEntity);
 	pEntity->GetComponentMgr()->AddComponent(m_pAnimatedSprite);
@@ -336,17 +333,16 @@ void Animation2DPlayerGame::DisplayUI()
 
 		ImGui::Separator();
 
-		auto transform_3d_component = m_pEntity->GetComponentMgr()->GetComponent<Transform3DComponent>();
-		auto local_scale = transform_3d_component->GetLocalScale();
+		auto local_scale = m_pEntity->GetCoordinates().GetLocalScale();
 
-		ImGui::Text("Zoom x%d", (int)transform_3d_component->GetLocalScale().x);
+		ImGui::Text("Zoom x%d", (int)m_pEntity->GetCoordinates().GetLocalScale().x);
 		ImGui::SameLine();
 
 		if (ImGui::Button("+"))
 		{
 			local_scale.x++;
 			local_scale.y++;
-			transform_3d_component->SetLocalScale(local_scale);
+			m_pEntity->GetCoordinates().SetLocalScale(local_scale);
 		}
 
 		ImGui::SameLine();
@@ -355,7 +351,7 @@ void Animation2DPlayerGame::DisplayUI()
 		{
 			local_scale.x = std::max(--local_scale.x, 1.0f);
 			local_scale.y = std::max(--local_scale.y, 1.0f);
-			transform_3d_component->SetLocalScale(local_scale);
+			m_pEntity->GetCoordinates().SetLocalScale(local_scale);
 		}
 
 		ImGui::Separator();

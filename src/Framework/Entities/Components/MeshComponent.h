@@ -4,10 +4,8 @@
 #include "GameTime.h"
 #include <iosfwd>
 #include "Entities/Component.h"
-#include "TransformComponent.h"
 #include "Graphics/Mesh/Mesh.h"
 #include "Game/MeshRendererGameComponent.h"
-
 
 namespace CasaEngine
 {
@@ -29,14 +27,14 @@ namespace CasaEngine
 
 		void Write(std::ostream&  os)const;
 		void Read (std::ifstream& is);
-#if EDITOR
-		void ShowDebugWidget() override;
-#endif
 	private:
-		TransformComponent* m_pTransform;
 		Mesh *m_pModel;
 		Program *m_pProgram;
 		MeshRendererGameComponent *m_pModelRenderer;
-	};
 
+#if EDITOR
+	public:
+		void ShowDebugWidget() override;
+#endif
+	};
 }

@@ -1,5 +1,4 @@
-#ifndef COMPONENTMESSAGEENUM_H_
-#define COMPONENTMESSAGEENUM_H_
+#pragma once
 
 namespace CasaEngine
 {
@@ -9,7 +8,3 @@ namespace CasaEngine
 	};
 
 }
-
-#endif // COMPONENTMESSAGEENUM_H_
-
-

@@ -1,12 +1,11 @@
 #include "Base.h"
-#include "BaseEntity.h"
 
-//#include "Utilities/EventHandler.h"
+#include "BaseEntity.h"
 #include "Events/BaseEntityEvents.h"
 #include "EntityManager.h"
-#include <sstream>
-
 #include "Game/Game.h"
+
+#include <sstream>
 
 namespace CasaEngine
 {
@@ -29,7 +28,8 @@ namespace CasaEngine
 		Game::Instance().GetEntityManager().RegisterEntity(this);
 
 #ifdef EDITOR
-		m_IsSelected = false;
+		_isSelected = false;
+		_isPersistent = true;
 #endif
 	}
 
@@ -51,6 +51,7 @@ namespace CasaEngine
 	void BaseEntity::SetParent(BaseEntity* val) 
 	{ 
 		_parent = val;
+		_coordinates.SetParent(_parent != nullptr ? &_parent->GetCoordinates() : nullptr);
 
 		EntityParentChangeEvent event(this, _parent);
 		fireEvent(EntityParentChangeEvent::GetEventName(), event);
@@ -102,6 +103,11 @@ namespace CasaEngine
 		_name = val;
 	}
 
+	Coordinates& BaseEntity::GetCoordinates()
+	{
+		return _coordinates;
+	}
+
 	void BaseEntity::Initialize()
 	{
 		_componentManager->InitializeComponents();
@@ -143,17 +149,24 @@ namespace CasaEngine
 	}
 	
 #ifdef EDITOR
-	
 	void BaseEntity::IsSelected(bool val)
 	{
-		m_IsSelected = val;
+		_isSelected = val;
 	}
 
 	bool BaseEntity::IsSelected() const
 	{
-		return m_IsSelected;
+		return _isSelected;
 	}
-	
-#endif	
 
+	void BaseEntity::IsPersistent(bool val)
+	{
+		_isSelected = val;
+	}
+
+	bool BaseEntity::IsPersistent() const
+	{
+		return _isSelected;
+	}
+#endif
 }

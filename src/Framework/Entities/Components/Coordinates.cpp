@@ -1,129 +1,104 @@
+#include "Coordinates.h"
 #include "Entities/BaseEntity.h"
-
-#include "Transform3DComponent.h"
-#include "../ComponentTypeEnum.h"
-#include "../Events/BaseEntityEvents.h"
-#include "EventHandler/Event.h"
-
 
 namespace CasaEngine
 {
-	Transform3DComponent::Transform3DComponent(BaseEntity* pEntity_) :
-		TransformComponent(pEntity_, TRANSFORM_3D),
-		m_pParentTransform(nullptr)
+	Coordinates::Coordinates() : 
+		m_LocalMatrixChanged(true),
+		_parent(nullptr)
 	{
 		m_LocalScale.Set(1.0f, 1.0f, 1.0f);
 
-		m_ParentChangedConnection = pEntity_->subscribeEvent(
-			EntityParentChangeEvent::GetEventName(),
-			Event::Subscriber(&Transform3DComponent::OnParentChange, this));
+		m_LocalMatrix.Identity();
+		m_WorldMatrix.Identity();
 	}
 
-	Transform3DComponent::~Transform3DComponent()
+	Matrix4 Coordinates::GetLocalMatrix()
 	{
-		m_ParentChangedConnection->disconnect();
+		return m_LocalMatrix;
 	}
 
-	void Transform3DComponent::Initialize()
+	Matrix4 Coordinates::GetWorldMatrix()
 	{
-
+		UpdateWorldMatrix();
+		return m_WorldMatrix;
 	}
 
-	void  Transform3DComponent::Update(const GameTime& /*gameTime_*/)
-	{
-
-	}
-
-	void Transform3DComponent::SetLocalMatrix(Matrix4 val)
+	void Coordinates::SetLocalMatrix(Matrix4 val)
 	{
 		m_LocalMatrix = val;
 		m_LocalMatrixChanged = true;
 	}
 
-	void Transform3DComponent::SetWorldMatrix(Matrix4 val)
+	void Coordinates::SetWorldMatrix(Matrix4 val)
 	{
 		m_WorldMatrix = val;
 	}
 
-	Vector3 Transform3DComponent::GetCenterOfRotation() const
+	Vector3 Coordinates::GetCenterOfRotation() const
 	{
 		return m_LocalCenterOfRotation;
 	}
 
-	void Transform3DComponent::SetCenterOfRotation(Vector3 val)
+	void Coordinates::SetCenterOfRotation(Vector3 val)
 	{
 		m_LocalCenterOfRotation = val;
 		m_LocalMatrixChanged = true;
 	}
 
-	Vector3 Transform3DComponent::GetLocalPosition() const
+	Vector3 Coordinates::GetLocalPosition() const
 	{
 		return m_LocalPosition;
 	}
 
-	void Transform3DComponent::SetLocalPosition(Vector3 val)
+	void Coordinates::SetLocalPosition(Vector3 val)
 	{
 		m_LocalPosition = val;
 		m_LocalMatrixChanged = true;
 	}
 
-	Quaternion Transform3DComponent::GetLocalRotation() const
+	Quaternion Coordinates::GetLocalRotation() const
 	{
 		return m_LocalRotation;
 	}
-	void Transform3DComponent::SetLocalRotation(Quaternion val)
+	void Coordinates::SetLocalRotation(Quaternion val)
 	{
 		m_LocalRotation = val;
 		m_LocalMatrixChanged = true;
 	}
 
-	Vector3 Transform3DComponent::GetLocalScale() const
+	Vector3 Coordinates::GetLocalScale() const
 	{
 		return m_LocalScale;
 	}
 
-	void Transform3DComponent::SetLocalScale(Vector3 val)
+	void Coordinates::SetLocalScale(Vector3 val)
 	{
 		m_LocalScale = val;
 		m_LocalMatrixChanged = true;
 	}
 
-	Vector3 Transform3DComponent::GetPosition() const
+	Vector3 Coordinates::GetPosition() const
 	{
-		return m_pParentTransform == nullptr ? m_LocalPosition : m_LocalPosition + m_pParentTransform->GetPosition();
+		return _parent == nullptr ? m_LocalPosition : m_LocalPosition + _parent->GetPosition();
 	}
 
-	Quaternion Transform3DComponent::GetRotation() const
+	Quaternion Coordinates::GetRotation() const
 	{
-		return m_pParentTransform == nullptr ? m_LocalRotation : m_LocalRotation * m_pParentTransform->GetRotation();
+		return _parent == nullptr ? m_LocalRotation : m_LocalRotation * _parent->GetRotation();
 	}
 
-	Vector3 Transform3DComponent::GetScale() const
+	Vector3 Coordinates::GetScale() const
 	{
-		return m_pParentTransform == nullptr ? m_LocalScale : m_LocalScale + m_pParentTransform->GetScale();
+		return _parent == nullptr ? m_LocalScale : m_LocalScale + _parent->GetScale();
 	}
 
-	bool Transform3DComponent::OnParentChange(const EventArgs& e)
+	void Coordinates::SetParent(Coordinates* parent)
 	{
-		const EntityParentChangeEvent& event = static_cast<const EntityParentChangeEvent&>(e);
-
-		BaseEntity* pParent = event.getParent();
-
-		if (pParent != nullptr)
-		{
-			m_pParentTransform = pParent->GetComponentMgr()->GetComponent<Transform3DComponent>();
-		}
-		else
-		{
-			m_pParentTransform = nullptr;
-		}
-
-		UpdateWorldMatrix();
-
-		return false;
+		_parent = parent;
 	}
 
-	void Transform3DComponent::UpdateLocalMatrix()
+	void Coordinates::UpdateLocalMatrix()
 	{
 		if (m_LocalMatrixChanged == true)
 		{
@@ -139,13 +114,13 @@ namespace CasaEngine
 		}
 	}
 
-	void Transform3DComponent::UpdateWorldMatrix()
+	void Coordinates::UpdateWorldMatrix()
 	{
 		UpdateLocalMatrix();
 
-		if (m_pParentTransform != nullptr)
+		if (_parent != nullptr)
 		{
-			m_WorldMatrix = m_LocalMatrix * m_pParentTransform->GetWorldMatrix();
+			m_WorldMatrix = m_LocalMatrix * _parent->GetWorldMatrix();
 		}
 		else
 		{
@@ -154,7 +129,7 @@ namespace CasaEngine
 	}
 
 #if EDITOR
-	void Transform3DComponent::ShowDebugWidget()
+	void Coordinates::ShowDebugWidget()
 	{
 		/*
 		const ImGuiStyle& style = ImGui::GetStyle();
@@ -183,12 +158,12 @@ namespace CasaEngine
 	}
 #endif
 
-	void Transform3DComponent::Write(std::ostream& /*os*/) const
+	void Coordinates::Write(std::ostream& /*os*/) const
 	{
 
 	}
 
-	void Transform3DComponent::Read(std::ifstream& /*is*/)
+	void Coordinates::Read(std::ifstream& /*is*/)
 	{
 
 	}

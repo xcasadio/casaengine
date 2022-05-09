@@ -6,10 +6,11 @@
 #include "Entities\Physics\PhysicalEntity.h"
 #include "AI\MovementSystem\MovementRequest.h"
 #include "MessageType.h"
+#include "Entities\Events\BaseEntityEvents.h"
 
 namespace CasaEngine
 {
-	Character2DBase::Character2DBase(BaseEntity* pEntity):
+	Character2DBase::Character2DBase(BaseEntity* pEntity) :
 		CharacterBase(pEntity),
 		m_NumberOfDirection(8),
 		m_AnimationDirectionMask(0)
