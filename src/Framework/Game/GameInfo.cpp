@@ -1,6 +1,5 @@
 #include "Base.h"
 #include "GameInfo.h"
-#include "Project/ProjectManager.h"
 #include "Graphics/Renderer/Renderer.h"
 #include "Game.h"
 
@@ -16,11 +15,6 @@ namespace CasaEngine
 	{
 	}
 
-	ProjectManager& GameInfo::GetProjectManager()
-	{
-		return m_ProjectManager;
-	}
-
 	World* GameInfo::GetWorld() const
 	{
 		return m_pWorld;
@@ -33,7 +27,7 @@ namespace CasaEngine
 
 	CameraComponent* GameInfo::GetActiveCamera() const
 	{
-		//CA_ASSERT("GameInfo::GetActiveCamera() : camera is nullptr", m_pCamera != nullptr);
+		CA_ASSERT(m_pCamera != nullptr, "GameInfo::GetActiveCamera() : camera is nullptr");
 		return m_pCamera;
 	}
 
@@ -42,7 +36,7 @@ namespace CasaEngine
 		CA_ASSERT(val != nullptr, "GameInfo::SetActiveCamera() : camera is nullptr");
 
 		m_pCamera = val;
-		Viewport& viewport = m_pCamera->GetViewport();
+		const Viewport& viewport = m_pCamera->GetViewport();
 
 		//todo in graphics or in renderer
 		bgfx::setViewRect(0,

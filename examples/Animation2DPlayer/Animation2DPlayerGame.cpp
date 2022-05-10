@@ -33,6 +33,7 @@ std::vector<std::string> last_animation_names;
 std::vector<char*> animation_names;
 
 Animation2DPlayerGame::Animation2DPlayerGame() :
+	m_pEntity(nullptr),
 	m_pAnimatedSprite(nullptr),
 	m_pWorld(nullptr),
 	m_AnimationIndexSelected(0),
@@ -97,7 +98,7 @@ void Animation2DPlayerGame::LoadContent()
 	LoadAnimations(m_pAnimatedSprite);
 	m_pAnimatedSprite->SetCurrentAnimation(1);
 
-	auto *debugComponent = new DebugComponent(pEntity);
+	auto* debugComponent = new DebugComponent(pEntity);
 	debugComponent->DisplayAnimation2DCollisions(true);
 	debugComponent->DisplayPosition(true);
 	pEntity->GetComponentMgr()->AddComponent(debugComponent);
@@ -189,7 +190,7 @@ void Animation2DPlayerGame::LoadAnimations(AnimatedSpriteComponent* pAnimatedCom
 		anims.push_back(*animation2D);
 	}
 	*/
-	
+
 	//save sprites and animations
 	/*
 	std::ofstream os("C:\\Users\\casad\\dev\\repo\\casaengine\\examples\\resources\\datas\\animations.json");
@@ -327,8 +328,8 @@ void Animation2DPlayerGame::DisplayUI()
 		std::ostringstream oss;
 		oss << "time (total :" << m_pAnimatedSprite->GetCurrentAnimation()->TotalTime() << " ms)";
 		ImGui::SliderFloat(oss.str().c_str(),
-			m_pAnimatedSprite->GetCurrentAnimation()->CurrentTimePtr(), 
-			0.0f, 
+			m_pAnimatedSprite->GetCurrentAnimation()->CurrentTimePtr(),
+			0.0f,
 			m_pAnimatedSprite->GetCurrentAnimation()->TotalTime(), "%.3f", ImGuiSliderFlags_AlwaysClamp);
 
 		ImGui::Separator();
@@ -400,8 +401,8 @@ void Animation2DPlayerGame::DisplayUI()
 					ImGui::SetItemDefaultFocus();
 				}
 			}
-			
-			ImGui::EndCombo();			
+
+			ImGui::EndCombo();
 		}
 		//ImGui::Combo("Frames", m_FrameIndexSelected >= 0 ? &m_FrameIndexSelected : &defaultIndex, &frameNames[0], frameNames.size());
 

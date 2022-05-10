@@ -1,11 +1,10 @@
 #include "Base.h"
-
 #include "Animations/SetFrameEvent.h"
 #include <string>
 #include "Animation.h"
 #include "Animation2D.h"
 #include "Log/LogManager.h"
-#include "Parsers/Xml/tinyxml2.h"
+
 #include <ostream>
 #include <fstream>
 
@@ -13,35 +12,23 @@
 
 namespace CasaEngine
 {
-	/**
-	 *
-	 */
 	SetFrameEvent::SetFrameEvent()
 	{
 
 	}
 
-	/**
-	 *
-	 */
 	SetFrameEvent::SetFrameEvent(const SetFrameEvent& rsh)
 	{
 		*this = rsh;
 	}
 
-	/**
-	 *
-	 */
-	const SetFrameEvent& SetFrameEvent::operator = (const SetFrameEvent& rsh)
+	SetFrameEvent& SetFrameEvent::operator = (const SetFrameEvent& rsh)
 	{
 		AnimationEvent::operator=(rsh);
 		m_FrameID = rsh.m_FrameID;
 		return *this;
 	}
 
-	/**
-	 *
-	 */
 	SetFrameEvent::~SetFrameEvent()
 	{
 
@@ -52,22 +39,16 @@ namespace CasaEngine
 		return new SetFrameEvent(*this);
 	}
 
-	/**
-	 *
-	 */
 	const char* SetFrameEvent::FrameID() const
 	{
 		return m_FrameID.c_str();
 	}
 
-	/**
-	 *
-	 */
 	void SetFrameEvent::Activate(Animation* pAnim_)
 	{
 		CA_ASSERT(pAnim_ != nullptr, "SetFrameEvent::Activate() : Animation is nullptr");
 
-		Animation2D* pAnim2D = static_cast<Animation2D*>(pAnim_);
+		auto* pAnim2D = static_cast<Animation2D*>(pAnim_);
 
 		if (pAnim2D != nullptr)
 		{
@@ -79,9 +60,6 @@ namespace CasaEngine
 		}
 	}
 
-	/**
-	 *
-	 */
 	void SetFrameEvent::FrameID(const char* val)
 	{
 		m_FrameID = val;

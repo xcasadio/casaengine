@@ -4,6 +4,7 @@
 #include <cmath>
 #include <algorithm>
 #include <cmath>
+#include <cereal/cereal.hpp>
 
 #include "Math.h"
 #include "Maths/ValidNumber.h"
@@ -101,8 +102,27 @@ namespace CasaEngine
 
 		operator T* ();
 
-		T& operator [] (int index) { CA_ASSERT(index >= 0 && index <= 2, "Vector3 operator[]"); return ((T*)this)[index]; }
-		T operator [] (int index) const { CA_ASSERT(index >= 0 && index <= 2, "Vector3 operator[]"); return ((T*)this)[index]; }
+		T& operator [] (int index);
+		T operator [] (int index) const;
+
+	private:
+		friend class cereal::access;
+
+		template <class Archive>
+		void save(Archive& ar) const
+		{
+			ar(CEREAL_NVP(x));
+			ar(CEREAL_NVP(y));
+			ar(CEREAL_NVP(z));
+		}
+
+		template <class Archive>
+		void load(Archive& ar)
+		{
+			ar(CEREAL_NVP(x));
+			ar(CEREAL_NVP(y));
+			ar(CEREAL_NVP(z));
+		}
 	};
 
 	typedef CVector3<int>   Vector3I;
@@ -580,6 +600,18 @@ namespace CasaEngine
 	CVector3<T>::operator T* ()
 	{
 		return &x;
+	}
+
+	template <class T>
+	T& CVector3<T>::operator[](int index)
+	{
+		CA_ASSERT(index >= 0 && index <= 2, "Vector3 operator[]"); return ((T*)this)[index];
+	}
+
+	template <class T>
+	T CVector3<T>::operator[](int index) const
+	{
+		CA_ASSERT(index >= 0 && index <= 2, "Vector3 operator[]"); return ((T*)this)[index];
 	}
 
 	template <class T>

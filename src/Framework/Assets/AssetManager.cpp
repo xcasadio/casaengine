@@ -2,8 +2,6 @@
 #include "Log/LogManager.h"
 #include "AssetManager.h"
 #include "Asset.h"
-#include "Parsers/Xml/tinyxml2.h"
-#include "Parsers/Xml/XMLHelper.h"
 #include "StringUtils.h"
 #include <string>
 #include <map>

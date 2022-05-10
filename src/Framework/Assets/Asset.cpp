@@ -1,8 +1,6 @@
 #include "Base.h"
 #include "Log/LogManager.h"
 #include "Asset.h"
-#include "Parsers/Xml/tinyxml2.h"
-#include "Parsers/Xml/XMLHelper.h"
 #include <string>
 #include "Assetable.h"
 #include "Exceptions.h"

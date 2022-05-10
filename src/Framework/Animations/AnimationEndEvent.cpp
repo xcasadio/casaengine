@@ -4,7 +4,7 @@
 #include "Animation.h"
 #include "Animation2D.h"
 #include "Log/LogManager.h"
-#include "Parsers/Xml/tinyxml2.h"
+
 #include <ostream>
 #include <fstream>
 

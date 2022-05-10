@@ -1,5 +1,4 @@
-#ifndef RECTANGLE_H
-#define RECTANGLE_H
+#pragma once
 
 #include "CA_Export.h"
 #include "Maths/Vector2.h"
@@ -22,8 +21,12 @@ namespace CasaEngine
 	{
 	public:
 		CRectangle();
+		~CRectangle() override = default;
 		CRectangle(const CRectangle<T>& rsh);
 		CRectangle<T>& operator=(const CRectangle<T>& rsh);
+		CRectangle(CRectangle<T>&& rsh) = default;
+		CRectangle<T>& operator=(CRectangle<T>&& rsh) = default;
+
 		CRectangle(T Left, T Top, T Width, T Height);
 
 		void Set(T Left, T Top, T Width, T Height);
@@ -213,4 +216,3 @@ CEREAL_REGISTER_TYPE_WITH_NAME(CasaEngine::Rectangle, "rectangleF");
 CEREAL_REGISTER_POLYMORPHIC_RELATION(CasaEngine::IShape, CasaEngine::RectangleI);
 CEREAL_REGISTER_POLYMORPHIC_RELATION(CasaEngine::IShape, CasaEngine::Rectangle);
 */
-#endif

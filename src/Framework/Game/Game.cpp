@@ -106,7 +106,7 @@ namespace CasaEngine
 	void Game::MakeWindow()
 	{
 		sf::VideoMode videoMode(m_EngineSettings.WindowWidth, m_EngineSettings.WindowHeight, m_EngineSettings.DepthColor);
-		sf::ContextSettings winSettings(24, 8,	0);
+		sf::ContextSettings winSettings(24, 8, 0);
 
 #if CA_PLATFORM_DESKTOP
 		if (m_Hwnd != nullptr)
@@ -535,7 +535,7 @@ namespace CasaEngine
 	void Game::BeginDraw()
 	{
 		m_Renderer.BeginDraw();
-		
+
 		ImGuiAdapter::BeginFrame(GetWindowSize().x, GetWindowSize().y);
 
 		if (m_GameInfo.GetWorld() != nullptr)
@@ -607,7 +607,7 @@ namespace CasaEngine
 			component_->Initialize();
 		}
 
-		auto *drawable_game_component = dynamic_cast<DrawableGameComponent*>(component_);
+		auto* drawable_game_component = dynamic_cast<DrawableGameComponent*>(component_);
 		if (drawable_game_component != nullptr)
 		{
 			m_DrawableComponents.push_back(drawable_game_component);
@@ -628,7 +628,7 @@ namespace CasaEngine
 			}
 		}
 
-		auto *drawable_game_component = dynamic_cast<DrawableGameComponent*>(component_);
+		auto* drawable_game_component = dynamic_cast<DrawableGameComponent*>(component_);
 		if (drawable_game_component != nullptr)
 		{
 			for (auto it = m_DrawableComponents.begin();

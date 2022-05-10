@@ -37,9 +37,6 @@
     <Filter Include="Core\Parsers\Ini">
       <UniqueIdentifier>{32396c6c-9b25-46a4-b0ee-9b7fc3d7e9bb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\Parsers\Xml">
-      <UniqueIdentifier>{7a1b6e5f-6ae5-4332-bb0f-17f08a3cf0f7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Audio">
       <UniqueIdentifier>{fd144c5c-ac7b-4930-8c0c-9244b35935cc}</UniqueIdentifier>
     </Filter>
@@ -123,9 +120,6 @@
     </Filter>
     <Filter Include="Framework\Game\Editor">
       <UniqueIdentifier>{f7e3bc94-f35a-48ed-a973-b47743fa0d21}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\Project">
-      <UniqueIdentifier>{045173b7-cfa8-4930-9735-2f030e8d7bab}</UniqueIdentifier>
     </Filter>
     <Filter Include="Framework\Script">
       <UniqueIdentifier>{d6b06d4d-bde4-4b49-a475-63e13154d5ab}</UniqueIdentifier>
@@ -374,12 +368,6 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Core\CA_Export.h">
       <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Core\Parsers\Xml\tinyxml2.h">
-      <Filter>Core\Parsers\Xml</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Core\Parsers\Xml\XMLHelper.h">
-      <Filter>Core\Parsers\Xml</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Engine\Graphics\Effects\Shader.h">
       <Filter>Engine\Graphics\Effects</Filter>
@@ -681,9 +669,6 @@
     <ClInclude Include="..\..\src\Framework\Game\Line3DRendererComponent.h">
       <Filter>Framework\Game</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Project\ProjectManager.h">
-      <Filter>Framework\Project</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Framework\Script\IScriptObject.h">
       <Filter>Framework\Script</Filter>
     </ClInclude>
@@ -927,6 +912,15 @@
     <ClInclude Include="..\..\src\Framework\Messaging\Telegram.h">
       <Filter>Framework\Messaging</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Framework\Map2D\TileParameters.h">
+      <Filter>Framework\Map2D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Framework\Map2D\TileComponent.h">
+      <Filter>Framework\Map2D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Framework\Datas\AutoTileSetData.h">
+      <Filter>Framework\Datas</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Core\DateTime.cpp">
@@ -1024,12 +1018,6 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Core\Win32\Win32Exception.cpp">
       <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Core\Parsers\Xml\tinyxml2.cpp">
-      <Filter>Core\Parsers\Xml</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Core\Parsers\Xml\XMLHelper.cpp">
-      <Filter>Core\Parsers\Xml</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Graphics\Effects\Shader.cpp">
       <Filter>Engine\Graphics\Effects</Filter>
@@ -1235,9 +1223,6 @@
     <ClCompile Include="..\..\src\Framework\Game\Line3DRendererComponent.cpp">
       <Filter>Framework\Game</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Framework\Project\ProjectManager.cpp">
-      <Filter>Framework\Project</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Framework\Script\IScriptObject.cpp">
       <Filter>Framework\Script</Filter>
     </ClCompile>
@@ -1414,6 +1399,15 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Framework\Messaging\Telegram.cpp">
       <Filter>Framework\Messaging</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Framework\Map2D\TileParameters.cpp">
+      <Filter>Framework\Map2D</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Framework\Map2D\TileComponent.cpp">
+      <Filter>Framework\Map2D</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Framework\Datas\AutoTileSetData.cpp">
+      <Filter>Framework\Datas</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

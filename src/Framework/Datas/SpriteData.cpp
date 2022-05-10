@@ -1,8 +1,5 @@
 #include "Base.h"
-
 #include "Datas/SpriteData.h"
-#include "Parsers/Xml/tinyxml2.h"
-
 #include "Game/Game.h"
 #include "Maths/Vector2.h"
 #include "Maths/Rectangle.h"

@@ -20,7 +20,7 @@ namespace CasaEngine
 		SpriteData* GetSpriteData() const;
 
 	private:
-		Texture* m_pTexture2D;
-		SpriteData *m_pSpriteData;
+		Texture* _texture2D;
+		SpriteData* _spriteData;
 	};
 }

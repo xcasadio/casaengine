@@ -13,6 +13,14 @@ namespace CasaEngine
 		//do nothing
 	}
 
+	void StaticTile::Draw(float x, float y, float z)
+	{
+		if (m_pSprite != nullptr)
+		{
+			ITile::Draw(m_pSprite, x, y, z, m_pSprite->GetSpriteData()->GetPositionInTexture());
+		}
+	}
+
 	void StaticTile::Draw(float x, float y, float z, RectangleI uvOffset)
 	{
 		if (m_pSprite != nullptr)

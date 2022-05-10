@@ -2,27 +2,28 @@
 
 namespace CasaEngine
 {
-	ITile::ITile() : m_IsWall(false)
+	ITile::ITile() :
+		_isWall(false)
 	{
 	}
 	
 	void ITile::Initialize()
 	{
-		m_pSpriteRenderer = Game::Instance().GetGameComponent<SpriteRenderer>();
-		CA_ASSERT(m_pSpriteRenderer != nullptr, "ITile::Initialize SpriteRenderer is null")
+		_spriteRenderer = Game::Instance().GetGameComponent<SpriteRenderer>();
+		CA_ASSERT(_spriteRenderer != nullptr, "ITile::Initialize SpriteRenderer is null")
 	}
 
 	void ITile::IsWall(bool val)
 	{
-		m_IsWall = val;
+		_isWall = val;
 	}
 
 	bool ITile::IsWall() const
 	{
-		return m_IsWall;
+		return _isWall;
 	}
 
-	void ITile::Draw(const Sprite* sprite, float x, float y, float z,const RectangleI& uvOffset) const
+	void ITile::Draw(const Sprite* sprite, float x, float y, float z, const RectangleI& uvOffset) const
 	{
 		const RectangleI texUV = RectangleI(
 			sprite->GetSpriteData()->GetPositionInTexture().Left() + uvOffset.Left(),
@@ -30,7 +31,7 @@ namespace CasaEngine
 			uvOffset.w,
 			uvOffset.h);
 
-		m_pSpriteRenderer->AddSprite(
+		_spriteRenderer->AddSprite(
 			sprite->GetTexture2D(),
 			texUV,
 			sprite->GetSpriteData()->GetOrigin(),

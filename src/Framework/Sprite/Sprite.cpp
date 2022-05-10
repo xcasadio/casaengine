@@ -23,17 +23,17 @@ namespace CasaEngine
 			_textureCache.insert(std::make_pair(spriteData.GetAssetFileName(), texture));
 		}
 
-		m_pTexture2D = texture;
-		m_pSpriteData = &spriteData;
+		_texture2D = texture;
+		_spriteData = &spriteData;
 	}
 
 	Texture* Sprite::GetTexture2D() const
 	{
-		return m_pTexture2D;
+		return _texture2D;
 	}
 
 	SpriteData* Sprite::GetSpriteData() const
 	{
-		return m_pSpriteData;
+		return _spriteData;
 	}
 }

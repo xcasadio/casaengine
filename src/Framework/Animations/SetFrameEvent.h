@@ -1,11 +1,9 @@
-#ifndef _CHANGEFRAMEEVENT_H_
-#define _CHANGEFRAMEEVENT_H_
+#pragma once
 
 #include <string>
 
 #include "CA_Export.h"
 #include "AnimationEvent.h"
-#include "Parsers\Xml\tinyxml2.h"
 
 namespace CasaEngine
 {
@@ -15,8 +13,8 @@ namespace CasaEngine
 	public:
 		SetFrameEvent();
 		SetFrameEvent(const SetFrameEvent& rsh);
-		const SetFrameEvent& operator = (const SetFrameEvent& rsh);
-		~SetFrameEvent();
+		SetFrameEvent& operator = (const SetFrameEvent& rsh);
+		~SetFrameEvent() override;
 
 		AnimationEvent* Copy() override;
 
@@ -24,9 +22,6 @@ namespace CasaEngine
 
 		const char* FrameID() const;
 		void FrameID(const char* val);
-
-		void Read(std::ifstream& /*is*/);
-		void Read(tinyxml2::XMLElement* el_);
 
 	private:
 		std::string m_FrameID;
@@ -54,5 +49,3 @@ namespace CasaEngine
 #endif
 	};
 }
-
-#endif

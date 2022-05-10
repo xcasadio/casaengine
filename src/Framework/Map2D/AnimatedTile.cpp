@@ -27,6 +27,16 @@ namespace CasaEngine
 		}
 	}
 
+	void AnimatedTile::Draw(float x, float y, float z)
+	{
+		if (m_pAnimation != nullptr)
+		{
+			//TODO : load all sprite in initialization function
+			auto* pSprite = new Sprite(*Game::Instance().GetAssetManager().GetAsset<SpriteData>(m_pAnimation->CurrentFrame()));
+			ITile::Draw(pSprite, x, y, z, pSprite->GetSpriteData()->GetPositionInTexture());
+		}
+	}
+
 	void AnimatedTile::Draw(float x, float y, float z, RectangleI uvOffset)
 	{
 		if (m_pAnimation != nullptr)

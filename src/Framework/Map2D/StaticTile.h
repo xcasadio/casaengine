@@ -9,8 +9,10 @@ namespace CasaEngine
 	{
 	public:
 		explicit StaticTile(Sprite* pSprite);
+		~StaticTile() = default;
 
 		void Update(const GameTime& gameTime_) override;
+		void Draw(float x, float y, float z) override;
 		void Draw(float x, float y, float z, RectangleI uvOffset) override;
 
 		Sprite* GetSprite() const;

@@ -251,8 +251,6 @@
     <ClInclude Include="..\..\src\Core\Maths\Vector4.h" />
     <ClInclude Include="..\..\src\Core\Parsers\Ini\INIReader.h" />
     <ClInclude Include="..\..\src\Core\Parsers\Ini\ini.h" />
-    <ClInclude Include="..\..\src\Core\Parsers\Xml\XMLHelper.h" />
-    <ClInclude Include="..\..\src\Core\Parsers\Xml\tinyxml2.h" />
     <ClInclude Include="..\..\src\Core\StringUtils.h" />
     <ClInclude Include="..\..\src\Core\SystemPlatform.h" />
     <ClInclude Include="..\..\src\Core\Version.h" />
@@ -336,6 +334,7 @@
     <ClInclude Include="..\..\src\Framework\Assets\Assetable.h" />
     <ClInclude Include="..\..\src\Framework\Datas\Animation2DData.h" />
     <ClInclude Include="..\..\src\Framework\Datas\AnimationData.h" />
+    <ClInclude Include="..\..\src\Framework\Datas\AutoTileSetData.h" />
     <ClInclude Include="..\..\src\Framework\Datas\FrameData.h" />
     <ClInclude Include="..\..\src\Framework\Datas\SpriteData.h" />
     <ClInclude Include="..\..\src\Framework\Entities\BaseEntity.h" />
@@ -393,11 +392,12 @@
     <ClInclude Include="..\..\src\Framework\Map2D\AutoTile.h" />
     <ClInclude Include="..\..\src\Framework\Map2D\StaticTile.h" />
     <ClInclude Include="..\..\src\Framework\Map2D\Tile.h" />
+    <ClInclude Include="..\..\src\Framework\Map2D\TileComponent.h" />
     <ClInclude Include="..\..\src\Framework\Map2D\TiledMapComponent.h" />
     <ClInclude Include="..\..\src\Framework\Map2D\TiledMapLayer.h" />
+    <ClInclude Include="..\..\src\Framework\Map2D\TileParameters.h" />
     <ClInclude Include="..\..\src\Framework\Messaging\MessageDispatcher.h" />
     <ClInclude Include="..\..\src\Framework\Messaging\Telegram.h" />
-    <ClInclude Include="..\..\src\Framework\Project\ProjectManager.h" />
     <ClInclude Include="..\..\src\Framework\Script\IScriptObject.h" />
     <ClInclude Include="..\..\src\Framework\Script\IScriptObjectFactory.h" />
     <ClInclude Include="..\..\src\Framework\Script\ScriptEngine.h" />
@@ -466,8 +466,6 @@
     <ClCompile Include="..\..\src\Core\Maths\Shape\Sphere.cpp" />
     <ClCompile Include="..\..\src\Core\Parsers\Ini\INIReader.cpp" />
     <ClCompile Include="..\..\src\Core\Parsers\Ini\ini.cpp" />
-    <ClCompile Include="..\..\src\Core\Parsers\Xml\XMLHelper.cpp" />
-    <ClCompile Include="..\..\src\Core\Parsers\Xml\tinyxml2.cpp" />
     <ClCompile Include="..\..\src\Core\Win32\Win32Exception.cpp" />
     <ClCompile Include="..\..\src\Engine\GameTime.cpp" />
     <ClCompile Include="..\..\src\Engine\Graphics\Color.cpp" />
@@ -517,6 +515,7 @@
     <ClCompile Include="..\..\src\Framework\Assets\Assetable.cpp" />
     <ClCompile Include="..\..\src\Framework\Datas\Animation2DData.cpp" />
     <ClCompile Include="..\..\src\Framework\Datas\AnimationData.cpp" />
+    <ClCompile Include="..\..\src\Framework\Datas\AutoTileSetData.cpp" />
     <ClCompile Include="..\..\src\Framework\Datas\FrameData.cpp" />
     <ClCompile Include="..\..\src\Framework\Datas\SpriteData.cpp" />
     <ClCompile Include="..\..\src\Framework\Entities\BaseEntity.cpp" />
@@ -570,11 +569,12 @@
     <ClCompile Include="..\..\src\Framework\Map2D\AutoTile.cpp" />
     <ClCompile Include="..\..\src\Framework\Map2D\StaticTile.cpp" />
     <ClCompile Include="..\..\src\Framework\Map2D\Tile.cpp" />
+    <ClCompile Include="..\..\src\Framework\Map2D\TileComponent.cpp" />
     <ClCompile Include="..\..\src\Framework\Map2D\TiledMapComponent.cpp" />
     <ClCompile Include="..\..\src\Framework\Map2D\TiledMapLayer.cpp" />
+    <ClCompile Include="..\..\src\Framework\Map2D\TileParameters.cpp" />
     <ClCompile Include="..\..\src\Framework\Messaging\MessageDispatcher.cpp" />
     <ClCompile Include="..\..\src\Framework\Messaging\Telegram.cpp" />
-    <ClCompile Include="..\..\src\Framework\Project\ProjectManager.cpp" />
     <ClCompile Include="..\..\src\Framework\Script\IScriptObject.cpp" />
     <ClCompile Include="..\..\src\Framework\Script\IScriptObjectFactory.cpp" />
     <ClCompile Include="..\..\src\Framework\Script\ScriptEngine.cpp" />
