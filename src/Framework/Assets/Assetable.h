@@ -1,5 +1,4 @@
-#ifndef _ASSETABLE_H_
-#define _ASSETABLE_H_
+#pragma once
 
 #include "CA_Export.h"
 #include <string>
@@ -12,7 +11,7 @@ namespace CasaEngine
 	class CA_EXPORT IAssetable
 	{
 	public:
-		virtual ~IAssetable();
+		virtual ~IAssetable() = default;
 		
 		std::string GetName() const;
 //#ifdef EDITOR
@@ -21,7 +20,7 @@ namespace CasaEngine
 
 	protected:
 		IAssetable() = default;
-		const IAssetable& operator = (const IAssetable& rsh);
+		IAssetable& operator = (const IAssetable& rsh);
 		
 	private:
 		std::string m_Name;
@@ -44,5 +43,3 @@ namespace CasaEngine
 }
 
 //CEREAL_REGISTER_TYPE_WITH_NAME(CasaEngine::IAssetable, "asset");
-
-#endif

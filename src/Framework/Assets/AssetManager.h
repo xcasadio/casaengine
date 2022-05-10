@@ -40,7 +40,7 @@ namespace CasaEngine
 	template<class T>
 	T* AssetManager::GetAsset(std::string name_)
 	{
-		std::map<std::string, Asset*>::const_iterator asset = m_Assets.find(name_);
+		auto asset = m_Assets.find(name_);
 		CA_ASSERT(asset != m_Assets.end(), (CStringBuilder("AssetManager::GetAsset(): can't find the asset '")(name_)("'")).str().c_str());
 		return asset->second->GetAsset<T>();
 	}

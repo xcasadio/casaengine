@@ -9,13 +9,13 @@
 namespace CasaEngine
 {
 	TiledMapLayer::TiledMapLayer():
-		zOffset(0)
+		_zOffset(0)
 	{
 	}
 
 	void TiledMapLayer::Initialize(BaseEntity* entity)
 	{
-		for (auto* tile : m_Tiles)
+		for (auto* tile : _tiles)
 		{
 			if (tile != nullptr)
 			{
@@ -25,16 +25,16 @@ namespace CasaEngine
 
 		auto* physicsWorld = Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld();
 
-		for (int y = 0; y < m_MapSize.y; ++y)
+		for (int y = 0; y < _mapSize.y; ++y)
 		{
-			for (int x = 0; x < m_MapSize.x; ++x)
+			for (int x = 0; x < _mapSize.x; ++x)
 			{
-				auto* tile = m_Tiles[x + y * m_MapSize.x];
+				auto* tile = _tiles[x + y * _mapSize.x];
 				if (tile != nullptr && tile->IsWall())
 				{
-					auto *shape = new Rectangle(0, 0, m_TileSize.x, m_TileSize.y);
+					auto *shape = new Rectangle(0, 0, _tileSize.x, _tileSize.y);
 					//auto *shape = new Circle(m_TileSize.x);
-					auto position = Vector3(x * m_TileSize.x + m_TileSize.x / 2.0f, y * m_TileSize.y + m_TileSize.y / 2.0f, 0.0f);
+					auto position = Vector3(x * _tileSize.x + _tileSize.x / 2.0f, y * _tileSize.y + _tileSize.y / 2.0f, 0.0f);
 					auto *collisionShape = physicsWorld->CreateCollisionShape(entity, shape, position, CollisionHitType::Unknown, CollisionFlags::Static);
 					physicsWorld->AddCollisionObject(collisionShape);
 				}
@@ -44,7 +44,7 @@ namespace CasaEngine
 
 	void TiledMapLayer::Update(const GameTime& gameTime_)
 	{
-		for (auto* tile : m_Tiles)
+		for (auto* tile : _tiles)
 		{
 			if (tile != nullptr)
 			{
@@ -59,17 +59,17 @@ namespace CasaEngine
 		const float py = translation.y;
 		const float z = translation.z;
 
-		for (int y = 0; y < m_MapSize.y; ++y)
+		for (int y = 0; y < _mapSize.y; ++y)
 		{
-			for (int x = 0; x < m_MapSize.x; ++x)
+			for (int x = 0; x < _mapSize.x; ++x)
 			{
-				if (m_Tiles[x + y * m_MapSize.x] != nullptr)
+				if (_tiles[x + y * _mapSize.x] != nullptr)
 				{
-					m_Tiles[x + y * m_MapSize.x]->Draw(
-						px + x * m_TileSize.x, 
-						py + y * m_TileSize.y, 
-						z + zOffset,
-						RectangleI(0, 0, m_TileSize.x, m_TileSize.y));
+					_tiles[x + y * _mapSize.x]->Draw(
+						px + x * _tileSize.x, 
+						py + y * _tileSize.y, 
+						z + _zOffset,
+						RectangleI(0, 0, _tileSize.x, _tileSize.y));
 				}
 			}
 		}
@@ -77,62 +77,62 @@ namespace CasaEngine
 
 	Vector2I TiledMapLayer::GetMapSize() const
 	{
-		return m_MapSize;
+		return _mapSize;
 	}
 
 	void TiledMapLayer::SetMapSize(Vector2I& size)
 	{
-		m_MapSize = size;
+		_mapSize = size;
 	}
 
 	Vector2I TiledMapLayer::GetTileSize() const
 	{
-		return m_TileSize;
+		return _tileSize;
 	}
 
 	void TiledMapLayer::SetTileSize(Vector2I& size)
 	{
-		m_TileSize = size;
+		_tileSize = size;
 	}
 
 	std::vector<ITile*> TiledMapLayer::GetTiles() const
 	{
-		return m_Tiles;
+		return _tiles;
 	}
 
 	void TiledMapLayer::SetTiles(std::vector<ITile*>& tiles)
 	{
-		m_Tiles.clear();
+		_tiles.clear();
 
 		for (auto* tile : tiles)
 		{
-			m_Tiles.push_back(tile);
+			_tiles.push_back(tile);
 		}
 	}
 
 	void TiledMapLayer::SetTile(int x, int y, ITile* pTile)
 	{
-		m_Tiles[x + y * m_MapSize.x] = pTile;
+		_tiles[x + y * _mapSize.x] = pTile;
 	}
 
 	ITile* TiledMapLayer::GetTile(const int x, const int y) const
 	{
-		if (x >= m_MapSize.x || x < 0
-			|| y >= m_MapSize.y || y < 0)
+		if (x >= _mapSize.x || x < 0
+			|| y >= _mapSize.y || y < 0)
 		{
 			return nullptr;
 		}
 
-		return m_Tiles[x + y * m_MapSize.x];
+		return _tiles[x + y * _mapSize.x];
 	}
 
 	void TiledMapLayer::SetZOffset(float value)
 	{
-		zOffset = value;
+		_zOffset = value;
 	}
 
 	float TiledMapLayer::GetZOffset() const
 	{
-		return zOffset;
+		return _zOffset;
 	}
 }

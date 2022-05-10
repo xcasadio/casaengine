@@ -1,5 +1,4 @@
-#ifndef STATICTILE_H_
-#define STATICTILE_H_
+#pragma once
 
 #include "Tile.h"
 #include "Sprite/Sprite.h"
@@ -21,5 +20,3 @@ namespace CasaEngine
 		Sprite* m_pSprite;
 	};
 }
-
-#endif

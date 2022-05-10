@@ -1,5 +1,4 @@
-#ifndef COMPONENTTYPEENUM_H_
-#define COMPONENTTYPEENUM_H_
+#pragma once
 
 namespace CasaEngine
 {
@@ -25,6 +24,7 @@ namespace CasaEngine
 		WORLD,
 
 		TILED_MAP,
+		TILE,
 
 		BOX_COLLIDER,
 		SPHERE_COLLIDER,
@@ -42,7 +42,3 @@ namespace CasaEngine
 	};
 
 }
-
-#endif // COMPONENTMESSAGEENUM_H_
-
-

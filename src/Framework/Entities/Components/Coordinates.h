@@ -18,22 +18,22 @@ namespace CasaEngine
 		Coordinates();
 
 		Matrix4 GetLocalMatrix();
-		void SetLocalMatrix(Matrix4 val);
+		void SetLocalMatrix(const Matrix4& val);
 
 		Matrix4 GetWorldMatrix();
-		void SetWorldMatrix(Matrix4 val);
+		void SetWorldMatrix(const Matrix4& val);
 
 		Vector3 GetCenterOfRotation() const;
-		void SetCenterOfRotation(Vector3 val);
+		void SetCenterOfRotation(const Vector3& val);
 
 		Vector3 GetLocalPosition() const;
-		void SetLocalPosition(Vector3 val);
+		void SetLocalPosition(const Vector3& val);
 
 		Quaternion GetLocalRotation() const;
-		void SetLocalRotation(Quaternion val);
+		void SetLocalRotation(const Quaternion& val);
 
 		Vector3 GetLocalScale() const;
-		void SetLocalScale(Vector3 val);
+		void SetLocalScale(const Vector3& val);
 
 		Vector3 GetPosition() const;
 		Quaternion GetRotation() const;

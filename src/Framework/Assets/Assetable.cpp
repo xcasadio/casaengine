@@ -2,17 +2,13 @@
 
 namespace CasaEngine
 {
-	IAssetable::~IAssetable()
-	{
-	}
-
 	std::string IAssetable::GetName() const
 	{
 		return m_Name;
 	}
 
 
-	const IAssetable& IAssetable::operator = (const IAssetable& rsh)
+	IAssetable& IAssetable::operator = (const IAssetable& rsh)
 	{
 		m_Name = rsh.m_Name;
 		return *this;

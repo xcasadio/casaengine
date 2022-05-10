@@ -19,11 +19,11 @@ namespace CasaEngine
 
 	protected:
 		ITile();
+		~ITile() = default;
 		void Draw(const Sprite* sprite, float x, float y, float z, const RectangleI& uvOffset) const;
 
 	private:
 		SpriteRenderer* m_pSpriteRenderer = nullptr;
 		bool m_IsWall;
 	};
-
 }

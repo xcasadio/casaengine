@@ -1,5 +1,4 @@
-#ifndef AUTO_TILE_H_
-#define AUTO_TILE_H_
+#pragma once
 
 #include <vector>
 
@@ -30,5 +29,3 @@ namespace CasaEngine
 		bool m_Hidden;
 	};
 }
-
-#endif

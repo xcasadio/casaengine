@@ -3,12 +3,12 @@
 
 namespace CasaEngine
 {
-	Coordinates::Coordinates() : 
-		m_LocalMatrixChanged(true),
-		_parent(nullptr)
+	Coordinates::Coordinates() :
+		_parent(nullptr),
+		m_LocalMatrixChanged(true)
 	{
 		m_LocalScale.Set(1.0f, 1.0f, 1.0f);
-
+		m_LocalRotation.Identity();
 		m_LocalMatrix.Identity();
 		m_WorldMatrix.Identity();
 	}
@@ -24,13 +24,13 @@ namespace CasaEngine
 		return m_WorldMatrix;
 	}
 
-	void Coordinates::SetLocalMatrix(Matrix4 val)
+	void Coordinates::SetLocalMatrix(const Matrix4& val)
 	{
 		m_LocalMatrix = val;
 		m_LocalMatrixChanged = true;
 	}
 
-	void Coordinates::SetWorldMatrix(Matrix4 val)
+	void Coordinates::SetWorldMatrix(const Matrix4& val)
 	{
 		m_WorldMatrix = val;
 	}
@@ -40,7 +40,7 @@ namespace CasaEngine
 		return m_LocalCenterOfRotation;
 	}
 
-	void Coordinates::SetCenterOfRotation(Vector3 val)
+	void Coordinates::SetCenterOfRotation(const Vector3& val)
 	{
 		m_LocalCenterOfRotation = val;
 		m_LocalMatrixChanged = true;
@@ -51,7 +51,7 @@ namespace CasaEngine
 		return m_LocalPosition;
 	}
 
-	void Coordinates::SetLocalPosition(Vector3 val)
+	void Coordinates::SetLocalPosition(const Vector3& val)
 	{
 		m_LocalPosition = val;
 		m_LocalMatrixChanged = true;
@@ -61,7 +61,7 @@ namespace CasaEngine
 	{
 		return m_LocalRotation;
 	}
-	void Coordinates::SetLocalRotation(Quaternion val)
+	void Coordinates::SetLocalRotation(const Quaternion& val)
 	{
 		m_LocalRotation = val;
 		m_LocalMatrixChanged = true;
@@ -72,7 +72,7 @@ namespace CasaEngine
 		return m_LocalScale;
 	}
 
-	void Coordinates::SetLocalScale(Vector3 val)
+	void Coordinates::SetLocalScale(const Vector3& val)
 	{
 		m_LocalScale = val;
 		m_LocalMatrixChanged = true;

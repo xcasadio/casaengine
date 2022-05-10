@@ -9,14 +9,12 @@
 
 namespace CasaEngine
 {
-	class TiledMapComponent;
-
 	class CA_EXPORT TiledMapLayer
 	{
 	public:
 		TiledMapLayer();
 
-		void Initialize(BaseEntity* pEntity);
+		void Initialize(BaseEntity* entity);
 		void Update(const GameTime& gameTime_);
 		void Draw(const Vector3& translation);
 
@@ -29,16 +27,16 @@ namespace CasaEngine
 		std::vector<ITile*> GetTiles() const;
 		void SetTiles(std::vector<ITile*>& tiles);
 
-		void SetTile(int x, int y, ITile* pTile);
+		void SetTile(int x, int y, ITile* tile);
 		ITile* GetTile(int x, int y) const;
 
 		void SetZOffset(float value);
 		float GetZOffset() const;
 
 	private:
-		Vector2I m_MapSize;
-		Vector2I m_TileSize;
-		std::vector<ITile*> m_Tiles;
-		float zOffset;
+		Vector2I _mapSize;
+		Vector2I _tileSize;
+		std::vector<ITile*> _tiles;
+		float _zOffset;
 	};
 }
