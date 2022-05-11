@@ -19,6 +19,11 @@ namespace CasaEngine
 	{
 	public:
 		TileParameters() = default;
+		~TileParameters() = default;
+		TileParameters(const TileParameters& rsh) = default;
+		TileParameters& operator=(const TileParameters& rsh) = default;
+		TileParameters(TileParameters&& rsh) = default;
+		TileParameters& operator=(TileParameters&& rsh) = default;
 
 		float x;
 		float y;
@@ -47,6 +52,11 @@ namespace CasaEngine
 	{
 	public:
 		StaticTileParameters();
+		~StaticTileParameters() = default;
+		StaticTileParameters(const StaticTileParameters& rsh) = default;
+		StaticTileParameters& operator=(const StaticTileParameters& rsh) = default;
+		StaticTileParameters(StaticTileParameters&& rsh) = default;
+		StaticTileParameters& operator=(StaticTileParameters&& rsh) = default;
 
 		std::string spriteId;
 
@@ -72,6 +82,11 @@ namespace CasaEngine
 	{
 	public:
 		AnimatedTileParameters();
+		~AnimatedTileParameters() = default;
+		AnimatedTileParameters(const AnimatedTileParameters & rsh) = default;
+		AnimatedTileParameters& operator=(const AnimatedTileParameters & rsh) = default;
+		AnimatedTileParameters(AnimatedTileParameters && rsh) = default;
+		AnimatedTileParameters& operator=(AnimatedTileParameters && rsh) = default;
 
 		std::string animation2DId;
 
@@ -97,6 +112,11 @@ namespace CasaEngine
 	{
 	public:
 		AutoTileParameters();
+		~AutoTileParameters() = default;
+		AutoTileParameters(const AutoTileParameters & rsh) = default;
+		AutoTileParameters& operator=(const AutoTileParameters & rsh) = default;
+		AutoTileParameters(AutoTileParameters && rsh) = default;
+		AutoTileParameters& operator=(AutoTileParameters && rsh) = default;
 
 		std::string _autoTileAssetName;
 
@@ -123,7 +143,7 @@ namespace CasaEngine
 	class CA_EXPORT TiledMapLayerParameters
 	{
 	public:
-		std::vector<TileParameters *> tiles;
+		std::vector<TileParameters*> tiles;
 		float zOffset;
 
 	private:
