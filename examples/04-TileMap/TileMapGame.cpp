@@ -1,24 +1,18 @@
 #include "TileMapGame.h"
 
-#include <cereal/archives/json.hpp>
-
 #include "bgfx\bgfx.h"
 #include "Entities\Components\Cameras\Camera2DTargetedComponent.h"
 
 #include "Entities\Components\Cameras\ArcBallCameraComponent.h"
 #include "Entities\Components\MeshComponent.h"
 #include "GameTime.h"
-#include "Animations/SetFrameEvent.h"
+#include "Serializer/Serializer.h"
 #include "Assets/Asset.h"
 #include "Assets/AssetManager.h"
 #include "Entities/Components/StaticSpriteComponent.h"
 #include "Game\GameInfo.h"
-#include "Game\Line2DRendererComponent.h"
 #include "Log\LoggerFile.h"
 #include "Log\LogManager.h"
-#include "Map2D/AutoTile.h"
-#include "Map2D/StaticTile.h"
-#include "Map2D/TiledMapComponent.h"
 #include "World\World.h"
 #include "Datas/SpriteData.h"
 #include "Entities/Components/DebugComponent.h"
@@ -75,42 +69,50 @@ void CreateMap(World* pWorld, const int size)
 
 	// map
 	auto* tiledMapParameters = new TiledMapParameters();
-	tiledMapParameters->mapSize = Vector2I(30, 11);
-	tiledMapParameters->tileSize = Vector2I(size, size);
+	//tiledMapParameters->mapSize = Vector2I(30, 11);
+	//tiledMapParameters->tileSize = Vector2I(size, size);
+	//
+	//TiledMapLayerParameters layer;
+	//layer.zOffset = 0.0f;
+	//
+	//for (int y = 0; y < tiledMapParameters->mapSize.y; ++y)
+	//{
+	//	for (int x = 0; x < tiledMapParameters->mapSize.x; ++x)
+	//	{
+	//		if (y == 10 || y == 0 || x == 0 || x == 29 ||
+	//			x % 2 == 0 && (y == 1 || y == 9) ||
+	//			y % 2 == 0 && (x == 1 || x == 28))
+	//		{
+	//			auto* autoTileParams = new AutoTileParameters();
+	//			autoTileParams->x = x;
+	//			autoTileParams->y = y;
+	//			autoTileParams->autoTileAssetName = "Outside_A2_2_3";
+	//			layer.tiles.push_back(autoTileParams);
+	//		}
+	//		else
+	//		{
+	//			auto* staticTileParams = new StaticTileParameters();
+	//			staticTileParams->x = x;
+	//			staticTileParams->y = y;
+	//			staticTileParams->spriteId = "tile0";
+	//			layer.tiles.push_back(staticTileParams);
+	//		}
+	//	}
+	//}
+	//tiledMapParameters->layers.push_back(layer);
 
-	TiledMapLayerParameters layer;
-	layer.zOffset = 0.0f;
-
-	for (int y = 0; y < tiledMapParameters->mapSize.y; ++y)
-	{
-		for (int x = 0; x < tiledMapParameters->mapSize.x; ++x)
-		{
-			if (y == 10 || y == 0 || x == 0 || x == 29 ||
-				x % 2 == 0 && (y == 1 || y == 9) ||
-				y % 2 == 0 && (x == 1 || x == 28))
-			{
-				auto* autoTileParams = new AutoTileParameters();
-				autoTileParams->x = x;
-				autoTileParams->y = y;
-				autoTileParams->_autoTileAssetName = "Outside_A2_2_3";
-				layer.tiles.push_back(autoTileParams);
-			}
-			else
-			{
-				auto* staticTileParams = new StaticTileParameters();
-				staticTileParams->x = x;
-				staticTileParams->y = y;
-				staticTileParams->spriteId = "tile0";
-				layer.tiles.push_back(staticTileParams);
-			}
-		}
-	}
-	tiledMapParameters->layers.push_back(layer);
-
-	//std::transform(animationsPtr.begin(), animationsPtr.end(), animationsToSave.begin(), [](Animation2DData* x) { return *x; });
-	std::ofstream os("C:\\Users\\casad\\dev\\repo\\casaengine\\examples\\resources\\datas\\tileMap.json");
-	cereal::JSONOutputArchive ar2(os);
-	ar2(cereal::make_nvp("tiled_map_parameters", *tiledMapParameters));
+	//std::ofstream os("C:\\Users\\casad\\dev\\repo\\casaengine\\examples\\resources\\datas\\tileMap.json");
+	//json j;
+	//to_json(j, *tiledMapParameters);
+	////os << j << std::endl;
+	//os << std::setw(4) << j << std::endl; // pretty json
+	
+	std::ifstream i("C:\\Users\\casad\\dev\\repo\\casaengine\\examples\\resources\\datas\\tileMap.json");
+	json j2;
+	i >> j2;
+	TiledMapParameters t2;
+	from_json(j2, *tiledMapParameters);
+	//from_json(j2, t2);
 
 	TiledMapCreator::Create(*tiledMapParameters, *pWorld);
 }
@@ -121,7 +123,7 @@ void TileMapGame::CreateBackground(World* pWorld)
 	constexpr int size = 48; // 32
 	auto *pSprite = new SpriteData();
 	pSprite->SetAssetFileName("Outside_A2.png");
-	pSprite->SetPositionInTexture(RectangleI(0, 0, size, size));
+	pSprite->SetPositionInTexture(CasaEngine::Rectangle(0, 0, size, size));
 	pSprite->SetName("tile0");
 	GetAssetManager().AddAsset(new Asset(pSprite->GetName(), pSprite));
 
@@ -131,7 +133,7 @@ void TileMapGame::CreateBackground(World* pWorld)
 		{
 			pSprite = new SpriteData();
 			pSprite->SetAssetFileName("Outside_A2.png");
-			pSprite->SetPositionInTexture(RectangleI(2 * size + x * size, y * size, size, size));
+			pSprite->SetPositionInTexture(CasaEngine::Rectangle(2 * size + x * size, y * size, size, size));
 			std::ostringstream str;
 			str << "autoTile_" << x << "_" << y;
 			pSprite->SetName(str.str());
@@ -183,7 +185,7 @@ void TileMapGame::LoadContent()
 	//create perso
 	auto pSprite = new SpriteData();
 	pSprite->SetAssetFileName("vegeta.png");
-	pSprite->SetPositionInTexture(RectangleI(0, 0, 43, 76));
+	pSprite->SetPositionInTexture(CasaEngine::Rectangle(0, 0, 43, 76));
 	pSprite->SetName("sprite");
 	GetAssetManager().AddAsset(new Asset(pSprite->GetName(), pSprite));
 
@@ -205,7 +207,7 @@ void TileMapGame::LoadContent()
 	pCamera->GetComponentMgr()->AddComponent(s_pCameraController);
 	s_pCameraController->SetDeadZoneRatio(Vector2(0.7f, 0.7f));
 	s_pCameraController->SetTargetedEntity(s_entity);
-	s_pCameraController->SetLimits(RectangleI(0, 0, 1500, 800));
+	s_pCameraController->SetLimits(CasaEngine::Rectangle(0, 0, 1500, 800));
 	p_world->AddEntity(pCamera);
 	GetGameInfo().SetActiveCamera(s_pCameraController);
 

@@ -1,7 +1,6 @@
 #pragma once
 
 #include <iostream>
-#include <cereal/access.hpp>
 #include "Math.h"
 
 namespace CasaEngine
@@ -20,6 +19,11 @@ namespace CasaEngine
 		static CVector2<T> UnitY();
 
 		CVector2(T X = 0, T Y = 0);
+		~CVector2() = default;
+		CVector2(const CVector2& rsh) = default;
+		//CVector2& operator=(const CVector2& rsh) = default;
+		CVector2(CVector2&& rsh) = default;
+		CVector2& operator=(CVector2&& rsh) = default;
 
 		void Set(T X, T Y);
 		T getX() const;
@@ -63,7 +67,7 @@ namespace CasaEngine
 		static CVector2<T> TransformNormal(CVector2<T> normal, Matrix4 matrix);
 		static CVector2<T> Transform(CVector2<T> value, Quaternion rotation);
 
-		CVector2<T> operator =(const CVector2<T>& v);
+		CVector2<T>& operator =(const CVector2<T>& v);
 		CVector2<T> operator +() const;
 		CVector2<T> operator -() const;
 		CVector2<T> operator +(const CVector2<T>& v) const;
@@ -91,23 +95,6 @@ namespace CasaEngine
 		operator T* ();
 
 		T x, y;
-
-	private:
-		friend class cereal::access;
-
-		template <class Archive>
-		void load(Archive& ar)
-		{
-			ar(cereal::make_nvp("x", x));
-			ar(cereal::make_nvp("y", y));
-		}
-
-		template <class Archive>
-		void save(Archive& ar) const
-		{
-			ar(cereal::make_nvp("x", x));
-			ar(cereal::make_nvp("y", y));
-		}
 	};
 
 	template <class T> CVector2<T>   operator * (const CVector2<T>& v, T t);
@@ -115,8 +102,6 @@ namespace CasaEngine
 	template <class T> CVector2<T>   operator * (T t, const CVector2<T>& v);
 	template <class T> T             VectorDot(const CVector2<T>& v1, const CVector2<T>& v2);
 	template <class T> CVector2<T>   VectorCross(const CVector2<T>& v1, const CVector2<T>& v2);
-	template <class T> std::istream& operator >>(std::istream& Stream, CVector2<T>& Vector);
-	template <class T> std::ostream& operator <<(std::ostream& Stream, const CVector2<T>& Vector);
 
 	typedef CVector2<int>   Vector2I;
 	typedef CVector2<float> Vector2;
@@ -384,7 +369,7 @@ namespace CasaEngine
 	}
 
 	template <class T>
-	CVector2<T> CVector2<T>::operator=(const CVector2<T>& v)
+	CVector2<T>& CVector2<T>::operator=(const CVector2<T>& v)
 	{
 		x = v.x;
 		y = v.y;
@@ -570,17 +555,5 @@ namespace CasaEngine
 	CVector2<T> VectorCross(const CVector2<T>& v1, const CVector2<T>& v2)
 	{
 		return CVector2<T>(/* ??? */);
-	}
-
-	template <class T>
-	std::istream& operator >>(std::istream& Stream, CVector2<T>& Vector)
-	{
-		return Stream >> Vector.x >> Vector.y;
-	}
-
-	template <class T>
-	std::ostream& operator <<(std::ostream& Stream, const CVector2<T>& Vector)
-	{
-		return Stream << Vector.x << " " << Vector.y;
 	}
 }

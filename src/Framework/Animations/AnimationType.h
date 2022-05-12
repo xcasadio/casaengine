@@ -1,5 +1,4 @@
-#ifndef _ANIMATION2DTYPES_H_
-#define _ANIMATION2DTYPES_H_
+#pragma once
 
 namespace CasaEngine
 {
@@ -10,5 +9,3 @@ namespace CasaEngine
 		Loop
 	};
 }
-
-#endif

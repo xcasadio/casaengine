@@ -17,13 +17,13 @@ namespace CasaEngine
 		void SetDeadZoneRatio(Vector2 deadZoneRatio);
 		Vector2I GetOffset() const;
 		void SetOffset(Vector2I offset);
-		RectangleI GetLimits() const;
-		void SetLimits(RectangleI limits);
+		Rectangle GetLimits() const;
+		void SetLimits(Rectangle limits);
 
 	private:
 		BaseEntity* m_pTargetedEntity;
 		Vector2 m_DeadZoneRatio;
 		Vector2I m_Offset;
-		RectangleI m_Limits;
+		Rectangle m_Limits;
 	};
 }

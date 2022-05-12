@@ -5,7 +5,7 @@
 
 namespace CasaEngine
 {
-	void AutoTileDrawingInfo::SetInfo(int tileIndex_, float x_offset_, float y_offset_, float z_offset_, const RectangleI& posInTexture_)
+	void AutoTileDrawingInfo::SetInfo(int tileIndex_, float x_offset_, float y_offset_, float z_offset_, const Rectangle& posInTexture_)
 	{
 		tileIndex = tileIndex_;
 		x_offset = x_offset_;
@@ -56,10 +56,10 @@ namespace CasaEngine
 			_tiles[i] = tile;
 		}
 
-		_drawingInfos[0].SetInfo(-1, 0, 0, 0, RectangleI());
-		_drawingInfos[1].SetInfo(-1, 0, 0, 0, RectangleI());
-		_drawingInfos[2].SetInfo(-1, 0, 0, 0, RectangleI());
-		_drawingInfos[3].SetInfo(-1, 0, 0, 0, RectangleI());
+		_drawingInfos[0].SetInfo(-1, 0, 0, 0, Rectangle());
+		_drawingInfos[1].SetInfo(-1, 0, 0, 0, Rectangle());
+		_drawingInfos[2].SetInfo(-1, 0, 0, 0, Rectangle());
+		_drawingInfos[3].SetInfo(-1, 0, 0, 0, Rectangle());
 	}
 
 	unsigned int getMask(const TiledMapParameters* map, const TiledMapLayerParameters* layer, int x, int y, int offset)
@@ -71,7 +71,7 @@ namespace CasaEngine
 		}
 
 		const auto* pTile = layer->tiles.at(x + y * map->mapSize.x);
-		if (pTile != nullptr && pTile->_type == TileType::Auto)
+		if (pTile != nullptr && pTile->type == TileType::Auto)
 		{
 			return  1 << offset;
 		}
@@ -96,15 +96,15 @@ namespace CasaEngine
 		mask |= getMask(_mapParameters, _layerParameters, _x + 1, _y - 1, 6);
 		mask |= getMask(_mapParameters, _layerParameters, _x + 1, _y + 1, 7);
 
-		ComputeDrawingInfos(mask, 0, 0, 0, RectangleI(0, 0, _mapParameters->tileSize.x, _mapParameters->tileSize.y));
+		ComputeDrawingInfos(mask, 0, 0, 0, Rectangle(0, 0, _mapParameters->tileSize.x, _mapParameters->tileSize.y));
 	}
 
 	void AutoTile::Draw(float x, float y, float z)
 	{
-		Draw(x, y, z, RectangleI(0, 0, _mapParameters->tileSize.x, _mapParameters->tileSize.y));
+		Draw(x, y, z, Rectangle(0, 0, _mapParameters->tileSize.x, _mapParameters->tileSize.y));
 	}
 
-	void AutoTile::Draw(float x, float y, float z, RectangleI uvOffset)
+	void AutoTile::Draw(float x, float y, float z, Rectangle uvOffset)
 	{
 		for (const auto& _drawingInfo : _drawingInfos)
 		{
@@ -128,7 +128,7 @@ namespace CasaEngine
 		_y = y;
 	}
 
-	void AutoTile::ComputeDrawingInfos(unsigned int mask, float x, float y, float z, const RectangleI uv_offset)
+	void AutoTile::ComputeDrawingInfos(unsigned int mask, float x, float y, float z, const Rectangle uv_offset)
 	{
 		_drawingInfos[0].SetInfo(-1, x, y, z, uv_offset);
 		_drawingInfos[1].SetInfo(-1, x, y, z, uv_offset);
@@ -142,16 +142,16 @@ namespace CasaEngine
 			return;
 		}
 
-		const auto width = uv_offset.w >> 1;
-		const auto height = uv_offset.h >> 1;
+		const auto width = uv_offset.w / 2.0f;
+		const auto height = uv_offset.h / 2.0f;
 
 		//trivial case
 		if (mask == mask_all)
 		{
-			_drawingInfos[0].SetInfo(2, x, y, z, RectangleI(width, height, width, height));
-			_drawingInfos[1].SetInfo(3, x + width, y, z, RectangleI(0, height, width, height));
-			_drawingInfos[2].SetInfo(4, x, y + height, z, RectangleI(width, 0, width, height));
-			_drawingInfos[3].SetInfo(5, x + width, y + height, z, RectangleI(0, 0, width, height));
+			_drawingInfos[0].SetInfo(2, x, y, z, Rectangle(width, height, width, height));
+			_drawingInfos[1].SetInfo(3, x + width, y, z, Rectangle(0, height, width, height));
+			_drawingInfos[2].SetInfo(4, x, y + height, z, Rectangle(width, 0, width, height));
+			_drawingInfos[3].SetInfo(5, x + width, y + height, z, Rectangle(0, 0, width, height));
 			return;
 		}
 
@@ -162,28 +162,28 @@ namespace CasaEngine
 		//left-top sub tile
 		if (mask1 == (mask_left_top | mask_top | mask_left))
 		{
-			_drawingInfos[index++].SetInfo(2, x, y, z, RectangleI(width, height, width, height));
+			_drawingInfos[index++].SetInfo(2, x, y, z, Rectangle(width, height, width, height));
 		}
 		else if (mask1 == (mask_left_top | mask_left))
 		{
-			_drawingInfos[index++].SetInfo(2, x, y, z, RectangleI(width, 0, width, height));
+			_drawingInfos[index++].SetInfo(2, x, y, z, Rectangle(width, 0, width, height));
 		}
 		else if (mask1 == (mask_left_top | mask_top)
 			|| mask1 == mask_top)
 		{
-			_drawingInfos[index++].SetInfo(4, x, y, z, RectangleI(0, 0, width, height));
+			_drawingInfos[index++].SetInfo(4, x, y, z, Rectangle(0, 0, width, height));
 		}
 		else if (mask1 == (mask_top | mask_left))
 		{
-			_drawingInfos[index++].SetInfo(1, x, y, z, RectangleI(0, 0, width, height));
+			_drawingInfos[index++].SetInfo(1, x, y, z, Rectangle(0, 0, width, height));
 		}
 		else if (mask1 == mask_left_top || mask1 == 0)
 		{
-			_drawingInfos[index++].SetInfo(0, x, y, z, RectangleI(0, 0, width, height));
+			_drawingInfos[index++].SetInfo(0, x, y, z, Rectangle(0, 0, width, height));
 		}
 		else if (mask1 == mask_left)
 		{
-			_drawingInfos[index++].SetInfo(3, x, y, z, RectangleI(0, 0, width, height));
+			_drawingInfos[index++].SetInfo(3, x, y, z, Rectangle(0, 0, width, height));
 		}
 
 		x += width;
@@ -191,28 +191,28 @@ namespace CasaEngine
 		//right-top sub tile
 		if (mask1 == (mask_right_top | mask_top | mask_right))
 		{
-			_drawingInfos[index++].SetInfo(3, x, y, z, RectangleI(0, height, width, height));
+			_drawingInfos[index++].SetInfo(3, x, y, z, Rectangle(0, height, width, height));
 		}
 		else if (mask1 == (mask_right_top | mask_right))
 		{
-			_drawingInfos[index++].SetInfo(3, x, y, z, RectangleI(0, 0, width, height));
+			_drawingInfos[index++].SetInfo(3, x, y, z, Rectangle(0, 0, width, height));
 		}
 		else if (mask1 == (mask_right_top | mask_top)
 			|| mask1 == mask_top)
 		{
-			_drawingInfos[index++].SetInfo(3, x, y, z, RectangleI(width, height, width, height));
+			_drawingInfos[index++].SetInfo(3, x, y, z, Rectangle(width, height, width, height));
 		}
 		else if (mask1 == (mask_top | mask_right))
 		{
-			_drawingInfos[index++].SetInfo(1, x, y, z, RectangleI(width, 0, width, height));
+			_drawingInfos[index++].SetInfo(1, x, y, z, Rectangle(width, 0, width, height));
 		}
 		else if (mask1 == mask_right_top || mask1 == 0)
 		{
-			_drawingInfos[index++].SetInfo(0, x, y, z, RectangleI(width, 0, width, height));
+			_drawingInfos[index++].SetInfo(0, x, y, z, Rectangle(width, 0, width, height));
 		}
 		else if (mask1 == mask_right)
 		{
-			_drawingInfos[index++].SetInfo(2, x, y, z, RectangleI(width, 0, width, height));
+			_drawingInfos[index++].SetInfo(2, x, y, z, Rectangle(width, 0, width, height));
 		}
 
 		x -= width;
@@ -221,25 +221,25 @@ namespace CasaEngine
 		//left-bottom sub tile
 		if (mask1 == (mask_left_bottom | mask_bottom | mask_left))
 		{
-			_drawingInfos[index++].SetInfo(4, x, y, z, RectangleI(width, 0, width, height));
+			_drawingInfos[index++].SetInfo(4, x, y, z, Rectangle(width, 0, width, height));
 		}
 		else if (mask1 == (mask_left_bottom | mask_left)
 			|| (mask1 == mask_left))
 		{
-			_drawingInfos[index++].SetInfo(4, x, y, z, RectangleI(width, height, width, height));
+			_drawingInfos[index++].SetInfo(4, x, y, z, Rectangle(width, height, width, height));
 		}
 		else if (mask1 == (mask_left_bottom | mask_bottom)
 			|| mask1 == mask_bottom)
 		{
-			_drawingInfos[index++].SetInfo(2, x, y, z, RectangleI(0, height, width, height));
+			_drawingInfos[index++].SetInfo(2, x, y, z, Rectangle(0, height, width, height));
 		}
 		else if (mask1 == (mask_bottom | mask_left))
 		{
-			_drawingInfos[index++].SetInfo(1, x, y, z, RectangleI(0, height, width, height));
+			_drawingInfos[index++].SetInfo(1, x, y, z, Rectangle(0, height, width, height));
 		}
 		else if (mask1 == mask_left_bottom || mask1 == 0)
 		{
-			_drawingInfos[index++].SetInfo(0, x, y, z, RectangleI(0, height, width, height));
+			_drawingInfos[index++].SetInfo(0, x, y, z, Rectangle(0, height, width, height));
 		}
 
 		x += width;
@@ -248,28 +248,28 @@ namespace CasaEngine
 		//right-bottom sub tile
 		if (mask1 == (mask_right_bottom | mask_bottom | mask_right))
 		{
-			_drawingInfos[index++].SetInfo(5, x, y, z, RectangleI(0, 0, width, height));
+			_drawingInfos[index++].SetInfo(5, x, y, z, Rectangle(0, 0, width, height));
 		}
 		else if (mask1 == (mask_right_bottom | mask_right))
 		{
-			_drawingInfos[index++].SetInfo(4, x, y, z, RectangleI(width, height, width, height));
+			_drawingInfos[index++].SetInfo(4, x, y, z, Rectangle(width, height, width, height));
 		}
 		else if (mask1 == (mask_right_bottom | mask_bottom)
 			|| mask1 == mask_bottom)
 		{
-			_drawingInfos[index++].SetInfo(3, x, y, z, RectangleI(width, height, width, height));
+			_drawingInfos[index++].SetInfo(3, x, y, z, Rectangle(width, height, width, height));
 		}
 		else if (mask1 == (mask_bottom | mask_right))
 		{
-			_drawingInfos[index++].SetInfo(1, x, y, z, RectangleI(width, height, width, height));
+			_drawingInfos[index++].SetInfo(1, x, y, z, Rectangle(width, height, width, height));
 		}
 		else if (mask1 == mask_right_bottom || mask1 == 0)
 		{
-			_drawingInfos[index++].SetInfo(0, x, y, z, RectangleI(width, height, width, height));
+			_drawingInfos[index++].SetInfo(0, x, y, z, Rectangle(width, height, width, height));
 		}
 		else if (mask1 == mask_right)
 		{
-			_drawingInfos[index++].SetInfo(4, x, y, z, RectangleI(width, height, width, height));
+			_drawingInfos[index++].SetInfo(4, x, y, z, Rectangle(width, height, width, height));
 		}
 	}
 }

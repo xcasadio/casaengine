@@ -18,16 +18,16 @@ namespace CasaEngine
 		addEvent(FrameChangeEvent::GetEventName());
 
 		float timeEventFired = 0.0f;
-		for (const auto& frame : data.GetFrames())
+		for (const auto& frame : data._frames)
 		{
 			auto *pFrameEvent = new SetFrameEvent();
-			pFrameEvent->FrameID(frame.GetSpriteId().c_str());
+			pFrameEvent->FrameID(frame._spriteId.c_str());
 			pFrameEvent->Time(timeEventFired);
-			timeEventFired += frame.GetDuration();
+			timeEventFired += frame._duration;
 			AddEvent(pFrameEvent);
 		}
 
-		if (!data.GetFrames().empty())
+		if (!data._frames.empty())
 		{
 			auto *pEndEvent = new AnimationEndEvent();
 			pEndEvent->Time(timeEventFired);

@@ -22,10 +22,10 @@ namespace CasaEngine
 		m_AssetFileName = rsh.m_AssetFileName;
 		m_PositionInTexture = rsh.m_PositionInTexture;
 		m_Origin = rsh.m_Origin;
-		m_CollisionShapes.clear();
-		for (auto coll : rsh.m_CollisionShapes)
+		_collisionShapes.clear();
+		for (auto coll : rsh._collisionShapes)
 		{
-			m_CollisionShapes.push_back(*coll.Copy());
+			_collisionShapes.push_back(*coll.Copy());
 		}
 
 		IAssetable::operator=(rsh);
@@ -38,7 +38,7 @@ namespace CasaEngine
 		Clear();
 	}
 
-	RectangleI SpriteData::GetPositionInTexture() const
+	Rectangle SpriteData::GetPositionInTexture() const
 	{
 		return m_PositionInTexture;
 	}
@@ -55,14 +55,14 @@ namespace CasaEngine
 
 	void SpriteData::Clear()
 	{/*
-		for (auto it = m_CollisionShapes.begin();
-			it != m_CollisionShapes.end();
+		for (auto it = _collisionShapes.begin();
+			it != _collisionShapes.end();
 			it++)
 		{
 			delete it->GetShape();
 		}
 
-		m_CollisionShapes.clear();*/
+		_collisionShapes.clear();*/
 	}
 
 	SpriteData* SpriteData::Copy()
@@ -72,7 +72,7 @@ namespace CasaEngine
 
 //#ifdef EDITOR
 
-	void SpriteData::SetPositionInTexture(RectangleI val)
+	void SpriteData::SetPositionInTexture(Rectangle val)
 	{
 		m_PositionInTexture = val;
 	}
@@ -85,11 +85,6 @@ namespace CasaEngine
 	void SpriteData::SetAssetFileName(std::string val)
 	{
 		m_AssetFileName = val;
-	}
-
-	std::vector<Collision>& SpriteData::GetCollisions()
-	{
-		return m_CollisionShapes;
 	}
 
 //#endif

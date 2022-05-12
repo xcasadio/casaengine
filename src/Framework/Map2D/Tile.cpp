@@ -23,9 +23,9 @@ namespace CasaEngine
 		return _isWall;
 	}
 
-	void ITile::Draw(const Sprite* sprite, float x, float y, float z, const RectangleI& uvOffset) const
+	void ITile::Draw(const Sprite* sprite, float x, float y, float z, const Rectangle& uvOffset) const
 	{
-		const RectangleI texUV = RectangleI(
+		const Rectangle texUV = Rectangle(
 			sprite->GetSpriteData()->GetPositionInTexture().Left() + uvOffset.Left(),
 			sprite->GetSpriteData()->GetPositionInTexture().Top() + uvOffset.Top(),
 			uvOffset.w,

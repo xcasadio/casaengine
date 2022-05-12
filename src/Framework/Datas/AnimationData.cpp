@@ -3,7 +3,7 @@
 namespace CasaEngine
 {
 	AnimationData::AnimationData() :
-		m_AnimationType(AnimationType::Once)
+		_animationType(AnimationType::Once)
 	{
 	}
 
@@ -15,22 +15,12 @@ namespace CasaEngine
 
 	AnimationData& AnimationData::operator=(const AnimationData& rsh)
 	{
-		m_AnimationType = rsh.m_AnimationType;
+		_animationType = rsh._animationType;
 		IAssetable::operator=(rsh);
 		return *this;
 	}
 
 	AnimationData::~AnimationData()
 	{
-	}
-
-	AnimationType AnimationData::GetAnimationType() const
-	{
-		return m_AnimationType;
-	}
-
-	void AnimationData::SetAnimationType(AnimationType type)
-	{
-		m_AnimationType = type;
 	}
 }

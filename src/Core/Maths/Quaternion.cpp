@@ -622,14 +622,4 @@ namespace CasaEngine
 	{
 		return !(*this == v);
 	}
-
-	std::istream& operator >>(std::istream& stream, Quaternion& quat)
-	{
-		return stream >> quat.x >> quat.y >> quat.z >> quat.w;
-	}
-
-	std::ostream& operator <<(std::ostream& stream, const Quaternion& quat)
-	{
-		return stream << quat.x << " " << quat.y << " " << quat.z << " " << quat.w;
-	}
 }

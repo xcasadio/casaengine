@@ -1,9 +1,6 @@
 #include <string>
 #include <iosfwd>
 
-#include <cereal/cereal.hpp>
-#include <cereal/archives/json.hpp>
-
 #include "RPGGame.h"
 
 #include <BulletCollision/CollisionDispatch/btCollisionObject.h>
@@ -38,6 +35,7 @@
 #include "Entities/Components/Physics/Box2DColliderComponent.h"
 #include "Entities/Components/Physics/Circle2DColliderComponent.h"
 #include "Physics/Bullet/BulletObjectsContainer.h"
+#include "Serializer/Serializer.h"
 
 using namespace CasaEngine;
 
@@ -118,9 +116,13 @@ void RPGGame::CreateMap(World* pWorld)
 {
 	IFile* pFile = Game::Instance().GetMediaManager().FindMedia("map_1_1.json", true);
 	std::ifstream is(pFile->Fullname());
-	cereal::JSONInputArchive ar(is);
 	_map map_datas;
-	ar(cereal::make_nvp("map", map_datas));
+	//cereal::JSONInputArchive ar(is);
+	//ar(cereal::make_nvp("map", map_datas));
+	json j;
+	is >> j;
+	from_json(j["map"], map_datas);
+
 	auto tileSize = Vector2I(32, 32);
 	//create sprite
 	for (int y = 0; y < 6; ++y)
@@ -129,7 +131,7 @@ void RPGGame::CreateMap(World* pWorld)
 		{
 			auto* pSprite = new SpriteData();
 			pSprite->SetName("grass1");
-			pSprite->SetPositionInTexture(RectangleI(x * tileSize.x, y * tileSize.y, tileSize.x, tileSize.y));
+			pSprite->SetPositionInTexture(CasaEngine::Rectangle(x * tileSize.x, y * tileSize.y, tileSize.x, tileSize.y));
 			pSprite->SetAssetFileName(map_datas.tile_set); //16x6 tiles
 			std::ostringstream name;
 			name << "tile1_" << x << "_" << y;
@@ -220,7 +222,7 @@ void RPGGame::CreateAssets(Vector2I tileSize)
 	//auto texture = Texture::loadTexture(Game::Instance().GetMediaManager().FindMedia("Outside_A2.png"));
 	auto* pSprite = new SpriteData();
 	pSprite->SetName("grass1");
-	pSprite->SetPositionInTexture(RectangleI(0, 0, tileSize.x, tileSize.y));
+	pSprite->SetPositionInTexture(CasaEngine::Rectangle(0, 0, tileSize.x, tileSize.y));
 	pSprite->SetAssetFileName("Outside_A2.png");
 	GetAssetManager().AddAsset(new Asset("grass1", pSprite));
 	//autotile
@@ -230,7 +232,7 @@ void RPGGame::CreateAssets(Vector2I tileSize)
 		{
 			pSprite = new SpriteData();
 			pSprite->SetName("grass1");
-			pSprite->SetPositionInTexture(RectangleI(8 * tileSize.x + tileSize.x * x, y * tileSize.y, tileSize.x, tileSize.y));
+			pSprite->SetPositionInTexture(CasaEngine::Rectangle(8 * tileSize.x + tileSize.x * x, y * tileSize.y, tileSize.x, tileSize.y));
 			//pSprite->SetTexture2D(texture);
 			pSprite->SetAssetFileName("Outside_A2.png");
 			std::ostringstream name;
@@ -251,23 +253,23 @@ void CreateSprite(const std::string tileSetName, const std::vector<_sprite>& spr
 		name << prefix << sprite.id;
 		id++;
 		pSprite->SetName(name.str());
-		pSprite->SetPositionInTexture(RectangleI(sprite.x, sprite.y, sprite.w, sprite.h));
+		pSprite->SetPositionInTexture(CasaEngine::Rectangle(sprite.x, sprite.y, sprite.w, sprite.h));
 		pSprite->SetOrigin(Vector2I(sprite.px, sprite.py));
 
 		for (auto& coll : sprite.att)
 		{
 			Collision collision;
 			collision.SetType(CollisionHitType::Attack);
-			collision.SetShape(new CasaEngine::RectangleI(coll.x /* - sprite.px*/, coll.y /* - sprite.py*/, coll.w, coll.h));
-			pSprite->GetCollisions().push_back(collision);
+			collision.SetShape(new CasaEngine::Rectangle(coll.x /* - sprite.px*/, coll.y /* - sprite.py*/, coll.w, coll.h));
+			pSprite->_collisionShapes.push_back(collision);
 		}
 
 		for (auto& coll : sprite.def)
 		{
 			Collision collision;
 			collision.SetType(CollisionHitType::Defense);
-			collision.SetShape(new CasaEngine::RectangleI(coll.x /* - sprite.px */ , coll.y /* - sprite.py */ , coll.w, coll.h));
-			pSprite->GetCollisions().push_back(collision);
+			collision.SetShape(new CasaEngine::Rectangle(coll.x /* - sprite.px */ , coll.y /* - sprite.py */ , coll.w, coll.h));
+			pSprite->_collisionShapes.push_back(collision);
 		}
 
 		pSprite->SetAssetFileName(tileSetName);
@@ -287,9 +289,9 @@ void CreateAnimations(const char* prefix, AnimatedSpriteComponent* pAnimatedComp
 			auto* frameData = new FrameData();
 			std::ostringstream spriteName;
 			spriteName << prefix << frame.sprite_id;
-			frameData->SetSpriteId(spriteName.str());
-			frameData->SetDuration(frame.delay);
-			pAnim->AddFrame(*frameData);
+			frameData->_spriteId = spriteName.str();
+			frameData->_duration = frame.delay;
+			pAnim->_frames.push_back(*frameData);
 		}
 
 		Game::Instance().GetAssetManager().AddAsset(new Asset(pAnim->GetName(), pAnim));
@@ -301,9 +303,12 @@ void RPGGame::CreateEnemies(World* pWorld)
 {
 	IFile* pFile = Game::Instance().GetMediaManager().FindMedia("octopus.json", true);
 	std::ifstream is(pFile->Fullname());
-	cereal::JSONInputArchive ar(is);
 	_ennemi ennemi_datas;
-	ar(cereal::make_nvp("octopus", ennemi_datas));
+	//cereal::JSONInputArchive ar(is);
+	//ar(cereal::make_nvp("octopus", ennemi_datas));
+	json j;
+	is >> j;
+	from_json(j["octopus"], ennemi_datas);
 
 	auto* pEntity = new BaseEntity();
 	pEntity->SetName("octopus 1");
@@ -351,10 +356,14 @@ void RPGGame::CreateSwordman(World* pWorld)
 	weaponEntity->GetComponentMgr()->AddComponent(debugComponent);
 
 	IFile* pFile = Game::Instance().GetMediaManager().FindMedia("baton.json", true);
-	std::ifstream isstream(pFile->Fullname());
-	cereal::JSONInputArchive json(isstream);
 	_weapon weapon_data;
-	json(cereal::make_nvp("weapon", weapon_data));
+
+	{
+		std::ifstream is(pFile->Fullname());
+		json j;
+		is >> j;
+		from_json(j["weapon"], weapon_data);
+	}
 
 	CreateSprite(weapon_data.tile_set, weapon_data.sprites, "sword_");
 
@@ -383,9 +392,10 @@ void RPGGame::CreateSwordman(World* pWorld)
 	//read file
 	pFile = Game::Instance().GetMediaManager().FindMedia("player.json", true);
 	std::ifstream is(pFile->Fullname());
-	cereal::JSONInputArchive ar(is);
 	_joueur player_datas;
-	ar(cereal::make_nvp("swordman", player_datas));
+	json j;
+	is >> j;
+	from_json(j["swordman"], player_datas);
 
 	//create sprite
 	CreateSprite(player_datas.tile_set, player_datas.sprites, "player_");
@@ -427,7 +437,7 @@ void RPGGame::CreateSwordman(World* pWorld)
 	pCamera->GetComponentMgr()->AddComponent(m_pCameraTargeted);
 	m_pCameraTargeted->SetDeadZoneRatio(Vector2(0.7f, 0.7f));
 	m_pCameraTargeted->SetTargetedEntity(pPlayerEntity);
-	m_pCameraTargeted->SetLimits(RectangleI(0, 0, 1500, 800));
+	m_pCameraTargeted->SetLimits(CasaEngine::Rectangle(0, 0, 1500, 800));
 	pWorld->AddEntity(pCamera);
 	GetGameInfo().SetActiveCamera(m_pCameraTargeted);
 

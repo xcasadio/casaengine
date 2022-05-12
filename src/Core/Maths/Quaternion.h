@@ -78,29 +78,5 @@ namespace CasaEngine
 		float y{};
 		float z{};
 		float w{};
-
-	private:
-		friend class cereal::access;
-
-		template <class Archive>
-		void save(Archive& ar) const
-		{
-			ar(CEREAL_NVP(x));
-			ar(CEREAL_NVP(y));
-			ar(CEREAL_NVP(z));
-			ar(CEREAL_NVP(w));
-		}
-
-		template <class Archive>
-		void load(Archive& ar)
-		{
-			ar(CEREAL_NVP(x));
-			ar(CEREAL_NVP(y));
-			ar(CEREAL_NVP(z));
-			ar(CEREAL_NVP(w));
-		}
 	};
-
-	std::istream& operator >>(std::istream& stream, Quaternion& quat);
-	std::ostream& operator <<(std::ostream& stream, const Quaternion& quat);
 }

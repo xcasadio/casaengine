@@ -1,8 +1,5 @@
 #include <iosfwd>
 
-#include <cereal/cereal.hpp>
-#include <cereal/archives/json.hpp>
-
 #include "FightingGame2DGame.h"
 #include "Characters/ScriptCharacter.h"
 #include "Characters/Player.h"
@@ -28,6 +25,7 @@
 #include "Entities/Components/DebugComponent.h"
 #include "Entities/Components/ScriptComponent.h"
 #include "Entities/Components/Cameras/Camera2DTargetedComponent.h"
+#include "Serializer/Serializer.h"
 #include "Stages/Stage.h"
 
 using namespace CasaEngine;
@@ -133,7 +131,7 @@ void FightingGame2DGame::LoadContent()
 	pCamera->GetComponentMgr()->AddComponent(m_pCamera2D);
 	m_pCamera2D->SetDeadZoneRatio(Vector2(0.7f, 0.7f));
 	m_pCamera2D->SetTargetedEntity(pPlayer1);
-	m_pCamera2D->SetLimits(RectangleI(0, 0, 1500, 800));
+	m_pCamera2D->SetLimits(CasaEngine::Rectangle(0, 0, 1500, 800));
 	m_pWorld->AddEntity(pCamera);
 	GetGameInfo().SetActiveCamera(m_pCamera2D);
 
@@ -156,9 +154,12 @@ std::vector<Animation2DData> FightingGame2DGame::LoadAnimations()
 {
 	auto* const pFile = GetMediaManager().FindMedia("animations.json", true);
 	std::ifstream is(pFile->Fullname());
-	cereal::JSONInputArchive ar(is);
 	std::vector<Animation2DData> anim2DDatas;
-	ar(cereal::make_nvp("animations", anim2DDatas));
+	json j;
+	is >> j;
+	from_json(j["animations"], anim2DDatas);
+	//cereal::JSONInputArchive ar(is);
+	//ar(cereal::make_nvp("animations", anim2DDatas));
 
 	for (auto& data : anim2DDatas)
 	{
@@ -173,9 +174,12 @@ void FightingGame2DGame::LoadSprites()
 {
 	auto* const pFile = GetMediaManager().FindMedia("sprites.json", true);
 	std::ifstream is(pFile->Fullname());
-	cereal::JSONInputArchive ar(is);
 	std::vector<SpriteData> spriteDatas;
-	ar(cereal::make_nvp("sprites", spriteDatas));
+	json j;
+	is >> j;
+	from_json(j["sprites"], spriteDatas);
+	//cereal::JSONInputArchive ar(is);
+	//ar(cereal::make_nvp("sprites", spriteDatas));
 
 	for (auto& data : spriteDatas)
 	{

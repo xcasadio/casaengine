@@ -14,7 +14,7 @@ namespace CasaEngine
 	{
 		std::vector<ICollisionObjectContainer*> collisions;
 
-		for (auto& collision : Game::Instance().GetAssetManager().GetAsset<SpriteData>(spriteId)->GetCollisions())
+		for (auto& collision : Game::Instance().GetAssetManager().GetAsset<SpriteData>(spriteId)->_collisionShapes)
 		{
 			//TODO : remove
 			if (collision.GetType() == CollisionHitType::Defense)
@@ -23,9 +23,9 @@ namespace CasaEngine
 			}
 
 			auto* shape = collision.GetShape();
-			if (shape->Type() == ShapeType::RECTANGLE) // TODO: conflict between RectangleI et Rectangle
+			if (shape->Type() == ShapeType::RECTANGLE) // TODO: conflict between Rectangle et Rectangle
 			{
-				const auto* pBox2D = dynamic_cast<const RectangleI*>(shape);
+				const auto* pBox2D = dynamic_cast<const Rectangle*>(shape);
 				if (pBox2D != nullptr)
 				{
 					shape = new Rectangle(pBox2D->x, pBox2D->y, pBox2D->w, pBox2D->h);

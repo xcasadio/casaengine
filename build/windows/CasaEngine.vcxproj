@@ -104,7 +104,7 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>Bullet3Collision_Debug.lib;Bullet3Common_Debug.lib;Bullet3Dynamics_Debug.lib;Bullet3Geometry_Debug.lib;Bullet3OpenCL_clew_Debug.lib;BulletCollision_Debug.lib;BulletDynamics_Debug.lib;BulletSoftBody_Debug.lib;LinearMath_Debug.lib;sfml-audio-d.lib;sfml-network-d.lib;sfml-system-d.lib;sfml-window-d.lib;bgfxDebug.lib;bimgDebug.lib;bimg_decodeDebug.lib;bx.lib;lua_d.lib;toluapp_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)$(Configuration)\;../../external/bgfx/win64_vs2010;../../external/bullet/lib/windows;..\..\external\GLU 1.3;..\..\external\SFML\lib;../../external/tolua++-1.0.93/lib/windows;../../external/lua-5.1.4/lib/windows;../../external/CEGUI/lib;../../external/SFML/lib/x64</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)$(Configuration)\;../../external/bgfx/win64_vs2010;../../external/bullet/lib/windows;..\..\external\SFML\lib;../../external/SFML/lib/x64</AdditionalLibraryDirectories>
       <Profile>false</Profile>
       <OptimizeReferences>false</OptimizeReferences>
       <IgnoreSpecificDefaultLibraries>msvcprtd.lib;MSVCRTD.lib</IgnoreSpecificDefaultLibraries>
@@ -134,7 +134,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)$(Configuration)\;../../external/bgfx/win64_vs2010;../../external/bullet/lib/windows;..\..\external\GLU 1.3;..\..\external\SFML\lib;../../external/tolua++-1.0.93/lib/windows;../../external/lua-5.1.4/lib/windows;../../external/CEGUI/lib;../../external/SFML/lib/x64</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)$(Configuration)\;../../external/bgfx/win64_vs2010;../../external/bullet/lib/windows;..\..\external\SFML\lib;../../external/SFML/lib/x64</AdditionalLibraryDirectories>
       <AdditionalDependencies>Bullet3Collision.lib;Bullet3Common.lib;Bullet3Dynamics.lib;Bullet3Geometry.lib;Bullet3OpenCL_clew.lib;BulletCollision.lib;BulletDynamics.lib;BulletSoftBody.lib;LinearMath.lib;sfml-audio.lib;sfml-network.lib;sfml-system.lib;sfml-window.lib;bgfxRelease.lib;bimgRelease.lib;bimg_decodeRelease.lib;bx.lib;lua.lib;toluapp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <LinkTimeCodeGeneration>
       </LinkTimeCodeGeneration>
@@ -164,7 +164,7 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>Bullet3Collision_Debug.lib;Bullet3Common_Debug.lib;Bullet3Dynamics_Debug.lib;Bullet3Geometry_Debug.lib;Bullet3OpenCL_clew_Debug.lib;BulletCollision_Debug.lib;BulletDynamics_Debug.lib;BulletSoftBody_Debug.lib;LinearMath_Debug.lib;sfml-audio-d.lib;sfml-network-d.lib;sfml-system-d.lib;sfml-window-d.lib;bgfxDebug.lib;bimgDebug.lib;bimg_decodeDebug.lib;bx.lib;lua_d.lib;toluapp_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)$(Configuration)\;../../external/bgfx/win64_vs2010;../../external/bullet/lib/windows;..\..\external\GLU 1.3;..\..\external\SFML\lib;../../external/tolua++-1.0.93/lib/windows;../../external/lua-5.1.4/lib/windows;../../external/CEGUI/lib;../../external/SFML/lib/x64</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)$(Configuration)\;../../external/bgfx/win64_vs2010;../../external/bullet/lib/windows;..\..\external\SFML\lib;../../external/SFML/lib/x64</AdditionalLibraryDirectories>
       <Profile>false</Profile>
       <OptimizeReferences>false</OptimizeReferences>
       <IgnoreSpecificDefaultLibraries>msvcprtd.lib;MSVCRTD.lib</IgnoreSpecificDefaultLibraries>
@@ -371,10 +371,7 @@
     <ClInclude Include="..\..\src\Framework\GameDatas\Character2DBase.h" />
     <ClInclude Include="..\..\src\Framework\GameDatas\CharacterBase.h" />
     <ClInclude Include="..\..\src\Framework\GameDatas\CharacterTypes.h" />
-    <ClInclude Include="..\..\src\Framework\GameDatas\GameDataFactory.h" />
     <ClInclude Include="..\..\src\Framework\GameDatas\IController.h" />
-    <ClInclude Include="..\..\src\Framework\GameDatas\IGameData.h" />
-    <ClInclude Include="..\..\src\Framework\GameDatas\IGameDataFactory.h" />
     <ClInclude Include="..\..\src\Framework\GameDatas\MessageType.h" />
     <ClInclude Include="..\..\src\Framework\Game\DisplayDebugInfoGameComponent.h" />
     <ClInclude Include="..\..\src\Framework\Game\DrawableGameComponent.h" />
@@ -401,6 +398,7 @@
     <ClInclude Include="..\..\src\Framework\Script\IScriptObject.h" />
     <ClInclude Include="..\..\src\Framework\Script\IScriptObjectFactory.h" />
     <ClInclude Include="..\..\src\Framework\Script\ScriptEngine.h" />
+    <ClInclude Include="..\..\src\Framework\Serializer\Serializer.h" />
     <ClInclude Include="..\..\src\Framework\SpacePartitioning\CellSpacePartition.h" />
     <ClInclude Include="..\..\src\Framework\Sprite\Sprite.h" />
     <ClInclude Include="..\..\src\Framework\Sprite\SpritePhysicsHelper.h" />
@@ -549,10 +547,7 @@
     <ClCompile Include="..\..\src\Framework\Entities\Physics\PhysicalEntity.cpp" />
     <ClCompile Include="..\..\src\Framework\GameDatas\Character2DBase.cpp" />
     <ClCompile Include="..\..\src\Framework\GameDatas\CharacterBase.cpp" />
-    <ClCompile Include="..\..\src\Framework\GameDatas\GameDataFactory.cpp" />
     <ClCompile Include="..\..\src\Framework\GameDatas\IController.cpp" />
-    <ClCompile Include="..\..\src\Framework\GameDatas\IGameData.cpp" />
-    <ClCompile Include="..\..\src\Framework\GameDatas\IGameDataFactory.cpp" />
     <ClCompile Include="..\..\src\Framework\Game\DisplayDebugInfoGameComponent.cpp" />
     <ClCompile Include="..\..\src\Framework\Game\DrawableGameComponent.cpp" />
     <ClCompile Include="..\..\src\Framework\Game\Editor\GameEditor.cpp" />

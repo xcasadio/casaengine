@@ -102,15 +102,5 @@ namespace CasaEngine
 	{
 		return !(*this == p);
 	}
-
-	std::istream& operator >>(std::istream& Stream, Plane& Plane)
-	{
-		return Stream >> Plane.n >> Plane.d;
-	}
-
-	std::ostream& operator <<(std::ostream& Stream, const Plane& Plane)
-	{
-		return Stream << Plane.n << " " << Plane.d;
-	}
 }
 

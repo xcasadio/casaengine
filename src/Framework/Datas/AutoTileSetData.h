@@ -2,8 +2,6 @@
 
 #include "CA_Export.h"
 #include "Assets/Assetable.h"
-#include <cereal/access.hpp>
-#include <cereal/types/vector.hpp>
 
 namespace CasaEngine
 {
@@ -20,19 +18,19 @@ namespace CasaEngine
 
 		std::string spriteIds[6];
 
-	private:
-		friend class cereal::access;
-
-		template <class Archive>
-		void save(Archive& ar) const
-		{
-			ar(cereal::make_nvp("sprite_ids", spriteIds));
-		}
-
-		template <class Archive>
-		void load(Archive& ar)
-		{
-			ar(cereal::make_nvp("sprite_ids", spriteIds));
-		}
+	//private:
+	//	friend class cereal::access;
+	//
+	//	template <class Archive>
+	//	void save(Archive& ar) const
+	//	{
+	//		ar(cereal::make_nvp("sprite_ids", spriteIds));
+	//	}
+	//
+	//	template <class Archive>
+	//	void load(Archive& ar)
+	//	{
+	//		ar(cereal::make_nvp("sprite_ids", spriteIds));
+	//	}
 	};
 }

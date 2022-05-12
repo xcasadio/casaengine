@@ -256,7 +256,4 @@ namespace CasaEngine
 		Matrix4 operator -(const Matrix4& matrix2);
 		Matrix4 operator -();
 	};
-
-	std::istream& operator >>(std::istream& stream, Matrix4& m);
-	std::ostream& operator <<(std::ostream& stream, const Matrix4& m);
 }

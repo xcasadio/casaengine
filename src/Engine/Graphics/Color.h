@@ -41,9 +41,6 @@ namespace CasaEngine
 		Color Add(const Color& c) const;
 		Color Modulate(const Color& c) const;
 
-		friend std::istream& operator >>(std::istream& Stream, Color& Color);
-		friend std::ostream& operator <<(std::ostream& Stream, const Color& Color);
-
 	private:
 		void SetInt(int r, int g, int b, int a = 0xFF);
 

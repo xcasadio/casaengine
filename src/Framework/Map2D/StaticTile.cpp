@@ -21,7 +21,7 @@ namespace CasaEngine
 		}
 	}
 
-	void StaticTile::Draw(float x, float y, float z, RectangleI uvOffset)
+	void StaticTile::Draw(float x, float y, float z, Rectangle uvOffset)
 	{
 		if (m_pSprite != nullptr)
 		{

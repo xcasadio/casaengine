@@ -13,7 +13,7 @@ namespace CasaEngine
 		void Initialize() override;
 		void Update(const GameTime& gameTime_) override;
 		void Draw(float x, float y, float z) override;
-		void Draw(float x, float y, float z, RectangleI uvOffset) override;
+		void Draw(float x, float y, float z, Rectangle uvOffset) override;
 
 		Animation2D* GetAnimation() const;
 		void SetAnimation(Animation2D* const pAnimation);

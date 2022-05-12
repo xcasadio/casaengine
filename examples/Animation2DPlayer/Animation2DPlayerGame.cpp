@@ -1,9 +1,6 @@
 #include <string>
 #include <iosfwd>
 
-#include <cereal/cereal.hpp>
-#include <cereal/archives/json.hpp>
-
 #include "Animation2DPlayerGame.h"
 
 #include "Animations/Animation2D.h"
@@ -26,6 +23,7 @@
 #include "Entities/Components/DebugComponent.h"
 #include "Entities/Components/Cameras/Camera2DComponent.h"
 #include "Entities/Components/Cameras/Camera2DTargetedComponent.h"
+#include "Serializer/Serializer.h"
 
 using namespace CasaEngine;
 
@@ -112,7 +110,7 @@ void Animation2DPlayerGame::LoadContent()
 	pCamera->GetComponentMgr()->AddComponent(m_pCamera2D);
 	m_pCamera2D->SetDeadZoneRatio(Vector2(0.7f, 0.7f));
 	m_pCamera2D->SetTargetedEntity(pEntity);
-	m_pCamera2D->SetLimits(RectangleI(0, 0, 1500, 800));
+	m_pCamera2D->SetLimits(CasaEngine::Rectangle(0, 0, 1500, 800));
 	m_pWorld->AddEntity(pCamera);
 	GetGameInfo().SetActiveCamera(m_pCamera2D);
 
@@ -172,7 +170,7 @@ void Animation2DPlayerGame::LoadAnimations(AnimatedSpriteComponent* pAnimatedCom
 				{
 					auto* collision = new Collision();
 					collision->SetType(coll.ClsnType == 1 ? CollisionType::Attack : CollisionType::Defense);
-					auto* rect = new RectangleI(coll.X, coll.Y, coll.Width, coll.Height);
+					auto* rect = new Rectangle(coll.X, coll.Y, coll.Width, coll.Height);
 					collision->SetShape(rect);
 					sprite->GetCollisions().push_back(*collision);
 				}
@@ -209,10 +207,14 @@ void Animation2DPlayerGame::LoadAnimations(AnimatedSpriteComponent* pAnimatedCom
 
 	auto* const pFile = GetMediaManager().FindMedia("animations.json", true);
 	std::ifstream is(pFile->Fullname());
-	cereal::JSONInputArchive ar(is);
 	std::vector<Animation2DData> anim2DDatas;
-	ar(cereal::make_nvp("animations", anim2DDatas));
 
+	//cereal::JSONInputArchive ar(is);
+	//ar(cereal::make_nvp("animations", anim2DDatas));
+	json j;
+	is >> j;
+	from_json(j["animations"], anim2DDatas);
+	
 	for (auto& data : anim2DDatas)
 	{
 		auto* animation = data.Copy();
@@ -236,7 +238,7 @@ void Animation2DPlayerGame::LoadSprites()
 	{
 		auto* spriteData = new SpriteData();
 		spriteData->SetOrigin(Vector2I(sprite.X, sprite.Y));
-		spriteData->SetPositionInTexture(RectangleI(sprite.posInTextureX, sprite.posInTextureY, sprite.SpriteSizeX, sprite.SpriteSizeY));
+		spriteData->SetPositionInTexture(Rectangle(sprite.posInTextureX, sprite.posInTextureY, sprite.SpriteSizeX, sprite.SpriteSizeY));
 		spriteData->SetAssetFileName("ryu.png"); // TODO : read from file
 		spriteData->SetName(sprite.Id);
 		GetAssetManager().AddAsset(new Asset(sprite.Id, spriteData));
@@ -247,9 +249,12 @@ void Animation2DPlayerGame::LoadSprites()
 
 	auto* const pFile = GetMediaManager().FindMedia("sprites.json", true);
 	std::ifstream is(pFile->Fullname());
-	cereal::JSONInputArchive ar(is);
 	std::vector<SpriteData> spriteDatas;
-	ar(cereal::make_nvp("sprites", spriteDatas));
+	//cereal::JSONInputArchive ar(is);
+	//ar(cereal::make_nvp("sprites", spriteDatas));
+	json j;
+	is >> j;
+	from_json(j["sprites"], spriteDatas);
 
 	for (auto& data : spriteDatas)
 	{/*
@@ -257,7 +262,7 @@ void Animation2DPlayerGame::LoadSprites()
 
 		for (auto& coll : data.GetCollisions())
 		{
-			auto* rectangle = dynamic_cast<RectangleI *>(coll.GetShape());
+			auto* rectangle = dynamic_cast<Rectangle *>(coll.GetShape());
 			rectangle->x += data.GetOrigin().x;
 			rectangle->y += data.GetOrigin().y;
 			collisions.push_back(coll);
@@ -378,9 +383,9 @@ void Animation2DPlayerGame::DisplayUI()
 		}
 
 		std::vector<const char*> frameNames;
-		for (const auto& frame : m_pAnimatedSprite->GetCurrentAnimation()->GetAnimation2DData()->GetFrames())
+		for (const auto& frame : m_pAnimatedSprite->GetCurrentAnimation()->GetAnimation2DData()->_frames)
 		{
-			auto str = frame.GetSpriteId();
+			auto str = frame._spriteId;
 			auto* writable = new char[str.size() + 1];
 			std::copy(str.begin(), str.end(), writable);
 			writable[str.size()] = '\0';
@@ -410,9 +415,9 @@ void Animation2DPlayerGame::DisplayUI()
 		auto* frames = m_pAnimatedSprite->GetCurrentAnimation();
 		auto* spriteData = GetAssetManager().GetAsset<SpriteData>(frames->CurrentFrame());
 		auto i = 0;
-		for (const auto& collision : spriteData->GetCollisions())
+		for (const auto& collision : spriteData->_collisionShapes)
 		{
-			auto* rect = dynamic_cast<RectangleI*>(collision.GetShape());
+			auto* rect = dynamic_cast<CasaEngine::Rectangle*>(collision.GetShape());
 			std::ostringstream ostr;
 			ostr << rect->x << " " << rect->y << " " << rect->w << " " << rect->h;
 			auto str = ostr.str();
@@ -453,9 +458,12 @@ void Animation2DPlayerGame::DisplayUI()
 			std::vector<Animation2DData> animationsToSave;
 			animationsToSave.resize(animationsPtr.size());
 			std::transform(animationsPtr.begin(), animationsPtr.end(), animationsToSave.begin(), [](Animation2DData* x) { return *x; });
-			std::ofstream os("C:\\Users\\casad\\dev\\repo\\casaengine\\examples\\resources\\datas\\animations.json");
-			cereal::JSONOutputArchive ar2(os);
-			ar2(cereal::make_nvp("animations", animationsToSave));
+			std::ofstream os("C:\\Users\\casad\\dev\\repo\\casaengine\\examples\\resources\\datas\\animations2.json");
+			//cereal::JSONOutputArchive ar2(os);
+			//ar2(cereal::make_nvp("animations", animationsToSave));
+			json j;
+			to_json(j, animationsToSave, "animations");
+			os << std::setw(4) << j << std::endl; // pretty json
 		}
 
 		ImGui::EndChild();

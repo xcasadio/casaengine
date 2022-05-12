@@ -4,8 +4,6 @@
 #include "Maths/Vector2.h"
 #include "Maths/Shape/IShape.h"
 
-#include <cereal/access.hpp>
-
 namespace CasaEngine
 {
 	using TIntersection = enum
@@ -47,35 +45,9 @@ namespace CasaEngine
 		bool operator !=(const CRectangle<T>& Rect) const;
 
 		T x, y, w, h;
-
-	private:
-		friend class cereal::access;
-
-		template <class Archive>
-		void load(Archive& ar)
-		{
-			ar(cereal::make_nvp("shape", cereal::base_class<IShape>(this)));
-			ar(cereal::make_nvp("x", x));
-			ar(cereal::make_nvp("y", y));
-			ar(cereal::make_nvp("w", w));
-			ar(cereal::make_nvp("h", h));
-		}
-
-		template <class Archive>
-		void save(Archive& ar) const
-		{
-			ar(cereal::make_nvp("shape", cereal::base_class<IShape>(this)));
-			ar(cereal::make_nvp("x", x));
-			ar(cereal::make_nvp("y", y));
-			ar(cereal::make_nvp("w", w));
-			ar(cereal::make_nvp("h", h));
-		}
 	};
-	
-	template <class T> std::istream& operator >>(std::ostream& Stream, CRectangle<T>& Rect);
-	template <class T> std::ostream& operator <<(std::ostream& Stream, const CRectangle<T>& Rect);
 
-	typedef CRectangle<int> RectangleI;
+	//typedef CRectangle<int> Rectangle;
 	typedef CRectangle<float> Rectangle;
 
 	template <class T>
@@ -194,25 +166,4 @@ namespace CasaEngine
 	{
 		return !(*this == Rect);
 	}
-
-	template <class T>
-	std::istream& operator >>(std::istream& Stream, CRectangle<T>& Rect)
-	{
-		return Stream >> Rect.x >> Rect.y >> Rect.w >> Rect.h;
-	}
-
-	template <class T>
-	std::ostream& operator <<(std::ostream& Stream, const CRectangle<T>& Rect)
-	{
-		return Stream << Rect.x << " " << Rect.y << " " << Rect.w << " " << Rect.h;
-	}
 }
-/*
-#include <cereal/types/polymorphic.hpp>
-
-CEREAL_REGISTER_TYPE_WITH_NAME(CasaEngine::RectangleI, "rectangleI");
-CEREAL_REGISTER_TYPE_WITH_NAME(CasaEngine::Rectangle, "rectangleF");
-
-CEREAL_REGISTER_POLYMORPHIC_RELATION(CasaEngine::IShape, CasaEngine::RectangleI);
-CEREAL_REGISTER_POLYMORPHIC_RELATION(CasaEngine::IShape, CasaEngine::Rectangle);
-*/

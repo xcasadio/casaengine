@@ -95,12 +95,12 @@ namespace CasaEngine
 		m_Offset = offset;
 	}
 
-	RectangleI Camera2DTargetedComponent::GetLimits() const
+	Rectangle Camera2DTargetedComponent::GetLimits() const
 	{
 		return m_Limits;
 	}
 
-	void Camera2DTargetedComponent::SetLimits(RectangleI limits)
+	void Camera2DTargetedComponent::SetLimits(Rectangle limits)
 	{
 		m_Limits = limits;
 	}

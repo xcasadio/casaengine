@@ -72,7 +72,7 @@ namespace CasaEngine
 		const float lastTime = m_CurrentTime;
 		m_CurrentTime += elapsedTime_;
 
-		if (m_pAnimationData->GetAnimationType() == AnimationType::Loop)
+		if (m_pAnimationData->_animationType == AnimationType::Loop)
 		{
 			while(m_CurrentTime > totalTime)
 			{
@@ -80,7 +80,7 @@ namespace CasaEngine
 				isFinished = true;
 			}
 		}
-		else if (m_pAnimationData->GetAnimationType() == AnimationType::Once)
+		else if (m_pAnimationData->_animationType == AnimationType::Once)
 		{
 			if (m_CurrentTime > totalTime)
 			{

@@ -13,7 +13,7 @@ namespace CasaEngine
 {
 
 	TileParameters::TileParameters(TileType type) :
-		_type(type),
+		type(type),
 		x(0),
 		y(0)
 	{
@@ -74,7 +74,7 @@ namespace CasaEngine
 
 	ITile* TiledMapCreator::CreateTile(TileParameters& tileParameters, TiledMapLayerParameters* layer, TiledMapParameters* map)
 	{
-		switch (tileParameters._type)
+		switch (tileParameters.type)
 		{
 		case TileType::Static:
 		{
@@ -93,7 +93,7 @@ namespace CasaEngine
 		case TileType::Auto:
 		{
 			auto* autoTileParams = static_cast<AutoTileParameters*>(&tileParameters);
-			auto* autoTileSetData = Game::Instance().GetAssetManager().GetAsset<AutoTileSetData>(autoTileParams->_autoTileAssetName);
+			auto* autoTileSetData = Game::Instance().GetAssetManager().GetAsset<AutoTileSetData>(autoTileParams->autoTileAssetName);
 			auto* autoTile = new AutoTile(autoTileSetData);
 			autoTile->SetTileInfo(map, layer, autoTileParams->x, autoTileParams->y);
 			return autoTile;

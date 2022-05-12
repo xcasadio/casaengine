@@ -203,23 +203,6 @@ namespace CasaEngine
 		return m_Color;
 	}
 
-	std::istream& operator >>(std::istream& Stream, Color& Color)
-	{
-		int R, G, B, A;
-		Stream >> R >> G >> B >> A;
-		Color.SetInt(R, G, B, A);
-
-		return Stream;
-	}
-
-	std::ostream& operator <<(std::ostream& Stream, const Color& Color)
-	{
-		return Stream << static_cast<int>(Color.GetRed()) << " "
-			<< static_cast<int>(Color.GetGreen()) << " "
-			<< static_cast<int>(Color.GetBlue()) << " "
-			<< static_cast<int>(Color.GetAlpha());
-	}
-
 	const Color Color::ActiveBorder(180, 180, 180, 255);
 	const Color Color::ActiveCaption(153, 180, 209, 255);
 	const Color Color::ActiveCaptionText(0, 0, 0, 255);

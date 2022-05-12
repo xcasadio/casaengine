@@ -87,8 +87,6 @@ namespace CasaEngine
 	template <class T> CVector4<T>   operator * (T t, const CVector4<T>& v);
 	template <class T> T             VectorDot(const CVector4<T>& v1, const CVector4<T>& v2);
 	template <class T> CVector4<T>   VectorCross(const CVector4<T>& v1, const CVector4<T>& v2);
-	template <class T> std::istream& operator >>(std::istream& stream, CVector4<T>& vector);
-	template <class T> std::ostream& operator <<(std::ostream& Stream, const CVector4<T>& Vector);
 
 	typedef CVector4<int>   Vector4I;
 	typedef CVector4<float> Vector4;
@@ -586,17 +584,5 @@ namespace CasaEngine
 	{
 		// ?? Correct ??
 		return CVector4<T>(v1.y * v2.z - v1.z * v2.y, v1.z * v2.w - v1.w * v2.z, v1.w * v2.x - v1.x * v2.w, v1.x * v2.y - v1.y * v2.x);
-	}
-
-	template <class T>
-	std::istream& operator >>(std::istream& stream, CVector4<T>& vector)
-	{
-		return stream >> vector.x >> vector.y >> vector.z >> vector.w;
-	}
-
-	template <class T>
-	std::ostream& operator <<(std::ostream& Stream, const CVector4<T>& Vector)
-	{
-		return Stream << Vector.x << " " << Vector.y << " " << Vector.z << " " << Vector.w;
 	}
 }

@@ -3,9 +3,6 @@
 #include "CA_Export.h"
 #include "ShapeType.h"
 
-#include <cereal/access.hpp>
-#include <cereal/types/polymorphic.hpp>
-
 namespace CasaEngine
 {
 	class CA_EXPORT IShape
@@ -23,20 +20,5 @@ namespace CasaEngine
 
 	private:
 		ShapeType m_ShapeType;
-
-	private:
-		friend class cereal::access;
-
-		template <class Archive>
-		void load(Archive& ar)
-		{
-			ar(cereal::make_nvp("shape_type", m_ShapeType));
-		}
-
-		template <class Archive>
-		void save(Archive& ar) const
-		{
-			ar(cereal::make_nvp("shape_type", m_ShapeType));
-		}
 	};
 }

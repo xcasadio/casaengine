@@ -3,9 +3,6 @@
 #include "CA_Export.h"
 #include <string>
 
-#include <cereal/cereal.hpp>
-#include <cereal/types/polymorphic.hpp>
-
 namespace CasaEngine
 {
 	class CA_EXPORT IAssetable
@@ -24,22 +21,5 @@ namespace CasaEngine
 		
 	private:
 		std::string m_Name;
-
-	private:
-		friend class cereal::access;
-
-		template <class Archive>
-		void load(Archive& ar)
-		{
-			ar(cereal::make_nvp("asset_name", m_Name));
-		}
-
-		template <class Archive>
-		void save(Archive& ar) const
-		{
-			ar(cereal::make_nvp("asset_name", m_Name));
-		}
 	};
 }
-
-//CEREAL_REGISTER_TYPE_WITH_NAME(CasaEngine::IAssetable, "asset");

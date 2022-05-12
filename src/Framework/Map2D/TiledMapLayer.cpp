@@ -69,7 +69,7 @@ namespace CasaEngine
 						px + x * _tileSize.x, 
 						py + y * _tileSize.y, 
 						z + _zOffset,
-						RectangleI(0, 0, _tileSize.x, _tileSize.y));
+						Rectangle(0, 0, _tileSize.x, _tileSize.y));
 				}
 			}
 		}

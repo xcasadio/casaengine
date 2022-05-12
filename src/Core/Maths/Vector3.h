@@ -4,7 +4,6 @@
 #include <cmath>
 #include <algorithm>
 #include <cmath>
-#include <cereal/cereal.hpp>
 
 #include "Math.h"
 #include "Maths/ValidNumber.h"
@@ -104,25 +103,6 @@ namespace CasaEngine
 
 		T& operator [] (int index);
 		T operator [] (int index) const;
-
-	private:
-		friend class cereal::access;
-
-		template <class Archive>
-		void save(Archive& ar) const
-		{
-			ar(CEREAL_NVP(x));
-			ar(CEREAL_NVP(y));
-			ar(CEREAL_NVP(z));
-		}
-
-		template <class Archive>
-		void load(Archive& ar)
-		{
-			ar(CEREAL_NVP(x));
-			ar(CEREAL_NVP(y));
-			ar(CEREAL_NVP(z));
-		}
 	};
 
 	typedef CVector3<int>   Vector3I;
@@ -132,18 +112,6 @@ namespace CasaEngine
 	bool operator == (CVector3<T>& v0, CVector3<T>& v1)
 	{
 		return IsEquivalent(v0, v1);
-	}
-
-	template <class T>
-	std::istream& operator >>(std::istream& stream, CVector3<T>& vector)
-	{
-		return stream >> vector.x >> vector.y >> vector.z;
-	}
-
-	template <class T>
-	std::ostream& operator <<(std::ostream& stream, const CVector3<T>& vector)
-	{
-		return stream << vector.x << " " << vector.y << " " << vector.z;
 	}
 
 	template <class T>

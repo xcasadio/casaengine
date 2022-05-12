@@ -1,6 +1,5 @@
 #include "Datas/FrameData.h"
 
-
 namespace CasaEngine
 {
 	FrameData::FrameData()
@@ -14,37 +13,14 @@ namespace CasaEngine
 
 	FrameData& FrameData::operator=(const FrameData& rsh)
 	{
-		m_Duration = rsh.m_Duration;
-		m_SpriteId = rsh.m_SpriteId;
+		_duration = rsh._duration;
+		_spriteId = rsh._spriteId;
 		IAssetable::operator=(rsh);
 
 		return *this;
 	}
 
-
 	FrameData::~FrameData()
 	{
-	}
-
-
-
-	float FrameData::GetDuration() const
-	{
-		return m_Duration;
-	}
-
-	void FrameData::SetDuration(float duration)
-	{
-		m_Duration = duration;
-	}
-
-	std::string FrameData::GetSpriteId() const
-	{
-		return m_SpriteId;
-	}
-
-	void FrameData::SetSpriteId(std::string spriteId)
-	{
-		m_SpriteId = spriteId;
 	}
 }

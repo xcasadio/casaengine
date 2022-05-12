@@ -32,7 +32,7 @@ void StageLayer::Draw(SpriteRenderer *spriteRenderer)
 
 	for (auto* texture : m_Textures)
 	{
-		const auto posInTexture = RectangleI(0, 0, texture->TextureInfo()->width, texture->TextureInfo()->height);
+		const auto posInTexture = CasaEngine::Rectangle(0, 0, texture->TextureInfo()->width, texture->TextureInfo()->height);
 		matrix.Translation(offsetX, 0, positionZ);
 
 		spriteRenderer->AddSprite(texture, posInTexture, Vector2I::Zero(), matrix, Color::White);

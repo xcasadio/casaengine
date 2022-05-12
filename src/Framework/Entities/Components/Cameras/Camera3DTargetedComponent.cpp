@@ -119,12 +119,12 @@ namespace CasaEngine
 		m_Offset = offset;
 	}
 
-	RectangleI Camera3DTargetedComponent::GetLimits() const
+	Rectangle Camera3DTargetedComponent::GetLimits() const
 	{
 		return m_Limits;
 	}
 
-	void Camera3DTargetedComponent::SetLimits(const RectangleI& limits)
+	void Camera3DTargetedComponent::SetLimits(const Rectangle& limits)
 	{
 		m_Limits = limits;
 	}

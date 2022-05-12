@@ -1,6 +1,9 @@
 #pragma once
 
 #include "Maths/Rectangle.h"
+#include "Serializer/Serializer.h"
+
+#include <vector>
 
 using namespace CasaEngine;
 
@@ -8,47 +11,38 @@ struct frame
 {
 	float delay;
 	unsigned int sprite_id;
-
-private:
-	friend class cereal::access;
-
-	template <class Archive>
-	void save(Archive& ar) const
-	{
-		ar(CEREAL_NVP(sprite_id));
-		ar(CEREAL_NVP(delay));
-	}
-
-	template <class Archive>
-	void load(Archive& ar)
-	{
-		ar(CEREAL_NVP(sprite_id));
-		ar(CEREAL_NVP(delay));
-	}
 };
+
+inline void to_json(nlohmann::json& j, const frame& t)
+{
+	JSON_TO(sprite_id)
+	JSON_TO(delay)
+}
+
+inline void from_json(const nlohmann::json& j, frame& t)
+{
+	JSON_FROM(sprite_id)
+	JSON_FROM(delay)
+}
+
 
 struct animation
 {
 	std::string name;
 	std::vector<frame> frames;
-
-private:
-	friend class cereal::access;
-
-	template <class Archive>
-	void save(Archive& ar) const
-	{
-		ar(CEREAL_NVP(name));
-		ar(CEREAL_NVP(frames));
-	}
-
-	template <class Archive>
-	void load(Archive& ar)
-	{
-		ar(CEREAL_NVP(name));
-		ar(CEREAL_NVP(frames));
-	}
 };
+
+inline void to_json(nlohmann::json& j, const animation& t)
+{
+	JSON_TO(name)
+	JSON_TO(frames)
+}
+
+inline void from_json(const nlohmann::json& j, animation& t)
+{
+	JSON_FROM(name)
+	JSON_FROM(frames)
+}
 
 typedef struct { // statut : caracteristiques des individus
 	int etatNeg; // voir les enum
@@ -76,81 +70,70 @@ using _sprite = struct _sprite {
 	int x, y, w, h; // sprites_to_delete du sprite dans l image
 	int px, py; // hot spot
 
-	std::vector<RectangleI> att; // rectangle d'attaque
-	std::vector<RectangleI> def; // rect de defense savoir si touche
+	std::vector<CasaEngine::Rectangle> att; // rectangle d'attaque
+	std::vector<CasaEngine::Rectangle> def; // rect de defense savoir si touche
 
 	_sprite() : x(0), y(0), w(0), h(0), px(0), py(0)
 	{
 		//id = next_id++;
 	}
-
-private:
-	//static int next_id;
-
-	friend class cereal::access;
-
-	template <class Archive>
-	void save(Archive& ar) const
-	{
-		ar(CEREAL_NVP(id));
-		ar(CEREAL_NVP(x));
-		ar(CEREAL_NVP(y));
-		ar(CEREAL_NVP(w));
-		ar(CEREAL_NVP(h));
-		ar(CEREAL_NVP(px));
-		ar(CEREAL_NVP(py));
-		ar(CEREAL_NVP(att));
-		ar(CEREAL_NVP(def));
-	}
-
-	template <class Archive>
-	void load(Archive& ar)
-	{
-		ar(CEREAL_NVP(id));
-		ar(CEREAL_NVP(x));
-		ar(CEREAL_NVP(y));
-		ar(CEREAL_NVP(w));
-		ar(CEREAL_NVP(h));
-		ar(CEREAL_NVP(px));
-		ar(CEREAL_NVP(py));
-		ar(CEREAL_NVP(att));
-		ar(CEREAL_NVP(def));
-	}
 };
+
+inline void to_json(nlohmann::json& j, const _sprite& t)
+{
+	JSON_TO(id)
+	JSON_TO(x)
+	JSON_TO(y)
+	JSON_TO(w)
+	JSON_TO(h)
+	JSON_TO(px)
+	JSON_TO(py)
+	JSON_TO(att)
+	JSON_TO(def)
+
+}
+
+inline void from_json(const nlohmann::json& j, _sprite& t)
+{
+	JSON_FROM(id)
+	JSON_FROM(x)
+	JSON_FROM(y)
+	JSON_FROM(w)
+	JSON_FROM(h)
+	JSON_FROM(px)
+	JSON_FROM(py)
+	JSON_FROM(att)
+	JSON_FROM(def)
+}
 
 typedef struct {
 	int mapX, mapY; // futur script a charger : map_X_Y.txt
 	int jx, jy; // position du joueur sur la map
 	int dir;	// dir du joueur
 	int tileX, tileY; // position de la sortie_to_delete sur la map
-
-private:
-	friend class cereal::access;
-
-	template <class Archive>
-	void save(Archive& ar) const
-	{
-		ar(CEREAL_NVP(mapX));
-		ar(CEREAL_NVP(mapY));
-		ar(CEREAL_NVP(jx));
-		ar(CEREAL_NVP(jy));
-		ar(CEREAL_NVP(dir));
-		ar(CEREAL_NVP(tileX));
-		ar(CEREAL_NVP(tileY));
-	}
-
-	template <class Archive>
-	void load(Archive& ar)
-	{
-		ar(CEREAL_NVP(mapX));
-		ar(CEREAL_NVP(mapY));
-		ar(CEREAL_NVP(jx));
-		ar(CEREAL_NVP(jy));
-		ar(CEREAL_NVP(dir));
-		ar(CEREAL_NVP(tileX));
-		ar(CEREAL_NVP(tileY));
-	}
 } _mapExit;
+
+inline void to_json(nlohmann::json& j, const _mapExit& t)
+{
+	JSON_TO(mapX)
+	JSON_TO(mapY)
+	JSON_TO(jx)
+	JSON_TO(jy)
+	JSON_TO(dir)
+	JSON_TO(tileX)
+	JSON_TO(tileY)
+}
+
+inline void from_json(const nlohmann::json& j, _mapExit& t)
+{
+	JSON_FROM(mapX)
+	JSON_FROM(mapY)
+	JSON_FROM(jx)
+	JSON_FROM(jy)
+	JSON_FROM(dir)
+	JSON_FROM(tileX)
+	JSON_FROM(tileY)
+}
 
 typedef struct {
 	int equipement; // equipement id : a mettre dans la struct player
@@ -169,32 +152,27 @@ typedef struct {
 
 	std::vector<_sprite> sprites;
 	std::vector<animation> animations;
-
-private:
-	friend class cereal::access;
-
-	template <class Archive>
-	void save(Archive& ar) const
-	{
-		ar(CEREAL_NVP(type));
-		ar(CEREAL_NVP(attack));
-		ar(CEREAL_NVP(attribute));
-		ar(CEREAL_NVP(tileset));
-		ar(CEREAL_NVP(animations));
-		ar(CEREAL_NVP(sprites));
-	}
-
-	template <class Archive>
-	void load(Archive& ar)
-	{
-		ar(CEREAL_NVP(type));
-		ar(CEREAL_NVP(attack));
-		ar(CEREAL_NVP(attribute));
-		ar(CEREAL_NVP(tileset));
-		ar(CEREAL_NVP(animations));
-		ar(CEREAL_NVP(sprites));
-	}
 } _statutEquipement;
+
+inline void to_json(nlohmann::json& j, const _statutEquipement& t)
+{
+	JSON_TO(type)
+	JSON_TO(attack)
+	JSON_TO(attribute)
+	JSON_TO(tileset)
+	JSON_TO(animations)
+	JSON_TO(sprites)
+}
+
+inline void from_json(const nlohmann::json& j, _statutEquipement& t)
+{
+	JSON_FROM(type)
+	JSON_FROM(attack)
+	JSON_FROM(attribute)
+	JSON_FROM(tileset)
+	JSON_FROM(animations)
+	JSON_FROM(sprites)
+}
 
 typedef struct {
 	int* numTileAnim; // numero de tiles
@@ -223,32 +201,56 @@ typedef struct {
 	int spirit;
 	int strength;
 private:
-	friend class cereal::access;
-
-	template <class Archive>
-	void save(Archive& ar) const
-	{
-		ar(CEREAL_NVP(tile_set));
-		ar(CEREAL_NVP(name));
-		ar(CEREAL_NVP(strength));
-		ar(CEREAL_NVP(spirit));
-		ar(CEREAL_NVP(speed));
-		ar(CEREAL_NVP(sprites));
-		ar(CEREAL_NVP(animations));
-	}
-
-	template <class Archive>
-	void load(Archive& ar)
-	{
-		ar(CEREAL_NVP(tile_set));
-		ar(CEREAL_NVP(name));
-		ar(CEREAL_NVP(strength));
-		ar(CEREAL_NVP(spirit));
-		ar(CEREAL_NVP(speed));
-		ar(CEREAL_NVP(sprites));
-		ar(CEREAL_NVP(animations));
-	}
+	//friend class cereal::access;
+	//
+	//template <class Archive>
+	//void save(Archive& ar) const
+	//{
+	//	ar(CEREAL_NVP(tile_set));
+	//	ar(CEREAL_NVP(name));
+	//	ar(CEREAL_NVP(strength));
+	//	ar(CEREAL_NVP(spirit));
+	//	ar(CEREAL_NVP(speed));
+	//	ar(CEREAL_NVP(sprites));
+	//	ar(CEREAL_NVP(animations));
+	//}
+	//
+	//template <class Archive>
+	//void load(Archive& ar)
+	//{
+	//	ar(CEREAL_NVP(tile_set));
+	//	ar(CEREAL_NVP(name));
+	//	ar(CEREAL_NVP(strength));
+	//	ar(CEREAL_NVP(spirit));
+	//	ar(CEREAL_NVP(speed));
+	//	ar(CEREAL_NVP(sprites));
+	//	ar(CEREAL_NVP(animations));
+	//}
 } _weapon;
+
+
+inline void to_json(nlohmann::json& j, const _weapon& t)
+{
+	JSON_TO(tile_set)
+	JSON_TO(name)
+	JSON_TO(strength)
+	JSON_TO(spirit)
+	JSON_TO(speed)
+	JSON_TO(sprites)
+	JSON_TO(animations)
+}
+
+inline void from_json(const nlohmann::json& j, _weapon& t)
+{
+	JSON_FROM(tile_set)
+	JSON_FROM(name)
+	JSON_FROM(strength)
+	JSON_FROM(spirit)
+	JSON_FROM(speed)
+	JSON_FROM(sprites)
+	JSON_FROM(animations)
+}
+
 
 typedef struct _ennemi {
 	std::string tile_set;
@@ -263,7 +265,7 @@ typedef struct _ennemi {
 	int recul; // lorsque touché, l'ennemi recul
 	int imgCourant;
 	int exp; // experience donne au joueur une fois vaincu
-	RectangleI mapCollision; // rectangle de collision integer x,y,w,h
+	CasaEngine::Rectangle mapCollision; // rectangle de collision integer x,y,w,h
 	//to change
 	int ptMatX, ptMatY; // point Materiel, repere l'ennemi sur la map, permet de positionner les sprite selon leur point chaud
 	int* tabAnim; // mov, min, max, mov, min, max...  permet d'attribuer une animation selon le mov
@@ -280,42 +282,39 @@ typedef struct _ennemi {
 	_IA IA;
 
 	struct _ennemi* next; // liste chaine d'ennemi
-
-private:
-	friend class cereal::access;
-
-	template <class Archive>
-	void save(Archive& ar) const
-	{
-		ar(CEREAL_NVP(tile_set));
-		ar(cereal::make_nvp("hp_max", stats.HPMax));
-		ar(cereal::make_nvp("mp_max", stats.MPMax));
-		ar(cereal::make_nvp("speed", stats.dVit));
-		ar(cereal::make_nvp("spirit", stats.mag));
-		ar(cereal::make_nvp("strength", stats.force));
-		ar(cereal::make_nvp("defense", stats.def));
-		ar(cereal::make_nvp("defense_magic", stats.defMag));
-		ar(CEREAL_NVP(exp));
-		ar(CEREAL_NVP(animations));
-		ar(CEREAL_NVP(sprites));
-	}
-
-	template <class Archive>
-	void load(Archive& ar)
-	{
-		ar(CEREAL_NVP(tile_set));
-		ar(cereal::make_nvp("hp_max", stats.HPMax));
-		ar(cereal::make_nvp("mp_max", stats.MPMax));
-		ar(cereal::make_nvp("speed", stats.dVit));
-		ar(cereal::make_nvp("spirit", stats.mag));
-		ar(cereal::make_nvp("strength", stats.force));
-		ar(cereal::make_nvp("defense", stats.def));
-		ar(cereal::make_nvp("defense_magic", stats.defMag));
-		ar(CEREAL_NVP(exp));
-		ar(CEREAL_NVP(animations));
-		ar(CEREAL_NVP(sprites));
-	}
 } _ennemi;
+
+
+inline void to_json(nlohmann::json& j, const _ennemi& t)
+{
+	JSON_TO(tile_set)
+	JSON_TO(animations)
+	JSON_TO(sprites)
+	JSON_TO(exp)
+	JSON_TO_NAMED(hp_max, stats.HPMax)
+	JSON_TO_NAMED(mp_max, stats.MPMax)
+	JSON_TO_NAMED(speed, stats.dVit)
+	JSON_TO_NAMED(spirit, stats.mag)
+	JSON_TO_NAMED(strength, stats.force)
+	JSON_TO_NAMED(defense, stats.def)
+	JSON_TO_NAMED(defense_magic, stats.defMag)
+}
+
+inline void from_json(const nlohmann::json& j, _ennemi& t)
+{
+	JSON_FROM(tile_set)
+	JSON_FROM(animations)
+	JSON_FROM(sprites)
+	JSON_FROM(exp)
+	JSON_FROM_NAMED(hp_max, stats.HPMax)
+	JSON_FROM_NAMED(mp_max, stats.MPMax)
+	JSON_FROM_NAMED(speed, stats.dVit)
+	JSON_FROM_NAMED(spirit, stats.mag)
+	JSON_FROM_NAMED(strength, stats.force)
+	JSON_FROM_NAMED(defense, stats.def)
+	JSON_FROM_NAMED(defense_magic, stats.defMag)
+}
+
 
 typedef struct {
 	std::string tile_set;
@@ -338,8 +337,8 @@ typedef struct {
 	int touche, toucheDelai; // duree d'invincibilite
 	int recul; // lorsque touché, le perso recul
 	int imgCourant; // numero du sprite courant
-	RectangleI mapCollision; // rectangle de collision
-	RectangleI ptMateriel;// repere sur la map, utiliser pour les points chaud
+	CasaEngine::Rectangle mapCollision; // rectangle de collision
+	CasaEngine::Rectangle ptMateriel;// repere sur la map, utiliser pour les points chaud
 	_statutEquipement armeEquipe;
 
 	//specific to player
@@ -347,69 +346,61 @@ typedef struct {
 	int magieChoisi; // magie ou skill choisi, plusieurs utilisation
 	int dBlock, gBlock, hBlock, bBlock;
 	int expMax; // exp pour le level suivant
-
-private:
-	friend class cereal::access;
-
-	template <class Archive>
-	void save(Archive& ar) const
-	{
-		ar(CEREAL_NVP(tile_set));
-		ar(CEREAL_NVP(hp_max));
-		ar(CEREAL_NVP(mp_max));
-		ar(CEREAL_NVP(exp));
-		ar(CEREAL_NVP(level));
-		ar(CEREAL_NVP(speed));
-		ar(CEREAL_NVP(spirit));
-		ar(CEREAL_NVP(strength));
-		ar(CEREAL_NVP(defense));
-		ar(CEREAL_NVP(defense_magic));
-		ar(CEREAL_NVP(animations));
-		ar(CEREAL_NVP(sprites));
-	}
-
-	template <class Archive>
-	void load(Archive& ar)
-	{
-		ar(CEREAL_NVP(tile_set));
-		ar(CEREAL_NVP(hp_max));
-		ar(CEREAL_NVP(mp_max));
-		ar(CEREAL_NVP(exp));
-		ar(CEREAL_NVP(level));
-		ar(CEREAL_NVP(speed));
-		ar(CEREAL_NVP(spirit));
-		ar(CEREAL_NVP(strength));
-		ar(CEREAL_NVP(defense));
-		ar(CEREAL_NVP(defense_magic));
-		ar(CEREAL_NVP(animations));
-		ar(CEREAL_NVP(sprites));
-	}
 } _joueur;
+
+inline void to_json(nlohmann::json& j, const _joueur& t)
+{
+	JSON_TO(tile_set)
+	JSON_TO(hp_max)
+	JSON_TO(mp_max)
+	JSON_TO(exp)
+	JSON_TO(level)
+	JSON_TO(speed)
+	JSON_TO(spirit)
+	JSON_TO(strength)
+	JSON_TO(defense)
+	JSON_TO(defense_magic)
+	JSON_TO(animations)
+	JSON_TO(sprites)
+}
+
+inline void from_json(const nlohmann::json& j, _joueur& t)
+{
+	JSON_FROM(tile_set)
+	JSON_FROM(hp_max)
+	JSON_FROM(mp_max)
+	JSON_FROM(exp)
+	JSON_FROM(level)
+	JSON_FROM(speed)
+	JSON_FROM(spirit)
+	JSON_FROM(strength)
+	JSON_FROM(defense)
+	JSON_FROM(defense_magic)
+	JSON_FROM(animations)
+	JSON_FROM(sprites)
+}
+
+
 
 using ennemy_map_info = struct
 {
 	int type;
 	int mapX, mapY;
-
-private:
-	friend class cereal::access;
-
-	template <class Archive>
-	void save(Archive& ar) const
-	{
-		ar(CEREAL_NVP(type));
-		ar(CEREAL_NVP(mapX));
-		ar(CEREAL_NVP(mapY));
-	}
-
-	template <class Archive>
-	void load(Archive& ar)
-	{
-		ar(CEREAL_NVP(type));
-		ar(CEREAL_NVP(mapX));
-		ar(CEREAL_NVP(mapY));
-	}
 };
+
+inline void to_json(nlohmann::json& j, const ennemy_map_info& t)
+{
+	JSON_TO(type)
+	JSON_TO(mapX)
+	JSON_TO(mapY)
+}
+
+inline void from_json(const nlohmann::json& j, ennemy_map_info& t)
+{
+	JSON_FROM(type)
+	JSON_FROM(mapX)
+	JSON_FROM(mapY)
+}
 
 typedef struct {
 	//OSL_IMAGE* img; // image contenant toutes les tiles
@@ -434,40 +425,38 @@ typedef struct {
 	std::vector<int> auto_tile_layer;
 	std::vector<int> tile_layer_4;
 	std::vector<ennemy_map_info> ennemy_info;
-
-private:
-	friend class cereal::access;
-
-	template <class Archive>
-	void save(Archive& ar) const
-	{
-		ar(CEREAL_NVP(tile_set));
-		ar(CEREAL_NVP(sizeX));
-		ar(CEREAL_NVP(sizeY));
-		ar(CEREAL_NVP(exits));
-		ar(CEREAL_NVP(tile_type_layer_1));
-		ar(CEREAL_NVP(tile_layer_1));
-		ar(CEREAL_NVP(tile_layer_2));
-		ar(CEREAL_NVP(auto_tile_layer));
-		ar(CEREAL_NVP(tile_layer_4));
-		ar(CEREAL_NVP(ennemy_info));
-	}
-
-	template <class Archive>
-	void load(Archive& ar)
-	{
-		ar(CEREAL_NVP(tile_set));
-		ar(CEREAL_NVP(sizeX));
-		ar(CEREAL_NVP(sizeY));
-		ar(CEREAL_NVP(exits));
-		ar(CEREAL_NVP(tile_type_layer_1));
-		ar(CEREAL_NVP(tile_layer_1));
-		ar(CEREAL_NVP(tile_layer_2));
-		ar(CEREAL_NVP(auto_tile_layer));
-		ar(CEREAL_NVP(tile_layer_4));
-		ar(CEREAL_NVP(ennemy_info));
-	}
 } _map;
+
+
+inline void to_json(nlohmann::json& j, const _map& t)
+{
+	JSON_TO(tile_set)
+	JSON_TO(sizeX)
+	JSON_TO(sizeY)
+	JSON_TO(exits)
+	JSON_TO(tile_type_layer_1)
+	JSON_TO(tile_layer_1)
+	JSON_TO(tile_layer_2)
+	JSON_TO(auto_tile_layer)
+	JSON_TO(tile_layer_4)
+	JSON_TO(ennemy_info)
+
+}
+
+inline void from_json(const nlohmann::json& j, _map& t)
+{
+	JSON_FROM(tile_set)
+	JSON_FROM(sizeX)
+	JSON_FROM(sizeY)
+	JSON_FROM(exits)
+	JSON_FROM(tile_type_layer_1)
+	JSON_FROM(tile_layer_1)
+	JSON_FROM(tile_layer_2)
+	JSON_FROM(auto_tile_layer)
+	JSON_FROM(tile_layer_4)
+	JSON_FROM(ennemy_info)
+}
+
 
 typedef struct { // pas encore definie
 	int* file; // script chargé

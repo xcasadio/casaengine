@@ -12,7 +12,6 @@
 #include "EventHandler/GlobalEventSet.h"
 #include "Game/DrawableGameComponent.h"
 #include "Game/GameComponent.h"
-#include "GameDatas/GameDataFactory.h"
 #include "Graphics/Renderer/Renderer.h"
 #include "Physics/PhysicsEngine.h"
 #include "Resources/MediaManager.h"
@@ -61,7 +60,6 @@ namespace CasaEngine
 		AssetManager& GetAssetManager();
 		IRenderer& GetRenderer();
 		InGameLogger& GetInGameLogger();
-		GameDataFactory& GetGameDataFactory();
 		PhysicsEngine& GetPhysicsEngine();
 		MessageDispatcher& GetMessageDispatcher();
 
@@ -150,7 +148,6 @@ namespace CasaEngine
 		AssetManager m_AssetManager;
 		IRenderer m_Renderer;
 		InGameLogger m_InGameLogger;
-		GameDataFactory m_GameDataFactory;
 		PhysicsEngine m_PhysicsEngine;
 		MessageDispatcher m_MessageDispatcher;
 

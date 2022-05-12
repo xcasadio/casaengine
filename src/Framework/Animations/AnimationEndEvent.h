@@ -1,5 +1,4 @@
-#ifndef _ANIMATIONENDEVENT_H_
-#define _ANIMATIONENDEVENT_H_
+#pragma once
 
 #include "CA_Export.h"
 #include "AnimationEvent.h"
@@ -19,21 +18,21 @@ namespace CasaEngine
 
 		void Activate(Animation *pAnim_) override;
 		
-	private:
-		friend class cereal::access;
-
-		template <class Archive>
-		void load(Archive& ar)
-		{
-			ar(cereal::base_class<AnimationEvent>(this));
-		}
-
-		template <class Archive>
-		void save(Archive& ar) const
-		{
-			ar(cereal::base_class<AnimationEvent>(this));
-			ar(cereal::make_nvp("type", "AnimationEndEvent"));
-		}
+	//private:
+	//	friend class cereal::access;
+	//
+	//	template <class Archive>
+	//	void load(Archive& ar)
+	//	{
+	//		ar(cereal::base_class<AnimationEvent>(this));
+	//	}
+	//
+	//	template <class Archive>
+	//	void save(Archive& ar) const
+	//	{
+	//		ar(cereal::base_class<AnimationEvent>(this));
+	//		ar(cereal::make_nvp("type", "AnimationEndEvent"));
+	//	}
 		
 #if EDITOR
 	private:
@@ -41,5 +40,3 @@ namespace CasaEngine
 #endif
 	};
 }
-
-#endif

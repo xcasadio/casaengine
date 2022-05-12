@@ -29,7 +29,4 @@ namespace CasaEngine
 		Vector3 n;
 		float d;
 	};
-
-	std::istream& operator >>(std::istream& Stream, Plane& Plane);
-	std::ostream& operator <<(std::ostream& Stream, const Plane& Plane);
 }

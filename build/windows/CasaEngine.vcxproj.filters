@@ -172,6 +172,9 @@
     <Filter Include="Framework\Messaging">
       <UniqueIdentifier>{0d11d7c5-a82c-4478-99b7-1d1377425f2d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Framework\Serializer">
+      <UniqueIdentifier>{cc53c278-ed22-41ca-a95f-8ccc8ba973f9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Core\Base.h">
@@ -753,15 +756,6 @@
     <ClInclude Include="..\..\src\Framework\Datas\SpriteData.h">
       <Filter>Framework\Datas</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\GameDatas\GameDataFactory.h">
-      <Filter>Framework\GameDatas</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Framework\GameDatas\IGameData.h">
-      <Filter>Framework\GameDatas</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Framework\GameDatas\IGameDataFactory.h">
-      <Filter>Framework\GameDatas</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Framework\Datas\Animation2DData.h">
       <Filter>Framework\Datas</Filter>
     </ClInclude>
@@ -920,6 +914,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Framework\Datas\AutoTileSetData.h">
       <Filter>Framework\Datas</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Framework\Serializer\Serializer.h">
+      <Filter>Framework\Serializer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1306,15 +1303,6 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Framework\Datas\SpriteData.cpp">
       <Filter>Framework\Datas</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Framework\GameDatas\GameDataFactory.cpp">
-      <Filter>Framework\GameDatas</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Framework\GameDatas\IGameData.cpp">
-      <Filter>Framework\GameDatas</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Framework\GameDatas\IGameDataFactory.cpp">
-      <Filter>Framework\GameDatas</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Framework\Datas\Animation2DData.cpp">
       <Filter>Framework\Datas</Filter>

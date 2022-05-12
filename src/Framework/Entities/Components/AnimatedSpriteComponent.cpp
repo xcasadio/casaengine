@@ -141,9 +141,9 @@ namespace CasaEngine
 		}
 
 		int i = 0;
-		for (const auto& frame : _currentAnim->GetAnimation2DData()->GetFrames())
+		for (const auto& frame : _currentAnim->GetAnimation2DData()->_frames)
 		{
-			if (frame.GetSpriteId() == _currentAnim->CurrentFrame())
+			if (frame._spriteId == _currentAnim->CurrentFrame())
 			{
 				return i;
 			}
@@ -168,14 +168,14 @@ namespace CasaEngine
 		{
 			for (auto* animation : _animationList)
 			{
-				for (auto& frame : dynamic_cast<Animation2DData*>(animation->GetAnimationData())->GetFrames())
+				for (auto& frame : dynamic_cast<Animation2DData*>(animation->GetAnimationData())->_frames)
 				{
-					if (_collisionObjectByFrameId.find(frame.GetSpriteId()) != _collisionObjectByFrameId.end())
+					if (_collisionObjectByFrameId.find(frame._spriteId) != _collisionObjectByFrameId.end())
 					{
 						continue; // already added
 					}
 
-					_collisionObjectByFrameId[frame.GetSpriteId()] = SpritePhysicsHelper::CreateCollisionsFromSprite(frame.GetSpriteId(), GetEntity());
+					_collisionObjectByFrameId[frame._spriteId] = SpritePhysicsHelper::CreateCollisionsFromSprite(frame._spriteId, GetEntity());
 				}
 			}
 		}

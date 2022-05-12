@@ -732,11 +732,6 @@ namespace CasaEngine
 		return m_InGameLogger;
 	}
 
-	GameDataFactory& Game::GetGameDataFactory()
-	{
-		return m_GameDataFactory;
-	}
-
 	PhysicsEngine& Game::GetPhysicsEngine()
 	{
 		return m_PhysicsEngine;

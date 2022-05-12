@@ -26,22 +26,22 @@ namespace CasaEngine
 	private:
 		std::string m_FrameID;
 
-	private:
-		friend class cereal::access;
-
-		template <class Archive>
-		void load(Archive& ar)
-		{
-			ar(cereal::base_class<AnimationEvent>(this));
-			ar(cereal::make_nvp("sprite_name", m_FrameID));
-		}
-
-		template <class Archive>
-		void save(Archive& ar) const
-		{
-			ar(cereal::base_class<AnimationEvent>(this));
-			ar(cereal::make_nvp("sprite_name", m_FrameID));
-		}
+	//private:
+	//	friend class cereal::access;
+	//
+	//	template <class Archive>
+	//	void load(Archive& ar)
+	//	{
+	//		ar(cereal::base_class<AnimationEvent>(this));
+	//		ar(cereal::make_nvp("sprite_name", m_FrameID));
+	//	}
+	//
+	//	template <class Archive>
+	//	void save(Archive& ar) const
+	//	{
+	//		ar(cereal::base_class<AnimationEvent>(this));
+	//		ar(cereal::make_nvp("sprite_name", m_FrameID));
+	//	}
 
 #if EDITOR
 	private:

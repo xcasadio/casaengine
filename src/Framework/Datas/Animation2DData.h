@@ -4,7 +4,7 @@
 #include "Datas/FrameData.h"
 #include "Datas/AnimationData.h"
 
-#include <cereal/access.hpp>
+#include <vector>
 
 namespace CasaEngine
 {
@@ -17,30 +17,8 @@ namespace CasaEngine
 		Animation2DData& operator=(const Animation2DData& rsh);
 		~Animation2DData() override;
 
-		std::vector<FrameData>& GetFrames();
-		void AddFrame(FrameData& frame);
+		std::vector<FrameData> _frames;
 
 		Animation2DData* Copy() const;
-
-	private:
-
-		std::vector<FrameData> m_Frames;
-
-	private:
-		friend class cereal::access;
-
-		template <class Archive>
-		void load(Archive& ar)
-		{
-			ar(cereal::make_nvp("anim", cereal::base_class<AnimationData>(this)));
-			ar(cereal::make_nvp("frames", m_Frames));
-		}
-
-		template <class Archive>
-		void save(Archive& ar) const
-		{
-			ar(cereal::make_nvp("anim", cereal::base_class<AnimationData>(this)));
-			ar(cereal::make_nvp("frames", m_Frames));
-		}
 	};
 }

@@ -54,16 +54,16 @@ namespace CasaEngine
 						auto* spriteData = Game::Instance().GetAssetManager().GetAsset<SpriteData>(anim->CurrentFrame());
 						auto* line3DRenderer = Game::Instance().GetGameComponent<Line3DRendererComponent>();
 
-						for (auto coll : spriteData->GetCollisions())
+						for (auto coll : spriteData->_collisionShapes)
 						{
 							if (coll.GetShape()->Type() == ShapeType::RECTANGLE)
 							{
-								auto* rect = dynamic_cast<RectangleI*>(coll.GetShape());
+								auto* rect = dynamic_cast<Rectangle*>(coll.GetShape());
 								auto color = coll.GetType() == CollisionHitType::Defense ? Color::Blue : Color::Red;
 								auto pos = GetEntity()->GetCoordinates().GetWorldMatrix().Translation();
 								const auto scaleX = GetEntity()->GetCoordinates().GetLocalScale().x;
 								const auto scaleY = GetEntity()->GetCoordinates().GetLocalScale().y;
-								auto rectScaled = RectangleI(
+								auto rectScaled = Rectangle(
 									(rect->x - spriteData->GetOrigin().x) * scaleX ,
 									(rect->y - spriteData->GetOrigin().y) * scaleY,
 									rect->w * scaleX, 

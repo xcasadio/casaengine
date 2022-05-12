@@ -1,9 +1,6 @@
-#ifndef _ANIMATIONEVENT_H_
-#define _ANIMATIONEVENT_H_
+#pragma once
 
 #include "CA_Export.h"
-#include <cereal/access.hpp>
-#include <cereal/cereal.hpp>
 
 namespace CasaEngine
 {
@@ -32,20 +29,20 @@ namespace CasaEngine
 		unsigned int m_ID; // TODO : usefull ?
 		float m_Time;
 
-	private:
-		friend class cereal::access;
-
-		template <class Archive>
-		void load(Archive& ar)
-		{
-			ar(cereal::make_nvp("time", m_Time));
-		}
-
-		template <class Archive>
-		void save(Archive& ar) const
-		{
-			ar(cereal::make_nvp("time", m_Time));
-		}
+	//private:
+	//	friend class cereal::access;
+	//
+	//	template <class Archive>
+	//	void load(Archive& ar)
+	//	{
+	//		ar(cereal::make_nvp("time", m_Time));
+	//	}
+	//
+	//	template <class Archive>
+	//	void save(Archive& ar) const
+	//	{
+	//		ar(cereal::make_nvp("time", m_Time));
+	//	}
 
 #if EDITOR
 	private:
@@ -53,5 +50,3 @@ namespace CasaEngine
 #endif
 	};
 }
-
-#endif

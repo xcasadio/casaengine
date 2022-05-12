@@ -6,8 +6,6 @@
 #include "Maths/Vector3.h"
 #include "EventHandler/Event.h"
 
-#include <iosfwd>
-
 namespace CasaEngine
 {
 	class BaseEntity;
@@ -41,9 +39,6 @@ namespace CasaEngine
 
 		void SetParent(Coordinates *parent);
 
-		void Write(std::ostream&  os)const;
-		void Read (std::ifstream& is);
-
 	private :
 		void UpdateLocalMatrix();
 		void UpdateWorldMatrix();
@@ -66,26 +61,5 @@ namespace CasaEngine
 	public:
 		void ShowDebugWidget();
 #endif
-
-	private:
-		friend class cereal::access;
-
-		template <class Archive>
-		void save(Archive& ar) const
-		{
-			ar(cereal::make_nvp("position", m_LocalPosition));
-			ar(cereal::make_nvp("center_of_rotation", m_LocalCenterOfRotation));
-			ar(cereal::make_nvp("rotation", m_LocalRotation));
-			ar(cereal::make_nvp("scale", m_LocalScale));
-		}
-
-		template <class Archive>
-		void load(Archive& ar)
-		{
-			ar(cereal::make_nvp("position", m_LocalPosition));
-			ar(cereal::make_nvp("center_of_rotation", m_LocalCenterOfRotation));
-			ar(cereal::make_nvp("rotation", m_LocalRotation));
-			ar(cereal::make_nvp("scale", m_LocalScale));
-		}
 	};
 }

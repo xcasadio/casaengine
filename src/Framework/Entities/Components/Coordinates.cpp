@@ -157,14 +157,4 @@ namespace CasaEngine
 		*/
 	}
 #endif
-
-	void Coordinates::Write(std::ostream& /*os*/) const
-	{
-
-	}
-
-	void Coordinates::Read(std::ifstream& /*is*/)
-	{
-
-	}
 }

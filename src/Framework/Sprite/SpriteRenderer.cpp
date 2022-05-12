@@ -150,7 +150,7 @@ namespace CasaEngine
 	}
 
 	void SpriteRenderer::AddSprite(const Texture* tex_,
-	                               const RectangleI& posInTex, const Vector2I& origin, const Matrix4& transform, const Color& color_, eSpriteEffects effects_)
+	                               const Rectangle& posInTex, const Vector2I& origin, const Matrix4& transform, const Color& color_, eSpriteEffects effects_)
 	{
 		if (tex_ == nullptr)
 		{
@@ -230,7 +230,7 @@ namespace CasaEngine
 	}
 
 	void SpriteRenderer::AddSprite(const Texture* tex_,
-		const RectangleI& posInTex, const Vector2I& origin, const Vector2& pos,
+		const Rectangle& posInTex, const Vector2I& origin, const Vector2& pos,
 		float rot, const Vector2& scale, const Color& color, float z_order, eSpriteEffects effects)
 	{
 		if (tex_ == nullptr)

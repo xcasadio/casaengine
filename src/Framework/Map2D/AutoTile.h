@@ -14,9 +14,9 @@ namespace CasaEngine
 	{
 		int tileIndex;
 		float x_offset, y_offset, z_offset;
-		RectangleI posInTexture;
+		Rectangle posInTexture;
 
-		void SetInfo(int tileIndex_, float x_offset_, float y_offset_, float z_offset_, const RectangleI& posInTexture_);
+		void SetInfo(int tileIndex_, float x_offset_, float y_offset_, float z_offset_, const Rectangle& posInTexture_);
 	};
 
 
@@ -29,14 +29,14 @@ namespace CasaEngine
 		void Initialize() override;
 		void Update(const GameTime& gameTime_) override;
 		void Draw(float x, float y, float z) override;
-		void Draw(float x, float y, float z, RectangleI uvOffset) override;
+		void Draw(float x, float y, float z, Rectangle uvOffset) override;
 
 		void SetTileInfo(TiledMapParameters* map, TiledMapLayerParameters* layer, int x, int y);
 
 		bool Hidden() const;
 
 	private:
-		void ComputeDrawingInfos(unsigned int mask, float x, float y, float z, const RectangleI uv_offset);
+		void ComputeDrawingInfos(unsigned int mask, float x, float y, float z, const Rectangle uv_offset);
 
 		AutoTileSetData* _autoTileSetData;
 		TiledMapLayerParameters* _layerParameters;

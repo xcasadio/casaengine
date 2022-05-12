@@ -8,7 +8,6 @@
 #include "Entities\Components\AnimatedSpriteComponent.h"
 #include "GameDatas/CharacterBase.h"
 #include "GameDatas/IController.h"
-#include "GameDatas\IGameData.h"
 #include "Maths\Vector2.h"
 #include "Sprite\Sprite.h"
 #include "GameDatas\Character2DBase.h"

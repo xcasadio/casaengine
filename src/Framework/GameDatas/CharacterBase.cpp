@@ -1,11 +1,7 @@
 #include "Base.h"
 #include "CharacterBase.h"
-#include "CA_Assert.h"
-#include "Log\LogManager.h"
-#include "Assets\AssetManager.h"
-#include "Entities\Physics\PhysicalEntity.h"
-#include "AI\MovementSystem\MovementRequest.h"
 #include "MessageType.h"
+#include "Game/Game.h"
 
 namespace CasaEngine
 {

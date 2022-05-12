@@ -1,11 +1,7 @@
 #pragma once
 
 #include "CA_Export.h"
-#include "Maths/Rectangle.h"
-
-#include <cereal/access.hpp>
-#include <cereal/types/polymorphic.hpp>
-
+#include "Maths/Shape/IShape.h"
 
 namespace CasaEngine
 {
@@ -41,22 +37,5 @@ namespace CasaEngine
 	private:
 		CollisionHitType _type;
 		IShape *_shape;
-
-		friend class cereal::access;
-
-		template <class Archive>
-		void load(Archive& ar)
-		{
-			ar(cereal::make_nvp("collision_type", _type));
-			_shape = new RectangleI(); //TODO : how works polymorphism with cereal ??
-			ar(cereal::make_nvp("shape", *dynamic_cast<RectangleI*>(_shape)));
-		}
-
-		template <class Archive>
-		void save(Archive& ar) const
-		{
-			ar(cereal::make_nvp("collision_type", _type));
-			ar(cereal::make_nvp("shape", *dynamic_cast<RectangleI *>(_shape)));
-		}
 	};
 }

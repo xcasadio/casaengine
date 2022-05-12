@@ -2,19 +2,15 @@
 
 #include <queue>
 
-#include "CharacterTypes.h"
 #include "IController.h"
 #include "Animations\Animation2D.h"
 #include "Entities\Component.h"
-#include "Entities\Components\AnimatedSpriteComponent.h"
-#include "GameDatas\IGameData.h"
-#include "Maths\Vector2.h"
 #include <Physics/CollisionParametersBetween2Entities.h>
 
 namespace CasaEngine
 {
 	class CharacterBase :
-		public IGameData
+		public IAssetable
 	{
 	public:
 		~CharacterBase() override;

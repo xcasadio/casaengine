@@ -59,6 +59,4 @@ namespace CasaEngine
 	Matrix3      operator * (const Matrix3& m, float t);
 	Matrix3      operator * (float t, const Matrix3& m);
 	Matrix3      operator / (const Matrix3& m, float t);
-	std::istream& operator >>(std::istream& Stream, Matrix3& Mat);
-	std::ostream& operator <<(std::ostream& Stream, const Matrix3& Mat);
 }
