@@ -20,9 +20,7 @@
             "y": 0,
             "w": 7,
             "h": 34,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           }
         ],
         "def": [
@@ -42,27 +40,21 @@
             "y": 16,
             "w": 9,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           },
           {
             "x": 9,
             "y": 9,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           },
           {
             "x": 1,
             "y": 1,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           }
         ],
         "def": [
@@ -82,18 +74,14 @@
             "y": 7,
             "w": 8,
             "h": 18,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           },
           {
             "x": 0,
             "y": 0,
             "w": 18,
             "h": 8,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           }
         ],
         "def": [
@@ -113,9 +101,7 @@
             "y": 8,
             "w": 34,
             "h": 7,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           }
         ],
         "def": [
@@ -135,27 +121,21 @@
             "y": 12,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           },
           {
             "x": 7,
             "y": 20,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           },
           {
             "x": 0,
             "y": 27,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           }
         ],
         "def": [
@@ -175,18 +155,14 @@
             "y": 16,
             "w": 8,
             "h": 18,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           },
           {
             "x": 0,
             "y": 30,
             "w": 8,
             "h": 18,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           }
         ],
         "def": [
@@ -206,9 +182,7 @@
             "y": 16,
             "w": 7,
             "h": 34,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           }
         ],
         "def": [
@@ -228,9 +202,7 @@
             "y": 8,
             "w": 34,
             "h": 7,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           }
         ],
         "def": [
@@ -250,27 +222,21 @@
             "y": 15,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           },
           {
             "x": 21,
             "y": 7,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           },
           {
             "x": 27,
             "y": 0,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           }
         ],
         "def": [
@@ -290,18 +256,14 @@
             "y": 14,
             "w": 8,
             "h": 18,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           },
           {
             "x": 19,
             "y": 0,
             "w": 8,
             "h": 18,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           }
         ],
         "def": [
@@ -321,9 +283,7 @@
             "y": 0,
             "w": 7,
             "h": 34,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           }
         ],
         "def": [
@@ -343,27 +303,21 @@
             "y": 16,
             "w": 9,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           },
           {
             "x": 9,
             "y": 9,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           },
           {
             "x": 1,
             "y": 1,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           }
         ],
         "def": [
@@ -383,18 +337,14 @@
             "y": 7,
             "w": 8,
             "h": 18,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           },
           {
             "x": 0,
             "y": 0,
             "w": 18,
             "h": 8,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           }
         ],
         "def": [
@@ -414,9 +364,7 @@
             "y": 8,
             "w": 34,
             "h": 7,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           }
         ],
         "def": [
@@ -436,9 +384,7 @@
             "y": 8,
             "w": 34,
             "h": 7,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           }
         ],
         "def": [
@@ -458,27 +404,21 @@
             "y": 12,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           },
           {
             "x": 7,
             "y": 20,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           },
           {
             "x": 0,
             "y": 27,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           }
         ],
         "def": [
@@ -498,18 +438,14 @@
             "y": 16,
             "w": 8,
             "h": 18,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           },
           {
             "x": 0,
             "y": 30,
             "w": 8,
             "h": 18,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           }
         ],
         "def": [
@@ -529,9 +465,7 @@
             "y": 16,
             "w": 7,
             "h": 34,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           }
         ],
         "def": [
@@ -551,27 +485,21 @@
             "y": 12,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           },
           {
             "x": 20,
             "y": 20,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           },
           {
             "x": 27,
             "y": 27,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           }
         ],
         "def": [
@@ -591,18 +519,14 @@
             "y": 12,
             "w": 18,
             "h": 8,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           },
           {
             "x": 30,
             "y": 19,
             "w": 18,
             "h": 8,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           }
         ],
         "def": [
@@ -622,9 +546,7 @@
             "y": 8,
             "w": 34,
             "h": 7,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           }
         ],
         "def": [
@@ -644,9 +566,7 @@
             "y": 0,
             "w": 7,
             "h": 34,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           }
         ],
         "def": [
@@ -666,27 +586,21 @@
             "y": 15,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           },
           {
             "x": 21,
             "y": 7,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           },
           {
             "x": 27,
             "y": 0,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           }
         ],
         "def": [
@@ -706,18 +620,14 @@
             "y": 14,
             "w": 8,
             "h": 18,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           },
           {
             "x": 19,
             "y": 0,
             "w": 8,
             "h": 18,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           }
         ],
         "def": [
@@ -737,9 +647,7 @@
             "y": 8,
             "w": 34,
             "h": 7,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           }
         ],
         "def": [
@@ -759,18 +667,14 @@
             "y": 12,
             "w": 18,
             "h": 8,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           },
           {
             "x": 30,
             "y": 19,
             "w": 18,
             "h": 8,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           }
         ],
         "def": [
@@ -790,27 +694,21 @@
             "y": 12,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           },
           {
             "x": 20,
             "y": 20,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           },
           {
             "x": 27,
             "y": 27,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           }
         ],
         "def": [
@@ -830,9 +728,7 @@
             "y": 16,
             "w": 7,
             "h": 34,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           }
         ],
         "def": [
@@ -852,27 +748,21 @@
             "y": 12,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           },
           {
             "x": 20,
             "y": 20,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           },
           {
             "x": 27,
             "y": 27,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           }
         ],
         "def": [
@@ -892,9 +782,7 @@
             "y": 8,
             "w": 34,
             "h": 7,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           }
         ],
         "def": [
@@ -914,27 +802,21 @@
             "y": 15,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           },
           {
             "x": 21,
             "y": 7,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           },
           {
             "x": 27,
             "y": 0,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           }
         ],
         "def": [
@@ -954,9 +836,7 @@
             "y": 0,
             "w": 7,
             "h": 34,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           }
         ],
         "def": [
@@ -976,27 +856,21 @@
             "y": 12,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           },
           {
             "x": 7,
             "y": 20,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           },
           {
             "x": 0,
             "y": 27,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           }
         ],
         "def": [
@@ -1016,9 +890,7 @@
             "y": 8,
             "w": 34,
             "h": 7,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           }
         ],
         "def": [
@@ -1038,27 +910,21 @@
             "y": 16,
             "w": 9,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           },
           {
             "x": 9,
             "y": 9,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           },
           {
             "x": 1,
             "y": 1,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           }
         ],
         "def": [
@@ -1078,9 +944,7 @@
             "y": 0,
             "w": 7,
             "h": 34,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           }
         ],
         "def": [
@@ -1100,27 +964,21 @@
             "y": 16,
             "w": 9,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           },
           {
             "x": 9,
             "y": 9,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           },
           {
             "x": 1,
             "y": 1,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           }
         ],
         "def": [
@@ -1140,9 +998,7 @@
             "y": 0,
             "w": 7,
             "h": 34,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           }
         ],
         "def": [
@@ -1162,27 +1018,21 @@
             "y": 15,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           },
           {
             "x": 21,
             "y": 7,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           },
           {
             "x": 27,
             "y": 0,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           }
         ],
         "def": [
@@ -1202,9 +1052,7 @@
             "y": 8,
             "w": 34,
             "h": 7,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           }
         ],
         "def": [
@@ -1224,27 +1072,21 @@
             "y": 12,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           },
           {
             "x": 20,
             "y": 20,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           },
           {
             "x": 27,
             "y": 27,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           }
         ],
         "def": [
@@ -1264,9 +1106,7 @@
             "y": 16,
             "w": 7,
             "h": 34,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           }
         ],
         "def": [
@@ -1286,27 +1126,21 @@
             "y": 12,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           },
           {
             "x": 7,
             "y": 20,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           },
           {
             "x": 0,
             "y": 27,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           }
         ],
         "def": [
@@ -1326,9 +1160,7 @@
             "y": 8,
             "w": 34,
             "h": 7,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           }
         ],
         "def": [
@@ -1348,27 +1180,21 @@
             "y": 15,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           },
           {
             "x": 21,
             "y": 7,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           },
           {
             "x": 27,
             "y": 0,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           }
         ],
         "def": [
@@ -1388,9 +1214,7 @@
             "y": 8,
             "w": 34,
             "h": 7,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           }
         ],
         "def": [
@@ -1410,27 +1234,21 @@
             "y": 12,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           },
           {
             "x": 20,
             "y": 20,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           },
           {
             "x": 27,
             "y": 27,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           }
         ],
         "def": [
@@ -1450,9 +1268,7 @@
             "y": 16,
             "w": 7,
             "h": 34,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           }
         ],
         "def": [
@@ -1472,27 +1288,21 @@
             "y": 16,
             "w": 9,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           },
           {
             "x": 9,
             "y": 9,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           },
           {
             "x": 1,
             "y": 1,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           }
         ],
         "def": [
@@ -1512,9 +1322,7 @@
             "y": 8,
             "w": 34,
             "h": 7,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           }
         ],
         "def": [
@@ -1534,27 +1342,21 @@
             "y": 12,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           },
           {
             "x": 7,
             "y": 20,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           },
           {
             "x": 0,
             "y": 27,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           }
         ],
         "def": [
@@ -1574,9 +1376,7 @@
             "y": 16,
             "w": 7,
             "h": 34,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           }
         ],
         "def": [
@@ -1596,27 +1396,21 @@
             "y": 15,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           },
           {
             "x": 21,
             "y": 7,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           },
           {
             "x": 27,
             "y": 0,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           }
         ],
         "def": [
@@ -1636,9 +1430,7 @@
             "y": 0,
             "w": 7,
             "h": 34,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           }
         ],
         "def": [
@@ -1658,27 +1450,21 @@
             "y": 16,
             "w": 9,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           },
           {
             "x": 9,
             "y": 9,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           },
           {
             "x": 1,
             "y": 1,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           }
         ],
         "def": [
@@ -1698,9 +1484,7 @@
             "y": 8,
             "w": 34,
             "h": 7,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           }
         ],
         "def": [
@@ -1720,27 +1504,21 @@
             "y": 12,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           },
           {
             "x": 7,
             "y": 20,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           },
           {
             "x": 0,
             "y": 27,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           }
         ],
         "def": [
@@ -1760,9 +1538,7 @@
             "y": 16,
             "w": 7,
             "h": 34,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           }
         ],
         "def": [
@@ -1782,27 +1558,21 @@
             "y": 12,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           },
           {
             "x": 20,
             "y": 20,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           },
           {
             "x": 27,
             "y": 27,
             "w": 10,
             "h": 10,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           }
         ],
         "def": [
@@ -1822,9 +1592,7 @@
             "y": 8,
             "w": 34,
             "h": 7,
-            "shape": {
-              "shape_type": 3
-            }
+            "shape_type": 3
           }
         ],
         "def": [

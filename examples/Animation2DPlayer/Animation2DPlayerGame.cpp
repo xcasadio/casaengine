@@ -208,9 +208,6 @@ void Animation2DPlayerGame::LoadAnimations(AnimatedSpriteComponent* pAnimatedCom
 	auto* const pFile = GetMediaManager().FindMedia("animations.json", true);
 	std::ifstream is(pFile->Fullname());
 	std::vector<Animation2DData> anim2DDatas;
-
-	//cereal::JSONInputArchive ar(is);
-	//ar(cereal::make_nvp("animations", anim2DDatas));
 	json j;
 	is >> j;
 	from_json(j["animations"], anim2DDatas);
@@ -221,6 +218,11 @@ void Animation2DPlayerGame::LoadAnimations(AnimatedSpriteComponent* pAnimatedCom
 		GetAssetManager().AddAsset(new Asset(data.GetName(), animation));
 		pAnimatedComponent->AddAnimation(new Animation2D(*animation));
 	}
+
+	//std::ofstream os("C:\\Users\\casad\\dev\\repo\\casaengine\\examples\\resources\\datas\\animations_cop.json");
+	//json j2;
+	//to_json(j2, anim2DDatas, "animations");
+	//os << std::setw(4) << j2 << std::endl; // pretty json
 }
 
 void Animation2DPlayerGame::LoadSprites()
@@ -250,8 +252,6 @@ void Animation2DPlayerGame::LoadSprites()
 	auto* const pFile = GetMediaManager().FindMedia("sprites.json", true);
 	std::ifstream is(pFile->Fullname());
 	std::vector<SpriteData> spriteDatas;
-	//cereal::JSONInputArchive ar(is);
-	//ar(cereal::make_nvp("sprites", spriteDatas));
 	json j;
 	is >> j;
 	from_json(j["sprites"], spriteDatas);
@@ -279,8 +279,9 @@ void Animation2DPlayerGame::LoadSprites()
 	}
 
 	//std::ofstream os("C:\\Users\\casad\\dev\\repo\\casaengine\\examples\\resources\\datas\\sprites_cop.json");
-	//cereal::JSONOutputArchive ar2(os);
-	//ar2(cereal::make_nvp("sprites", spriteDatas));
+	//json j2;
+	//to_json(j2, spriteDatas, "sprites");
+	//os << std::setw(4) << j2 << std::endl; // pretty json
 }
 
 void Animation2DPlayerGame::Update(const GameTime& gameTime_)

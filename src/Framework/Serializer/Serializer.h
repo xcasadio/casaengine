@@ -40,6 +40,12 @@ namespace CasaEngine
 		j.push_back(json::object_t::value_type(name, t));
 	}
 
+	//template <class T>
+	//void to_json(nlohmann::json& j, const std::vector<T>& t)
+	//{
+	//	j.push_back(json::array_t::value_type(t));
+	//}
+
 	template <class T>
 	void from_json(const nlohmann::json& j, std::vector<T>& t)
 	{
@@ -129,7 +135,7 @@ namespace CasaEngine
 
 	inline void to_json(nlohmann::json& j, const IShape& t)
 	{
-		j = json{ {"shape_type", t.Type()} };
+		JSON_TO_NAMED(shape_type, Type())
 	}
 
 	inline void from_json(const nlohmann::json& j, IShape& t)
@@ -142,28 +148,28 @@ namespace CasaEngine
 	template <class T>
 	void to_json(nlohmann::json& j, const CRectangle<T>& t)
 	{
+		to_json(j, static_cast<const IShape&>(t));
 		JSON_TO(x)
 		JSON_TO(y)
 		JSON_TO(w)
 		JSON_TO(h)
-		to_json(j["shape"], static_cast<const IShape&>(t));
 	}
 
 	template <class T>
 	void from_json(const nlohmann::json& j, CRectangle<T>& t)
 	{
+		from_json(j, static_cast<IShape&>(t));
 		JSON_FROM(x)
 		JSON_FROM(y)
 		JSON_FROM(w)
 		JSON_FROM(h)
-		from_json(j["shape"], static_cast<IShape&>(t));
 	}
 
 	//////////////////////////////////////////////////////////////
 
 	inline void to_json(nlohmann::json& j, const IAssetable& t)
 	{
-		j = json{ {"asset_name", t.GetName()} };
+		JSON_TO_NAMED(asset_name, GetName())
 	}
 
 	inline void from_json(const nlohmann::json& j, IAssetable& t)
@@ -202,7 +208,7 @@ namespace CasaEngine
 	{
 		*shape = nullptr;
 		//todo remove the level "shape"
-		auto shapeType = (ShapeType)j.at("shape").at("shape_type").get<int>();
+		auto shapeType = (ShapeType)j.at("shape_type").get<int>();
 
 		switch (shapeType)
 		{
@@ -227,15 +233,15 @@ namespace CasaEngine
 
 	inline void to_json(nlohmann::json& j, const Collision& t)
 	{
-		j = json{ {"collision_type", t.GetType()} };
-		to_json(j["shape"], t.GetShape());
+		to_json(j, t.GetShape());
+		JSON_TO_NAMED(collision_type, GetType())
 	}
 
 	inline void from_json(const nlohmann::json& j, Collision& t)
 	{
 		t.SetType((CollisionHitType)j.at("collision_type").get<int>());
 		IShape* shape;
-		from_json(j["shape"], &shape);
+		from_json(j, &shape);
 		t.SetShape(shape);
 	}
 
@@ -243,11 +249,11 @@ namespace CasaEngine
 
 	inline void to_json(nlohmann::json& j, const SpriteData& t)
 	{
-		j = json{ {"sprite_sheet", t.GetAssetFileName() } };
+		to_json(j, static_cast<const IAssetable&>(t));
+		JSON_TO_NAMED(sprite_sheet, GetAssetFileName())
 		to_json(j["location"], t.GetPositionInTexture());
 		to_json(j["hotspot"], t.GetOrigin());
-		to_json(j["collisions"], t._collisionShapes, "collision");
-		to_json(j["asset"], static_cast<const IAssetable&>(t));
+		to_json(j, t._collisionShapes, "collisions");
 	}
 
 	inline void from_json(const nlohmann::json& j, SpriteData& t)
@@ -260,22 +266,23 @@ namespace CasaEngine
 		from_json(j.at("hotspot"), v2);
 		t.SetOrigin(v2);
 		from_json(j.at("collisions"), t._collisionShapes);
-		from_json(j["asset"], static_cast<IAssetable&>(t));
+		from_json(j, static_cast<IAssetable&>(t));
 	}
 
 	//////////////////////////////////////////////////////////////
 
 	inline void to_json(nlohmann::json& j, const FrameData& t)
 	{
-		j = json{ {"duration", t._duration, "sprite_id", t._spriteId} };
-		to_json(j["asset"], static_cast<const IAssetable&>(t));
+		to_json(j, static_cast<const IAssetable&>(t));
+		JSON_TO_NAMED(duration, _duration)
+		JSON_TO_NAMED(sprite_id, _spriteId)
 	}
 
 	inline void from_json(const nlohmann::json& j, FrameData& t)
 	{
 		j.at("duration").get_to(t._duration);
 		j.at("sprite_id").get_to(t._spriteId);
-		from_json(j["asset"], static_cast<IAssetable&>(t));
+		from_json(j, static_cast<IAssetable&>(t));
 	}
 
 	//////////////////////////////////////////////////////////////
@@ -285,13 +292,13 @@ namespace CasaEngine
 	inline void to_json(nlohmann::json& j, const AnimationData& t)
 	{
 		JSON_TO_NAMED(animation_type, _animationType)
-		to_json(j["asset"], static_cast<const IAssetable&>(t));
+		to_json(j, static_cast<const IAssetable&>(t));
 	}
 
 	inline void from_json(const nlohmann::json& j, AnimationData& t)
 	{
 		JSON_FROM_NAMED(animation_type, _animationType)
-		from_json(j["asset"], static_cast<IAssetable&>(t));
+		from_json(j, static_cast<IAssetable&>(t));
 	}
 
 	//////////////////////////////////////////////////////////////
@@ -305,7 +312,7 @@ namespace CasaEngine
 	inline void from_json(const nlohmann::json& j, Animation2DData& t)
 	{
 		JSON_FROM_NAMED(frames, _frames)
-		from_json(j["anim"], static_cast<AnimationData&>(t));
+		from_json(j, static_cast<AnimationData&>(t));
 	}
 
 	//////////////////////////////////////////////////////////////

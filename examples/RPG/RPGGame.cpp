@@ -117,8 +117,6 @@ void RPGGame::CreateMap(World* pWorld)
 	IFile* pFile = Game::Instance().GetMediaManager().FindMedia("map_1_1.json", true);
 	std::ifstream is(pFile->Fullname());
 	_map map_datas;
-	//cereal::JSONInputArchive ar(is);
-	//ar(cereal::make_nvp("map", map_datas));
 	json j;
 	is >> j;
 	from_json(j["map"], map_datas);
@@ -304,8 +302,6 @@ void RPGGame::CreateEnemies(World* pWorld)
 	IFile* pFile = Game::Instance().GetMediaManager().FindMedia("octopus.json", true);
 	std::ifstream is(pFile->Fullname());
 	_ennemi ennemi_datas;
-	//cereal::JSONInputArchive ar(is);
-	//ar(cereal::make_nvp("octopus", ennemi_datas));
 	json j;
 	is >> j;
 	from_json(j["octopus"], ennemi_datas);
@@ -314,7 +310,6 @@ void RPGGame::CreateEnemies(World* pWorld)
 	pEntity->SetName("octopus 1");
 	pEntity->GetCoordinates().SetLocalPosition(Vector3(100.0f, 100.0f, 0.1f));
 	pEntity->GetCoordinates().SetLocalRotation(0.0f);
-	//pTrans3D->SetLocalScale(Vector3(32, 32, 1.0));
 
 	CreateSprite(ennemi_datas.tile_set, ennemi_datas.sprites, "octopus_");
 
