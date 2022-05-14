@@ -19,7 +19,7 @@ namespace CasaEngine
 		World();
 		~World() override;
 		const std::vector<BaseEntity*>& GetEntities();
-		BaseEntity* GetEntityByName(std::string name);
+		BaseEntity* GetEntityByName(const std::string& name);
 
 		void AddEntity(BaseEntity* pEntity);
 		void RemoveEntity(BaseEntity* pEntity);

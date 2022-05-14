@@ -25,7 +25,7 @@ namespace CasaEngine
 		return m_Entities;
 	}
 
-	BaseEntity* World::GetEntityByName(std::string name)
+	BaseEntity* World::GetEntityByName(const std::string& name)
 	{
 		for (const auto entity : m_Entities)
 		{
@@ -40,7 +40,19 @@ namespace CasaEngine
 
 	void World::AddEntity(BaseEntity* pEntity_)
 	{
+#ifdef EDITOR
+		for (const auto entity : m_Entities)
+		{
+			if (std::strcmp(entity->GetName(), pEntity_->GetName()) == 0)
+			{
+				std::ostringstream oss;
+				oss << "World::AddEntity() : entity " << pEntity_->GetName() << " (" << pEntity_->Id() << ")" << " is already added";
+				throw ArgumentException(oss.str());
+			}
+		}
+#endif
 		m_Entities.push_back(pEntity_);
+		
 	}
 
 	void World::SetPhysicsWorld(IPhysicsWorld* pWorld_)

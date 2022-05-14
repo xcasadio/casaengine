@@ -61,8 +61,7 @@ namespace CasaEngine
 				tileEntity->IsPersistent(false);
 				tileEntity->SetParent(layerEntity);
 				tileEntity->GetCoordinates().SetLocalPosition(Vector3(tileParam->x * tiledMapParameters.tileSize.x, tileParam->y * tiledMapParameters.tileSize.y, 0.0f));
-				world.AddEntity(tileEntity);
-
+			
 				auto* tile = CreateTile(*tileParam, &layer, &tiledMapParameters);
 				auto* tileComponent = new TileComponent(tileEntity);
 				tileComponent->Tile(tile);
