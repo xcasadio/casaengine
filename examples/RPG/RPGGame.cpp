@@ -112,106 +112,107 @@ void CreateLayer(const std::vector<int>& tilesId, TiledMapComponent* pMap, float
 	pMap->AddLayer(layer);
 }
 
+void CreateLayerNew(const std::vector<int>& tile_ids, TiledMapParameters& tiled_map_parameters, float zOffset)
+{
+	TiledMapLayerParameters layer;
+	layer.zOffset = zOffset;
+	int index = 0;
+
+	for (const int tile_id : tile_ids)
+	{
+		std::ostringstream name;
+		name << "tile1_" << (tile_id % 16) << "_" << (int)(tile_id / 16);
+		auto* tileParams = new StaticTileParameters();
+		tileParams->spriteId = name.str();
+		tileParams->x = (index % tiled_map_parameters.mapSize.x);
+		tileParams->y = (int)(index / tiled_map_parameters.mapSize.x);
+		layer.tiles.push_back(tileParams);
+
+		index++;
+	}
+
+	tiled_map_parameters.layers.push_back(layer);
+}
+
 void RPGGame::CreateMap(World* pWorld)
 {
-	IFile* pFile = Game::Instance().GetMediaManager().FindMedia("map_1_1.json", true);
-	std::ifstream is(pFile->Fullname());
 	_map map_datas;
-	json j;
-	is >> j;
-	from_json(j["map"], map_datas);
+
+	{
+		IFile* pFile = Game::Instance().GetMediaManager().FindMedia("map_1_1.json", true);
+		std::ifstream is(pFile->Fullname());
+		json j;
+		is >> j;
+		from_json(j["map"], map_datas);
+	}
 
 	auto tileSize = Vector2I(32, 32);
+
 	//create sprite
 	for (int y = 0; y < 6; ++y)
 	{
 		for (int x = 0; x < 16; ++x)
 		{
 			auto* pSprite = new SpriteData();
-			pSprite->SetName("grass1");
 			pSprite->SetPositionInTexture(CasaEngine::Rectangle(x * tileSize.x, y * tileSize.y, tileSize.x, tileSize.y));
 			pSprite->SetAssetFileName(map_datas.tile_set); //16x6 tiles
 			std::ostringstream name;
 			name << "tile1_" << x << "_" << y;
+			pSprite->SetName(name.str());
 			GetAssetManager().AddAsset(new Asset(name.str(), pSprite));
 		}
 	}
 
+	TiledMapParameters tiled_map_parameters;
+	
+	{
+		IFile* pFile = Game::Instance().GetMediaManager().FindMedia("map_1_1_tile_set.json", true);
+		std::ifstream is(pFile->Fullname());
+		json j;
+		is >> j;
+		from_json(j, tiled_map_parameters);
+	}
+
+	//{
+	//	tiled_map_parameters.tileSize = tileSize;
+	//	tiled_map_parameters.mapSize = Vector2I(map_datas.sizeX, map_datas.sizeY);
+	//	CreateLayerNew(map_datas.tile_layer_1, tiled_map_parameters, 0.0f);
+	//	CreateLayerNew(map_datas.tile_layer_2, tiled_map_parameters, 0.1f);
+	//	CreateLayerNew(map_datas.tile_layer_4, tiled_map_parameters, 1.0f);
+	//	std::ofstream os("C:\\Users\\casad\\dev\\repo\\casaengine\\examples\\resources\\datas\\map_1_1_tile_set.json");
+	//	json j2;
+	//	to_json(j2, tiled_map_parameters);
+	//	os << std::setw(4) << j2 << std::endl; // pretty json
+	//}
+
+	TiledMapCreator::Create(tiled_map_parameters, *pWorld);
+
 	//create map
-	auto* pEntity = new BaseEntity();
-	pEntity->SetName("tiled map");
-	pEntity->GetCoordinates().SetLocalPosition(Vector3(0.0f, 0.0f, 0.0f));
-	pEntity->GetCoordinates().SetLocalRotation(0.0f);
-	//pTrans3D->SetLocalScale(Vector3(48, 48, 1.0));
-
-	auto* pMap = new TiledMapComponent(pEntity);
-	pMap->SetMapSize(Vector2I(map_datas.sizeX, map_datas.sizeY));
-	pMap->SetTileSize(Vector2I(32, 32));
-
-	//layer 1
-	CreateLayer(map_datas.tile_layer_1, pMap, 0);
-	CreateLayer(map_datas.tile_layer_2, pMap, 0.01f);
-	CreateLayer(map_datas.tile_layer_4, pMap, 1.0f);
-
-	for (int i = 0; i < map_datas.tile_type_layer_1.size(); ++i)
-	{
-		if (map_datas.tile_type_layer_1[i] == 1)
-		{
-			pMap->GetLayer(0)->GetTiles()[i]->IsWall(true);
-		}
-	}
-
-	//TEST create box
-	/*
-	const auto* shape = new CasaEngine::Rectangle(0, 0, 48, 48);
-	//auto *shape = new Circle(m_TileSize.x);
-	auto position = Vector3(10, 10, 0.0f);
-	auto* collisionShape = Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->CreateCollisionShape(shape, position);
-	auto* bullet_collision_object_container = dynamic_cast<BulletCollisionObjectContainer*>(collisionShape);
-	bullet_collision_object_container->GetCollisionObject()->setUserPointer(pEntity);
-	bullet_collision_object_container->GetCollisionObject()->setCollisionFlags(btCollisionObject::CF_NO_CONTACT_RESPONSE);
-	Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->AddCollisionObject(collisionShape);
-	*/
-	/*
-	//layer 2
-	layer = new TiledMapLayer();
-	tiles.clear();
-	//create tile for autotile
-	std::vector<ITile*> autoTiles;
-	for (int y = 0; y < 3; ++y)
-	{
-		for (int x = 0; x < 2; ++x)
-		{
-			std::ostringstream name;
-			name << "autoGrass2_" << x << "_" << y;
-			auto* sprite = GetAssetManager().GetAsset<SpriteData>(name.str());
-			auto* tile = new StaticTile(new Sprite(*sprite));
-			autoTiles.push_back(tile);
-		}
-	}
-	for (int y = 0; y < pMap->GetMapSize().y; ++y)
-	{
-		for (int x = 0; x < pMap->GetMapSize().x; ++x)
-		{
-			if (y > 2 && y < pMap->GetMapSize().y - 2
-				&& x > 5 && x < pMap->GetMapSize().x - 5)
-			{
-				auto* tile = new AutoTile(layer, x, y);
-				tile->setTiles(autoTiles);
-				tiles.push_back(tile);
-			}
-			else
-			{
-				tiles.push_back(nullptr);
-			}
-		}
-	}
-	layer->SetTiles(tiles);
-	pMap->AddLayer(layer);
-	*/
-
-	pEntity->GetComponentMgr()->AddComponent(pMap);
-	pWorld->AddEntity(pEntity);
+	//auto* pEntity = new BaseEntity();
+	//pEntity->SetName("tiled map");
+	//pEntity->GetCoordinates().SetLocalPosition(Vector3(0.0f, 0.0f, 0.0f));
+	//pEntity->GetCoordinates().SetLocalRotation(0.0f);
+	//
+	//
+	//auto* pMap = new TiledMapComponent(pEntity);
+	//pMap->SetMapSize(Vector2I(map_datas.sizeX, map_datas.sizeY));
+	//pMap->SetTileSize(Vector2I(32, 32));
+	//
+	////layer 1
+	//CreateLayer(map_datas.tile_layer_1, pMap, 0);
+	//CreateLayer(map_datas.tile_layer_2, pMap, 0.01f);
+	//CreateLayer(map_datas.tile_layer_4, pMap, 1.0f);
+	//
+	//for (int i = 0; i < map_datas.tile_type_layer_1.size(); ++i)
+	//{
+	//	if (map_datas.tile_type_layer_1[i] == 1)
+	//	{
+	//		pMap->GetLayer(0)->GetTiles()[i]->IsWall(true);
+	//	}
+	//}
+	//
+	//pEntity->GetComponentMgr()->AddComponent(pMap);
+	//pWorld->AddEntity(pEntity);
 }
 
 void RPGGame::CreateAssets(Vector2I tileSize)
@@ -281,6 +282,7 @@ void CreateAnimations(const char* prefix, AnimatedSpriteComponent* pAnimatedComp
 	{
 		auto* pAnim = new Animation2DData();
 		pAnim->SetName(anim.name);
+		pAnim->_animationType = Loop;
 
 		for (auto& frame : anim.frames)
 		{
