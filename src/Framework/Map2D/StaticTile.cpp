@@ -17,7 +17,10 @@ namespace CasaEngine
 	{
 		if (m_pSprite != nullptr)
 		{
-			ITile::Draw(m_pSprite, x, y, z, m_pSprite->GetSpriteData()->GetPositionInTexture());
+			auto uv_offset = m_pSprite->GetSpriteData()->GetPositionInTexture();
+			uv_offset.x = 0.0f;
+			uv_offset.y = 0.0f;
+			ITile::Draw(m_pSprite, x, y, z, uv_offset);
 		}
 	}
 

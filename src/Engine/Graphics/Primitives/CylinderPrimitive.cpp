@@ -8,9 +8,6 @@
 
 namespace CasaEngine
 {
-	/// <summary>
-	/// Helper method computes a point on a circle.
-	/// </summary>
 	Vector3 GetCircleVector(int i_, int tessellation_)
 	{
 		float angle = i_ * MATH_2PI / tessellation_;
@@ -18,12 +15,9 @@ namespace CasaEngine
 		float dx = cosf(angle);
 		float dz = sinf(angle);
 
-		return Vector3(dx, 0, dz);
+		return {dx, 0, dz};
 	}
 
-	/**
-	 *
-	 */
 	CylinderPrimitive::CylinderPrimitive(float diameter_, float height_, unsigned int tessellation_) :
 		IPrimitive3D(Primitive3DType::CYLINDER)
 	{
@@ -33,7 +27,7 @@ namespace CasaEngine
 
 		if (m_Tessellation < 3)
 		{
-			throw new CArgumentOutOfRangeException("tessellation");
+			throw ArgumentOutOfRangeException("tessellation");
 		}
 
 		m_nbPrimitives = 0;
@@ -96,9 +90,6 @@ namespace CasaEngine
 		AddVertex(normal * radius + Vector3::Down() * heightDiv2, Vector3::Down(), Vector2(0.0f, 1.0f));
 	}
 
-	/**
-	 *
-	 */
 	CylinderPrimitive::~CylinderPrimitive()
 	{
 	}

@@ -8,6 +8,7 @@
 #include "TileComponent.h"
 #include "AutoTile.h"
 #include "Datas/AutoTileSetData.h"
+#include "Game/Game.h"
 
 namespace CasaEngine
 {

@@ -22,7 +22,7 @@ namespace CasaEngine
 		//TODO : UVs are not the same with OpenGL and DX
 
 		if (tessellation_ < 3)
-			throw new CArgumentOutOfRangeException("tessellation");
+			throw new ArgumentOutOfRangeException("tessellation");
 
 		m_nbPrimitives = 0;
 

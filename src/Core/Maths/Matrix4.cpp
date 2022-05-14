@@ -47,7 +47,7 @@ namespace CasaEngine
 		case 13: return m42;
 		case 14: return m43;
 		case 15: return m44;
-		default: throw CArgumentOutOfRangeException("Matrix4::operator[]");
+		default: throw ArgumentOutOfRangeException("Matrix4::operator[]");
 		}
 	}
 
@@ -664,15 +664,15 @@ namespace CasaEngine
 	{
 		if (nearPlaneDistance <= 0.0f)
 		{
-			throw CArgumentException("nearPlaneDistance <= 0");
+			throw ArgumentException("nearPlaneDistance <= 0");
 		}
 		if (farPlaneDistance <= 0.0f)
 		{
-			throw CArgumentException("farPlaneDistance <= 0");
+			throw ArgumentException("farPlaneDistance <= 0");
 		}
 		if (nearPlaneDistance >= farPlaneDistance)
 		{
-			throw CArgumentException("nearPlaneDistance >= farPlaneDistance");
+			throw ArgumentException("nearPlaneDistance >= farPlaneDistance");
 		}
 
 		Matrix4 result;
@@ -696,19 +696,19 @@ namespace CasaEngine
 	{
 		if (fieldOfView <= 0.0f || fieldOfView >= PI)
 		{
-			throw CArgumentException("fieldOfView <= 0 or >= PI");
+			throw ArgumentException("fieldOfView <= 0 or >= PI");
 		}
 		if (nearPlaneDistance < 0.0f)
 		{
-			throw CArgumentException("nearPlaneDistance <= 0");
+			throw ArgumentException("nearPlaneDistance <= 0");
 		}
 		if (farPlaneDistance <= 0.0f)
 		{
-			throw CArgumentException("farPlaneDistance <= 0");
+			throw ArgumentException("farPlaneDistance <= 0");
 		}
 		if (nearPlaneDistance >= farPlaneDistance)
 		{
-			throw CArgumentException("nearPlaneDistance >= farPlaneDistance");
+			throw ArgumentException("nearPlaneDistance >= farPlaneDistance");
 		}
 
 		Matrix4 result;
@@ -766,15 +766,15 @@ namespace CasaEngine
 	{
 		if (nearPlaneDistance <= 0.0f)
 		{
-			throw CArgumentException("nearPlaneDistance <= 0");
+			throw ArgumentException("nearPlaneDistance <= 0");
 		}
 		if (farPlaneDistance <= 0.0f)
 		{
-			throw CArgumentException("farPlaneDistance <= 0");
+			throw ArgumentException("farPlaneDistance <= 0");
 		}
 		if (nearPlaneDistance >= farPlaneDistance)
 		{
-			throw CArgumentException("nearPlaneDistance >= farPlaneDistance");
+			throw ArgumentException("nearPlaneDistance >= farPlaneDistance");
 		}
 
 		Matrix4 result;

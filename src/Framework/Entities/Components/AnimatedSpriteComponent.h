@@ -13,6 +13,7 @@
 #include "Animations/Animation2D.h"
 #include "EventHandler\EventSet.h"
 #include "EventHandler/Event.h"
+#include "Physics/PhysicsObjectContainer.h"
 
 namespace CasaEngine
 {

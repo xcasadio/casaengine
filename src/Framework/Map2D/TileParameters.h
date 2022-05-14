@@ -3,8 +3,10 @@
 #include <vector>
 
 #include "Tile.h"
+#include "Entities/Components/Coordinates.h"
 #include "Maths/Vector2.h"
 #include "Maths/Vector3.h"
+#include "World/World.h"
 
 namespace CasaEngine
 {

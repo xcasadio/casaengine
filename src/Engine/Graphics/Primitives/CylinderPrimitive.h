@@ -1,5 +1,4 @@
-#ifndef CYLINDERPRIMITIVE_H
-#define CYLINDERPRIMITIVE_H
+#pragma once
 
 #include "CA_Export.h"
 
@@ -7,14 +6,11 @@
 
 namespace CasaEngine
 {
-	/**
-	 *
-	 */
 	class CA_EXPORT CylinderPrimitive : public IPrimitive3D
 	{
 	public:
 		CylinderPrimitive(float diameter_ = 1.0f, float height_ = 1.0f, unsigned int tessellation_ = 32);
-		virtual ~CylinderPrimitive();
+		~CylinderPrimitive() override;
 
 	private:
 		float m_Diameter;
@@ -22,5 +18,3 @@ namespace CasaEngine
 		unsigned int m_Tessellation;
 	};
 }
-
-#endif // CYLINDERPRIMITIVE_H

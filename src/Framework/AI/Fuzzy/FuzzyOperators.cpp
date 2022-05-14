@@ -171,12 +171,12 @@ float FzOR::GetDOM()const
 //unused
 void FzOR::ClearDOM()
 {
-	throw CException("<FzOR::ClearDOM>: invalid context"); 
+	throw Exception("<FzOR::ClearDOM>: invalid context"); 
 }
 
 void FzOR::ORwithDOM(float /*val*/)
 {
-	throw CException("<FzOR::ORwithDOM>: invalid context");
+	throw Exception("<FzOR::ORwithDOM>: invalid context");
 }
 
 }

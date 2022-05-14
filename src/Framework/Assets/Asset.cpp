@@ -36,6 +36,6 @@ namespace CasaEngine
 
 	void Asset::LoadAsset()
 	{
-		throw new CNotImplementedException("Asset::LoadAsset()");
+		throw new NotImplementedException("Asset::LoadAsset()");
 	}
 }

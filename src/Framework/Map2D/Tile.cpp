@@ -1,5 +1,7 @@
 #include "Tile.h"
 
+#include "Game/Game.h"
+
 namespace CasaEngine
 {
 	ITile::ITile() :

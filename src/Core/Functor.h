@@ -31,7 +31,7 @@ namespace CasaEngine
 	inline std::string Functor::operator ()(const std::string& Params) const
 	{
 		if (!m_pFunction)
-			throw CException("Try o call a null function through a functor");
+			throw Exception("Try o call a null function through a functor");
 
 		return m_pFunction->Execute(Params);
 	}
@@ -204,7 +204,7 @@ namespace CasaEngine
 		virtual std::string Execute(const std::string& Params)
 		{
 			try { CStringExtractor(Params.c_str()).ThrowIfEOF(); }
-			catch (CBadConversion& e) { return "The argument is empty"; }
+			catch (BadConversion& e) { return "The argument is empty"; }
 
 			return CallMemFun<Ret, ParamType>::Do(m_Obj, m_Func);
 		}
@@ -236,7 +236,7 @@ namespace CasaEngine
 			typename Base<Arg1>::Type a1;
 
 			try { CStringExtractor(Params.c_str())(a1).ThrowIfEOF(); }
-			catch (CBadConversion& e) { return "The command needs 1 arguments"; }
+			catch (BadConversion& e) { return "The command needs 1 arguments"; }
 
 			return CallMemFun<Ret, ParamType>::Do(m_Obj, m_Func, a1);
 		}
@@ -260,7 +260,7 @@ namespace CasaEngine
 			typename Base<Arg2>::Type a2;
 
 			try { CStringExtractor(Params.c_str())(a1)(a2).ThrowIfEOF(); }
-			catch (CBadConversion&/*e*/) { return "The command needs 2 arguments"; }
+			catch (BadConversion&/*e*/) { return "The command needs 2 arguments"; }
 
 			return CallMemFun<Ret, ParamType>::Do(m_Obj, m_Func, a1, a2);
 		}

@@ -11,8 +11,10 @@ namespace CasaEngine
 
 	Console::~Console()
 	{
-		for (int i = 0; i < m_Items.size(); i++)
-			free(m_Items[i]);
+		for (const auto& item : m_Items)
+		{
+			free(item);
+		}
 		m_Items.clear();
 	}
 
@@ -41,8 +43,10 @@ namespace CasaEngine
 
 	void Console::ClearLog()
 	{
-		for (int i = 0; i < m_Items.size(); i++)
-			free(m_Items[i]);
+		for (const auto& item : m_Items)
+		{
+			free(item);
+		}
 		m_Items.clear();
 		//ScrollToBottom = true;
 	}
@@ -53,7 +57,7 @@ namespace CasaEngine
 		va_list args;
 		va_start(args, fmt);
 		vsnprintf(buf, 1024, fmt, args);
-		buf[1024 - 1] = 0;
+		buf[1024 - 1] = '\0';
 		va_end(args);
 		m_Items.push_back(strdup(buf));
 		//ScrollToBottom = true;
@@ -247,8 +251,10 @@ namespace CasaEngine
 	std::string Console::GetCommands() const
 	{
 		std::string List;
-		for (TCommandTable::const_iterator i = m_Commands.begin(); i != m_Commands.end(); ++i)
+		for (auto i = m_Commands.begin(); i != m_Commands.end(); ++i)
+		{
 			List += i->first + " ";
+		}
 
 		return List;
 	}
@@ -261,14 +267,14 @@ namespace CasaEngine
 
 		AddLog("# %s\n", pCommand_);
 
-		TCommandTable::iterator It = m_Commands.find(std::string(Command));
+		const auto it = m_Commands.find(std::string(Command));
 
-		if (It != m_Commands.end())
+		if (it != m_Commands.end())
 		{
 			std::string Params;
 			std::getline(iss, Params);
 
-			AddLog(It->second(Params).c_str());
+			AddLog(it->second(Params).c_str());
 		}
 		else
 		{

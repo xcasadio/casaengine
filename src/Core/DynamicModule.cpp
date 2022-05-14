@@ -180,7 +180,7 @@ namespace CasaEngine
 
 		// check for library load failure
 		if (!d_pimpl->d_handle)
-			throw CException("Failed to load module '" +
+			throw Exception("Failed to load module '" +
 				d_pimpl->d_moduleName + "': " + getFailureString());
 	}
 	

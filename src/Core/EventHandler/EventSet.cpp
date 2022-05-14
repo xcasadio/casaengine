@@ -35,7 +35,7 @@ namespace CasaEngine
 
 			std::ostringstream oss;
 			oss << "An event named " << name << " already exists in the EventSet.";
-			throw CException(oss.str());
+			throw Exception(oss.str());
 		}
 
 		d_events.insert(std::make_pair(name, &event));

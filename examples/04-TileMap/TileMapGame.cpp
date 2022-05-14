@@ -69,12 +69,12 @@ void CreateMap(World* pWorld, const int size)
 
 	// map
 	auto* tiledMapParameters = new TiledMapParameters();
+
 	//tiledMapParameters->mapSize = Vector2I(30, 11);
 	//tiledMapParameters->tileSize = Vector2I(size, size);
 	//
 	//TiledMapLayerParameters layer;
 	//layer.zOffset = 0.0f;
-	//
 	//for (int y = 0; y < tiledMapParameters->mapSize.y; ++y)
 	//{
 	//	for (int x = 0; x < tiledMapParameters->mapSize.x; ++x)

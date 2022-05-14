@@ -71,7 +71,7 @@ namespace CasaEngine
 
 	unsigned int IFile::Position()
 	{
-		throw CNotImplementedException("IFile::Position() not implemented");
+		throw NotImplementedException("IFile::Position() not implemented");
 	}
 
 	const std::string& IFile::Fullname() const

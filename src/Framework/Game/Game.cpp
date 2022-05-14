@@ -442,7 +442,7 @@ namespace CasaEngine
 		{
 			CA_FATAL("Error during game running : %s", ex.what());
 		}
-		catch (const CException& ex)
+		catch (const Exception& ex)
 		{
 			CA_FATAL("Error during game running : %s", ex.what());
 		}
@@ -565,7 +565,7 @@ namespace CasaEngine
 	{
 		// Si la DLL est déjà chargée on lance une exception
 		if (m_Plugins.find(Filename) != m_Plugins.end())
-			throw CLoadingFailed(Filename, "DLL already loaded");
+			throw LoadingFailed(Filename, "DLL already loaded");
 
 		// Sinon on crée et charge le module
 		m_Plugins[Filename] = new Plugin(Filename);
@@ -575,7 +575,7 @@ namespace CasaEngine
 	{
 		// Si la DLL n'est pas chargée on lève une exception
 		if (m_Plugins.find(Filename) == m_Plugins.end())
-			throw CLoadingFailed(Filename, "DLL not loaded");
+			throw LoadingFailed(Filename, "DLL not loaded");
 
 		// Sinon on décharge et détruit le module
 		m_Plugins.erase(Filename);

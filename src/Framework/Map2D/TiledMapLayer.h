@@ -4,6 +4,7 @@
 
 #include "Tile.h"
 #include "Animations/Animation2D.h"
+#include "Entities/BaseEntity.h"
 #include "Maths/Vector2.h"
 #include "Maths/Vector3.h"
 

@@ -68,9 +68,9 @@ namespace CasaEngine
 		{
 			if (m_InStream.eof())
 			{
-				throw CBadConversion("Try to extract a value with an empty string");
+				throw BadConversion("Try to extract a value with an empty string");
 			}
-			throw CBadConversion("Can't convert a \"string\" to a certain type");
+			throw BadConversion("Can't convert a \"string\" to a certain type");
 		}
 
 		return *this;
@@ -80,7 +80,7 @@ namespace CasaEngine
 	{
 		std::string Left;
 		if (std::getline(m_InStream, Left))
-			throw CBadConversion("String too long, \"" + Left + "\" has not been extracted");
+			throw BadConversion("String too long, \"" + Left + "\" has not been extracted");
 	}
 
 	/**********************************************/

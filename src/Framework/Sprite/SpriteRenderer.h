@@ -3,7 +3,6 @@
 #include "CA_Export.h"
 
 #include "Game/DrawableGameComponent.h"
-#include "Game/Game.h"
 #include "GameTime.h"
 #include "Graphics/Color.h"
 

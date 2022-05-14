@@ -24,10 +24,10 @@ Mesh* CMD2Loader::LoadFromFile(IFile* pFile_)
 	pFile_->Read(reinterpret_cast<char*>(&Header), sizeof(Header));
 
 	if (Header.Ident != s_MagicId)
-		throw CLoadingFailed(pFile_->Filename(), "Le fichier n'est pas un modèle MD2 valide");
+		throw LoadingFailed(pFile_->Filename(), "Le fichier n'est pas un modèle MD2 valide");
 
 	if (Header.Version != s_MD2Version)
-		throw CLoadingFailed(pFile_->Filename(), "Le modèle possède une version différente de celle requise (v.8)");
+		throw LoadingFailed(pFile_->Filename(), "Le modèle possède une version différente de celle requise (v.8)");
 
 	std::vector<TTexture>  Textures(Header.NbTextures);
 	std::vector<TTexCoord> TexCoords(Header.NbTexCoords);

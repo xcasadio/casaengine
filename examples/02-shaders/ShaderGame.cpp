@@ -177,7 +177,7 @@ void ShaderGame::Update(const GameTime& gameTime_)
 void ShaderGame::ChangeShaders(const std::string& Type)
 {
 	//     if (m_ShadersDesc.find(Type) == m_ShadersDesc.end())
-	//         throw CException("Type de shader inconnu");
+	//         throw Exception("Type de shader inconnu");
 	//
 	//     if (Type == "none")
 	//     {

@@ -1,5 +1,4 @@
-#ifndef CONSOLE_H_
-#define CONSOLE_H_
+#pragma once
 
 #include <string>
 #include <map>
@@ -37,5 +36,3 @@ namespace CasaEngine
 		std::string   m_LastLine;
 	};
 }
-
-#endif

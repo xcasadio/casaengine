@@ -192,7 +192,7 @@ namespace CasaEngine
 
 		default:
 		{
-			throw CUnsupported("BulletPhysicsWorld::AddRigidBody() : unknown type");
+			throw Unsupported("BulletPhysicsWorld::AddRigidBody() : unknown type");
 		}
 		}
 	}

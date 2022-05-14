@@ -1,5 +1,4 @@
-#ifndef EXCEPTION_H
-#define EXCEPTION_H
+#pragma once
 
 #include "CA_Export.h"
 #include <exception>
@@ -7,67 +6,70 @@
 
 namespace CasaEngine
 {
-	class CA_EXPORT CException :
+	class CA_EXPORT Exception :
 		public std::exception
 	{
 	public:
-		CException(const std::string& Message = "");
-		virtual ~CException() throw();
-		const char* what() const throw() override;
+		Exception(const std::string& message = "");
+		~Exception() noexcept override;
+		Exception(const Exception& rsh) = default;
+		Exception& operator=(const Exception& rsh) = default;
+		Exception(Exception&& rsh) = default;
+		Exception& operator=(Exception&& rsh) = default;
+
+		const char* what() const noexcept override;
 
 	private:
 		std::string m_Message;
 	};
 
-	struct CA_EXPORT CAssertException : public CException
+	struct CA_EXPORT AssertException : Exception
 	{
-		CAssertException(const std::string& File, int Line, const std::string& Message);
+		AssertException(const std::string& file, int line, const std::string& message);
 	};
 
-	struct CA_EXPORT CBadDelete : public CException
+	struct CA_EXPORT BadDelete : Exception
 	{
-		CBadDelete(const void* Ptr, const std::string& File, int Line, bool NewArray);
+		BadDelete(const void* ptr, const std::string& file, int line, bool new_array);
 	};
 
-	struct CA_EXPORT CLoadingFailed : public CException
+	struct CA_EXPORT LoadingFailed : Exception
 	{
-		CLoadingFailed(const std::string& File, const std::string& Message);
+		LoadingFailed(const std::string& file, const std::string& message);
 	};
 
-	struct CA_EXPORT COutOfMemory : public CException
+	struct CA_EXPORT OutOfMemory : Exception
 	{
-		COutOfMemory(const std::string& Message);
+		OutOfMemory(const std::string& message);
 	};
 
-	struct CA_EXPORT CUnsupported : public CException
+	struct CA_EXPORT Unsupported : Exception
 	{
-		CUnsupported(const std::string& Feature);
+		Unsupported(const std::string& feature);
 	};
 
-	struct CA_EXPORT CBadConversion : public CException
+	struct CA_EXPORT BadConversion : Exception
 	{
-		CBadConversion(const std::string& Error);
+		BadConversion(const std::string& error);
 	};
 
-	struct CA_EXPORT CArgumentNullException : public CException
+	struct CA_EXPORT ArgumentNullException : Exception
 	{
-		CArgumentNullException(const std::string& Error);
+		ArgumentNullException(const std::string& error);
 	};
 
-	struct CA_EXPORT CArgumentException : public CException
+	struct CA_EXPORT ArgumentException : Exception
 	{
-		CArgumentException(const std::string& Error);
+		ArgumentException(const std::string& error);
 	};
 
-	struct CA_EXPORT CArgumentOutOfRangeException : public CException
+	struct CA_EXPORT ArgumentOutOfRangeException : Exception
 	{
-		CArgumentOutOfRangeException(const std::string& Error);
+		ArgumentOutOfRangeException(const std::string& error);
 	};
 
-	struct CA_EXPORT CNotImplementedException : public CException
+	struct CA_EXPORT NotImplementedException : Exception
 	{
-		CNotImplementedException(const std::string& Error);
+		NotImplementedException(const std::string& error);
 	};
 }
-
-#endif

@@ -6,8 +6,7 @@
 
 #include "GameTime.h"
 #include "Entities/Component.h"
-#include "Sprite/SpriteRenderer.h"
-#include "Physics/PhysicsObjectContainer.h"
+#include "Physics/RigidBodyParameters.h"
 
 namespace CasaEngine
 {

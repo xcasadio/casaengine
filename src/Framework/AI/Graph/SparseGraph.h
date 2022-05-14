@@ -732,7 +732,7 @@ bool SparseGraph<node_type, edge_type>::Save(const char* FileName) const
 
 	if (out.is_open() == false)
 	{
-		throw CLoadingFailed(std::string(FileName), std::string("bool SparseGraph<node_type, edge_type>::Save(const char* FileName)const"));
+		throw LoadingFailed(std::string(FileName), std::string("bool SparseGraph<node_type, edge_type>::Save(const char* FileName)const"));
 		return false;
 	}
 
@@ -780,7 +780,7 @@ bool SparseGraph<node_type, edge_type>::Load(const char* FileName)
 
   if (in.is_open() == false)
   {
-	throw CLoadingFailed(std::string(FileName), std::string("bool SparseGraph<node_type, edge_type>::Load(const char* FileName)"));
+	throw LoadingFailed(std::string(FileName), std::string("bool SparseGraph<node_type, edge_type>::Load(const char* FileName)"));
     return false;
   }
 

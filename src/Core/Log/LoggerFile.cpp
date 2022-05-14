@@ -11,25 +11,27 @@
 
 namespace CasaEngine
 {
-	LoggerFile::LoggerFile(const char* pFilename_) :
-		m_File(pFilename_)
+	LoggerFile::LoggerFile(const char* filename) :
+		_file(filename),
+		_tempBuffer{}
 	{
-		if (!m_File)
+		if (!_file)
 		{
-			throw CLoadingFailed(pFilename_, "LoggerFile()");
+			throw LoadingFailed(filename, "LoggerFile()");
 		}
 
-		m_File << "CasaEngine v" << CA_PRODUCT_VERSION << "." << CA_MAJOR_VERSION << "." << CA_MINOR_VERSION;
-		m_File << " - Event log - " << DateTime::Now().GetCurrentDate() << " " << DateTime::Now().GetCurrentTime() << std::endl;
+		_file << "CasaEngine v" << CA_PRODUCT_VERSION << "." << CA_MAJOR_VERSION << "." << CA_MINOR_VERSION;
+		_file << " - Event log - " << DateTime::Now().GetCurrentDate() << " " << DateTime::Now().GetCurrentTime() <<
+			std::endl;
 	}
 
 	LoggerFile::~LoggerFile()
 	{
-		m_File << "CasaEngine closed at " << DateTime::Now().GetCurrentTime() << std::endl;
-		m_File.close();
+		_file << "CasaEngine closed at " << DateTime::Now().GetCurrentTime() << std::endl;
+		_file.close();
 	}
 
-	void LoggerFile::Write(TLogVerbosity verbose, const std::string& Message)
+	void LoggerFile::Write(TLogVerbosity verbose, const std::string& message)
 	{
 		std::string str;
 
@@ -55,15 +57,15 @@ namespace CasaEngine
 			break;
 		}
 
-		str = DateTime::Now().GetCurrentTime() + ">" + str + ": " + Message;
+		str = DateTime::Now().GetCurrentTime() + ">" + str + ": " + message;
 
 		Write(str);
 	}
 
-	void LoggerFile::Write(const std::string& Message)
+	void LoggerFile::Write(const std::string& message)
 	{
-		CA_ASSERT(m_File.is_open(), "LoggerFile::Write() : file is not open");
+		CA_ASSERT(_file.is_open(), "LoggerFile::Write() : file is not open")
 
-		m_File << Message << std::flush;
+		_file << message << std::flush;
 	}
 }

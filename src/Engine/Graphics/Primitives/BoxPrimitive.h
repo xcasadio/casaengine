@@ -1,5 +1,4 @@
-#ifndef BOXPRIMITIVE_H
-#define BOXPRIMITIVE_H
+#pragma once
 
 #include "CA_Export.h"
 
@@ -11,7 +10,7 @@ namespace CasaEngine
 	{
 	public:
 		BoxPrimitive(float width_ = 1.0f, float height_ = 1.0f, float length_ = 1.0f);
-		virtual ~BoxPrimitive();
+		~BoxPrimitive() override;
 
 	private:
 		void AddIndex(bool dir_);
@@ -22,5 +21,3 @@ namespace CasaEngine
 		float m_Length;
 	};
 }
-
-#endif

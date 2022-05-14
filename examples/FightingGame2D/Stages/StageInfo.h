@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Sprite/SpriteRenderer.h"
+#include "Entities/BaseEntity.h"
 
 class Stage;
 

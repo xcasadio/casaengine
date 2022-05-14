@@ -3,67 +3,67 @@
 
 namespace CasaEngine
 {
-	CException::CException(const std::string& Message) :
-		m_Message(Message)
+	Exception::Exception(const std::string& message) :
+		m_Message(message)
 	{
 	}
 
-	CException::~CException() throw()
+	Exception::~Exception() noexcept
 	{
 	}
 
-	const char* CException::what() const throw()
+	const char* Exception::what() const noexcept
 	{
 		return m_Message.c_str();
 	}
 
-	CAssertException::CAssertException(const std::string& File, int Line, const std::string& Message) :
-		CException(CStringBuilder(Message)(". ")(File)(" (")(Line)(")"))
+	AssertException::AssertException(const std::string& file, int line, const std::string& message) :
+		Exception(CStringBuilder(message)(". ")(file)(" (")(line)(")"))
 	{
 	}
 
-	CBadDelete::CBadDelete(const void* Ptr, const std::string& File, int Line, bool NewArray) :
-		CException(CStringBuilder("Bad des/allocation ")((NewArray ? "new[] / delete" : "new / delete[]"))(" found")(". ")("Memory address : 0x")(Ptr)("\nSource file : ")(File)(" (")(Line)(")"))
+	BadDelete::BadDelete(const void* ptr, const std::string& file, int line, bool new_array) :
+		Exception(CStringBuilder("Bad des/allocation ")((new_array ? "new[] / delete" : "new / delete[]"))(" found")(". ")("Memory address : 0x")(ptr)("\nSource file : ")(file)(" (")(line)(")"))
 	{
 	}
 
-	CLoadingFailed::CLoadingFailed(const std::string& File, const std::string& Message) :
-		CException(CStringBuilder("Loading error '")(File)("'. ")(Message))
+	LoadingFailed::LoadingFailed(const std::string& file, const std::string& message) :
+		Exception(CStringBuilder("Loading error '")(file)("'. ")(message))
 	{
 	}
 
-	COutOfMemory::COutOfMemory(const std::string& Message) :
-		CException(Message)
+	OutOfMemory::OutOfMemory(const std::string& message) :
+		Exception(message)
 	{
 	}
 
-	CUnsupported::CUnsupported(const std::string& Feature) :
-		CException(CStringBuilder("Unsupported functionality ")(Feature))
+	Unsupported::Unsupported(const std::string& feature) :
+		Exception(CStringBuilder("Unsupported functionality ")(feature))
 	{
 	}
 
-	CBadConversion::CBadConversion(const std::string& Error) :
-		CException(Error)
+	BadConversion::BadConversion(const std::string& error) :
+		Exception(error)
 	{
 	}
 
-	CArgumentNullException::CArgumentNullException(const std::string& Error) :
-		CException(Error)
+	ArgumentNullException::ArgumentNullException(const std::string& error) :
+		Exception(error)
 	{
 	}
 
-	CArgumentException::CArgumentException(const std::string& Error) :
-		CException(Error)
+	ArgumentException::ArgumentException(const std::string& error) :
+		Exception(error)
 	{
 	}
 
-	CArgumentOutOfRangeException::CArgumentOutOfRangeException(const std::string& Error) :
-		CException(Error)
+	ArgumentOutOfRangeException::ArgumentOutOfRangeException(const std::string& error) :
+		Exception(error)
 	{
 	}
 
-	CNotImplementedException::CNotImplementedException(const std::string& Error) :
-		CException(Error)
+	NotImplementedException::NotImplementedException(const std::string& error) :
+		Exception(error)
 	{
 	}
 }

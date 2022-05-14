@@ -1069,7 +1069,7 @@ namespace CasaEngine
 		auto entityPosition = GetEntity()->GetCoordinates().GetPosition();
 		Vector2 pos = Vector2(entityPosition.x, entityPosition.y);
 
-		throw CException("SteeringBehaviorComponent::Separation() not implemented");
+		throw Exception("SteeringBehaviorComponent::Separation() not implemented");
 
 		/*
 		for (unsigned int a=0; a<neighbors.size(); ++a)
@@ -1104,7 +1104,7 @@ namespace CasaEngine
 		//used to record the average heading of the neighbors
 		Vector2 AverageHeading;
 
-		throw CException("SteeringBehaviorComponent::Alignment() not implemented");
+		throw Exception("SteeringBehaviorComponent::Alignment() not implemented");
 
 		/*
 		//used to count the number of vehicles in the neighborhood
@@ -1145,7 +1145,7 @@ namespace CasaEngine
 		//first find the center of mass of all the agents
 		Vector2 CenterOfMass, SteeringForce;
 
-		throw CException("SteeringBehaviorComponent::Cohesion() not implemented");
+		throw Exception("SteeringBehaviorComponent::Cohesion() not implemented");
 
 		/*
 		int NeighborCount = 0;
@@ -1432,7 +1432,7 @@ namespace CasaEngine
 	//------------------------------------------------------------------------
 	Vector2 SteeringBehaviorComponent::FollowPath()
 	{
-		throw CNotImplementedException("SteeringBehaviorComponent::FollowPath() not implemented");
+		throw NotImplementedException("SteeringBehaviorComponent::FollowPath() not implemented");
 
 		//move to next target if close enough to current target (working in
 		//distance squared space)

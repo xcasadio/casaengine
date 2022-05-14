@@ -2,6 +2,7 @@
 
 #include "StaticTile.h"
 #include "TiledMapComponent.h"
+#include "Game/Game.h"
 
 namespace CasaEngine
 {

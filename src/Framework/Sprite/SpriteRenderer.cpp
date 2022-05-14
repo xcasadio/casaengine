@@ -41,7 +41,7 @@ namespace CasaEngine
 		m_VertexBuffer = createDynamicVertexBuffer(m_MaxSprite * 4, VertexPositionColorTexture::ms_layout);
 
 		const int nbIndex = 6;
-		auto pIndices = ::new short[nbIndex * 6];
+		std::unique_ptr<short[]> pIndices(new short[nbIndex * 6]);
 
 		for (int i=0; i< nbIndex; i++)
 		{
@@ -53,8 +53,7 @@ namespace CasaEngine
 			pIndices[i * 6 + 5] = static_cast<short>(2 + i * 4);
 		}
 
-		m_IndexBuffer = createIndexBuffer(bgfx::copy(pIndices, sizeof(short) * nbIndex * 6 ));
-		delete[] pIndices;
+		m_IndexBuffer = createIndexBuffer(bgfx::copy(pIndices.get(), sizeof(short) * nbIndex * 6 ));
 
 		m_Program = new Program("vs_spritebatch", "fs_spritebatch");
 		m_texColor = createUniform("s_texColor", bgfx::UniformType::Sampler);
@@ -143,7 +142,7 @@ namespace CasaEngine
 	{
 		if (sprite == nullptr)
 		{
-			throw new CException("Sprite is null");
+			throw ArgumentNullException("SpriteRenderer::AddSprite() : Sprite is null");
 		}
 		
 		AddSprite(sprite->GetTexture2D(), sprite->GetSpriteData()->GetPositionInTexture(), sprite->GetSpriteData()->GetOrigin(), transform, color_, effects_);
@@ -154,7 +153,7 @@ namespace CasaEngine
 	{
 		if (tex_ == nullptr)
 		{
-			throw new CException("Texture is null");
+			throw ArgumentNullException("SpriteRenderer::AddSprite() : Texture is null");
 		}
 		
 		if (m_SpriteDatas.size() >= m_MaxSprite)
@@ -164,10 +163,10 @@ namespace CasaEngine
 
 		const unsigned int color = color_.ToABGR();
 
-		auto top = static_cast<float>(posInTex.Top());
-		auto bottom = static_cast<float>(posInTex.Bottom());
-		auto left = static_cast<float>(posInTex.Left());
-		auto right = static_cast<float>(posInTex.Right());
+		auto top = posInTex.Top();
+		auto bottom = posInTex.Bottom();
+		auto left = posInTex.Left();
+		auto right = posInTex.Right();
 
 		if (effects_ == eSpriteEffects::SPRITE_EFFECT_FLIP_HORIZONTALLY)
 		{
@@ -235,7 +234,7 @@ namespace CasaEngine
 	{
 		if (tex_ == nullptr)
 		{
-			throw new CException("Texture is null");
+			throw ArgumentNullException("SpriteRenderer::AddSprite() : Texture is null");
 		}
 
 		if (m_SpriteDatas.size() >= m_MaxSprite)
@@ -265,7 +264,7 @@ namespace CasaEngine
 	{
 		if (pSprite->GetTexture2D() == nullptr)
 		{
-			throw new CException("Sprite is null");
+			throw new Exception("Sprite is null");
 		}
 
 		AddSprite(pSprite->GetTexture2D(), pSprite->GetSpriteData()->GetPositionInTexture(),
