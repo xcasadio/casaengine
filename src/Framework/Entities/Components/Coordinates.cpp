@@ -35,12 +35,12 @@ namespace CasaEngine
 		m_WorldMatrix = val;
 	}
 
-	Vector3 Coordinates::GetCenterOfRotation() const
+	Vector3 Coordinates::GetLocalCenterOfRotation() const
 	{
 		return m_LocalCenterOfRotation;
 	}
 
-	void Coordinates::SetCenterOfRotation(const Vector3& val)
+	void Coordinates::SetLocalCenterOfRotation(const Vector3& val)
 	{
 		m_LocalCenterOfRotation = val;
 		m_LocalMatrixChanged = true;

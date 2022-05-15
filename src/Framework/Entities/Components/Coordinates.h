@@ -21,8 +21,8 @@ namespace CasaEngine
 		Matrix4 GetWorldMatrix();
 		void SetWorldMatrix(const Matrix4& val);
 
-		Vector3 GetCenterOfRotation() const;
-		void SetCenterOfRotation(const Vector3& val);
+		Vector3 GetLocalCenterOfRotation() const;
+		void SetLocalCenterOfRotation(const Vector3& val);
 
 		Vector3 GetLocalPosition() const;
 		void SetLocalPosition(const Vector3& val);

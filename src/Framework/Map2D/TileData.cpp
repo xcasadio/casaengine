@@ -1,6 +1,6 @@
 #pragma once
 
-#include "TileParameters.h"
+#include "TileData.h"
 #include "StaticTile.h"
 #include "AnimatedTile.h"
 #include "Datas/Animation2DData.h"
@@ -13,30 +13,30 @@
 namespace CasaEngine
 {
 
-	TileParameters::TileParameters(TileType type) :
-		type(type),
+	TileData::TileData(TileType type) :
 		x(0),
-		y(0)
+		y(0),
+		type(type)
 	{
 
 	}
 
-	StaticTileParameters::StaticTileParameters() : TileParameters(TileType::Static)
+	StaticTileData::StaticTileData() : TileData(TileType::Static)
 	{
 
 	}
 
-	AnimatedTileParameters::AnimatedTileParameters() : TileParameters(TileType::Animated)
+	AnimatedTileData::AnimatedTileData() : TileData(TileType::Animated)
 	{
 
 	}
 
-	AutoTileParameters::AutoTileParameters() : TileParameters(TileType::Auto)
+	AutoTileData::AutoTileData() : TileData(TileType::Auto)
 	{
 
 	}
 
-	void TiledMapCreator::Create(TiledMapParameters& tiledMapParameters, World& world)
+	void TiledMapCreator::Create(TiledMapData& tiledMapParameters, World& world)
 	{
 		auto* mapEntity = new BaseEntity();
 		mapEntity->GetCoordinates() = tiledMapParameters.coordinates;
@@ -47,7 +47,7 @@ namespace CasaEngine
 		for (auto& layer : tiledMapParameters.layers)
 		{
 			auto* layerEntity = new BaseEntity();
-			auto layerPos = layerEntity->GetCoordinates().GetLocalPosition();
+			const auto layerPos = layerEntity->GetCoordinates().GetLocalPosition();
 			layerEntity->GetCoordinates().SetLocalPosition(Vector3(layerPos.x, layerPos.y, layerPos.z + layer.zOffset));
 			layerEntity->IsPersistent(false);
 			layerEntity->SetParent(mapEntity);
@@ -72,27 +72,27 @@ namespace CasaEngine
 		}
 	}
 
-	ITile* TiledMapCreator::CreateTile(TileParameters& tileParameters, TiledMapLayerParameters* layer, TiledMapParameters* map)
+	ITile* TiledMapCreator::CreateTile(TileData& tileParameters, TiledMapLayerData* layer, TiledMapData* map)
 	{
 		switch (tileParameters.type)
 		{
 		case TileType::Static:
 		{
-			auto* staticTileParams = static_cast<StaticTileParameters*>(&tileParameters);
+			auto* staticTileParams = static_cast<StaticTileData*>(&tileParameters);
 			auto* sprite = Game::Instance().GetAssetManager().GetAsset<SpriteData>(staticTileParams->spriteId);
 			return new StaticTile(new Sprite(*sprite));
 		}
 
 		case TileType::Animated:
 		{
-			auto* animatedTileParams = static_cast<AnimatedTileParameters*>(&tileParameters);
+			auto* animatedTileParams = static_cast<AnimatedTileData*>(&tileParameters);
 			auto* animation = Game::Instance().GetAssetManager().GetAsset<Animation2DData>(animatedTileParams->animation2DId);
 			return new AnimatedTile(new Animation2D(*animation));
 		}
 
 		case TileType::Auto:
 		{
-			auto* autoTileParams = static_cast<AutoTileParameters*>(&tileParameters);
+			auto* autoTileParams = static_cast<AutoTileData*>(&tileParameters);
 			auto* autoTileSetData = Game::Instance().GetAssetManager().GetAsset<AutoTileSetData>(autoTileParams->autoTileAssetName);
 			auto* autoTile = new AutoTile(autoTileSetData);
 			autoTile->SetTileInfo(map, layer, autoTileParams->x, autoTileParams->y);

@@ -4,7 +4,7 @@
 
 #include "Tile.h"
 #include "TiledMapLayer.h"
-#include "TileParameters.h"
+#include "TileData.h"
 #include "Datas/AutoTileSetData.h"
 #include "Maths/Rectangle.h"
 
@@ -31,7 +31,7 @@ namespace CasaEngine
 		void Draw(float x, float y, float z) override;
 		void Draw(float x, float y, float z, Rectangle uvOffset) override;
 
-		void SetTileInfo(TiledMapParameters* map, TiledMapLayerParameters* layer, int x, int y);
+		void SetTileInfo(TiledMapData* map, TiledMapLayerData* layer, int x, int y);
 
 		bool Hidden() const;
 
@@ -39,8 +39,8 @@ namespace CasaEngine
 		void ComputeDrawingInfos(unsigned int mask, float x, float y, float z, const Rectangle uv_offset);
 
 		AutoTileSetData* _autoTileSetData;
-		TiledMapLayerParameters* _layerParameters;
-		TiledMapParameters* _mapParameters;
+		TiledMapLayerData* _layerParameters;
+		TiledMapData* _mapParameters;
 		AutoTileDrawingInfo _drawingInfos[4];
 		ITile* _tiles[6];
 		int _x, _y;

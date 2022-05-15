@@ -63,7 +63,7 @@ namespace CasaEngine
 		_drawingInfos[3].SetInfo(-1, 0, 0, 0, Rectangle());
 	}
 
-	unsigned int getMask(const TiledMapParameters* map, const TiledMapLayerParameters* layer, int x, int y, int offset)
+	unsigned int getMask(const TiledMapData* map, const TiledMapLayerData* layer, int x, int y, int offset)
 	{
 		if (x >= map->mapSize.x || x < 0
 			|| y >= map->mapSize.y || y < 0)
@@ -121,7 +121,7 @@ namespace CasaEngine
 		}
 	}
 
-	void AutoTile::SetTileInfo(TiledMapParameters* map, TiledMapLayerParameters* layer, int x, int y)
+	void AutoTile::SetTileInfo(TiledMapData* map, TiledMapLayerData* layer, int x, int y)
 	{
 		_mapParameters = map;
 		_layerParameters = layer;

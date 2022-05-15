@@ -18,7 +18,7 @@
 #include "Entities/Components/DebugComponent.h"
 #include "../../external/dear-imgui/imgui.h"
 #include "Datas/AutoTileSetData.h"
-#include "Map2D/TileParameters.h"
+#include "Map2D/TileData.h"
 
 BaseEntity* s_entity;
 Camera2DTargetedComponent* s_pCameraController;
@@ -68,12 +68,12 @@ void CreateMap(World* pWorld, const int size)
 	Game::Instance().GetAssetManager().AddAsset(autoTileSetData->GetName(), autoTileSetData);
 
 	// map
-	auto* tiledMapParameters = new TiledMapParameters();
+	auto* tiledMapParameters = new TiledMapData();
 
 	//tiledMapParameters->mapSize = Vector2I(30, 11);
 	//tiledMapParameters->tileSize = Vector2I(size, size);
 	//
-	//TiledMapLayerParameters layer;
+	//TiledMapLayerData layer;
 	//layer.zOffset = 0.0f;
 	//for (int y = 0; y < tiledMapParameters->mapSize.y; ++y)
 	//{
@@ -83,7 +83,7 @@ void CreateMap(World* pWorld, const int size)
 	//			x % 2 == 0 && (y == 1 || y == 9) ||
 	//			y % 2 == 0 && (x == 1 || x == 28))
 	//		{
-	//			auto* autoTileParams = new AutoTileParameters();
+	//			auto* autoTileParams = new AutoTileData();
 	//			autoTileParams->x = x;
 	//			autoTileParams->y = y;
 	//			autoTileParams->autoTileAssetName = "Outside_A2_2_3";
@@ -91,7 +91,7 @@ void CreateMap(World* pWorld, const int size)
 	//		}
 	//		else
 	//		{
-	//			auto* staticTileParams = new StaticTileParameters();
+	//			auto* staticTileParams = new StaticTileData();
 	//			staticTileParams->x = x;
 	//			staticTileParams->y = y;
 	//			staticTileParams->spriteId = "tile0";
@@ -110,7 +110,7 @@ void CreateMap(World* pWorld, const int size)
 	std::ifstream i("C:\\Users\\casad\\dev\\repo\\casaengine\\examples\\resources\\datas\\tileMap.json");
 	json j2;
 	i >> j2;
-	TiledMapParameters t2;
+	TiledMapData t2;
 	from_json(j2, *tiledMapParameters);
 	//from_json(j2, t2);
 

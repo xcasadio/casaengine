@@ -657,13 +657,7 @@
     <ClInclude Include="..\..\src\Framework\Game\GameInfo.h">
       <Filter>Framework\Game</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Game\IDrawable.h">
-      <Filter>Framework\Game</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Framework\Game\Input.h">
-      <Filter>Framework\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Game\IUpdateable.h">
       <Filter>Framework\Game</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Framework\Game\Line2DRendererComponent.h">
@@ -906,7 +900,7 @@
     <ClInclude Include="..\..\src\Framework\Messaging\Telegram.h">
       <Filter>Framework\Messaging</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Map2D\TileParameters.h">
+    <ClInclude Include="..\..\src\Framework\Map2D\TileData.h">
       <Filter>Framework\Map2D</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Framework\Map2D\TileComponent.h">
@@ -917,6 +911,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Framework\Serializer\Serializer.h">
       <Filter>Framework\Serializer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Framework\Map2D\TileSetData.h">
+      <Filter>Framework\Map2D</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1205,13 +1202,7 @@
     <ClCompile Include="..\..\src\Framework\Game\GameInfo.cpp">
       <Filter>Framework\Game</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Framework\Game\IDrawable.cpp">
-      <Filter>Framework\Game</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Framework\Game\Input.cpp">
-      <Filter>Framework\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Framework\Game\IUpdateable.cpp">
       <Filter>Framework\Game</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Framework\Game\Line2DRendererComponent.cpp">
@@ -1388,7 +1379,7 @@
     <ClCompile Include="..\..\src\Framework\Messaging\Telegram.cpp">
       <Filter>Framework\Messaging</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Framework\Map2D\TileParameters.cpp">
+    <ClCompile Include="..\..\src\Framework\Map2D\TileData.cpp">
       <Filter>Framework\Map2D</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Framework\Map2D\TileComponent.cpp">

@@ -14,7 +14,6 @@
 #include "Entities/Components/AnimatedSpriteComponent.h"
 #include "Entities/Components/Cameras/ArcBallCameraComponent.h"
 #include "Entities/Components/GridComponent.h"
-#include "Entities/Components/MeshComponent.h"
 #include "Entities/Components/ScriptComponent.h"
 #include "Game/Game.h"
 #include "Game/GameInfo.h"
@@ -34,6 +33,7 @@
 #include "Entities/Components/Cameras/Camera3DTargetedComponent.h"
 #include "Entities/Components/Physics/Box2DColliderComponent.h"
 #include "Entities/Components/Physics/Circle2DColliderComponent.h"
+#include "Map2D/TileSetData.h"
 #include "Physics/Bullet/BulletObjectsContainer.h"
 #include "Serializer/Serializer.h"
 
@@ -78,7 +78,7 @@ void RPGGame::LoadContent()
 	Game::LoadContent();
 
 	m_pWorld = new World();
-	auto* physicWorld = Game::Instance().GetPhysicsEngine().CreateWorld();
+	auto* physicWorld = GetPhysicsEngine().CreateWorld();
 	m_pWorld->SetPhysicsWorld(physicWorld);
 	physicWorld->SetGravity(Vector3::Zero());
 	GetGameInfo().SetWorld(m_pWorld);
@@ -112,9 +112,9 @@ void CreateLayer(const std::vector<int>& tilesId, TiledMapComponent* pMap, float
 	pMap->AddLayer(layer);
 }
 
-void CreateLayerNew(const std::vector<int>& tile_ids, TiledMapParameters& tiled_map_parameters, float zOffset)
+void CreateLayerNew(const std::vector<int>& tile_ids, TiledMapData& tiled_map_parameters, float zOffset)
 {
-	TiledMapLayerParameters layer;
+	TiledMapLayerData layer;
 	layer.zOffset = zOffset;
 	int index = 0;
 
@@ -122,7 +122,7 @@ void CreateLayerNew(const std::vector<int>& tile_ids, TiledMapParameters& tiled_
 	{
 		std::ostringstream name;
 		name << "tile1_" << (tile_id % 16) << "_" << (int)(tile_id / 16);
-		auto* tileParams = new StaticTileParameters();
+		auto* tileParams = new StaticTileData();
 		tileParams->spriteId = name.str();
 		tileParams->x = (index % tiled_map_parameters.mapSize.x);
 		tileParams->y = (int)(index / tiled_map_parameters.mapSize.x);
@@ -134,12 +134,29 @@ void CreateLayerNew(const std::vector<int>& tile_ids, TiledMapParameters& tiled_
 	tiled_map_parameters.layers.push_back(layer);
 }
 
+void CreateTileSet(Vector2I tileSize, const std::string& tileSetAssetFileName)
+{
+	for (int y = 0; y < 6; ++y)
+	{
+		for (int x = 0; x < 16; ++x)
+		{
+			auto* pSprite = new SpriteData();
+			pSprite->SetPositionInTexture(CasaEngine::Rectangle(x * tileSize.x, y * tileSize.y, tileSize.x, tileSize.y));
+			pSprite->SetAssetFileName(tileSetAssetFileName); //16x6 tiles
+			std::ostringstream name;
+			name << "tile1_" << x << "_" << y;
+			pSprite->SetName(name.str());
+			Game::Instance().GetAssetManager().AddAsset(new Asset(name.str(), pSprite));
+		}
+	}
+}
+
 void RPGGame::CreateMap(World* pWorld)
 {
 	_map map_datas;
 
 	{
-		IFile* pFile = Game::Instance().GetMediaManager().FindMedia("map_1_1.json", true);
+		IFile* pFile = GetMediaManager().FindMedia("map_1_1.json", true);
 		std::ifstream is(pFile->Fullname());
 		json j;
 		is >> j;
@@ -147,26 +164,14 @@ void RPGGame::CreateMap(World* pWorld)
 	}
 
 	auto tileSize = Vector2I(32, 32);
+	auto tileSetAssetFileName = map_datas.tile_set;
 
-	//create sprite
-	for (int y = 0; y < 6; ++y)
-	{
-		for (int x = 0; x < 16; ++x)
-		{
-			auto* pSprite = new SpriteData();
-			pSprite->SetPositionInTexture(CasaEngine::Rectangle(x * tileSize.x, y * tileSize.y, tileSize.x, tileSize.y));
-			pSprite->SetAssetFileName(map_datas.tile_set); //16x6 tiles
-			std::ostringstream name;
-			name << "tile1_" << x << "_" << y;
-			pSprite->SetName(name.str());
-			GetAssetManager().AddAsset(new Asset(name.str(), pSprite));
-		}
-	}
+	CreateTileSet(tileSize, tileSetAssetFileName);
 
-	TiledMapParameters tiled_map_parameters;
-	
+	TiledMapData tiled_map_parameters;
+
 	{
-		IFile* pFile = Game::Instance().GetMediaManager().FindMedia("map_1_1_tile_set.json", true);
+		IFile* pFile = GetMediaManager().FindMedia("map_1_1_tile_set.json", true);
 		std::ifstream is(pFile->Fullname());
 		json j;
 		is >> j;
@@ -217,28 +222,31 @@ void RPGGame::CreateMap(World* pWorld)
 
 void RPGGame::CreateAssets(Vector2I tileSize)
 {
-	//static tile
-	//auto texture = Texture::loadTexture(Game::Instance().GetMediaManager().FindMedia("Outside_A2.png"));
-	auto* pSprite = new SpriteData();
-	pSprite->SetName("grass1");
-	pSprite->SetPositionInTexture(CasaEngine::Rectangle(0, 0, tileSize.x, tileSize.y));
-	pSprite->SetAssetFileName("Outside_A2.png");
-	GetAssetManager().AddAsset(new Asset("grass1", pSprite));
-	//autotile
-	for (int y = 0; y < 3; ++y)
-	{
-		for (int x = 0; x < 2; ++x)
-		{
-			pSprite = new SpriteData();
-			pSprite->SetName("grass1");
-			pSprite->SetPositionInTexture(CasaEngine::Rectangle(8 * tileSize.x + tileSize.x * x, y * tileSize.y, tileSize.x, tileSize.y));
-			//pSprite->SetTexture2D(texture);
-			pSprite->SetAssetFileName("Outside_A2.png");
-			std::ostringstream name;
-			name << "autoGrass2_" << x << "_" << y;
-			GetAssetManager().AddAsset(new Asset(name.str(), pSprite));
-		}
-	}
+	TileSetData tileSetData;
+	tileSetData.tileSize = Vector2I(32, 32);
+	tileSetData.spriteSheetFileName = "Tile1.png";
+
+	//auto* pSprite = new SpriteData();
+	//pSprite->SetName("grass1");
+	//pSprite->SetPositionInTexture(CasaEngine::Rectangle(0, 0, tileSize.x, tileSize.y));
+	//pSprite->SetAssetFileName("Outside_A2.png");
+	//GetAssetManager().AddAsset(new Asset("grass1", pSprite));
+	//
+	//for (int y = 0; y < 3; ++y)
+	//{
+	//	for (int x = 0; x < 2; ++x)
+	//	{
+	//		pSprite = new SpriteData();
+	//		pSprite->SetName("grass1");
+	//		pSprite->SetPositionInTexture(CasaEngine::Rectangle(8 * tileSize.x + tileSize.x * x, y * tileSize.y, tileSize.x, tileSize.y));
+	//		pSprite->SetAssetFileName("Outside_A2.png");
+	//		std::ostringstream name;
+	//		name << "autoGrass2_" << x << "_" << y;
+	//		GetAssetManager().AddAsset(new Asset(name.str(), pSprite));
+	//	}
+	//}
+
+
 }
 
 void CreateSprite(const std::string tileSetName, const std::vector<_sprite>& sprites, const char* prefix)
@@ -301,7 +309,7 @@ void CreateAnimations(const char* prefix, AnimatedSpriteComponent* pAnimatedComp
 
 void RPGGame::CreateEnemies(World* pWorld)
 {
-	IFile* pFile = Game::Instance().GetMediaManager().FindMedia("octopus.json", true);
+	IFile* pFile = GetMediaManager().FindMedia("octopus.json", true);
 	std::ifstream is(pFile->Fullname());
 	_ennemi ennemi_datas;
 	json j;
@@ -352,7 +360,7 @@ void RPGGame::CreateSwordman(World* pWorld)
 	debugComponent->DisplayAnimation2DCollisions(true);
 	weaponEntity->GetComponentMgr()->AddComponent(debugComponent);
 
-	IFile* pFile = Game::Instance().GetMediaManager().FindMedia("baton.json", true);
+	IFile* pFile = GetMediaManager().FindMedia("baton.json", true);
 	_weapon weapon_data;
 
 	{
@@ -387,7 +395,7 @@ void RPGGame::CreateSwordman(World* pWorld)
 	pPlayerEntity->GetCoordinates().SetLocalRotation(0.0f);
 
 	//read file
-	pFile = Game::Instance().GetMediaManager().FindMedia("player.json", true);
+	pFile = GetMediaManager().FindMedia("player.json", true);
 	std::ifstream is(pFile->Fullname());
 	_joueur player_datas;
 	json j;

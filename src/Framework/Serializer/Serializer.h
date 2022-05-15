@@ -8,7 +8,7 @@
 #include <Assets/Assetable.h>
 #include <Physics/Collision.h>
 #include <Datas/SpriteData.h>
-#include <Map2D/TileParameters.h>
+#include <Map2D/TileData.h>
 #include "Datas/Animation2DData.h"
 #include "Datas/AnimationData.h"
 #include "Datas/FrameData.h"
@@ -27,11 +27,11 @@ namespace CasaEngine
 #define JSON_TO_NAMED(v1, v2) j[#v1] = t.v2;
 #define JSON_FROM_NAMED(v1, v2) j.at(#v1).get_to(t.v2);
 
-	void to_json(nlohmann::json& j, TileParameters* t);
-	DECLARE_SERIALIZABLE(TileParameters)
-	DECLARE_SERIALIZABLE(StaticTileParameters)
-	DECLARE_SERIALIZABLE(AnimatedTileParameters)
-	DECLARE_SERIALIZABLE(AutoTileParameters)
+	void to_json(nlohmann::json& j, TileData* t);
+	DECLARE_SERIALIZABLE(TileData)
+	DECLARE_SERIALIZABLE(StaticTileData)
+	DECLARE_SERIALIZABLE(AnimatedTileData)
+	DECLARE_SERIALIZABLE(AutoTileData)
 	DECLARE_SERIALIZABLE(Animation2DData)
 
 	template <class T>
@@ -320,8 +320,8 @@ namespace CasaEngine
 	inline void to_json(nlohmann::json& j, const Coordinates& t)
 	{
 		to_json(j["position"], t.GetLocalPosition());
-		to_json(j["center_of_rotation"], t.GetCenterOfRotation());
-		to_json(j["rotation"], t.GetRotation());
+		to_json(j["center_of_rotation"], t.GetLocalCenterOfRotation());
+		to_json(j["rotation"], t.GetLocalRotation());
 		to_json(j["scale"], t.GetLocalScale());
 	}
 
@@ -332,7 +332,7 @@ namespace CasaEngine
 		from_json(j.at("position"), v);
 		t.SetLocalPosition(v);
 		from_json(j.at("center_of_rotation"), v);
-		t.SetCenterOfRotation(v);
+		t.SetLocalCenterOfRotation(v);
 		from_json(j.at("rotation"), q);
 		t.SetLocalRotation(q);
 		from_json(j.at("scale"), v);
@@ -343,14 +343,14 @@ namespace CasaEngine
 
 	//NLOHMANN_JSON_SERIALIZE_ENUM(TileType, { {TileType::Static, "static"}, {TileType::Animated, "animated"}, {TileType::Auto, "auto"} })
 
-	inline void to_json(nlohmann::json& j, const TileParameters& t)
+	inline void to_json(nlohmann::json& j, const TileData& t)
 	{
 		JSON_TO(type)
 		JSON_TO(x)
 		JSON_TO(y)
 	}
 
-	inline void from_json(const nlohmann::json& j, TileParameters& t)
+	inline void from_json(const nlohmann::json& j, TileData& t)
 	{
 		JSON_FROM(type)
 		JSON_FROM(x)
@@ -359,81 +359,81 @@ namespace CasaEngine
 
 	//////////////////////////////////////////////////////////////
 
-	inline void to_json(nlohmann::json& j, const StaticTileParameters& t)
+	inline void to_json(nlohmann::json& j, const StaticTileData& t)
 	{
 		JSON_TO_NAMED(sprite_id, spriteId)
-		to_json(j, static_cast<const TileParameters&>(t));
+		to_json(j, static_cast<const TileData&>(t));
 	}
 
-	inline void from_json(const nlohmann::json& j, StaticTileParameters& t)
+	inline void from_json(const nlohmann::json& j, StaticTileData& t)
 	{
 		JSON_FROM_NAMED(sprite_id, spriteId)
-		from_json(j, static_cast<TileParameters&>(t));
+		from_json(j, static_cast<TileData&>(t));
 	}
 
 	//////////////////////////////////////////////////////////////
 
-	inline void to_json(nlohmann::json& j, const AnimatedTileParameters& t)
+	inline void to_json(nlohmann::json& j, const AnimatedTileData& t)
 	{
 		JSON_TO_NAMED(animation_2d_id, animation2DId)
-		to_json(j, static_cast<const TileParameters&>(t));
+		to_json(j, static_cast<const TileData&>(t));
 	}
 
-	inline void from_json(const nlohmann::json& j, AnimatedTileParameters& t)
+	inline void from_json(const nlohmann::json& j, AnimatedTileData& t)
 	{
 		JSON_FROM_NAMED(animation_2d_id, animation2DId)
-		from_json(j, static_cast<TileParameters&>(t));
+		from_json(j, static_cast<TileData&>(t));
 	}
 
 	//////////////////////////////////////////////////////////////
 
-	inline void to_json(nlohmann::json& j, const AutoTileParameters& t)
+	inline void to_json(nlohmann::json& j, const AutoTileData& t)
 	{
 		JSON_TO_NAMED(asset_file_name, autoTileAssetName)
-		to_json(j, static_cast<const TileParameters&>(t));
+		to_json(j, static_cast<const TileData&>(t));
 	}
 
-	inline void from_json(const nlohmann::json& j, AutoTileParameters& t)
+	inline void from_json(const nlohmann::json& j, AutoTileData& t)
 	{
 		JSON_FROM_NAMED(asset_file_name, autoTileAssetName)
-		from_json(j, static_cast<TileParameters&>(t));
+		from_json(j, static_cast<TileData&>(t));
 	}
 
 	//////////////////////////////////////////////////////////////
 	//factory
-	inline void to_json(nlohmann::json& j, TileParameters* t)
+	inline void to_json(nlohmann::json& j, TileData* t)
 	{
 		if (t->type == TileType::Static)
 		{
-			to_json(j, *static_cast<StaticTileParameters*>(t));
+			to_json(j, *static_cast<StaticTileData*>(t));
 		}
 		else if (t->type == TileType::Animated)
 		{
-			to_json(j, *static_cast<AnimatedTileParameters*>(t));
+			to_json(j, *static_cast<AnimatedTileData*>(t));
 		}
 		else if (t->type == TileType::Auto)
 		{
-			to_json(j, *static_cast<AutoTileParameters*>(t));
+			to_json(j, *static_cast<AutoTileData*>(t));
 		}
 		else
 		{
-			throw std::logic_error("void to_json(json& j, TileParameters* t) : type is not supported");
+			throw std::logic_error("void to_json(json& j, TileData* t) : type is not supported");
 		}
 	}
 
 	//////////////////////////////////////////////////////////////
 
-	inline void to_json(nlohmann::json& j, const TiledMapLayerParameters& t)
+	inline void to_json(nlohmann::json& j, const TiledMapLayerData& t)
 	{
 		JSON_TO_NAMED(z_offset, zOffset)
 		to_json(j, t.tiles, "tiles");
 	}
 
-	inline void from_json(const nlohmann::json& j, TiledMapLayerParameters& t)
+	inline void from_json(const nlohmann::json& j, TiledMapLayerData& t)
 	{
 		JSON_FROM_NAMED(z_offset, zOffset)
-		//from_json(j["tiles"], t.tiles);
 
+		//TODO : create template with factory
 		for (auto it = j["tiles"].begin();
 			it != j["tiles"].end();
 			++it)
@@ -442,30 +442,30 @@ namespace CasaEngine
 
 			switch (type)
 			{
-			case TileType::Static: { auto tile = new StaticTileParameters(); from_json(*it, *tile); t.tiles.push_back(tile); } break;
-			case TileType::Animated: { auto tile = new AnimatedTileParameters(); from_json(*it, *tile); t.tiles.push_back(tile); } break;
-			case TileType::Auto: { auto tile = new AutoTileParameters(); from_json(*it, *tile); t.tiles.push_back(tile); } break;
+			case TileType::Static: { auto tile = new StaticTileData(); from_json(*it, *tile); t.tiles.push_back(tile); } break;
+			case TileType::Animated: { auto tile = new AnimatedTileData(); from_json(*it, *tile); t.tiles.push_back(tile); } break;
+			case TileType::Auto: { auto tile = new AutoTileData(); from_json(*it, *tile); t.tiles.push_back(tile); } break;
 			}
 		}
 	}
 
 	//////////////////////////////////////////////////////////////
 
-	inline void to_json(nlohmann::json& j, const TiledMapParameters& t)
+	inline void to_json(nlohmann::json& j, const TiledMapData& t)
 	{
 		to_json(j["coordinates"], t.coordinates);
 		to_json(j["map_size"], t.mapSize);
 		to_json(j["tile_size"], t.tileSize);
 		to_json(j, t.layers, "layers");
+		JSON_TO_NAMED(sprite_sheet_file_name, spriteSheetFileName)
 	}
 
-	inline void from_json(const nlohmann::json& j, TiledMapParameters& t)
+	inline void from_json(const nlohmann::json& j, TiledMapData& t)
 	{
-		//j["name"].get<std::string>()
-
 		from_json(j.at("coordinates"), t.coordinates);
 		from_json(j.at("map_size"), t.mapSize);
 		from_json(j.at("tile_size"), t.tileSize);
 		from_json(j.at("layers"), t.layers);
+		JSON_FROM_NAMED(sprite_sheet_file_name, spriteSheetFileName)
 	}
 }
