@@ -2,11 +2,8 @@
 
 #include <vector>
 
-#include "Tile.h"
-#include "Entities/Components/Coordinates.h"
+#include "CA_Export.h"
 #include "Maths/Vector2.h"
-#include "Maths/Vector3.h"
-#include "World/World.h"
 
 namespace CasaEngine
 {
@@ -17,21 +14,28 @@ namespace CasaEngine
 		Auto
 	};
 
+	enum class TileCollisionType : int
+	{
+		None = 0,
+		Blocked,
+		NoContactResponse
+	};
+
 	////////////////////////////////////////
 
 	class CA_EXPORT TileData
 	{
 	public:
-		TileData() = default;
+		TileData();
 		~TileData() = default;
 		TileData(const TileData& rsh) = default;
 		TileData& operator=(const TileData& rsh) = default;
 		TileData(TileData&& rsh) = default;
 		TileData& operator=(TileData&& rsh) = default;
 
-		float x;
-		float y;
+		int id;
 		TileType type;
+		TileCollisionType collisionType;
 
 	protected:
 		TileData(TileType type);
@@ -53,7 +57,7 @@ namespace CasaEngine
 	};
 
 	////////////////////////////////////////
-	
+
 	class CA_EXPORT AnimatedTileData : public TileData
 	{
 	public:
@@ -84,33 +88,57 @@ namespace CasaEngine
 
 	////////////////////////////////////////
 
-	class TiledMapData;
-
-	class CA_EXPORT TiledMapLayerData
+	class CA_EXPORT TileSetData
 	{
 	public:
-		std::vector<TileData*> tiles;
-		float zOffset;
-	};
+		TileSetData() = default;
+		~TileSetData() = default;
+		TileSetData(const TileSetData& rsh) = default;
+		TileSetData& operator=(const TileSetData& rsh) = default;
+		TileSetData(TileSetData&& rsh) = default;
+		TileSetData& operator=(TileSetData&& rsh) = default;
 
-	////////////////////////////////////////
+		TileData* GetTileById(int id);
 
-	class CA_EXPORT TiledMapData
-	{
-	public:
-		Coordinates coordinates;
-		Vector2I mapSize;
-		Vector2I tileSize;
-		std::vector<TiledMapLayerData> layers;
 		std::string spriteSheetFileName;
+		Vector2I tileSize;
+		std::vector<TileData*> tiles;
 	};
 
 	////////////////////////////////////////
 
-	class CA_EXPORT TiledMapCreator
+	class CA_EXPORT AutoTileTileSetData
 	{
 	public:
-		static void Create(TiledMapData& tiledMapParameters, World& world);
-		static ITile* CreateTile(TileData& tileParameters, TiledMapLayerData* layer, TiledMapData* map);
+		AutoTileTileSetData() = default;
+		~AutoTileTileSetData() = default;
+		AutoTileTileSetData(const AutoTileTileSetData& rsh) = default;
+		AutoTileTileSetData& operator=(const AutoTileTileSetData& rsh) = default;
+		AutoTileTileSetData(AutoTileTileSetData&& rsh) = default;
+		AutoTileTileSetData& operator=(AutoTileTileSetData&& rsh) = default;
+
+		TileData* GetTileById(const int id);
+
+		int id;
+		std::vector<TileData*> tiles;
+	};
+
+	////////////////////////////////////////
+
+	class CA_EXPORT AutoTileSetData
+	{
+		public:
+			AutoTileSetData() = default;
+			~AutoTileSetData() = default;
+			AutoTileSetData(const AutoTileSetData& rsh) = default;
+			AutoTileSetData& operator=(const AutoTileSetData& rsh) = default;
+			AutoTileSetData(AutoTileSetData&& rsh) = default;
+			AutoTileSetData& operator=(AutoTileSetData&& rsh) = default;
+
+			AutoTileTileSetData *GetTileSetById(const int id);
+
+			std::string spriteSheetFileName;
+			Vector2I tileSize;
+			std::vector<AutoTileTileSetData> sets;
 	};
 }

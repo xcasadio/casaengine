@@ -4,7 +4,7 @@
 
 
 namespace CasaEngine
-{
+{/*
 	AutoTileSetData::AutoTileSetData()
 	{
 
@@ -35,5 +35,5 @@ namespace CasaEngine
 	{
 		return new AutoTileSetData(*this);
 	}
-
+	*/
 }

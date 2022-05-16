@@ -1,5 +1,4 @@
-#ifndef BASE_H_
-#define BASE_H_
+#pragma once
 
 #include "SystemPlatform.h"
 #include "CA_Assert.h"
@@ -21,6 +20,4 @@
 #	include <Windows.h>
 
 #elif CA_PLATFORM_LINUX
-#endif
-
 #endif

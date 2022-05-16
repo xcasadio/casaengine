@@ -3,12 +3,8 @@
 #include "CA_Export.h"
 #include "Entities\BaseEntity.h"
 
-
 namespace CasaEngine
 {
-	typedef unsigned int ScriptObjectClassID;
-	typedef unsigned int ScriptObjectID;
-
 	class CA_EXPORT IScriptObject
 	{
 	public:

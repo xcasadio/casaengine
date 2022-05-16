@@ -463,14 +463,12 @@ namespace CasaEngine
 
 	void Game::Initialize()
 	{
-		m_ScriptEngine.Initialize();
+		m_PhysicsEngine.Initialize();
 
 		for (auto* component : m_Components)
 		{
 			component->Initialize();
 		}
-
-		m_PhysicsEngine.Initialize();
 
 		// 	if (LoadGamePlayDLL(m_EngineSettings.GameplayDLL) == true)
 		// 	{
@@ -695,11 +693,6 @@ namespace CasaEngine
 	GlobalEventSet& Game::GetGlobalEventSet()
 	{
 		return *m_pGlobalEventSet;
-	}
-
-	ScriptEngine& Game::GetScriptEngine()
-	{
-		return m_ScriptEngine;
 	}
 
 	GameInfo& Game::GetGameInfo()

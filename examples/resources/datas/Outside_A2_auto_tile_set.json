@@ -1,0 +1,50 @@
+{
+	"sprite_sheet_file_name": "Outside_A2.png",
+    "tile_size": {
+        "x": 48,
+        "y": 48
+    },
+	"sets" : [
+		{
+			"id" : 2,
+			"tiles": [
+				{
+				"id": 0,
+				"type": "static",
+				"collision_type": "none",
+				"sprite_id": "outside_a2_2_0"
+				},
+				{
+				"id": 1,
+				"type": "static",
+				"collision_type": "none",
+				"sprite_id": "outside_a2_3_0"
+				},
+				{
+				"id": 2,
+				"type": "static",
+				"collision_type": "none",
+				"sprite_id": "outside_a2_2_1"
+				},
+				{
+				"id": 3,
+				"type": "static",
+				"collision_type": "none",
+				"sprite_id": "outside_a2_3_1"
+				},
+				{
+				"id": 4,
+				"type": "static",
+				"collision_type": "none",
+				"sprite_id": "outside_a2_3_2"
+				},
+				{
+				"id": 5,
+				"type": "static",
+				"collision_type": "none",
+				"sprite_id": "outside_a2_3_2"
+				}
+			]
+		}
+	 ]
+}

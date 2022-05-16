@@ -1,18 +1,16 @@
 #pragma once
 
-#include "Character.h"
+#include "Physics/CollisionParameters.h"
 #include "Script\IScriptObject.h"
-#include "GameTime.h"
-#include "Messaging\Telegram.h"
 
 using namespace CasaEngine;
 
-class ScriptCharacter :
+class ScriptGrass :
 	public IScriptObject
 {
 public:
-	ScriptCharacter(BaseEntity* entity, Character* character);
-	~ScriptCharacter() override;
+	ScriptGrass(BaseEntity* entity);
+	~ScriptGrass() override;
 
 	void OnInitialize() override;
 	void OnUpdate(const GameTime& gameTime_) override;
@@ -20,5 +18,5 @@ public:
 	void OnDestroy() override;
 
 private:
-	Character* _character;
+	void CollideWith(CollisionParameters* collisionParameters, BaseEntity* otherEntity, CollisionParameters* otherCollisionParameters);
 };

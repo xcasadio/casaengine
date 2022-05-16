@@ -3,7 +3,7 @@
 namespace CasaEngine
 {
 	StaticTile::StaticTile(Sprite* pSprite) :
-		m_pSprite(pSprite)
+		_sprite(pSprite)
 	{
 
 	}
@@ -15,30 +15,30 @@ namespace CasaEngine
 
 	void StaticTile::Draw(float x, float y, float z)
 	{
-		if (m_pSprite != nullptr)
+		if (_sprite != nullptr)
 		{
-			auto uv_offset = m_pSprite->GetSpriteData()->GetPositionInTexture();
+			auto uv_offset = _sprite->GetSpriteData()->GetPositionInTexture();
 			uv_offset.x = 0.0f;
 			uv_offset.y = 0.0f;
-			ITile::Draw(m_pSprite, x, y, z, uv_offset);
+			ITile::Draw(_sprite, x, y, z, uv_offset);
 		}
 	}
 
-	void StaticTile::Draw(float x, float y, float z, Rectangle uvOffset)
+	void StaticTile::Draw(float x, float y, float z, const Rectangle& uvOffset)
 	{
-		if (m_pSprite != nullptr)
+		if (_sprite != nullptr)
 		{
-			ITile::Draw(m_pSprite, x, y, z, uvOffset);
+			ITile::Draw(_sprite, x, y, z, uvOffset);
 		}
 	}
 
 	Sprite* StaticTile::GetSprite() const
 	{
-		return m_pSprite;
+		return _sprite;
 	}
 
-	void StaticTile::setSprite(Sprite* const pSprite)
+	void StaticTile::setSprite(Sprite* const sprite)
 	{
-		m_pSprite = pSprite;
+		_sprite = sprite;
 	}
 }

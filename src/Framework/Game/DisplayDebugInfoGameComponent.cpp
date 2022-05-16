@@ -470,9 +470,7 @@ namespace CasaEngine
 				static int selected = 0;
 				ImGui::BeginChild("entities list", ImVec2(150, 0), true);
 
-				EntityManager::EntityIterator it;
-
-				for (it = Game::Instance().GetEntityManager().cbegin(); it != Game::Instance().GetEntityManager().cend(); ++it)
+				for (auto it = Game::Instance().GetEntityManager().begin(); it != Game::Instance().GetEntityManager().end(); ++it)
 				{
 					char label[128];
 					sprintf(label, "%s (%d)", it->second->GetName(), it->first);

@@ -15,7 +15,6 @@
 #include "Graphics/Renderer/Renderer.h"
 #include "Physics/PhysicsEngine.h"
 #include "Resources/MediaManager.h"
-#include "Script/ScriptEngine.h"
 #include "Tools/DebugOptions.h"
 #include "Tools/DebugSystem.h"
 #include "Tools/InGameLogger.h"
@@ -53,7 +52,6 @@ namespace CasaEngine
 		DebugOptions& GetDebugOptions();
 		DebugSystem& GetDebugSystem();
 		GlobalEventSet& GetGlobalEventSet();
-		ScriptEngine& GetScriptEngine();
 		GameInfo& GetGameInfo();
 		EntityManager& GetEntityManager();
 		MediaManager& GetMediaManager();
@@ -141,7 +139,6 @@ namespace CasaEngine
 		Console m_Console;
 		DebugOptions m_DebugOptions;
 		GlobalEventSet* m_pGlobalEventSet;
-		ScriptEngine m_ScriptEngine;
 		GameInfo m_GameInfo;
 		EntityManager m_EntityManager;
 		MediaManager m_MediaManager;

@@ -1,6 +1,4 @@
-#ifndef LOGVERBOSE_H_
-#define LOGVERBOSE_H_
-
+#pragma once
 #include "SystemPlatform.h"
 
 #if CA_PLATFORM_ANDROID
@@ -31,5 +29,3 @@ namespace CasaEngine
 #endif
 	};
 }
-
-#endif

@@ -9,9 +9,6 @@ class ScriptCharacter :
 	public IScriptObject
 {
 public:
-	static const ScriptObjectClassID ClassID;
-
-public:
 	ScriptCharacter(BaseEntity* entity, Character* character);
 	~ScriptCharacter() override;
 

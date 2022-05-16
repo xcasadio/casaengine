@@ -5,6 +5,7 @@
 
 namespace CasaEngine
 {
+	/*
 	class CA_EXPORT AutoTileSetData :
 		public IAssetable
 	{
@@ -17,20 +18,5 @@ namespace CasaEngine
 		AutoTileSetData* Copy() const;
 
 		std::string spriteIds[6];
-
-	//private:
-	//	friend class cereal::access;
-	//
-	//	template <class Archive>
-	//	void save(Archive& ar) const
-	//	{
-	//		ar(cereal::make_nvp("sprite_ids", spriteIds));
-	//	}
-	//
-	//	template <class Archive>
-	//	void load(Archive& ar)
-	//	{
-	//		ar(cereal::make_nvp("sprite_ids", spriteIds));
-	//	}
-	};
+	};*/
 }

@@ -1,5 +1,5 @@
-#include <stdio.h>
-#include <stdarg.h>
+#include <cstdio>
+#include <cstdarg>
 
 #include "Base.h"
 
@@ -10,85 +10,83 @@
 
 namespace CasaEngine
 {
-	LogManager* LogManager::m_sInstance = nullptr;
+	LogManager* LogManager::_instance = nullptr;
 
 	LogManager& LogManager::Instance()
 	{
-		if (m_sInstance == nullptr)
+		if (_instance == nullptr)
 		{
-			m_sInstance = new LogManager();
+			_instance = new LogManager();
 		}
 
-		return *m_sInstance;
+		return *_instance;
 	}
 
 	void LogManager::Destroy()
 	{
-		if (m_sInstance != nullptr)
+		if (_instance != nullptr)
 		{
-			delete m_sInstance;
-			m_sInstance = nullptr;
+			delete _instance;
+			_instance = nullptr;
 		}
 	}
 
 	LogManager::LogManager()
 	{
-		m_Verbosity = Trace;
+		_verbosity = Trace;
 	}
 
 	LogManager::~LogManager()
 	{
-		for (auto* log : m_Logs)
+		for (auto* log : _logs)
 		{
 			delete log;
 		}
 	}
 
-	void LogManager::AddLogger(ILogger* logger_)
+	void LogManager::AddLogger(ILogger* logger)
 	{
-		CA_ASSERT(logger_ != nullptr, "LogManager::AddLogger() : logger_ is nullptr");
-		m_Logs.push_back(logger_);
+		CA_ASSERT(logger != nullptr, "LogManager::AddLogger() : logger is nullptr");
+		_logs.push_back(logger);
 	}
 
-	void LogManager::RemoveLogger(ILogger* logger_)
+	void LogManager::RemoveLogger(const ILogger* logger)
 	{
-		CA_ASSERT(logger_ != nullptr, "LogManager::RemoveLogger() : logger_ is nullptr");
+		CA_ASSERT(logger != nullptr, "LogManager::RemoveLogger() : logger is nullptr");
 
-		std::vector<ILogger*>::iterator it;
-
-		for (it = m_Logs.begin();
-			it != m_Logs.end();
-			++it)
+		for (auto it = _logs.begin();
+		     it != _logs.end();
+		     ++it)
 		{
-			if (*it == logger_)
+			if (*it == logger)
 			{
-				m_Logs.erase(it);
+				_logs.erase(it);
 				break;
 			}
 		}
 	}
 
-	void LogManager::Log(TLogVerbosity verbose_, const char* Format, ...)
+	void LogManager::Log(TLogVerbosity verbose, const char* format, ...)
 	{
 		static char sBuffer[8192];
 		va_list Params;
-		va_start(Params, Format);
-		vsprintf(sBuffer, Format, Params);
+		va_start(Params, format);
+		vsprintf(sBuffer, format, Params);
 		va_end(Params);
 
-		for (auto* log : m_Logs)
+		for (auto* log : _logs)
 		{
-			log->Write(verbose_, sBuffer);
+			log->Write(verbose, sBuffer);
 		}
 	}
 
 	TLogVerbosity LogManager::getVerbosity() const
 	{
-		return m_Verbosity;
+		return _verbosity;
 	}
 
 	void LogManager::setVerbosity(TLogVerbosity val)
 	{
-		m_Verbosity = val;
+		_verbosity = val;
 	}
 }

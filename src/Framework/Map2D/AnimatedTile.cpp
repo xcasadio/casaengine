@@ -37,7 +37,7 @@ namespace CasaEngine
 		}
 	}
 
-	void AnimatedTile::Draw(float x, float y, float z, Rectangle uvOffset)
+	void AnimatedTile::Draw(float x, float y, float z, const Rectangle& uvOffset)
 	{
 		if (m_pAnimation != nullptr)
 		{

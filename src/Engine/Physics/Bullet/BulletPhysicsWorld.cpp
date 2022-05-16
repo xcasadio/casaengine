@@ -132,8 +132,7 @@ namespace CasaEngine
 		case AxisConstraints::XY: body->setLinearFactor(btVector3(1, 1, 0)); break;
 		case AxisConstraints::XZ: body->setLinearFactor(btVector3(1, 0, 1)); break;
 		case AxisConstraints::YZ: body->setLinearFactor(btVector3(0, 1, 1)); break;
-		case AxisConstraints::NONE:
-		default: body->setLinearFactor(btVector3(1, 1, 1));
+		case AxisConstraints::NONE: body->setLinearFactor(btVector3(1, 1, 1)); break;
 		}
 
 		body->setAngularFactor(0.0); // no rotation
@@ -174,7 +173,7 @@ namespace CasaEngine
 		{
 			const auto* pBox2D = dynamic_cast<const Rectangle*>(pShape_);
 			const auto size = pBox2D->Size() / 2.0f;
-			auto* const pBox = new btBoxShape(btVector3(size.x, size.y, 10.0f));
+			auto* const pBox = new btBoxShape(btVector3(size.x, size.y, 5.0f));
 			//auto* const pBox = new btBox2dShape(btVector3(size.x, size.y, 0.0f));
 			return pBox;
 		}
@@ -234,11 +233,11 @@ namespace CasaEngine
 		auto* const b3pShape = CreateCollisionShape(shape_);
 		collisionShape->getWorldTransform().setOrigin(btVector3(origin_.x, origin_.y, origin_.z));
 		collisionShape->setCollisionShape(b3pShape);
-		collisionShape->setCollisionFlags(ConvertCollisionFlags(flags));
+		collisionShape->setCollisionFlags(collisionShape->getCollisionFlags() | ConvertCollisionFlags(flags));
 		auto* collision = new Collision();
 		collision->SetType(hitType);
 		collision->SetShape(shape_);
-		CollisionParameters* collisionParameters = new CollisionParameters(entity, collision);
+		auto* collisionParameters = new CollisionParameters(entity, collision);
 		collisionShape->setUserPointer(collisionParameters);
 
 		return new BulletCollisionObjectContainer(collisionShape);

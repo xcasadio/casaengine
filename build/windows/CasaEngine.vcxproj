@@ -162,6 +162,7 @@
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
       <OmitFramePointers>false</OmitFramePointers>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -387,21 +388,20 @@
     <ClInclude Include="..\..\src\Framework\Game\MeshRendererGameComponent.h" />
     <ClInclude Include="..\..\src\Framework\Map2D\AnimatedTile.h" />
     <ClInclude Include="..\..\src\Framework\Map2D\AutoTile.h" />
+    <ClInclude Include="..\..\src\Framework\Map2D\EmptyTile.h" />
     <ClInclude Include="..\..\src\Framework\Map2D\StaticTile.h" />
     <ClInclude Include="..\..\src\Framework\Map2D\Tile.h" />
     <ClInclude Include="..\..\src\Framework\Map2D\TileComponent.h" />
-    <ClInclude Include="..\..\src\Framework\Map2D\TiledMapComponent.h" />
-    <ClInclude Include="..\..\src\Framework\Map2D\TiledMapLayer.h" />
-    <ClInclude Include="..\..\src\Framework\Map2D\TileData.h" />
-    <ClInclude Include="..\..\src\Framework\Map2D\TileSetData.h" />
+    <ClInclude Include="..\..\src\Framework\Map2D\TiledMapCreator.h" />
+    <ClInclude Include="..\..\src\Framework\Datas\TileData.h" />
+    <ClInclude Include="..\..\src\Framework\Datas\TileSetData.h" />
     <ClInclude Include="..\..\src\Framework\Messaging\MessageDispatcher.h" />
     <ClInclude Include="..\..\src\Framework\Messaging\Telegram.h" />
     <ClInclude Include="..\..\src\Framework\Script\IScriptObject.h" />
-    <ClInclude Include="..\..\src\Framework\Script\IScriptObjectFactory.h" />
-    <ClInclude Include="..\..\src\Framework\Script\ScriptEngine.h" />
     <ClInclude Include="..\..\src\Framework\Serializer\Serializer.h" />
     <ClInclude Include="..\..\src\Framework\SpacePartitioning\CellSpacePartition.h" />
     <ClInclude Include="..\..\src\Framework\Sprite\Sprite.h" />
+    <ClInclude Include="..\..\src\Framework\Sprite\SpriteLoader.h" />
     <ClInclude Include="..\..\src\Framework\Sprite\SpritePhysicsHelper.h" />
     <ClInclude Include="..\..\src\Framework\Sprite\SpriteRenderer.h" />
     <ClInclude Include="..\..\src\Framework\Sprite\SpriteTypes.h" />
@@ -561,18 +561,18 @@
     <ClCompile Include="..\..\src\Framework\Game\MeshRendererGameComponent.cpp" />
     <ClCompile Include="..\..\src\Framework\Map2D\AnimatedTile.cpp" />
     <ClCompile Include="..\..\src\Framework\Map2D\AutoTile.cpp" />
+    <ClCompile Include="..\..\src\Framework\Map2D\EmptyTile.cpp" />
     <ClCompile Include="..\..\src\Framework\Map2D\StaticTile.cpp" />
     <ClCompile Include="..\..\src\Framework\Map2D\Tile.cpp" />
     <ClCompile Include="..\..\src\Framework\Map2D\TileComponent.cpp" />
-    <ClCompile Include="..\..\src\Framework\Map2D\TiledMapComponent.cpp" />
-    <ClCompile Include="..\..\src\Framework\Map2D\TiledMapLayer.cpp" />
-    <ClCompile Include="..\..\src\Framework\Map2D\TileData.cpp" />
+    <ClCompile Include="..\..\src\Framework\Map2D\TiledMapCreator.cpp" />
+    <ClCompile Include="..\..\src\Framework\Datas\TileData.cpp" />
+    <ClCompile Include="..\..\src\Framework\Datas\TileSetData.cpp" />
     <ClCompile Include="..\..\src\Framework\Messaging\MessageDispatcher.cpp" />
     <ClCompile Include="..\..\src\Framework\Messaging\Telegram.cpp" />
     <ClCompile Include="..\..\src\Framework\Script\IScriptObject.cpp" />
-    <ClCompile Include="..\..\src\Framework\Script\IScriptObjectFactory.cpp" />
-    <ClCompile Include="..\..\src\Framework\Script\ScriptEngine.cpp" />
     <ClCompile Include="..\..\src\Framework\Sprite\Sprite.cpp" />
+    <ClCompile Include="..\..\src\Framework\Sprite\SpriteLoader.cpp" />
     <ClCompile Include="..\..\src\Framework\Sprite\SpritePhysicsHelper.cpp" />
     <ClCompile Include="..\..\src\Framework\Sprite\SpriteRenderer.cpp" />
     <ClCompile Include="..\..\src\Framework\Tools\Bullet\BulletPhysicsDebugDrawComponent.cpp" />

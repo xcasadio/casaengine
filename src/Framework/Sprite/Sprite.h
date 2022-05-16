@@ -10,9 +10,6 @@ namespace CasaEngine
 {
 	class CA_EXPORT Sprite
 	{
-	private:
-		static std::map<std::string, Texture*> _textureCache;
-
 	public:
 		Sprite(SpriteData& spriteData);
 
@@ -20,6 +17,8 @@ namespace CasaEngine
 		SpriteData* GetSpriteData() const;
 
 	private:
+		static std::map<std::string, Texture*> _textureCache;
+
 		Texture* _texture2D;
 		SpriteData* _spriteData;
 	};

@@ -1,24 +1,23 @@
 #include "TileMapGame.h"
 
-#include "bgfx\bgfx.h"
-#include "Entities\Components\Cameras\Camera2DTargetedComponent.h"
-
-#include "Entities\Components\Cameras\ArcBallCameraComponent.h"
-#include "Entities\Components\MeshComponent.h"
 #include "GameTime.h"
-#include "Serializer/Serializer.h"
+#include "../../external/dear-imgui/imgui.h"
 #include "Assets/Asset.h"
 #include "Assets/AssetManager.h"
+#include "Datas/SpriteData.h"
+#include "Entities/Components/DebugComponent.h"
+#include "Entities/Components/ScriptComponent.h"
 #include "Entities/Components/StaticSpriteComponent.h"
+#include "Entities\Components\Cameras\ArcBallCameraComponent.h"
+#include "Entities\Components\Cameras\Camera2DTargetedComponent.h"
 #include "Game\GameInfo.h"
 #include "Log\LoggerFile.h"
 #include "Log\LogManager.h"
+#include "Map2D/AutoTile.h"
+#include "Map2D/TiledMapCreator.h"
+#include "Serializer/Serializer.h"
+#include "Sprite/SpriteLoader.h"
 #include "World\World.h"
-#include "Datas/SpriteData.h"
-#include "Entities/Components/DebugComponent.h"
-#include "../../external/dear-imgui/imgui.h"
-#include "Datas/AutoTileSetData.h"
-#include "Map2D/TileData.h"
 
 BaseEntity* s_entity;
 Camera2DTargetedComponent* s_pCameraController;
@@ -29,9 +28,7 @@ TileMapGame::TileMapGame()
 	Logging.AddLogger(new LoggerFile("Out.log"));
 }
 
-TileMapGame::~TileMapGame()
-{
-}
+TileMapGame::~TileMapGame() = default;
 
 void TileMapGame::Initialize()
 {
@@ -43,6 +40,7 @@ void TileMapGame::Initialize()
 	GetMediaManager().AddSearchPath("../../examples/resources/script");
 	GetMediaManager().AddSearchPath("../../examples/resources/tileset");
 	GetMediaManager().AddSearchPath("../../examples/resources/fonts");
+	GetMediaManager().AddSearchPath("../../examples/resources/datas");
 
 	AddDebugComponents();
 	AddUsualComponents();
@@ -50,136 +48,11 @@ void TileMapGame::Initialize()
 	Game::Initialize();
 }
 
-void CreateMap(World* pWorld, const int size)
-{
-	//create autotile set
-	auto* autoTileSetData = new AutoTileSetData();
-	autoTileSetData->SetName("Outside_A2_2_3");
-	int index = 0;
-	for (int y = 0; y < 3; ++y)
-	{
-		for (int x = 0; x < 2; ++x)
-		{
-			std::ostringstream str;
-			str << "autoTile_" << x << "_" << y;
-			autoTileSetData->spriteIds[index++] = str.str();
-		}
-	}
-	Game::Instance().GetAssetManager().AddAsset(autoTileSetData->GetName(), autoTileSetData);
-
-	// map
-	auto* tiledMapParameters = new TiledMapData();
-
-	//tiledMapParameters->mapSize = Vector2I(30, 11);
-	//tiledMapParameters->tileSize = Vector2I(size, size);
-	//
-	//TiledMapLayerData layer;
-	//layer.zOffset = 0.0f;
-	//for (int y = 0; y < tiledMapParameters->mapSize.y; ++y)
-	//{
-	//	for (int x = 0; x < tiledMapParameters->mapSize.x; ++x)
-	//	{
-	//		if (y == 10 || y == 0 || x == 0 || x == 29 ||
-	//			x % 2 == 0 && (y == 1 || y == 9) ||
-	//			y % 2 == 0 && (x == 1 || x == 28))
-	//		{
-	//			auto* autoTileParams = new AutoTileData();
-	//			autoTileParams->x = x;
-	//			autoTileParams->y = y;
-	//			autoTileParams->autoTileAssetName = "Outside_A2_2_3";
-	//			layer.tiles.push_back(autoTileParams);
-	//		}
-	//		else
-	//		{
-	//			auto* staticTileParams = new StaticTileData();
-	//			staticTileParams->x = x;
-	//			staticTileParams->y = y;
-	//			staticTileParams->spriteId = "tile0";
-	//			layer.tiles.push_back(staticTileParams);
-	//		}
-	//	}
-	//}
-	//tiledMapParameters->layers.push_back(layer);
-
-	//std::ofstream os("C:\\Users\\casad\\dev\\repo\\casaengine\\examples\\resources\\datas\\tileMap.json");
-	//json j;
-	//to_json(j, *tiledMapParameters);
-	////os << j << std::endl;
-	//os << std::setw(4) << j << std::endl; // pretty json
-	
-	std::ifstream i("C:\\Users\\casad\\dev\\repo\\casaengine\\examples\\resources\\datas\\tileMap.json");
-	json j2;
-	i >> j2;
-	TiledMapData t2;
-	from_json(j2, *tiledMapParameters);
-	//from_json(j2, t2);
-
-	TiledMapCreator::Create(*tiledMapParameters, *pWorld);
-}
-
-void TileMapGame::CreateBackground(World* pWorld)
-{
-	//create all sprites
-	constexpr int size = 48; // 32
-	auto *pSprite = new SpriteData();
-	pSprite->SetAssetFileName("Outside_A2.png");
-	pSprite->SetPositionInTexture(CasaEngine::Rectangle(0, 0, size, size));
-	pSprite->SetName("tile0");
-	GetAssetManager().AddAsset(new Asset(pSprite->GetName(), pSprite));
-
-	for (int y = 0; y < 3; ++y)
-	{
-		for (int x = 0; x < 2; ++x)
-		{
-			pSprite = new SpriteData();
-			pSprite->SetAssetFileName("Outside_A2.png");
-			pSprite->SetPositionInTexture(CasaEngine::Rectangle(2 * size + x * size, y * size, size, size));
-			std::ostringstream str;
-			str << "autoTile_" << x << "_" << y;
-			pSprite->SetName(str.str());
-			GetAssetManager().AddAsset(new Asset(pSprite->GetName(), pSprite));
-		}
-	}
-
-	//create anim
-	//auto *pAnim2DData = new Animation2DData();
-	//pAnim2DData->SetName("anim2D_tile1");
-	//auto *pFrameData = new FrameData();
-	//pFrameData->SetSpriteId("tile0");
-	//pFrameData->SetDuration(2.0f);
-	//pAnim2DData->GetFrames().push_back(*pFrameData);
-	//pFrameData = new FrameData();
-	//pFrameData->SetSpriteId("tile1");
-	//pFrameData->SetDuration(2.0f);
-	//pAnim2DData->GetFrames().push_back(*pFrameData);
-	//pFrameData = new FrameData();
-	//pFrameData->SetSpriteId("tile2");
-	//pFrameData->SetDuration(2.0f);
-	//pAnim2DData->GetFrames().push_back(*pFrameData);
-	//pAnim2DData->SetAnimationType(AnimationType::Loop);
-	//GetAssetManager().AddAsset(new Asset(pAnim2DData->GetName(), pAnim2DData));
-	////
-	//pAnim2DData = new Animation2DData();
-	//pAnim2DData->SetName("anim2D_tile0");
-	//pFrameData = new FrameData();
-	//pFrameData->SetSpriteId("tile1");
-	//pFrameData->SetDuration(2.0f);
-	//pAnim2DData->GetFrames().push_back(*pFrameData);
-	//pFrameData = new FrameData();
-	//pFrameData->SetSpriteId("tile0");
-	//pFrameData->SetDuration(2.0f);
-	//pAnim2DData->GetFrames().push_back(*pFrameData);
-	//pAnim2DData->SetAnimationType(AnimationType::Loop);
-	//GetAssetManager().AddAsset(new Asset(pAnim2DData->GetName(), pAnim2DData));
-
-	CreateMap(pWorld, size);
-}
-
 void TileMapGame::LoadContent()
 {
 	Game::LoadContent();
 
-	auto p_world = new World();
+	auto* p_world = new World();
 	GetGameInfo().SetWorld(p_world);
 
 	//create perso
@@ -216,10 +89,16 @@ void TileMapGame::LoadContent()
 	p_world->Initialize();
 }
 
-void TileMapGame::Update(const GameTime& gameTime_)
+void TileMapGame::CreateBackground(World * pWorld)
+{
+	SpriteLoader::LoadFromFile("Outside_A2_sprites.json");
+	TiledMapCreator::LoadMapFromFile("tileMap.json", *pWorld);
+}
+
+void TileMapGame::Update(const GameTime & gameTime_)
 {
 	auto position = s_entity->GetCoordinates().GetLocalPosition();
-	const auto speed = 5;
+	constexpr auto speed = 5;
 
 	if (std::abs(GetInput().GetJoystickLeftStickY(0)) > 20)
 	{

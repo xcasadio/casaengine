@@ -669,12 +669,6 @@
     <ClInclude Include="..\..\src\Framework\Script\IScriptObject.h">
       <Filter>Framework\Script</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Script\IScriptObjectFactory.h">
-      <Filter>Framework\Script</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Script\ScriptEngine.h">
-      <Filter>Framework\Script</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Framework\SpacePartitioning\CellSpacePartition.h">
       <Filter>Framework\SpacePartitioning</Filter>
     </ClInclude>
@@ -735,17 +729,11 @@
     <ClInclude Include="..\..\src\Framework\Map2D\Tile.h">
       <Filter>Framework\Map2D</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Map2D\TiledMapComponent.h">
-      <Filter>Framework\Map2D</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Framework\UI\ImGuiAdapter.h">
       <Filter>Framework\UI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Framework\Entities\Components\Cameras\Camera2DTargetedComponent.h">
       <Filter>Framework\Entities\Components\Cameras</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Map2D\TiledMapLayer.h">
-      <Filter>Framework\Map2D</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Framework\Datas\SpriteData.h">
       <Filter>Framework\Datas</Filter>
@@ -900,9 +888,6 @@
     <ClInclude Include="..\..\src\Framework\Messaging\Telegram.h">
       <Filter>Framework\Messaging</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Map2D\TileData.h">
-      <Filter>Framework\Map2D</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Framework\Map2D\TileComponent.h">
       <Filter>Framework\Map2D</Filter>
     </ClInclude>
@@ -912,8 +897,20 @@
     <ClInclude Include="..\..\src\Framework\Serializer\Serializer.h">
       <Filter>Framework\Serializer</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Map2D\TileSetData.h">
+    <ClInclude Include="..\..\src\Framework\Map2D\TiledMapCreator.h">
       <Filter>Framework\Map2D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Framework\Map2D\EmptyTile.h">
+      <Filter>Framework\Map2D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Framework\Sprite\SpriteLoader.h">
+      <Filter>Framework\Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Framework\Datas\TileData.h">
+      <Filter>Framework\Datas</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Framework\Datas\TileSetData.h">
+      <Filter>Framework\Datas</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1214,12 +1211,6 @@
     <ClCompile Include="..\..\src\Framework\Script\IScriptObject.cpp">
       <Filter>Framework\Script</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Framework\Script\IScriptObjectFactory.cpp">
-      <Filter>Framework\Script</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Framework\Script\ScriptEngine.cpp">
-      <Filter>Framework\Script</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Framework\Sprite\Sprite.cpp">
       <Filter>Framework\Sprite</Filter>
     </ClCompile>
@@ -1277,9 +1268,6 @@
     <ClCompile Include="..\..\src\Framework\Map2D\Tile.cpp">
       <Filter>Framework\Map2D</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Framework\Map2D\TiledMapComponent.cpp">
-      <Filter>Framework\Map2D</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Core\ContainerUtil.cpp">
       <Filter>Core</Filter>
     </ClCompile>
@@ -1288,9 +1276,6 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Framework\Entities\Components\Cameras\Camera2DTargetedComponent.cpp">
       <Filter>Framework\Entities\Components\Cameras</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Framework\Map2D\TiledMapLayer.cpp">
-      <Filter>Framework\Map2D</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Framework\Datas\SpriteData.cpp">
       <Filter>Framework\Datas</Filter>
@@ -1379,13 +1364,25 @@
     <ClCompile Include="..\..\src\Framework\Messaging\Telegram.cpp">
       <Filter>Framework\Messaging</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Framework\Map2D\TileData.cpp">
-      <Filter>Framework\Map2D</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Framework\Map2D\TileComponent.cpp">
       <Filter>Framework\Map2D</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Framework\Datas\AutoTileSetData.cpp">
+      <Filter>Framework\Datas</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Framework\Map2D\TiledMapCreator.cpp">
+      <Filter>Framework\Map2D</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Framework\Map2D\EmptyTile.cpp">
+      <Filter>Framework\Map2D</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Framework\Sprite\SpriteLoader.cpp">
+      <Filter>Framework\Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Framework\Datas\TileData.cpp">
+      <Filter>Framework\Datas</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Framework\Datas\TileSetData.cpp">
       <Filter>Framework\Datas</Filter>
     </ClCompile>
   </ItemGroup>

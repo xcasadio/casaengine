@@ -1,0 +1,585 @@
+{
+  "sprite_sheet_file_name": "Tile1.png",
+  "tile_size": {
+    "x": 32,
+    "y": 32
+  },
+  "tiles": [
+    {
+      "id": 0,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_0_0"
+    },
+    {
+      "id": 1,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_1_0"
+    },
+    {
+      "id": 2,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_2_0"
+    },
+    {
+      "id": 3,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_3_0"
+    },
+    {
+      "id": 4,
+      "type": "static",
+      "collision_type": "blocked",
+      "sprite_id": "tile1_4_0"
+    },
+    {
+      "id": 5,
+      "type": "static",
+      "collision_type": "blocked",
+      "sprite_id": "tile1_5_0"
+    },
+    {
+      "id": 6,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_6_0"
+    },
+    {
+      "id": 7,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_7_0"
+    },
+    {
+      "id": 8,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_8_0"
+    },
+    {
+      "id": 9,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_9_0"
+    },
+    {
+      "id": 10,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_10_0"
+    },
+    {
+      "id": 11,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_11_0"
+    },
+    {
+      "id": 12,
+      "type": "static",
+      "collision_type": "blocked",
+      "sprite_id": "tile1_12_0"
+    },
+    {
+      "id": 13,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_13_0"
+    },
+    {
+      "id": 14,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_14_0"
+    },
+    {
+      "id": 15,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_15_0"
+    },
+    {
+      "id": 16,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_0_1"
+    },
+    {
+      "id": 17,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_1_1"
+    },
+    {
+      "id": 18,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_2_1"
+    },
+    {
+      "id": 19,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_3_1"
+    },
+    {
+      "id": 20,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_4_1"
+    },
+    {
+      "id": 21,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_5_1"
+    },
+    {
+      "id": 22,
+      "type": "static",
+      "collision_type": "blocked",
+      "sprite_id": "tile1_6_1"
+    },
+    {
+      "id": 23,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_7_1"
+    },
+    {
+      "id": 24,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_8_1"
+    },
+    {
+      "id": 25,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_9_1"
+    },
+    {
+      "id": 26,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_10_1"
+    },
+    {
+      "id": 27,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_11_1"
+    },
+    {
+      "id": 28,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_12_1"
+    },
+    {
+      "id": 29,
+      "type": "static",
+      "collision_type": "blocked",
+      "sprite_id": "tile1_13_1"
+    },
+    {
+      "id": 30,
+      "type": "static",
+      "collision_type": "blocked",
+      "sprite_id": "tile1_14_1"
+    },
+    {
+      "id": 31,
+      "type": "static",
+      "collision_type": "blocked",
+      "sprite_id": "tile1_15_1"
+    },
+    {
+      "id": 32,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_0_2"
+    },
+    {
+      "id": 33,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_1_2"
+    },
+    {
+      "id": 34,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_2_2"
+    },
+    {
+      "id": 35,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_3_2"
+    },
+    {
+      "id": 36,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_4_2"
+    },
+    {
+      "id": 37,
+      "type": "static",
+      "collision_type": "blocked",
+      "sprite_id": "tile1_5_2"
+    },
+    {
+      "id": 38,
+      "type": "static",
+      "collision_type": "blocked",
+      "sprite_id": "tile1_6_2"
+    },
+    {
+      "id": 39,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_7_2"
+    },
+    {
+      "id": 40,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_8_2"
+    },
+    {
+      "id": 41,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_9_2"
+    },
+    {
+      "id": 42,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_10_2"
+    },
+    {
+      "id": 43,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_11_2"
+    },
+    {
+      "id": 44,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_12_2"
+    },
+    {
+      "id": 45,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_13_2"
+    },
+    {
+      "id": 46,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_14_2"
+    },
+    {
+      "id": 47,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_15_2"
+    },
+    {
+      "id": 48,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_0_3"
+    },
+    {
+      "id": 49,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_1_3"
+    },
+    {
+      "id": 50,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_2_3"
+    },
+    {
+      "id": 51,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_3_3"
+    },
+    {
+      "id": 52,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_4_3"
+    },
+    {
+      "id": 53,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_5_3"
+    },
+    {
+      "id": 54,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_6_3"
+    },
+    {
+      "id": 55,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_7_3"
+    },
+    {
+      "id": 56,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_8_3"
+    },
+    {
+      "id": 57,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_9_3"
+    },
+    {
+      "id": 58,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_10_3"
+    },
+    {
+      "id": 59,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_11_3"
+    },
+    {
+      "id": 60,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_12_3"
+    },
+    {
+      "id": 61,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_13_3"
+    },
+    {
+      "id": 62,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_14_3"
+    },
+    {
+      "id": 63,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_15_3"
+    },
+    {
+      "id": 64,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_0_4"
+    },
+    {
+      "id": 65,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_1_4"
+    },
+    {
+      "id": 66,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_2_4"
+    },
+    {
+      "id": 67,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_3_4"
+    },
+    {
+      "id": 68,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_4_4"
+    },
+    {
+      "id": 69,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_5_4"
+    },
+    {
+      "id": 70,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_6_4"
+    },
+    {
+      "id": 71,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_7_4"
+    },
+    {
+      "id": 72,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_8_4"
+    },
+    {
+      "id": 73,
+      "type": "static",
+      "collision_type": "blocked",
+      "sprite_id": "tile1_9_4"
+    },
+    {
+      "id": 74,
+      "type": "static",
+      "collision_type": "blocked",
+      "sprite_id": "tile1_10_4"
+    },
+    {
+      "id": 75,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_11_4"
+    },
+    {
+      "id": 76,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_12_4"
+    },
+    {
+      "id": 77,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_13_4"
+    },
+    {
+      "id": 78,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_14_4"
+    },
+    {
+      "id": 79,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_15_4"
+    },
+    {
+      "id": 80,
+      "type": "static",
+      "collision_type": "blocked",
+      "sprite_id": "tile1_0_5"
+    },
+    {
+      "id": 81,
+      "type": "static",
+      "collision_type": "blocked",
+      "sprite_id": "tile1_1_5"
+    },
+    {
+      "id": 82,
+      "type": "static",
+      "collision_type": "blocked",
+      "sprite_id": "tile1_2_5"
+    },
+    {
+      "id": 83,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_3_5"
+    },
+    {
+      "id": 84,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_4_5"
+    },
+    {
+      "id": 85,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_5_5"
+    },
+    {
+      "id": 86,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_6_5"
+    },
+    {
+      "id": 87,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_7_5"
+    },
+    {
+      "id": 88,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_8_5"
+    },
+    {
+      "id": 89,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_9_5"
+    },
+    {
+      "id": 90,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_10_5"
+    },
+    {
+      "id": 91,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_11_5"
+    },
+    {
+      "id": 92,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_12_5"
+    },
+    {
+      "id": 93,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_13_5"
+    },
+    {
+      "id": 94,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_14_5"
+    },
+    {
+      "id": 95,
+      "type": "static",
+      "collision_type": "none",
+      "sprite_id": "tile1_15_5"
+    }
+  ]
+}

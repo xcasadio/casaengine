@@ -1,7 +1,6 @@
 #include "AutoTile.h"
 
 #include "StaticTile.h"
-#include "TiledMapComponent.h"
 #include "Game/Game.h"
 
 namespace CasaEngine
@@ -26,10 +25,8 @@ namespace CasaEngine
 	constexpr unsigned int mask_right_bottom = 1 << 7;
 	constexpr unsigned int mask_all = (mask_left | mask_right | mask_top | mask_bottom | mask_left_top | mask_left_bottom | mask_right_top | mask_right_bottom);
 
-	AutoTile::AutoTile(AutoTileSetData* data) :
-		_autoTileSetData(data),
-		_layerParameters(nullptr),
-		_mapParameters(nullptr),
+	AutoTile::AutoTile() :
+		_tiledMapLayerData(nullptr),
 		_drawingInfos{},
 		_tiles{},
 		_x(0),
@@ -45,16 +42,18 @@ namespace CasaEngine
 		return _hidden;
 	}
 
+	void AutoTile::RemovedTileFromLayer()
+	{
+		_tiledMapLayerData->tilesId[_x + _y * _mapSize.x] = -1;
+	}
+
 	void AutoTile::Initialize()
 	{
 		ITile::Initialize();
 
-		for (int i = 0; i < 6; ++i)
+		for (auto& _tile : _tiles)
 		{
-			auto* sprite = Game::Instance().GetAssetManager().GetAsset<SpriteData>(_autoTileSetData->spriteIds[i]);
-			auto* tile = new StaticTile(new Sprite(*sprite));
-			tile->Initialize();
-			_tiles[i] = tile;
+			_tile->Initialize();
 		}
 
 		_drawingInfos[0].SetInfo(-1, 0, 0, 0, Rectangle());
@@ -63,16 +62,16 @@ namespace CasaEngine
 		_drawingInfos[3].SetInfo(-1, 0, 0, 0, Rectangle());
 	}
 
-	unsigned int getMask(const TiledMapData* map, const TiledMapLayerData* layer, int x, int y, int offset)
+	unsigned int getMask(const Vector2I& mapSize, const TiledMapLayerData* layer, int x, int y, int offset)
 	{
-		if (x >= map->mapSize.x || x < 0
-			|| y >= map->mapSize.y || y < 0)
+		if (x >= mapSize.x || x < 0
+			|| y >= mapSize.y || y < 0)
 		{
 			return 0;
 		}
 
-		const auto* pTile = layer->tiles.at(x + y * map->mapSize.x);
-		if (pTile != nullptr && pTile->type == TileType::Auto)
+		const auto tileId = layer->tilesId.at(x + y * mapSize.x);
+		if (tileId != -1)
 		{
 			return  1 << offset;
 		}
@@ -88,30 +87,29 @@ namespace CasaEngine
 		}
 
 		unsigned int mask = 0;
-		mask |= getMask(_mapParameters, _layerParameters, _x - 1, _y, 0);
-		mask |= getMask(_mapParameters, _layerParameters, _x + 1, _y, 1);
-		mask |= getMask(_mapParameters, _layerParameters, _x, _y - 1, 2);
-		mask |= getMask(_mapParameters, _layerParameters, _x, _y + 1, 3);
-		mask |= getMask(_mapParameters, _layerParameters, _x - 1, _y - 1, 4);
-		mask |= getMask(_mapParameters, _layerParameters, _x - 1, _y + 1, 5);
-		mask |= getMask(_mapParameters, _layerParameters, _x + 1, _y - 1, 6);
-		mask |= getMask(_mapParameters, _layerParameters, _x + 1, _y + 1, 7);
+		mask |= getMask(_mapSize, _tiledMapLayerData, _x - 1, _y, 0);
+		mask |= getMask(_mapSize, _tiledMapLayerData, _x + 1, _y, 1);
+		mask |= getMask(_mapSize, _tiledMapLayerData, _x, _y - 1, 2);
+		mask |= getMask(_mapSize, _tiledMapLayerData, _x, _y + 1, 3);
+		mask |= getMask(_mapSize, _tiledMapLayerData, _x - 1, _y - 1, 4);
+		mask |= getMask(_mapSize, _tiledMapLayerData, _x - 1, _y + 1, 5);
+		mask |= getMask(_mapSize, _tiledMapLayerData, _x + 1, _y - 1, 6);
+		mask |= getMask(_mapSize, _tiledMapLayerData, _x + 1, _y + 1, 7);
 
-		ComputeDrawingInfos(mask, 0, 0, 0, Rectangle(0, 0, _mapParameters->tileSize.x, _mapParameters->tileSize.y));
+		ComputeDrawingInfos(mask, 0, 0, 0, Rectangle(0, 0, _tileSize.x, _tileSize.y));
 	}
 
 	void AutoTile::Draw(float x, float y, float z)
 	{
-		Draw(x, y, z, Rectangle(0, 0, _mapParameters->tileSize.x, _mapParameters->tileSize.y));
+		Draw(x, y, z, Rectangle(0, 0, _tileSize.x, _tileSize.y));
 	}
 
-	void AutoTile::Draw(float x, float y, float z, Rectangle uvOffset)
+	void AutoTile::Draw(float x, float y, float z, const Rectangle& uvOffset)
 	{
 		for (const auto& _drawingInfo : _drawingInfos)
 		{
 			if (_drawingInfo.tileIndex != -1)
 			{
-				//TODO : acces violation here !!!
 				_tiles[_drawingInfo.tileIndex]->Draw(
 					x + _drawingInfo.x_offset,
 					y + _drawingInfo.y_offset,
@@ -121,10 +119,19 @@ namespace CasaEngine
 		}
 	}
 
-	void AutoTile::SetTileInfo(TiledMapData* map, TiledMapLayerData* layer, int x, int y)
+	void AutoTile::SetTileInfo(const std::vector<ITile*>& tiles, const Vector2I& tileSize, const Vector2I& mapSize, TiledMapLayerData* layer, int x, int y)
 	{
-		_mapParameters = map;
-		_layerParameters = layer;
+		CA_ASSERT(tiles.size() == 6, "AutoTile::SetTileInfo() : size is not 6")
+
+		for (int i = 0; i < 6; ++i)
+		{
+			CA_ASSERT(tiles[i] != nullptr, "AutoTile::SetTileInfo() : ITile is null")
+			_tiles[i] = tiles[i];
+		}
+
+		_tileSize = tileSize;
+		_mapSize = mapSize;
+		_tiledMapLayerData = layer;
 		_x = x;
 		_y = y;
 	}

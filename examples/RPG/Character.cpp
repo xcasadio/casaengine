@@ -15,7 +15,6 @@
 #include "GameDatas/MessageType.h"
 #include "Entities\Components\ScriptComponent.h"
 #include <Physics/CollisionParametersBetween2Entities.h>
-#include <Map2D/TiledMapComponent.h>
 
 
 Character::Character(BaseEntity* pEntity) :

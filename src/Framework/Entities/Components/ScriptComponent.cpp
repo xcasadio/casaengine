@@ -24,15 +24,9 @@ namespace CasaEngine
 
 	void ScriptComponent::Initialize()
 	{
-		//m_pScriptObject = Game::Instance().GetScriptEngine().CreateScriptObjectFromClassID(m_ClassID, GetEntity());
-
 		if (m_pScriptObject != nullptr)
 		{
 			m_pScriptObject->OnInitialize();
-		}
-		else
-		{
-			CA_ERROR("Error when create script object from the class id %d\n", m_ClassID);
 		}
 	}
 

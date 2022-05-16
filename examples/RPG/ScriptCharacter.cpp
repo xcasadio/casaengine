@@ -1,16 +1,12 @@
 #include "ScriptCharacter.h"
 
-constexpr ScriptObjectClassID ScriptCharacter::ClassID(0xC299A4EE);
-
 ScriptCharacter::ScriptCharacter(BaseEntity* entity, Character* character) :
 	IScriptObject(entity),
 	_character(character)
 {
 }
 
-ScriptCharacter::~ScriptCharacter()
-{
-}
+ScriptCharacter::~ScriptCharacter() = default;
 
 void ScriptCharacter::OnInitialize()
 {

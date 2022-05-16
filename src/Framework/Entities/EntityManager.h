@@ -1,5 +1,4 @@
-#ifndef ENTITYMANAGER_H
-#define ENTITYMANAGER_H
+#pragma once
 
 #include <map>
 #include "CA_Export.h"
@@ -11,25 +10,22 @@ namespace CasaEngine
 	class CA_EXPORT EntityManager
 	{
 	public:
-		typedef std::map<int, BaseEntity*> EntityMap;
-		typedef EntityMap::const_iterator EntityIterator;
-
-	private:
-		EntityMap m_EntityMap;
-
-	public:
 		~EntityManager();
 
 		void RegisterEntity(BaseEntity* NewEntity);
 		BaseEntity* GetEntityFromID(int id) const;
 		BaseEntity* GetEntityFromName(const char *name) const;
 
-		EntityMap::const_iterator cbegin() const;
-		EntityMap::const_iterator cend() const;
+		std::map<int, BaseEntity*>::const_iterator begin() const;
+		std::map<int, BaseEntity*>::const_iterator end() const;
 
 
 		void RemoveEntity(BaseEntity* pEntity);
 		void Clear();
+
+	private:
+		std::map<int, BaseEntity*> m_EntityMap;
+
 
 #ifdef EDITOR
 	public:
@@ -38,5 +34,3 @@ namespace CasaEngine
 	};
 
 }
-
-#endif

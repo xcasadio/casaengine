@@ -28,7 +28,7 @@
     <ClCompile Include="..\..\examples\RPG\PlayerStates.cpp" />
     <ClCompile Include="..\..\examples\RPG\RPGGame.cpp" />
     <ClCompile Include="..\..\examples\RPG\main.cpp" />
-    <ClCompile Include="..\..\examples\RPG\ScriptObjectFactory.cpp" />
+    <ClCompile Include="..\..\examples\RPG\ScriptGrass.cpp" />
     <ClCompile Include="..\..\examples\RPG\ScriptCharacter.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -43,7 +43,7 @@
     <ClInclude Include="..\..\examples\RPG\PlayerController.h" />
     <ClInclude Include="..\..\examples\RPG\PlayerStates.h" />
     <ClInclude Include="..\..\examples\RPG\RPGGame.h" />
-    <ClInclude Include="..\..\examples\RPG\ScriptObjectFactory.h" />
+    <ClInclude Include="..\..\examples\RPG\ScriptGrass.h" />
     <ClInclude Include="..\..\examples\RPG\ScriptCharacter.h" />
   </ItemGroup>
   <ItemGroup>
@@ -150,6 +150,7 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

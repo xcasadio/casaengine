@@ -3,8 +3,6 @@
 
 #include "RPGGame.h"
 
-#include <BulletCollision/CollisionDispatch/btCollisionObject.h>
-
 #include "Player.h"
 #include "Enemy.h"
 #include "EnemyController.h"
@@ -25,17 +23,18 @@
 
 #include "Map2D/AutoTile.h"
 #include "Map2D/StaticTile.h"
-#include "Map2D/TiledMapComponent.h"
 
 #include "load_save_types.h"
+#include "ScriptGrass.h"
 #include "Entities/Components/DebugComponent.h"
 #include "Entities/Components/Cameras/Camera2DTargetedComponent.h"
 #include "Entities/Components/Cameras/Camera3DTargetedComponent.h"
 #include "Entities/Components/Physics/Box2DColliderComponent.h"
 #include "Entities/Components/Physics/Circle2DColliderComponent.h"
-#include "Map2D/TileSetData.h"
-#include "Physics/Bullet/BulletObjectsContainer.h"
+#include "Map2D/TileComponent.h"
+#include "Map2D/TiledMapCreator.h"
 #include "Serializer/Serializer.h"
+#include "Sprite/SpriteLoader.h"
 
 using namespace CasaEngine;
 
@@ -83,170 +82,29 @@ void RPGGame::LoadContent()
 	physicWorld->SetGravity(Vector3::Zero());
 	GetGameInfo().SetWorld(m_pWorld);
 
-	CreateAssets(Vector2I(32, 32));
 	CreateMap(m_pWorld);
-	CreateEnemies(m_pWorld);
+	//CreateEnemies(m_pWorld);
 	CreateSwordman(m_pWorld);
 
 	m_pWorld->Initialize();
 }
 
-void CreateLayer(const std::vector<int>& tilesId, TiledMapComponent* pMap, float zOffset)
-{
-	auto* layer = new TiledMapLayer();
-	layer->SetZOffset(zOffset);
-	std::vector<ITile*> tiles;
-	for (int y = 0; y < pMap->GetMapSize().y; ++y)
-	{
-		for (int x = 0; x < pMap->GetMapSize().x; ++x)
-		{
-			const auto tile_id = tilesId[y * pMap->GetMapSize().x + x];
-			std::ostringstream name;
-			name << "tile1_" << (tile_id % 16) << "_" << (int)(tile_id / 16);
-			auto* sprite = Game::Instance().GetAssetManager().GetAsset<SpriteData>(name.str());
-			auto* tile = new StaticTile(new Sprite(*sprite));
-			tiles.push_back(tile);
-		}
-	}
-	layer->SetTiles(tiles);
-	pMap->AddLayer(layer);
-}
-
-void CreateLayerNew(const std::vector<int>& tile_ids, TiledMapData& tiled_map_parameters, float zOffset)
-{
-	TiledMapLayerData layer;
-	layer.zOffset = zOffset;
-	int index = 0;
-
-	for (const int tile_id : tile_ids)
-	{
-		std::ostringstream name;
-		name << "tile1_" << (tile_id % 16) << "_" << (int)(tile_id / 16);
-		auto* tileParams = new StaticTileData();
-		tileParams->spriteId = name.str();
-		tileParams->x = (index % tiled_map_parameters.mapSize.x);
-		tileParams->y = (int)(index / tiled_map_parameters.mapSize.x);
-		layer.tiles.push_back(tileParams);
-
-		index++;
-	}
-
-	tiled_map_parameters.layers.push_back(layer);
-}
-
-void CreateTileSet(Vector2I tileSize, const std::string& tileSetAssetFileName)
-{
-	for (int y = 0; y < 6; ++y)
-	{
-		for (int x = 0; x < 16; ++x)
-		{
-			auto* pSprite = new SpriteData();
-			pSprite->SetPositionInTexture(CasaEngine::Rectangle(x * tileSize.x, y * tileSize.y, tileSize.x, tileSize.y));
-			pSprite->SetAssetFileName(tileSetAssetFileName); //16x6 tiles
-			std::ostringstream name;
-			name << "tile1_" << x << "_" << y;
-			pSprite->SetName(name.str());
-			Game::Instance().GetAssetManager().AddAsset(new Asset(name.str(), pSprite));
-		}
-	}
-}
-
 void RPGGame::CreateMap(World* pWorld)
 {
-	_map map_datas;
+	SpriteLoader::LoadFromFile("tile1_sprites.json");
+	SpriteLoader::LoadFromFile("tile1_auto_tile_sprites.json");
+	TiledMapCreator::LoadMapFromFile("map_1_1_tile_set.json", *pWorld);
 
+	for (auto* entity : pWorld->GetEntities())
 	{
-		IFile* pFile = GetMediaManager().FindMedia("map_1_1.json", true);
-		std::ifstream is(pFile->Fullname());
-		json j;
-		is >> j;
-		from_json(j["map"], map_datas);
+		auto* tileComponent = entity->GetComponentMgr()->GetComponent<TileComponent>();
+		if (tileComponent != nullptr && (AutoTile*)tileComponent->Tile() != nullptr)
+		{
+			auto* scriptComponent = new ScriptComponent(entity);
+			scriptComponent->SetScriptObject(new ScriptGrass(entity));
+			entity->GetComponentMgr()->AddComponent(scriptComponent);
+		}
 	}
-
-	auto tileSize = Vector2I(32, 32);
-	auto tileSetAssetFileName = map_datas.tile_set;
-
-	CreateTileSet(tileSize, tileSetAssetFileName);
-
-	TiledMapData tiled_map_parameters;
-
-	{
-		IFile* pFile = GetMediaManager().FindMedia("map_1_1_tile_set.json", true);
-		std::ifstream is(pFile->Fullname());
-		json j;
-		is >> j;
-		from_json(j, tiled_map_parameters);
-	}
-
-	//{
-	//	tiled_map_parameters.tileSize = tileSize;
-	//	tiled_map_parameters.mapSize = Vector2I(map_datas.sizeX, map_datas.sizeY);
-	//	CreateLayerNew(map_datas.tile_layer_1, tiled_map_parameters, 0.0f);
-	//	CreateLayerNew(map_datas.tile_layer_2, tiled_map_parameters, 0.1f);
-	//	CreateLayerNew(map_datas.tile_layer_4, tiled_map_parameters, 1.0f);
-	//	std::ofstream os("C:\\Users\\casad\\dev\\repo\\casaengine\\examples\\resources\\datas\\map_1_1_tile_set.json");
-	//	json j2;
-	//	to_json(j2, tiled_map_parameters);
-	//	os << std::setw(4) << j2 << std::endl; // pretty json
-	//}
-
-	TiledMapCreator::Create(tiled_map_parameters, *pWorld);
-
-	//create map
-	//auto* pEntity = new BaseEntity();
-	//pEntity->SetName("tiled map");
-	//pEntity->GetCoordinates().SetLocalPosition(Vector3(0.0f, 0.0f, 0.0f));
-	//pEntity->GetCoordinates().SetLocalRotation(0.0f);
-	//
-	//
-	//auto* pMap = new TiledMapComponent(pEntity);
-	//pMap->SetMapSize(Vector2I(map_datas.sizeX, map_datas.sizeY));
-	//pMap->SetTileSize(Vector2I(32, 32));
-	//
-	////layer 1
-	//CreateLayer(map_datas.tile_layer_1, pMap, 0);
-	//CreateLayer(map_datas.tile_layer_2, pMap, 0.01f);
-	//CreateLayer(map_datas.tile_layer_4, pMap, 1.0f);
-	//
-	//for (int i = 0; i < map_datas.tile_type_layer_1.size(); ++i)
-	//{
-	//	if (map_datas.tile_type_layer_1[i] == 1)
-	//	{
-	//		pMap->GetLayer(0)->GetTiles()[i]->IsWall(true);
-	//	}
-	//}
-	//
-	//pEntity->GetComponentMgr()->AddComponent(pMap);
-	//pWorld->AddEntity(pEntity);
-}
-
-void RPGGame::CreateAssets(Vector2I tileSize)
-{
-	TileSetData tileSetData;
-	tileSetData.tileSize = Vector2I(32, 32);
-	tileSetData.spriteSheetFileName = "Tile1.png";
-
-	//auto* pSprite = new SpriteData();
-	//pSprite->SetName("grass1");
-	//pSprite->SetPositionInTexture(CasaEngine::Rectangle(0, 0, tileSize.x, tileSize.y));
-	//pSprite->SetAssetFileName("Outside_A2.png");
-	//GetAssetManager().AddAsset(new Asset("grass1", pSprite));
-	//
-	//for (int y = 0; y < 3; ++y)
-	//{
-	//	for (int x = 0; x < 2; ++x)
-	//	{
-	//		pSprite = new SpriteData();
-	//		pSprite->SetName("grass1");
-	//		pSprite->SetPositionInTexture(CasaEngine::Rectangle(8 * tileSize.x + tileSize.x * x, y * tileSize.y, tileSize.x, tileSize.y));
-	//		pSprite->SetAssetFileName("Outside_A2.png");
-	//		std::ostringstream name;
-	//		name << "autoGrass2_" << x << "_" << y;
-	//		GetAssetManager().AddAsset(new Asset(name.str(), pSprite));
-	//	}
-	//}
-
-
 }
 
 void CreateSprite(const std::string tileSetName, const std::vector<_sprite>& sprites, const char* prefix)
@@ -420,13 +278,13 @@ void RPGGame::CreateSwordman(World* pWorld)
 	pPlayerEntity->GetComponentMgr()->AddComponent(scriptComponent);
 
 	//collision
-	auto* colliderComponent = new Circle2DColliderComponent(pPlayerEntity);
-	colliderComponent->SetCenter(Vector3::Zero());
-	colliderComponent->SetRadius(10.0f);
-	colliderComponent->AxisConstraint(AxisConstraints::XY);
-	//auto* colliderComponent = new Box2DColliderComponent(pPlayerEntity);
-	//colliderComponent->Set(0, 0, 10, 10);
-	pPlayerEntity->GetComponentMgr()->AddComponent(colliderComponent);
+	//auto* colliderComponent = new Circle2DColliderComponent(pPlayerEntity);
+	//colliderComponent->SetCenter(Vector3::Zero());
+	//colliderComponent->SetRadius(10.0f);
+	//colliderComponent->AxisConstraint(AxisConstraints::XY);
+	////auto* colliderComponent = new Box2DColliderComponent(pPlayerEntity);
+	////colliderComponent->Set(0, 0, 10, 10);
+	//pPlayerEntity->GetComponentMgr()->AddComponent(colliderComponent);
 
 	//debug
 	debugComponent = new DebugComponent(pPlayerEntity);

@@ -14,10 +14,11 @@
 #define CA_FILE_LINE_LITERAL "" __FILE__ "(" CA_STRINGIZE(__LINE__) "): "
 
 #define CA_ASSERT(x, format, ...) \
-	for(;;) { \
-	if (!(x)) { CA_ERROR("assert: " CA_STRINGIZE(format) " in " CA_FILE_LINE_LITERAL, ##__VA_ARGS__); \
-	CasaEngine::debugBreak(); } \
-	break; }
+for(;;) { \
+if (!(x)) { CA_ERROR("assert: " CA_STRINGIZE(format) " in " CA_FILE_LINE_LITERAL, ##__VA_ARGS__); \
+CasaEngine::debugBreak(); } \
+break; \
+}
 
 #else
 #   define CA_ASSERT( x, format, ...)

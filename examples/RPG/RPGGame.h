@@ -7,7 +7,6 @@
 #include "World/World.h"
 #include "Entities/Components/AnimatedSpriteComponent.h"
 #include "Entities/Components/Cameras/ArcBallCameraComponent.h"
-#include "Map2D/TiledMapComponent.h"
 
 using namespace CasaEngine;
 
@@ -24,7 +23,6 @@ public:
 
 private:
 	void CreateMap(World* pWorld);
-	void CreateAssets(Vector2I tileSize);
 	void CreateEnemies(World* pWorld);
 	void CreateSwordman(World* pWorld);
 

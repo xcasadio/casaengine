@@ -1,9 +1,7 @@
 #include "ScriptCharacter.h"
 
-constexpr ScriptObjectClassID ScriptCharacter::ClassID(0xC299A4EE);
-
 ScriptCharacter::ScriptCharacter(BaseEntity* entity_, Character* character) :
-	IScriptObject(entity_), m_pCharacter(character)
+	IScriptObject(entity_), _character(character)
 {
 }
 
@@ -13,12 +11,12 @@ ScriptCharacter::~ScriptCharacter()
 
 void ScriptCharacter::OnInitialize()
 {
-	m_pCharacter->Initialize();
+	_character->Initialize();
 }
 
 void ScriptCharacter::OnUpdate(const GameTime& gameTime_)
 {
-	m_pCharacter->Update(gameTime_);
+	_character->Update(gameTime_);
 }
 
 bool ScriptCharacter::HandleMessage(const Telegram& msg)

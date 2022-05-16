@@ -1,5 +1,4 @@
-#ifndef LOGMANAGER_H_
-#define LOGMANAGER_H_
+#pragma once
 
 #include "Logger.h"
 #include "CA_Export.h"
@@ -23,24 +22,22 @@ namespace CasaEngine
 		static LogManager& Instance();
 		static void Destroy();
 
-		void AddLogger(ILogger* logger_);
-		void RemoveLogger(ILogger* logger_);
+		void AddLogger(ILogger* logger);
+		void RemoveLogger(const ILogger* logger);
 
 		TLogVerbosity getVerbosity() const;
 		void setVerbosity(TLogVerbosity val);
 
-		void Log(TLogVerbosity verbose_, const char* Format, ...);
+		void Log(TLogVerbosity verbose, const char* format, ...);
 
 	private:
 		LogManager();
 		~LogManager();
 
 	private:
-		static LogManager* m_sInstance;
+		static LogManager* _instance;
 
-		TLogVerbosity m_Verbosity;
-		std::vector<ILogger*> m_Logs;
+		TLogVerbosity _verbosity;
+		std::vector<ILogger*> _logs;
 	};
 }
-
-#endif

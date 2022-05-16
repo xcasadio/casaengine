@@ -37,14 +37,14 @@ namespace CasaEngine
 		return nullptr;
 	}
 
-	EntityManager::EntityIterator EntityManager::cbegin() const
+	std::map<int, BaseEntity*>::const_iterator EntityManager::begin() const
 	{
-		return m_EntityMap.cbegin();
+		return m_EntityMap.begin();
 	}
 
-	EntityManager::EntityIterator EntityManager::cend() const
+	std::map<int, BaseEntity*>::const_iterator EntityManager::end() const
 	{
-		return m_EntityMap.cend();
+		return m_EntityMap.end();
 	}
 
 	void EntityManager::RemoveEntity(BaseEntity* pEntity)

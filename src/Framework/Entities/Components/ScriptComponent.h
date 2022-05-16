@@ -22,6 +22,5 @@ namespace CasaEngine
 
 	private:
 		IScriptObject* m_pScriptObject;
-		ScriptObjectClassID m_ClassID; //  the object classID used by this script
 	};
 }
