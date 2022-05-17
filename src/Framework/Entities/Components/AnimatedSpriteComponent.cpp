@@ -164,19 +164,16 @@ namespace CasaEngine
 		_spriteRenderer = Game::Instance().GetGameComponent<SpriteRenderer>();
 		CA_ASSERT(_spriteRenderer != nullptr, "AnimatedSpriteComponent::Initialize() can't find the component SpriteRenderer");
 
-		if (Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld() != nullptr)
+		for (auto* animation : _animationList)
 		{
-			for (auto* animation : _animationList)
+			for (auto& frame : dynamic_cast<Animation2DData*>(animation->GetAnimationData())->_frames)
 			{
-				for (auto& frame : dynamic_cast<Animation2DData*>(animation->GetAnimationData())->_frames)
+				if (_collisionObjectByFrameId.find(frame._spriteId) != _collisionObjectByFrameId.end())
 				{
-					if (_collisionObjectByFrameId.find(frame._spriteId) != _collisionObjectByFrameId.end())
-					{
-						continue; // already added
-					}
-
-					_collisionObjectByFrameId[frame._spriteId] = SpritePhysicsHelper::CreateCollisionsFromSprite(frame._spriteId, GetEntity());
+					continue; // already added
 				}
+
+				_collisionObjectByFrameId[frame._spriteId] = SpritePhysicsHelper::CreateCollisionsFromSprite(frame._spriteId, GetEntity());
 			}
 		}
 	}
@@ -225,7 +222,7 @@ namespace CasaEngine
 		{
 			for (auto* collObj : _collisionObjectByFrameId[_lastFrameId])
 			{
-				Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->RemoveCollisionObject(collObj);
+				Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld().RemoveCollisionObject(collObj);
 			}
 		}
 	}
@@ -233,18 +230,14 @@ namespace CasaEngine
 	bool AnimatedSpriteComponent::OnFrameChanged(const EventArgs& e)
 	{
 		const auto& event = static_cast<const FrameChangeEvent&>(e);
-
-		if (Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld() != nullptr)
+		
+		RemoveCollisionsFromLastFrame();
+		if (_collisionObjectByFrameId.find(event.ID()) != _collisionObjectByFrameId.end())
 		{
-			RemoveCollisionsFromLastFrame();
-
-			if (_collisionObjectByFrameId.find(event.ID()) != _collisionObjectByFrameId.end())
-			{
-				SpritePhysicsHelper::AddCollisionsFromSprite(GetEntity()->GetCoordinates().GetWorldMatrix().Translation(), event.ID(), _collisionObjectByFrameId[event.ID()]);
-			}
-
-			_lastFrameId = event.ID();
+			SpritePhysicsHelper::AddCollisionsFromSprite(GetEntity()->GetCoordinates().GetWorldMatrix().Translation(), event.ID(), _collisionObjectByFrameId[event.ID()]);
 		}
+
+		_lastFrameId = event.ID();
 
 		fireEvent(FrameChangeEvent::GetEventName(), const_cast<EventArgs&>(e));
 

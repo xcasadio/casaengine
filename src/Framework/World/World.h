@@ -1,5 +1,4 @@
-#ifndef WORLD_H_
-#define WORLD_H_
+#pragma once
 
 #include "CA_Export.h"
 
@@ -24,8 +23,7 @@ namespace CasaEngine
 		void AddEntity(BaseEntity* pEntity);
 		void RemoveEntity(BaseEntity* pEntity);
 
-		void SetPhysicsWorld(IPhysicsWorld *world_);
-		IPhysicsWorld *GetPhysicsWorld() const;
+		IPhysicsWorld& GetPhysicsWorld() const;
 
 		CellSpacePartition<BaseEntity *> &GetSpacePartition();
 
@@ -33,9 +31,9 @@ namespace CasaEngine
 		void Read(std::ifstream& is) override;
 
 	private:
-		std::vector<BaseEntity *> m_Entities;
-		IPhysicsWorld *m_pPhysicsWorld;
-		CellSpacePartition<BaseEntity *> m_CellSpacePartition;
+		std::vector<BaseEntity *> _entities;
+		IPhysicsWorld *_physicsWorld;
+		CellSpacePartition<BaseEntity *> _cellSpacePartition;
 
 	private:
 		class WorldComponent : public Component
@@ -52,5 +50,3 @@ namespace CasaEngine
 		};
 	};
 }
-
-#endif // WORLD_H_

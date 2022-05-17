@@ -32,7 +32,7 @@ namespace CasaEngine
 				}
 			}
 
-			auto* pObj = Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->CreateCollisionShape(entity, shape, Vector3::Zero(), collision.GetType(), CollisionFlags::NoResponse);
+			auto* pObj = Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld().CreateCollisionShape(entity, shape, Vector3::Zero(), collision.GetType(), CollisionFlags::NoResponse);
 			auto* bt_collision_object = dynamic_cast<BulletCollisionObjectContainer*>(pObj)->GetCollisionObject();
 			bt_collision_object->setCollisionFlags(btCollisionObject::CF_NO_CONTACT_RESPONSE);
 			auto* collision_parameters = new CollisionParameters(entity, &collision);
@@ -60,7 +60,7 @@ namespace CasaEngine
 			}
 		}
 		bt_collision_object->getWorldTransform().setOrigin(btVector3(translation.x - sprite_data->GetOrigin().x, translation.y - sprite_data->GetOrigin().y, translation.z));
-		Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->AddCollisionObject(collisionObject);
+		Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld().AddCollisionObject(collisionObject);
 	}
 
 	void SpritePhysicsHelper::AddCollisionsFromSprite(Vector3 translation, const std::string& spriteId, const std::vector<ICollisionObjectContainer*>& collisionObjects)

@@ -68,7 +68,7 @@ namespace CasaEngine
 		//mapEntity->IsPersistent(false);
 		world.AddEntity(mapEntity);
 
-		auto* physics_world = Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld();
+		auto& physics_world = Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld();
 		auto layerIndex = 0;
 
 		for (auto& layer : tiledMapData.layers)
@@ -132,8 +132,8 @@ namespace CasaEngine
 				{
 					auto* shape = new Rectangle(0, 0, tileSetData.tileSize.x, tileSetData.tileSize.y);
 					auto position = Vector3(posX + tileSetData.tileSize.x / 2.0f, posY + tileSetData.tileSize.y / 2.0f, 0.0f);
-					auto* collisionShape = physics_world->CreateCollisionShape(tileEntity, shape, position, CollisionHitType::Defense, collisionType == TileCollisionType::Blocked ? CollisionFlags::Static : CollisionFlags::NoResponse);
-					physics_world->AddCollisionObject(collisionShape);
+					auto* collisionShape = physics_world.CreateCollisionShape(tileEntity, shape, position, CollisionHitType::Defense, collisionType == TileCollisionType::Blocked ? CollisionFlags::Static : CollisionFlags::NoResponse);
+					physics_world.AddCollisionObject(collisionShape);
 				}
 				
 				auto* tileComponent = new TileComponent(tileEntity);

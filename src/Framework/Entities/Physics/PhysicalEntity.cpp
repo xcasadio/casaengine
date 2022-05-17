@@ -32,7 +32,7 @@ namespace CasaEngine
 				itColObj != it->second.end();
 				++itColObj)
 			{
-				Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld()->RemoveCollisionObject(*itColObj);
+				Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld().RemoveCollisionObject(*itColObj);
 				delete* itColObj;
 			}
 		}

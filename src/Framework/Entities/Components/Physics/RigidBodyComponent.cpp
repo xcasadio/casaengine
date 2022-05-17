@@ -19,8 +19,8 @@ namespace CasaEngine
 	void RigidBodyComponent::Initialize()
 	{
 		m_RigidBody.mass = 1.0f;
-		auto* physicsWorld = Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld();
-		IRigidBodyContainer* pContainer = physicsWorld->AddRigidBody(GetEntity(), &m_RigidBody, GetEntity()->GetCoordinates().GetPosition());
+		auto& physicsWorld = Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld();
+		IRigidBodyContainer* pContainer = physicsWorld.AddRigidBody(GetEntity(), &m_RigidBody, GetEntity()->GetCoordinates().GetPosition());
 		GetEntity()->GetPhysicalEntity().SetRigidBody(pContainer);
 	}
 

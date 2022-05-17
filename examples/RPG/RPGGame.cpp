@@ -77,9 +77,7 @@ void RPGGame::LoadContent()
 	Game::LoadContent();
 
 	m_pWorld = new World();
-	auto* physicWorld = GetPhysicsEngine().CreateWorld();
-	m_pWorld->SetPhysicsWorld(physicWorld);
-	physicWorld->SetGravity(Vector3::Zero());
+	m_pWorld->GetPhysicsWorld().SetGravity(Vector3::Zero());
 	GetGameInfo().SetWorld(m_pWorld);
 
 	CreateMap(m_pWorld);

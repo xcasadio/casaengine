@@ -7,27 +7,28 @@
 
 namespace CasaEngine
 {
-	World::World() :
-		m_pPhysicsWorld(nullptr)
+	World::World()
 	{
 		GetComponentMgr()->AddComponent(new WorldComponent(this));
 		//TODO : create parameters
-		m_CellSpacePartition.Build(50, 50, 7, 7);
+		_cellSpacePartition.Build(50, 50, 7, 7);
+
+		_physicsWorld = Game::Instance().GetPhysicsEngine().CreateWorld();
 	}
 
 	World::~World()
 	{
-		delete m_pPhysicsWorld;
+		delete _physicsWorld;
 	}
 
 	const std::vector<BaseEntity*>& World::GetEntities()
 	{
-		return m_Entities;
+		return _entities;
 	}
 
 	BaseEntity* World::GetEntityByName(const std::string& name)
 	{
-		for (const auto entity : m_Entities)
+		for (const auto entity : _entities)
 		{
 			if (entity->GetName() == name)
 			{
@@ -41,7 +42,7 @@ namespace CasaEngine
 	void World::AddEntity(BaseEntity* pEntity_)
 	{
 #ifdef EDITOR
-		for (const auto entity : m_Entities)
+		for (const auto entity : _entities)
 		{
 			if (std::strcmp(entity->GetName(), pEntity_->GetName()) == 0)
 			{
@@ -51,18 +52,13 @@ namespace CasaEngine
 			}
 		}
 #endif
-		m_Entities.push_back(pEntity_);
+		_entities.push_back(pEntity_);
 		
 	}
 
-	void World::SetPhysicsWorld(IPhysicsWorld* pWorld_)
+	IPhysicsWorld& World::GetPhysicsWorld() const
 	{
-		m_pPhysicsWorld = pWorld_;
-	}
-
-	IPhysicsWorld* World::GetPhysicsWorld() const
-	{
-		return m_pPhysicsWorld;
+		return *_physicsWorld;
 	}
 
 	void World::Read(std::ifstream& is)
@@ -75,7 +71,7 @@ namespace CasaEngine
 
 	CellSpacePartition<BaseEntity*>& World::GetSpacePartition()
 	{
-		return m_CellSpacePartition;
+		return _cellSpacePartition;
 	}
 
 	//////////////////////////////////////////////////////////////////////////
@@ -97,10 +93,7 @@ namespace CasaEngine
 
 	void World::WorldComponent::Update(const GameTime& gameTime_)
 	{
-		if (m_pWorld->GetPhysicsWorld() != nullptr)
-		{
-			m_pWorld->GetPhysicsWorld()->Update(gameTime_);
-		}
+		m_pWorld->GetPhysicsWorld().Update(gameTime_);
 
 		for (auto it = m_pWorld->GetEntities().begin();
 		     it != m_pWorld->GetEntities().end();
@@ -112,10 +105,7 @@ namespace CasaEngine
 
 	void World::WorldComponent::Draw()
 	{
-		if (m_pWorld->GetPhysicsWorld() != nullptr)
-		{
-			m_pWorld->GetPhysicsWorld()->Draw();
-		}
+		m_pWorld->GetPhysicsWorld().Draw();
 
 		for (auto it = m_pWorld->GetEntities().begin();
 		     it != m_pWorld->GetEntities().end();
