@@ -326,6 +326,7 @@
     <ClInclude Include="..\..\src\Framework\AI\Steering\SteeringParams.h" />
     <ClInclude Include="..\..\src\Framework\Animations\Animation.h" />
     <ClInclude Include="..\..\src\Framework\Animations\Animation2D.h" />
+    <ClInclude Include="..\..\src\Framework\Animations\Animation2dLoader.h" />
     <ClInclude Include="..\..\src\Framework\Animations\Animation2DPlayer.h" />
     <ClInclude Include="..\..\src\Framework\Animations\AnimationEndEvent.h" />
     <ClInclude Include="..\..\src\Framework\Animations\AnimationEvent.h" />
@@ -505,6 +506,7 @@
     <ClCompile Include="..\..\src\Framework\AI\Fuzzy\FuzzyVariable.cpp" />
     <ClCompile Include="..\..\src\Framework\Animations\Animation.cpp" />
     <ClCompile Include="..\..\src\Framework\Animations\Animation2D.cpp" />
+    <ClCompile Include="..\..\src\Framework\Animations\Animation2dLoader.cpp" />
     <ClCompile Include="..\..\src\Framework\Animations\Animation2DPlayer.cpp" />
     <ClCompile Include="..\..\src\Framework\Animations\AnimationEndEvent.cpp" />
     <ClCompile Include="..\..\src\Framework\Animations\AnimationEvent.cpp" />

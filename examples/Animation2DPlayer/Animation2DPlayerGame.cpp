@@ -20,10 +20,12 @@
 #include <IO/File.h>
 #include <save_load_types.h>
 #include "../../external/dear-imgui/imgui.h"
+#include "Animations/Animation2dLoader.h"
 #include "Entities/Components/DebugComponent.h"
 #include "Entities/Components/Cameras/Camera2DComponent.h"
 #include "Entities/Components/Cameras/Camera2DTargetedComponent.h"
 #include "Serializer/Serializer.h"
+#include "Sprite/SpriteLoader.h"
 
 using namespace CasaEngine;
 
@@ -80,6 +82,9 @@ void Animation2DPlayerGame::LoadContent()
 {
 	Game::LoadContent();
 
+	SpriteLoader::LoadFromFile("sprites.json");
+	auto animations = Animation2dLoader::LoadFromFile("animations.json");
+
 	m_pWorld = new World();
 	GetGameInfo().SetWorld(m_pWorld);
 
@@ -92,8 +97,10 @@ void Animation2DPlayerGame::LoadContent()
 
 	m_pAnimatedSprite = new AnimatedSpriteComponent(pEntity);
 	pEntity->GetComponentMgr()->AddComponent(m_pAnimatedSprite);
-	LoadSprites();
-	LoadAnimations(m_pAnimatedSprite);
+	for (auto& animation : animations)
+	{
+		m_pAnimatedSprite->AddAnimation(new Animation2D(*animation.Copy()));
+	}
 	m_pAnimatedSprite->SetCurrentAnimation(1);
 
 	auto* debugComponent = new DebugComponent(pEntity);
@@ -140,148 +147,6 @@ void Animation2DPlayerGame::LoadContent()
 	}
 
 	copy_animations_name();
-}
-
-void Animation2DPlayerGame::LoadAnimations(AnimatedSpriteComponent* pAnimatedComponent)
-{
-	/*
-	auto* pFile = GetMediaManager().FindMedia("ryu_animations.json", true);
-	std::ifstream is(pFile->Fullname());
-	cereal::JSONInputArchive ar(is);
-	animations animations;
-	ar(cereal::make_nvp("animations", animations));
-
-	std::vector<Animation2DData> anims;
-
-	for (auto animation : animations.animations)
-	{
-		auto* animation2D = new Animation2DData();
-		std::ostringstream number;
-		number << animation.Number;
-		animation2D->SetName(number.str());
-		animation2D->SetAnimationType(AnimationType::Loop);
-
-		for (auto frame : animation.Frames)
-		{
-			if (GetAssetManager().Contains(frame.SpriteId))
-			{
-				auto* sprite = GetAssetManager().GetAsset<SpriteData>(frame.SpriteId);
-				for (auto& coll : frame.Collisions)
-				{
-					auto* collision = new Collision();
-					collision->SetType(coll.ClsnType == 1 ? CollisionType::Attack : CollisionType::Defense);
-					auto* rect = new Rectangle(coll.X, coll.Y, coll.Width, coll.Height);
-					collision->SetShape(rect);
-					sprite->GetCollisions().push_back(*collision);
-				}
-			}
-
-			auto* frameData = new FrameData();
-			frameData->SetSpriteId(frame.SpriteId.c_str());
-			frameData->SetDuration(frame.GameTick * 0.16f); // 0.048f;
-			animation2D->AddFrame(*frameData);
-		}
-
-		GetAssetManager().AddAsset(new Asset(animation2D->GetName(), animation2D));
-		pAnimatedComponent->AddAnimation(new Animation2D(*animation2D));
-
-		anims.push_back(*animation2D);
-	}
-	*/
-
-	//save sprites and animations
-	/*
-	std::ofstream os("C:\\Users\\casad\\dev\\repo\\casaengine\\examples\\resources\\datas\\animations.json");
-	cereal::JSONOutputArchive ar2(os);
-	ar2(cereal::make_nvp("animations", anims));
-
-
-	auto spriteDatasPtr = GetAssetManager().GetAssets<SpriteData>();
-	std::vector<SpriteData> spriteDatas;
-	spriteDatas.resize(spriteDatasPtr.size());
-	std::transform(spriteDatasPtr.begin(), spriteDatasPtr.end(), spriteDatas.begin(), [](SpriteData* x) { return *x; });
-	std::ofstream spritesStream("C:\\Users\\casad\\dev\\repo\\casaengine\\examples\\resources\\datas\\sprites.json");
-	cereal::JSONOutputArchive arSprites(spritesStream);
-	arSprites(cereal::make_nvp("sprites", spriteDatas));
-	*/
-
-	auto* const pFile = GetMediaManager().FindMedia("animations.json", true);
-	std::ifstream is(pFile->Fullname());
-	std::vector<Animation2DData> anim2DDatas;
-	json j;
-	is >> j;
-	from_json(j["animations"], anim2DDatas);
-	
-	for (auto& data : anim2DDatas)
-	{
-		auto* animation = data.Copy();
-		GetAssetManager().AddAsset(new Asset(data.GetName(), animation));
-		pAnimatedComponent->AddAnimation(new Animation2D(*animation));
-	}
-
-	//std::ofstream os("C:\\Users\\casad\\dev\\repo\\casaengine\\examples\\resources\\datas\\animations_cop.json");
-	//json j2;
-	//to_json(j2, anim2DDatas, "animations");
-	//os << std::setw(4) << j2 << std::endl; // pretty json
-}
-
-void Animation2DPlayerGame::LoadSprites()
-{
-	/*
-	auto* pFile = GetMediaManager().FindMedia("ryu_sprites.json", true);
-	std::ifstream is(pFile->Fullname());
-	cereal::JSONInputArchive ar(is);
-	sprites sprites;
-	ar(cereal::make_nvp("sprites", sprites));
-
-	std::vector<SpriteData> spriteDatas;
-
-	for (auto sprite : sprites.sprites)
-	{
-		auto* spriteData = new SpriteData();
-		spriteData->SetOrigin(Vector2I(sprite.X, sprite.Y));
-		spriteData->SetPositionInTexture(Rectangle(sprite.posInTextureX, sprite.posInTextureY, sprite.SpriteSizeX, sprite.SpriteSizeY));
-		spriteData->SetAssetFileName("ryu.png"); // TODO : read from file
-		spriteData->SetName(sprite.Id);
-		GetAssetManager().AddAsset(new Asset(sprite.Id, spriteData));
-
-		spriteDatas.push_back(*spriteData);
-	}
-	*/
-
-	auto* const pFile = GetMediaManager().FindMedia("sprites.json", true);
-	std::ifstream is(pFile->Fullname());
-	std::vector<SpriteData> spriteDatas;
-	json j;
-	is >> j;
-	from_json(j["sprites"], spriteDatas);
-
-	for (auto& data : spriteDatas)
-	{/*
-		std::vector<Collision> collisions;
-
-		for (auto& coll : data.GetCollisions())
-		{
-			auto* rectangle = dynamic_cast<Rectangle *>(coll.GetShape());
-			rectangle->x += data.GetOrigin().x;
-			rectangle->y += data.GetOrigin().y;
-			collisions.push_back(coll);
-		}
-
-		data.GetCollisions().clear();
-
-		for (auto& coll : collisions)
-		{
-			data.GetCollisions().push_back(coll);
-		}
-		*/
-		GetAssetManager().AddAsset(new Asset(data.GetName(), data.Copy()));
-	}
-
-	//std::ofstream os("C:\\Users\\casad\\dev\\repo\\casaengine\\examples\\resources\\datas\\sprites_cop.json");
-	//json j2;
-	//to_json(j2, spriteDatas, "sprites");
-	//os << std::setw(4) << j2 << std::endl; // pretty json
 }
 
 void Animation2DPlayerGame::Update(const GameTime& gameTime_)

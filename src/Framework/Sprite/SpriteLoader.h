@@ -1,13 +1,15 @@
 #pragma once
 
 #include <string>
+#include <vector>
 #include "CA_Export.h"
+#include "Datas/SpriteData.h"
 
 namespace CasaEngine
 {
 	class CA_EXPORT SpriteLoader
 	{
 	public:
-		static void LoadFromFile(const std::string& fileName);
+		static std::vector<SpriteData> LoadFromFile(const std::string& fileName);
 	};
 }

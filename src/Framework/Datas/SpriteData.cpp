@@ -65,7 +65,7 @@ namespace CasaEngine
 		_collisionShapes.clear();*/
 	}
 
-	SpriteData* SpriteData::Copy()
+	SpriteData* SpriteData::Copy() const
 	{
 		return new SpriteData(*this);
 	}

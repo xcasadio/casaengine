@@ -3,9 +3,7 @@
 #include "GameTime.h"
 #include "Game/Game.h"
 
-#include "Sprite/SpriteRenderer.h"
 #include "World/World.h"
-#include "Entities/Components/AnimatedSpriteComponent.h"
 
 using namespace CasaEngine;
 
@@ -23,10 +21,7 @@ public:
 	void Draw() override;
 
 private:
-	std::vector<Animation2DData> LoadAnimations();
-	void LoadSprites();
 	void DisplayUI();
 
-private:
 	World* m_pWorld;
 };

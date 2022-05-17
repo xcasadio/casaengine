@@ -912,6 +912,9 @@
     <ClInclude Include="..\..\src\Framework\Datas\TileSetData.h">
       <Filter>Framework\Datas</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Framework\Animations\Animation2dLoader.h">
+      <Filter>Framework\Animations</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Core\DateTime.cpp">
@@ -1384,6 +1387,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Framework\Datas\TileSetData.cpp">
       <Filter>Framework\Datas</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Framework\Animations\Animation2dLoader.cpp">
+      <Filter>Framework\Animations</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

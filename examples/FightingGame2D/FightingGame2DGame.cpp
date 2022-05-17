@@ -22,10 +22,12 @@
 #include "Sprite/SpriteTypes.h"
 #include <IO/File.h>
 #include "../../external/dear-imgui/imgui.h"
+#include "Animations/Animation2dLoader.h"
 #include "Entities/Components/DebugComponent.h"
 #include "Entities/Components/ScriptComponent.h"
 #include "Entities/Components/Cameras/Camera2DTargetedComponent.h"
 #include "Serializer/Serializer.h"
+#include "Sprite/SpriteLoader.h"
 #include "Stages/Stage.h"
 
 using namespace CasaEngine;
@@ -67,8 +69,36 @@ void FightingGame2DGame::Initialize()
 void FightingGame2DGame::LoadContent()
 {
 	Game::LoadContent();
-	LoadSprites();
-	auto animations = LoadAnimations();
+	SpriteLoader::LoadFromFile("sprites.json");
+	auto animations = Animation2dLoader::LoadFromFile("animations.json");
+
+	//std::vector<int> animToDelete;
+	//
+	//for (int i = 0; i < animations.size(); ++i)
+	//{
+	//	for (const auto& frame : animations[i]._frames)
+	//	{
+	//		if (GetAssetManager().Contains(frame._spriteId) == false)
+	//		{
+	//			animToDelete.push_back(i);
+	//			break;
+	//		}			
+	//	}
+	//}
+	//
+	//std::vector<Animation2DData> animValidated;
+	//for (int i = 0; i < animations.size(); ++i)
+	//{
+	//	if (std::find(animToDelete.begin(), animToDelete.end(), i) == animToDelete.end())
+	//	{
+	//		animValidated.push_back(animations[i]);
+	//	}
+	//}
+	//
+	//std::ofstream os("C:\\Users\\casad\\dev\\repo\\casaengine\\examples\\resources\\datas\\animations_cop.json");
+	//json j;
+	//to_json(j, animValidated, "animations");
+	//os << std::setw(4) << j << std::endl; // pretty json
 
 	m_pWorld = new World();
 	GetGameInfo().SetWorld(m_pWorld);
@@ -148,43 +178,6 @@ void FightingGame2DGame::LoadContent()
 	stage->SetStageInfo(stageInfo);
 	
 	m_pWorld->Initialize();
-}
-
-std::vector<Animation2DData> FightingGame2DGame::LoadAnimations()
-{
-	auto* const pFile = GetMediaManager().FindMedia("animations.json", true);
-	std::ifstream is(pFile->Fullname());
-	std::vector<Animation2DData> anim2DDatas;
-	json j;
-	is >> j;
-	from_json(j["animations"], anim2DDatas);
-	//cereal::JSONInputArchive ar(is);
-	//ar(cereal::make_nvp("animations", anim2DDatas));
-
-	for (auto& data : anim2DDatas)
-	{
-		auto* animation = data.Copy();
-		GetAssetManager().AddAsset(new Asset(data.GetName(), animation));
-	}
-
-	return anim2DDatas;
-}
-
-void FightingGame2DGame::LoadSprites()
-{
-	auto* const pFile = GetMediaManager().FindMedia("sprites.json", true);
-	std::ifstream is(pFile->Fullname());
-	std::vector<SpriteData> spriteDatas;
-	json j;
-	is >> j;
-	from_json(j["sprites"], spriteDatas);
-	//cereal::JSONInputArchive ar(is);
-	//ar(cereal::make_nvp("sprites", spriteDatas));
-
-	for (auto& data : spriteDatas)
-	{
-		GetAssetManager().AddAsset(new Asset(data.GetName(), data.Copy()));
-	}
 }
 
 void FightingGame2DGame::Update(const GameTime& gameTime_)

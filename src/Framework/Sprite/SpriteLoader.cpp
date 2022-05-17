@@ -5,7 +5,7 @@
 
 namespace CasaEngine
 {
-	void SpriteLoader::LoadFromFile(const std::string& fileName)
+	std::vector<SpriteData> SpriteLoader::LoadFromFile(const std::string& fileName)
 	{
 		std::vector<SpriteData> sprites;
 		auto* file = Game::Instance().GetMediaManager().FindMedia(fileName, false);
@@ -15,9 +15,11 @@ namespace CasaEngine
 		ss >> j;
 		from_json(j["sprites"], sprites);
 
-		for (auto sprite : sprites)
+		for (const auto& sprite : sprites)
 		{
 			Game::Instance().GetAssetManager().AddAsset(sprite.GetName(), sprite.Copy());
 		}
+
+		return sprites;
 	}
 }

@@ -23,8 +23,6 @@ public:
 	void Draw() override;
 
 private:
-	void LoadAnimations(AnimatedSpriteComponent* pAnimatedComponent);
-	void LoadSprites();
 	void RenameAnimation(const char* old_name, const char* new_name);
 	void DisplayUI();
 

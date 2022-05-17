@@ -27,7 +27,7 @@ namespace CasaEngine
 
 		std::vector<Collision> _collisionShapes;
 
-		SpriteData* Copy();
+		SpriteData* Copy() const;
 
 		//#if EDITOR
 		void SetPositionInTexture(Rectangle val);
