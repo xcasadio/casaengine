@@ -106,15 +106,15 @@ namespace CasaEngine
 
 	void AutoTile::Draw(float x, float y, float z, const Rectangle& uvOffset)
 	{
-		for (const auto& _drawingInfo : _drawingInfos)
+		for (const auto& drawingInfo : _drawingInfos)
 		{
-			if (_drawingInfo.tileIndex != -1)
+			if (drawingInfo.tileIndex != -1)
 			{
-				_tiles[_drawingInfo.tileIndex]->Draw(
-					x + _drawingInfo.x_offset,
-					y + _drawingInfo.y_offset,
-					z + _drawingInfo.z_offset,
-					_drawingInfo.posInTexture);
+				_tiles[drawingInfo.tileIndex]->Draw(
+					x + drawingInfo.x_offset,
+					y + drawingInfo.y_offset,
+					z + drawingInfo.z_offset,
+					drawingInfo.posInTexture);
 			}
 		}
 	}
