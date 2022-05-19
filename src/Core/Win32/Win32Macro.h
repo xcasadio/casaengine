@@ -1,5 +1,4 @@
-#ifndef WIN32MACRO_H__
-#define WIN32MACRO_H__
+#pragma once
 
 #include "Log/Logger.h"
 #include "Win32/Win32Exception.h"
@@ -25,5 +24,3 @@ namespace CasaEngine
 		}
 	}
 }
-
-#endif // #ifndef WIN32MACRO_H__

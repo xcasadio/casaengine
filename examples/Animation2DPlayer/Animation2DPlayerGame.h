@@ -32,6 +32,7 @@ private:
 	World* m_pWorld;
 
 	int m_AnimationIndexSelected, m_LastAnimationIndexSelected;
+	int m_AnimationTypeIndexSelected, m_LastAnimationTypeIndexSelected;
 	int m_FrameIndexSelected, m_LastFrameIndexSelected;
 	int m_CollisionIndexSelected, m_LastCollisionIndexSelected;
 };

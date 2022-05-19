@@ -1,18 +1,11 @@
-#ifndef CONTAINERUTIL_H_
-#define CONTAINERUTIL_H_
+#pragma once
 
 #include <vector>
 
 namespace CasaEngine
 {
-	/*
-	 *
-	 */
 	inline double StandardDeviation(const std::vector<double>& v);
 
-	/*
-	 *
-	 */
 	template <class T>
 	double Average(const std::vector<T>& v)
 	{
@@ -26,9 +19,6 @@ namespace CasaEngine
 		return average / static_cast<double>(v.size());
 	}
 
-	/*
-	 *
-	 */
 	template <class container>
 	void DeleteSTLContainer(container& c)
 	{
@@ -39,9 +29,6 @@ namespace CasaEngine
 		}
 	}
 
-	/*
-	 *
-	 */
 	template <class map>
 	void DeleteSTLMap(map& m)
 	{
@@ -52,5 +39,3 @@ namespace CasaEngine
 		}
 	}
 }
-
-#endif

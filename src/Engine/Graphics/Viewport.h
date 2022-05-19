@@ -1,10 +1,8 @@
-#ifndef _VIEWPORT_H_
-#define _VIEWPORT_H_
+#pragma once
 
 #include "CA_Export.h"
 #include "Maths/Vector3.h"
 #include "Maths/Matrix4.h"
-
 
 namespace CasaEngine
 {
@@ -14,7 +12,7 @@ namespace CasaEngine
 		Viewport();
 		Viewport(const Viewport& rsh_);
 		Viewport(float x, float y, float width, float height);
-		const Viewport& operator = (const Viewport& rsh_);
+		Viewport& operator = (const Viewport& rsh_);
 
 		float X() const;
 		void X(float val);
@@ -33,8 +31,6 @@ namespace CasaEngine
 		Vector3 Unproject(const Vector3& source, const Matrix4& projection, const Matrix4& view, const Matrix4& world) const;
 
 	private:
-		void ComputeAspectRatio();
-
 		float m_X{};
 		float m_Y{};
 		float m_Width{};
@@ -43,5 +39,3 @@ namespace CasaEngine
 		float m_fFarClipPlane{};
 	};
 }
-
-#endif

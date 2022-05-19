@@ -1,5 +1,4 @@
-#ifndef _CASAENGINESlotFunctorBase_h_
-#define _CASAENGINESlotFunctorBase_h_
+#pragma once
 
 #include "CA_Export.h"
 
@@ -22,5 +21,3 @@ namespace CasaEngine
 		virtual bool operator()(const EventArgs& args) = 0;
 	};
 }
-
-#endif

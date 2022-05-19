@@ -1,5 +1,4 @@
-#ifndef _ASSET_H_
-#define _ASSET_H_
+#pragma once
 
 #include <string>
 
@@ -60,5 +59,3 @@ namespace CasaEngine
 		return val != nullptr;
 	}
 }
-
-#endif

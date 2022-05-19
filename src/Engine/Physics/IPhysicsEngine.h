@@ -1,5 +1,4 @@
-#ifndef IPHYSICSENGINE_H_
-#define IPHYSICSENGINE_H_
+#pragma once
 
 #include "CA_Export.h"
 #include "IPhysicsWorld.h"
@@ -17,5 +16,3 @@ namespace CasaEngine
 		virtual IPhysicsWorld* CreateWorld() = 0;
 	};
 }
-
-#endif

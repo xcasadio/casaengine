@@ -1,5 +1,4 @@
-#ifndef _LINE2DRENDERERCOMPONENT_H_
-#define _LINE2DRENDERERCOMPONENT_H_
+#pragma once
 
 #include "CA_Export.h"
 
@@ -32,18 +31,18 @@ namespace CasaEngine
 		~Line2DRendererComponent() override;
 
 		void OnLoadContent() override;
-		void Update( const GameTime& gameTime_ ) override;
+		void Update(const GameTime& gameTime_) override;
 		void Draw() override;
-		
-		void AddLine(const Vector2 &start_, const Color &startColor_,	const Vector2 &end_, const Color &endColor_);
-		void AddLine(const Vector2 &start_, const unsigned int &startColor_, const Vector2 &end_, const unsigned int &endColor_);
-		
+
+		void AddLine(const Vector2& start_, const Color& startColor_, const Vector2& end_, const Color& endColor_);
+		void AddLine(const Vector2& start_, const unsigned int& startColor_, const Vector2& end_, const unsigned int& endColor_);
+
 	private:
 		void BuildVB();
 
 	private:
 		bgfx::DynamicVertexBufferHandle m_VertexBuffer{};
-		std::vector<LineRenderer2DData *> m_Lines;
+		std::vector<LineRenderer2DData*> m_Lines;
 		bool m_bRecomputeVB;
 		unsigned int m_NbLines;
 
@@ -51,5 +50,3 @@ namespace CasaEngine
 	};
 
 }
-
-#endif

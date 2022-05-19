@@ -71,21 +71,39 @@ namespace CasaEngine
 		bool isFinished = false;
 		const float lastTime = m_CurrentTime;
 		m_CurrentTime += elapsedTime_;
+		float currentTime = m_CurrentTime;
 
 		if (m_pAnimationData->_animationType == AnimationType::Loop)
 		{
 			while(m_CurrentTime > totalTime)
 			{
 				m_CurrentTime -= totalTime;
-				isFinished = true;
+				//isFinished = true;
 			}
+			currentTime = m_CurrentTime;
 		}
 		else if (m_pAnimationData->_animationType == AnimationType::Once)
 		{
 			if (m_CurrentTime > totalTime)
 			{
 				m_CurrentTime = totalTime;
+				currentTime = m_CurrentTime;
 				isFinished = true;
+			}
+		}
+		else if (m_pAnimationData->_animationType == AnimationType::PingPong)
+		{
+			int pingPongState = 0;
+
+			while (currentTime > totalTime)
+			{
+				currentTime -= totalTime;
+				pingPongState = 1 - pingPongState;
+			}
+
+			if (pingPongState == 1)
+			{
+				currentTime = totalTime - currentTime;
 			}
 		}
 		else
@@ -102,10 +120,9 @@ namespace CasaEngine
 		for (auto* event : m_Events)
 		{
 			if (lastTime >= event->Time()
-				&& event->Time() < m_CurrentTime)
+				&& event->Time() < currentTime)
 			{
 				event->Activate(this);
-				//activeEvents.push_back(it);
 			}
 		}
 	}

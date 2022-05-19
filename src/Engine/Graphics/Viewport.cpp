@@ -18,17 +18,7 @@ namespace CasaEngine
 	{
 	}
 
-	const Viewport& Viewport::operator = (const Viewport& rsh_)
-	{
-		m_X = rsh_.m_X;
-		m_Y = rsh_.m_Y;
-		m_Width = rsh_.m_Width;
-		m_Height = rsh_.m_Height;
-		m_fNearClipPlane = rsh_.m_fNearClipPlane;
-		m_fFarClipPlane = rsh_.m_fFarClipPlane;
-
-		return *this;
-	}
+	Viewport& Viewport::operator = (const Viewport& rsh_) = default;
 
 	float Viewport::X() const { return m_X; }
 

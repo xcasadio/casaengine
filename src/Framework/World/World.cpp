@@ -39,34 +39,38 @@ namespace CasaEngine
 		return nullptr;
 	}
 
-	void World::AddEntity(BaseEntity* pEntity_)
+	void World::AddEntity(BaseEntity* entity_)
 	{
 #ifdef EDITOR
-		for (const auto entity : _entities)
+		for (const auto e : _entities)
 		{
-			if (std::strcmp(entity->GetName(), pEntity_->GetName()) == 0)
+			if (std::strcmp(entity_->GetName(), e->GetName()) == 0)
 			{
 				std::ostringstream oss;
-				oss << "World::AddEntity() : entity " << pEntity_->GetName() << " (" << pEntity_->Id() << ")" << " is already added";
+				oss << "World::AddEntity() : entity " << e->GetName() << " (" << e->Id() << ")" << " is already added";
 				throw ArgumentException(oss.str());
 			}
 		}
 #endif
-		_entities.push_back(pEntity_);
+		_entities.push_back(entity_);
 		
+	}
+
+	void World::RemoveEntity(const BaseEntity* entity)
+	{
+		for (auto it = _entities.begin(); it != _entities.end(); ++it)
+		{
+			if (std::strcmp(entity->GetName(), (*it)->GetName()) == 0)
+			{
+				_entities.erase(it); // TODO : not optimal !!! prefer nullptr ??
+				break;
+			}
+		}
 	}
 
 	IPhysicsWorld& World::GetPhysicsWorld() const
 	{
 		return *_physicsWorld;
-	}
-
-	void World::Read(std::ifstream& is)
-	{
-	}
-
-	void World::Write(std::ostream& os)
-	{
 	}
 
 	CellSpacePartition<BaseEntity*>& World::GetSpacePartition()

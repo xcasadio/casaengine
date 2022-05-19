@@ -93,7 +93,7 @@ namespace CasaEngine
 		return _name.c_str();
 	}
 
-	void BaseEntity::SetName(std::string &val)
+	void BaseEntity::SetName(const std::string &val)
 	{
 		_name = val;
 	}
@@ -131,16 +131,6 @@ namespace CasaEngine
 	void BaseEntity::IsVisible( bool val )
 	{
 		_isVisible = val;
-	}
-
-	void BaseEntity::Read (std::ifstream& /*is*/)
-	{
-
-	}
-
-	void BaseEntity::Write(std::ostream& /*os*/)
-	{
-
 	}
 
 	PhysicalEntity & BaseEntity::GetPhysicalEntity()

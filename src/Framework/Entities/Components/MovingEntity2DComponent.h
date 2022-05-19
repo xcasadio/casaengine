@@ -1,5 +1,4 @@
-#ifndef MOVING_ENTITY_2D_COMPONENT_H_
-#define MOVING_ENTITY_2D_COMPONENT_H_
+#pragma once
 
 #include "CA_Export.h"
 #include "GameTime.h"
@@ -13,7 +12,7 @@ namespace CasaEngine
 	class SteeringBehaviorComponent;
 
 	/**
-	 *	
+	 *
 	 */
 	class CA_EXPORT MovingEntity2DComponent :
 		public Component
@@ -22,7 +21,7 @@ namespace CasaEngine
 		SteeringBehaviorComponent* m_pSteering;
 		//some steering behaviors give jerky looking movement. The
 		//following members are used to smooth the vehicle's heading
-		Smoother<Vector2>*  m_pHeadingSmoother;
+		Smoother<Vector2>* m_pHeadingSmoother;
 
 		//this vector represents the average of the vehicle's heading
 		//vector smoothed over the last few frames
@@ -55,10 +54,8 @@ namespace CasaEngine
 		void ToggleSmoothing();
 
 		//entities should be able to read/write their data to a stream
-		void Write(std::ostream&  os)const;
-		void Read (std::ifstream& is);
+		void Write(std::ostream& os)const;
+		void Read(std::ifstream& is);
 
 	};// class MovingEntity2DComponent
 }
-
-#endif // MOVING_ENTITY_2D_COMPONENT_H_

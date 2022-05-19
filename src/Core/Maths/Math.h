@@ -1,5 +1,4 @@
-#ifndef MATH_H_
-#define MATH_H_
+#pragma once
 
 #include <cmath>
 #include <limits>
@@ -195,5 +194,3 @@ namespace CasaEngine
 		return result == value ? result : result << 1;
 	}
 }
-
-#endif

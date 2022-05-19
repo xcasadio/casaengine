@@ -1,15 +1,4 @@
-//------------------------------------------------------------------------
-//
-//  Name:   Miner.h
-//
-//  Desc:   A class defining a goldminer.
-//
-//  Author: Mat Buckland 2002 (fup@ai-junkie.com)
-//
-//------------------------------------------------------------------------
-
-#ifndef MINERCOMPONENT_H_
-#define MINERCOMPONENT_H_
+#pragma once
 
 #include <iosfwd>
 
@@ -28,9 +17,7 @@ const int ThirstLevel = 5;
 //above this value a miner is sleepy
 const int TirednessThreshold = 5;
 
-/**
- *
- */
+
 class MinerComponent :
 	public Component
 {
@@ -100,5 +87,3 @@ public:
 	int GetWifeID() const { return m_WifeID; }
 	void SetWifeID(int val) { m_WifeID = val; }
 };
-
-#endif

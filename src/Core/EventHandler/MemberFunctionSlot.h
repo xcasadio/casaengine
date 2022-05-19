@@ -1,5 +1,4 @@
-#ifndef _CASAENGINEMemberFunctionSlot_h_
-#define _CASAENGINEMemberFunctionSlot_h_
+#pragma once
 
 #include "SlotFunctorBase.h"
 
@@ -32,5 +31,3 @@ namespace CasaEngine
 		T* d_object;
 	};
 }
-
-#endif 

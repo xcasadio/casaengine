@@ -1,5 +1,4 @@
-#ifndef _DRAWABLEGAMECOMPONENT_H_
-#define _DRAWABLEGAMECOMPONENT_H_
+#pragma once
 
 #include "CA_Export.h"
 #include "GameComponent.h"
@@ -8,7 +7,7 @@
 namespace CasaEngine
 {
 	class Game;
-	
+
 	class CA_EXPORT DrawableGameComponent :
 		public IGameComponent
 	{
@@ -19,15 +18,13 @@ namespace CasaEngine
 		int DrawOrder() const;
 		void DrawOrder(int val);
 
-	protected :
+	protected:
 		DrawableGameComponent(Game* pGame_);
 
-		void Update( const GameTime& gameTime_ ) override = 0;
+		void Update(const GameTime& gameTime_) override = 0;
 
 	private:
-		int m_DrawOrder;		
+		int m_DrawOrder;
 	};
 
 }
-
-#endif

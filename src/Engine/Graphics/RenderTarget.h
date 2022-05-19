@@ -1,5 +1,4 @@
-#ifndef _RENDERTARGET_H_
-#define _RENDERTARGET_H_
+#pragma once
 
 #include "CA_Export.h"
 #include "Maths/Rectangle.h"
@@ -27,5 +26,3 @@ namespace CasaEngine
 		Rectangle m_Area;
 	};
 }
-
-#endif

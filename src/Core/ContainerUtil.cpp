@@ -4,17 +4,14 @@
 
 namespace CasaEngine
 {
-	/*
-	 *
-	 */
 	inline double StandardDeviation(const std::vector<double>& v)
 	{
 		double sd = 0.0;
-		double average = Average(v);
+		const double average = Average(v);
 
-		for (unsigned int i = 0; i < v.size(); ++i)
+		for (double i : v)
 		{
-			sd += (v[i] - average) * (v[i] - average);
+			sd += (i - average) * (i - average);
 		}
 
 		sd = sd / v.size();

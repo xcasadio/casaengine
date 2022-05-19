@@ -1,15 +1,4 @@
-//------------------------------------------------------------------------
-//
-//  Name: MinersWife.h
-//
-//  Desc: class to implement Miner Bob's wife.
-//
-//  Author: Mat Buckland 2003 (fup@ai-junkie.com)
-//
-//------------------------------------------------------------------------
-
-#ifndef MINERSWIFECOMPONENT_H_
-#define MINERSWIFECOMPONENT_H_
+#pragma once
 
 #include "AI/FSM/StateMachine.h"
 #include "Entities/Component.h"
@@ -73,5 +62,3 @@ public:
 	int GetMinerID() const { return m_MinerID; }
 	void SetMinerID(int val) { m_MinerID = val; }
 };
-
-#endif

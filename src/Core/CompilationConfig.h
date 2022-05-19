@@ -1,5 +1,4 @@
-#ifndef COMPILATIONCONFIG_H_
-#define COMPILATIONCONFIG_H_
+#pragma once
 
 //#undef CA_DEBUGGING
 #define CA_DEBUGGING
@@ -15,5 +14,3 @@
 
 // if undef : activate profiling
 #define CA_NO_PROFILE
-
-#endif

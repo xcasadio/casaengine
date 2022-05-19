@@ -1,5 +1,4 @@
-#ifndef _CASAENGINEFreeFunctionSlot_h_
-#define _CASAENGINEFreeFunctionSlot_h_
+#pragma once
 
 #include "SlotFunctorBase.h"
 #include "CA_Export.h"
@@ -29,5 +28,3 @@ namespace CasaEngine
 		SlotFunction* d_function;
 	};
 }
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef VERTEXTYPE_H_
-#define VERTEXTYPE_H_
+#pragma once
 
 #include "CA_Export.h"
 
@@ -59,5 +58,3 @@ namespace CasaEngine
 		static bgfx::VertexLayout ms_layout;
 	};
 }
-
-#endif

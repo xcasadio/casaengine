@@ -8,8 +8,6 @@
 #include "Physics/PhysicalEntity.h"
 #include "Components/Coordinates.h"
 
-#include <iosfwd>
-
 namespace CasaEngine
 {
 	class CA_EXPORT BaseEntity :
@@ -33,7 +31,7 @@ namespace CasaEngine
 
 		unsigned int Id() const;
 		const char *GetName() const;
-		void SetName(std::string &val);
+		void SetName(const std::string &val);
 		void SetName(const char *val);
 
 		Coordinates& GetCoordinates();
@@ -42,9 +40,6 @@ namespace CasaEngine
 		void IsEnabled(bool val);
 		bool IsVisible() const;
 		void IsVisible(bool val);
-		
-		virtual void Read (std::ifstream& is);
-		virtual void Write(std::ostream&  os);
 
 	private:
 		static unsigned int _nextValidId;

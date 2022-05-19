@@ -1,5 +1,4 @@
-#ifndef CUSTOMCOMPONENTTYPE_H_
-#define CUSTOMCOMPONENTTYPE_H_
+#pragma once
 
 #include "Entities\ComponentTypeEnum.h"
 
@@ -13,5 +12,3 @@ enum class CustomComponentType
 	ENEMY_CHIEF_COMPONENT = ComponentType::CUSTOM_COMPONENT + 3,
 	BOSS_COMPONENT = ComponentType::CUSTOM_COMPONENT + 4,
 };
-
-#endif

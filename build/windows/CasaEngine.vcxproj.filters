@@ -387,9 +387,6 @@
     <ClInclude Include="..\..\src\Engine\Graphics\Viewport.h">
       <Filter>Engine\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Graphics\ViewportTarget.h">
-      <Filter>Engine\Graphics</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Engine\Graphics\Materials\Material.h">
       <Filter>Engine\Graphics\Materials</Filter>
     </ClInclude>
@@ -598,9 +595,6 @@
       <Filter>Framework\Entities\Components</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Framework\Entities\Components\CameraComponent.h">
-      <Filter>Framework\Entities\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Entities\Components\GridComponent.h">
       <Filter>Framework\Entities\Components</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Framework\Entities\Components\MovingEntity2DComponent.h">
@@ -1025,9 +1019,6 @@
     <ClCompile Include="..\..\src\Engine\Graphics\Viewport.cpp">
       <Filter>Engine\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Graphics\ViewportTarget.cpp">
-      <Filter>Engine\Graphics</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Engine\Graphics\Materials\Material.cpp">
       <Filter>Engine\Graphics\Materials</Filter>
     </ClCompile>
@@ -1149,9 +1140,6 @@
       <Filter>Framework\Entities\Components</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Framework\Entities\Components\CameraComponent.cpp">
-      <Filter>Framework\Entities\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Framework\Entities\Components\GridComponent.cpp">
       <Filter>Framework\Entities\Components</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Framework\Entities\Components\MovingEntity2DComponent.cpp">

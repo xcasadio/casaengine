@@ -1,5 +1,4 @@
-#ifndef CASAENGINE_DEBUG_H_
-#define CASAENGINE_DEBUG_H_
+#pragma once
 
 #include "SystemPlatform.h"
 
@@ -37,5 +36,3 @@ namespace CasaEngine
 #endif
 	}
 }
-
-#endif

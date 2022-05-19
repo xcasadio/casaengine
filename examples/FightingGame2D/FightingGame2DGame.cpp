@@ -8,7 +8,6 @@
 #include "Assets/AssetManager.h"
 
 #include "Entities/Components/AnimatedSpriteComponent.h"
-#include "Entities/Components/GridComponent.h"
 #include "Entities/Components/StaticSpriteComponent.h"
 #include "Game/Game.h"
 #include "Game/GameInfo.h"

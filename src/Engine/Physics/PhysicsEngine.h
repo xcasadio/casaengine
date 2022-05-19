@@ -1,5 +1,4 @@
-#ifndef PHYSICSENGINE_H_
-#define PHYSICSENGINE_H_
+#pragma once
 
 #include "CA_Export.h"
 
@@ -22,5 +21,3 @@ namespace CasaEngine
 		IPhysicsEngine* m_pPhysicsEngine;
 	};
 }
-
-#endif

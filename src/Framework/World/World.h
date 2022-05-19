@@ -21,14 +21,11 @@ namespace CasaEngine
 		BaseEntity* GetEntityByName(const std::string& name);
 
 		void AddEntity(BaseEntity* pEntity);
-		void RemoveEntity(BaseEntity* pEntity);
+		void RemoveEntity(const BaseEntity* entity);
 
 		IPhysicsWorld& GetPhysicsWorld() const;
 
 		CellSpacePartition<BaseEntity *> &GetSpacePartition();
-
-		void Write(std::ostream& os) override;
-		void Read(std::ifstream& is) override;
 
 	private:
 		std::vector<BaseEntity *> _entities;

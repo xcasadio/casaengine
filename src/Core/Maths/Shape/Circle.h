@@ -1,5 +1,4 @@
-#ifndef CIRCLE_H_
-#define CIRCLE_H_
+#pragma once
 
 #include "CA_Export.h"
 #include "Maths/Vector3.h"
@@ -29,5 +28,3 @@ namespace CasaEngine
 		float m_Radius;
 	};
 }
-
-#endif // CIRCLE_H_

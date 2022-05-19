@@ -1,5 +1,4 @@
-#ifndef _CASAENGINEIteratorBase_h_
-#define _CASAENGINEIteratorBase_h_
+#pragma once
 
 namespace CasaEngine
 {
@@ -306,5 +305,3 @@ namespace CasaEngine
 		}
 	};
 }
-
-#endif	// end of guard _CASAENGINEIteratorBase_h_

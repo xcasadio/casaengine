@@ -1,6 +1,4 @@
-
-#ifndef _ANIMATION2DPLAYER_H_
-#define _ANIMATION2DPLAYER_H_
+#pragma once
 
 #include "CA_Export.h"
 //#include "Utilities\EventHandler.h"
@@ -9,12 +7,9 @@
 
 namespace CasaEngine
 {
-	/**
-	 * 
-	 */
 	class CA_EXPORT Animation2DPlayer
 	{
-		public:
+	public:
 
 #if !FINAL
 		/// <summary>
@@ -22,7 +17,7 @@ namespace CasaEngine
 		/// </summary>
 		static float m_sAnimationSpeed;
 #endif
-	
+
 		Animation2DPlayer();
 		~Animation2DPlayer();
 
@@ -40,8 +35,5 @@ namespace CasaEngine
 
 		// use to detected if we change animation
 		int m_iCurrentAnimationIndex;
-};
-
+	};
 }
-
-#endif // _ANIMATION2DPLAYER_H_

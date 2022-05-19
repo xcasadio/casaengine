@@ -379,9 +379,9 @@ namespace CasaEngine
 				}
 				break;
 
-			case sf::Event::TextEntered:
-				io.AddInputCharacter(event.text.unicode);
-				break;
+			//case sf::Event::TextEntered:
+			//	io.AddInputCharacter(event.text.unicode);
+			//	break;
 
 			case sf::Event::MouseButtonPressed:
 				addMouseButtonEvent(event, io, true);

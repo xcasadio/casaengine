@@ -1,5 +1,4 @@
-#ifndef _CASAENGINEFunctorReferenceBinder_h_
-#define _CASAENGINEFunctorReferenceBinder_h_
+#pragma once
 
 namespace CasaEngine
 {
@@ -20,5 +19,3 @@ namespace CasaEngine
 		T& d_functor;
 	};
 }
-
-#endif 

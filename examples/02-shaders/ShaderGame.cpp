@@ -2,7 +2,6 @@
 #include "MD2Loader.h"
 
 #include "Entities/Components/Cameras/ArcBallCameraComponent.h"
-#include "Entities/Components/GridComponent.h"
 #include "Entities/Components/MeshComponent.h"
 #include "Game/GameInfo.h"
 #include "Game/Line2DRendererComponent.h"

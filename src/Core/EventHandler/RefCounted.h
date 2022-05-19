@@ -1,5 +1,4 @@
-#ifndef _CASAENGINERefCounted_h_
-#define _CASAENGINERefCounted_h_
+#pragma once
 
 namespace CasaEngine
 {
@@ -173,5 +172,3 @@ namespace CasaEngine
 		unsigned int* d_count;  //! pointer to the shared counter object.
 	};
 }
-
-#endif

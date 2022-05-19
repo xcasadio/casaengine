@@ -1,5 +1,4 @@
-#ifndef _CASAENGINEEventArgs_h_
-#define _CASAENGINEEventArgs_h_
+#pragma once
 
 #include "CA_Export.h"
 
@@ -51,5 +50,3 @@ namespace CasaEngine
 		const EventSet* sourceEventSet;
 	};
 }
-
-#endif

@@ -11,7 +11,6 @@
 
 #include "Entities/Components/AnimatedSpriteComponent.h"
 #include "Entities/Components/Cameras/ArcBallCameraComponent.h"
-#include "Entities/Components/GridComponent.h"
 #include "Entities/Components/ScriptComponent.h"
 #include "Game/Game.h"
 #include "Game/GameInfo.h"

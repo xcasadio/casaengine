@@ -1,5 +1,4 @@
-#ifndef PLAYERSTATES_H_
-#define PLAYERSTATES_H_
+#pragma once
 
 #include "GameTime.h"
 #include "AI\FSM\IState.h"
@@ -22,40 +21,32 @@ typedef enum PlayerControllerState
 	TO_NORMAL_MODE,
 } PlayerControllerState;
 
-/**
- *
- */
+//////////////////////////////////////////
+
 class PlayerStateIdle :
 	public IState<IController>
 {
 public:
 	PlayerStateIdle();
-	~PlayerStateIdle();
+	~PlayerStateIdle() override;
 
-	void Enter(IController* pController_) override;
-	void Execute(IController* pController_, const GameTime& elpasedTime_) override;
-	void Exit(IController* pController_) override;
-	bool OnMessage(IController* pController_, const Telegram& msg) override;
-
-private:
+	void Enter(IController* controller) override;
+	void Execute(IController* controller, const GameTime& elpasedTime_) override;
+	void Exit(IController* controller) override;
+	bool OnMessage(IController* controller, const Telegram& msg) override;
 };
 
-/**
- *
- */
+//////////////////////////////////////////
+
 class PlayerStateWalking :
 	public IState<IController>
 {
 public:
 	PlayerStateWalking();
-	~PlayerStateWalking();
+	~PlayerStateWalking() override;
 
-	void Enter(IController* pController_) override;
-	void Execute(IController* pController_, const GameTime& elpasedTime_) override;
-	void Exit(IController* pController_) override;
-	bool OnMessage(IController* pController_, const Telegram& msg) override;
-
-private:
+	void Enter(IController* controller) override;
+	void Execute(IController* controller, const GameTime& elpasedTime_) override;
+	void Exit(IController* controller) override;
+	bool OnMessage(IController* controller, const Telegram& msg) override;
 };
-
-#endif

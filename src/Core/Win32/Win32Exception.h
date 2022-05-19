@@ -44,8 +44,7 @@
 
 #include "CA_Export.h"
 
-#include <TCHAR.H>
-#include <Windows.h>
+#include <tchar.h>
 
 
 namespace CasaEngine

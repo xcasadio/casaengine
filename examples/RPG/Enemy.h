@@ -1,5 +1,4 @@
-#ifndef ENEMY_H_
-#define ENEMY_H_
+#pragma once
 
 #include "Character.h"
 #include "Entities\Components\AnimatedSpriteComponent.h"
@@ -11,11 +10,9 @@ class Enemy :
 {
 public:
 	Enemy(BaseEntity* pEntity);
-	virtual ~Enemy();
+	~Enemy() override;
 
 	void Initialize() override;
 
 private:
 };
-
-#endif

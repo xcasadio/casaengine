@@ -8,7 +8,6 @@
 #include "World/World.h"
 #include "Game/GameInfo.h"
 #include "Maths/Vector3.h"
-#include "Entities/Components/GridComponent.h"
 #include "Log/LoggerFile.h"
 
 
@@ -28,10 +27,10 @@ namespace CasaEngine
 
 	void GameEditor::Initialize()
 	{
-		m_pLineRenderer = new Line3DRendererComponent(this);
-		AddComponent(m_pLineRenderer);
-		m_SpriteRenderer = new SpriteRenderer(this);
-		AddComponent(m_SpriteRenderer);
+		//m_pLineRenderer = new Line3DRendererComponent(this);
+		//AddComponent(m_pLineRenderer);
+		//m_SpriteRenderer = new SpriteRenderer(this);
+		//AddComponent(m_SpriteRenderer);
 
 		m_pWorld = new World();
 		Game::Instance().GetGameInfo().SetWorld(m_pWorld);
@@ -45,12 +44,12 @@ namespace CasaEngine
 		Game::Instance().GetMediaManager().AddSearchPath("../../examples/resources/fonts");
 
 		//Grid
-		BaseEntity *pEntity = new BaseEntity();
-		GridComponent *pGridComponent = new GridComponent(pEntity);
-		pEntity->GetComponentMgr()->AddComponent(pGridComponent);
-		pEntity->Initialize();
+		//BaseEntity *pEntity = new BaseEntity();
+		//GridComponent *pGridComponent = new GridComponent(pEntity);
+		//pEntity->GetComponentMgr()->AddComponent(pGridComponent);
+		//pEntity->Initialize();
 	
-		m_pWorld->AddEntity(pEntity);
+		//m_pWorld->AddEntity(pEntity);
 
 		Game::Initialize();
 	}

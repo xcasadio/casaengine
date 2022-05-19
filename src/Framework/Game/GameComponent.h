@@ -1,5 +1,4 @@
-#ifndef _GAMECOMPONENT_H_
-#define _GAMECOMPONENT_H_
+#pragma once
 
 #include "CA_Export.h"
 #include "GameTime.h"
@@ -8,7 +7,7 @@
 namespace CasaEngine
 {
 	class Game;
-	
+
 	class CA_EXPORT IGameComponent
 	{
 	public:
@@ -25,10 +24,8 @@ namespace CasaEngine
 		virtual ~IGameComponent();
 
 	private:
-		Game* m_pGame;		
+		Game* m_pGame;
 		int m_UpdateOrder;
 		bool m_Initialized;
 	};
 }
-
-#endif

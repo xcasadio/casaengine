@@ -1,5 +1,4 @@
-#ifndef ENEMYSTATES_H_
-#define ENEMYSTATES_H_
+#pragma once
 
 #include "GameTime.h"
 #include "AI\FSM\IState.h"
@@ -46,5 +45,3 @@ public:
 	void Exit(IController* pController_) override;
 	bool OnMessage(IController* pController_, const Telegram& msg) override;
 };
-
-#endif

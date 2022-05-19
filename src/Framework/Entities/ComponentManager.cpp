@@ -9,11 +9,11 @@
 
 namespace CasaEngine
 {
-	ComponentManager::ComponentManager(BaseEntity* pEntity_)
+	ComponentManager::ComponentManager(BaseEntity* entity)
 	{
-		CA_ASSERT(pEntity_ != nullptr, "ComponentManager::ComponentManager() : BaseEntity is nullptr")
+		CA_ASSERT(entity != nullptr, "ComponentManager::ComponentManager() : BaseEntity is nullptr")
 
-		m_pEntity = pEntity_;
+		m_pEntity = entity;
 	}
 
 	ComponentManager::~ComponentManager()
@@ -28,7 +28,7 @@ namespace CasaEngine
 
 	void  ComponentManager::Update(const GameTime& gameTime_)
 	{
-		for (auto& component : m_Components)
+		for (const auto& component : m_Components)
 		{
 			component->Update(gameTime_);
 		}
@@ -36,7 +36,7 @@ namespace CasaEngine
 
 	void  ComponentManager::Draw()
 	{
-		for (auto& component : m_Components)
+		for (const auto& component : m_Components)
 		{
 			component->Draw();
 		}
@@ -85,7 +85,7 @@ namespace CasaEngine
 
 	void ComponentManager::InitializeComponents()
 	{
-		for (auto& component : m_Components)
+		for (const auto& component : m_Components)
 		{
 			component->Initialize();
 		}

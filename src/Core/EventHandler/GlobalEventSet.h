@@ -1,5 +1,4 @@
-#ifndef _CASAENGINEGlobalEventSet_h_
-#define _CASAENGINEGlobalEventSet_h_
+#pragma once
 
 #include "EventSet.h"
 
@@ -57,6 +56,4 @@ namespace CasaEngine
 
 #if defined(_MSC_VER)
 #	pragma warning(pop)
-#endif
-
 #endif

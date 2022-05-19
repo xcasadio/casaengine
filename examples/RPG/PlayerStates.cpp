@@ -10,23 +10,23 @@ PlayerStateGlobal::PlayerStateGlobal() = default;
 
 PlayerStateGlobal::~PlayerStateGlobal() = default;
 
-void PlayerStateGlobal::Enter(IController * pController_) {}
+void PlayerStateGlobal::Enter(IController * controller) {}
 
-void PlayerStateGlobal::Execute(IController * pController_, const GameTime & elpasedTime)
+void PlayerStateGlobal::Execute(IController * controller, const GameTime & elpasedTime)
 {
-	auto* pPlayerController = dynamic_cast<PlayerController*>(pController_);
+	auto* playerController = dynamic_cast<PlayerController*>(controller);
 
 	//check dying
-	if (pPlayerController->GetPlayer()->IsDead())
+	if (playerController->GetPlayer()->IsDead())
 	{
 		//state dying
 		return;
 	}
 }
 
-void PlayerStateGlobal::Exit(IController * pController_) {}
+void PlayerStateGlobal::Exit(IController * controller) {}
 
-bool PlayerStateGlobal::OnMessage(IController * pController_, const Telegram & msg)
+bool PlayerStateGlobal::OnMessage(IController * controller, const Telegram & msg)
 {
 	return false;
 }
@@ -38,44 +38,44 @@ PlayerStateIdle::PlayerStateIdle() = default;
 
 PlayerStateIdle::~PlayerStateIdle() = default;
 
-void PlayerStateIdle::Enter(IController * pController_)
+void PlayerStateIdle::Enter(IController * controller)
 {
-	auto* pPlayerController = dynamic_cast<PlayerController*>(pController_);
+	auto* playerController = dynamic_cast<PlayerController*>(controller);
 	Vector2 joyDir = Vector2::Zero();
-	pPlayerController->GetPlayer()->Move(joyDir);
-	pPlayerController->GetPlayer()->SetCurrentAnimationByNameWithOrientation("swordman_stand");
+	playerController->GetPlayer()->Move(joyDir);
+	playerController->GetPlayer()->SetCurrentAnimationByNameWithOrientation("swordman_stand");
 }
 
-void PlayerStateIdle::Execute(IController * pController_, const GameTime & elpasedTime_)
+void PlayerStateIdle::Execute(IController * controller, const GameTime & elpasedTime_)
 {
-	auto* pPlayerController = dynamic_cast<PlayerController*>(pController_);
+	auto* playerController = dynamic_cast<PlayerController*>(controller);
 
 	Vector2 joyDir;
-	const Orientation dir = pPlayerController->GetDirectionFromInput(joyDir);
+	const Orientation dir = playerController->GetDirectionFromInput(joyDir);
 
 	if ((int)dir != 0)
 	{
-		pPlayerController->GetPlayer()->SetOrientation(dir);
+		playerController->GetPlayer()->SetOrientation(dir);
 	}
 
-	if (pPlayerController->IsAttackButtonPressed() == true)
+	if (playerController->IsAttackButtonPressed() == true)
 	{
-		pPlayerController->FSM()->ChangeState(pPlayerController->GetState(ATTACK_1));
+		playerController->FSM()->ChangeState(playerController->GetState(ATTACK_1));
 		return;
 	}
 
 	if (joyDir.x != 0.0f || joyDir.y != 0.0f)
 	{
-		pPlayerController->GetPlayer()->Move(joyDir);
-		pPlayerController->FSM()->ChangeState(pPlayerController->GetState(MOVING));
+		playerController->GetPlayer()->Move(joyDir);
+		playerController->FSM()->ChangeState(playerController->GetState(MOVING));
 	}
 }
 
-void PlayerStateIdle::Exit(IController * pController_)
+void PlayerStateIdle::Exit(IController * controller)
 {
 }
 
-bool PlayerStateIdle::OnMessage(IController * pController_, const Telegram&)
+bool PlayerStateIdle::OnMessage(IController * controller, const Telegram&)
 {
 	return false;
 }
@@ -86,55 +86,55 @@ PlayerStateWalking::PlayerStateWalking() = default;
 
 PlayerStateWalking::~PlayerStateWalking() = default;
 
-void PlayerStateWalking::Enter(IController * pController_)
+void PlayerStateWalking::Enter(IController * controller)
 {
-	auto* pPlayerController = dynamic_cast<PlayerController*>(pController_);
-	pPlayerController->GetPlayer()->SetCurrentAnimationByNameWithOrientation("swordman_walk");
+	auto* playerController = dynamic_cast<PlayerController*>(controller);
+	playerController->GetPlayer()->SetCurrentAnimationByNameWithOrientation("swordman_walk");
 }
 
-void PlayerStateWalking::Execute(IController * pController_, const GameTime & elpasedTime_)
+void PlayerStateWalking::Execute(IController * controller, const GameTime & elpasedTime_)
 {
-	auto* pPlayerController = dynamic_cast<PlayerController*>(pController_);
+	auto* playerController = dynamic_cast<PlayerController*>(controller);
 
 	Vector2 joyDir;
-	const Orientation dir = pPlayerController->GetDirectionFromInput(joyDir);
+	const Orientation dir = playerController->GetDirectionFromInput(joyDir);
 
 	if ((int)dir != 0)
 	{
-		pPlayerController->GetPlayer()->SetOrientation(dir);
-		pPlayerController->GetPlayer()->SetCurrentAnimationByNameWithOrientation("swordman_walk");
+		playerController->GetPlayer()->SetOrientation(dir);
+		playerController->GetPlayer()->SetCurrentAnimationByNameWithOrientation("swordman_walk");
 	}
 
-	if (pPlayerController->IsAttackButtonPressed() == true)
+	if (playerController->IsAttackButtonPressed() == true)
 	{
-		pPlayerController->FSM()->ChangeState(pPlayerController->GetState(ATTACK_1));
+		playerController->FSM()->ChangeState(playerController->GetState(ATTACK_1));
 		return;
 	}
 
 	if (joyDir.x != 0.0f || joyDir.y != 0.0f)
 	{
-		pPlayerController->GetPlayer()->Move(joyDir);
+		playerController->GetPlayer()->Move(joyDir);
 	}
 	else
 	{
-		pPlayerController->FSM()->ChangeState(pPlayerController->GetState(IDLE));
+		playerController->FSM()->ChangeState(playerController->GetState(IDLE));
 	}
 }
 
-void PlayerStateWalking::Exit(IController * pController_)
+void PlayerStateWalking::Exit(IController * controller)
 {
-	auto* pPlayerController = dynamic_cast<PlayerController*>(pController_);
-	pPlayerController->GetPlayer()->Move(Vector2::Zero());
+	auto* playerController = dynamic_cast<PlayerController*>(controller);
+	playerController->GetPlayer()->Move(Vector2::Zero());
 }
 
-bool PlayerStateWalking::OnMessage(IController * pController_, const Telegram & msg)
+bool PlayerStateWalking::OnMessage(IController * controller, const Telegram & msg)
 {
 	/*
-	auto* pPlayerController = dynamic_cast<PlayerController*>(pController_);
+	auto* playerController = dynamic_cast<PlayerController*>(controller);
 
 	if (msg.Msg == static_cast<int>(MessageType::ANIMATION_FINISHED))
 	{
-		pPlayerController->FSM()->ChangeState(pPlayerController->GetState(static_cast<int>(IDLE)));
+		playerController->FSM()->ChangeState(playerController->GetState(static_cast<int>(IDLE)));
 		return true;
 	}
 	*/
@@ -148,33 +148,33 @@ PlayerStateAttack::PlayerStateAttack() = default;
 
 PlayerStateAttack::~PlayerStateAttack() = default;
 
-void PlayerStateAttack::Enter(IController * pController_)
+void PlayerStateAttack::Enter(IController * controller)
 {
-	auto* pPlayerController = dynamic_cast<PlayerController*>(pController_);
+	auto* playerController = dynamic_cast<PlayerController*>(controller);
 	//equip sword
-	pPlayerController->GetPlayer()->AttachWeapon();
+	playerController->GetPlayer()->AttachWeapon();
 	//ranged attack reset
 
-// 	pPlayerController->GetHero()->AttackChargingValue(0.0f);
-// 	pPlayerController->GetHero()->IsAttackReleasing(false);
-// 	pPlayerController->GetHero()->AttackCharging(false);
+// 	playerController->GetHero()->AttackChargingValue(0.0f);
+// 	playerController->GetHero()->IsAttackReleasing(false);
+// 	playerController->GetHero()->AttackCharging(false);
 
 	Vector2 joyDir = Vector2::Zero();
-	pPlayerController->GetPlayer()->Move(joyDir);
-	pPlayerController->GetPlayer()->SetCurrentAnimationByNameWithOrientation("swordman_attack");
+	playerController->GetPlayer()->Move(joyDir);
+	playerController->GetPlayer()->SetCurrentAnimationByNameWithOrientation("swordman_attack");
 }
 
-void PlayerStateAttack::Execute(IController * pController_, const GameTime & elpasedTime_)
+void PlayerStateAttack::Execute(IController * controller, const GameTime & elpasedTime_)
 {
-	//PlayerController* pPlayerController = dynamic_cast<PlayerController*>(pController_);
+	//PlayerController* playerController = dynamic_cast<PlayerController*>(controller);
 
-	//if (pPlayerController->GetHero()->AttackType() == Character::AttackType::Melee)
+	//if (playerController->GetHero()->AttackType() == Character::AttackType::Melee)
 	{
-		//         if (pPlayerController->GetHero()->ComboNumber() == 0
-		//             && pPlayerController->GetHero()->Animation2DPlayer.CurrentAnimation.CurrentFrameIndex >= 4
-		//             && pPlayerController->IsAttackButtonPressed() == true)
+		//         if (playerController->GetHero()->ComboNumber() == 0
+		//             && playerController->GetHero()->Animation2DPlayer.CurrentAnimation.CurrentFrameIndex >= 4
+		//             && playerController->IsAttackButtonPressed() == true)
 		//         {
-		//             pPlayerController->GetHero()->SetComboNumber(1);
+		//             playerController->GetHero()->SetComboNumber(1);
 		//         }
 	}
 	//     else
@@ -192,40 +192,40 @@ void PlayerStateAttack::Execute(IController * pController_, const GameTime & elp
 	//     }
 }
 
-void PlayerStateAttack::Exit(IController * pController_)
+void PlayerStateAttack::Exit(IController * controller)
 {
-	auto* pPlayerController = dynamic_cast<PlayerController*>(pController_);
+	auto* playerController = dynamic_cast<PlayerController*>(controller);
 
 	//unequip sword
-	pPlayerController->GetPlayer()->UnAttachWeapon();
+	playerController->GetPlayer()->UnAttachWeapon();
 }
 
-bool PlayerStateAttack::OnMessage(IController * pController_, const Telegram & msg)
+bool PlayerStateAttack::OnMessage(IController * controller, const Telegram & msg)
 {
-	auto* pPlayerController = dynamic_cast<PlayerController*>(pController_);
+	auto* playerController = dynamic_cast<PlayerController*>(controller);
 
 	if (msg.Msg == (int)MessageType::ANIMATION_FINISHED)
 	{
-		//		if (pPlayerController->GetHero()->AttackType() == AttackType::Melee)
+		//		if (playerController->GetHero()->AttackType() == AttackType::Melee)
 		{
-			// 			if (pPlayerController->ComboNumber() == 1)
+			// 			if (playerController->ComboNumber() == 1)
 			// 			{
-			// 				pPlayerController->FSM()->ChangeState(pPlayerController->GetState((int)PlayerControllerState::ATTACK_2));
+			// 				playerController->FSM()->ChangeState(playerController->GetState((int)PlayerControllerState::ATTACK_2));
 			// 			}
 			// 			else
 			{
-				pPlayerController->FSM()->ChangeState(pPlayerController->GetState(IDLE));
+				playerController->FSM()->ChangeState(playerController->GetState(IDLE));
 			}
 		}
 		// 		else // ranged attack
 		// 		{
 		// 			//if (charac.IsAttackReleasing == true)
 		// 			//{
-		// 			pPlayerController->FSM()->ChangeState(pPlayerController->GetState((int)PlayerControllerState::ATTACK_2));
+		// 			playerController->FSM()->ChangeState(playerController->GetState((int)PlayerControllerState::ATTACK_2));
 		// 			//}
 		// 			//else
 		// 			//{
-		// 			pPlayerController->GetHero()->IsAttackCharging(true);
+		// 			playerController->GetHero()->IsAttackCharging(true);
 		// 			//}
 		// 		}
 

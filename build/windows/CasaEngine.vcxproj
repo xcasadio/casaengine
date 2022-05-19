@@ -280,7 +280,6 @@
     <ClInclude Include="..\..\src\Engine\Graphics\Textures\Texture.h" />
     <ClInclude Include="..\..\src\Engine\Graphics\Vertices\VertexType.h" />
     <ClInclude Include="..\..\src\Engine\Graphics\Viewport.h" />
-    <ClInclude Include="..\..\src\Engine\Graphics\ViewportTarget.h" />
     <ClInclude Include="..\..\src\Engine\Loaders\Loader.h" />
     <ClInclude Include="..\..\src\Engine\Physics\Bullet\BulletObjectsContainer.h" />
     <ClInclude Include="..\..\src\Engine\Physics\Bullet\BulletPhysicsEngine.h" />
@@ -355,7 +354,6 @@
     <ClInclude Include="..\..\src\Framework\Entities\Components\Cameras\Camera3DLookAtComponent.h" />
     <ClInclude Include="..\..\src\Framework\Entities\Components\Cameras\Camera3DTargetedComponent.h" />
     <ClInclude Include="..\..\src\Framework\Entities\Components\DebugComponent.h" />
-    <ClInclude Include="..\..\src\Framework\Entities\Components\GridComponent.h" />
     <ClInclude Include="..\..\src\Framework\Entities\Components\MeshComponent.h" />
     <ClInclude Include="..\..\src\Framework\Entities\Components\MovingEntity2DComponent.h" />
     <ClInclude Include="..\..\src\Framework\Entities\Components\Physics\Box2DColliderComponent.h" />
@@ -484,7 +482,6 @@
     <ClCompile Include="..\..\src\Engine\Graphics\Textures\Texture.cpp" />
     <ClCompile Include="..\..\src\Engine\Graphics\Vertices\VertexType.cpp" />
     <ClCompile Include="..\..\src\Engine\Graphics\Viewport.cpp" />
-    <ClCompile Include="..\..\src\Engine\Graphics\ViewportTarget.cpp" />
     <ClCompile Include="..\..\src\Engine\Physics\Bullet\BulletObjectsContainer.cpp" />
     <ClCompile Include="..\..\src\Engine\Physics\Bullet\BulletPhysicsEngine.cpp" />
     <ClCompile Include="..\..\src\Engine\Physics\Bullet\BulletPhysicsWorld.cpp" />
@@ -531,7 +528,6 @@
     <ClCompile Include="..\..\src\Framework\Entities\Components\Cameras\Camera3DLookAtComponent.cpp" />
     <ClCompile Include="..\..\src\Framework\Entities\Components\Cameras\Camera3DTargetedComponent.cpp" />
     <ClCompile Include="..\..\src\Framework\Entities\Components\DebugComponent.cpp" />
-    <ClCompile Include="..\..\src\Framework\Entities\Components\GridComponent.cpp" />
     <ClCompile Include="..\..\src\Framework\Entities\Components\MeshComponent.cpp" />
     <ClCompile Include="..\..\src\Framework\Entities\Components\MovingEntity2DComponent.cpp" />
     <ClCompile Include="..\..\src\Framework\Entities\Components\Physics\Box2DColliderComponent.cpp" />

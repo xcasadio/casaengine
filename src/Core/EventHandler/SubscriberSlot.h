@@ -1,5 +1,4 @@
-#ifndef _CASAENGINESubscriberSlot_h_
-#define _CASAENGINESubscriberSlot_h_
+#pragma once
 
 #include "FreeFunctionSlot.h"
 #include "FunctorCopySlot.h"
@@ -111,5 +110,3 @@ namespace CasaEngine
 		SlotFunctorBase* d_functor_impl;
 	};
 }
-
-#endif

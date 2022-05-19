@@ -1,10 +1,10 @@
 #pragma once
 
-#include <SFML/Window/Event.hpp>
+#include "CA_Export.h"
 
+#include <SFML/Window/Event.hpp>
 #include "SFML/Window/Mouse.hpp"
 #include "SFML/Window/Joystick.hpp"
-#include "CA_Export.h"
 #include "SFML/Window/Keyboard.hpp"
 
 namespace CasaEngine

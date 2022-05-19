@@ -20,7 +20,7 @@ namespace CasaEngine
 		BaseEntity* m_pEntity;
 		std::vector<Component*> m_Components;
 	public:
-		ComponentManager(BaseEntity* pEntity_);
+		ComponentManager(BaseEntity* entity);
 		~ComponentManager();
 
 		void InitializeComponents();

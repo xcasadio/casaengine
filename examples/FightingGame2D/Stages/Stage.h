@@ -1,5 +1,4 @@
-#ifndef STAGE_H_
-#define STAGE_H_
+#pragma once
 
 #include "StageInfo.h"
 #include "StageLayer.h"
@@ -10,7 +9,7 @@ class Stage:
 {
 public:
 	Stage(CasaEngine::BaseEntity* entity);
-	~Stage();
+	~Stage() override;
 
 	void Initialize() override;
 	void Update(const CasaEngine::GameTime& gameTime_) override;
@@ -22,5 +21,3 @@ private:
 	CasaEngine::SpriteRenderer *m_pSpriteRenderer;
 	std::vector<StageLayer*> m_Layers;
 };
-
-#endif
