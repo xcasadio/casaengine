@@ -24,7 +24,7 @@ void Character::Initialize()
 
 	m_HPMax = 100;
 	m_MPMax = 100;
-	m_Speed = 30.0f;
+	m_Speed = 300.0f;
 
 	m_HP = m_HPMax;
 	m_MP = m_MPMax;

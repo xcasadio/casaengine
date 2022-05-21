@@ -43,7 +43,7 @@ namespace CasaEngine
 
 	float DebugSystem::GetFPS() const
 	{
-		return 10.0f / m_avg;
+		return 1.0f / m_avg;
 	}
 
 	float DebugSystem::GetMinFPS() const

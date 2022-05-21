@@ -35,9 +35,6 @@ void ShaderGame::Initialize()
 	AddDebugComponents();
 	AddUsualComponents();
 
-	m_pWorld = new World();
-	GetGameInfo().SetWorld(m_pWorld);
-
 	m_LightDir.Set(1.0f, 0.0f, 0.5f);
 	m_LightDir.Normalize();
 	//Game::Instance().GetMediaManager().RegisterLoader(new CMD2Loader, "md2");
@@ -96,6 +93,9 @@ void ShaderGame::Initialize()
 void ShaderGame::LoadContent()
 {
 	Game::LoadContent();
+
+	m_pWorld = new World();
+	GetGameInfo().SetWorld(m_pWorld);
 
 	//m_CartoonShadingTextureHandle = CreateFromFile("cartoon_shading.dds", PixelFormat::AL_88, TEX_NOMIPMAP);
 	Texture::loadTexture(Game::Instance().GetMediaManager().FindMedia("cartoon_shading.dds", true), BGFX_SAMPLER_MIN_ANISOTROPIC | BGFX_SAMPLER_MAG_ANISOTROPIC, 1);
@@ -164,7 +164,7 @@ void ShaderGame::Update(const GameTime& gameTime_)
 
 	Quaternion q1, q2;
 	q1.FromAxisAngle(Vector3::UnitX(), -PI_OVER_2);
-	q2.FromAxisAngle(Vector3::UnitZ(), gameTime_.TotalTime() * 0.005f * PI);
+	q2.FromAxisAngle(Vector3::UnitZ(), gameTime_.TotalTime() * 0.1f * PI);
 
 	m_pModelEntity->GetCoordinates().SetLocalPosition(Vector3(0.0f, 2.4f, 0.0f));
 	m_pModelEntity->GetCoordinates().SetLocalRotation(q1 * q2);

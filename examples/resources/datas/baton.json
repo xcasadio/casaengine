@@ -1605,31 +1605,31 @@
         "frames": [
           {
             "sprite_id": 21,
-            "delay": 0.64
+            "delay": 0.32
           },
           {
             "sprite_id": 22,
-            "delay": 0.64
+            "delay": 0.32
           },
           {
             "sprite_id": 23,
-            "delay": 0.64
+            "delay": 0.32
           },
           {
             "sprite_id": 24,
-            "delay": 0.64
+            "delay": 0.32
           },
           {
             "sprite_id": 25,
-            "delay": 0.64
+            "delay": 0.32
           },
           {
             "sprite_id": 26,
-            "delay": 0.64
+            "delay": 0.32
           },
           {
             "sprite_id": 27,
-            "delay": 0.64
+            "delay": 0.32
           }
         ]
       },
@@ -1638,31 +1638,31 @@
         "frames": [
           {
             "sprite_id": 0,
-            "delay": 0.64
+            "delay": 0.32
           },
           {
             "sprite_id": 1,
-            "delay": 0.64
+            "delay": 0.32
           },
           {
             "sprite_id": 2,
-            "delay": 0.64
+            "delay": 0.32
           },
           {
             "sprite_id": 3,
-            "delay": 0.64
+            "delay": 0.32
           },
           {
             "sprite_id": 4,
-            "delay": 0.64
+            "delay": 0.32
           },
           {
             "sprite_id": 5,
-            "delay": 0.64
+            "delay": 0.32
           },
           {
             "sprite_id": 6,
-            "delay": 0.64
+            "delay": 0.32
           }
         ]
       },
@@ -1671,31 +1671,31 @@
         "frames": [
           {
             "sprite_id": 7,
-            "delay": 0.64
+            "delay": 0.32
           },
           {
             "sprite_id": 8,
-            "delay": 0.64
+            "delay": 0.32
           },
           {
             "sprite_id": 9,
-            "delay": 0.64
+            "delay": 0.32
           },
           {
             "sprite_id": 10,
-            "delay": 0.64
+            "delay": 0.32
           },
           {
             "sprite_id": 11,
-            "delay": 0.64
+            "delay": 0.32
           },
           {
             "sprite_id": 12,
-            "delay": 0.64
+            "delay": 0.32
           },
           {
             "sprite_id": 13,
-            "delay": 0.64
+            "delay": 0.32
           }
         ]
       },
@@ -1704,31 +1704,31 @@
         "frames": [
           {
             "sprite_id": 14,
-            "delay": 0.64
+            "delay": 0.32
           },
           {
             "sprite_id": 15,
-            "delay": 0.64
+            "delay": 0.32
           },
           {
             "sprite_id": 16,
-            "delay": 0.64
+            "delay": 0.32
           },
           {
             "sprite_id": 17,
-            "delay": 0.64
+            "delay": 0.32
           },
           {
             "sprite_id": 18,
-            "delay": 0.64
+            "delay": 0.32
           },
           {
             "sprite_id": 19,
-            "delay": 0.64
+            "delay": 0.32
           },
           {
             "sprite_id": 20,
-            "delay": 0.64
+            "delay": 0.32
           }
         ]
       },
@@ -1737,19 +1737,19 @@
         "frames": [
           {
             "sprite_id": 28,
-            "delay": 0.64
+            "delay": 0.32
           },
           {
             "sprite_id": 29,
-            "delay": 0.64
+            "delay": 0.32
           },
           {
             "sprite_id": 30,
-            "delay": 0.64
+            "delay": 0.32
           },
           {
             "sprite_id": 31,
-            "delay": 0.64
+            "delay": 0.32
           }
         ]
       },
@@ -1758,19 +1758,19 @@
         "frames": [
           {
             "sprite_id": 32,
-            "delay": 0.64
+            "delay": 0.32
           },
           {
             "sprite_id": 33,
-            "delay": 0.64
+            "delay": 0.32
           },
           {
             "sprite_id": 34,
-            "delay": 0.64
+            "delay": 0.32
           },
           {
             "sprite_id": 35,
-            "delay": 0.64
+            "delay": 0.32
           }
         ]
       },
@@ -1779,19 +1779,19 @@
         "frames": [
           {
             "sprite_id": 36,
-            "delay": 0.64
+            "delay": 0.32
           },
           {
             "sprite_id": 37,
-            "delay": 0.64
+            "delay": 0.32
           },
           {
             "sprite_id": 38,
-            "delay": 0.64
+            "delay": 0.32
           },
           {
             "sprite_id": 39,
-            "delay": 0.64
+            "delay": 0.32
           }
         ]
       },
@@ -1800,19 +1800,19 @@
         "frames": [
           {
             "sprite_id": 40,
-            "delay": 0.64
+            "delay": 0.32
           },
           {
             "sprite_id": 41,
-            "delay": 0.64
+            "delay": 0.32
           },
           {
             "sprite_id": 42,
-            "delay": 0.64
+            "delay": 0.32
           },
           {
             "sprite_id": 43,
-            "delay": 0.64
+            "delay": 0.32
           }
         ]
       },
@@ -1821,19 +1821,19 @@
         "frames": [
           {
             "sprite_id": 44,
-            "delay": 0.64
+            "delay": 0.32
           },
           {
             "sprite_id": 45,
-            "delay": 0.64
+            "delay": 0.32
           },
           {
             "sprite_id": 46,
-            "delay": 0.64
+            "delay": 0.32
           },
           {
             "sprite_id": 47,
-            "delay": 0.64
+            "delay": 0.32
           }
         ]
       },
@@ -1842,19 +1842,19 @@
         "frames": [
           {
             "sprite_id": 48,
-            "delay": 0.64
+            "delay": 0.32
           },
           {
             "sprite_id": 49,
-            "delay": 0.64
+            "delay": 0.32
           },
           {
             "sprite_id": 50,
-            "delay": 0.64
+            "delay": 0.32
           },
           {
             "sprite_id": 51,
-            "delay": 0.64
+            "delay": 0.32
           }
         ]
       },
@@ -1863,19 +1863,19 @@
         "frames": [
           {
             "sprite_id": 52,
-            "delay": 0.64
+            "delay": 0.32
           },
           {
             "sprite_id": 53,
-            "delay": 0.64
+            "delay": 0.32
           },
           {
             "sprite_id": 54,
-            "delay": 0.64
+            "delay": 0.32
           },
           {
             "sprite_id": 55,
-            "delay": 0.64
+            "delay": 0.32
           }
         ]
       },
@@ -1884,19 +1884,19 @@
         "frames": [
           {
             "sprite_id": 56,
-            "delay": 0.64
+            "delay": 0.32
           },
           {
             "sprite_id": 57,
-            "delay": 0.64
+            "delay": 0.32
           },
           {
             "sprite_id": 58,
-            "delay": 0.64
+            "delay": 0.32
           },
           {
             "sprite_id": 59,
-            "delay": 0.64
+            "delay": 0.32
           }
         ]
       }

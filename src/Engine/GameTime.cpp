@@ -67,7 +67,7 @@ namespace CasaEngine
 	void GameTime::End()
 	{
 		TimeVal endTime = getPerfTime();
-		float elapsedTime = static_cast<float>(getPerfDeltaTimeUsec(m_StartTime, endTime)) / 100000.0f;
+		float elapsedTime = static_cast<float>(getPerfDeltaTimeUsec(m_StartTime, endTime)) / 1000000.0f;
 
 		m_ElapsedTime = elapsedTime;
 		m_TotalElapsedTime += m_ElapsedTime;

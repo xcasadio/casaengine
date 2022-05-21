@@ -1984,11 +1984,11 @@
         "frames": [
           {
             "sprite_id": 18,
-            "delay": 3.2
+            "delay": 0.32
           },
           {
             "sprite_id": 19,
-            "delay": 3.2
+            "delay": 0.32
           }
         ]
       },
@@ -1997,11 +1997,11 @@
         "frames": [
           {
             "sprite_id": 22,
-            "delay": 3.2
+            "delay": 0.32
           },
           {
             "sprite_id": 23,
-            "delay": 3.2
+            "delay": 0.32
           }
         ]
       },
@@ -2010,11 +2010,11 @@
         "frames": [
           {
             "sprite_id": 20,
-            "delay": 3.2
+            "delay": 0.32
           },
           {
             "sprite_id": 21,
-            "delay": 3.2
+            "delay": 0.32
           }
         ]
       },
@@ -2023,11 +2023,11 @@
         "frames": [
           {
             "sprite_id": 16,
-            "delay": 3.2
+            "delay": 0.32
           },
           {
             "sprite_id": 17,
-            "delay": 3.2
+            "delay": 0.32
           }
         ]
       },
@@ -2036,19 +2036,19 @@
         "frames": [
           {
             "sprite_id": 4,
-            "delay": 3.2
+            "delay": 0.32
           },
           {
             "sprite_id": 5,
-            "delay": 3.2
+            "delay": 0.32
           },
           {
             "sprite_id": 6,
-            "delay": 3.2
+            "delay": 0.32
           },
           {
             "sprite_id": 7,
-            "delay": 3.2
+            "delay": 0.32
           }
         ]
       },
@@ -2057,19 +2057,19 @@
         "frames": [
           {
             "sprite_id": 12,
-            "delay": 3.2
+            "delay": 0.32
           },
           {
             "sprite_id": 13,
-            "delay": 3.2
+            "delay": 0.32
           },
           {
             "sprite_id": 14,
-            "delay": 3.2
+            "delay": 0.32
           },
           {
             "sprite_id": 15,
-            "delay": 3.2
+            "delay": 0.32
           }
         ]
       },
@@ -2078,19 +2078,19 @@
         "frames": [
           {
             "sprite_id": 8,
-            "delay": 3.2
+            "delay": 0.32
           },
           {
             "sprite_id": 9,
-            "delay": 3.2
+            "delay": 0.32
           },
           {
             "sprite_id": 10,
-            "delay": 3.2
+            "delay": 0.32
           },
           {
             "sprite_id": 11,
-            "delay": 3.2
+            "delay": 0.32
           }
         ]
       },
@@ -2099,19 +2099,19 @@
         "frames": [
           {
             "sprite_id": 0,
-            "delay": 3.2
+            "delay": 0.32
           },
           {
             "sprite_id": 1,
-            "delay": 3.2
+            "delay": 0.32
           },
           {
             "sprite_id": 2,
-            "delay": 3.2
+            "delay": 0.32
           },
           {
             "sprite_id": 3,
-            "delay": 3.2
+            "delay": 0.32
           }
         ]
       },
@@ -2120,7 +2120,7 @@
         "frames": [
           {
             "sprite_id": 0,
-            "delay": 3.2
+            "delay": 0.32
           }
         ]
       },
@@ -2129,7 +2129,7 @@
         "frames": [
           {
             "sprite_id": 0,
-            "delay": 3.2
+            "delay": 0.32
           }
         ]
       },
@@ -2138,7 +2138,7 @@
         "frames": [
           {
             "sprite_id": 0,
-            "delay": 3.2
+            "delay": 0.32
           }
         ]
       },
@@ -2147,7 +2147,7 @@
         "frames": [
           {
             "sprite_id": 0,
-            "delay": 3.2
+            "delay": 0.32
           }
         ]
       },
@@ -2288,7 +2288,7 @@
         "frames": [
           {
             "sprite_id": 0,
-            "delay": 3.2
+            "delay": 0.32
           }
         ]
       },
@@ -2297,7 +2297,7 @@
         "frames": [
           {
             "sprite_id": 0,
-            "delay": 3.2
+            "delay": 0.32
           }
         ]
       },
@@ -2306,7 +2306,7 @@
         "frames": [
           {
             "sprite_id": 0,
-            "delay": 3.2
+            "delay": 0.32
           }
         ]
       },
@@ -2315,7 +2315,7 @@
         "frames": [
           {
             "sprite_id": 0,
-            "delay": 3.2
+            "delay": 0.32
           }
         ]
       },
@@ -2324,27 +2324,27 @@
         "frames": [
           {
             "sprite_id": 100,
-            "delay": 3.2
+            "delay": 0.32
           },
           {
             "sprite_id": 101,
-            "delay": 3.2
+            "delay": 0.32
           },
           {
             "sprite_id": 102,
-            "delay": 3.2
+            "delay": 0.32
           },
           {
             "sprite_id": 103,
-            "delay": 3.2
+            "delay": 0.32
           },
           {
             "sprite_id": 104,
-            "delay": 3.2
+            "delay": 0.32
           },
           {
             "sprite_id": 105,
-            "delay": 3.2
+            "delay": 0.32
           }
         ]
       },
@@ -2353,11 +2353,11 @@
         "frames": [
           {
             "sprite_id": 86,
-            "delay": 3.2
+            "delay": 0.32
           },
           {
             "sprite_id": 87,
-            "delay": 3.2
+            "delay": 0.32
           }
         ]
       },
@@ -2366,11 +2366,11 @@
         "frames": [
           {
             "sprite_id": 90,
-            "delay": 3.2
+            "delay": 0.32
           },
           {
             "sprite_id": 91,
-            "delay": 3.2
+            "delay": 0.32
           }
         ]
       },
@@ -2379,11 +2379,11 @@
         "frames": [
           {
             "sprite_id": 88,
-            "delay": 3.2
+            "delay": 0.32
           },
           {
             "sprite_id": 89,
-            "delay": 3.2
+            "delay": 0.32
           }
         ]
       },
@@ -2392,11 +2392,11 @@
         "frames": [
           {
             "sprite_id": 84,
-            "delay": 3.2
+            "delay": 0.32
           },
           {
             "sprite_id": 85,
-            "delay": 3.2
+            "delay": 0.32
           }
         ]
       },
@@ -2405,11 +2405,11 @@
         "frames": [
           {
             "sprite_id": 94,
-            "delay": 3.2
+            "delay": 0.32
           },
           {
             "sprite_id": 95,
-            "delay": 3.2
+            "delay": 0.32
           }
         ]
       },
@@ -2418,11 +2418,11 @@
         "frames": [
           {
             "sprite_id": 96,
-            "delay": 3.2
+            "delay": 0.32
           },
           {
             "sprite_id": 97,
-            "delay": 3.2
+            "delay": 0.32
           }
         ]
       },
@@ -2431,11 +2431,11 @@
         "frames": [
           {
             "sprite_id": 92,
-            "delay": 3.2
+            "delay": 0.32
           },
           {
             "sprite_id": 93,
-            "delay": 3.2
+            "delay": 0.32
           }
         ]
       },
@@ -2444,11 +2444,11 @@
         "frames": [
           {
             "sprite_id": 98,
-            "delay": 3.2
+            "delay": 0.32
           },
           {
             "sprite_id": 99,
-            "delay": 3.2
+            "delay": 0.32
           }
         ]
       },
@@ -2457,19 +2457,19 @@
         "frames": [
           {
             "sprite_id": 52,
-            "delay": 3.2
+            "delay": 0.32
           },
           {
             "sprite_id": 53,
-            "delay": 3.2
+            "delay": 0.32
           },
           {
             "sprite_id": 54,
-            "delay": 3.2
+            "delay": 0.32
           },
           {
             "sprite_id": 55,
-            "delay": 3.2
+            "delay": 0.32
           }
         ]
       },
@@ -2478,19 +2478,19 @@
         "frames": [
           {
             "sprite_id": 56,
-            "delay": 3.2
+            "delay": 0.32
           },
           {
             "sprite_id": 57,
-            "delay": 3.2
+            "delay": 0.32
           },
           {
             "sprite_id": 58,
-            "delay": 3.2
+            "delay": 0.32
           },
           {
             "sprite_id": 59,
-            "delay": 3.2
+            "delay": 0.32
           }
         ]
       },
@@ -2499,19 +2499,19 @@
         "frames": [
           {
             "sprite_id": 60,
-            "delay": 3.2
+            "delay": 0.32
           },
           {
             "sprite_id": 61,
-            "delay": 3.2
+            "delay": 0.32
           },
           {
             "sprite_id": 62,
-            "delay": 3.2
+            "delay": 0.32
           },
           {
             "sprite_id": 63,
-            "delay": 3.2
+            "delay": 0.32
           }
         ]
       },
@@ -2520,19 +2520,19 @@
         "frames": [
           {
             "sprite_id": 64,
-            "delay": 3.2
+            "delay": 0.32
           },
           {
             "sprite_id": 65,
-            "delay": 3.2
+            "delay": 0.32
           },
           {
             "sprite_id": 66,
-            "delay": 3.2
+            "delay": 0.32
           },
           {
             "sprite_id": 67,
-            "delay": 3.2
+            "delay": 0.32
           }
         ]
       },
@@ -2541,19 +2541,19 @@
         "frames": [
           {
             "sprite_id": 68,
-            "delay": 3.2
+            "delay": 0.32
           },
           {
             "sprite_id": 69,
-            "delay": 3.2
+            "delay": 0.32
           },
           {
             "sprite_id": 70,
-            "delay": 3.2
+            "delay": 0.32
           },
           {
             "sprite_id": 71,
-            "delay": 3.2
+            "delay": 0.32
           }
         ]
       },
@@ -2562,19 +2562,19 @@
         "frames": [
           {
             "sprite_id": 72,
-            "delay": 3.2
+            "delay": 0.32
           },
           {
             "sprite_id": 73,
-            "delay": 3.2
+            "delay": 0.32
           },
           {
             "sprite_id": 74,
-            "delay": 3.2
+            "delay": 0.32
           },
           {
             "sprite_id": 75,
-            "delay": 3.2
+            "delay": 0.32
           }
         ]
       },
@@ -2583,19 +2583,19 @@
         "frames": [
           {
             "sprite_id": 76,
-            "delay": 3.2
+            "delay": 0.32
           },
           {
             "sprite_id": 77,
-            "delay": 3.2
+            "delay": 0.32
           },
           {
             "sprite_id": 78,
-            "delay": 3.2
+            "delay": 0.32
           },
           {
             "sprite_id": 79,
-            "delay": 3.2
+            "delay": 0.32
           }
         ]
       },
@@ -2604,19 +2604,19 @@
         "frames": [
           {
             "sprite_id": 80,
-            "delay": 3.2
+            "delay": 0.32
           },
           {
             "sprite_id": 81,
-            "delay": 3.2
+            "delay": 0.32
           },
           {
             "sprite_id": 82,
-            "delay": 3.2
+            "delay": 0.32
           },
           {
             "sprite_id": 83,
-            "delay": 3.2
+            "delay": 0.32
           }
         ]
       }

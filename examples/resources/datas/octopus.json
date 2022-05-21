@@ -417,11 +417,11 @@
         "frames": [
           {
             "sprite_id": 0,
-            "delay": 3.2
+            "delay": 0.32
           },
           {
             "sprite_id": 1,
-            "delay": 3.2
+            "delay": 0.32
           }
         ]
       },
@@ -430,11 +430,11 @@
         "frames": [
           {
             "sprite_id": 4,
-            "delay": 3.2
+            "delay": 0.32
           },
           {
             "sprite_id": 5,
-            "delay": 3.2
+            "delay": 0.32
           }
         ]
       },
@@ -443,11 +443,11 @@
         "frames": [
           {
             "sprite_id": 2,
-            "delay": 3.2
+            "delay": 0.32
           },
           {
             "sprite_id": 3,
-            "delay": 3.2
+            "delay": 0.32
           }
         ]
       },
@@ -456,11 +456,11 @@
         "frames": [
           {
             "sprite_id": 6,
-            "delay": 3.2
+            "delay": 0.32
           },
           {
             "sprite_id": 7,
-            "delay": 3.2
+            "delay": 0.32
           }
         ]
       },
@@ -469,11 +469,11 @@
         "frames": [
           {
             "sprite_id": 0,
-            "delay": 3.2
+            "delay": 0.32
           },
           {
             "sprite_id": 1,
-            "delay": 3.2
+            "delay": 0.32
           }
         ]
       },
@@ -482,11 +482,11 @@
         "frames": [
           {
             "sprite_id": 4,
-            "delay": 3.2
+            "delay": 0.32
           },
           {
             "sprite_id": 5,
-            "delay": 3.2
+            "delay": 0.32
           }
         ]
       },
@@ -495,11 +495,11 @@
         "frames": [
           {
             "sprite_id": 2,
-            "delay": 3.2
+            "delay": 0.32
           },
           {
             "sprite_id": 3,
-            "delay": 3.2
+            "delay": 0.32
           }
         ]
       },
@@ -508,11 +508,11 @@
         "frames": [
           {
             "sprite_id": 6,
-            "delay": 3.2
+            "delay": 0.32
           },
           {
             "sprite_id": 7,
-            "delay": 3.2
+            "delay": 0.32
           }
         ]
       },

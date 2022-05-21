@@ -19,10 +19,10 @@ namespace CasaEngine
 		: Camera3DComponent(pEntity_, CAMERA_ARC_BALL),
 		m_fDistance(5.0f),
 		m_fInputDistanceRate(3.0f),
-		m_fInputTurnRate(0.06f),
-		m_fInputDisplacementRate(2.0f),
-		m_fArcBallPitch(0.0f),
-		m_fArcBallYaw(PI)
+		m_fInputTurnRate(0.3f),
+		m_fInputDisplacementRate(10.0f),
+		m_fArcBallYaw(PI),
+		m_fArcBallPitch(0.0f)
 	{
 		//orientation quaternion assumes a PI rotation so you're facing the "front"
 		//of the model (looking down the +Z axis)
