@@ -22,7 +22,8 @@ namespace CasaEngine
 		void Radius(float val);
 
 		IShape* Copy() override;
-		
+		bool operator==(const IShape& rsh) const override;
+
 	private:
 		Vector3 m_Center;
 		float m_Radius;

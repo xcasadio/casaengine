@@ -21,7 +21,6 @@ namespace CasaEngine
 		CVector2(T X = 0, T Y = 0);
 		~CVector2() = default;
 		CVector2(const CVector2& rsh) = default;
-		//CVector2& operator=(const CVector2& rsh) = default;
 		CVector2(CVector2&& rsh) = default;
 		CVector2& operator=(CVector2&& rsh) = default;
 

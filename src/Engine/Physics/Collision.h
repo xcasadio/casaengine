@@ -26,6 +26,8 @@ namespace CasaEngine
 		Collision(const Collision& rsh);
 		Collision& operator=(const Collision& rsh);
 		~Collision() = default;
+		Collision(Collision&& rsh) = default;
+		Collision& operator=(Collision&& rsh) = default;
 
 		CollisionHitType GetType() const;
 		void SetType(CollisionHitType type);
@@ -33,6 +35,8 @@ namespace CasaEngine
 		void SetShape(IShape *shape);
 
 		Collision* Copy() const;
+
+		bool operator ==(const Collision& rsh) const;
 
 	private:
 		CollisionHitType _type;

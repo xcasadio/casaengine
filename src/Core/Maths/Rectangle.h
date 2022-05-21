@@ -44,6 +44,8 @@ namespace CasaEngine
 		bool operator ==(const CRectangle<T>& Rect) const;
 		bool operator !=(const CRectangle<T>& Rect) const;
 
+		bool operator==(const IShape& rsh) const override;
+
 		T x, y, w, h;
 	};
 
@@ -165,5 +167,16 @@ namespace CasaEngine
 	bool CRectangle<T>::operator !=(const CRectangle<T>& Rect) const
 	{
 		return !(*this == Rect);
+	}
+
+	template <class T>
+	bool CRectangle<T>::operator==(const IShape& rsh) const
+	{
+		if (rsh.Type() != Type())
+		{
+			return false;
+		}
+
+		return *this == dynamic_cast<const Rectangle&>(rsh);
 	}
 }

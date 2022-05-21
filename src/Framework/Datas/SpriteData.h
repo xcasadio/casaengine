@@ -19,6 +19,8 @@ namespace CasaEngine
 		SpriteData(const SpriteData& rsh);
 		SpriteData& operator=(const SpriteData& rsh);
 		~SpriteData() override;
+		SpriteData(SpriteData&& rsh) = default;
+		SpriteData& operator=(SpriteData && rsh) = default;
 
 		Rectangle GetPositionInTexture() const;
 		Vector2I GetOrigin() const;
@@ -35,10 +37,13 @@ namespace CasaEngine
 		void SetAssetFileName(std::string val);
 		//#endif
 
+		bool operator ==(const SpriteData& rsh) const;
+
 	private:
-		Rectangle m_PositionInTexture;
-		Vector2I m_Origin;
+		Rectangle _positionInTexture;
+		Vector2I _origin;
 		//std::vector<Vector2I> m_Sockets;
-		std::string m_AssetFileName;
+		std::string _assetFileName;
 	};
+
 }

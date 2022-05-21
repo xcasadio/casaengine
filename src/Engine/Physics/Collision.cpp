@@ -28,6 +28,22 @@ namespace CasaEngine
 		return new Collision(*this);
 	}
 
+	bool Collision::operator==(const Collision& rsh) const
+	{
+		if (_type != rsh._type)
+		{
+			return false;
+		}
+
+		if (_shape != nullptr && rsh._shape == nullptr
+			|| _shape == nullptr && rsh._shape != nullptr)
+		{
+			return false;
+		}
+
+		return *_shape == *rsh._shape;
+	}
+
 	CollisionHitType Collision::GetType() const
 	{
 		return _type;

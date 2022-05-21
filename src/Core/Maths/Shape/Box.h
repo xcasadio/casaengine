@@ -1,5 +1,4 @@
-#ifndef BOX_H
-#define BOX_H
+#pragma once
 
 #include "CA_Export.h"
 #include "Maths/Vector3.h"
@@ -22,15 +21,9 @@ namespace CasaEngine
 		Vector3 Center() const;
 		void Center(Vector3 val);
 
+		bool operator==(const IShape& rsh) const override;
+
 	private:
 		Vector3 m_Center, m_Size;
 	};
 }
-/*
-#include <cereal/types/polymorphic.hpp>
-
-CEREAL_REGISTER_TYPE_WITH_NAME(CasaEngine::Box, "box");
-
-CEREAL_REGISTER_POLYMORPHIC_RELATION(CasaEngine::IShape, CasaEngine::Box);
-*/
-#endif

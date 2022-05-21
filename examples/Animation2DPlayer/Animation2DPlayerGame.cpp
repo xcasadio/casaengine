@@ -32,6 +32,8 @@
 #include <iconfontheaders/icons_material_design.h>
 #include <iconfontheaders/icons_material_design_icons.h>
 
+#include <unordered_set>
+
 using namespace CasaEngine;
 
 std::vector<std::string> last_animation_names;
@@ -79,16 +81,44 @@ void Animation2DPlayerGame::Initialize()
 	//GetDebugOptions().ShowLogInGame = true;
 }
 
-void Animation2DPlayerGame::copy_animations_name()
-{
-	last_animation_names.resize(animation_names.size());
-	std::copy(animation_names.begin(), animation_names.end(), last_animation_names.begin());
-}
-
 void Animation2DPlayerGame::LoadContent()
 {
 	Game::LoadContent();
 
+	//remove duplicated collisions
+	//std::vector<SpriteData> sprites;
+	//auto* file = Game::Instance().GetMediaManager().FindMedia("sprites.json", false);
+	//std::stringstream ss;
+	//ss << file->GetBuffer();
+	//json j;
+	//ss >> j;
+	//from_json(j["sprites"], sprites);
+	//
+	//for (auto& sprite : sprites)
+	//{
+	//	std::vector<Collision> collisions;
+	//
+	//	for (auto& collision : sprite._collisionShapes)
+	//	{
+	//		if (std::find(collisions.begin(), collisions.end(), collision) == collisions.end())
+	//		{
+	//			collisions.push_back(collision);
+	//		}
+	//	}
+	//
+	//	sprite._collisionShapes.clear();
+	//
+	//	for (auto& collision : collisions)
+	//	{
+	//		sprite._collisionShapes.push_back(collision);
+	//	}
+	//}
+	//
+	//std::ofstream os("C:\\Users\\casad\\dev\\repo\\casaengine\\examples\\resources\\datas\\sprites2.json");
+	//json j2;
+	//to_json(j2, sprites, "sprites");
+	//os << std::setw(4) << j2 << std::endl; // pretty json
+	
 	SpriteLoader::LoadFromFile("sprites.json");
 	auto animations = Animation2dLoader::LoadFromFile("animations.json");
 
@@ -152,8 +182,6 @@ void Animation2DPlayerGame::LoadContent()
 		writable[str.size()] = '\0';
 		animation_names.push_back(writable);
 	}
-
-	copy_animations_name();
 }
 
 void Animation2DPlayerGame::Update(const GameTime& gameTime_)
@@ -185,12 +213,6 @@ void Animation2DPlayerGame::Update(const GameTime& gameTime_)
 	Game::Update(gameTime_);
 }
 
-void Animation2DPlayerGame::RenameAnimation(const char* old_name, const char* new_name)
-{
-	//GetAssetManager().Rename(old_name, new_name);
-	copy_animations_name();
-}
-
 void DisplayIcons();
 
 void Animation2DPlayerGame::DisplayUI()
@@ -204,26 +226,26 @@ void Animation2DPlayerGame::DisplayUI()
 		ImGui::BeginChild("Animation List", ImVec2(0, 0));
 
 		std::ostringstream oss;
-		oss << "time (total :" << m_pAnimatedSprite->GetCurrentAnimation()->TotalTime() << " ms)";
+		oss << "time (total :" << m_pAnimatedSprite->GetCurrentAnimation()->TotalTime() << " s)";
 		ImGui::SliderFloat(oss.str().c_str(),
 			m_pAnimatedSprite->GetCurrentAnimation()->CurrentTimePtr(),
 			0.0f,
 			m_pAnimatedSprite->GetCurrentAnimation()->TotalTime(), "%.3f", ImGuiSliderFlags_AlwaysClamp);
 
-		if (ImGui::Button(ICON_FK_PLAY))
+		if (ImGui::Button(ICON_FK_PLAY, ImVec2(25, 0)))
 		{
 			m_pEntity->IsEnabled(true);
 		}
 		ImGui::SameLine();
-		if (ImGui::Button(ICON_FK_STOP))
+		if (ImGui::Button(ICON_FK_STOP, ImVec2(25, 0)))
 		{
 			m_pEntity->IsEnabled(false);
 		}
 
 		ImGui::SameLine();
-		ImGui::Button(ICON_FK_STEP_BACKWARD);
+		ImGui::Button(ICON_FK_STEP_BACKWARD, ImVec2(25, 0));
 		ImGui::SameLine();
-		ImGui::Button(ICON_FK_STEP_FORWARD);
+		ImGui::Button(ICON_FK_STEP_FORWARD, ImVec2(25, 0));
 
 		ImGui::Separator();
 
@@ -232,7 +254,7 @@ void Animation2DPlayerGame::DisplayUI()
 		ImGui::Text("Zoom x%d", (int)m_pEntity->GetCoordinates().GetLocalScale().x);
 		ImGui::SameLine();
 
-		if (ImGui::Button(ICON_FK_PLUS))
+		if (ImGui::Button(ICON_FK_PLUS, ImVec2(25, 0)))
 		{
 			local_scale.x++;
 			local_scale.y++;
@@ -241,7 +263,7 @@ void Animation2DPlayerGame::DisplayUI()
 
 		ImGui::SameLine();
 
-		if (ImGui::Button(ICON_FK_MINUS))
+		if (ImGui::Button(ICON_FK_MINUS, ImVec2(25, 0)))
 		{
 			local_scale.x = std::max(--local_scale.x, 1.0f);
 			local_scale.y = std::max(--local_scale.y, 1.0f);
@@ -250,11 +272,7 @@ void Animation2DPlayerGame::DisplayUI()
 
 		ImGui::Separator();
 
-		ImGui::Button(ICON_FK_PLUS);
-		ImGui::SameLine();
-		ImGui::Button(ICON_FK_MINUS);
-		ImGui::SameLine();
-		if (ImGui::BeginCombo("Animations", m_AnimationIndexSelected >= 0 ? animation_names[m_AnimationIndexSelected] : nullptr))
+		if (ImGui::BeginListBox("Animations"))
 		{
 			for (int n = 0; n < animation_names.size(); n++)
 			{
@@ -272,36 +290,92 @@ void Animation2DPlayerGame::DisplayUI()
 				ImGui::PopID();
 			}
 
-			ImGui::EndCombo();
+			ImGui::EndListBox();
 		}
+		static char newAnimationName[256];
 
 		ImGui::SameLine();
-		auto editing_animation = ImGui::Button(ICON_FK_PENCIL);
-
-		//if (editing_animation)
+		ImGui::Button(ICON_FK_PLUS, ImVec2(25, 0));
 		{
-			if (ImGui::BeginPopupContextItem())
+			if (ImGui::BeginPopupContextItem(nullptr, ImGuiPopupFlags_MouseButtonLeft))
 			{
-				auto* animation_name = animation_names[m_AnimationIndexSelected];
-				ImGui::Text("Edit name:");
-				ImGui::InputText("##edit", animation_name, std::strlen(animation_name));
-				if (ImGui::Button("Close"))
+				ImGui::Text("Name of the new animation:");
+				ImGui::InputText("##newAnim", newAnimationName, IM_ARRAYSIZE(newAnimationName));
+				if (ImGui::Button(ICON_FK_CHECK " Add"))
 				{
-					RenameAnimation(last_animation_names[m_AnimationIndexSelected].c_str(), animation_names[m_AnimationIndexSelected]);
+					//RenameAnimation(last_animation_names[m_AnimationIndexSelected].c_str(), animation_names[m_AnimationIndexSelected]);
+					ImGui::CloseCurrentPopup();
+				}
+				ImGui::SameLine();
+				if (ImGui::Button(ICON_FK_TIMES " Cancel"))
+				{
+
 					ImGui::CloseCurrentPopup();
 				}
 				ImGui::EndPopup();
 			}
 		}
-
-		std::vector<const char *> animationType { "Once", "PingPong", "Loop" };
-		ImGui::Combo("Type", &m_AnimationTypeIndexSelected, &animationType[0], animationType.size());
-
-
-		ImGui::Button(ICON_FK_PLUS);
 		ImGui::SameLine();
-		ImGui::Button(ICON_FK_MINUS);
+		auto editing_animation = ImGui::Button(ICON_FK_PENCIL, ImVec2(25, 0));
+
+		//if (editing_animation)
+		{
+			if (ImGui::BeginPopupContextItem(nullptr, ImGuiPopupFlags_MouseButtonLeft))
+			{
+				static char editAnimationName[256] = { "test" };
+				//std::memcpy(editAnimationName, animation_names[m_AnimationIndexSelected], (std::strlen(animation_names[m_AnimationIndexSelected]) + 1) * sizeof(char));
+				ImGui::Text("Rename the animation:");
+				ImGui::InputText("##editAnim", editAnimationName, IM_ARRAYSIZE(editAnimationName));
+				if (ImGui::Button(ICON_FK_CHECK " Rename"))
+				{
+					delete[] animation_names[m_AnimationIndexSelected];
+					auto* writable = new char[std::strlen(editAnimationName) + 1];
+					std::memcpy(writable, editAnimationName, (std::strlen(editAnimationName) + 1) * sizeof(char));
+					animation_names[m_AnimationIndexSelected] = writable;
+
+					ImGui::CloseCurrentPopup();
+				}
+				ImGui::SameLine();
+				if (ImGui::Button(ICON_FK_TIMES " Cancel"))
+				{
+					ImGui::CloseCurrentPopup();
+				}
+				ImGui::EndPopup();
+			}
+		}
 		ImGui::SameLine();
+		if (ImGui::Button(ICON_FK_TRASH_O, ImVec2(25, 0)))
+		{
+			animation_names.erase(animation_names.begin() + m_AnimationIndexSelected);
+			m_pAnimatedSprite->GetAnimations().erase(m_pAnimatedSprite->GetAnimations().begin() + m_AnimationIndexSelected);
+			m_LastAnimationIndexSelected = -1;
+			if (m_AnimationIndexSelected >= m_pAnimatedSprite->GetAnimations().size())
+			{
+				m_AnimationIndexSelected--;
+			}
+		}
+
+		std::vector<const char*> animationType{ "Once", "PingPong", "Loop" };
+		if (ImGui::BeginCombo("Type", animationType[m_AnimationTypeIndexSelected]))
+		{
+			for (int n = 0; n < animationType.size(); n++)
+			{
+				ImGui::PushID(n);
+				if (ImGui::Selectable(animationType[n], m_AnimationTypeIndexSelected == n))
+				{
+					m_AnimationTypeIndexSelected = n;
+				}
+
+				if (m_AnimationTypeIndexSelected == n)
+				{
+					ImGui::SetItemDefaultFocus();
+				}
+				ImGui::PopID();
+			}
+
+			ImGui::EndCombo();
+		}
+
 		std::vector<const char*> frameNames;
 		for (const auto& frame : m_pAnimatedSprite->GetCurrentAnimation()->GetAnimation2DData()->_frames)
 		{
@@ -312,7 +386,7 @@ void Animation2DPlayerGame::DisplayUI()
 			frameNames.push_back(writable);
 		}
 
-		if (ImGui::BeginCombo("Frames", m_FrameIndexSelected >= 0 ? frameNames[m_FrameIndexSelected] : nullptr))
+		if (ImGui::BeginListBox("Frames"))
 		{
 			for (int n = 0; n < frameNames.size(); n++)
 			{
@@ -329,14 +403,13 @@ void Animation2DPlayerGame::DisplayUI()
 				ImGui::PopID();
 			}
 
-			ImGui::EndCombo();
+			ImGui::EndListBox();
 		}
 
-
-		ImGui::Button(ICON_FK_PLUS);
 		ImGui::SameLine();
-		ImGui::Button(ICON_FK_MINUS);
+		ImGui::Button(ICON_FK_PLUS, ImVec2(25, 0));
 		ImGui::SameLine();
+		ImGui::Button(ICON_FK_TRASH_O, ImVec2(25, 0));
 
 		std::vector<const char*> collisionNames;
 		auto* frames = m_pAnimatedSprite->GetCurrentAnimation();
@@ -353,7 +426,7 @@ void Animation2DPlayerGame::DisplayUI()
 			writable[str.size()] = '\0';
 			collisionNames.push_back(writable);
 		}
-		if (ImGui::BeginCombo("Collisions", m_CollisionIndexSelected >= 0 ? collisionNames[m_CollisionIndexSelected] : nullptr))
+		if (ImGui::BeginListBox("Collisions"))
 		{
 			for (int n = 0; n < collisionNames.size(); n++)
 			{
@@ -370,8 +443,13 @@ void Animation2DPlayerGame::DisplayUI()
 				ImGui::PopID();
 			}
 
-			ImGui::EndCombo();
+			ImGui::EndListBox();
 		}
+
+		ImGui::SameLine();
+		ImGui::Button(ICON_FK_PLUS, ImVec2(25, 0));
+		ImGui::SameLine();
+		ImGui::Button(ICON_FK_TRASH_O, ImVec2(25, 0));
 
 		ImGui::Text("Move collision"); ImGui::SameLine();
 		ImGui::ArrowButton("left", ImGuiDir_::ImGuiDir_Left); ImGui::SameLine();
@@ -388,12 +466,15 @@ void Animation2DPlayerGame::DisplayUI()
 			animationsToSave.resize(animationsPtr.size());
 			std::transform(animationsPtr.begin(), animationsPtr.end(), animationsToSave.begin(), [](Animation2DData* x) { return *x; });
 			std::ofstream os("C:\\Users\\casad\\dev\\repo\\casaengine\\examples\\resources\\datas\\animations2.json");
-			//cereal::JSONOutputArchive ar2(os);
-			//ar2(cereal::make_nvp("animations", animationsToSave));
 			json j;
 			to_json(j, animationsToSave, "animations");
 			os << std::setw(4) << j << std::endl; // pretty json
 		}
+
+		const ImGuiKey key_first = ImGuiKey_NamedKey_BEGIN;
+		ImGui::Text("Keys down:");          for (ImGuiKey key = key_first; key < ImGuiKey_COUNT; key++) { if (ImGui::IsKeyDown(key)) { ImGui::SameLine(); ImGui::Text("\"%s\" %d (%.02f secs)", ImGui::GetKeyName(key), key, ImGui::GetIO().KeysData[key].DownDuration); } }
+		ImGui::Text("Keys pressed:");       for (ImGuiKey key = key_first; key < ImGuiKey_COUNT; key++) { if (ImGui::IsKeyPressed(key)) { ImGui::SameLine(); ImGui::Text("\"%s\" %d", ImGui::GetKeyName(key), key); } }
+		ImGui::Text("Keys released:");      for (ImGuiKey key = key_first; key < ImGuiKey_COUNT; key++) { if (ImGui::IsKeyReleased(key)) { ImGui::SameLine(); ImGui::Text("\"%s\" %d", ImGui::GetKeyName(key), key); } }
 
 		//DisplayIcons();
 

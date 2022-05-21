@@ -9,6 +9,7 @@ namespace CasaEngine
 	{
 	public:
 		virtual ~IAssetable() = default;
+		IAssetable& operator = (const IAssetable & rsh);
 		
 		std::string GetName() const;
 //#ifdef EDITOR
@@ -17,7 +18,6 @@ namespace CasaEngine
 
 	protected:
 		IAssetable() = default;
-		IAssetable& operator = (const IAssetable& rsh);
 		
 	private:
 		std::string m_Name;

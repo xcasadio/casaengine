@@ -17,13 +17,11 @@ public:
 	~Animation2DPlayerGame() override;
 
 	void Initialize() override;
-	void copy_animations_name();
 	void LoadContent() override;
 	void Update(const CasaEngine::GameTime& gameTime_) override;
 	void Draw() override;
 
 private:
-	void RenameAnimation(const char* old_name, const char* new_name);
 	void DisplayUI();
 
 private:

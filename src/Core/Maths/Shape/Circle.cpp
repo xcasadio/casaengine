@@ -53,4 +53,14 @@ namespace CasaEngine
 	{
 		return new Circle(*this);
 	}
+
+	bool Circle::operator==(const IShape& rsh) const
+	{
+		if (rsh.Type() != Type())
+		{
+			return false;
+		}
+
+		return *this == dynamic_cast<const Circle&>(rsh);
+	}
 }

@@ -50,4 +50,14 @@ namespace CasaEngine
 	{
 		m_Center = val;
 	}
+
+	bool Box::operator==(const IShape& rsh) const
+	{
+		if (rsh.Type() != Type())
+		{
+			return false;
+		}
+
+		return *this == dynamic_cast<const Box&>(rsh);
+	}
 }

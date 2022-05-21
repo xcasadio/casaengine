@@ -12,6 +12,7 @@ namespace CasaEngine
 		ShapeType Type() const;
 
 		virtual IShape* Copy() = 0;
+		virtual bool operator ==(const IShape& rsh) const = 0;
 
 	protected:
 		//IShape(const IShape& rsh);

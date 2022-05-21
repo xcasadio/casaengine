@@ -3,6 +3,9 @@
 #include "CA_Export.h"
 #include "Graphics\Materials\Material.h"
 #include <map>
+#include <SFML/Window/Event.hpp>
+
+#include "GameTime.h"
 
 namespace CasaEngine
 {
@@ -11,6 +14,9 @@ namespace CasaEngine
 	public:
 		static void Create(float _fontSize = 18.0f);
 		static void Destroy();
+
+		static void Update(const GameTime& gameTime);
+		static void UpdateInput(const sf::Event& event);
 
 		static void BeginFrame(unsigned short _width, unsigned short _height, unsigned char _view = 255);
 		static void EndFrame();
