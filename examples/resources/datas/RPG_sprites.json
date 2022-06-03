@@ -1,0 +1,4904 @@
+{
+    "sprites": [
+        {
+            "asset_name": "octopus_0",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 24.0,
+                    "shape_type": 3,
+                    "w": 24.0,
+                    "x": 2.0,
+                    "y": 1.0
+                }
+            ],
+            "hotspot": {
+                "x": 13,
+                "y": 14
+            },
+            "location": {
+                "h": 28.0,
+                "shape_type": 3,
+                "w": 32.0,
+                "x": 0.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "octopus_0_0.png"
+        },
+        {
+            "asset_name": "octopus_1",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 24.0,
+                    "shape_type": 3,
+                    "w": 24.0,
+                    "x": 2.0,
+                    "y": 1.0
+                }
+            ],
+            "hotspot": {
+                "x": 12,
+                "y": 14
+            },
+            "location": {
+                "h": 30.0,
+                "shape_type": 3,
+                "w": 28.0,
+                "x": 32.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "octopus_0_0.png"
+        },
+        {
+            "asset_name": "octopus_10",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 24.0,
+                    "shape_type": 3,
+                    "w": 24.0,
+                    "x": 2.0,
+                    "y": 1.0
+                }
+            ],
+            "hotspot": {
+                "x": 13,
+                "y": 14
+            },
+            "location": {
+                "h": 29.0,
+                "shape_type": 3,
+                "w": 32.0,
+                "x": 315.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "octopus_0_0.png"
+        },
+        {
+            "asset_name": "octopus_11",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 24.0,
+                    "shape_type": 3,
+                    "w": 24.0,
+                    "x": 2.0,
+                    "y": 1.0
+                }
+            ],
+            "hotspot": {
+                "x": 14,
+                "y": 16
+            },
+            "location": {
+                "h": 31.0,
+                "shape_type": 3,
+                "w": 31.0,
+                "x": 347.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "octopus_0_0.png"
+        },
+        {
+            "asset_name": "octopus_12",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 24.0,
+                    "shape_type": 3,
+                    "w": 24.0,
+                    "x": 2.0,
+                    "y": 1.0
+                }
+            ],
+            "hotspot": {
+                "x": 22,
+                "y": 14
+            },
+            "location": {
+                "h": 29.0,
+                "shape_type": 3,
+                "w": 38.0,
+                "x": 378.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "octopus_0_0.png"
+        },
+        {
+            "asset_name": "octopus_13",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 24.0,
+                    "shape_type": 3,
+                    "w": 24.0,
+                    "x": 2.0,
+                    "y": 1.0
+                }
+            ],
+            "hotspot": {
+                "x": 17,
+                "y": 14
+            },
+            "location": {
+                "h": 29.0,
+                "shape_type": 3,
+                "w": 32.0,
+                "x": 416.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "octopus_0_0.png"
+        },
+        {
+            "asset_name": "octopus_14",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 24.0,
+                    "shape_type": 3,
+                    "w": 24.0,
+                    "x": 2.0,
+                    "y": 1.0
+                }
+            ],
+            "hotspot": {
+                "x": 16,
+                "y": 16
+            },
+            "location": {
+                "h": 28.0,
+                "shape_type": 3,
+                "w": 32.0,
+                "x": 448.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "octopus_0_0.png"
+        },
+        {
+            "asset_name": "octopus_15",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 24.0,
+                    "shape_type": 3,
+                    "w": 24.0,
+                    "x": 2.0,
+                    "y": 1.0
+                }
+            ],
+            "hotspot": {
+                "x": 15,
+                "y": 10
+            },
+            "location": {
+                "h": 29.0,
+                "shape_type": 3,
+                "w": 32.0,
+                "x": 480.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "octopus_0_0.png"
+        },
+        {
+            "asset_name": "octopus_16",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 24.0,
+                    "shape_type": 3,
+                    "w": 24.0,
+                    "x": 2.0,
+                    "y": 1.0
+                }
+            ],
+            "hotspot": {
+                "x": 16,
+                "y": 14
+            },
+            "location": {
+                "h": 30.0,
+                "shape_type": 3,
+                "w": 32.0,
+                "x": 0.0,
+                "y": 31.0
+            },
+            "sprite_sheet": "octopus_0_0.png"
+        },
+        {
+            "asset_name": "octopus_17",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 24.0,
+                    "shape_type": 3,
+                    "w": 24.0,
+                    "x": 2.0,
+                    "y": 1.0
+                }
+            ],
+            "hotspot": {
+                "x": 16,
+                "y": 11
+            },
+            "location": {
+                "h": 24.0,
+                "shape_type": 3,
+                "w": 32.0,
+                "x": 32.0,
+                "y": 31.0
+            },
+            "sprite_sheet": "octopus_0_0.png"
+        },
+        {
+            "asset_name": "octopus_18",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 24.0,
+                    "shape_type": 3,
+                    "w": 24.0,
+                    "x": 2.0,
+                    "y": 1.0
+                }
+            ],
+            "hotspot": {
+                "x": 16,
+                "y": 18
+            },
+            "location": {
+                "h": 30.0,
+                "shape_type": 3,
+                "w": 32.0,
+                "x": 64.0,
+                "y": 31.0
+            },
+            "sprite_sheet": "octopus_0_0.png"
+        },
+        {
+            "asset_name": "octopus_19",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 24.0,
+                    "shape_type": 3,
+                    "w": 24.0,
+                    "x": 2.0,
+                    "y": 1.0
+                }
+            ],
+            "hotspot": {
+                "x": 16,
+                "y": 17
+            },
+            "location": {
+                "h": 30.0,
+                "shape_type": 3,
+                "w": 32.0,
+                "x": 96.0,
+                "y": 31.0
+            },
+            "sprite_sheet": "octopus_0_0.png"
+        },
+        {
+            "asset_name": "octopus_2",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 24.0,
+                    "shape_type": 3,
+                    "w": 24.0,
+                    "x": 2.0,
+                    "y": 1.0
+                }
+            ],
+            "hotspot": {
+                "x": 16,
+                "y": 13
+            },
+            "location": {
+                "h": 27.0,
+                "shape_type": 3,
+                "w": 32.0,
+                "x": 60.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "octopus_0_0.png"
+        },
+        {
+            "asset_name": "octopus_3",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 24.0,
+                    "shape_type": 3,
+                    "w": 24.0,
+                    "x": 2.0,
+                    "y": 1.0
+                }
+            ],
+            "hotspot": {
+                "x": 16,
+                "y": 14
+            },
+            "location": {
+                "h": 29.0,
+                "shape_type": 3,
+                "w": 32.0,
+                "x": 92.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "octopus_0_0.png"
+        },
+        {
+            "asset_name": "octopus_4",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 24.0,
+                    "shape_type": 3,
+                    "w": 24.0,
+                    "x": 2.0,
+                    "y": 1.0
+                }
+            ],
+            "hotspot": {
+                "x": 19,
+                "y": 14
+            },
+            "location": {
+                "h": 28.0,
+                "shape_type": 3,
+                "w": 32.0,
+                "x": 124.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "octopus_0_0.png"
+        },
+        {
+            "asset_name": "octopus_5",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 24.0,
+                    "shape_type": 3,
+                    "w": 24.0,
+                    "x": 2.0,
+                    "y": 1.0
+                }
+            ],
+            "hotspot": {
+                "x": 17,
+                "y": 14
+            },
+            "location": {
+                "h": 30.0,
+                "shape_type": 3,
+                "w": 28.0,
+                "x": 156.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "octopus_0_0.png"
+        },
+        {
+            "asset_name": "octopus_6",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 24.0,
+                    "shape_type": 3,
+                    "w": 24.0,
+                    "x": 2.0,
+                    "y": 1.0
+                }
+            ],
+            "hotspot": {
+                "x": 16,
+                "y": 14
+            },
+            "location": {
+                "h": 29.0,
+                "shape_type": 3,
+                "w": 31.0,
+                "x": 184.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "octopus_0_0.png"
+        },
+        {
+            "asset_name": "octopus_7",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 24.0,
+                    "shape_type": 3,
+                    "w": 24.0,
+                    "x": 2.0,
+                    "y": 1.0
+                }
+            ],
+            "hotspot": {
+                "x": 16,
+                "y": 13
+            },
+            "location": {
+                "h": 31.0,
+                "shape_type": 3,
+                "w": 31.0,
+                "x": 215.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "octopus_0_0.png"
+        },
+        {
+            "asset_name": "octopus_8",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 24.0,
+                    "shape_type": 3,
+                    "w": 24.0,
+                    "x": 2.0,
+                    "y": 1.0
+                }
+            ],
+            "hotspot": {
+                "x": 16,
+                "y": 16
+            },
+            "location": {
+                "h": 31.0,
+                "shape_type": 3,
+                "w": 31.0,
+                "x": 246.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "octopus_0_0.png"
+        },
+        {
+            "asset_name": "octopus_9",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 24.0,
+                    "shape_type": 3,
+                    "w": 24.0,
+                    "x": 2.0,
+                    "y": 1.0
+                }
+            ],
+            "hotspot": {
+                "x": 13,
+                "y": 14
+            },
+            "location": {
+                "h": 29.0,
+                "shape_type": 3,
+                "w": 38.0,
+                "x": 277.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "octopus_0_0.png"
+        },
+        {
+            "asset_name": "player_0",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 0.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_1",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 48.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_10",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 96.0,
+                "y": 48.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_100",
+            "collisions": [],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 0.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_101",
+            "collisions": [],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 48.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_102",
+            "collisions": [],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 96.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_103",
+            "collisions": [],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 144.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_104",
+            "collisions": [],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 192.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_105",
+            "collisions": [],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 240.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_11",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 144.0,
+                "y": 48.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_12",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 192.0,
+                "y": 48.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_13",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 240.0,
+                "y": 48.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_14",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 288.0,
+                "y": 48.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_15",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 336.0,
+                "y": 48.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_16",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 0.0,
+                "y": 96.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_17",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 48.0,
+                "y": 96.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_18",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 96.0,
+                "y": 96.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_19",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 144.0,
+                "y": 96.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_2",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 96.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_20",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 192.0,
+                "y": 96.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_21",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 240.0,
+                "y": 96.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_22",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 288.0,
+                "y": 96.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_23",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 336.0,
+                "y": 96.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_24",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 0.0,
+                "y": 144.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_25",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 48.0,
+                "y": 144.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_26",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 96.0,
+                "y": 144.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_27",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 144.0,
+                "y": 144.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_28",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 192.0,
+                "y": 144.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_29",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 240.0,
+                "y": 144.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_3",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 144.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_30",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 288.0,
+                "y": 144.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_31",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 0.0,
+                "y": 192.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_32",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 48.0,
+                "y": 192.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_33",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 96.0,
+                "y": 192.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_34",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 144.0,
+                "y": 192.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_35",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 192.0,
+                "y": 192.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_36",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 240.0,
+                "y": 192.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_37",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 288.0,
+                "y": 192.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_38",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 0.0,
+                "y": 240.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_39",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 48.0,
+                "y": 240.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_4",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 192.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_40",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 96.0,
+                "y": 240.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_41",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 144.0,
+                "y": 240.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_42",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 192.0,
+                "y": 240.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_43",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 240.0,
+                "y": 240.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_44",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 288.0,
+                "y": 240.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_45",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 0.0,
+                "y": 288.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_46",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 48.0,
+                "y": 288.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_47",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 96.0,
+                "y": 288.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_48",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 144.0,
+                "y": 288.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_49",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 192.0,
+                "y": 288.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_5",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 240.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_50",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 240.0,
+                "y": 288.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_51",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 288.0,
+                "y": 288.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_52",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 384.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_53",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 432.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_54",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 384.0,
+                "y": 48.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_55",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 432.0,
+                "y": 48.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_56",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 432.0,
+                "y": 144.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_57",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 336.0,
+                "y": 192.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_58",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 384.0,
+                "y": 192.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_59",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 432.0,
+                "y": 192.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_6",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 288.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_60",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 336.0,
+                "y": 240.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_61",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 384.0,
+                "y": 240.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_62",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 432.0,
+                "y": 240.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_63",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 336.0,
+                "y": 288.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_64",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 384.0,
+                "y": 288.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_65",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 432.0,
+                "y": 288.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_66",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 0.0,
+                "y": 336.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_67",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 48.0,
+                "y": 336.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_68",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 384.0,
+                "y": 96.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_69",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 432.0,
+                "y": 96.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_7",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 336.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_70",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 336.0,
+                "y": 144.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_71",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 384.0,
+                "y": 144.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_72",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 96.0,
+                "y": 336.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_73",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 144.0,
+                "y": 336.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_74",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 192.0,
+                "y": 336.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_75",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 240.0,
+                "y": 336.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_76",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 288.0,
+                "y": 336.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_77",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 336.0,
+                "y": 336.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_78",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 384.0,
+                "y": 336.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_79",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 432.0,
+                "y": 336.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_8",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 0.0,
+                "y": 48.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_80",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 0.0,
+                "y": 384.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_81",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 48.0,
+                "y": 384.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_82",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 96.0,
+                "y": 384.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_83",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 144.0,
+                "y": 384.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_84",
+            "collisions": [],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 192.0,
+                "y": 384.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_85",
+            "collisions": [],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 240.0,
+                "y": 384.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_86",
+            "collisions": [],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 288.0,
+                "y": 384.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_87",
+            "collisions": [],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 336.0,
+                "y": 384.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_88",
+            "collisions": [],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 384.0,
+                "y": 384.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_89",
+            "collisions": [],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 432.0,
+                "y": 384.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_9",
+            "collisions": [
+                {
+                    "collision_type": 2,
+                    "h": 36.0,
+                    "shape_type": 3,
+                    "w": 28.0,
+                    "x": 9.0,
+                    "y": 6.0
+                }
+            ],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 48.0,
+                "y": 48.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_90",
+            "collisions": [],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 0.0,
+                "y": 432.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_91",
+            "collisions": [],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 48.0,
+                "y": 432.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_92",
+            "collisions": [],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 96.0,
+                "y": 432.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_93",
+            "collisions": [],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 144.0,
+                "y": 432.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_94",
+            "collisions": [],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 192.0,
+                "y": 432.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_95",
+            "collisions": [],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 240.0,
+                "y": 432.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_96",
+            "collisions": [],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 288.0,
+                "y": 432.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_97",
+            "collisions": [],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 336.0,
+                "y": 432.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_98",
+            "collisions": [],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 384.0,
+                "y": 432.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "player_99",
+            "collisions": [],
+            "hotspot": {
+                "x": 23,
+                "y": 35
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 432.0,
+                "y": 432.0
+            },
+            "sprite_sheet": "Swordman_1.png"
+        },
+        {
+            "asset_name": "sword_0",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 34.0,
+                    "shape_type": 3,
+                    "w": 7.0,
+                    "x": 8.0,
+                    "y": 0.0
+                }
+            ],
+            "hotspot": {
+                "x": 11,
+                "y": 62
+            },
+            "location": {
+                "h": 50.0,
+                "shape_type": 3,
+                "w": 23.0,
+                "x": 50.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Epee_en_bois.png"
+        },
+        {
+            "asset_name": "sword_1",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 9.0,
+                    "x": 17.0,
+                    "y": 16.0
+                },
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 9.0,
+                    "y": 9.0
+                },
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 1.0,
+                    "y": 1.0
+                }
+            ],
+            "hotspot": {
+                "x": 39,
+                "y": 42
+            },
+            "location": {
+                "h": 37.0,
+                "shape_type": 3,
+                "w": 37.0,
+                "x": 96.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Epee_en_bois.png"
+        },
+        {
+            "asset_name": "sword_10",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 34.0,
+                    "shape_type": 3,
+                    "w": 7.0,
+                    "x": 8.0,
+                    "y": 0.0
+                }
+            ],
+            "hotspot": {
+                "x": 20,
+                "y": 61
+            },
+            "location": {
+                "h": 50.0,
+                "shape_type": 3,
+                "w": 23.0,
+                "x": 50.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Epee_en_bois.png"
+        },
+        {
+            "asset_name": "sword_11",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 9.0,
+                    "x": 17.0,
+                    "y": 16.0
+                },
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 9.0,
+                    "y": 9.0
+                },
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 1.0,
+                    "y": 1.0
+                }
+            ],
+            "hotspot": {
+                "x": 40,
+                "y": 40
+            },
+            "location": {
+                "h": 37.0,
+                "shape_type": 3,
+                "w": 37.0,
+                "x": 96.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Epee_en_bois.png"
+        },
+        {
+            "asset_name": "sword_12",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 18.0,
+                    "shape_type": 3,
+                    "w": 8.0,
+                    "x": 14.0,
+                    "y": 7.0
+                },
+                {
+                    "collision_type": 1,
+                    "h": 8.0,
+                    "shape_type": 3,
+                    "w": 18.0,
+                    "x": 0.0,
+                    "y": 0.0
+                }
+            ],
+            "hotspot": {
+                "x": 56,
+                "y": 26
+            },
+            "location": {
+                "h": 27.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 298.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Epee_en_bois.png"
+        },
+        {
+            "asset_name": "sword_13",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 7.0,
+                    "shape_type": 3,
+                    "w": 34.0,
+                    "x": 0.0,
+                    "y": 8.0
+                }
+            ],
+            "hotspot": {
+                "x": 64,
+                "y": 17
+            },
+            "location": {
+                "h": 23.0,
+                "shape_type": 3,
+                "w": 50.0,
+                "x": 0.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Epee_en_bois.png"
+        },
+        {
+            "asset_name": "sword_14",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 7.0,
+                    "shape_type": 3,
+                    "w": 34.0,
+                    "x": 0.0,
+                    "y": 8.0
+                }
+            ],
+            "hotspot": {
+                "x": 44,
+                "y": 20
+            },
+            "location": {
+                "h": 23.0,
+                "shape_type": 3,
+                "w": 50.0,
+                "x": 0.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Epee_en_bois.png"
+        },
+        {
+            "asset_name": "sword_15",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 15.0,
+                    "y": 12.0
+                },
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 7.0,
+                    "y": 20.0
+                },
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 0.0,
+                    "y": 27.0
+                }
+            ],
+            "hotspot": {
+                "x": 28,
+                "y": 9
+            },
+            "location": {
+                "h": 37.0,
+                "shape_type": 3,
+                "w": 37.0,
+                "x": 133.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Epee_en_bois.png"
+        },
+        {
+            "asset_name": "sword_16",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 18.0,
+                    "shape_type": 3,
+                    "w": 8.0,
+                    "x": 8.0,
+                    "y": 16.0
+                },
+                {
+                    "collision_type": 1,
+                    "h": 18.0,
+                    "shape_type": 3,
+                    "w": 8.0,
+                    "x": 0.0,
+                    "y": 30.0
+                }
+            ],
+            "hotspot": {
+                "x": 7,
+                "y": 4
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 27.0,
+                "x": 244.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Epee_en_bois.png"
+        },
+        {
+            "asset_name": "sword_17",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 34.0,
+                    "shape_type": 3,
+                    "w": 7.0,
+                    "x": 8.0,
+                    "y": 16.0
+                }
+            ],
+            "hotspot": {
+                "x": 2,
+                "y": -5
+            },
+            "location": {
+                "h": 50.0,
+                "shape_type": 3,
+                "w": 23.0,
+                "x": 73.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Epee_en_bois.png"
+        },
+        {
+            "asset_name": "sword_18",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 12.0,
+                    "y": 12.0
+                },
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 20.0,
+                    "y": 20.0
+                },
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 27.0,
+                    "y": 27.0
+                }
+            ],
+            "hotspot": {
+                "x": -8,
+                "y": 3
+            },
+            "location": {
+                "h": 37.0,
+                "shape_type": 3,
+                "w": 37.0,
+                "x": 207.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Epee_en_bois.png"
+        },
+        {
+            "asset_name": "sword_19",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 8.0,
+                    "shape_type": 3,
+                    "w": 18.0,
+                    "x": 17.0,
+                    "y": 12.0
+                },
+                {
+                    "collision_type": 1,
+                    "h": 8.0,
+                    "shape_type": 3,
+                    "w": 18.0,
+                    "x": 30.0,
+                    "y": 19.0
+                }
+            ],
+            "hotspot": {
+                "x": -12,
+                "y": 15
+            },
+            "location": {
+                "h": 27.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 298.0,
+                "y": 27.0
+            },
+            "sprite_sheet": "Epee_en_bois.png"
+        },
+        {
+            "asset_name": "sword_2",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 18.0,
+                    "shape_type": 3,
+                    "w": 8.0,
+                    "x": 14.0,
+                    "y": 7.0
+                },
+                {
+                    "collision_type": 1,
+                    "h": 8.0,
+                    "shape_type": 3,
+                    "w": 18.0,
+                    "x": 0.0,
+                    "y": 0.0
+                }
+            ],
+            "hotspot": {
+                "x": 56,
+                "y": 24
+            },
+            "location": {
+                "h": 27.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 298.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Epee_en_bois.png"
+        },
+        {
+            "asset_name": "sword_20",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 7.0,
+                    "shape_type": 3,
+                    "w": 34.0,
+                    "x": 16.0,
+                    "y": 8.0
+                }
+            ],
+            "hotspot": {
+                "x": -14,
+                "y": 19
+            },
+            "location": {
+                "h": 23.0,
+                "shape_type": 3,
+                "w": 50.0,
+                "x": 0.0,
+                "y": 23.0
+            },
+            "sprite_sheet": "Epee_en_bois.png"
+        },
+        {
+            "asset_name": "sword_21",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 34.0,
+                    "shape_type": 3,
+                    "w": 7.0,
+                    "x": 8.0,
+                    "y": 0.0
+                }
+            ],
+            "hotspot": {
+                "x": 3,
+                "y": 67
+            },
+            "location": {
+                "h": 50.0,
+                "shape_type": 3,
+                "w": 23.0,
+                "x": 50.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Epee_en_bois.png"
+        },
+        {
+            "asset_name": "sword_22",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 13.0,
+                    "y": 15.0
+                },
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 21.0,
+                    "y": 7.0
+                },
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 27.0,
+                    "y": 0.0
+                }
+            ],
+            "hotspot": {
+                "x": -10,
+                "y": 45
+            },
+            "location": {
+                "h": 37.0,
+                "shape_type": 3,
+                "w": 37.0,
+                "x": 170.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Epee_en_bois.png"
+        },
+        {
+            "asset_name": "sword_23",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 18.0,
+                    "shape_type": 3,
+                    "w": 8.0,
+                    "x": 11.0,
+                    "y": 14.0
+                },
+                {
+                    "collision_type": 1,
+                    "h": 18.0,
+                    "shape_type": 3,
+                    "w": 8.0,
+                    "x": 19.0,
+                    "y": 0.0
+                }
+            ],
+            "hotspot": {
+                "x": -10,
+                "y": 60
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 27.0,
+                "x": 271.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Epee_en_bois.png"
+        },
+        {
+            "asset_name": "sword_24",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 7.0,
+                    "shape_type": 3,
+                    "w": 34.0,
+                    "x": 16.0,
+                    "y": 8.0
+                }
+            ],
+            "hotspot": {
+                "x": -10,
+                "y": 20
+            },
+            "location": {
+                "h": 23.0,
+                "shape_type": 3,
+                "w": 50.0,
+                "x": 0.0,
+                "y": 23.0
+            },
+            "sprite_sheet": "Epee_en_bois.png"
+        },
+        {
+            "asset_name": "sword_25",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 8.0,
+                    "shape_type": 3,
+                    "w": 18.0,
+                    "x": 17.0,
+                    "y": 12.0
+                },
+                {
+                    "collision_type": 1,
+                    "h": 8.0,
+                    "shape_type": 3,
+                    "w": 18.0,
+                    "x": 30.0,
+                    "y": 19.0
+                }
+            ],
+            "hotspot": {
+                "x": 2,
+                "y": 7
+            },
+            "location": {
+                "h": 27.0,
+                "shape_type": 3,
+                "w": 48.0,
+                "x": 298.0,
+                "y": 27.0
+            },
+            "sprite_sheet": "Epee_en_bois.png"
+        },
+        {
+            "asset_name": "sword_26",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 12.0,
+                    "y": 12.0
+                },
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 20.0,
+                    "y": 20.0
+                },
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 27.0,
+                    "y": 27.0
+                }
+            ],
+            "hotspot": {
+                "x": 6,
+                "y": 4
+            },
+            "location": {
+                "h": 37.0,
+                "shape_type": 3,
+                "w": 37.0,
+                "x": 207.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Epee_en_bois.png"
+        },
+        {
+            "asset_name": "sword_27",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 34.0,
+                    "shape_type": 3,
+                    "w": 7.0,
+                    "x": 8.0,
+                    "y": 16.0
+                }
+            ],
+            "hotspot": {
+                "x": 14,
+                "y": 4
+            },
+            "location": {
+                "h": 50.0,
+                "shape_type": 3,
+                "w": 23.0,
+                "x": 73.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Epee_en_bois.png"
+        },
+        {
+            "asset_name": "sword_28",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 12.0,
+                    "y": 12.0
+                },
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 20.0,
+                    "y": 20.0
+                },
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 27.0,
+                    "y": 27.0
+                }
+            ],
+            "hotspot": {
+                "x": 1,
+                "y": 7
+            },
+            "location": {
+                "h": 37.0,
+                "shape_type": 3,
+                "w": 37.0,
+                "x": 207.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Epee_en_bois.png"
+        },
+        {
+            "asset_name": "sword_29",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 7.0,
+                    "shape_type": 3,
+                    "w": 34.0,
+                    "x": 16.0,
+                    "y": 8.0
+                }
+            ],
+            "hotspot": {
+                "x": -15,
+                "y": 17
+            },
+            "location": {
+                "h": 23.0,
+                "shape_type": 3,
+                "w": 50.0,
+                "x": 0.0,
+                "y": 23.0
+            },
+            "sprite_sheet": "Epee_en_bois.png"
+        },
+        {
+            "asset_name": "sword_3",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 7.0,
+                    "shape_type": 3,
+                    "w": 34.0,
+                    "x": 0.0,
+                    "y": 8.0
+                }
+            ],
+            "hotspot": {
+                "x": 62,
+                "y": 17
+            },
+            "location": {
+                "h": 23.0,
+                "shape_type": 3,
+                "w": 50.0,
+                "x": 0.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Epee_en_bois.png"
+        },
+        {
+            "asset_name": "sword_30",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 13.0,
+                    "y": 15.0
+                },
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 21.0,
+                    "y": 7.0
+                },
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 27.0,
+                    "y": 0.0
+                }
+            ],
+            "hotspot": {
+                "x": 6,
+                "y": 40
+            },
+            "location": {
+                "h": 37.0,
+                "shape_type": 3,
+                "w": 37.0,
+                "x": 170.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Epee_en_bois.png"
+        },
+        {
+            "asset_name": "sword_31",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 34.0,
+                    "shape_type": 3,
+                    "w": 7.0,
+                    "x": 8.0,
+                    "y": 0.0
+                }
+            ],
+            "hotspot": {
+                "x": 6,
+                "y": 55
+            },
+            "location": {
+                "h": 50.0,
+                "shape_type": 3,
+                "w": 23.0,
+                "x": 50.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Epee_en_bois.png"
+        },
+        {
+            "asset_name": "sword_32",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 15.0,
+                    "y": 12.0
+                },
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 7.0,
+                    "y": 20.0
+                },
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 0.0,
+                    "y": 27.0
+                }
+            ],
+            "hotspot": {
+                "x": 34,
+                "y": 8
+            },
+            "location": {
+                "h": 37.0,
+                "shape_type": 3,
+                "w": 37.0,
+                "x": 133.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Epee_en_bois.png"
+        },
+        {
+            "asset_name": "sword_33",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 7.0,
+                    "shape_type": 3,
+                    "w": 34.0,
+                    "x": 0.0,
+                    "y": 8.0
+                }
+            ],
+            "hotspot": {
+                "x": 61,
+                "y": 17
+            },
+            "location": {
+                "h": 23.0,
+                "shape_type": 3,
+                "w": 50.0,
+                "x": 0.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Epee_en_bois.png"
+        },
+        {
+            "asset_name": "sword_34",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 9.0,
+                    "x": 17.0,
+                    "y": 16.0
+                },
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 9.0,
+                    "y": 9.0
+                },
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 1.0,
+                    "y": 1.0
+                }
+            ],
+            "hotspot": {
+                "x": 42,
+                "y": 42
+            },
+            "location": {
+                "h": 37.0,
+                "shape_type": 3,
+                "w": 37.0,
+                "x": 96.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Epee_en_bois.png"
+        },
+        {
+            "asset_name": "sword_35",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 34.0,
+                    "shape_type": 3,
+                    "w": 7.0,
+                    "x": 8.0,
+                    "y": 0.0
+                }
+            ],
+            "hotspot": {
+                "x": 19,
+                "y": 55
+            },
+            "location": {
+                "h": 50.0,
+                "shape_type": 3,
+                "w": 23.0,
+                "x": 50.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Epee_en_bois.png"
+        },
+        {
+            "asset_name": "sword_36",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 9.0,
+                    "x": 17.0,
+                    "y": 16.0
+                },
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 9.0,
+                    "y": 9.0
+                },
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 1.0,
+                    "y": 1.0
+                }
+            ],
+            "hotspot": {
+                "x": 42,
+                "y": 39
+            },
+            "location": {
+                "h": 37.0,
+                "shape_type": 3,
+                "w": 37.0,
+                "x": 96.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Epee_en_bois.png"
+        },
+        {
+            "asset_name": "sword_37",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 34.0,
+                    "shape_type": 3,
+                    "w": 7.0,
+                    "x": 8.0,
+                    "y": 0.0
+                }
+            ],
+            "hotspot": {
+                "x": 20,
+                "y": 59
+            },
+            "location": {
+                "h": 50.0,
+                "shape_type": 3,
+                "w": 23.0,
+                "x": 50.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Epee_en_bois.png"
+        },
+        {
+            "asset_name": "sword_38",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 13.0,
+                    "y": 15.0
+                },
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 21.0,
+                    "y": 7.0
+                },
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 27.0,
+                    "y": 0.0
+                }
+            ],
+            "hotspot": {
+                "x": 3,
+                "y": 47
+            },
+            "location": {
+                "h": 37.0,
+                "shape_type": 3,
+                "w": 37.0,
+                "x": 170.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Epee_en_bois.png"
+        },
+        {
+            "asset_name": "sword_39",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 7.0,
+                    "shape_type": 3,
+                    "w": 34.0,
+                    "x": 16.0,
+                    "y": 8.0
+                }
+            ],
+            "hotspot": {
+                "x": -6,
+                "y": 18
+            },
+            "location": {
+                "h": 23.0,
+                "shape_type": 3,
+                "w": 50.0,
+                "x": 0.0,
+                "y": 23.0
+            },
+            "sprite_sheet": "Epee_en_bois.png"
+        },
+        {
+            "asset_name": "sword_4",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 15.0,
+                    "y": 12.0
+                },
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 7.0,
+                    "y": 20.0
+                },
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 0.0,
+                    "y": 27.0
+                }
+            ],
+            "hotspot": {
+                "x": 35,
+                "y": 5
+            },
+            "location": {
+                "h": 37.0,
+                "shape_type": 3,
+                "w": 37.0,
+                "x": 133.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Epee_en_bois.png"
+        },
+        {
+            "asset_name": "sword_40",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 12.0,
+                    "y": 12.0
+                },
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 20.0,
+                    "y": 20.0
+                },
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 27.0,
+                    "y": 27.0
+                }
+            ],
+            "hotspot": {
+                "x": -12,
+                "y": 12
+            },
+            "location": {
+                "h": 37.0,
+                "shape_type": 3,
+                "w": 37.0,
+                "x": 207.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Epee_en_bois.png"
+        },
+        {
+            "asset_name": "sword_41",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 34.0,
+                    "shape_type": 3,
+                    "w": 7.0,
+                    "x": 8.0,
+                    "y": 16.0
+                }
+            ],
+            "hotspot": {
+                "x": 2,
+                "y": -2
+            },
+            "location": {
+                "h": 50.0,
+                "shape_type": 3,
+                "w": 23.0,
+                "x": 73.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Epee_en_bois.png"
+        },
+        {
+            "asset_name": "sword_42",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 15.0,
+                    "y": 12.0
+                },
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 7.0,
+                    "y": 20.0
+                },
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 0.0,
+                    "y": 27.0
+                }
+            ],
+            "hotspot": {
+                "x": 26,
+                "y": 10
+            },
+            "location": {
+                "h": 37.0,
+                "shape_type": 3,
+                "w": 37.0,
+                "x": 133.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Epee_en_bois.png"
+        },
+        {
+            "asset_name": "sword_43",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 7.0,
+                    "shape_type": 3,
+                    "w": 34.0,
+                    "x": 0.0,
+                    "y": 8.0
+                }
+            ],
+            "hotspot": {
+                "x": 41,
+                "y": 19
+            },
+            "location": {
+                "h": 23.0,
+                "shape_type": 3,
+                "w": 50.0,
+                "x": 0.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Epee_en_bois.png"
+        },
+        {
+            "asset_name": "sword_44",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 13.0,
+                    "y": 15.0
+                },
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 21.0,
+                    "y": 7.0
+                },
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 27.0,
+                    "y": 0.0
+                }
+            ],
+            "hotspot": {
+                "x": -5,
+                "y": 41
+            },
+            "location": {
+                "h": 37.0,
+                "shape_type": 3,
+                "w": 37.0,
+                "x": 170.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Epee_en_bois.png"
+        },
+        {
+            "asset_name": "sword_45",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 7.0,
+                    "shape_type": 3,
+                    "w": 34.0,
+                    "x": 16.0,
+                    "y": 8.0
+                }
+            ],
+            "hotspot": {
+                "x": -13,
+                "y": 16
+            },
+            "location": {
+                "h": 23.0,
+                "shape_type": 3,
+                "w": 50.0,
+                "x": 0.0,
+                "y": 23.0
+            },
+            "sprite_sheet": "Epee_en_bois.png"
+        },
+        {
+            "asset_name": "sword_46",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 12.0,
+                    "y": 12.0
+                },
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 20.0,
+                    "y": 20.0
+                },
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 27.0,
+                    "y": 27.0
+                }
+            ],
+            "hotspot": {
+                "x": 3,
+                "y": 7
+            },
+            "location": {
+                "h": 37.0,
+                "shape_type": 3,
+                "w": 37.0,
+                "x": 207.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Epee_en_bois.png"
+        },
+        {
+            "asset_name": "sword_47",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 34.0,
+                    "shape_type": 3,
+                    "w": 7.0,
+                    "x": 8.0,
+                    "y": 16.0
+                }
+            ],
+            "hotspot": {
+                "x": 13,
+                "y": 6
+            },
+            "location": {
+                "h": 50.0,
+                "shape_type": 3,
+                "w": 23.0,
+                "x": 73.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Epee_en_bois.png"
+        },
+        {
+            "asset_name": "sword_48",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 9.0,
+                    "x": 17.0,
+                    "y": 16.0
+                },
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 9.0,
+                    "y": 9.0
+                },
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 1.0,
+                    "y": 1.0
+                }
+            ],
+            "hotspot": {
+                "x": 42,
+                "y": 42
+            },
+            "location": {
+                "h": 37.0,
+                "shape_type": 3,
+                "w": 37.0,
+                "x": 96.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Epee_en_bois.png"
+        },
+        {
+            "asset_name": "sword_49",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 7.0,
+                    "shape_type": 3,
+                    "w": 34.0,
+                    "x": 0.0,
+                    "y": 8.0
+                }
+            ],
+            "hotspot": {
+                "x": 61,
+                "y": 17
+            },
+            "location": {
+                "h": 23.0,
+                "shape_type": 3,
+                "w": 50.0,
+                "x": 0.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Epee_en_bois.png"
+        },
+        {
+            "asset_name": "sword_5",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 18.0,
+                    "shape_type": 3,
+                    "w": 8.0,
+                    "x": 8.0,
+                    "y": 16.0
+                },
+                {
+                    "collision_type": 1,
+                    "h": 18.0,
+                    "shape_type": 3,
+                    "w": 8.0,
+                    "x": 0.0,
+                    "y": 30.0
+                }
+            ],
+            "hotspot": {
+                "x": 17,
+                "y": 6
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 27.0,
+                "x": 244.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Epee_en_bois.png"
+        },
+        {
+            "asset_name": "sword_50",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 15.0,
+                    "y": 12.0
+                },
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 7.0,
+                    "y": 20.0
+                },
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 0.0,
+                    "y": 27.0
+                }
+            ],
+            "hotspot": {
+                "x": 34,
+                "y": 8
+            },
+            "location": {
+                "h": 37.0,
+                "shape_type": 3,
+                "w": 37.0,
+                "x": 133.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Epee_en_bois.png"
+        },
+        {
+            "asset_name": "sword_51",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 34.0,
+                    "shape_type": 3,
+                    "w": 7.0,
+                    "x": 8.0,
+                    "y": 16.0
+                }
+            ],
+            "hotspot": {
+                "x": 10,
+                "y": 7
+            },
+            "location": {
+                "h": 50.0,
+                "shape_type": 3,
+                "w": 23.0,
+                "x": 73.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Epee_en_bois.png"
+        },
+        {
+            "asset_name": "sword_52",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 13.0,
+                    "y": 15.0
+                },
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 21.0,
+                    "y": 7.0
+                },
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 27.0,
+                    "y": 0.0
+                }
+            ],
+            "hotspot": {
+                "x": 3,
+                "y": 47
+            },
+            "location": {
+                "h": 37.0,
+                "shape_type": 3,
+                "w": 37.0,
+                "x": 170.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Epee_en_bois.png"
+        },
+        {
+            "asset_name": "sword_53",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 34.0,
+                    "shape_type": 3,
+                    "w": 7.0,
+                    "x": 8.0,
+                    "y": 0.0
+                }
+            ],
+            "hotspot": {
+                "x": 20,
+                "y": 59
+            },
+            "location": {
+                "h": 50.0,
+                "shape_type": 3,
+                "w": 23.0,
+                "x": 50.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Epee_en_bois.png"
+        },
+        {
+            "asset_name": "sword_54",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 9.0,
+                    "x": 17.0,
+                    "y": 16.0
+                },
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 9.0,
+                    "y": 9.0
+                },
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 1.0,
+                    "y": 1.0
+                }
+            ],
+            "hotspot": {
+                "x": 42,
+                "y": 39
+            },
+            "location": {
+                "h": 37.0,
+                "shape_type": 3,
+                "w": 37.0,
+                "x": 96.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Epee_en_bois.png"
+        },
+        {
+            "asset_name": "sword_55",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 7.0,
+                    "shape_type": 3,
+                    "w": 34.0,
+                    "x": 0.0,
+                    "y": 8.0
+                }
+            ],
+            "hotspot": {
+                "x": 54,
+                "y": 18
+            },
+            "location": {
+                "h": 23.0,
+                "shape_type": 3,
+                "w": 50.0,
+                "x": 0.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Epee_en_bois.png"
+        },
+        {
+            "asset_name": "sword_56",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 15.0,
+                    "y": 12.0
+                },
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 7.0,
+                    "y": 20.0
+                },
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 0.0,
+                    "y": 27.0
+                }
+            ],
+            "hotspot": {
+                "x": 26,
+                "y": 10
+            },
+            "location": {
+                "h": 37.0,
+                "shape_type": 3,
+                "w": 37.0,
+                "x": 133.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Epee_en_bois.png"
+        },
+        {
+            "asset_name": "sword_57",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 34.0,
+                    "shape_type": 3,
+                    "w": 7.0,
+                    "x": 8.0,
+                    "y": 16.0
+                }
+            ],
+            "hotspot": {
+                "x": 2,
+                "y": -2
+            },
+            "location": {
+                "h": 50.0,
+                "shape_type": 3,
+                "w": 23.0,
+                "x": 73.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Epee_en_bois.png"
+        },
+        {
+            "asset_name": "sword_58",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 12.0,
+                    "y": 12.0
+                },
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 20.0,
+                    "y": 20.0
+                },
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 27.0,
+                    "y": 27.0
+                }
+            ],
+            "hotspot": {
+                "x": -12,
+                "y": 12
+            },
+            "location": {
+                "h": 37.0,
+                "shape_type": 3,
+                "w": 37.0,
+                "x": 207.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Epee_en_bois.png"
+        },
+        {
+            "asset_name": "sword_59",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 7.0,
+                    "shape_type": 3,
+                    "w": 34.0,
+                    "x": 16.0,
+                    "y": 8.0
+                }
+            ],
+            "hotspot": {
+                "x": -9,
+                "y": 19
+            },
+            "location": {
+                "h": 23.0,
+                "shape_type": 3,
+                "w": 50.0,
+                "x": 0.0,
+                "y": 23.0
+            },
+            "sprite_sheet": "Epee_en_bois.png"
+        },
+        {
+            "asset_name": "sword_6",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 34.0,
+                    "shape_type": 3,
+                    "w": 7.0,
+                    "x": 8.0,
+                    "y": 16.0
+                }
+            ],
+            "hotspot": {
+                "x": 8,
+                "y": 4
+            },
+            "location": {
+                "h": 50.0,
+                "shape_type": 3,
+                "w": 23.0,
+                "x": 73.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Epee_en_bois.png"
+        },
+        {
+            "asset_name": "sword_7",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 7.0,
+                    "shape_type": 3,
+                    "w": 34.0,
+                    "x": 16.0,
+                    "y": 8.0
+                }
+            ],
+            "hotspot": {
+                "x": -10,
+                "y": 18
+            },
+            "location": {
+                "h": 23.0,
+                "shape_type": 3,
+                "w": 50.0,
+                "x": 0.0,
+                "y": 23.0
+            },
+            "sprite_sheet": "Epee_en_bois.png"
+        },
+        {
+            "asset_name": "sword_8",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 13.0,
+                    "y": 15.0
+                },
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 21.0,
+                    "y": 7.0
+                },
+                {
+                    "collision_type": 1,
+                    "h": 10.0,
+                    "shape_type": 3,
+                    "w": 10.0,
+                    "x": 27.0,
+                    "y": 0.0
+                }
+            ],
+            "hotspot": {
+                "x": -5,
+                "y": 43
+            },
+            "location": {
+                "h": 37.0,
+                "shape_type": 3,
+                "w": 37.0,
+                "x": 170.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Epee_en_bois.png"
+        },
+        {
+            "asset_name": "sword_9",
+            "collisions": [
+                {
+                    "collision_type": 1,
+                    "h": 18.0,
+                    "shape_type": 3,
+                    "w": 8.0,
+                    "x": 11.0,
+                    "y": 14.0
+                },
+                {
+                    "collision_type": 1,
+                    "h": 18.0,
+                    "shape_type": 3,
+                    "w": 8.0,
+                    "x": 19.0,
+                    "y": 0.0
+                }
+            ],
+            "hotspot": {
+                "x": 16,
+                "y": 54
+            },
+            "location": {
+                "h": 48.0,
+                "shape_type": 3,
+                "w": 27.0,
+                "x": 271.0,
+                "y": 0.0
+            },
+            "sprite_sheet": "Epee_en_bois.png"
+        }
+    ]
+}
