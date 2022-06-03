@@ -92,9 +92,9 @@ namespace CasaEngine
 			}
 			break;
 
-			//case sf::Event::TextEntered:
-			//	io.AddInputCharacter(event.text.unicode);
-			//	break;
+		case sf::Event::TextEntered:
+			io.AddInputCharacter(event.text.unicode);
+			break;
 
 		case sf::Event::MouseButtonPressed:
 			addMouseButtonEvent(event, io, true);
@@ -106,6 +106,10 @@ namespace CasaEngine
 
 		case sf::Event::MouseMoved:
 			io.AddMousePosEvent(static_cast<float>(event.mouseMove.x), static_cast<float>(event.mouseMove.y));
+			io.MouseDelta.x = event.mouseMove.x - io.MousePos.x;
+			io.MouseDelta.y = event.mouseMove.y - io.MousePos.y;
+			io.MousePos.x = event.mouseMove.x;
+			io.MousePos.y = event.mouseMove.y;
 			break;
 
 		case sf::Event::MouseWheelScrolled:
@@ -266,6 +270,7 @@ namespace CasaEngine
 		if (key != mouseButtonMapper.end())
 		{
 			io.AddMouseButtonEvent(key->second, isDown);
+			io.MouseDown[key->second] = isDown; // legacy
 		}
 	}
 }
