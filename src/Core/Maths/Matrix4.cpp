@@ -103,7 +103,7 @@ namespace CasaEngine
 
 	Vector3 Matrix4::Backward()
 	{
-		return Vector3(m31, m32, m33);
+		return {m31, m32, m33};
 	}
 
 	void Matrix4::Backward(const Vector3& value)
@@ -115,7 +115,7 @@ namespace CasaEngine
 
 	Vector3 Matrix4::Down() const
 	{
-		return Vector3(-m21, -m22, -m23);
+		return {-m21, -m22, -m23};
 	}
 
 	void Matrix4::Down(const Vector3& value)
@@ -127,7 +127,7 @@ namespace CasaEngine
 
 	Vector3 Matrix4::Forward() const
 	{
-		return Vector3(-m31, -m32, -m33);
+		return {-m31, -m32, -m33};
 	}
 
 	void Matrix4::Forward(const Vector3& value)
@@ -139,7 +139,7 @@ namespace CasaEngine
 
 	Vector3 Matrix4::Left() const
 	{
-		return Vector3(-m11, -m12, -m13);
+		return {-m11, -m12, -m13};
 	}
 
 	void Matrix4::Left(const Vector3& value)
@@ -151,7 +151,7 @@ namespace CasaEngine
 
 	Vector3 Matrix4::Right()
 	{
-		return Vector3(m11, m12, m13);
+		return {m11, m12, m13};
 	}
 
 	void Matrix4::Right(Vector3 value)
@@ -163,7 +163,7 @@ namespace CasaEngine
 
 	Vector3 Matrix4::Translation()
 	{
-		return Vector3(m41, m42, m43);
+		return {m41, m42, m43};
 	}
 
 	void Matrix4::Translation(const Vector3& value)
@@ -180,7 +180,7 @@ namespace CasaEngine
 
 	Vector3 Matrix4::Up()
 	{
-		return Vector3(m21, m22, m23);
+		return {m21, m22, m23};
 	}
 
 	void Matrix4::Up(Vector3 value)
@@ -297,21 +297,21 @@ namespace CasaEngine
 
 	Vector3 Matrix4::Transform(const Vector3& v, float w) const
 	{
-		return Vector3(
+		return {
 			v.x * m11 + v.y * m21 + v.z * m31 + w * m41,
 			v.x * m12 + v.y * m22 + v.z * m32 + w * m42,
 			v.x * m13 + v.y * m23 + v.z * m33 + w * m43
-		);
+		};
 	}
 
 	Vector4 Matrix4::Transform(const Vector4& v) const
 	{
-		return Vector4(
+		return {
 			v.x * m11 + v.y * m21 + v.z * m31 + v.w * m41,
 			v.x * m12 + v.y * m22 + v.z * m32 + v.w * m42,
 			v.x * m13 + v.y * m23 + v.z * m33 + v.w * m43,
 			v.x * m14 + v.y * m24 + v.z * m34 + v.w * m44
-		);
+		};
 	}
 
 	Vector3 Matrix4::Transform(const Vector3& position)
