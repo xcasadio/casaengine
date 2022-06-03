@@ -29,8 +29,9 @@ private:
 	AnimatedSpriteComponent* m_pAnimatedSprite;
 	World* m_pWorld;
 
-	int m_AnimationIndexSelected, m_LastAnimationIndexSelected;
-	int m_AnimationTypeIndexSelected, m_LastAnimationTypeIndexSelected;
-	int m_FrameIndexSelected, m_LastFrameIndexSelected;
-	int m_CollisionIndexSelected, m_LastCollisionIndexSelected;
+	int m_AnimationSelectedIndex, m_LastAnimationSelectedIndex;
+	int m_AnimationTypeSelectedIndex, m_LastAnimationTypeSelectedIndex;
+	int m_FrameSelectedIndex, m_LastFrameSelectedIndex;
+	int m_CollisionSelectedIndex, m_LastCollisionSelectedIndex;
+	int m_CollisionTypeSelectedIndex, m_LastCollisionTypeSelectedIndex;
 };
