@@ -6,8 +6,9 @@
 
 namespace CasaEngine
 {
-	AnimatedTile::AnimatedTile(Animation2D* pAnimation) :
-		m_pAnimation(pAnimation)
+	AnimatedTile::AnimatedTile(Animation2D* animation, AnimatedTileData* tileData) :
+		_animation(animation),
+		_tileData(tileData)
 	{
 	}
 
@@ -15,45 +16,50 @@ namespace CasaEngine
 	{
 		ITile::Initialize();
 
-		CA_ASSERT(m_pAnimation != nullptr, "animation 2D is null");
-		m_pAnimation->Initialize();
+		CA_ASSERT(_animation != nullptr, "animation 2D is null");
+		_animation->Initialize();
 	}
 
 	void AnimatedTile::Update(const GameTime& gameTime_)
 	{
-		if (m_pAnimation != nullptr)
+		if (_animation != nullptr)
 		{
-			m_pAnimation->Update(gameTime_.FrameTime());
+			_animation->Update(gameTime_.FrameTime());
 		}
 	}
 
 	void AnimatedTile::Draw(float x, float y, float z)
 	{
-		if (m_pAnimation != nullptr)
+		if (_animation != nullptr)
 		{
 			//TODO : load all sprite in initialization function
-			auto* pSprite = new Sprite(*Game::Instance().GetAssetManager().GetAsset<SpriteData>(m_pAnimation->CurrentFrame()));
+			auto* pSprite = new Sprite(*Game::Instance().GetAssetManager().GetAsset<SpriteData>(_animation->CurrentFrame()));
 			ITile::Draw(pSprite, x, y, z, pSprite->GetSpriteData()->GetPositionInTexture());
 		}
 	}
 
 	void AnimatedTile::Draw(float x, float y, float z, const Rectangle& uvOffset)
 	{
-		if (m_pAnimation != nullptr)
+		if (_animation != nullptr)
 		{
 			//TODO : load all sprite in initialization function
-			auto* pSprite = new Sprite(*Game::Instance().GetAssetManager().GetAsset<SpriteData>(m_pAnimation->CurrentFrame()));
+			auto* pSprite = new Sprite(*Game::Instance().GetAssetManager().GetAsset<SpriteData>(_animation->CurrentFrame()));
 			ITile::Draw(pSprite, x, y, z, uvOffset);
 		}
 	}
 
+	TileData* AnimatedTile::GetTileData()
+	{
+		return _tileData;
+	}
+
 	Animation2D* AnimatedTile::GetAnimation() const
 	{
-		return m_pAnimation;
+		return _animation;
 	}
 
 	void AnimatedTile::SetAnimation(Animation2D* const pAnimation)
 	{
-		m_pAnimation = pAnimation;
+		_animation = pAnimation;
 	}
 }

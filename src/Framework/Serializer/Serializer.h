@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Exceptions.h"
 #include "Maths/Vector2.h"
 #include "Maths/Vector3.h"
 #include "Maths/Vector4.h"
@@ -8,7 +9,8 @@
 #include <Assets/Assetable.h>
 #include <Physics/Collision.h>
 #include <Datas/SpriteData.h>
-#include <Datas/TileData.h>
+#include <Datas/TileSetData.h>
+#include <Datas/TileMapData.h>
 #include "Datas/Animation2DData.h"
 #include "Datas/AnimationData.h"
 #include "Datas/FrameData.h"
@@ -31,7 +33,7 @@ namespace CasaEngine
 	DECLARE_SERIALIZABLE(TileData)
 	DECLARE_SERIALIZABLE(StaticTileData)
 	DECLARE_SERIALIZABLE(AnimatedTileData)
-	DECLARE_SERIALIZABLE(AutoTileData)
+	//DECLARE_SERIALIZABLE(AutoTileData)
 	DECLARE_SERIALIZABLE(Animation2DData)
 
 	template <class T>
@@ -362,7 +364,8 @@ namespace CasaEngine
 			{
 			case TileType::Static: { auto tile = new StaticTileData(); from_json(*it, *tile); t.tiles.push_back(tile); } break;
 			case TileType::Animated: { auto tile = new AnimatedTileData(); from_json(*it, *tile); t.tiles.push_back(tile); } break;
-			case TileType::Auto: { auto tile = new AutoTileData(); from_json(*it, *tile); t.tiles.push_back(tile); } break;
+			default: throw Exception("from_json(const nlohmann::json& j, AutoTileTileSetData& t) : type is not supported");
+			//case TileType::Auto: { auto tile = new AutoTileData(); from_json(*it, *tile); t.tiles.push_back(tile); } break;
 			}
 		}
 	}
@@ -410,7 +413,8 @@ namespace CasaEngine
 			{
 			case TileType::Static: { auto tile = new StaticTileData(); from_json(*it, *tile); t.tiles.push_back(tile); } break;
 			case TileType::Animated: { auto tile = new AnimatedTileData(); from_json(*it, *tile); t.tiles.push_back(tile); } break;
-			case TileType::Auto: { auto tile = new AutoTileData(); from_json(*it, *tile); t.tiles.push_back(tile); } break;
+			default: throw Exception("from_json(const nlohmann::json& j, TileSetData& t) : type is not supported");
+			//case TileType::Auto: { auto tile = new AutoTileData(); from_json(*it, *tile); t.tiles.push_back(tile); } break;
 			}
 		}
 	}
@@ -424,6 +428,7 @@ namespace CasaEngine
 		JSON_TO(type)
 		JSON_TO(id)
 		JSON_TO_NAMED(collision_type, collisionType)
+		JSON_TO_NAMED(is_breakable, isBreakable)
 	}
 
 	inline void from_json(const nlohmann::json& j, TileData& t)
@@ -431,6 +436,7 @@ namespace CasaEngine
 		JSON_FROM(type)
 		JSON_FROM(id)
 		JSON_FROM_NAMED(collision_type, collisionType)
+		JSON_FROM_NAMED(is_breakable, isBreakable)
 	}
 
 	//////////////////////////////////////////////////////////////
@@ -463,17 +469,17 @@ namespace CasaEngine
 
 	//////////////////////////////////////////////////////////////
 
-	inline void to_json(nlohmann::json& j, const AutoTileData& t)
-	{
-		JSON_TO_NAMED(asset_file_name, autoTileAssetName)
-		to_json(j, static_cast<const TileData&>(t));
-	}
-
-	inline void from_json(const nlohmann::json& j, AutoTileData& t)
-	{
-		JSON_FROM_NAMED(asset_file_name, autoTileAssetName)
-		from_json(j, static_cast<TileData&>(t));
-	}
+	//inline void to_json(nlohmann::json& j, const AutoTileData& t)
+	//{
+	//	JSON_TO_NAMED(asset_file_name, autoTileAssetName)
+	//	to_json(j, static_cast<const TileData&>(t));
+	//}
+	//
+	//inline void from_json(const nlohmann::json& j, AutoTileData& t)
+	//{
+	//	JSON_FROM_NAMED(asset_file_name, autoTileAssetName)
+	//	from_json(j, static_cast<TileData&>(t));
+	//}
 
 	//////////////////////////////////////////////////////////////
 	//factory
@@ -487,10 +493,10 @@ namespace CasaEngine
 		{
 			to_json(j, *static_cast<AnimatedTileData*>(t));
 		}
-		else if (t->type == TileType::Auto)
-		{
-			to_json(j, *static_cast<AutoTileData*>(t));
-		}
+		//else if (t->type == TileType::Auto)
+		//{
+		//	to_json(j, *static_cast<AutoTileData*>(t));
+		//}
 		else
 		{
 			throw std::logic_error("void to_json(json& j, TileData* t) : type is not supported");

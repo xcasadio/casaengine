@@ -1,13 +1,12 @@
 #pragma once
 
 #include "Tile.h"
-#include "Datas/TileData.h"
 #include "Datas/AutoTileSetData.h"
+#include "Datas/TileMapData.h"
 #include "Maths/Rectangle.h"
 
 namespace CasaEngine
 {
-	//internal usage
 	struct CA_EXPORT AutoTileDrawingInfo
 	{
 		int tileIndex;
@@ -22,13 +21,14 @@ namespace CasaEngine
 	class CA_EXPORT AutoTile : public ITile
 	{
 	public:
-		AutoTile();
+		AutoTile(TileData* tileData);
 		~AutoTile() override;
 
 		void Initialize() override;
 		void Update(const GameTime& gameTime_) override;
 		void Draw(float x, float y, float z) override;
 		void Draw(float x, float y, float z, const Rectangle& uvOffset) override;
+		TileData* GetTileData() override;
 
 		void SetTileInfo(const std::vector<ITile*>& tiles, const Vector2I& tileSize, const Vector2I& mapSize, TiledMapLayerData* layer, int x, int y);
 
@@ -38,9 +38,10 @@ namespace CasaEngine
 
 	private:
 		void ComputeDrawingInfos(unsigned int mask, float x, float y, float z, const Rectangle uv_offset);
-
+	private:
 		Vector2I _tileSize;
 		TiledMapLayerData* _tiledMapLayerData;
+		TileData* _tileData;
 		Vector2I _mapSize;
 		AutoTileDrawingInfo _drawingInfos[4];
 		ITile* _tiles[6];

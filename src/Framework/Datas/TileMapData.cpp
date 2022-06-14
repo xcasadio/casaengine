@@ -1,4 +1,4 @@
-#include "TileData.h"
+#include "TileSetData.h"
 
 namespace CasaEngine
 {
@@ -13,5 +13,5 @@ namespace CasaEngine
 
 	AnimatedTileData::AnimatedTileData() : TileData(TileType::Animated) { }
 
-	AutoTileData::AutoTileData() : TileData(TileType::Auto) { }
+	//AutoTileData::AutoTileData() : TileData(TileType::Auto) { }
 }

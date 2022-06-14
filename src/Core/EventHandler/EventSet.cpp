@@ -63,7 +63,9 @@ namespace CasaEngine
 		EventMap::const_iterator end = d_events.end();
 
 		for (; pos != end; ++pos)
+		{
 			delete pos->second;
+		}
 
 		d_events.clear();
 	}
@@ -121,7 +123,9 @@ namespace CasaEngine
 		const std::string& eventNamespace)
 	{
 		if (GlobalEventSet* ges = GlobalEventSet::Instance())
+		{
 			ges->fireEvent(name, args, eventNamespace);
+		}
 
 		fireEvent_impl(name, args);
 	}
@@ -147,7 +151,9 @@ namespace CasaEngine
 		if (pos == d_events.end())
 		{
 			if (!autoAdd)
+			{
 				return 0;
+			}
 
 			addEvent(name);
 			pos = d_events.find(name);
@@ -162,7 +168,9 @@ namespace CasaEngine
 		Event* ev = getEventObject(name);
 
 		if (ev != 0 && !d_muted)
+		{
 			(*ev)(args);
+		}
 	}
 
 	//----------------------------------------------------------------------------//

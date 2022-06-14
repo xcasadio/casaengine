@@ -84,15 +84,11 @@ void TileMapGame::LoadContent()
 	p_world->AddEntity(pCamera);
 	GetGameInfo().SetActiveCamera(s_pCameraController);
 
-	CreateBackground(p_world);
+	//map
+	SpriteLoader::LoadFromFile("Outside_A2_sprites.json");
+	TiledMapCreator::LoadMapFromFile("tileMap.json", *p_world);
 
 	p_world->Initialize();
-}
-
-void TileMapGame::CreateBackground(World * pWorld)
-{
-	SpriteLoader::LoadFromFile("Outside_A2_sprites.json");
-	TiledMapCreator::LoadMapFromFile("tileMap.json", *pWorld);
 }
 
 void TileMapGame::Update(const GameTime & gameTime_)

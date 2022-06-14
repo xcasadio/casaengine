@@ -284,7 +284,6 @@
     <ClInclude Include="..\..\src\Engine\Physics\Bullet\BulletObjectsContainer.h" />
     <ClInclude Include="..\..\src\Engine\Physics\Bullet\BulletPhysicsEngine.h" />
     <ClInclude Include="..\..\src\Engine\Physics\Bullet\BulletPhysicsWorld.h" />
-    <ClInclude Include="..\..\src\Engine\Physics\Bullet\btDynamicsWorldExt.h" />
     <ClInclude Include="..\..\src\Engine\Physics\Collision.h" />
     <ClInclude Include="..\..\src\Engine\Physics\CollisionParameters.h" />
     <ClInclude Include="..\..\src\Engine\Physics\CollisionParametersBetween2Entities.h" />
@@ -392,7 +391,7 @@
     <ClInclude Include="..\..\src\Framework\Map2D\Tile.h" />
     <ClInclude Include="..\..\src\Framework\Map2D\TileComponent.h" />
     <ClInclude Include="..\..\src\Framework\Map2D\TiledMapCreator.h" />
-    <ClInclude Include="..\..\src\Framework\Datas\TileData.h" />
+    <ClInclude Include="..\..\src\Framework\Datas\TileMapData.h" />
     <ClInclude Include="..\..\src\Framework\Datas\TileSetData.h" />
     <ClInclude Include="..\..\src\Framework\Messaging\MessageDispatcher.h" />
     <ClInclude Include="..\..\src\Framework\Messaging\Telegram.h" />
@@ -485,7 +484,6 @@
     <ClCompile Include="..\..\src\Engine\Physics\Bullet\BulletObjectsContainer.cpp" />
     <ClCompile Include="..\..\src\Engine\Physics\Bullet\BulletPhysicsEngine.cpp" />
     <ClCompile Include="..\..\src\Engine\Physics\Bullet\BulletPhysicsWorld.cpp" />
-    <ClCompile Include="..\..\src\Engine\Physics\Bullet\btDynamicsWorldExt.cpp" />
     <ClCompile Include="..\..\src\Engine\Physics\Collision.cpp" />
     <ClCompile Include="..\..\src\Engine\Physics\CollisionParameters.cpp" />
     <ClCompile Include="..\..\src\Engine\Physics\CollisionParametersBetween2Entities.cpp" />
@@ -564,7 +562,7 @@
     <ClCompile Include="..\..\src\Framework\Map2D\Tile.cpp" />
     <ClCompile Include="..\..\src\Framework\Map2D\TileComponent.cpp" />
     <ClCompile Include="..\..\src\Framework\Map2D\TiledMapCreator.cpp" />
-    <ClCompile Include="..\..\src\Framework\Datas\TileData.cpp" />
+    <ClCompile Include="..\..\src\Framework\Datas\TileMapData.cpp" />
     <ClCompile Include="..\..\src\Framework\Datas\TileSetData.cpp" />
     <ClCompile Include="..\..\src\Framework\Messaging\MessageDispatcher.cpp" />
     <ClCompile Include="..\..\src\Framework\Messaging\Telegram.cpp" />

@@ -41,10 +41,10 @@ namespace CasaEngine
 	{
 
 		//get a pointer to the receiver
-		BaseEntity* pReceiver = Game::Instance().GetEntityManager().GetEntityFromID(receiver);
+		BaseEntity* pReceiver = Game::Instance().GetEntityManager().GetEntityFromId(receiver);
 
 		//for debugging
-		BaseEntity* pSender = Game::Instance().GetEntityManager().GetEntityFromID(sender);
+		BaseEntity* pSender = Game::Instance().GetEntityManager().GetEntityFromId(sender);
 		const char* senderName = (pSender == nullptr ? "" : pSender->GetName());
 
 		//make sure the receiver is valid
@@ -100,7 +100,7 @@ namespace CasaEngine
 			const Telegram& telegram = *PriorityQ.begin();
 
 			//find the recipient
-			BaseEntity* pReceiver = Game::Instance().GetEntityManager().GetEntityFromID(telegram.Receiver);
+			BaseEntity* pReceiver = Game::Instance().GetEntityManager().GetEntityFromId(telegram.Receiver);
 
 			if (pReceiver != nullptr)
 			{

@@ -44,7 +44,9 @@ namespace CasaEngine
 			d_count(other.d_count)
 		{
 			if (d_count)
+			{
 				addRef();
+			}
 		}
 
 		/*!
@@ -55,7 +57,9 @@ namespace CasaEngine
 		~RefCounted()
 		{
 			if (d_object)
+			{
 				release();
+			}
 		}
 
 		/*!
@@ -69,13 +73,17 @@ namespace CasaEngine
 			if (*this != other)
 			{
 				if (d_object)
+				{
 					release();
+				}
 
 				d_object = other.d_object;
 				d_count = d_object ? other.d_count : 0;
 
 				if (d_count)
+				{
 					addRef();
+				}
 			}
 
 			return *this;

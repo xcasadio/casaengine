@@ -16,4 +16,9 @@ namespace CasaEngine
 	{
 		//do nothing
 	}
+
+	TileData* EmptyTile::GetTileData()
+	{
+		return nullptr;
+	}
 }

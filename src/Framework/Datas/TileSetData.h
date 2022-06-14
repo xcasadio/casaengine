@@ -26,7 +26,7 @@ namespace CasaEngine
 	class CA_EXPORT TileData
 	{
 	public:
-		TileData();
+		TileData() = default;
 		~TileData() = default;
 		TileData(const TileData& rsh) = default;
 		TileData& operator=(const TileData& rsh) = default;
@@ -36,6 +36,7 @@ namespace CasaEngine
 		int id;
 		TileType type;
 		TileCollisionType collisionType;
+		bool isBreakable { false };
 
 	protected:
 		TileData(TileType type);
@@ -73,18 +74,18 @@ namespace CasaEngine
 
 	////////////////////////////////////////
 
-	class CA_EXPORT AutoTileData : public TileData
-	{
-	public:
-		AutoTileData();
-		~AutoTileData() = default;
-		AutoTileData(const AutoTileData& rsh) = default;
-		AutoTileData& operator=(const AutoTileData& rsh) = default;
-		AutoTileData(AutoTileData&& rsh) = default;
-		AutoTileData& operator=(AutoTileData&& rsh) = default;
-
-		std::string autoTileAssetName;
-	};
+	//class CA_EXPORT AutoTileData : public TileData
+	//{
+	//public:
+	//	AutoTileData();
+	//	~AutoTileData() = default;
+	//	AutoTileData(const AutoTileData& rsh) = default;
+	//	AutoTileData& operator=(const AutoTileData& rsh) = default;
+	//	AutoTileData(AutoTileData&& rsh) = default;
+	//	AutoTileData& operator=(AutoTileData&& rsh) = default;
+	//
+	//	std::string autoTileAssetName;
+	//};
 
 	////////////////////////////////////////
 

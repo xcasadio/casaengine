@@ -17,17 +17,19 @@ namespace CasaEngine
 	public:
 		World();
 		~World() override;
-		const std::vector<BaseEntity*>& GetEntities();
-		BaseEntity* GetEntityByName(const std::string& name);
 
-		void AddEntity(BaseEntity* pEntity);
-		void RemoveEntity(const BaseEntity* entity);
+		std::vector<BaseEntity*>& GetEntities();
+		BaseEntity* GetEntityByName(const std::string& name) const;
+
+		void AddEntity(BaseEntity* entity);
 
 		IPhysicsWorld& GetPhysicsWorld() const;
 
 		CellSpacePartition<BaseEntity *> &GetSpacePartition();
 
 	private:
+		void RemoveMarkedEntities();
+
 		std::vector<BaseEntity *> _entities;
 		IPhysicsWorld *_physicsWorld;
 		CellSpacePartition<BaseEntity *> _cellSpacePartition;
@@ -36,7 +38,7 @@ namespace CasaEngine
 		class WorldComponent : public Component
 		{
 		public:
-			WorldComponent(BaseEntity* pEntity_);
+			WorldComponent(BaseEntity* entity);
 
 			void Initialize() override;
 			void Update(const GameTime& gameTime_) override;

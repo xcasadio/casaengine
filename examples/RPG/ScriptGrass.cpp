@@ -29,7 +29,7 @@ bool ScriptGrass::HandleMessage(const Telegram& msg)
 		&& (GetEntity()->Id() == msg.Sender || GetEntity()->Id() == msg.Receiver)
 		&& msg.Sender != msg.Receiver)
 	{
-		auto* otherEntity = GetEntity()->Id() == msg.Sender ? Game::Instance().GetEntityManager().GetEntityFromID(msg.Receiver) : Game::Instance().GetEntityManager().GetEntityFromID(msg.Sender);
+		auto* otherEntity = GetEntity()->Id() == msg.Sender ? Game::Instance().GetEntityManager().GetEntityFromId(msg.Receiver) : Game::Instance().GetEntityManager().GetEntityFromId(msg.Sender);
 		auto* collisionParameters = static_cast<CollisionParametersBetween2Entities*>(msg.ExtraInfo);
 
 		CollideWith(

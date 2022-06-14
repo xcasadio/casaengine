@@ -25,8 +25,9 @@ namespace CasaEngine
 	constexpr unsigned int mask_right_bottom = 1 << 7;
 	constexpr unsigned int mask_all = (mask_left | mask_right | mask_top | mask_bottom | mask_left_top | mask_left_bottom | mask_right_top | mask_right_bottom);
 
-	AutoTile::AutoTile() :
+	AutoTile::AutoTile(TileData* tileData) :
 		_tiledMapLayerData(nullptr),
+		_tileData(tileData),
 		_drawingInfos{},
 		_tiles{},
 		_x(0),
@@ -117,6 +118,11 @@ namespace CasaEngine
 					drawingInfo.posInTexture);
 			}
 		}
+	}
+
+	TileData* AutoTile::GetTileData()
+	{
+		return _tileData;
 	}
 
 	void AutoTile::SetTileInfo(const std::vector<ITile*>& tiles, const Vector2I& tileSize, const Vector2I& mapSize, TiledMapLayerData* layer, int x, int y)

@@ -1,5 +1,6 @@
 #include "CubeGame.h"
 
+#include <bx/math.h>
 #include <bx/timer.h>
 
 #include "Entities\Components\Cameras\ArcBallCameraComponent.h"
@@ -13,6 +14,8 @@
 #include "Log\LoggerFile.h"
 #include "Log\LogManager.h"
 #include "World\World.h"
+
+Matrix4 entityMatrix;
 
 CubeGame::CubeGame()
 {
@@ -84,6 +87,7 @@ void CubeGame::LoadContent()
 	pEntity->GetCoordinates().SetLocalPosition(Vector3(0.0f, 0.5f, delta));
 	pEntity->GetCoordinates().SetLocalRotation(0.0f);
 	pEntity->GetCoordinates().SetLocalScale(Vector3::One());
+	entityMatrix = pEntity->GetCoordinates().GetLocalMatrix();
 	pModelCpt = new MeshComponent(pEntity);
 	pPrimitive = new BoxPrimitive();
 	pModel = pPrimitive->CreateModel();
@@ -131,10 +135,9 @@ void CubeGame::LoadContent()
 	m_pWorld->Initialize();
 }
 
-
 void gizmo(const float* _view, const float* _proj, BaseEntity *entity)
 {
-	float* entityMatrix = entity->GetCoordinates().GetLocalMatrix();
+	//float* entityMatrix = entity->GetCoordinates().GetLocalMatrix();
 
 	//Vector3 position = transform_3d_component->GetLocalPosition();
 	//float rotation[3] = { 0.0f, 0.0f, 0.0f };
@@ -145,13 +148,82 @@ void gizmo(const float* _view, const float* _proj, BaseEntity *entity)
 	ImGuiIO& io = ImGui::GetIO();
 	ImGuizmo::SetRect(0, 0, io.DisplaySize.x, io.DisplaySize.y);
 
-	ImGuizmo::Manipulate(
+	//auto* camera = dynamic_cast<ArcBallCameraComponent*>(Game::Instance().GetGameInfo().GetActiveCamera());
+	
+	//float view[16];
+	//auto position = camera->Position();
+	//auto target = camera->Target();
+	//auto up = camera->Up();
+	//bx::mtxLookAt(view,
+	//	bx::Vec3(position.x, position.y, position.z),
+	//	bx::Vec3(target.x, target.y, target.z),
+	//	bx::Vec3(up.x, up.y, up.z));
+
+	//auto& viewport = camera->GetViewport();
+	//float ratio = viewport.Width() * Game::Instance().GetWindowSize().x / (viewport.Height() * Game::Instance().GetWindowSize().y);
+	//float proj[16];
+	//bx::mtxProj(proj, ToDegree(camera->FOV()), ratio, viewport.NearClipPlane(), viewport.FarClipPlane(), false, bx::Handness::Left);
+	
+	//std::ostringstream oss;
+	//oss << "Casaengine" << std::endl;
+	//for (int y = 0; y < 4; y++)
+	//{
+	//	for (int x = 0; x < 4; x++)
+	//	{
+	//		oss << _proj[x + y * 4] << " ";
+	//	}
+	//
+	//	oss << std::endl;
+	//}
+	//oss << "bx" << std::endl;
+	//for (int y = 0; y < 4; y++)
+	//{
+	//	for (int x = 0; x < 4; x++)
+	//	{
+	//		oss << proj[x + y * 4] << " ";
+	//	}
+	//
+	//	oss << std::endl;
+	//}
+	//
+	//OutputDebugStringA(oss.str().c_str());
+
+
+	//std::ostringstream oss;
+	//oss << "Before" << std::endl;
+	//for (int y = 0; y < 4; y++)
+	//{
+	//	for (int x = 0; x < 4; x++)
+	//	{
+	//		oss << entityMatrix[x + y * 4] << " ";
+	//	}
+	//
+	//	oss << std::endl;
+	//}
+
+	if (ImGuizmo::Manipulate(
 		_view
-		, _proj
+		, 
+		_proj
 		, ImGuizmo::TRANSLATE
 		, ImGuizmo::LOCAL
-		, entityMatrix
-	);
+		, entityMatrix))
+	{
+		//OutputDebugStringA("manipulated\n");
+		entity->GetCoordinates().SetLocalPosition(entityMatrix.Translation());
+	}
+
+	//oss << "After" << std::endl;
+	//for (int y = 0; y < 4; y++)
+	//{
+	//	for (int x = 0; x < 4; x++)
+	//	{
+	//		oss << entityMatrix[x + y * 4] << " ";
+	//	}
+	//
+	//	oss << std::endl;
+	//}
+	//OutputDebugStringA(oss.str().c_str());
 
 	//ImGuizmo::DecomposeMatrixToComponents(mtx, position, &angle, scale);
 }

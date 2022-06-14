@@ -178,7 +178,9 @@ namespace CasaEngine
 		ConstMapIterator<T>& operator++()
 		{
 			if (ConstBaseIterator<T, typename T::mapped_type>::d_currIter != ConstBaseIterator<T, typename T::mapped_type>::d_endIter)
+			{
 				++ConstBaseIterator<T, typename T::mapped_type>::d_currIter;
+			}
 
 			return *this;
 		}
@@ -193,7 +195,9 @@ namespace CasaEngine
 		ConstMapIterator<T>& operator--()
 		{
 			if (ConstBaseIterator<T, typename T::mapped_type>::d_currIter != ConstBaseIterator<T, typename T::mapped_type>::d_startIter)
+			{
 				--ConstBaseIterator<T, typename T::mapped_type>::d_currIter;
+			}
 
 			return *this;
 		}
@@ -254,7 +258,9 @@ namespace CasaEngine
 		ConstVectorIterator<T>& operator++()
 		{
 			if (ConstBaseIterator<T, typename T::value_type>::d_currIter != ConstBaseIterator<T, typename T::value_type>::d_endIter)
+			{
 				++ConstBaseIterator<T, typename T::value_type>::d_currIter;
+			}
 
 			return *this;
 		}
@@ -269,7 +275,9 @@ namespace CasaEngine
 		ConstVectorIterator<T>& operator--()
 		{
 			if (ConstBaseIterator<T, typename T::value_type>::d_currIter != ConstBaseIterator<T, typename T::value_type>::d_startIter)
+			{
 				--ConstBaseIterator<T, typename T::value_type>::d_currIter;
+			}
 
 			return *this;
 		}

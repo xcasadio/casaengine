@@ -1,5 +1,5 @@
 #include "TiledMapCreator.h"
-#include "Datas/TileData.h"
+#include "Datas/TileSetData.h"
 #include "StaticTile.h"
 #include "AnimatedTile.h"
 #include "Datas/Animation2DData.h"
@@ -40,6 +40,14 @@ namespace CasaEngine
 			from_json(j, tileSetData);
 		}
 
+		//{
+		//	auto* file = Game::Instance().GetMediaManager().FindMedia(tiledMapData->tileSetFileName, false);
+		//	std::ofstream os(file->Fullname());
+		//	json j;
+		//	to_json(j, tileSetData);
+		//	os << std::setw(4) << j << std::endl;
+		//}
+
 		AutoTileSetData autoTileSetData;
 
 		{
@@ -50,6 +58,14 @@ namespace CasaEngine
 			ss >> j;
 			from_json(j, autoTileSetData);
 		}
+
+		//{
+		//	auto* file = Game::Instance().GetMediaManager().FindMedia(tiledMapData->autoTileSetFileName, false);
+		//	std::ofstream os(file->Fullname());
+		//	json j;
+		//	to_json(j, autoTileSetData);
+		//	os << std::setw(4) << j << std::endl;
+		//}
 
 		std::filesystem::path path(fileName);
 		
@@ -132,7 +148,16 @@ namespace CasaEngine
 				{
 					auto* shape = new Rectangle(0, 0, tileSetData.tileSize.x, tileSetData.tileSize.y);
 					auto position = Vector3(posX + tileSetData.tileSize.x / 2.0f, posY + tileSetData.tileSize.y / 2.0f, 0.0f);
-					auto* collisionShape = physics_world.CreateCollisionShape(tileEntity, shape, position, CollisionHitType::Defense, collisionType == TileCollisionType::Blocked ? CollisionFlags::Static : CollisionFlags::NoResponse);
+					ICollisionObjectContainer* collisionShape = nullptr;
+					if (collisionType == TileCollisionType::Blocked)
+					{
+						collisionShape = physics_world.CreateCollisionShape(tileEntity, shape, position, CollisionHitType::Defense, CollisionFlags::Static);
+					}
+					else
+					{
+						collisionShape = physics_world.CreateSensor(tileEntity, shape, position, CollisionHitType::Defense);
+					}
+
 					physics_world.AddCollisionObject(collisionShape);
 				}
 				
@@ -156,14 +181,14 @@ namespace CasaEngine
 		{
 			auto* staticTileParams = static_cast<StaticTileData*>(&tileData);
 			auto* sprite = Game::Instance().GetAssetManager().GetAsset<SpriteData>(staticTileParams->spriteId);
-			return new StaticTile(new Sprite(*sprite));
+			return new StaticTile(new Sprite(*sprite), staticTileParams);
 		}
 
 		case TileType::Animated:
 		{
 			auto* animatedTileParams = static_cast<AnimatedTileData*>(&tileData);
 			auto* animation = Game::Instance().GetAssetManager().GetAsset<Animation2DData>(animatedTileParams->animation2DId);
-			return new AnimatedTile(new Animation2D(*animation));
+			return new AnimatedTile(new Animation2D(*animation), animatedTileParams);
 		}
 		}
 
@@ -181,7 +206,7 @@ namespace CasaEngine
 			tiles.push_back(CreateTile(*tileData));
 		}
 
-		auto* autoTile = new AutoTile();
+		auto* autoTile = new AutoTile(autoTileTileSetData.tiles[0]);
 		autoTile->SetTileInfo(tiles, tileSetData.tileSize, map->mapSize, layer, x, y);
 		return autoTile;
 	}

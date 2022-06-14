@@ -31,12 +31,12 @@ namespace CasaEngine
 					shape = new Rectangle(pBox2D->x, pBox2D->y, pBox2D->w, pBox2D->h);
 				}
 			}
+			else
+			{
+				throw Exception("SpritePhysicsHelper::CreateCollisionsFromSprite() shape->Type() is not supported");
+			}
 
-			auto* pObj = Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld().CreateCollisionShape(entity, shape, Vector3::Zero(), collision.GetType(), CollisionFlags::NoResponse);
-			auto* bt_collision_object = dynamic_cast<BulletCollisionObjectContainer*>(pObj)->GetCollisionObject();
-			bt_collision_object->setCollisionFlags(btCollisionObject::CF_NO_CONTACT_RESPONSE);
-			auto* collision_parameters = new CollisionParameters(entity, &collision);
-			bt_collision_object->setUserPointer(collision_parameters);
+			auto* pObj = Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld().CreateSensor(entity, shape, Vector3::Zero(), collision.GetType());
 
 			collisions.push_back(pObj);
 		}

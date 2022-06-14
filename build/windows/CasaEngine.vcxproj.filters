@@ -435,9 +435,6 @@
     <ClInclude Include="..\..\src\Engine\Physics\RigidBodyParameters.h">
       <Filter>Engine\Physics</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Physics\Bullet\btDynamicsWorldExt.h">
-      <Filter>Engine\Physics\Bullet</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Engine\Physics\Bullet\BulletObjectsContainer.h">
       <Filter>Engine\Physics\Bullet</Filter>
     </ClInclude>
@@ -900,7 +897,7 @@
     <ClInclude Include="..\..\src\Framework\Sprite\SpriteLoader.h">
       <Filter>Framework\Sprite</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Datas\TileData.h">
+    <ClInclude Include="..\..\src\Framework\Datas\TileMapData.h">
       <Filter>Framework\Datas</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Framework\Datas\TileSetData.h">
@@ -1051,9 +1048,6 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Physics\PhysicsEngine.cpp">
       <Filter>Engine\Physics</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Engine\Physics\Bullet\btDynamicsWorldExt.cpp">
-      <Filter>Engine\Physics\Bullet</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\Physics\Bullet\BulletObjectsContainer.cpp">
       <Filter>Engine\Physics\Bullet</Filter>
@@ -1370,7 +1364,7 @@
     <ClCompile Include="..\..\src\Framework\Sprite\SpriteLoader.cpp">
       <Filter>Framework\Sprite</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Framework\Datas\TileData.cpp">
+    <ClCompile Include="..\..\src\Framework\Datas\TileMapData.cpp">
       <Filter>Framework\Datas</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Framework\Datas\TileSetData.cpp">

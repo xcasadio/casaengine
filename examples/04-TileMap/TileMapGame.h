@@ -13,7 +13,6 @@ public:
 	~TileMapGame() override;
 
 	void Initialize() override;
-	void CreateBackground(World* pWorld);
 	void LoadContent() override;
 	void Draw() override;
 	void Update(const GameTime& gameTime_) override;

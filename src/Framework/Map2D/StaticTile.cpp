@@ -2,8 +2,9 @@
 
 namespace CasaEngine
 {
-	StaticTile::StaticTile(Sprite* pSprite) :
-		_sprite(pSprite)
+	StaticTile::StaticTile(Sprite* pSprite, StaticTileData* tileData) :
+		_sprite(pSprite),
+		_tileData(tileData)
 	{
 
 	}
@@ -40,5 +41,10 @@ namespace CasaEngine
 	void StaticTile::setSprite(Sprite* const sprite)
 	{
 		_sprite = sprite;
+	}
+
+	TileData* StaticTile::GetTileData()
+	{
+		return _tileData;
 	}
 }

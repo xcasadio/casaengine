@@ -25,6 +25,8 @@
 
 #include "load_save_types.h"
 #include "ScriptGrass.h"
+#include "ScriptWeapon.h"
+#include "Weapon.h"
 #include "Animations/Animation2dLoader.h"
 #include "Entities/Components/DebugComponent.h"
 #include "Entities/Components/Cameras/Camera2DTargetedComponent.h"
@@ -69,7 +71,7 @@ void RPGGame::Initialize()
 	AddUsualComponents();
 
 	Game::Initialize();
-	GetDebugOptions().ShowPhysicsDebug = true;
+	//GetDebugOptions().ShowPhysicsDebug = true;
 }
 
 void RPGGame::LoadContent()
@@ -84,7 +86,7 @@ void RPGGame::LoadContent()
 	Animation2dLoader::LoadFromFile("RPG_animations.json");
 
 	CreateMap(m_pWorld);
-	CreateEnemies(m_pWorld);
+	//CreateEnemies(m_pWorld);
 	CreateSwordman(m_pWorld);
 
 	//{
@@ -204,23 +206,18 @@ void RPGGame::CreateSwordman(World* pWorld)
 	}
 
 	weaponEntity->GetComponentMgr()->AddComponent(pAnimatedComponent);
+
 	weaponEntity->IsEnabled(false);
 	weaponEntity->IsVisible(false);
 	pWorld->AddEntity(weaponEntity);
 
-	//auto* scriptComponent = new ScriptComponent(weaponEntity);
-	//auto weapon = new Weapon(weaponEntity);
-	//auto* pScriptCharacter = new ScriptCharacter(weaponEntity, player);
-	//scriptComponent->SetScriptObject(pScriptCharacter);
-	//weaponEntity->GetComponentMgr()->AddComponent(scriptComponent);
-
 	////////////////////////////////////////////////////////////
 	//player
 	constexpr auto tileWidth = 48, tileHeight = 48;
-	auto* pPlayerEntity = new BaseEntity();
-	pPlayerEntity->SetName("player 1");
-	pPlayerEntity->GetCoordinates().SetLocalPosition(Vector3(50.0f, 150.0f, 0.1f));
-	pPlayerEntity->GetCoordinates().SetLocalRotation(0.0f);
+	auto* player_entity = new BaseEntity();
+	player_entity->SetName("player 1");
+	player_entity->GetCoordinates().SetLocalPosition(Vector3(50.0f, 150.0f, 0.1f));
+	player_entity->GetCoordinates().SetLocalRotation(0.0f);
 
 	//read file
 	pFile = GetMediaManager().FindMedia("player.json", true);
@@ -230,44 +227,48 @@ void RPGGame::CreateSwordman(World* pWorld)
 	is >> j;
 	from_json(j["swordman"], player_datas);
 
-	//create sprite
-	//CreateSprite(player_datas.tile_set, player_datas.sprites, "player_");
-
-	pAnimatedComponent = new AnimatedSpriteComponent(pPlayerEntity);
-	//CreateAnimations("player_", pAnimatedComponent, player_datas.animations);
-
+	pAnimatedComponent = new AnimatedSpriteComponent(player_entity);
 	for (const auto& animation : player_datas.animations)
 	{
 		auto* anim = Game::Instance().GetAssetManager().GetAsset<Animation2DData>(animation.name);
 		pAnimatedComponent->AddAnimation(new Animation2D(*anim));
 	}
 
-	pPlayerEntity->GetComponentMgr()->AddComponent(pAnimatedComponent);
-	pWorld->AddEntity(pPlayerEntity);
+	player_entity->GetComponentMgr()->AddComponent(pAnimatedComponent);
+	pWorld->AddEntity(player_entity);
 
-	auto* scriptComponent = new ScriptComponent(pPlayerEntity);
-	auto player = new Player(pPlayerEntity);
+	auto* scriptComponent = new ScriptComponent(player_entity);
+	auto player = new Player(player_entity);
 	player->SetWeapon(weaponEntity);
-	player->Speed(50.0f);
-	auto* pScriptCharacter = new ScriptCharacter(pPlayerEntity, player);
+	player->Speed(120.0f);
+	auto* pScriptCharacter = new ScriptCharacter(player_entity, player);
 	scriptComponent->SetScriptObject(pScriptCharacter);
-	pPlayerEntity->GetComponentMgr()->AddComponent(scriptComponent);
+	player_entity->GetComponentMgr()->AddComponent(scriptComponent);
 
 	//collision
-	auto* colliderComponent = new Circle2DColliderComponent(pPlayerEntity);
+	auto* colliderComponent = new Circle2DColliderComponent(player_entity);
 	colliderComponent->SetCenter(Vector3::Zero());
 	colliderComponent->SetRadius(10.0f);
 	colliderComponent->AxisConstraint(AxisConstraints::XY);
 	//auto* colliderComponent = new Box2DColliderComponent(pPlayerEntity);
 	//colliderComponent->Set(0, 0, 10, 10);
-	pPlayerEntity->GetComponentMgr()->AddComponent(colliderComponent);
+	player_entity->GetComponentMgr()->AddComponent(colliderComponent);
 
 	//debug
-	debugComponent = new DebugComponent(pPlayerEntity);
+	debugComponent = new DebugComponent(player_entity);
 	debugComponent->DisplayPosition(false);
 	debugComponent->DisplayAnimation2DCollisions(true);
-	pPlayerEntity->GetComponentMgr()->AddComponent(debugComponent);
+	player_entity->GetComponentMgr()->AddComponent(debugComponent);
 
+	////////////////////////////////////////////////////////////
+	//weapon
+	scriptComponent = new ScriptComponent(weaponEntity);
+	auto* weapon = new Weapon(weaponEntity, player);
+	auto* scriptWeapon = new ScriptWeapon(weaponEntity, weapon);
+	scriptComponent->SetScriptObject(scriptWeapon);
+	weaponEntity->GetComponentMgr()->AddComponent(scriptComponent);
+
+	////////////////////////////////////////////////////////////
 	//Camera 2D
 	auto* pCamera = new BaseEntity();
 	pCamera->SetName("camera targeted");
@@ -275,11 +276,12 @@ void RPGGame::CreateSwordman(World* pWorld)
 	auto* m_pCameraTargeted = new Camera3DTargetedComponent(pCamera);
 	pCamera->GetComponentMgr()->AddComponent(m_pCameraTargeted);
 	m_pCameraTargeted->SetDeadZoneRatio(Vector2(0.7f, 0.7f));
-	m_pCameraTargeted->SetTargetedEntity(pPlayerEntity);
+	m_pCameraTargeted->SetTargetedEntity(player_entity);
 	m_pCameraTargeted->SetLimits(CasaEngine::Rectangle(0, 0, 1500, 800));
 	pWorld->AddEntity(pCamera);
 	GetGameInfo().SetActiveCamera(m_pCameraTargeted);
 
+	////////////////////////////////////////////////////////////
 	//Camera 3D
 	pCamera = new BaseEntity();
 	m_pCamera3D = new ArcBallCameraComponent(pCamera);

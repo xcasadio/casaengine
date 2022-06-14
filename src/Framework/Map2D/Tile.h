@@ -2,6 +2,7 @@
 
 #include <GameTime.h>
 
+#include "Datas/TileSetData.h"
 #include "Maths/Rectangle.h"
 #include "Sprite/SpriteRenderer.h"
 
@@ -14,6 +15,8 @@ namespace CasaEngine
 		virtual void Update(const GameTime& gameTime_) = 0;
 		virtual void Draw(float x, float y, float z) = 0;
 		virtual void Draw(float x, float y, float z, const Rectangle& uvOffset) = 0;
+
+		virtual TileData* GetTileData() = 0;
 
 	protected:
 		ITile();

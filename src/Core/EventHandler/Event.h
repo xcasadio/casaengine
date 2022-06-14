@@ -88,7 +88,10 @@ namespace CasaEngine
 
 			void disconnect()
 			{
-				if (d_connection.isValid()) d_connection->disconnect();
+				if (d_connection.isValid())
+				{
+					d_connection->disconnect();
+				}
 			}
 
 		private:
@@ -99,7 +102,7 @@ namespace CasaEngine
 		\brief
 			Constructs a new Event object with the specified name
 		*/
-		Event(const std::string& name);
+		Event(std::string name);
 
 		/*!
 		\brief

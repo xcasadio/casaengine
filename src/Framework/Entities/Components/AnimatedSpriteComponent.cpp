@@ -1,6 +1,9 @@
 #include <string>
 
 #include "AnimatedSpriteComponent.h"
+
+#include <BulletCollision/CollisionDispatch/btGhostObject.h>
+
 #include "Base.h"
 #include "Animations/Animation2D.h"
 #include "Assets/AssetManager.h"
@@ -15,6 +18,9 @@
 #include "Sprite/SpriteRenderer.h"
 #include "Sprite/SpriteTypes.h"
 #include "../Events/BaseEntityEvents.h"
+#include "Physics/CollisionParameters.h"
+#include "Physics/Bullet/BulletObjectsContainer.h"
+#include "Physics/Bullet/BulletPhysicsWorld.h"
 
 
 namespace CasaEngine
@@ -25,7 +31,7 @@ namespace CasaEngine
 		_color(Color::White),
 		_spriteEffect(eSpriteEffects::SPRITE_EFFECT_NONE),
 		_currentAnim(nullptr)
-	
+
 	{
 		addEvent(FrameChangeEvent::GetEventName());
 		addEvent(AnimationFinishedEvent::GetEventName());
@@ -103,7 +109,7 @@ namespace CasaEngine
 		SetCurrentAnimation(_animationList[index_], forceReset);
 	}
 
-	bool AnimatedSpriteComponent::SetCurrentAnimation(const char * name_, bool forceReset)
+	bool AnimatedSpriteComponent::SetCurrentAnimation(const char* name_, bool forceReset)
 	{
 		return SetCurrentAnimation(std::string(name_));
 	}
@@ -177,12 +183,21 @@ namespace CasaEngine
 			}
 		}
 	}
-
+	
 	void AnimatedSpriteComponent::Update(const GameTime& gameTime_)
 	{
 		if (_currentAnim != nullptr)
 		{
 			_currentAnim->Update(gameTime_.FrameTime());
+
+			auto& pair = _collisionObjectByFrameId.find(std::string(_currentAnim->CurrentFrame()));
+			if (pair != _collisionObjectByFrameId.end())
+			{
+				for (auto* collision_object_container : pair->second)
+				{
+					Game::Instance().GetGameInfo().GetWorld()->GetPhysicsWorld().ContactTest(collision_object_container);
+				}
+			}
 		}
 	}
 
@@ -190,7 +205,7 @@ namespace CasaEngine
 	{
 		if (_currentAnim != nullptr)
 		{
-			auto worldMatrix  = GetEntity()->GetCoordinates().GetWorldMatrix();
+			auto worldMatrix = GetEntity()->GetCoordinates().GetWorldMatrix();
 			_spriteRenderer->AddSprite(
 				//TODO : load all sprites in a dictionary<name, sprite>
 				new Sprite(*Game::Instance().GetAssetManager().GetAsset<SpriteData>(_currentAnim->CurrentFrame())),
@@ -211,7 +226,7 @@ namespace CasaEngine
 		_animationList.push_back(pAnim_);
 	}
 
-	std::vector<Animation2D *>& AnimatedSpriteComponent::GetAnimations()
+	std::vector<Animation2D*>& AnimatedSpriteComponent::GetAnimations()
 	{
 		return _animationList;
 	}
@@ -230,7 +245,7 @@ namespace CasaEngine
 	bool AnimatedSpriteComponent::OnFrameChanged(const EventArgs& e)
 	{
 		const auto& event = static_cast<const FrameChangeEvent&>(e);
-		
+
 		RemoveCollisionsFromLastFrame();
 		if (_collisionObjectByFrameId.find(event.ID()) != _collisionObjectByFrameId.end())
 		{

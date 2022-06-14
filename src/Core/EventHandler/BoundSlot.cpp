@@ -49,7 +49,9 @@ namespace CasaEngine
 	{
 		// cleanup the bound subscriber functor
 		if (connected())
+		{
 			d_subscriber->cleanup();
+		}
 
 		// remove the owning Event's reference to us
 		if (d_event)

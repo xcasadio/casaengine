@@ -13,20 +13,20 @@ namespace CasaEngine
 		Clear();
 	}
 	
-	BaseEntity* EntityManager::GetEntityFromID(int id)const
+	BaseEntity* EntityManager::GetEntityFromId(unsigned int id)const
 	{
 		//find the entity
-		auto ent = m_EntityMap.find(id);
+		auto ent = _entityMap.find(id);
 
 		//assert that the entity is a member of the map
-		CA_ASSERT(ent != m_EntityMap.end(), "<EntityManager::GetEntityFromID>: invalid Id")
+		CA_ASSERT(ent != _entityMap.end(), "<EntityManager::GetEntityFromID>: invalid Id")
 
 		return ent->second;
 	}
 
 	BaseEntity* EntityManager::GetEntityFromName(const char* name) const
 	{
-		for (auto pair : m_EntityMap)
+		for (auto& pair : _entityMap)
 		{
 			if (std::string(pair.second->GetName()) == std::string(name))
 			{
@@ -37,24 +37,24 @@ namespace CasaEngine
 		return nullptr;
 	}
 
-	std::map<int, BaseEntity*>::const_iterator EntityManager::begin() const
+	std::map<unsigned int, BaseEntity*>::const_iterator EntityManager::begin() const
 	{
-		return m_EntityMap.begin();
+		return _entityMap.begin();
 	}
 
-	std::map<int, BaseEntity*>::const_iterator EntityManager::end() const
+	std::map<unsigned int, BaseEntity*>::const_iterator EntityManager::end() const
 	{
-		return m_EntityMap.end();
+		return _entityMap.end();
 	}
 
-	void EntityManager::RemoveEntity(BaseEntity* pEntity)
+	void EntityManager::RemoveEntity(BaseEntity* entity)
 	{
-		m_EntityMap.erase(m_EntityMap.find(pEntity->Id()));
+		_entityMap.erase(_entityMap.find(entity->Id()));
 	}
 
-	void EntityManager::RegisterEntity(BaseEntity* NewEntity)
+	void EntityManager::RegisterEntity(BaseEntity* entity)
 	{
-		m_EntityMap.insert(std::make_pair(NewEntity->Id(), NewEntity));
+		_entityMap.insert(std::make_pair(entity->Id(), entity));
 	}
 
 	void EntityManager::Clear()
@@ -64,8 +64,8 @@ namespace CasaEngine
 		//we need to delete world after
 		//because world contains the physics world
 		//and some entity can use this physics world when they are deleted
-		for (auto it = m_EntityMap.begin();
-		     it != m_EntityMap.end();
+		for (auto it = _entityMap.begin();
+		     it != _entityMap.end();
 		     ++it)
 		{
 			if (dynamic_cast<World*>((*it).second) != nullptr)
@@ -80,9 +80,9 @@ namespace CasaEngine
 			(*it).second = nullptr;
 		}
 
-		m_EntityMap.clear();
+		_entityMap.clear();
 
-		for (auto* world : worlds)
+		for (const auto* world : worlds)
 		{
 			delete world;
 		}
@@ -91,7 +91,7 @@ namespace CasaEngine
 #ifdef EDITOR
 	BaseEntity* EntityManager::GetFirstSelectedEntity() const
 	{
-		for (auto pair : m_EntityMap)
+		for (const auto pair : _entityMap)
 		{
 			if (pair.second->IsSelected() == true)
 			{

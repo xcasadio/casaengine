@@ -16,7 +16,8 @@ namespace CasaEngine
 		_componentManager(new ComponentManager(this)),
 		_physicalEntity(this),
 		_isEnabled(true),
-		_isVisible(true)
+		_isVisible(true),
+		_toRemoved(false)
 	{
 		_nextValidId++;
 
@@ -106,6 +107,16 @@ namespace CasaEngine
 	Coordinates& BaseEntity::GetCoordinates()
 	{
 		return _coordinates;
+	}
+
+	bool BaseEntity::ToRemoved() const
+	{
+		return _toRemoved;
+	}
+
+	void BaseEntity::ToRemoved(bool val)
+	{
+		_toRemoved = val;
 	}
 
 	void BaseEntity::Initialize()

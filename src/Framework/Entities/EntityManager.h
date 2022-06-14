@@ -12,19 +12,19 @@ namespace CasaEngine
 	public:
 		~EntityManager();
 
-		void RegisterEntity(BaseEntity* NewEntity);
-		BaseEntity* GetEntityFromID(int id) const;
+		void RegisterEntity(BaseEntity* entity);
+		BaseEntity* GetEntityFromId(unsigned int id) const;
 		BaseEntity* GetEntityFromName(const char *name) const;
 
-		std::map<int, BaseEntity*>::const_iterator begin() const;
-		std::map<int, BaseEntity*>::const_iterator end() const;
+		std::map<unsigned int, BaseEntity*>::const_iterator begin() const;
+		std::map<unsigned int, BaseEntity*>::const_iterator end() const;
 
 
-		void RemoveEntity(BaseEntity* pEntity);
+		void RemoveEntity(BaseEntity* entity);
 		void Clear();
 
 	private:
-		std::map<int, BaseEntity*> m_EntityMap;
+		std::map<unsigned int, BaseEntity*> _entityMap;
 
 
 #ifdef EDITOR

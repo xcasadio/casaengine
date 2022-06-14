@@ -1,8 +1,8 @@
 #pragma once
 
 #include "Tile.h"
-#include "Datas/TileData.h"
 #include "Datas/TileSetData.h"
+#include "Datas/TileMapData.h"
 #include "World/World.h"
 
 namespace CasaEngine

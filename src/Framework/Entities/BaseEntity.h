@@ -36,6 +36,9 @@ namespace CasaEngine
 
 		Coordinates& GetCoordinates();
 
+		bool ToRemoved() const;
+		void ToRemoved(bool val);
+
 		bool IsEnabled() const;
 		void IsEnabled(bool val);
 		bool IsVisible() const;
@@ -53,6 +56,7 @@ namespace CasaEngine
 		std::string _name;
 		bool _isEnabled;
 		bool _isVisible;
+		bool _toRemoved;
 
 #ifdef EDITOR
 	public:

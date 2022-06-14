@@ -13,5 +13,6 @@ namespace CasaEngine
 		void Update(const GameTime& gameTime_) override;
 		void Draw(float x, float y, float z) override;
 		void Draw(float x, float y, float z, const Rectangle& uvOffset) override;
+		TileData* GetTileData() override;
 	};
 }

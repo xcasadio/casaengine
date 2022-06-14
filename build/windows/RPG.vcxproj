@@ -30,6 +30,8 @@
     <ClCompile Include="..\..\examples\RPG\main.cpp" />
     <ClCompile Include="..\..\examples\RPG\ScriptGrass.cpp" />
     <ClCompile Include="..\..\examples\RPG\ScriptCharacter.cpp" />
+    <ClCompile Include="..\..\examples\RPG\ScriptWeapon.cpp" />
+    <ClCompile Include="..\..\examples\RPG\Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\examples\RPG\Character.h" />
@@ -45,6 +47,8 @@
     <ClInclude Include="..\..\examples\RPG\RPGGame.h" />
     <ClInclude Include="..\..\examples\RPG\ScriptGrass.h" />
     <ClInclude Include="..\..\examples\RPG\ScriptCharacter.h" />
+    <ClInclude Include="..\..\examples\RPG\ScriptWeapon.h" />
+    <ClInclude Include="..\..\examples\RPG\Weapon.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="CasaEngine.vcxproj">

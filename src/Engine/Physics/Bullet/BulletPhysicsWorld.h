@@ -10,10 +10,10 @@
 #include "Maths\Shape\IShape.h"
 #include "Maths\Vector3.h"
 #include "Physics\IPhysicsWorld.h"
-#include "btDynamicsWorldExt.h"
 
 #include "Physics\PhysicsObjectContainer.h"
 #include "..\Collision.h"
+#include <BulletDynamics/Dynamics/btDiscreteDynamicsWorld.h>
 
 namespace CasaEngine
 {
@@ -43,7 +43,10 @@ namespace CasaEngine
 		void AddCollisionObject(ICollisionObjectContainer* pObj_) override;
 		void RemoveCollisionObject(ICollisionObjectContainer* pObj_) override;
 
-		ICollisionObjectContainer* CreateCollisionShape(BaseEntity * entity, IShape * shape_, const Vector3& origin_, CollisionHitType hitType = CollisionHitType::Unknown, CollisionFlags flags = CollisionFlags::Dynamic) override;
+		ICollisionObjectContainer* CreateCollisionShape(BaseEntity * entity, IShape * shape, const Vector3& origin, CollisionHitType hitType = CollisionHitType::Unknown, CollisionFlags flags = CollisionFlags::Dynamic) override;
+		ICollisionObjectContainer* CreateSensor(BaseEntity* entity, IShape* shape, const Vector3& origin, CollisionHitType hitType) override;
+
+		void ContactTest(ICollisionObjectContainer* collision_object_container) override;
 
 	private:
 		void AddCollisionObject(btCollisionObject* pColObj_);
@@ -54,7 +57,7 @@ namespace CasaEngine
 		btCollisionObject* CreateCollisionObjectFromShape(btCollisionShape* shape, Vector3 center);
 
 	private:
-		btDynamicsWorldExt* _bulletWorld;
+		btDiscreteDynamicsWorld* _bulletWorld;
 		btCollisionDispatcher* _dispatcher;
 	};
 }

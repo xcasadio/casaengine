@@ -12,6 +12,8 @@
     <ClCompile Include="..\..\examples\RPG\ScriptCharacter.cpp" />
     <ClCompile Include="..\..\examples\RPG\Player.cpp" />
     <ClCompile Include="..\..\examples\RPG\ScriptGrass.cpp" />
+    <ClCompile Include="..\..\examples\RPG\Weapon.cpp" />
+    <ClCompile Include="..\..\examples\RPG\ScriptWeapon.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\examples\RPG\Character.h" />
@@ -27,5 +29,7 @@
     <ClInclude Include="..\..\examples\RPG\load_save_types.h" />
     <ClInclude Include="..\..\examples\RPG\Player.h" />
     <ClInclude Include="..\..\examples\RPG\ScriptGrass.h" />
+    <ClInclude Include="..\..\examples\RPG\Weapon.h" />
+    <ClInclude Include="..\..\examples\RPG\ScriptWeapon.h" />
   </ItemGroup>
 </Project>

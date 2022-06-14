@@ -28,7 +28,7 @@ namespace CasaEngine
 
 		m_SpeedOffSet = 0.0f;
 		m_Direction = Vector2::UnitX();
-		m_Speed = 30.0f;
+		m_Speed = 60.0f;
 	}
 
 	Character2DBase::~Character2DBase()

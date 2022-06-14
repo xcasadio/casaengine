@@ -33,8 +33,8 @@ namespace CasaEngine
 	};
 
 	//----------------------------------------------------------------------------//
-	Event::Event(const std::string& name) :
-		d_name(name)
+	Event::Event(std::string name) :
+		d_name(std::move(name))
 	{
 	}
 
@@ -76,8 +76,12 @@ namespace CasaEngine
 
 		// execute all subscribers, updating the 'handled' state as we go
 		for (; iter != end_iter; ++iter)
+		{
 			if ((*iter->second->d_subscriber)(args))
+			{
 				++args.handled;
+			}
+		}
 	}
 
 	//----------------------------------------------------------------------------//
@@ -91,6 +95,8 @@ namespace CasaEngine
 
 		// erase our reference to the slot, if we had one.
 		if (curr != d_slots.end())
+		{
 			d_slots.erase(curr);
+		}
 	}
 }

@@ -4,11 +4,7 @@
 
 #include "BulletCollision\BroadphaseCollision\btDbvtBroadphase.h"
 #include "BulletCollision/CollisionDispatch/btEmptyCollisionAlgorithm.h"
-#include "BulletCollision/CollisionDispatch/btBox2dBox2dCollisionAlgorithm.h"
 #include "BulletCollision/CollisionDispatch/btConvex2dConvex2dAlgorithm.h"
-#include "BulletCollision/CollisionShapes/btBox2dShape.h"
-#include "BulletCollision/CollisionShapes/btConvex2dShape.h"
-#include "BulletCollision/NarrowPhaseCollision/btMinkowskiPenetrationDepthSolver.h"
 #include "Bullet3Common/b3Logging.h"
 #include "BulletPhysicsWorld.h"
 #include "Game/Game.h"
@@ -53,15 +49,6 @@ namespace CasaEngine
 
 		///the default constraint solver. For parallel processing you can use a different solver (see Extras/BulletMultiThreaded)
 		m_pConstraintSolver = new btSequentialImpulseConstraintSolver();
-
-		//TODO : create function to activate 2D
-		btVoronoiSimplexSolver* simplex = new btVoronoiSimplexSolver();
-		btMinkowskiPenetrationDepthSolver* pdSolver = new btMinkowskiPenetrationDepthSolver();
-		btConvex2dConvex2dAlgorithm::CreateFunc* convexAlgo2d = new btConvex2dConvex2dAlgorithm::CreateFunc(simplex, pdSolver);
-		m_pDispatcher->registerCollisionCreateFunc(CONVEX_2D_SHAPE_PROXYTYPE, CONVEX_2D_SHAPE_PROXYTYPE, convexAlgo2d);
-		m_pDispatcher->registerCollisionCreateFunc(BOX_2D_SHAPE_PROXYTYPE, CONVEX_2D_SHAPE_PROXYTYPE, convexAlgo2d);
-		m_pDispatcher->registerCollisionCreateFunc(CONVEX_2D_SHAPE_PROXYTYPE, BOX_2D_SHAPE_PROXYTYPE, convexAlgo2d);
-		m_pDispatcher->registerCollisionCreateFunc(BOX_2D_SHAPE_PROXYTYPE, BOX_2D_SHAPE_PROXYTYPE, new btBox2dBox2dCollisionAlgorithm::CreateFunc());
 	}
 
 	IPhysicsWorld* BulletPhysicsEngine::CreateWorld()
@@ -72,13 +59,14 @@ namespace CasaEngine
 			&& m_pConstraintSolver != nullptr,
 			"PhysicsEngine::CreateWorld() : Please call Initialize() before");
 
-		BulletPhysicsWorld* pWorld = new BulletPhysicsWorld(m_pCollisionConfig, m_pDispatcher, m_pOverlappingPairCache, m_pConstraintSolver);
-		BulletPhysicsDebugDrawComponent* pDebugDraw = Game::Instance().GetGameComponent<BulletPhysicsDebugDrawComponent>();
+		auto* pWorld = new BulletPhysicsWorld(m_pCollisionConfig, m_pDispatcher, m_pOverlappingPairCache, m_pConstraintSolver);
+		auto* pDebugDraw = Game::Instance().GetGameComponent<BulletPhysicsDebugDrawComponent>();
 
 		if (pDebugDraw != nullptr)
 		{
 			pWorld->setDebugDraw(pDebugDraw);
 		}
+
 		return pWorld;
 	}
 

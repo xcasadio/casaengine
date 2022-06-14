@@ -21,12 +21,12 @@ namespace CasaEngine
 		delete _physicsWorld;
 	}
 
-	const std::vector<BaseEntity*>& World::GetEntities()
+	std::vector<BaseEntity*>& World::GetEntities()
 	{
 		return _entities;
 	}
 
-	BaseEntity* World::GetEntityByName(const std::string& name)
+	BaseEntity* World::GetEntityByName(const std::string& name) const
 	{
 		for (const auto entity : _entities)
 		{
@@ -39,12 +39,12 @@ namespace CasaEngine
 		return nullptr;
 	}
 
-	void World::AddEntity(BaseEntity* entity_)
+	void World::AddEntity(BaseEntity* entity)
 	{
 #ifdef EDITOR
 		for (const auto e : _entities)
 		{
-			if (std::strcmp(entity_->GetName(), e->GetName()) == 0)
+			if (std::strcmp(entity->GetName(), e->GetName()) == 0)
 			{
 				std::ostringstream oss;
 				oss << "World::AddEntity() : entity " << e->GetName() << " (" << e->Id() << ")" << " is already added";
@@ -52,19 +52,32 @@ namespace CasaEngine
 			}
 		}
 #endif
-		_entities.push_back(entity_);
+		_entities.push_back(entity);
 		
 	}
-
-	void World::RemoveEntity(const BaseEntity* entity)
+	
+	void World::RemoveMarkedEntities()
 	{
-		for (auto it = _entities.begin(); it != _entities.end(); ++it)
+		std::vector<BaseEntity*> entities;
+		entities.reserve(_entities.size());
+
+		for (auto* entity : _entities)
 		{
-			if (std::strcmp(entity->GetName(), (*it)->GetName()) == 0)
+			if (entity->ToRemoved())
 			{
-				_entities.erase(it); // TODO : not optimal !!! prefer nullptr ??
-				break;
+				//delete entity;
 			}
+			else
+			{
+				entities.push_back(entity);
+			}
+		}
+
+		_entities.clear();
+
+		for (auto* entity : entities)
+		{
+			_entities.push_back(entity);
 		}
 	}
 
@@ -80,11 +93,11 @@ namespace CasaEngine
 
 	//////////////////////////////////////////////////////////////////////////
 
-	World::WorldComponent::WorldComponent(BaseEntity* pEntity_) :
-		Component(pEntity_, WORLD),
-		m_pWorld(dynamic_cast<World*>(pEntity_))
+	World::WorldComponent::WorldComponent(BaseEntity* entity) :
+		Component(entity, WORLD),
+		m_pWorld(dynamic_cast<World*>(entity))
 	{
-		CA_ASSERT(m_pWorld != nullptr, "WorldComponent()");
+		CA_ASSERT(m_pWorld != nullptr, "WorldComponent()")
 	}
 
 	void World::WorldComponent::Initialize()
@@ -103,8 +116,13 @@ namespace CasaEngine
 		     it != m_pWorld->GetEntities().end();
 		     ++it)
 		{
-			(*it)->Update(gameTime_);
+			if ((*it)->ToRemoved() == false)
+			{
+				(*it)->Update(gameTime_);				
+			}
 		}
+
+		m_pWorld->RemoveMarkedEntities();
 	}
 
 	void World::WorldComponent::Draw()
@@ -115,7 +133,10 @@ namespace CasaEngine
 		     it != m_pWorld->GetEntities().end();
 		     ++it)
 		{
-			(*it)->Draw();
+			if ((*it)->ToRemoved() == false)
+			{
+				(*it)->Draw();
+			}
 		}
 	}
 }
