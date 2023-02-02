@@ -15,7 +15,7 @@ namespace CasaEngine
 		~DateTime();
 
 		static const DateTime& Now();
-		
+
 		// Current Date convert to string : 21/04/2013
 		std::string GetCurrentDate() const;
 		// Current time convert to string : 16:40:38
@@ -24,8 +24,8 @@ namespace CasaEngine
 	private:
 
 		static DateTime m_Now;
-		time_t m_CurrentTime;
-		tm* m_pTm;
+		time_t m_CurrentTime{};
+		tm* m_pTm{};
 
 		void Update();
 	};

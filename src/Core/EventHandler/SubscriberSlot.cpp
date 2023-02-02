@@ -8,7 +8,7 @@ namespace CasaEngine
 	}
 
 	SubscriberSlot::SubscriberSlot() :
-		d_functor_impl(0)
+		d_functor_impl(nullptr)
 	{
 	}
 
@@ -17,6 +17,6 @@ namespace CasaEngine
 	void SubscriberSlot::cleanup()
 	{
 		delete d_functor_impl;
-		d_functor_impl = 0;
+		d_functor_impl = nullptr;
 	}
 }

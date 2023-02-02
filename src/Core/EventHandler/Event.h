@@ -64,7 +64,7 @@ namespace CasaEngine
 		class ScopedConnection : public Connection
 		{
 		public:
-			ScopedConnection() {}
+			ScopedConnection() = default;
 
 			~ScopedConnection()
 			{

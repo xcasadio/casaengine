@@ -36,15 +36,15 @@ namespace CasaEngine
 	//moves the iterator on to the next waypoint in the list
 	inline void Path::SetNextWaypoint()
 	{
-		CA_ASSERT(m_WayPoints.size() > 0, "Path::SetNextWaypoint()");
+		CA_ASSERT(m_WayPoints.size() > 0, "Path::SetNextWaypoint()")
 
-		if (++m_CurWaypoint == m_WayPoints.end())
-		{
-			if (m_bLooped)
+			if (++m_CurWaypoint == m_WayPoints.end())
 			{
-				m_CurWaypoint = m_WayPoints.begin();
+				if (m_bLooped)
+				{
+					m_CurWaypoint = m_WayPoints.begin();
+				}
 			}
-		}
 	}
 
 	void Path::LoopOn()

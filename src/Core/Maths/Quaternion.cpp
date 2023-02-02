@@ -399,9 +399,9 @@ namespace CasaEngine
 
 	void Quaternion::Transform(const std::vector<Vector3>& sourceArray, std::vector<Vector3>& destinationArray) const
 	{
-		CA_ASSERT(destinationArray.size() >= sourceArray.size(), "The destination array is smaller than the source array.");
+		CA_ASSERT(destinationArray.size() >= sourceArray.size(), "The destination array is smaller than the source array.")
 
-		int i = 0;
+			int i = 0;
 
 		for (auto it = sourceArray.cbegin();
 			it != sourceArray.cend();

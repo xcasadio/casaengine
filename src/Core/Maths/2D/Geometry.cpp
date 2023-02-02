@@ -59,7 +59,10 @@ namespace CasaEngine
 		float d = radius * radius - (length * length - v * v);
 
 		// If there was no intersection, return -1
-		if (d < 0.0) return -1.0;
+		if (d < 0.0)
+		{
+			return -1.0;
+		}
 
 		// Return the distance to the [first] intersecting point
 		return v - sqrt(d);
@@ -122,13 +125,19 @@ namespace CasaEngine
 		//vertex must be A
 		float dotA = (P.x - A.x) * (B.x - A.x) + (P.y - A.y) * (B.y - A.y);
 
-		if (dotA <= 0) return (A - P).Length();//Vec2DDistance(A, P);
+		if (dotA <= 0)
+		{
+			return (A - P).Length(); //Vec2DDistance(A, P);
+		}
 
 		//if the angle is obtuse between PB and AB is obtuse then the closest
 		//vertex must be B
 		float dotB = (P.x - B.x) * (A.x - B.x) + (P.y - B.y) * (A.y - B.y);
 
-		if (dotB <= 0) return (B - P).Length();//Vec2DDistance(B, P);
+		if (dotB <= 0)
+		{
+			return (B - P).Length(); //Vec2DDistance(B, P);
+		}
 
 		//calculate the point along AB that is the closest to P
 		Vector2 Point = A + (B - A) * dotA / (dotA + dotB);
@@ -149,13 +158,19 @@ namespace CasaEngine
 		//vertex must be A
 		float dotA = (P.x - A.x) * (B.x - A.x) + (P.y - A.y) * (B.y - A.y);
 
-		if (dotA <= 0) return (A - P).LengthSquared();//Vec2DDistanceSq(A, P);
+		if (dotA <= 0)
+		{
+			return (A - P).LengthSquared(); //Vec2DDistanceSq(A, P);
+		}
 
 		//if the angle is obtuse between PB and AB is obtuse then the closest
 		//vertex must be B
 		float dotB = (P.x - B.x) * (A.x - B.x) + (P.y - B.y) * (A.y - B.y);
 
-		if (dotB <= 0) return (B - P).LengthSquared();//Vec2DDistanceSq(B, P);
+		if (dotB <= 0)
+		{
+			return (B - P).LengthSquared(); //Vec2DDistanceSq(B, P);
+		}
 
 		//calculate the point along AB that is the closest to P
 		Vector2 Point = A + (B - A) * dotA / (dotA + dotB);

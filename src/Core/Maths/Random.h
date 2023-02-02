@@ -9,8 +9,8 @@ namespace CasaEngine
 	//returns a random integer between x and y
 	inline int   RandInt(int x, int y)
 	{
-		CA_ASSERT(y >= x, "<RandInt>: y is less than x");
-		return rand() % (y - x + 1) + x;
+		CA_ASSERT(y >= x, "<RandInt>: y is less than x")
+			return rand() % (y - x + 1) + x;
 	}
 
 	//returns a random double between zero and 1
@@ -27,9 +27,11 @@ namespace CasaEngine
 	//returns a random bool
 	inline bool   RandBool()
 	{
-		if (RandFloat() > 0.5f) return true;
-
-		else return false;
+		if (RandFloat() > 0.5f)
+		{
+			return true;
+		}
+		return false;
 	}
 
 	//returns a random double in the range -1 < n < 1
@@ -42,7 +44,7 @@ namespace CasaEngine
 	//http://www.taygeta.com/random/gaussian.html
 	inline float RandGaussian(float mean = 0.0f, float standard_deviation = 1.0)
 	{
-		float x1, x2, w, y1;
+		float y1;
 		static float y2;
 		static int use_last = 0;
 
@@ -53,6 +55,9 @@ namespace CasaEngine
 		}
 		else
 		{
+			float w;
+			float x2;
+			float x1;
 			do
 			{
 				x1 = 2.0f * RandFloat() - 1.0f;

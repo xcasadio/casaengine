@@ -11,14 +11,14 @@ namespace CasaEngine
 		m_vN.y = temp.x;
 	}
 
-	Line2D::Line2D() {}
+	Line2D::Line2D() = default;
 
-	Line2D::Line2D(Vector2 A, Vector2 B) :m_vA(A), m_vB(B)
+	Line2D::Line2D(Vector2 A, Vector2 B) :m_vA(std::move(A)), m_vB(std::move(B))
 	{
 		CalculateNormal();
 	}
 
-	Line2D::Line2D(Vector2 A, Vector2 B, Vector2 N) : m_vA(A), m_vB(B), m_vN(N)
+	Line2D::Line2D(Vector2 A, Vector2 B, Vector2 N) : m_vA(std::move(A)), m_vB(std::move(B)), m_vN(std::move(N))
 	{ }
 
 	Line2D::Line2D(std::ifstream& in)

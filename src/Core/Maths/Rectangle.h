@@ -137,7 +137,9 @@ namespace CasaEngine
 	TIntersection CRectangle<T>::Intersects(const CVector2<T>& Point) const
 	{
 		if ((Point.x >= x) && (Point.y >= y) && (Point.x <= Right()) && (Point.y <= Bottom()))
+		{
 			return INT_IN;
+		}
 		return INT_OUT;
 	}
 
@@ -151,9 +153,13 @@ namespace CasaEngine
 		CRectangle<T> Overlap(x1, y1, x1 - x2, y1 - y2);
 
 		if ((x1 > x2) || (y1 > y2))
+		{
 			return INT_OUT;
+		}
 		if ((Overlap == *this) || (Overlap == Rect))
+		{
 			return INT_IN;
+		}
 		return INT_INTERSECTS;
 	}
 

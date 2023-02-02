@@ -15,7 +15,6 @@ namespace CasaEngine
 	private:
 		void AddIndex(bool dir_);
 
-	private:
 		float m_Width;
 		float m_Height;
 		float m_Length;

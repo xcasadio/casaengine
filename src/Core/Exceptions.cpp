@@ -3,14 +3,13 @@
 
 namespace CasaEngine
 {
-	Exception::Exception(const std::string& message) :
-		m_Message(message)
+	Exception::Exception(std::string message) :
+		m_Message(std::move(message))
 	{
 	}
 
 	Exception::~Exception() noexcept
-	{
-	}
+		= default;
 
 	const char* Exception::what() const noexcept
 	{

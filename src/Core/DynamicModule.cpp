@@ -32,9 +32,9 @@ namespace CasaEngine
 {
 	struct DynamicModule::Impl
 	{
-		Impl(const std::string& name) :
-			d_moduleName(name),
-			d_handle(0)
+		Impl(std::string name) :
+			d_moduleName(std::move(name)),
+			d_handle(nullptr)
 		{}
 
 		~Impl()
@@ -55,14 +55,16 @@ namespace CasaEngine
 #else
 	static const std::string LibraryExtension(".so");
 #endif
-	
+
 	// return whether module name has it's extension in place
 	static bool hasDynamicLibraryExtension(const std::string& name)
 	{
 		const size_t ext_len = LibraryExtension.length();
 
 		if (name.length() < ext_len)
+		{
 			return false;
+		}
 
 		return name.compare(name.length() - ext_len, ext_len, LibraryExtension) == 0;
 	}
@@ -79,16 +81,18 @@ namespace CasaEngine
 #endif
 
 		appendDynamicLibraryExtension(name);
-	}
+}
 
 	static std::string getModuleDirEnvVar()
 	{
 		if (const char* envModuleDir = getenv(MODULE_DIR_VAR_NAME))
+		{
 			return std::string(envModuleDir);
+		}
 
 		return std::string();
 	}
-	
+
 	// Returns a std::string containing the last failure message from the platform's
 	// dynamic loading system.
 	static std::string getFailureString()
@@ -115,7 +119,7 @@ namespace CasaEngine
 		else
 		{
 			retMsg = "Unknown Error";
-		}
+	}
 #else
 		retMsg = "Unknown Error";
 #endif
@@ -130,7 +134,9 @@ namespace CasaEngine
 		const std::string envModuleDir(getModuleDirEnvVar());
 
 		if (!envModuleDir.empty())
+		{
 			handle = DYNLIB_LOAD(envModuleDir + '/' + name);
+		}
 
 		if (!handle)
 #ifdef __APPLE__
@@ -139,24 +145,32 @@ namespace CasaEngine
 
 		if (!handle)
 #endif
+		{
 			// try loading without any explicit location (i.e. use OS search path)
 			handle = DYNLIB_LOAD(name);
+		}
 
 		// finally, try using the compiled-in module directory
 		if (!handle)
+		{
 			handle = DYNLIB_LOAD(CA_MODULE_DIR + name);
+		}
 
 		return handle;
 	}
-	
+
 	DynamicModule::DynamicModule(const std::string& name) :
 		d_pimpl(new Impl(name))
 	{
 		if (name.empty())
+		{
 			return;
+		}
 
 		if (!hasDynamicLibraryExtension(d_pimpl->d_moduleName))
+		{
 			addLibraryNameSuffixes(d_pimpl->d_moduleName);
+		}
 
 		d_pimpl->d_handle = DynLibLoad(d_pimpl->d_moduleName);
 
@@ -180,20 +194,22 @@ namespace CasaEngine
 
 		// check for library load failure
 		if (!d_pimpl->d_handle)
+		{
 			throw Exception("Failed to load module '" +
 				d_pimpl->d_moduleName + "': " + getFailureString());
-	}
-	
+		}
+		}
+
 	DynamicModule::~DynamicModule()
 	{
 		delete d_pimpl;
 	}
-	
+
 	const std::string& DynamicModule::getModuleName() const
 	{
 		return d_pimpl->d_moduleName;
 	}
-	
+
 	void* DynamicModule::getSymbolAddress(const std::string& symbol) const
 	{
 		return static_cast<void*>(DYNLIB_GETSYM(d_pimpl->d_handle, symbol));

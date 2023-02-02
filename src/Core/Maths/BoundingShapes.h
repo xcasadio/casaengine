@@ -22,8 +22,8 @@ namespace CasaEngine
 		Vector3 mDir;
 		Vector3 mBase;
 
-		float mHeight;
-		float mBaseRadius;
+		float mHeight{};
+		float mBaseRadius{};
 
 		Cone();
 		Cone(const Vector3& tip, const Vector3& dir, float height, float baseRadius);

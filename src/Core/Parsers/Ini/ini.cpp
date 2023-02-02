@@ -25,7 +25,9 @@ static char* rstrip(char* s)
 {
 	char* p = s + strlen(s);
 	while (p > s && isspace((unsigned char)(*--p)))
+	{
 		*p = '\0';
+	}
 	return s;
 }
 
@@ -33,7 +35,9 @@ static char* rstrip(char* s)
 static char* lskip(const char* s)
 {
 	while (*s && isspace((unsigned char)(*s)))
+	{
 		s++;
+	}
 	return (char*)s;
 }
 
@@ -109,7 +113,9 @@ int ini_parse_file(FILE* file,
 			/* Non-black line with leading whitespace, treat as continuation
 			   of previous name's value (as per Python ConfigParser). */
 			if (!handler(user, section, prev_name, start) && !error)
+			{
 				error = lineno;
+			}
 		}
 #endif
 		else if (*start == '[') {
@@ -137,13 +143,17 @@ int ini_parse_file(FILE* file,
 				value = lskip(end + 1);
 				end = find_char_or_comment(value, '\0');
 				if (*end == ';')
+				{
 					*end = '\0';
+				}
 				rstrip(value);
 
 				/* Valid name[=:]value pair found, call handler */
 				strncpy0(prev_name, name, sizeof(prev_name));
 				if (!handler(user, section, name, value) && !error)
+				{
 					error = lineno;
+				}
 			}
 			else if (!error) {
 				/* No '=' or ':' found on name[=:]value line */
@@ -169,7 +179,9 @@ int ini_parse(const char* filename,
 
 	file = fopen(filename, "r");
 	if (!file)
+	{
 		return -1;
+	}
 	error = ini_parse_file(file, handler, user);
 	fclose(file);
 	return error;

@@ -10,12 +10,12 @@ namespace CasaEngine
 {
 	Vector3 GetCircleVector(int i_, int tessellation_)
 	{
-		float angle = i_ * MATH_2PI / tessellation_;
+		const float angle = i_ * MATH_2PI / tessellation_;
 
 		float dx = cosf(angle);
 		float dz = sinf(angle);
 
-		return {dx, 0, dz};
+		return { dx, 0, dz };
 	}
 
 	CylinderPrimitive::CylinderPrimitive(float diameter_, float height_, unsigned int tessellation_) :

@@ -25,7 +25,7 @@ namespace CasaEngine
 		ConstBaseIterator(typename T::const_iterator start_iter, typename T::const_iterator end_iter) :
 			d_currIter(start_iter),
 			d_startIter(start_iter),
-			d_endIter(end_iter)
+			d_endIter(std::move(end_iter))
 		{
 		}
 
@@ -34,8 +34,7 @@ namespace CasaEngine
 			ConstBaseIterator destructor
 		*/
 		virtual ~ConstBaseIterator(void)
-		{
-		}
+			= default;
 
 		/*!
 		\brief

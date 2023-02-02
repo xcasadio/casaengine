@@ -9,7 +9,7 @@ namespace CasaEngine
 	}
 
 	Plane::Plane(const Vector3& v0, const Vector3& v1, const Vector3& v2) :
-		n(0,0, 0),
+		n(0, 0, 0),
 		d(0)
 	{
 		BuildFromPoints(v0, v1, v2);
@@ -60,7 +60,10 @@ namespace CasaEngine
 
 		dot = Vector3::Dot(normal, direction);
 
-		if (!dot) return false;
+		if (!dot)
+		{
+			return false;
+		}
 
 		temp = (d + Vector3::Dot(normal, p1_)) / dot;
 

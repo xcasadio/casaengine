@@ -43,7 +43,10 @@ namespace CasaEngine
 			m_History[m_iNextUpdateSlot++] = MostRecentValue;
 
 			//make sure m_iNextUpdateSlot wraps around.
-			if (m_iNextUpdateSlot == m_History.size()) m_iNextUpdateSlot = 0;
+			if (m_iNextUpdateSlot == m_History.size())
+			{
+				m_iNextUpdateSlot = 0;
+			}
 
 			//now to calculate the average of the history list
 			T sum = m_ZeroValue;

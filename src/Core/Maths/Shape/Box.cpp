@@ -17,14 +17,7 @@ namespace CasaEngine
 	}
 
 	Box& Box::operator=(const Box& rsh)
-	{
-		m_Center = rsh.m_Center;
-		m_Size = rsh.m_Size;
-
-		IShape::operator=(rsh);
-
-		return *this;
-	}
+		= default;
 
 	IShape* Box::Copy()
 	{

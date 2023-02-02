@@ -40,7 +40,7 @@ namespace CasaEngine
 
 		d_events.insert(std::make_pair(name, &event));
 	}
-	
+
 	void EventSet::removeEvent(const std::string& name)
 	{
 		EventMap::iterator pos = d_events.find(name);
@@ -51,12 +51,12 @@ namespace CasaEngine
 			d_events.erase(pos);
 		}
 	}
-	
+
 	void EventSet::removeEvent(Event& event)
 	{
 		removeEvent(event.getName());
 	}
-	
+
 	void EventSet::removeAllEvents(void)
 	{
 		EventMap::const_iterator pos = d_events.begin();
@@ -69,7 +69,7 @@ namespace CasaEngine
 
 		d_events.clear();
 	}
-	
+
 	bool EventSet::isEventPresent(const std::string& name)
 	{
 		return d_events.find(name) != d_events.end();
@@ -152,7 +152,7 @@ namespace CasaEngine
 		{
 			if (!autoAdd)
 			{
-				return 0;
+				return nullptr;
 			}
 
 			addEvent(name);
@@ -167,7 +167,7 @@ namespace CasaEngine
 	{
 		Event* ev = getEventObject(name);
 
-		if (ev != 0 && !d_muted)
+		if (ev != nullptr && !d_muted)
 		{
 			(*ev)(args);
 		}

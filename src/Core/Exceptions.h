@@ -10,7 +10,7 @@ namespace CasaEngine
 		public std::exception
 	{
 	public:
-		Exception(const std::string& message = "");
+		Exception(std::string message = "");
 		~Exception() noexcept override;
 		Exception(const Exception& rsh) = default;
 		Exception& operator=(const Exception& rsh) = default;

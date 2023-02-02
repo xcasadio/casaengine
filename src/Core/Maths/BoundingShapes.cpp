@@ -10,16 +10,14 @@ namespace CasaEngine
 	 *
 	 */
 	Cone::Cone()
-	{
-	}
+		= default;
 
 	Cone::Cone(const Vector3& tip, const Vector3& dir, float height, float baseRadius) : mTip(tip), mDir(dir), mBase(tip + dir * height), mHeight(height), mBaseRadius(baseRadius)
 	{
 	}
 
 	AABB::AABB()
-	{
-	}
+		= default;
 
 	AABB::AABB(type_reset)
 	{
@@ -196,14 +194,14 @@ namespace CasaEngine
 
 	bool AABB::IsOverlapSphereBounds(const Vector3& pos, float radius) const
 	{
-		CA_ASSERT(min.IsValid(), "IsOverlapSphereBounds() : min is not valid");
-		CA_ASSERT(max.IsValid(), "IsOverlapSphereBounds() : max is not valid");
-		CA_ASSERT(pos.IsValid(), "IsOverlapSphereBounds() : pos is not valid");
+		CA_ASSERT(min.IsValid(), "IsOverlapSphereBounds() : min is not valid")
+			CA_ASSERT(max.IsValid(), "IsOverlapSphereBounds() : max is not valid")
+			CA_ASSERT(pos.IsValid(), "IsOverlapSphereBounds() : pos is not valid")
 
-		if (pos.x > min.x && pos.x < max.x && pos.y > min.y && pos.y < max.y && pos.z > min.z && pos.z < max.z)
-		{
-			return true;
-		}
+			if (pos.x > min.x && pos.x < max.x && pos.y > min.y && pos.y < max.y && pos.z > min.z && pos.z < max.z)
+			{
+				return true;
+			}
 
 		if (pos.x + radius < min.x)
 		{
@@ -234,14 +232,14 @@ namespace CasaEngine
 
 	bool AABB::IsContainSphere(const Vector3& pos, float radius) const
 	{
-		CA_ASSERT(min.IsValid(), "IsContainSphere() : min is not valid");
-		CA_ASSERT(max.IsValid(), "IsContainSphere() : max is not valid");
-		CA_ASSERT(pos.IsValid(), "IsContainSphere() : pos is not valid");
+		CA_ASSERT(min.IsValid(), "IsContainSphere() : min is not valid")
+			CA_ASSERT(max.IsValid(), "IsContainSphere() : max is not valid")
+			CA_ASSERT(pos.IsValid(), "IsContainSphere() : pos is not valid")
 
-		if (pos.x - radius < min.x)
-		{
-			return false;
-		}
+			if (pos.x - radius < min.x)
+			{
+				return false;
+			}
 		if (pos.y - radius < min.y)
 		{
 			return false;
@@ -354,16 +352,16 @@ namespace CasaEngine
 
 	bool AABB::IsIntersectBox(const AABB& b) const
 	{
-		CA_ASSERT(min.IsValid(), "IsIntersectBox() : min is not valid");
-		CA_ASSERT(max.IsValid(), "IsIntersectBox() : max is not valid");
-		CA_ASSERT(b.min.IsValid(), "IsIntersectBox() : b.min is not valid");
-		CA_ASSERT(b.max.IsValid(), "IsIntersectBox() : b.max is not valid");
+		CA_ASSERT(min.IsValid(), "IsIntersectBox() : min is not valid")
+			CA_ASSERT(max.IsValid(), "IsIntersectBox() : max is not valid")
+			CA_ASSERT(b.min.IsValid(), "IsIntersectBox() : b.min is not valid")
+			CA_ASSERT(b.max.IsValid(), "IsIntersectBox() : b.max is not valid")
 
-		// Check for intersection on X axis.
-		if (min.x > b.max.x || b.min.x > max.x)
-		{
-			return false;
-		}
+			// Check for intersection on X axis.
+			if (min.x > b.max.x || b.min.x > max.x)
+			{
+				return false;
+			}
 		// Check for intersection on Y axis.
 		if (min.y > b.max.y || b.min.y > max.y)
 		{
@@ -380,23 +378,23 @@ namespace CasaEngine
 
 	bool AABB::ContainsBox2D(AABB const& b) const
 	{
-		CA_ASSERT(min.IsValid(), "ContainsBox2D() : min is not valid");
-		CA_ASSERT(max.IsValid(), "ContainsBox2D() : max is not valid");
-		CA_ASSERT(b.min.IsValid(), "ContainsBox2D() : b.min is not valid");
-		CA_ASSERT(b.max.IsValid(), "ContainsBox2D() : b.max is not valid");
+		CA_ASSERT(min.IsValid(), "ContainsBox2D() : min is not valid")
+			CA_ASSERT(max.IsValid(), "ContainsBox2D() : max is not valid")
+			CA_ASSERT(b.min.IsValid(), "ContainsBox2D() : b.min is not valid")
+			CA_ASSERT(b.max.IsValid(), "ContainsBox2D() : b.max is not valid")
 
-		return min.x <= b.min.x && min.y <= b.min.y
+			return min.x <= b.min.x && min.y <= b.min.y
 			&& max.x >= b.max.x && max.y >= b.max.y;
 	}
 
 	bool AABB::ContainsBox(AABB const& b) const
 	{
-		CA_ASSERT(min.IsValid(), "ContainsBox() : min is not valid");
-		CA_ASSERT(max.IsValid(), "ContainsBox() : max is not valid");
-		CA_ASSERT(b.min.IsValid(), "ContainsBox() : b.min is not valid");
-		CA_ASSERT(b.max.IsValid(), "ContainsBox() : b.max is not valid");
+		CA_ASSERT(min.IsValid(), "ContainsBox() : min is not valid")
+			CA_ASSERT(max.IsValid(), "ContainsBox() : max is not valid")
+			CA_ASSERT(b.min.IsValid(), "ContainsBox() : b.min is not valid")
+			CA_ASSERT(b.max.IsValid(), "ContainsBox() : b.max is not valid")
 
-		return min.x <= b.min.x && min.y <= b.min.y && min.z <= b.min.z
+			return min.x <= b.min.x && min.y <= b.min.y && min.z <= b.min.z
 			&& max.x >= b.max.x && max.y >= b.max.y && max.z >= b.max.z;
 	}
 
@@ -415,14 +413,14 @@ namespace CasaEngine
 
 	bool AABB::IsContainPoint(const Vector3& pos) const
 	{
-		CA_ASSERT(min.IsValid(), "IsContainPoint() : min is not valid");
-		CA_ASSERT(max.IsValid(), "IsContainPoint() : max is not valid");
-		CA_ASSERT(pos.IsValid(), "IsContainPoint() : pos is not valid");
+		CA_ASSERT(min.IsValid(), "IsContainPoint() : min is not valid")
+			CA_ASSERT(max.IsValid(), "IsContainPoint() : max is not valid")
+			CA_ASSERT(pos.IsValid(), "IsContainPoint() : pos is not valid")
 
-		if (pos.x < min.x)
-		{
-			return false;
-		}
+			if (pos.x < min.x)
+			{
+				return false;
+			}
 		if (pos.y < min.y)
 		{
 			return false;

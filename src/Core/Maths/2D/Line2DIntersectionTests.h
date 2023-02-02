@@ -49,9 +49,9 @@ namespace CasaEngine
 	//  entity objects)
 	//-----------------------------------------------------------------------------
 	template <class ContWall>
-	bool doWallsObstructCylinderSides(Vector2        A,
-		Vector2        B,
-		float           BoundingRadius,
+	bool doWallsObstructCylinderSides(const Vector2        A,
+		const Vector2        B,
+		const float           BoundingRadius,
 		const ContWall& walls)
 	{
 		//the line segments that make up the sides of the cylinder must be created
@@ -61,7 +61,7 @@ namespace CasaEngine
 		//A1B1 will be one side of the cylinder, A2B2 the other.
 		Vector2 A1, B1, A2, B2;
 
-		Vector2 radialEdge = toB.GetOrthogonal() * BoundingRadius;
+		const Vector2 radialEdge = toB.GetOrthogonal() * BoundingRadius;
 
 		//create the two sides of the cylinder
 		A1 = A + radialEdge;
@@ -113,7 +113,10 @@ namespace CasaEngine
 			}
 		}
 
-		if (distance < MaxDouble) return true;
+		if (distance < MaxDouble)
+		{
+			return true;
+		}
 
 		return false;
 	}

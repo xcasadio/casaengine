@@ -58,7 +58,7 @@ namespace CasaEngine
 		*/
 		bool connected() const
 		{
-			return d_functor_impl != 0;
+			return d_functor_impl != nullptr;
 		}
 
 		/*!

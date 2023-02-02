@@ -19,8 +19,8 @@ namespace CasaEngine
 			Default constructor.
 		*/
 		RefCounted() :
-			d_object(0),
-			d_count(0)
+			d_object(nullptr),
+			d_count(nullptr)
 		{
 		}
 
@@ -31,7 +31,7 @@ namespace CasaEngine
 		RefCounted(T* ob) :
 			d_object(ob),
 			// use system heap for this! no CEGUI_NEW_PT!
-			d_count((ob != 0) ? new unsigned int(1) : 0)
+			d_count((ob != nullptr) ? new unsigned int(1) : nullptr)
 		{
 		}
 
@@ -78,7 +78,7 @@ namespace CasaEngine
 				}
 
 				d_object = other.d_object;
-				d_count = d_object ? other.d_count : 0;
+				d_count = d_object ? other.d_count : nullptr;
 
 				if (d_count)
 				{
@@ -144,7 +144,7 @@ namespace CasaEngine
 		*/
 		bool isValid() const
 		{
-			return d_object != 0;
+			return d_object != nullptr;
 		}
 
 	private:
@@ -172,7 +172,7 @@ namespace CasaEngine
 				// use system heap for this! no CEGUI_DELETE_PT!
 				delete d_count;
 				d_object = 0;
-				d_count = 0;
+				d_count = nullptr;
 			}
 		}
 

@@ -9,7 +9,7 @@ namespace CasaEngine
 		double sd = 0.0;
 		const double average = Average(v);
 
-		for (double i : v)
+		for (const double i : v)
 		{
 			sd += (i - average) * (i - average);
 		}

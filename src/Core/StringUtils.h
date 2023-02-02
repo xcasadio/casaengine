@@ -80,7 +80,9 @@ namespace CasaEngine
 	{
 		std::string Left;
 		if (std::getline(m_InStream, Left))
+		{
 			throw BadConversion("String too long, \"" + Left + "\" has not been extracted");
+		}
 	}
 
 	/**********************************************/

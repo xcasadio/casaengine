@@ -103,7 +103,7 @@ namespace CasaEngine
 
 	Vector3 Matrix4::Backward()
 	{
-		return {m31, m32, m33};
+		return { m31, m32, m33 };
 	}
 
 	void Matrix4::Backward(const Vector3& value)
@@ -115,7 +115,7 @@ namespace CasaEngine
 
 	Vector3 Matrix4::Down() const
 	{
-		return {-m21, -m22, -m23};
+		return { -m21, -m22, -m23 };
 	}
 
 	void Matrix4::Down(const Vector3& value)
@@ -127,7 +127,7 @@ namespace CasaEngine
 
 	Vector3 Matrix4::Forward() const
 	{
-		return {-m31, -m32, -m33};
+		return { -m31, -m32, -m33 };
 	}
 
 	void Matrix4::Forward(const Vector3& value)
@@ -139,7 +139,7 @@ namespace CasaEngine
 
 	Vector3 Matrix4::Left() const
 	{
-		return {-m11, -m12, -m13};
+		return { -m11, -m12, -m13 };
 	}
 
 	void Matrix4::Left(const Vector3& value)
@@ -151,7 +151,7 @@ namespace CasaEngine
 
 	Vector3 Matrix4::Right()
 	{
-		return {m11, m12, m13};
+		return { m11, m12, m13 };
 	}
 
 	void Matrix4::Right(Vector3 value)
@@ -163,7 +163,7 @@ namespace CasaEngine
 
 	Vector3 Matrix4::Translation()
 	{
-		return {m41, m42, m43};
+		return { m41, m42, m43 };
 	}
 
 	void Matrix4::Translation(const Vector3& value)
@@ -180,7 +180,7 @@ namespace CasaEngine
 
 	Vector3 Matrix4::Up()
 	{
-		return {m21, m22, m23};
+		return { m21, m22, m23 };
 	}
 
 	void Matrix4::Up(Vector3 value)
@@ -325,9 +325,9 @@ namespace CasaEngine
 
 	void Matrix4::Transform(const std::vector<Vector3>& sourceArray, std::vector<Vector3>& destinationArray)
 	{
-		CA_ASSERT(destinationArray.size() >= sourceArray.size(), "The destination array is smaller than the source array.");
+		CA_ASSERT(destinationArray.size() >= sourceArray.size(), "The destination array is smaller than the source array.")
 
-		int i = 0;
+			int i = 0;
 
 		for (auto it = sourceArray.cbegin();
 			it != sourceArray.cend();

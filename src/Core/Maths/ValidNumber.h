@@ -96,7 +96,7 @@ namespace CasaEngine
 				unsigned int uintVal;
 				float floatVal;
 			};
-			f32_u u;	u.uintVal = 0x7F800001;
+			f32_u u{};	u.uintVal = 0x7F800001;
 			float fpe = u.floatVal;
 			(void)fpe;
 		}
@@ -194,7 +194,7 @@ namespace CasaEngine
 		union {
 			SourceType pSrc;
 			DestinationType pDst;
-		} conv_union;
+		} conv_union{};
 		conv_union.pSrc = pPtr;
 		return conv_union.pDst;
 #endif

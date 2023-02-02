@@ -31,7 +31,9 @@ namespace CasaEngine
 	inline std::string Functor::operator ()(const std::string& Params) const
 	{
 		if (!m_pFunction)
+		{
 			throw Exception("Try o call a null function through a functor");
+		}
 
 		return m_pFunction->Execute(Params);
 	}

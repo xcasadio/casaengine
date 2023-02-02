@@ -3,6 +3,5 @@
 namespace CasaEngine
 {
 	ILogger::~ILogger()
-	{
-	}
+		= default;
 }

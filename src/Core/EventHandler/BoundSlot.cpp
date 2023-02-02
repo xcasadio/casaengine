@@ -9,11 +9,7 @@ namespace CasaEngine
 		d_event(&event)
 	{}
 
-	BoundSlot::BoundSlot(const BoundSlot& other) :
-		d_group(other.d_group),
-		d_subscriber(other.d_subscriber),
-		d_event(other.d_event)
-	{}
+	BoundSlot::BoundSlot(const BoundSlot& other) = default;
 
 	BoundSlot::~BoundSlot()
 	{
@@ -21,14 +17,7 @@ namespace CasaEngine
 		delete d_subscriber;
 	}
 
-	BoundSlot& BoundSlot::operator=(const BoundSlot& other)
-	{
-		d_group = other.d_group;
-		d_subscriber = other.d_subscriber;
-		d_event = other.d_event;
-
-		return *this;
-	}
+	BoundSlot& BoundSlot::operator=(const BoundSlot& other) = default;
 
 	bool BoundSlot::operator==(const BoundSlot& other) const
 	{
@@ -42,7 +31,7 @@ namespace CasaEngine
 
 	bool BoundSlot::connected() const
 	{
-		return d_subscriber != 0 && d_subscriber->connected();
+		return d_subscriber != nullptr && d_subscriber->connected();
 	}
 
 	void BoundSlot::disconnect()
@@ -58,7 +47,7 @@ namespace CasaEngine
 		{
 			// get the event to erase the subscriber functor.
 			d_event->unsubscribe(*this);
-			d_event = 0;
+			d_event = nullptr;
 		}
 	}
 }

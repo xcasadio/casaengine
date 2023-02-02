@@ -8,14 +8,10 @@ namespace CasaEngine
 	}
 
 	IShape& IShape::operator=(const IShape& rsh)
-	{
-		m_ShapeType = rsh.m_ShapeType;
-		return *this;
-	}
+		= default;
 
 	IShape::~IShape()
-	{
-	}
+		= default;
 
 	ShapeType IShape::Type() const
 	{

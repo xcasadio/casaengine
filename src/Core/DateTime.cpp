@@ -7,27 +7,20 @@
 namespace CasaEngine
 {
 	static DateTime m_sNow;
-	
+
 	DateTime::DateTime()
 	{
 		Update();
 	}
 
-	DateTime::~DateTime()
-	{
-	}
+	DateTime::~DateTime() = default;
 
 	DateTime::DateTime(const DateTime& rsh)
 	{
 		*this = rsh;
 	}
 
-	DateTime& DateTime::operator = (const DateTime& rsh)
-	{
-		m_CurrentTime = rsh.m_CurrentTime;
-		m_pTm = rsh.m_pTm;
-		return *this;
-	}
+	DateTime& DateTime::operator = (const DateTime& rsh) = default;
 
 	const DateTime& DateTime::Now()
 	{

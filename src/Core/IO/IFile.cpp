@@ -100,7 +100,9 @@ namespace CasaEngine
 	{
 		std::string::size_type Pos = m_Name.find_last_of(".");
 		if (Pos != std::string::npos)
+		{
 			return m_Name.substr(Pos + 1, std::string::npos);
+		}
 		return "";
 	}
 }
