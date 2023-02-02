@@ -86,7 +86,7 @@ void RPGGame::LoadContent()
 	Animation2dLoader::LoadFromFile("RPG_animations.json");
 
 	CreateMap(m_pWorld);
-	//CreateEnemies(m_pWorld);
+	CreateEnemies(m_pWorld);
 	CreateSwordman(m_pWorld);
 
 	//{
@@ -163,7 +163,7 @@ void RPGGame::CreateEnemies(World* pWorld)
 
 	auto* debugComponent = new DebugComponent(pEntity);
 	debugComponent->DisplayPosition(false);
-	debugComponent->DisplayAnimation2DCollisions(true);
+	//debugComponent->DisplayAnimation2DCollisions(true);
 	pEntity->GetComponentMgr()->AddComponent(debugComponent);
 
 	//collision
@@ -185,7 +185,7 @@ void RPGGame::CreateSwordman(World* pWorld)
 	weaponEntity->SetName("sword");
 	auto* debugComponent = new DebugComponent(weaponEntity);
 	debugComponent->DisplayPosition(false);
-	debugComponent->DisplayAnimation2DCollisions(true);
+	//debugComponent->DisplayAnimation2DCollisions(true);
 	weaponEntity->GetComponentMgr()->AddComponent(debugComponent);
 
 	IFile* pFile = GetMediaManager().FindMedia("baton.json", true);
@@ -257,7 +257,7 @@ void RPGGame::CreateSwordman(World* pWorld)
 	//debug
 	debugComponent = new DebugComponent(player_entity);
 	debugComponent->DisplayPosition(false);
-	debugComponent->DisplayAnimation2DCollisions(true);
+	//debugComponent->DisplayAnimation2DCollisions(true);
 	player_entity->GetComponentMgr()->AddComponent(debugComponent);
 
 	////////////////////////////////////////////////////////////
