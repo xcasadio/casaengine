@@ -33,19 +33,19 @@ namespace CasaEngine
 		m_bIsInitialized = true;
 	}
 
-	float Animation::TotalTime() const 
+	float Animation::TotalTime() const
 	{
 		if (!m_Events.empty())
 		{
 			return m_Events.back()->Time();
 		}
 
-		return 0.0f; 
+		return 0.0f;
 	}
 
-	float Animation::CurrentTime() const 
-	{ 
-		return m_CurrentTime; 
+	float Animation::CurrentTime() const
+	{
+		return m_CurrentTime;
 	}
 
 	void Animation::Reset()
@@ -58,7 +58,7 @@ namespace CasaEngine
 		return m_pAnimationData;
 	}
 
-	void Animation::Update(float elapsedTime_)
+	void Animation::Update(float elapsedTime)
 	{
 		CA_ASSERT(m_bIsInitialized == true, "Animation::Update() : call Initialize before Update()");
 
@@ -70,12 +70,12 @@ namespace CasaEngine
 
 		bool isFinished = false;
 		const float lastTime = m_CurrentTime;
-		m_CurrentTime += elapsedTime_;
+		m_CurrentTime += elapsedTime;
 		float currentTime = m_CurrentTime;
 
 		if (m_pAnimationData->_animationType == AnimationType::Loop)
 		{
-			while(m_CurrentTime > totalTime)
+			while (m_CurrentTime > totalTime)
 			{
 				m_CurrentTime -= totalTime;
 				//isFinished = true;
@@ -115,7 +115,7 @@ namespace CasaEngine
 		{
 			fireEvent(AnimationFinishedEvent::GetEventName(), AnimationFinishedEvent(m_pAnimationData->GetName().c_str()));
 		}
-		
+
 		// m_Events must be sorted by time
 		for (auto* event : m_Events)
 		{
@@ -127,9 +127,9 @@ namespace CasaEngine
 		}
 	}
 
-	void Animation::AddEvent(AnimationEvent *event_) 
-	{ 
-		m_Events.push_back(event_); 
+	void Animation::AddEvent(AnimationEvent* event)
+	{
+		m_Events.push_back(event);
 	}
 
 #if EDITOR
@@ -139,20 +139,20 @@ namespace CasaEngine
 		return &m_CurrentTime;
 	}
 
-	void Animation::CurrentTime(float val) 
-	{ 
-		m_CurrentTime = val; 
+	void Animation::CurrentTime(float val)
+	{
+		m_CurrentTime = val;
 	}
 
-	void Animation::RemoveEvent(AnimationEvent *event_) 
-	{ 
-		std::vector<AnimationEvent *>::iterator it;
+	void Animation::RemoveEvent(AnimationEvent* event)
+	{
+		std::vector<AnimationEvent*>::iterator it;
 
 		for (it = m_Events.begin();
 			it != m_Events.end();
 			++it)
 		{
-			if ((*it) == event_)
+			if ((*it) == event)
 			{
 				break;
 			}
@@ -160,15 +160,15 @@ namespace CasaEngine
 
 		if (it != m_Events.end())
 		{
-			m_Events.erase(it); 
+			m_Events.erase(it);
 		}
 	}
 
-	void Animation::SortEventList() 
-	{ 
+	void Animation::SortEventList()
+	{
 		//m_Events.sort(); 
 	}
-	
+
 #endif
 
 }

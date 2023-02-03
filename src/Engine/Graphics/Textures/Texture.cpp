@@ -1,14 +1,14 @@
 #include "Base.h"
 #include "Texture.h"
-#include "Log\LogManager.h"
-#include "Resources\MediaManager.h"
-#include "bx\string.h"
-#include "bimg\decode.h"
+#include "Log/LogManager.h"
+#include "Resources/MediaManager.h"
+#include "bx/string.h"
+#include "bimg/decode.h"
 
 namespace CasaEngine
 {
 	std::map<std::string, Texture*> Texture::_textureCache;
-	
+
 	bx::AllocatorI* getDefaultAllocator()
 	{
 		static bx::DefaultAllocator s_allocator;
@@ -107,7 +107,7 @@ namespace CasaEngine
 			}
 		}
 
-		auto *texture = new Texture(handle, info);
+		auto* texture = new Texture(handle, info);
 		_textureCache.insert(std::make_pair(pFile->Fullname(), texture));
 		return texture;
 	}

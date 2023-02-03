@@ -1,6 +1,6 @@
 #include "Base.h"
 #include "IController.h"
-#include "Game\Game.h"
+#include "Game/Game.h"
 #include "CA_Assert.h"
 
 namespace CasaEngine
@@ -20,7 +20,7 @@ namespace CasaEngine
 	{
 		CA_ASSERT(m_States.find(stateId) == m_States.end(), "Controller::AddState() : the id %d already exist", stateId)
 
-		m_States[stateId] = state;
+			m_States[stateId] = state;
 	}
 
 	void IController::Update(const GameTime& elapsedTime)

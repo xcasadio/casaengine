@@ -1,8 +1,8 @@
 #pragma once
 
 #include "CA_Export.h"
-#include "LinearMath\btIDebugDraw.h"
-#include "Game\Line3DRendererComponent.h"
+#include "LinearMath/btIDebugDraw.h"
+#include "Game/Line3DRendererComponent.h"
 
 namespace CasaEngine
 {
@@ -37,6 +37,6 @@ namespace CasaEngine
 		int m_debugMode;
 		std::vector<LineData> lines;
 
-		void AddLine(const Vector3 &start, const Vector3& end, const Color& color);
+		void AddLine(const Vector3& start, const Vector3& end, const Color& color);
 	};
 }

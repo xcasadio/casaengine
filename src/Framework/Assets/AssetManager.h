@@ -1,7 +1,7 @@
 #pragma once
 
 #include "CA_Assert.h"
-#include "Log\LogManager.h"
+#include "Log/LogManager.h"
 #include "CA_Export.h"
 #include "Asset.h"
 #include "StringUtils.h"
@@ -17,34 +17,34 @@ namespace CasaEngine
 		~AssetManager();
 
 		template<class T>
-		T* GetAsset(std::string name_);
+		T* GetAsset(std::string name);
 
 		template<class T>
 		std::vector<T*> GetAssets();
 
-		void AddAsset(std::string name, IAssetable *assetable);
-		void AddAsset(Asset* asset_);
+		void AddAsset(std::string name, IAssetable* assetable);
+		void AddAsset(Asset* asset);
 		bool Contains(std::string name);
-		void Rename(const char* old_name, const char* new_name);
+		void Rename(const char* oldName, const char* newName);
 		void Clear();
-		
+
 	private:
 		std::map<std::string, Asset*> m_Assets;
 
 #if EDITOR
 		void RemoveAsset(std::string name);
-		void RemoveAsset(Asset* asset_);
+		void RemoveAsset(Asset* asset);
 #endif
 	};
 
 	template<class T>
-	T* AssetManager::GetAsset(std::string name_)
+	T* AssetManager::GetAsset(const std::string name)
 	{
-		auto asset = m_Assets.find(name_);
+		auto asset = m_Assets.find(name);
 		CA_ASSERT(asset != m_Assets.end(), (CStringBuilder("AssetManager::GetAsset(): can't find the asset '")(name_)("'")).str().c_str());
 		return asset->second->GetAsset<T>();
 	}
-	
+
 	template<class T>
 	std::vector<T*> AssetManager::GetAssets()
 	{
@@ -57,7 +57,7 @@ namespace CasaEngine
 				assets.push_back(pair.second->GetAsset<T>());
 			}
 		}
-		
+
 		return assets;
 	}
 }

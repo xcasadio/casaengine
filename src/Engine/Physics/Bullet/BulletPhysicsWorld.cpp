@@ -1,11 +1,11 @@
-#include "BulletCollision\CollisionDispatch\btCollisionWorld.h"
-#include "BulletCollision\CollisionDispatch\btGhostObject.h"
-#include "BulletCollision\CollisionShapes\btBox2dShape.h"
-#include "BulletCollision\CollisionShapes\btCylinderShape.h"
-#include "BulletDynamics\Dynamics\btDiscreteDynamicsWorld.h"
+#include "BulletCollision/CollisionDispatch/btCollisionWorld.h"
+#include "BulletCollision/CollisionDispatch/btGhostObject.h"
+#include "BulletCollision/CollisionShapes/btBox2dShape.h"
+#include "BulletCollision/CollisionShapes/btCylinderShape.h"
+#include "BulletDynamics/Dynamics/btDiscreteDynamicsWorld.h"
 #include "BulletPhysicsWorld.h"
-#include "Maths\Shape\Circle.h"
-#include "Maths\Shape\IShape.h"
+#include "Maths/Shape/Circle.h"
+#include "Maths/Shape/IShape.h"
 #include "Exceptions.h"
 #include "Maths/Rectangle.h"
 
@@ -229,7 +229,7 @@ namespace CasaEngine
 		}
 	}
 
-	ICollisionObjectContainer* BulletPhysicsWorld::CreateCollisionShape(BaseEntity * entity, IShape * shape, const Vector3& origin, CollisionHitType hitType, CollisionFlags flags)
+	ICollisionObjectContainer* BulletPhysicsWorld::CreateCollisionShape(BaseEntity* entity, IShape* shape, const Vector3& origin, CollisionHitType hitType, CollisionFlags flags)
 	{
 		auto* collisionShape = new btCollisionObject();
 		auto* const b3pShape = CreateCollisionShape(shape);
@@ -287,7 +287,7 @@ namespace CasaEngine
 			//return body.checkCollideWithOverride(static_cast<btCollisionObject*>(proxy->m_clientObject));
 			return true;
 		}
-		
+
 		btScalar addSingleResult(btManifoldPoint& cp,
 			const btCollisionObjectWrapper* colObj0, int partId0, int index0,
 			const btCollisionObjectWrapper* colObj1, int partId1, int index1) override

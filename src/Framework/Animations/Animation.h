@@ -3,7 +3,7 @@
 #include "CA_Export.h"
 #include <vector>
 #include "AnimationEvent.h"
-#include "EventHandler\EventSet.h"
+#include "EventHandler/EventSet.h"
 #include <Datas/AnimationData.h>
 
 namespace CasaEngine
@@ -15,19 +15,19 @@ namespace CasaEngine
 		~Animation() override;
 
 		virtual void Initialize();
-		void Update(float elapsedTime_);
+		void Update(float elapsedTime);
 
-		void AddEvent(AnimationEvent* event_);
+		void AddEvent(AnimationEvent* event);
 		float TotalTime() const;
 		float CurrentTime() const;
 		virtual void Reset();
 
 		AnimationData* GetAnimationData();
-		
+
 	protected:
 		Animation(AnimationData& animationData);
 
-		std::vector<AnimationEvent *> m_Events;
+		std::vector<AnimationEvent*> m_Events;
 
 	private:
 		float m_CurrentTime;
@@ -37,11 +37,11 @@ namespace CasaEngine
 
 #if EDITOR
 	public:
-		float *CurrentTimePtr();
+		float* CurrentTimePtr();
 		void CurrentTime(float val);
-		void RemoveEvent(AnimationEvent *event_);
+		void RemoveEvent(AnimationEvent* event);
 		void SortEventList();
 #endif
-		
+
 	};
 }

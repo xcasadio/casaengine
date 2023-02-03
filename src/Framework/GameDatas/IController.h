@@ -3,8 +3,8 @@
 #include <map>
 
 #include "GameTime.h"
-#include "AI\FSM\IState.h"
-#include "AI\FSM\StateMachine.h"
+#include "AI/FSM/IState.h"
+#include "AI/FSM/StateMachine.h"
 
 namespace CasaEngine
 {

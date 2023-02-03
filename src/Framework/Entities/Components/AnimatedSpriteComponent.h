@@ -11,7 +11,7 @@
 #include "Sprite/SpriteRenderer.h"
 #include "Sprite/SpriteTypes.h"
 #include "Animations/Animation2D.h"
-#include "EventHandler\EventSet.h"
+#include "EventHandler/EventSet.h"
 #include "EventHandler/Event.h"
 #include "Physics/PhysicsObjectContainer.h"
 
@@ -22,12 +22,12 @@ namespace CasaEngine
 		public EventSet
 	{
 	private:
-		SpriteRenderer*	_spriteRenderer;
-		Color _color;		
+		SpriteRenderer* _spriteRenderer;
+		Color _color;
 		eSpriteEffects _spriteEffect;
-		Animation2D *_currentAnim;
+		Animation2D* _currentAnim;
 
-		std::vector<Animation2D *> _animationList;
+		std::vector<Animation2D*> _animationList;
 
 		Event::Connection _frameChangedConnection;
 		Event::Connection _animFinishedConnection;
@@ -51,20 +51,20 @@ namespace CasaEngine
 		//using the MessageDispatcher singleton class
 		//void HandleEvent(const Event* pEvent_);
 
-		void SetCurrentAnimation(Animation2D *anim, bool forceReset = false);
+		void SetCurrentAnimation(Animation2D* anim, bool forceReset = false);
 		void SetCurrentAnimation(int index_, bool forceReset = false);
 		bool SetCurrentAnimation(const std::string& name, bool forceReset = false);
-		bool SetCurrentAnimation(const char *name_, bool forceReset = false);
+		bool SetCurrentAnimation(const char* name_, bool forceReset = false);
 		std::string GetCurrentFrameName();
 		int GetCurrentFrameIndex() const;
-		Animation2D *GetCurrentAnimation();
+		Animation2D* GetCurrentAnimation();
 
-		void AddAnimation(Animation2D *pAnim_);
+		void AddAnimation(Animation2D* pAnim_);
 		std::vector<Animation2D*>& GetAnimations();
 		void RemoveCollisionsFromLastFrame();
 
 		//Event
-		bool OnFrameChanged(const EventArgs &e);
-		bool OnAnimationFinished(const EventArgs &e);
+		bool OnFrameChanged(const EventArgs& e);
+		bool OnAnimationFinished(const EventArgs& e);
 	};
 }

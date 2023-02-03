@@ -1,7 +1,7 @@
 #pragma once
 
 #include "CA_Export.h"
-#include "Entities\BaseEntity.h"
+#include "Entities/BaseEntity.h"
 
 namespace CasaEngine
 {

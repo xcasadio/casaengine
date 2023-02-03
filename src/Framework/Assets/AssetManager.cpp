@@ -19,11 +19,11 @@ namespace CasaEngine
 		CA_ASSERT(m_Assets.find(name) == m_Assets.end(), "AssetManager::AddAsset(): asset '%s' already exist", name.c_str());
 		m_Assets.insert(std::make_pair(name, new Asset(name, assetable)));
 	}
-	
-	void AssetManager::AddAsset(Asset* asset_)
+
+	void AssetManager::AddAsset(Asset* asset)
 	{
-		CA_ASSERT(m_Assets.find(asset_->GetName()) == m_Assets.end(), "AssetManager::AddAsset(): asset '%s' already exist", asset_->GetName().c_str());
-		m_Assets.insert(std::make_pair(asset_->GetName(), asset_));
+		CA_ASSERT(m_Assets.find(asset->GetName()) == m_Assets.end(), "AssetManager::AddAsset(): asset '%s' already exist", asset->GetName().c_str());
+		m_Assets.insert(std::make_pair(asset->GetName(), asset));
 	}
 
 	bool AssetManager::Contains(std::string name)
@@ -31,16 +31,16 @@ namespace CasaEngine
 		return m_Assets.find(name) != m_Assets.end();
 	}
 
-	void AssetManager::Rename(const char* old_name, const char* new_name)
+	void AssetManager::Rename(const char* oldName, const char* newName)
 	{
-		const auto it = m_Assets.find(old_name);
+		const auto it = m_Assets.find(oldName);
 		const auto asset = it->second;
 		m_Assets.erase(it);
-		
-		asset->SetName(new_name);
+
+		asset->SetName(newName);
 		AddAsset(asset);
 	}
-	
+
 	void AssetManager::Clear()
 	{
 		for (auto it = m_Assets.begin(); it != m_Assets.end(); ++it)
@@ -56,10 +56,10 @@ namespace CasaEngine
 		CA_ASSERT(it == m_Assets.end(), "AssetManager::AddAsset(): asset '%s' doesn't exist", name.c_str());
 		m_Assets.erase(it);
 	}
-	
-	void AssetManager::RemoveAsset(Asset* asset_)
+
+	void AssetManager::RemoveAsset(Asset* asset)
 	{
-		RemoveAsset(asset_->GetName());
+		RemoveAsset(asset->GetName());
 	}
 #endif
 }

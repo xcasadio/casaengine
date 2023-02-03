@@ -1,10 +1,10 @@
 #include "Viewport.h"
-#include "Maths\Matrix4.h"
-#include "Maths\Vector3.h"
+#include "Maths/Matrix4.h"
+#include "Maths/Vector3.h"
 
 namespace CasaEngine
 {
-	Viewport::Viewport(): Viewport(0, 0, 1, 1)
+	Viewport::Viewport() : Viewport(0, 0, 1, 1)
 	{
 	}
 
@@ -67,7 +67,7 @@ namespace CasaEngine
 	{
 		m_fFarClipPlane = val;
 	}
-	
+
 	bool WithinEpsilon(float a, float b)
 	{
 		float num = a - b;

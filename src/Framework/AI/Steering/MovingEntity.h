@@ -11,10 +11,10 @@
 //
 //------------------------------------------------------------------------
 
-#include "Entities\BaseEntity.h"
-#include "Maths\Vector2.h"
-#include "Maths\Math.h"
-#include "Maths\Matrix3.h"
+#include "Entities/BaseEntity.h"
+#include "Maths/Vector2.h"
+#include "Maths/Math.h"
+#include "Maths/Matrix3.h"
 
 namespace CasaEngine
 {

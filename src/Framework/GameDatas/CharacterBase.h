@@ -3,8 +3,8 @@
 #include <queue>
 
 #include "IController.h"
-#include "Animations\Animation2D.h"
-#include "Entities\Component.h"
+#include "Animations/Animation2D.h"
+#include "Entities/Component.h"
 #include <Physics/CollisionParametersBetween2Entities.h>
 
 namespace CasaEngine
@@ -27,9 +27,9 @@ namespace CasaEngine
 	protected:
 		CharacterBase(BaseEntity* pEntity);
 
-		virtual void CollideWith(CollisionParameters *collisionParameters, BaseEntity* otherEntity, CollisionParameters* otherCollisionParameters) = 0;
+		virtual void CollideWith(CollisionParameters* collisionParameters, BaseEntity* otherEntity, CollisionParameters* otherCollisionParameters) = 0;
 		void QueueMessage(Telegram& msg);
-	
+
 	private:
 		IController* m_pController;
 		BaseEntity* m_pEntity;

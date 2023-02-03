@@ -10,126 +10,128 @@
 //  Desc:   Base goal class.
 //-----------------------------------------------------------------------------
 
-#include "AI\Messaging\Telegram.h"
+#include "AI/Messaging/Telegram.h"
 
 namespace CasaEngine
 {
 
-template <class entity_type>
-class Goal
-{
-public:
+	template <class entity_type>
+	class Goal
+	{
+	public:
 
-   enum {active, inactive, completed, failed};
-  
-protected:
+		enum { active, inactive, completed, failed };
 
-  //an enumerated type specifying the type of goal
-  int             m_iType;
+	protected:
 
-  //a pointer to the entity that owns this goal
-  entity_type*    m_pOwner;
+		//an enumerated type specifying the type of goal
+		int             m_iType;
 
-  //an enumerated value indicating the goal's status (active, inactive,
-  //completed, failed)
-  int             m_iStatus;
+		//a pointer to the entity that owns this goal
+		entity_type* m_pOwner;
 
-
-  /* the following methods were created to factor out some of the commonality
-     in the implementations of the Process method() */
-
-  //if m_iStatus = inactive this method sets it to active and calls Activate()
-  void ActivateIfInactive();
-
-  //if m_iStatus is failed this method sets it to inactive so that the goal
-  //will be reactivated (and therefore re-planned) on the next update-step.
-  void ReactivateIfFailed();
-
-public:
-
-  //note how goals start off in the inactive state
-  Goal(entity_type*  pE, int type):m_iType(type),
-                                   m_pOwner(pE),
-                                   m_iStatus(inactive)
-  {}
-
-  virtual ~Goal(){}
-
-  //logic to run when the goal is activated.
-  virtual void Activate() = 0;
-
-  //logic to run each update-step
-  virtual int  Process() = 0;
-
-  //logic to run when the goal is satisfied. (typically used to switch
-  //off any active steering behaviors)
-  virtual void Terminate() = 0;
-
-  //goals can handle messages. Many don't though, so this defines a default
-  //behavior
-  virtual bool HandleMessage(const Telegram& msg){return false;}
+		//an enumerated value indicating the goal's status (active, inactive,
+		//completed, failed)
+		int             m_iStatus;
 
 
-  //a Goal is atomic and cannot aggregate subgoals yet we must implement
-  //this method to provide the uniform interface required for the goal
-  //hierarchy.
-  virtual void AddSubgoal(Goal<entity_type>* g)
-  {throw std::runtime_error("Cannot add goals to atomic goals");}
+		/* the following methods were created to factor out some of the commonality
+		   in the implementations of the Process method() */
+
+		   //if m_iStatus = inactive this method sets it to active and calls Activate()
+		void ActivateIfInactive();
+
+		//if m_iStatus is failed this method sets it to inactive so that the goal
+		//will be reactivated (and therefore re-planned) on the next update-step.
+		void ReactivateIfFailed();
+
+	public:
+
+		//note how goals start off in the inactive state
+		Goal(entity_type* pE, int type) :m_iType(type),
+			m_pOwner(pE),
+			m_iStatus(inactive)
+		{}
+
+		virtual ~Goal() {}
+
+		//logic to run when the goal is activated.
+		virtual void Activate() = 0;
+
+		//logic to run each update-step
+		virtual int  Process() = 0;
+
+		//logic to run when the goal is satisfied. (typically used to switch
+		//off any active steering behaviors)
+		virtual void Terminate() = 0;
+
+		//goals can handle messages. Many don't though, so this defines a default
+		//behavior
+		virtual bool HandleMessage(const Telegram& msg) { return false; }
 
 
-  bool         isComplete()const{return m_iStatus == completed;} 
-  bool         isActive()const{return m_iStatus == active;}
-  bool         isInactive()const{return m_iStatus == inactive;}
-  bool         hasFailed()const{return m_iStatus == failed;}
-  int          GetType()const{return m_iType;}
+		//a Goal is atomic and cannot aggregate subgoals yet we must implement
+		//this method to provide the uniform interface required for the goal
+		//hierarchy.
+		virtual void AddSubgoal(Goal<entity_type>* g)
+		{
+			throw std::runtime_error("Cannot add goals to atomic goals");
+		}
 
-  
-  
-  //this is used to draw the name of the goal at the specific position
-  //used for debugging
-  virtual void RenderAtPos(Vector2F& pos, TypeToString* tts)const;
-  
-  //used to render any goal specific information
-  virtual void Render(){}
-  
-};
+
+		bool         isComplete()const { return m_iStatus == completed; }
+		bool         isActive()const { return m_iStatus == active; }
+		bool         isInactive()const { return m_iStatus == inactive; }
+		bool         hasFailed()const { return m_iStatus == failed; }
+		int          GetType()const { return m_iType; }
 
 
 
+		//this is used to draw the name of the goal at the specific position
+		//used for debugging
+		virtual void RenderAtPos(Vector2F& pos, TypeToString* tts)const;
 
-//if m_iStatus is failed this method sets it to inactive so that the goal
-//will be reactivated (replanned) on the next update-step.
-template <class entity_type>
-void  Goal<entity_type>::ReactivateIfFailed()
-{
-  if (hasFailed())
-  {
-     m_iStatus = inactive;
-  }
-}
+		//used to render any goal specific information
+		virtual void Render() {}
 
-  
-template <class entity_type>
-void  Goal<entity_type>::ActivateIfInactive()
-{
-  if (isInactive())
-  {
-    Activate();   
-  }
-}
+	};
 
-template <class entity_type>
-void  Goal<entity_type>::RenderAtPos(Vector2F& pos, TypeToString* tts)const
-{
-  /*pos.y += 15;
-  gdi->TransparentText();
-  if (isComplete()) gdi->TextColor(0,255,0);
-  if (isInactive()) gdi->TextColor(0,0,0);
-  if (hasFailed()) gdi->TextColor(255,0,0);
-  if (isActive()) gdi->TextColor(0,0,255);
 
-  gdi->TextAtPos(pos.x, pos.y, tts->Convert(GetType())); */
-}
+
+
+	//if m_iStatus is failed this method sets it to inactive so that the goal
+	//will be reactivated (replanned) on the next update-step.
+	template <class entity_type>
+	void  Goal<entity_type>::ReactivateIfFailed()
+	{
+		if (hasFailed())
+		{
+			m_iStatus = inactive;
+		}
+	}
+
+
+	template <class entity_type>
+	void  Goal<entity_type>::ActivateIfInactive()
+	{
+		if (isInactive())
+		{
+			Activate();
+		}
+	}
+
+	template <class entity_type>
+	void  Goal<entity_type>::RenderAtPos(Vector2F& pos, TypeToString* tts)const
+	{
+		/*pos.y += 15;
+		gdi->TransparentText();
+		if (isComplete()) gdi->TextColor(0,255,0);
+		if (isInactive()) gdi->TextColor(0,0,0);
+		if (hasFailed()) gdi->TextColor(255,0,0);
+		if (isActive()) gdi->TextColor(0,0,255);
+
+		gdi->TextAtPos(pos.x, pos.y, tts->Convert(GetType())); */
+	}
 
 }
 

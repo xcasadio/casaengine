@@ -4,10 +4,10 @@
 
 #include "CharacterTypes.h"
 #include "IController.h"
-#include "Animations\Animation2D.h"
-#include "Entities\Component.h"
-#include "Entities\Components\AnimatedSpriteComponent.h"
-#include "Maths\Vector2.h"
+#include "Animations/Animation2D.h"
+#include "Entities/Component.h"
+#include "Entities/Components/AnimatedSpriteComponent.h"
+#include "Maths/Vector2.h"
 #include "CharacterBase.h"
 
 namespace CasaEngine
@@ -52,7 +52,7 @@ namespace CasaEngine
 		float m_Speed;
 		float m_SpeedOffSet;
 		int m_Group;
-	
+
 	private:
 		int GetAnimationDirectionOffset();
 

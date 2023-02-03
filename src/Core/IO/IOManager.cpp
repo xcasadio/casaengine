@@ -1,7 +1,7 @@
 #include "Base.h"
 
 #include "IOManager.h"
-#include "Log\LogManager.h"
+#include "Log/LogManager.h"
 #include "File.h"
 
 #if CA_PLATFORM_ANDROID

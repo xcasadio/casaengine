@@ -13,7 +13,7 @@ namespace CasaEngine
 	class CA_EXPORT Asset
 	{
 	public:
-		Asset(std::string name_, IAssetable* pObject);
+		Asset(std::string name, IAssetable* pObject);
 		~Asset();
 
 		std::string GetName() const;

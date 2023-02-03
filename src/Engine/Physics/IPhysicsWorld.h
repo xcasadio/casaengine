@@ -2,8 +2,8 @@
 
 #include "CA_Export.h"
 
-#include "Maths\Vector3.h"
-#include "Maths\Shape\IShape.h"
+#include "Maths/Vector3.h"
+#include "Maths/Shape/IShape.h"
 #include "GameTime.h"
 #include "RigidBodyParameters.h"
 #include "PhysicsObjectContainer.h"

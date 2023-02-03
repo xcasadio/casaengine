@@ -2,7 +2,7 @@
 #define LINE2D_H
 
 #include "Base.h"
-#include "Maths\Vector2.h"
+#include "Maths/Vector2.h"
 
 namespace CasaEngine
 {
@@ -26,7 +26,7 @@ namespace CasaEngine
 		void     SetNormal(Vector2 n);
 
 		Vector2 Center() const;
-		
+
 		std::ostream& Write(std::ostream& os) const;
 		void Read(std::ifstream& in);
 

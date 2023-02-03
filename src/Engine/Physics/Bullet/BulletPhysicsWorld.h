@@ -2,17 +2,17 @@
 
 #include "CA_Export.h"
 
-#include "BulletDynamics\ConstraintSolver\btSequentialImpulseConstraintSolver.h"
-#include "BulletCollision\CollisionDispatch\btCollisionDispatcher.h"
-#include "BulletCollision\BroadphaseCollision\btDispatcher.h"
-#include "BulletCollision\CollisionDispatch\btDefaultCollisionConfiguration.h"
+#include "BulletDynamics/ConstraintSolver/btSequentialImpulseConstraintSolver.h"
+#include "BulletCollision/CollisionDispatch/btCollisionDispatcher.h"
+#include "BulletCollision/BroadphaseCollision/btDispatcher.h"
+#include "BulletCollision/CollisionDispatch/btDefaultCollisionConfiguration.h"
 
-#include "Maths\Shape\IShape.h"
-#include "Maths\Vector3.h"
-#include "Physics\IPhysicsWorld.h"
+#include "Maths/Shape/IShape.h"
+#include "Maths/Vector3.h"
+#include "Physics/IPhysicsWorld.h"
 
-#include "Physics\PhysicsObjectContainer.h"
-#include "..\Collision.h"
+#include "Physics/PhysicsObjectContainer.h"
+#include "../Collision.h"
 #include <BulletDynamics/Dynamics/btDiscreteDynamicsWorld.h>
 
 namespace CasaEngine
@@ -43,7 +43,7 @@ namespace CasaEngine
 		void AddCollisionObject(ICollisionObjectContainer* pObj_) override;
 		void RemoveCollisionObject(ICollisionObjectContainer* pObj_) override;
 
-		ICollisionObjectContainer* CreateCollisionShape(BaseEntity * entity, IShape * shape, const Vector3& origin, CollisionHitType hitType = CollisionHitType::Unknown, CollisionFlags flags = CollisionFlags::Dynamic) override;
+		ICollisionObjectContainer* CreateCollisionShape(BaseEntity* entity, IShape* shape, const Vector3& origin, CollisionHitType hitType = CollisionHitType::Unknown, CollisionFlags flags = CollisionFlags::Dynamic) override;
 		ICollisionObjectContainer* CreateSensor(BaseEntity* entity, IShape* shape, const Vector3& origin, CollisionHitType hitType) override;
 
 		void ContactTest(ICollisionObjectContainer* collision_object_container) override;

@@ -1,9 +1,9 @@
 #pragma once
 
 #include "CA_Export.h"
-#include "Maths\Vector3.h"
-#include "Log\LogManager.h"
-#include "Maths\Quaternion.h"
+#include "Maths/Vector3.h"
+#include "Log/LogManager.h"
+#include "Maths/Quaternion.h"
 
 namespace CasaEngine
 {

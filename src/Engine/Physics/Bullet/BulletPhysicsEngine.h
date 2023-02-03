@@ -3,13 +3,13 @@
 #include "CA_Export.h"
 
 #include "Physics/IPhysicsWorld.h"
-#include "Physics\IPhysicsEngine.h"
+#include "Physics/IPhysicsEngine.h"
 
-#include "BulletCollision\CollisionDispatch\btCollisionDispatcher.h"
-#include "BulletCollision\BroadphaseCollision\btDispatcher.h"
-#include "BulletCollision\CollisionDispatch\btDefaultCollisionConfiguration.h"
-#include "BulletCollision\BroadphaseCollision\btBroadphaseInterface.h"
-#include "BulletDynamics\ConstraintSolver\btSequentialImpulseConstraintSolver.h"
+#include "BulletCollision/CollisionDispatch/btCollisionDispatcher.h"
+#include "BulletCollision/BroadphaseCollision/btDispatcher.h"
+#include "BulletCollision/CollisionDispatch/btDefaultCollisionConfiguration.h"
+#include "BulletCollision/BroadphaseCollision/btBroadphaseInterface.h"
+#include "BulletDynamics/ConstraintSolver/btSequentialImpulseConstraintSolver.h"
 
 namespace CasaEngine
 {

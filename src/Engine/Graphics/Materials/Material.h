@@ -3,8 +3,8 @@
 
 #include "CA_Export.h"
 #include "Assets/Assetable.h"
-#include "Graphics\Textures\Texture.h"
-#include "Maths\Vector2.h"
+#include "Graphics/Textures/Texture.h"
+#include "Maths/Vector2.h"
 
 namespace CasaEngine
 {

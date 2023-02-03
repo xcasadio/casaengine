@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Parsers\Ini\INIReader.h"
-#include "Log\LogManager.h"
+#include "Parsers/Ini/INIReader.h"
+#include "Log/LogManager.h"
 #include <bgfx/bgfx.h>
 
 namespace CasaEngine

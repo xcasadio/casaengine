@@ -1,10 +1,10 @@
 #include "BulletPhysicsDebugDrawComponent.h"
 
-#include "Log\LogManager.h"
+#include "Log/LogManager.h"
 #include "CA_Assert.h"
-#include "Game\Game.h"
+#include "Game/Game.h"
 
-#include "Graphics\Color.h"
+#include "Graphics/Color.h"
 
 namespace CasaEngine
 {

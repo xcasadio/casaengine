@@ -1,12 +1,12 @@
 #pragma once
 
-#include "Physics\PhysicsObjectContainer.h"
-#include "BulletDynamics\Dynamics\btRigidBody.h"
-#include "BulletCollision\CollisionDispatch\btCollisionObject.h"
+#include "Physics/PhysicsObjectContainer.h"
+#include "BulletDynamics/Dynamics/btRigidBody.h"
+#include "BulletCollision/CollisionDispatch/btCollisionObject.h"
 #include "CA_Export.h"
 
-#include "Maths\Vector3.h"
-#include "Maths\Quaternion.h"
+#include "Maths/Vector3.h"
+#include "Maths/Quaternion.h"
 
 namespace CasaEngine
 {

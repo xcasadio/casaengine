@@ -9,12 +9,12 @@
 
 namespace CasaEngine
 {
-	Asset::Asset(std::string name_, IAssetable* pObject)
+	Asset::Asset(std::string name, IAssetable* pObject)
 	{
 		CA_ASSERT(pObject != nullptr, "Asset() : IAssetable is nullptr");
 
 		m_pObject = pObject;
-		m_Name = name_;
+		m_Name = name;
 		//Game::Instance().GetResourceManager().Add(name_, this);
 	}
 

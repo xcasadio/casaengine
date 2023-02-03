@@ -1,8 +1,8 @@
 #pragma once
 
 #include "CA_Export.h"
-#include "Entities\Component.h"
-#include "Script\IScriptObject.h"
+#include "Entities/Component.h"
+#include "Script/IScriptObject.h"
 
 namespace CasaEngine
 {

@@ -22,8 +22,8 @@
 #include <vector>
 #include <list>
 
-#include "Maths\2D\InvertedAABBox2D.h"
-#include "Maths\Vector2.h"
+#include "Maths/2D/InvertedAABBox2D.h"
+#include "Maths/Vector2.h"
 
 namespace CasaEngine
 {
@@ -34,16 +34,16 @@ namespace CasaEngine
 	template <class entity>
 	struct Cell
 	{
-		  //all the entities inhabiting this cell
-		  std::list<entity>    Members;
+		//all the entities inhabiting this cell
+		std::list<entity>    Members;
 
-		  //the cell's bounding box (it's inverted because the Window's default
-		  //co-ordinate system has a y axis that increases as it descends)
-		  InvertedAABBox2D     BBox;
+		//the cell's bounding box (it's inverted because the Window's default
+		//co-ordinate system has a y axis that increases as it descends)
+		InvertedAABBox2D     BBox;
 
-		  Cell(Vector2 topleft,
-			   Vector2 botright):BBox(InvertedAABBox2D(topleft, botright))
-		  {}
+		Cell(Vector2 topleft,
+			Vector2 botright) :BBox(InvertedAABBox2D(topleft, botright))
+		{}
 	};
 
 	/////////// //////////////////////////////////////////////////////////////////
@@ -102,14 +102,14 @@ namespace CasaEngine
 		void CalculateNeighbors(Vector2 TargetPos, float QueryRadius);
 
 		//returns a reference to the entity at the front of the neighbor vector
-		entity& begin(){m_curNeighbor = m_Neighbors.begin(); return *m_curNeighbor;}
+		entity& begin() { m_curNeighbor = m_Neighbors.begin(); return *m_curNeighbor; }
 
 		//this returns the next entity in the neighbor vector
-		entity& next(){++m_curNeighbor; return *m_curNeighbor;}
+		entity& next() { ++m_curNeighbor; return *m_curNeighbor; }
 
 		//returns true if the end of the vector is found (a zero value marks the end)
-		bool   end(){return (m_curNeighbor == m_Neighbors.end()) || (*m_curNeighbor == 0);}   
-   
+		bool   end() { return (m_curNeighbor == m_Neighbors.end()) || (*m_curNeighbor == 0); }
+
 		//empties the cells of entities
 		void        EmptyCells();
 
@@ -122,7 +122,7 @@ namespace CasaEngine
 	//----------------------------- ctor ---------------------------------------
 	//--------------------------------------------------------------------------
 	template<class entity>
-	CellSpacePartition<entity>::CellSpacePartition():
+	CellSpacePartition<entity>::CellSpacePartition() :
 		m_fSpaceWidth(0),
 		m_fSpaceHeight(0),
 		m_iNumCellsX(0),
@@ -135,10 +135,10 @@ namespace CasaEngine
 	//
 	template<class entity>
 	void CellSpacePartition<entity>::Build(
-			float  width,        //width of 2D space
-			float  height,       //height...
-			int    cellsX,       //number of divisions horizontally
-			int    cellsY)       //and vertically
+		float  width,        //width of 2D space
+		float  height,       //height...
+		int    cellsX,       //number of divisions horizontally
+		int    cellsY)       //and vertically
 	{
 		m_fSpaceWidth = width;
 		m_fSpaceHeight = height;
@@ -148,18 +148,18 @@ namespace CasaEngine
 		m_Cells.clear();
 
 		//calculate bounds of each cell
-		m_fCellSizeX = width  / cellsX;
+		m_fCellSizeX = width / cellsX;
 		m_fCellSizeY = height / cellsY;
-  
+
 		//create the cells
-		for (int y=0; y<m_iNumCellsY; ++y)
+		for (int y = 0; y < m_iNumCellsY; ++y)
 		{
-			for (int x=0; x<m_iNumCellsX; ++x)
+			for (int x = 0; x < m_iNumCellsX; ++x)
 			{
-				float left  = x * m_fCellSizeX;
+				float left = x * m_fCellSizeX;
 				float right = left + m_fCellSizeX;
-				float top   = y * m_fCellSizeY;
-				float bot   = top + m_fCellSizeY;
+				float top = y * m_fCellSizeY;
+				float bot = top + m_fCellSizeY;
 
 				m_Cells.push_back(Cell<entity>(Vector2(left, top), Vector2(right, bot)));
 			}
@@ -179,15 +179,15 @@ namespace CasaEngine
 	{
 		//create an iterator and set it to the beginning of the neighbor vector
 		typename std::vector<entity>::iterator curNbor = m_Neighbors.begin();
-  
+
 		//create the query box that is the bounding box of the target's query area
 		InvertedAABBox2D QueryBox(TargetPos - Vector2(QueryRadius, QueryRadius), TargetPos + Vector2(QueryRadius, QueryRadius));
 
 		//iterate through each cell and test to see if its bounding box overlaps
 		//with the query box. If it does and it also contains entities then
 		//make further proximity tests.
-		typename std::vector<Cell<entity> >::iterator curCell; 
-		for (curCell=m_Cells.begin(); curCell!=m_Cells.end(); ++curCell)
+		typename std::vector<Cell<entity> >::iterator curCell;
+		for (curCell = m_Cells.begin(); curCell != m_Cells.end(); ++curCell)
 		{
 			//test to see if this cell contains members and if it overlaps the
 			//query box
@@ -195,7 +195,7 @@ namespace CasaEngine
 			{
 				//add any entities found within query radius to the neighbor list
 				typename  std::list<entity>::iterator it = curCell->Members.begin();
-				for (it; it!=curCell->Members.end(); ++it)
+				for (it; it != curCell->Members.end(); ++it)
 				{
 					auto position = (*it)->GetCoordinates().GetPosition();
 
@@ -203,7 +203,7 @@ namespace CasaEngine
 					{
 						*curNbor++ = *it;
 					}
-				}    
+				}
 			}
 		}//next cell
 
@@ -221,7 +221,7 @@ namespace CasaEngine
 	{
 		typename std::vector<Cell<entity> >::iterator it = m_Cells.begin();
 
-		for (it; it!=m_Cells.end(); ++it)
+		for (it; it != m_Cells.end(); ++it)
 		{
 			it->Members.clear();
 		}
@@ -235,12 +235,12 @@ namespace CasaEngine
 	template<class entity>
 	int CellSpacePartition<entity>::PositionToIndex(const Vector2& pos)const
 	{
-		int idx = static_cast<int>(m_iNumCellsX * pos.x / m_fSpaceWidth) + 
-				static_cast<int>(m_iNumCellsY * pos.y / m_fSpaceHeight) * m_iNumCellsX;
+		int idx = static_cast<int>(m_iNumCellsX * pos.x / m_fSpaceWidth) +
+			static_cast<int>(m_iNumCellsY * pos.y / m_fSpaceHeight) * m_iNumCellsX;
 
 		//if the entity's position is equal to Vector2(m_fSpaceWidth, m_fSpaceHeight)
 		//then the index will overshoot. We need to check for this and adjust
-		if (idx > static_cast<int>(m_Cells.size())-1) idx = static_cast<int>(m_Cells.size())-1;
+		if (idx > static_cast<int>(m_Cells.size()) - 1) idx = static_cast<int>(m_Cells.size()) - 1;
 
 		return idx;
 	}
@@ -251,15 +251,15 @@ namespace CasaEngine
 	//------------------------------------------------------------------------
 	template<class entity>
 	void CellSpacePartition<entity>::AddEntity(const entity& ent)
-	{ 
+	{
 		CA_ASSERT(ent, "CellSpacePartition<entity>::AddEntity() : entity is nullptr");
 
-		Transform2DComponent *pTrans = ent->GetComponentMgr()->template GetComponent<Transform2DComponent>();
+		Transform2DComponent* pTrans = ent->GetComponentMgr()->template GetComponent<Transform2DComponent>();
 		CA_ASSERT(pTrans != nullptr, "CellSpacePartition<entity>::AddEntity() : can't find Transform2DComponent");
 
 		int sz = m_Cells.size();
 		int idx = PositionToIndex(pTrans->GetPosition());
-  
+
 		m_Cells[idx].Members.push_back(ent);
 	}
 
@@ -269,14 +269,14 @@ namespace CasaEngine
 	//  is updated accordingly
 	//------------------------------------------------------------------------
 	template<class entity>
-	void CellSpacePartition<entity>::UpdateEntity(const entity&  ent,
-	                                              Vector2       OldPos)
+	void CellSpacePartition<entity>::UpdateEntity(const entity& ent,
+		Vector2       OldPos)
 	{
 		//if the index for the old pos and the new pos are not equal then
 		//the entity has moved to another cell.
 		int OldIdx = PositionToIndex(OldPos);
 
-		Transform2DComponent *pTrans = ent->GetComponentMgr()->template GetComponent<Transform2DComponent>();
+		Transform2DComponent* pTrans = ent->GetComponentMgr()->template GetComponent<Transform2DComponent>();
 		CA_ASSERT(pTrans != nullptr, "CellSpacePartition<entity>::UpdateEntity() : can't find Transform2DComponent");
 
 		int NewIdx = PositionToIndex(pTrans->GetPosition());
@@ -295,7 +295,7 @@ namespace CasaEngine
 	void CellSpacePartition<entity>::RenderCells()const
 	{
 		typename std::vector<Cell<entity> >::const_iterator curCell;
-		for (curCell=m_Cells.begin(); curCell!=m_Cells.end(); ++curCell)
+		for (curCell = m_Cells.begin(); curCell != m_Cells.end(); ++curCell)
 		{
 			curCell->BBox.Render(false);
 		}

@@ -3,7 +3,7 @@
 #include "CA_Export.h"
 
 #include "Entities/Component.h"
-#include "Entities\BaseEntity.h"
+#include "Entities/BaseEntity.h"
 #include "Physics/IPhysicsWorld.h"
 #include "SpacePartitioning/CellSpacePartition.h"
 
@@ -25,14 +25,14 @@ namespace CasaEngine
 
 		IPhysicsWorld& GetPhysicsWorld() const;
 
-		CellSpacePartition<BaseEntity *> &GetSpacePartition();
+		CellSpacePartition<BaseEntity*>& GetSpacePartition();
 
 	private:
 		void RemoveMarkedEntities();
 
-		std::vector<BaseEntity *> _entities;
-		IPhysicsWorld *_physicsWorld;
-		CellSpacePartition<BaseEntity *> _cellSpacePartition;
+		std::vector<BaseEntity*> _entities;
+		IPhysicsWorld* _physicsWorld;
+		CellSpacePartition<BaseEntity*> _cellSpacePartition;
 
 	private:
 		class WorldComponent : public Component
@@ -45,7 +45,7 @@ namespace CasaEngine
 			void Draw() override;
 
 		private:
-			World *m_pWorld;
+			World* m_pWorld;
 		};
 	};
 }

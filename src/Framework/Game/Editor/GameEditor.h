@@ -2,10 +2,10 @@
 #define GAME_EDITOR_H
 
 #include "Game/Game.h"
-#include "Sprite\SpriteRenderer.h"
-#include "Game\Input.h"
-#include "Game\Line3DRendererComponent.h"
-#include "World\World.h"
+#include "Sprite/SpriteRenderer.h"
+#include "Game/Input.h"
+#include "Game/Line3DRendererComponent.h"
+#include "World/World.h"
 
 namespace CasaEngine
 {
@@ -20,11 +20,11 @@ namespace CasaEngine
 		void LoadContent() override;
 
 	private:
-		SpriteRenderer*	m_SpriteRenderer;
-		Line3DRendererComponent *m_pLineRenderer;
+		SpriteRenderer* m_SpriteRenderer;
+		Line3DRendererComponent* m_pLineRenderer;
 
-		World *m_pWorld;
-	};	
+		World* m_pWorld;
+	};
 }
 
 #endif // GAME_EDITOR_H
