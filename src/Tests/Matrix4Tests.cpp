@@ -160,7 +160,7 @@ namespace CasaEngineTests
 		m.Translation(111.0f, 222.0f, 333.0f);
 		return m;
 	}
-	
+
 	// A test for Identity
 	TEST(Matrix4, Identity)
 	{
@@ -258,8 +258,7 @@ namespace CasaEngineTests
 	{
 		const Matrix4 mtx = Matrix4::CreateIdentity();
 
-		Matrix4 actual;
-		actual = Matrix4::Invert(mtx);
+		const Matrix4 actual = Matrix4::Invert(mtx);
 
 		EXPECT_EQ(actual, Matrix4::CreateIdentity());
 	}
@@ -270,8 +269,7 @@ namespace CasaEngineTests
 	{
 		Matrix4 mtx = Matrix4::CreateTranslation(23, 42, 666);
 
-		Matrix4 actual;
-		actual = Matrix4::Invert(mtx);
+		const Matrix4 actual = Matrix4::Invert(mtx);
 
 		const Matrix4 i = mtx * actual;
 		EXPECT_EQ(i, Matrix4::CreateIdentity());
@@ -283,8 +281,7 @@ namespace CasaEngineTests
 	{
 		Matrix4 mtx = Matrix4::CreateFromYawPitchRoll(3, 4, 5);
 
-		Matrix4 actual;
-		actual = Matrix4::Invert(mtx);
+		const Matrix4 actual = Matrix4::Invert(mtx);
 
 		const Matrix4 i = mtx * actual;
 		EXPECT_EQ(i, Matrix4::CreateIdentity());
@@ -296,8 +293,7 @@ namespace CasaEngineTests
 	{
 		Matrix4 mtx = Matrix4::CreateScale(23, 42, -666);
 
-		Matrix4 actual;
-		actual = Matrix4::Invert(mtx);
+		const Matrix4 actual = Matrix4::Invert(mtx);
 
 		const Matrix4 i = mtx * actual;
 		EXPECT_EQ(i, Matrix4::CreateIdentity());
@@ -309,8 +305,7 @@ namespace CasaEngineTests
 	{
 		Matrix4 mtx = Matrix4::CreatePerspectiveFieldOfView(1, 1.333f, 0.1f, 666);
 
-		Matrix4 actual;
-		actual = Matrix4::Invert(mtx);
+		const Matrix4 actual = Matrix4::Invert(mtx);
 
 		const Matrix4 i = mtx * actual;
 		EXPECT_EQ(i, Matrix4::CreateIdentity());
@@ -340,7 +335,7 @@ namespace CasaEngineTests
 			8.0f, 9.0f, 1.0f, 0.0f,
 			4.0f, 7.0f, 3.0f, 0.0f);
 
-		const Matrix4 actual  = Matrix4::Invert(mtx);
+		const Matrix4 actual = Matrix4::Invert(mtx);
 
 		const Matrix4 i = mtx * actual;
 		EXPECT_EQ(i, Matrix4::CreateIdentity());
@@ -349,8 +344,8 @@ namespace CasaEngineTests
 	void DecomposeTest(float yaw, float pitch, float roll, Vector3 expectedTranslation, Vector3 expectedScales)
 	{
 		const Quaternion expectedRotation = Quaternion::CreateFromYawPitchRoll(ToRadian(yaw),
-		                                                                       ToRadian(pitch),
-		                                                                       ToRadian(roll));
+			ToRadian(pitch),
+			ToRadian(roll));
 
 		const Matrix4 m = Matrix4::CreateScale(expectedScales) *
 			Matrix4::CreateFromQuaternion(expectedRotation) *
@@ -497,8 +492,8 @@ namespace CasaEngineTests
 		const Quaternion q = Quaternion::CreateFromRotationMatrix(m);
 
 		const Matrix4 expected = target * m;
-		auto from_quaternion = Matrix4::CreateFromQuaternion(q);
-		Matrix4 actual = target * from_quaternion;
+		const auto from_quaternion = Matrix4::CreateFromQuaternion(q);
+		const Matrix4 actual = target * from_quaternion;
 		EXPECT_EQ(expected, actual);
 	}
 
@@ -517,7 +512,7 @@ namespace CasaEngineTests
 		expected.m33 = 0.8660254f;
 		expected.m44 = 1.0f;
 
-		Matrix4 actual = Matrix4::CreateRotationX(radians);
+		const Matrix4 actual = Matrix4::CreateRotationX(radians);
 
 		EXPECT_EQ(expected, actual);
 	}
@@ -537,18 +532,18 @@ namespace CasaEngineTests
 	// A test for CreateRotationX (float, Vector3f)
 	TEST(Matrix4, CreateRotationXCenter)
 	{
-		float radians = ToRadian(30.0f);
-		Vector3 center = Vector3(23, 42, 66);
+		const float radians = ToRadian(30.0f);
+		const auto center = Vector3(23, 42, 66);
 
-		Matrix4 rotateAroundZero = Matrix4::CreateRotationX(radians, Vector3::Zero());
-		Matrix4 rotateAroundZeroExpected = Matrix4::CreateRotationX(radians);
+		const Matrix4 rotateAroundZero = Matrix4::CreateRotationX(radians, Vector3::Zero());
+		const Matrix4 rotateAroundZeroExpected = Matrix4::CreateRotationX(radians);
 		EXPECT_EQ(rotateAroundZero, rotateAroundZeroExpected);
 
-		Matrix4 rotateAroundCenter = Matrix4::CreateRotationX(radians, center);
-		Matrix4 rotateAroundCenterExpected = Matrix4::CreateTranslation(-center) * Matrix4::CreateRotationX(radians) * Matrix4::CreateTranslation(center);
+		const Matrix4 rotateAroundCenter = Matrix4::CreateRotationX(radians, center);
+		const Matrix4 rotateAroundCenterExpected = Matrix4::CreateTranslation(-center) * Matrix4::CreateRotationX(radians) * Matrix4::CreateTranslation(center);
 		EXPECT_EQ(rotateAroundCenter, rotateAroundCenterExpected);
 	}
-	
+
 	// A test for CreateRotationY (float)
 
 	TEST(Matrix4, CreateRotationY)
@@ -564,7 +559,7 @@ namespace CasaEngineTests
 		expected.m33 = 0.49999997f;
 		expected.m44 = 1.0f;
 
-		Matrix4 actual = Matrix4::CreateRotationY(radians);
+		const Matrix4 actual = Matrix4::CreateRotationY(radians);
 		EXPECT_EQ(expected, actual);
 	}
 
@@ -589,21 +584,21 @@ namespace CasaEngineTests
 	}
 
 	// A test for CreateRotationY (float, Vector3f)
-	
+
 	TEST(Matrix4, CreateRotationYCenter)
 	{
-		float radians = ToRadian(30.0f);
-		Vector3 center = Vector3(23, 42, 66);
+		const float radians = ToRadian(30.0f);
+		const auto center = Vector3(23, 42, 66);
 
-		Matrix4 rotateAroundZero = Matrix4::CreateRotationY(radians, Vector3::Zero());
-		Matrix4 rotateAroundZeroExpected = Matrix4::CreateRotationY(radians);
+		const Matrix4 rotateAroundZero = Matrix4::CreateRotationY(radians, Vector3::Zero());
+		const Matrix4 rotateAroundZeroExpected = Matrix4::CreateRotationY(radians);
 		EXPECT_EQ(rotateAroundZero, rotateAroundZeroExpected);
 
-		Matrix4 rotateAroundCenter = Matrix4::CreateRotationY(radians, center);
-		Matrix4 rotateAroundCenterExpected = Matrix4::CreateTranslation(-center) * Matrix4::CreateRotationY(radians) * Matrix4::CreateTranslation(center);
+		const Matrix4 rotateAroundCenter = Matrix4::CreateRotationY(radians, center);
+		const Matrix4 rotateAroundCenterExpected = Matrix4::CreateTranslation(-center) * Matrix4::CreateRotationY(radians) * Matrix4::CreateTranslation(center);
 		EXPECT_EQ(rotateAroundCenter, rotateAroundCenterExpected);
 	}
-	
+
 	// A test for CreateFromAxisAngle(Vector3f,float)
 
 	TEST(Matrix4, CreateFromAxisAngle)
@@ -690,17 +685,17 @@ namespace CasaEngineTests
 	// Simple shadow test.
 	void Matrix4CreateShadowTest01()
 	{
-		Vector3 lightDir = Vector3::UnitY();
-		Plane plane(Vector3::UnitY(), 0);
+		const Vector3 lightDir = Vector3::UnitY();
+		const Plane plane(Vector3::UnitY(), 0);
 
-		Matrix4 expected = Matrix4::CreateScale(1, 0, 1);
+		const Matrix4 expected = Matrix4::CreateScale(1, 0, 1);
 
-		Matrix4 actual = Matrix4::CreateShadow(lightDir, plane);
+		const Matrix4 actual = Matrix4::CreateShadow(lightDir, plane);
 		EXPECT_EQ(expected, actual);
 	}
 
 	// Various plane projections.
-	
+
 	void Matrix4CreateShadowTest02()
 	{
 		// Complex cases.
@@ -773,8 +768,8 @@ namespace CasaEngineTests
 
 				for (Vector3& point : points)
 				{
-					auto transform = m.Transform(point);
-					Vector4 v4(transform.x, transform.y, transform.z);
+					const auto transform = m.Transform(point);
+					const Vector4 v4(transform.x, transform.y, transform.z);
 
 					Vector3 sp = Vector3(v4.x, v4.y, v4.z) / v4.w;
 
@@ -793,10 +788,10 @@ namespace CasaEngineTests
 			}
 		}
 	}
-	
+
 	void CreateReflectionTest(Plane plane, Matrix4 expected)
 	{
-		Matrix4 actual = Matrix4::CreateReflection(plane);
+		const Matrix4 actual = Matrix4::CreateReflection(plane);
 		EXPECT_EQ(actual, expected);
 	}
 
@@ -826,25 +821,25 @@ namespace CasaEngineTests
 			Vector3(-5,-6,-7),
 		};
 
-		for (auto& p : planes)
+		for (const auto& p : planes)
 		{
 			Plane plane = Plane::Normalize(p);
 			Matrix4 m = Matrix4::CreateReflection(plane);
 			Vector3 pp = -plane.d * plane.n; // Position on the Plane::
-			
+
 			for (auto& point : points)
 			{
 				Vector3 rp = m.Transform(point);
 
 				// Manually compute reflection point and compare results.
 				Vector3 v = point - pp;
-				float d = Vector3::Dot(v, plane.n);
+				const float d = Vector3::Dot(v, plane.n);
 				Vector3 vp = point - 2.0f * d * plane.n;
 				EXPECT_EQ(rp, vp);
 			}
 		}
 	}
-	
+
 	// A test for CreateRotationZ (float)
 
 	TEST(Matrix4, CreateRotationZ)
@@ -868,7 +863,7 @@ namespace CasaEngineTests
 	TEST(Matrix4, CreateRotationZCenter)
 	{
 		const float radians = ToRadian(30.0f);
-		const Vector3 center = Vector3(23, 42, 66);
+		const auto center = Vector3(23, 42, 66);
 
 		const Matrix4 rotateAroundZero = Matrix4::CreateRotationZ(radians, Vector3::Zero());
 		const Matrix4 rotateAroundZeroExpected = Matrix4::CreateRotationZ(radians);
@@ -985,8 +980,7 @@ namespace CasaEngineTests
 		expected.m43 = -0.00150225335f;
 		expected.m44 = 1.0f;
 
-		Matrix4 actual;
-		actual = Matrix4::CreateOrthographicOffCenter(left, right, bottom, top, zNearPlane, zFarPlane);
+		const Matrix4 actual = Matrix4::CreateOrthographicOffCenter(left, right, bottom, top, zNearPlane, zFarPlane);
 		EXPECT_EQ(expected, actual);
 	}
 
@@ -1006,8 +1000,7 @@ namespace CasaEngineTests
 		expected.m34 = -1.0f;
 		expected.m43 = -1.50225341f;
 
-		Matrix4 actual;
-		actual = Matrix4::CreatePerspective(width, height, zNearPlane, zFarPlane);
+		const Matrix4 actual = Matrix4::CreatePerspective(width, height, zNearPlane, zFarPlane);
 		EXPECT_EQ(expected, actual);
 	}
 
@@ -1026,7 +1019,7 @@ namespace CasaEngineTests
 		expected.m33 = -1.00150228f;
 		expected.m34 = -1.0f;
 		expected.m43 = -1.50225341f;
-		Matrix4 actual = Matrix4::CreatePerspectiveFieldOfView(fieldOfView, aspectRatio, zNearPlane, zFarPlane);
+		const Matrix4 actual = Matrix4::CreatePerspectiveFieldOfView(fieldOfView, aspectRatio, zNearPlane, zFarPlane);
 
 		EXPECT_EQ(expected, actual);
 	}
@@ -1054,7 +1047,7 @@ namespace CasaEngineTests
 		const Matrix4 actual = Matrix4::CreatePerspectiveOffCenter(left, right, bottom, top, zNearPlane, zFarPlane);
 		EXPECT_EQ(expected, actual);
 	}
-	
+
 	// A test for Invert (Matrix4)
 	// Non invertible matrix - determinant is zero - singular matrix
 
@@ -1409,9 +1402,9 @@ namespace CasaEngineTests
 			Matrix4 actual = Matrix4::CreateFromQuaternion(quat);
 			EXPECT_EQ(expected, actual);
 
-				// make sure convert back to quaternion is same as we passed Quaternion::
-				Quaternion q2 = Quaternion::CreateFromRotationMatrix(actual);
-				EXPECT_EQ(quat, q2);
+			// make sure convert back to quaternion is same as we passed Quaternion::
+			Quaternion q2 = Quaternion::CreateFromRotationMatrix(actual);
+			EXPECT_EQ(quat, q2);
 		}
 	}
 
@@ -1433,9 +1426,9 @@ namespace CasaEngineTests
 			Matrix4 actual = Matrix4::CreateFromQuaternion(quat);
 			EXPECT_EQ(expected, actual);
 
-				// make sure convert back to quaternion is same as we passed Quaternion::
-				Quaternion q2 = Quaternion::CreateFromRotationMatrix(actual);
-				EXPECT_EQ(quat, q2);
+			// make sure convert back to quaternion is same as we passed Quaternion::
+			Quaternion q2 = Quaternion::CreateFromRotationMatrix(actual);
+			EXPECT_EQ(quat, q2);
 		}
 	}
 
@@ -1467,7 +1460,7 @@ namespace CasaEngineTests
 		const Matrix4 actual = Matrix4::Add(a, b);
 		EXPECT_EQ(expected, actual);
 	}
-	
+
 	// A test for Multiply (Matrix4, Matrix4)
 
 	void Matrix4MultiplyTest3()
@@ -1546,9 +1539,8 @@ namespace CasaEngineTests
 		expected.m42 = -14.0f;
 		expected.m43 = -15.0f;
 		expected.m44 = -16.0f;
-		Matrix4 actual;
 
-		actual = Matrix4::Negate(m);
+		const Matrix4 actual = Matrix4::Negate(m);
 		EXPECT_EQ(expected, actual);
 	}
 
@@ -1619,7 +1611,7 @@ namespace CasaEngineTests
 
 	void CreateBillboardFact(Vector3 placeDirection, Vector3 cameraUpVector, Matrix4 expectedRotation)
 	{
-		const Vector3 cameraPosition = Vector3(3.0f, 4.0f, 5.0f);
+		const auto cameraPosition = Vector3(3.0f, 4.0f, 5.0f);
 		const Vector3 objectPosition = cameraPosition + placeDirection * 10.0f;
 		const Matrix4 expected = expectedRotation * Matrix4::CreateTranslation(objectPosition);
 		auto camera_forward_vector = Vector3(0, 0, -1);
@@ -1747,9 +1739,9 @@ namespace CasaEngineTests
 
 	TEST(Matrix4, CreateBillboardTooCloseTest1)
 	{
-		const Vector3 objectPosition = Vector3(3.0f, 4.0f, 5.0f);
+		const auto objectPosition = Vector3(3.0f, 4.0f, 5.0f);
 		const Vector3 cameraPosition = objectPosition;
-		const Vector3 cameraUpVector = Vector3(0, 1, 0);
+		const auto cameraUpVector = Vector3(0, 1, 0);
 
 		// Doesn't pass camera face direction. CreateBillboard uses Vector3Ff(0, 0, -1) direction. Result must be same as 180 degrees rotate along y-axis.
 		const Matrix4 expected = Matrix4::CreateRotationY(ToRadian(180.0f)) * Matrix4::CreateTranslation(objectPosition);
@@ -1763,9 +1755,9 @@ namespace CasaEngineTests
 
 	TEST(Matrix4, CreateBillboardTooCloseTest2)
 	{
-		const Vector3 objectPosition = Vector3(3.0f, 4.0f, 5.0f);
+		const auto objectPosition = Vector3(3.0f, 4.0f, 5.0f);
 		const Vector3 cameraPosition = objectPosition;
-		const Vector3 cameraUpVector = Vector3(0, 1, 0);
+		const auto cameraUpVector = Vector3(0, 1, 0);
 
 		// Passes Vector3f.Right as camera face direction. Result must be same as -90 degrees rotate along y-axis.
 		const Matrix4 expected = Matrix4::CreateRotationY(ToRadian(-90.0f)) * Matrix4::CreateTranslation(objectPosition);
@@ -1776,7 +1768,7 @@ namespace CasaEngineTests
 
 	void CreateConstrainedBillboardFact(Vector3 placeDirection, Vector3 rotateAxis, Matrix4 expectedRotation)
 	{
-		Vector3 cameraPosition = Vector3(3.0f, 4.0f, 5.0f);
+		auto cameraPosition = Vector3(3.0f, 4.0f, 5.0f);
 		Vector3 objectPosition = cameraPosition + placeDirection * 10.0f;
 		Matrix4 expected = expectedRotation * Matrix4::CreateTranslation(objectPosition);
 		auto camera_forward_vector = Vector3(0, 0, -1);
@@ -1912,9 +1904,9 @@ namespace CasaEngineTests
 
 	TEST(Matrix4, CreateConstrainedBillboardTooCloseTest1)
 	{
-		const Vector3 objectPosition = Vector3(3.0f, 4.0f, 5.0f);
+		const auto objectPosition = Vector3(3.0f, 4.0f, 5.0f);
 		const Vector3 cameraPosition = objectPosition;
-		const Vector3 cameraUpVector = Vector3(0, 1, 0);
+		const auto cameraUpVector = Vector3(0, 1, 0);
 
 		// Doesn't pass camera face direction. CreateConstrainedBillboard uses Vector3Ff(0, 0, -1) direction. Result must be same as 180 degrees rotate along y-axis.
 		const Matrix4 expected = Matrix4::CreateRotationY(ToRadian(180.0f)) * Matrix4::CreateTranslation(objectPosition);
@@ -1929,9 +1921,9 @@ namespace CasaEngineTests
 
 	TEST(Matrix4, CreateConstrainedBillboardTooCloseTest2)
 	{
-		const Vector3 objectPosition = Vector3(3.0f, 4.0f, 5.0f);
+		const auto objectPosition = Vector3(3.0f, 4.0f, 5.0f);
 		const Vector3 cameraPosition = objectPosition;
-		const Vector3 cameraUpVector = Vector3(0, 1, 0);
+		const auto cameraUpVector = Vector3(0, 1, 0);
 
 		// Passes Vector3f.Right as camera face direction. Result must be same as -90 degrees rotate along y-axis.
 		const Matrix4 expected = Matrix4::CreateRotationY(ToRadian(-90.0f)) * Matrix4::CreateTranslation(objectPosition);
@@ -1947,8 +1939,8 @@ namespace CasaEngineTests
 	TEST(Matrix4, CreateConstrainedBillboardAlongAxisTest1)
 	{
 		// Place camera at up side of object.
-		const Vector3 objectPosition = Vector3(3.0f, 4.0f, 5.0f);
-		Vector3 rotateAxis = Vector3(0, 1, 0);
+		const auto objectPosition = Vector3(3.0f, 4.0f, 5.0f);
+		auto rotateAxis = Vector3(0, 1, 0);
 		const Vector3 cameraPosition = objectPosition + rotateAxis * 10.0f;
 
 		// In this case, CreateConstrainedBillboard picks Vector3Ff(0, 0, -1) as object forward vector.
@@ -1964,7 +1956,7 @@ namespace CasaEngineTests
 	TEST(Matrix4, CreateConstrainedBillboardAlongAxisTest2)
 	{
 		// Place camera at up side of object.
-		const Vector3 objectPosition = Vector3(3.0f, 4.0f, 5.0f);
+		const auto objectPosition = Vector3(3.0f, 4.0f, 5.0f);
 		auto camera_forward_vector = Vector3(0, 0, -1);
 		Vector3 rotateAxis = camera_forward_vector;
 		const Vector3 cameraPosition = objectPosition + rotateAxis * 10.0f;
@@ -1981,8 +1973,8 @@ namespace CasaEngineTests
 	TEST(Matrix4, CreateConstrainedBillboardAlongAxisTest3)
 	{
 		// Place camera at up side of object.
-		const Vector3 objectPosition = Vector3(3.0f, 4.0f, 5.0f);
-		Vector3 rotateAxis = Vector3(0, 1, 0);
+		const auto objectPosition = Vector3(3.0f, 4.0f, 5.0f);
+		auto rotateAxis = Vector3(0, 1, 0);
 		const Vector3 cameraPosition = objectPosition + rotateAxis * 10.0f;
 
 		// User passes correct objectForwardVector.
@@ -2016,7 +2008,7 @@ namespace CasaEngineTests
 	TEST(Matrix4, CreateConstrainedBillboardAlongAxisTest5)
 	{
 		// Place camera at up side of object.
-		const Vector3 objectPosition = Vector3(3.0f, 4.0f, 5.0f);
+		const auto objectPosition = Vector3(3.0f, 4.0f, 5.0f);
 		auto camera_forward_vector = Vector3(0, 0, -1);
 		Vector3 rotateAxis = camera_forward_vector;
 		const Vector3 cameraPosition = objectPosition + rotateAxis * 10.0f;
@@ -2031,7 +2023,7 @@ namespace CasaEngineTests
 
 	TEST(Matrix4, CreateScaleTest1)
 	{
-		const Vector3 scales = Vector3(2.0f, 3.0f, 4.0f);
+		const auto scales = Vector3(2.0f, 3.0f, 4.0f);
 		const Matrix4 expected(
 			2.0f, 0.0f, 0.0f, 0.0f,
 			0.0f, 3.0f, 0.0f, 0.0f,
@@ -2045,8 +2037,8 @@ namespace CasaEngineTests
 
 	TEST(Matrix4, CreateScaleCenterTest1)
 	{
-		const Vector3 scale = Vector3(3, 4, 5);
-		const Vector3 center = Vector3(23, 42, 666);
+		const auto scale = Vector3(3, 4, 5);
+		const auto center = Vector3(23, 42, 666);
 
 		const Matrix4 scaleAroundZero = Matrix4::CreateScale(scale, Vector3::Zero());
 		const Matrix4 scaleAroundZeroExpected = Matrix4::CreateScale(scale);
@@ -2076,7 +2068,7 @@ namespace CasaEngineTests
 	TEST(Matrix4, CreateScaleCenterTest2)
 	{
 		const float scale = 5;
-		const Vector3 center = Vector3(23, 42, 666);
+		const auto center = Vector3(23, 42, 666);
 
 		const Matrix4 scaleAroundZero = Matrix4::CreateScale(scale, scale, scale, Vector3::Zero());
 		const Matrix4 scaleAroundZeroExpected = Matrix4::CreateScale(scale);
@@ -2107,8 +2099,8 @@ namespace CasaEngineTests
 
 	TEST(Matrix4, CreateScaleCenterTest3)
 	{
-		const Vector3 scale = Vector3(3, 4, 5);
-		const Vector3 center = Vector3(23, 42, 666);
+		const auto scale = Vector3(3, 4, 5);
+		const auto center = Vector3(23, 42, 666);
 
 		const Matrix4 scaleAroundZero = Matrix4::CreateScale(scale.x, scale.y, scale.z, Vector3::Zero());
 		const Matrix4 scaleAroundZeroExpected = Matrix4::CreateScale(scale.x, scale.y, scale.z);
@@ -2123,7 +2115,7 @@ namespace CasaEngineTests
 
 	TEST(Matrix4, CreateTranslationTest1)
 	{
-		const Vector3 position = Vector3(2.0f, 3.0f, 4.0f);
+		const auto position = Vector3(2.0f, 3.0f, 4.0f);
 		const Matrix4 expected(
 			1.0f, 0.0f, 0.0f, 0.0f,
 			0.0f, 1.0f, 0.0f, 0.0f,
@@ -2160,7 +2152,7 @@ namespace CasaEngineTests
 		const Matrix4 b = a;
 
 		// Transformed vector that has same semantics of property must be same.
-		Vector3 val = Vector3(a.m41, a.m42, a.m43);
+		auto val = Vector3(a.m41, a.m42, a.m43);
 		EXPECT_EQ(val, a.Translation());
 
 		// Set value and get value must be same.
@@ -2175,7 +2167,7 @@ namespace CasaEngineTests
 			a.m31 == b.m31 && a.m32 == b.m32 && a.m33 == b.m33 && a.m34 == b.m34 &&
 			a.m41 != b.m41 && a.m42 != b.m42 && a.m43 != b.m43 && a.m44 == b.m44);
 	}
-	
+
 	// A test for IsIdentity
 
 	TEST(Matrix4, IsIdentity)

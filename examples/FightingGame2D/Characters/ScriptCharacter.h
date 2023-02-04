@@ -1,9 +1,9 @@
 #pragma once
 
 #include "Character.h"
-#include "Script\IScriptObject.h"
+#include "Script/IScriptObject.h"
 #include "GameTime.h"
-#include "Messaging\Telegram.h"
+#include "Messaging/Telegram.h"
 
 using namespace CasaEngine;
 

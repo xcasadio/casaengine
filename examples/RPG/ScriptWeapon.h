@@ -2,7 +2,7 @@
 
 #include "Character.h"
 #include "Weapon.h"
-#include "Script\IScriptObject.h"
+#include "Script/IScriptObject.h"
 
 using namespace CasaEngine;
 

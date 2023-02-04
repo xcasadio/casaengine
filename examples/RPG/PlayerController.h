@@ -3,7 +3,7 @@
 #include "GameDatas/IController.h"
 #include "GameTime.h"
 #include "CharacterEnum.h"
-#include "Maths\Vector2.h"
+#include "Maths/Vector2.h"
 #include "Player.h"
 
 using namespace CasaEngine;

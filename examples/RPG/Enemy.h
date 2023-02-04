@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Character.h"
-#include "Entities\Components\AnimatedSpriteComponent.h"
+#include "Entities/Components/AnimatedSpriteComponent.h"
 
 using namespace CasaEngine;
 

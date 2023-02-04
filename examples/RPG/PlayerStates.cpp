@@ -1,5 +1,5 @@
 #include "PlayerStates.h"
-#include "Game\Game.h"
+#include "Game/Game.h"
 #include "PlayerController.h"
 #include "CharacterEnum.h"
 #include "GameDatas/MessageType.h"
@@ -10,9 +10,9 @@ PlayerStateGlobal::PlayerStateGlobal() = default;
 
 PlayerStateGlobal::~PlayerStateGlobal() = default;
 
-void PlayerStateGlobal::Enter(IController * controller) {}
+void PlayerStateGlobal::Enter(IController* controller) {}
 
-void PlayerStateGlobal::Execute(IController * controller, const GameTime & elpasedTime)
+void PlayerStateGlobal::Execute(IController* controller, const GameTime& elpasedTime)
 {
 	auto* playerController = dynamic_cast<PlayerController*>(controller);
 
@@ -24,9 +24,9 @@ void PlayerStateGlobal::Execute(IController * controller, const GameTime & elpas
 	}
 }
 
-void PlayerStateGlobal::Exit(IController * controller) {}
+void PlayerStateGlobal::Exit(IController* controller) {}
 
-bool PlayerStateGlobal::OnMessage(IController * controller, const Telegram & msg)
+bool PlayerStateGlobal::OnMessage(IController* controller, const Telegram& msg)
 {
 	return false;
 }
@@ -38,7 +38,7 @@ PlayerStateIdle::PlayerStateIdle() = default;
 
 PlayerStateIdle::~PlayerStateIdle() = default;
 
-void PlayerStateIdle::Enter(IController * controller)
+void PlayerStateIdle::Enter(IController* controller)
 {
 	auto* playerController = dynamic_cast<PlayerController*>(controller);
 	Vector2 joyDir = Vector2::Zero();
@@ -46,7 +46,7 @@ void PlayerStateIdle::Enter(IController * controller)
 	playerController->GetPlayer()->SetCurrentAnimationByNameWithOrientation("swordman_stand");
 }
 
-void PlayerStateIdle::Execute(IController * controller, const GameTime & elpasedTime_)
+void PlayerStateIdle::Execute(IController* controller, const GameTime& elpasedTime_)
 {
 	auto* playerController = dynamic_cast<PlayerController*>(controller);
 
@@ -71,11 +71,11 @@ void PlayerStateIdle::Execute(IController * controller, const GameTime & elpased
 	}
 }
 
-void PlayerStateIdle::Exit(IController * controller)
+void PlayerStateIdle::Exit(IController* controller)
 {
 }
 
-bool PlayerStateIdle::OnMessage(IController * controller, const Telegram&)
+bool PlayerStateIdle::OnMessage(IController* controller, const Telegram&)
 {
 	return false;
 }
@@ -86,13 +86,13 @@ PlayerStateWalking::PlayerStateWalking() = default;
 
 PlayerStateWalking::~PlayerStateWalking() = default;
 
-void PlayerStateWalking::Enter(IController * controller)
+void PlayerStateWalking::Enter(IController* controller)
 {
 	auto* playerController = dynamic_cast<PlayerController*>(controller);
 	playerController->GetPlayer()->SetCurrentAnimationByNameWithOrientation("swordman_walk");
 }
 
-void PlayerStateWalking::Execute(IController * controller, const GameTime & elpasedTime_)
+void PlayerStateWalking::Execute(IController* controller, const GameTime& elpasedTime_)
 {
 	auto* playerController = dynamic_cast<PlayerController*>(controller);
 
@@ -121,13 +121,13 @@ void PlayerStateWalking::Execute(IController * controller, const GameTime & elpa
 	}
 }
 
-void PlayerStateWalking::Exit(IController * controller)
+void PlayerStateWalking::Exit(IController* controller)
 {
 	auto* playerController = dynamic_cast<PlayerController*>(controller);
 	playerController->GetPlayer()->Move(Vector2::Zero());
 }
 
-bool PlayerStateWalking::OnMessage(IController * controller, const Telegram & msg)
+bool PlayerStateWalking::OnMessage(IController* controller, const Telegram& msg)
 {
 	/*
 	auto* playerController = dynamic_cast<PlayerController*>(controller);
@@ -148,7 +148,7 @@ PlayerStateAttack::PlayerStateAttack() = default;
 
 PlayerStateAttack::~PlayerStateAttack() = default;
 
-void PlayerStateAttack::Enter(IController * controller)
+void PlayerStateAttack::Enter(IController* controller)
 {
 	auto* playerController = dynamic_cast<PlayerController*>(controller);
 	//equip sword
@@ -164,7 +164,7 @@ void PlayerStateAttack::Enter(IController * controller)
 	playerController->GetPlayer()->SetCurrentAnimationByNameWithOrientation("swordman_attack");
 }
 
-void PlayerStateAttack::Execute(IController * controller, const GameTime & elpasedTime_)
+void PlayerStateAttack::Execute(IController* controller, const GameTime& elpasedTime_)
 {
 	//PlayerController* playerController = dynamic_cast<PlayerController*>(controller);
 
@@ -192,7 +192,7 @@ void PlayerStateAttack::Execute(IController * controller, const GameTime & elpas
 	//     }
 }
 
-void PlayerStateAttack::Exit(IController * controller)
+void PlayerStateAttack::Exit(IController* controller)
 {
 	auto* playerController = dynamic_cast<PlayerController*>(controller);
 
@@ -200,7 +200,7 @@ void PlayerStateAttack::Exit(IController * controller)
 	playerController->GetPlayer()->UnAttachWeapon();
 }
 
-bool PlayerStateAttack::OnMessage(IController * controller, const Telegram & msg)
+bool PlayerStateAttack::OnMessage(IController* controller, const Telegram& msg)
 {
 	auto* playerController = dynamic_cast<PlayerController*>(controller);
 

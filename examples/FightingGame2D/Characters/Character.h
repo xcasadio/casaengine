@@ -1,8 +1,8 @@
 #pragma once
 
 #include "GameDatas/CharacterBase.h"
-#include "GameDatas\Character2DBase.h"
-#include "Entities\BaseEntity.h"
+#include "GameDatas/Character2DBase.h"
+#include "Entities/BaseEntity.h"
 #include "GameTime.h"
 
 using namespace CasaEngine;

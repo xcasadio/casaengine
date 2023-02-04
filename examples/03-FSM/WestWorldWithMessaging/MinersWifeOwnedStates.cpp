@@ -2,14 +2,14 @@
 #include "MinersWifeComponent.h"
 #include "MessageTypes.h"
 
-#include "Messaging\Telegram.h"
-#include "Maths\Random.h"
-#include "..\FSMGame.h"
-#include "Log\LogVerbose.h"
-#include "Log\LogManager.h"
+#include "Messaging/Telegram.h"
+#include "Maths/Random.h"
+#include "../FSMGame.h"
+#include "Log/LogVerbose.h"
+#include "Log/LogManager.h"
 #include "DateTime.h"
-#include "Messaging\MessageDispatcher.h"
-#include "Tools\InGameLogger.h"
+#include "Messaging/MessageDispatcher.h"
+#include "Tools/InGameLogger.h"
 
 using namespace CasaEngine;
 

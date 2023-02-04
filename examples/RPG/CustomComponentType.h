@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Entities\ComponentTypeEnum.h"
+#include "Entities/ComponentTypeEnum.h"
 
 using namespace CasaEngine;
 

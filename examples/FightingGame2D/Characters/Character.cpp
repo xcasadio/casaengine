@@ -1,8 +1,8 @@
 #include "Base.h"
 #include "Character.h"
-#include "Entities\Physics\PhysicalEntity.h"
+#include "Entities/Physics/PhysicalEntity.h"
 #include "GameDatas/MessageType.h"
-#include "Entities\BaseEntity.h"
+#include "Entities/BaseEntity.h"
 #include "GameTime.h"
 
 
@@ -14,9 +14,7 @@ Character::Character(BaseEntity* pEntity) :
 	SetAnimationParameters(2, -1);
 }
 
-Character::~Character()
-{
-}
+Character::~Character() = default;
 
 void Character::Initialize()
 {

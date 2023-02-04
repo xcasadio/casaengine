@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Physics/CollisionParameters.h"
-#include "Script\IScriptObject.h"
+#include "Script/IScriptObject.h"
 
 using namespace CasaEngine;
 

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Character.h"
-#include "Script\IScriptObject.h"
+#include "Script/IScriptObject.h"
 
 using namespace CasaEngine;
 

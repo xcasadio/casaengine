@@ -12,7 +12,7 @@
 #ifndef MINER_OWNED_STATES_H
 #define MINER_OWNED_STATES_H
 
-#include "AI\FSM\IState.h"
+#include "AI/FSM/IState.h"
 
 using namespace CasaEngine;
 

@@ -2,13 +2,13 @@
 #include "MinerComponent.h"
 #include "Locations.h"
 #include "MessageTypes.h"
-#include "..\FSMGame.h"
+#include "../FSMGame.h"
 
-#include "Messaging\Telegram.h"
-#include "Messaging\MessageDispatcher.h"
-#include "Log\LogManager.h"
+#include "Messaging/Telegram.h"
+#include "Messaging/MessageDispatcher.h"
+#include "Log/LogManager.h"
 #include "DateTime.h"
-#include "Tools\InGameLogger.h"
+#include "Tools/InGameLogger.h"
 
 #include <iosfwd>
 

@@ -3,14 +3,14 @@
 #include <string>
 
 #include "CharacterEnum.h"
-#include "Animations\Animation2D.h"
-#include "Entities\Component.h"
-#include "Entities\Components\AnimatedSpriteComponent.h"
+#include "Animations/Animation2D.h"
+#include "Entities/Component.h"
+#include "Entities/Components/AnimatedSpriteComponent.h"
 #include "GameDatas/CharacterBase.h"
 #include "GameDatas/IController.h"
-#include "Maths\Vector2.h"
-#include "Sprite\Sprite.h"
-#include "GameDatas\Character2DBase.h"
+#include "Maths/Vector2.h"
+#include "Sprite/Sprite.h"
+#include "GameDatas/Character2DBase.h"
 
 using namespace CasaEngine;
 
@@ -34,7 +34,7 @@ protected:
 
 	void CollideWith(CollisionParameters* collisionParameters, BaseEntity* otherEntity, CollisionParameters* otherCollisionParameters) override;
 
-private:	
+private:
 
 	CharacterType m_Type;
 	// 	AttackType m_AttackType;

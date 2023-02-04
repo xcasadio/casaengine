@@ -1,5 +1,5 @@
 #include "PlayerStates.h"
-#include "Game\Game.h"
+#include "Game/Game.h"
 #include "PlayerController.h"
 
 
@@ -96,7 +96,7 @@ void PlayerStateWalking::Execute(IController* pController_, const GameTime& elpa
 	auto* pPlayerController = dynamic_cast<PlayerController*>(pController_);
 	Vector2 joyDir;
 	pPlayerController->GetDirectionFromInput(joyDir);
-	
+
 	if (joyDir.x != 0.0f || joyDir.y != 0.0f)
 	{
 		pPlayerController->GetPlayer()->Move(joyDir);
@@ -105,7 +105,8 @@ void PlayerStateWalking::Execute(IController* pController_, const GameTime& elpa
 			pPlayerController->GetPlayer()->SetCurrentAnimationByName("walk_forward");
 		else
 			pPlayerController->GetPlayer()->SetCurrentAnimationByName("walk_backward");
-	} else
+	}
+	else
 	{
 		pPlayerController->FSM()->ChangeState(pPlayerController->GetState(PlayerControllerState::IDLE));
 	}

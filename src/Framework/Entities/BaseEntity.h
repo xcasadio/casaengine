@@ -12,7 +12,7 @@ namespace CasaEngine
 {
 	class CA_EXPORT BaseEntity :
 		public EventSet
-	{  
+	{
 	public:
 		BaseEntity();
 		~BaseEntity() override;
@@ -21,8 +21,8 @@ namespace CasaEngine
 		void SetParent(BaseEntity* val);
 
 		ComponentManager* GetComponentMgr();
-		PhysicalEntity &GetPhysicalEntity();
-		
+		PhysicalEntity& GetPhysicalEntity();
+
 		void Initialize();
 		void Update(const GameTime& gameTime_);
 		void Draw();
@@ -30,9 +30,9 @@ namespace CasaEngine
 		bool HandleMessage(const Telegram& msg); //all entities can communicate using messages. They are sent using the MessageDispatcher singleton class
 
 		unsigned int Id() const;
-		const char *GetName() const;
-		void SetName(const std::string &val);
-		void SetName(const char *val);
+		const char* GetName() const;
+		void SetName(const std::string& val);
+		void SetName(const char* val);
 
 		Coordinates& GetCoordinates();
 
@@ -48,7 +48,7 @@ namespace CasaEngine
 		static unsigned int _nextValidId;
 
 		unsigned int _id;
-		BaseEntity* _parent; // if the object depend on an other object (transform)
+		BaseEntity* _parent;
 		ComponentManager* _componentManager;
 		Coordinates _coordinates;
 		PhysicalEntity _physicalEntity; // TODO : remove this

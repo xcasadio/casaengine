@@ -8,16 +8,16 @@
 #include "Entities/Components/DebugComponent.h"
 #include "Entities/Components/ScriptComponent.h"
 #include "Entities/Components/StaticSpriteComponent.h"
-#include "Entities\Components\Cameras\ArcBallCameraComponent.h"
-#include "Entities\Components\Cameras\Camera2DTargetedComponent.h"
-#include "Game\GameInfo.h"
-#include "Log\LoggerFile.h"
-#include "Log\LogManager.h"
+#include "Entities/Components/Cameras/ArcBallCameraComponent.h"
+#include "Entities/Components/Cameras/Camera2DTargetedComponent.h"
+#include "Game/GameInfo.h"
+#include "Log/LoggerFile.h"
+#include "Log/LogManager.h"
 #include "Map2D/AutoTile.h"
 #include "Map2D/TiledMapCreator.h"
 #include "Serializer/Serializer.h"
 #include "Sprite/SpriteLoader.h"
-#include "World\World.h"
+#include "World/World.h"
 
 BaseEntity* s_entity;
 Camera2DTargetedComponent* s_pCameraController;
@@ -91,7 +91,7 @@ void TileMapGame::LoadContent()
 	p_world->Initialize();
 }
 
-void TileMapGame::Update(const GameTime & gameTime_)
+void TileMapGame::Update(const GameTime& gameTime_)
 {
 	auto position = s_entity->GetCoordinates().GetLocalPosition();
 	constexpr auto speed = 5;

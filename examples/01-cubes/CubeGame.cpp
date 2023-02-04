@@ -3,17 +3,17 @@
 #include <bx/math.h>
 #include <bx/timer.h>
 
-#include "Entities\Components\Cameras\ArcBallCameraComponent.h"
-#include "Entities\Components\MeshComponent.h"
-#include "Game\GameInfo.h"
-#include "Game\MeshRendererGameComponent.h"
-#include "Graphics\Primitives\BoxPrimitive.h"
-#include "Graphics\Primitives\CylinderPrimitive.h"
-#include "Graphics\Primitives\PlanePrimitive.h"
-#include "Graphics\Primitives\SpherePrimitive.h"
-#include "Log\LoggerFile.h"
-#include "Log\LogManager.h"
-#include "World\World.h"
+#include "Entities/Components/Cameras/ArcBallCameraComponent.h"
+#include "Entities/Components/MeshComponent.h"
+#include "Game/GameInfo.h"
+#include "Game/MeshRendererGameComponent.h"
+#include "Graphics/Primitives/BoxPrimitive.h"
+#include "Graphics/Primitives/CylinderPrimitive.h"
+#include "Graphics/Primitives/PlanePrimitive.h"
+#include "Graphics/Primitives/SpherePrimitive.h"
+#include "Log/LoggerFile.h"
+#include "Log/LogManager.h"
+#include "World/World.h"
 
 Matrix4 entityMatrix;
 
@@ -135,7 +135,7 @@ void CubeGame::LoadContent()
 	m_pWorld->Initialize();
 }
 
-void gizmo(const float* _view, const float* _proj, BaseEntity *entity)
+void gizmo(const float* _view, const float* _proj, BaseEntity* entity)
 {
 	//float* entityMatrix = entity->GetCoordinates().GetLocalMatrix();
 
@@ -149,7 +149,7 @@ void gizmo(const float* _view, const float* _proj, BaseEntity *entity)
 	ImGuizmo::SetRect(0, 0, io.DisplaySize.x, io.DisplaySize.y);
 
 	//auto* camera = dynamic_cast<ArcBallCameraComponent*>(Game::Instance().GetGameInfo().GetActiveCamera());
-	
+
 	//float view[16];
 	//auto position = camera->Position();
 	//auto target = camera->Target();
@@ -163,7 +163,7 @@ void gizmo(const float* _view, const float* _proj, BaseEntity *entity)
 	//float ratio = viewport.Width() * Game::Instance().GetWindowSize().x / (viewport.Height() * Game::Instance().GetWindowSize().y);
 	//float proj[16];
 	//bx::mtxProj(proj, ToDegree(camera->FOV()), ratio, viewport.NearClipPlane(), viewport.FarClipPlane(), false, bx::Handness::Left);
-	
+
 	//std::ostringstream oss;
 	//oss << "Casaengine" << std::endl;
 	//for (int y = 0; y < 4; y++)
@@ -203,7 +203,7 @@ void gizmo(const float* _view, const float* _proj, BaseEntity *entity)
 
 	if (ImGuizmo::Manipulate(
 		_view
-		, 
+		,
 		_proj
 		, ImGuizmo::TRANSLATE
 		, ImGuizmo::LOCAL
