@@ -10,7 +10,7 @@ namespace CasaEngine
 		public ColliderComponent
 	{
 	public:
-		CapsuleColliderComponent(BaseEntity* pEntity_);
+		CapsuleColliderComponent(BaseEntity* entity);
 		~CapsuleColliderComponent() override;
 
 		void Initialize() override;

@@ -13,8 +13,8 @@
 
 namespace CasaEngine
 {
-	StaticSpriteComponent::StaticSpriteComponent(BaseEntity* pEntity_)
-		: Component(pEntity_, STATIC_SPRITE),
+	StaticSpriteComponent::StaticSpriteComponent(BaseEntity* entity)
+		: Component(entity, STATIC_SPRITE),
 		_spriteRenderer(nullptr),
 		_sprite(nullptr)
 	{

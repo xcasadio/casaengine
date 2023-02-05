@@ -13,7 +13,7 @@ namespace CasaEngine
 	private:
 
 	public:
-		SphereColliderComponent(BaseEntity* pEntity_);
+		SphereColliderComponent(BaseEntity* entity);
 		~SphereColliderComponent() override;
 
 		void Initialize() override;

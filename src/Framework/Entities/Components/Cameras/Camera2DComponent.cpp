@@ -7,16 +7,16 @@
 
 namespace CasaEngine
 {
-	Camera2DComponent::Camera2DComponent(BaseEntity* pEntity_)
-		: CameraComponent(pEntity_, CAMERA_2D)
+	Camera2DComponent::Camera2DComponent(BaseEntity* entity)
+		: CameraComponent(entity, CAMERA_2D)
 	{}
 
 	void Camera2DComponent::Initialize()
 	{
 	}
 
-	Camera2DComponent::Camera2DComponent(BaseEntity* pEntity_, int type)
-		: CameraComponent(pEntity_, type)
+	Camera2DComponent::Camera2DComponent(BaseEntity* entity, int type)
+		: CameraComponent(entity, type)
 	{
 	}
 

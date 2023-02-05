@@ -17,8 +17,8 @@
 
 namespace CasaEngine
 {
-	SteeringBehaviorComponent::SteeringBehaviorComponent(BaseEntity* pEntity_)
-		: Component(pEntity_, STEERING_BEHAVIOUR_2D),
+	SteeringBehaviorComponent::SteeringBehaviorComponent(BaseEntity* entity)
+		: Component(entity, STEERING_BEHAVIOUR_2D),
 		m_pMovingEntity(nullptr),
 		m_iFlags(0),
 		m_Deceleration(NORMAL),

@@ -15,8 +15,8 @@
 
 namespace CasaEngine
 {
-	ArcBallCameraComponent::ArcBallCameraComponent(BaseEntity* pEntity_)
-		: Camera3DComponent(pEntity_, CAMERA_ARC_BALL),
+	ArcBallCameraComponent::ArcBallCameraComponent(BaseEntity* entity)
+		: Camera3DComponent(entity, CAMERA_ARC_BALL),
 		m_fDistance(5.0f),
 		m_fInputDistanceRate(3.0f),
 		m_fInputTurnRate(0.3f),

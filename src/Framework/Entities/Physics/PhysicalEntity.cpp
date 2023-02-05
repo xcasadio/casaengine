@@ -9,14 +9,14 @@
 
 namespace CasaEngine
 {
-	PhysicalEntity::PhysicalEntity(BaseEntity* pEntity_) :
+	PhysicalEntity::PhysicalEntity(BaseEntity* entity) :
 		m_fMass(0),
 		m_fMaxSpeed(0),
 		m_fMaxForce(0),
 		m_fMaxTurnRate(0)
 	{
-		CA_ASSERT(pEntity_ != nullptr, "PhysicalEntity() : BaseEntity is null");
-		m_pEntity = pEntity_;
+		CA_ASSERT(entity != nullptr, "PhysicalEntity() : BaseEntity is null");
+		m_pEntity = entity;
 
 		m_pRigidBody = nullptr;
 	}

@@ -9,11 +9,11 @@ namespace CasaEngine
 		public CameraComponent
 	{
 	public:
-		Camera2DComponent(BaseEntity* pEntity_);
+		Camera2DComponent(BaseEntity* entity);
 		void Initialize() override;
 
 	protected:
-		Camera2DComponent(BaseEntity* pEntity_, int type);
+		Camera2DComponent(BaseEntity* entity, int type);
 
 		void ComputeProjectionMatrix() override;
 		void ComputeViewMatrix() override;

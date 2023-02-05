@@ -8,7 +8,7 @@ namespace CasaEngine
 	class CA_EXPORT Color
 	{
 	public:
-		Color(unsigned long Color = 0xFFFFFFFF);
+		Color(unsigned long color = 0xFFFFFFFF);
 		Color(unsigned char r, unsigned char g, unsigned char b, unsigned char a = 0xFF);
 
 		unsigned char ToGrey() const;
@@ -25,7 +25,7 @@ namespace CasaEngine
 		void SetFloats(float r, float g, float b, float a = 1.0f);
 		void Set(unsigned char r, unsigned char g, unsigned char b, unsigned char a = 0xFF);
 
-		void ToFloat(float Dest[]) const;
+		void ToFloat(float dest[]) const;
 
 		bool operator ==(const Color& c) const;
 		bool operator !=(const Color& c) const;
@@ -44,7 +44,7 @@ namespace CasaEngine
 	private:
 		void SetInt(int r, int g, int b, int a = 0xFF);
 
-		unsigned long m_Color; ///< Couleur sous forme ARGB 32 bits
+		unsigned long _color; // ARGB 32 bits
 
 	public:
 		static const Color ActiveBorder;

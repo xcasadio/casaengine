@@ -26,7 +26,7 @@ namespace CasaEngine
 		float GetViewDistance() const;
 
 	protected:
-		CameraComponent(BaseEntity* pEntity_, int type_);
+		CameraComponent(BaseEntity* entity, int type_);
 		~CameraComponent() override;
 
 		virtual void ComputeProjectionMatrix() = 0;

@@ -1,5 +1,4 @@
-#ifndef RENDERER_H
-#define RENDERER_H
+#pragma once
 
 #include "CA_Export.h"
 #include "EngineSettings.h"
@@ -15,8 +14,10 @@ namespace CasaEngine
 	{
 	public:
 		IRenderer();
+		IRenderer(const IRenderer&) = delete;
+		IRenderer& operator = (const IRenderer&) = delete;
 
-		void Initialize(EngineSettings& settings, void* Hwnd);
+		void Initialize(const EngineSettings& settings, void* hwnd);
 		void shutdown();
 
 		void Resize(unsigned int width_, unsigned height_);
@@ -26,28 +27,23 @@ namespace CasaEngine
 		bool IsDeviceLost() const;
 		void SetDeviceLost();
 
-		void SetWireframe(bool enable);
+		void SetWireFrame(bool enable);
 		void BeginDraw();
 		void EndDraw();
 
 	private:
-		IRenderer(const IRenderer&) = delete;
-		IRenderer& operator = (const IRenderer&) = delete;
-
 		void SetDebugFlag();
 
 #if CA_PLATFORM_MOBILE
 		void Setup();
 #else
-		void Setup(sf::Window* pWindow_);
+		void Setup(sf::Window* window);
 #endif
 
 	private:
-		bool m_bDeviceLost;
-		unsigned int m_debugFlag;
-		int window_width;
-		int window_height;
+		bool _isDeviceLost;
+		unsigned int _debugFlag;
+		int _windowWidth;
+		int _windowHeight;
 	};
 }
-
-#endif

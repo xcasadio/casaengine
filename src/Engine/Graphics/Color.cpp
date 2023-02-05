@@ -3,30 +3,25 @@
 
 namespace CasaEngine
 {
-	Color::Color(unsigned long Color) :
-		m_Color(Color)
+	Color::Color(unsigned long color) :
+		_color(color)
 	{
 	}
 
-	Color::Color(unsigned char r, unsigned char g, unsigned char b, unsigned char a) :
-		m_Color(0)
+	Color::Color(const unsigned char r, const unsigned char g, const unsigned char b, const unsigned char a) :
+		_color(0)
 	{
 		Set(r, g, b, a);
 	}
 
-	void Color::SetFloats(float r, float g, float b, float a)
+	void Color::SetFloats(const float r, const float g, const float b, const float a)
 	{
-		const int R = static_cast<int>(r * 255.0f);
-		const int G = static_cast<int>(g * 255.0f);
-		const int B = static_cast<int>(b * 255.0f);
-		const int A = static_cast<int>(a * 255.0f);
-
-		SetInt(R, G, B, A);
+		SetInt(static_cast<int>(r * 255.0f), static_cast<int>(g * 255.0f), static_cast<int>(b * 255.0f), static_cast<int>(a * 255.0f));
 	}
 
-	void Color::Set(unsigned char r, unsigned char g, unsigned char b, unsigned char a)
+	void Color::Set(const unsigned char r, const unsigned char g, const unsigned char b, const unsigned char a)
 	{
-		m_Color = a << 24 | r << 16 | g << 8 | b << 0;
+		_color = a << 24 | r << 16 | g << 8 | b << 0;
 	}
 
 	void Color::SetInt(int r, int g, int b, int a)
@@ -41,7 +36,7 @@ namespace CasaEngine
 
 	bool Color::operator ==(const Color& c) const
 	{
-		return m_Color == c.m_Color;
+		return _color == c._color;
 	}
 
 	bool Color::operator!=(const Color& c) const
@@ -146,35 +141,35 @@ namespace CasaEngine
 		const auto B = static_cast<unsigned char>(GetBlue() * c.GetBlue() / 255);
 		const auto A = static_cast<unsigned char>(GetAlpha() * c.GetAlpha() / 255);
 
-		return {R, G, B, A};
+		return { R, G, B, A };
 	}
 
 	unsigned char Color::GetAlpha() const
 	{
-		return static_cast<unsigned char>((m_Color & 0xFF000000) >> 24);
+		return static_cast<unsigned char>((_color & 0xFF000000) >> 24);
 	}
 
 	unsigned char Color::GetRed() const
 	{
-		return static_cast<unsigned char>((m_Color & 0x00FF0000) >> 16);
+		return static_cast<unsigned char>((_color & 0x00FF0000) >> 16);
 	}
 
 	unsigned char Color::GetGreen() const
 	{
-		return static_cast<unsigned char>((m_Color & 0x0000FF00) >> 8);
+		return static_cast<unsigned char>((_color & 0x0000FF00) >> 8);
 	}
 
 	unsigned char Color::GetBlue() const
 	{
-		return static_cast<unsigned char>((m_Color & 0x000000FF) >> 0);
+		return static_cast<unsigned char>((_color & 0x000000FF) >> 0);
 	}
 
-	void Color::ToFloat(float Dest[]) const
+	void Color::ToFloat(float dest[]) const
 	{
-		Dest[0] = GetRed() / 255.0f;
-		Dest[1] = GetGreen() / 255.0f;
-		Dest[2] = GetBlue() / 255.0f;
-		Dest[3] = GetAlpha() / 255.0f;
+		dest[0] = GetRed() / 255.0f;
+		dest[1] = GetGreen() / 255.0f;
+		dest[2] = GetBlue() / 255.0f;
+		dest[3] = GetAlpha() / 255.0f;
 	}
 
 	unsigned char Color::ToGrey() const
@@ -200,7 +195,7 @@ namespace CasaEngine
 
 	unsigned int Color::ToARGB() const
 	{
-		return m_Color;
+		return _color;
 	}
 
 	const Color Color::ActiveBorder(180, 180, 180, 255);

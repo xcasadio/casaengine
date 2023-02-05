@@ -160,7 +160,7 @@ namespace CasaEngine
 		std::vector<BaseEntity *> m_Neighbors;
 
 	public:
-		SteeringBehaviorComponent(BaseEntity* pEntity_);
+		SteeringBehaviorComponent(BaseEntity* entity);
 		virtual ~SteeringBehaviorComponent();
 
 		//all entities must implement an Initialize function

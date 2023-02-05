@@ -7,8 +7,8 @@
 
 namespace CasaEngine
 {
-	ScriptComponent::ScriptComponent(BaseEntity* pEntity_) :
-		Component(pEntity_, SCRIPT)
+	ScriptComponent::ScriptComponent(BaseEntity* entity) :
+		Component(entity, SCRIPT)
 	{
 		m_pScriptObject = nullptr;
 	}

@@ -16,7 +16,7 @@ namespace CasaEngine
 		Box m_Shape;
 
 	public:
-		BoxColliderComponent(BaseEntity* pEntity_);
+		BoxColliderComponent(BaseEntity* entity);
 		~BoxColliderComponent() override;
 
 		void Initialize() override;

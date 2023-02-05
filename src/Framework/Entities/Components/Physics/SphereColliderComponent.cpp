@@ -7,8 +7,8 @@
 
 namespace CasaEngine
 {
-	SphereColliderComponent::SphereColliderComponent(BaseEntity* pEntity_)
-		: ColliderComponent(pEntity_, SPHERE_COLLIDER)
+	SphereColliderComponent::SphereColliderComponent(BaseEntity* entity)
+		: ColliderComponent(entity, SPHERE_COLLIDER)
 	{
 
 	}

@@ -6,8 +6,8 @@
 
 namespace CasaEngine
 {
-	BoxColliderComponent::BoxColliderComponent(BaseEntity* pEntity_)
-		: ColliderComponent(pEntity_, BOX_COLLIDER)
+	BoxColliderComponent::BoxColliderComponent(BaseEntity* entity)
+		: ColliderComponent(entity, BOX_COLLIDER)
 	{
 	}
 
@@ -34,7 +34,7 @@ namespace CasaEngine
 
 		m_pSpriteRenderer->AddSprite(m_pSprite,
 			pos, m_pTransform->GetRotation(),
-			m_pTransform->GetScale(), m_Color,
+			m_pTransform->GetScale(), _color,
 			pos3.z, m_SpriteEffect);*/
 	}
 

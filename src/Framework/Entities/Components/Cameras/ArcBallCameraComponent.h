@@ -14,7 +14,7 @@ namespace CasaEngine
 		public Camera3DComponent
 	{
 	public:
-		ArcBallCameraComponent(BaseEntity* pEntity_);
+		ArcBallCameraComponent(BaseEntity* entity);
 
 		void Initialize() override;
 		void  Update(const GameTime& gameTime_) override;

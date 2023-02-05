@@ -10,7 +10,7 @@ namespace CasaEngine
 		public Component
 	{
 	public:
-		ScriptComponent(BaseEntity* pEntity_);
+		ScriptComponent(BaseEntity* entity);
 		~ScriptComponent() override;
 
 		void Initialize() override;

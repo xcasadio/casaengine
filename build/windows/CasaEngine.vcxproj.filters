@@ -393,9 +393,6 @@
     <ClInclude Include="..\..\src\Engine\Graphics\Vertices\VertexType.h">
       <Filter>Engine\Graphics\Vertices</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Graphics\Renderer\Enums.h">
-      <Filter>Engine\Graphics\Renderer</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Engine\Graphics\Renderer\Renderer.h">
       <Filter>Engine\Graphics\Renderer</Filter>
     </ClInclude>

@@ -49,7 +49,7 @@ namespace CasaEngine
 		BaseEntity* m_pEntity;
 
 	public:
-		PhysicalEntity(BaseEntity* pEntity_);
+		PhysicalEntity(BaseEntity* entity);
 		~PhysicalEntity();
 
 		void Update(const GameTime& time_);

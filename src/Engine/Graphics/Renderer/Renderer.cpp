@@ -15,7 +15,7 @@
 namespace CasaEngine
 {
 	IRenderer::IRenderer() :
-		m_bDeviceLost(false)
+		_isDeviceLost(false)
 	{
 	}
 
@@ -24,21 +24,21 @@ namespace CasaEngine
 		bgfx::shutdown();
 	}
 
-	void IRenderer::Initialize(EngineSettings& settings, void* Hwnd)
+	void IRenderer::Initialize(const EngineSettings& settings, void* hwnd)
 	{
 		bgfx::PlatformData pd;
 		bx::memSet(&pd, 0, sizeof pd);
-		pd.nwh = Hwnd;
+		pd.nwh = hwnd;
 		setPlatformData(pd);
 
-		window_width = settings.WindowWidth;
-		window_height = settings.WindowHeight;
+		_windowWidth = settings.WindowWidth;
+		_windowHeight = settings.WindowHeight;
 
 		bgfx::Init init;
 		init.type = settings.RendererType;
 		init.vendorId = BGFX_PCI_ID_NONE;
-		init.resolution.width = window_width;
-		init.resolution.height = window_height;
+		init.resolution.width = _windowWidth;
+		init.resolution.height = _windowHeight;
 		init.resolution.reset = BGFX_RESET_VSYNC;
 		bgfx::init(init);
 
@@ -46,7 +46,7 @@ namespace CasaEngine
 		//Setup(); // mobile
 
 		//bgfx::reset(settings_.WindowWidth, settings_.WindowHeight, BGFX_RESET_NONE);
-		m_debugFlag = BGFX_DEBUG_TEXT;
+		_debugFlag = BGFX_DEBUG_TEXT;
 		SetDebugFlag();
 
 		SetClearColor(0
@@ -64,22 +64,23 @@ namespace CasaEngine
 
 	bool IRenderer::IsDeviceLost() const
 	{
-		return m_bDeviceLost;
-	}
-	void IRenderer::SetDeviceLost()
-	{
-		m_bDeviceLost = true;
+		return _isDeviceLost;
 	}
 
-	void IRenderer::SetWireframe(bool enable)
+	void IRenderer::SetDeviceLost()
+	{
+		_isDeviceLost = true;
+	}
+
+	void IRenderer::SetWireFrame(const bool enable)
 	{
 		if (enable)
 		{
-			m_debugFlag |= BGFX_DEBUG_WIREFRAME;
+			_debugFlag |= BGFX_DEBUG_WIREFRAME;
 		}
 		else
 		{
-			m_debugFlag &= ~BGFX_DEBUG_WIREFRAME;
+			_debugFlag &= ~BGFX_DEBUG_WIREFRAME;
 		}
 
 		SetDebugFlag();
@@ -87,8 +88,11 @@ namespace CasaEngine
 
 	void IRenderer::BeginDraw()
 	{
+		//Test if the window is resized
+		//bgfx::reset(settings_.WindowWidth, settings_.WindowHeight, BGFX_RESET_NONE);
+
 		//TODO : set by the current camera
-		bgfx::setViewRect(0, 0, 0, window_width, window_height);
+		bgfx::setViewRect(0, 0, 0, _windowWidth, _windowHeight);
 		bgfx::touch(0);
 	}
 
@@ -99,7 +103,7 @@ namespace CasaEngine
 
 	void IRenderer::SetDebugFlag()
 	{
-		bgfx::setDebug(m_debugFlag);
+		bgfx::setDebug(_debugFlag);
 	}
 
 #if CA_PLATFORM_MOBILE
@@ -107,7 +111,7 @@ namespace CasaEngine
 	{
 	}
 #else
-	void IRenderer::Setup(sf::Window* pWindow_)
+	void IRenderer::Setup(sf::Window* window)
 	{
 	}
 #endif
@@ -121,4 +125,4 @@ namespace CasaEngine
 	{
 		//TODO
 	}
-}
+	}

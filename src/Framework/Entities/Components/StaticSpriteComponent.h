@@ -23,7 +23,7 @@ namespace CasaEngine
 		eSpriteEffects _spriteEffect;
 
 	public:
-		StaticSpriteComponent(BaseEntity* pEntity_);
+		StaticSpriteComponent(BaseEntity* entity);
 		virtual ~StaticSpriteComponent();
 
 		std::string GetSpriteID() const;

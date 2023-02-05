@@ -11,9 +11,9 @@ namespace CasaEngine
 	{
 	}
 
-	const RenderTarget& RenderTarget::operator=(const RenderTarget& rsh_)
+	RenderTarget& RenderTarget::operator=(const RenderTarget& rsh_)
 	{
-		SetArea(rsh_.m_Area);
+		SetArea(rsh_._area);
 		return *this;
 	}
 
@@ -23,12 +23,12 @@ namespace CasaEngine
 
 	Rectangle RenderTarget::GetArea() const
 	{
-		return m_Area;
+		return _area;
 	}
 
 	void RenderTarget::SetArea(const Rectangle& val)
 	{
-		m_Area = val;
-		CA_TRACE("RenderTarget(%p) area = %d %d %d %d\n", this, m_Area.x, m_Area.y, m_Area.Right(), m_Area.Bottom());
+		_area = val;
+		CA_TRACE("RenderTarget(%p) area = %d %d %d %d\n", this, _area.x, _area.y, _area.Right(), _area.Bottom());
 	}
 }

@@ -10,8 +10,8 @@
 
 namespace CasaEngine
 {
-	MeshComponent::MeshComponent(BaseEntity* pEntity_)
-		: Component(pEntity_, MODEL_3D),
+	MeshComponent::MeshComponent(BaseEntity* entity)
+		: Component(entity, MODEL_3D),
 		m_pModel(nullptr),
 		m_pProgram(nullptr),
 		m_pModelRenderer(nullptr)

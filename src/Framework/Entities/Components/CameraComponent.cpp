@@ -11,8 +11,8 @@
 
 namespace CasaEngine
 {
-	CameraComponent::CameraComponent(BaseEntity* pEntity_, int type_)
-		: Component(pEntity_, type_),
+	CameraComponent::CameraComponent(BaseEntity* entity, int type_)
+		: Component(entity, type_),
 		m_needToComputeProjectionMatrix(true),
 		m_needToComputeViewMatrix(true)
 	{

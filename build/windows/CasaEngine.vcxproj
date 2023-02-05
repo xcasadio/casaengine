@@ -274,7 +274,6 @@
     <ClInclude Include="..\..\src\Engine\Graphics\Primitives\SpherePrimitive.h" />
     <ClInclude Include="..\..\src\Engine\Graphics\Primitives\TorusPrimitive.h" />
     <ClInclude Include="..\..\src\Engine\Graphics\RenderTarget.h" />
-    <ClInclude Include="..\..\src\Engine\Graphics\Renderer\Enums.h" />
     <ClInclude Include="..\..\src\Engine\Graphics\Renderer\Renderer.h" />
     <ClInclude Include="..\..\src\Engine\Graphics\TextureTarget.h" />
     <ClInclude Include="..\..\src\Engine\Graphics\Textures\Texture.h" />

@@ -24,7 +24,7 @@ namespace CasaEngine
 		RigidBodyParameters m_RigidBody;
 
 	public:
-		RigidBodyComponent(BaseEntity* pEntity_);
+		RigidBodyComponent(BaseEntity* entity);
 
 		void Initialize() override;
 		void Update(const GameTime& gameTime_) override;

@@ -14,9 +14,9 @@ namespace CasaEngine
 	/**
 	 * 
 	 */
-	EntityParentChangeEvent::EntityParentChangeEvent(BaseEntity *pEntity_, BaseEntity *pParent_)
+	EntityParentChangeEvent::EntityParentChangeEvent(BaseEntity *entity, BaseEntity *pParent_)
 	{
-		m_pEntity = pEntity_;
+		m_pEntity = entity;
 		m_pParent = pParent_;
 	}
 

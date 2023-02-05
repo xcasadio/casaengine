@@ -8,8 +8,8 @@
 
 namespace CasaEngine
 {
-	Camera3DLookAtComponent::Camera3DLookAtComponent(BaseEntity* pEntity_)
-		: Camera3DComponent(pEntity_, CAMERA_3D_LOOK_AT),
+	Camera3DLookAtComponent::Camera3DLookAtComponent(BaseEntity* entity)
+		: Camera3DComponent(entity, CAMERA_3D_LOOK_AT),
 		m_Target(Vector3::Zero()),
 		m_Position(Vector3(0.0f, 10.0f, 10.0f))
 	{

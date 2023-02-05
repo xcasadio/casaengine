@@ -9,8 +9,8 @@
 
 namespace CasaEngine
 {
-	DebugComponent::DebugComponent(BaseEntity* pEntity_)
-		: Component(pEntity_, DEBUG_INFO),
+	DebugComponent::DebugComponent(BaseEntity* entity)
+		: Component(entity, DEBUG_INFO),
 		m_DisplayPosition(false),
 		m_DisplayAnimation2DCollisions(false),
 		m_LineRenderer(nullptr)

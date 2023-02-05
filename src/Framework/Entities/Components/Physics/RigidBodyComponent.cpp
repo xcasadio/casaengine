@@ -10,8 +10,8 @@
 
 namespace CasaEngine
 {
-	RigidBodyComponent::RigidBodyComponent(BaseEntity* pEntity_)
-		: Component(pEntity_, RIGID_BODY), m_Mass(0.0f), m_UseGravity(true), m_IsKinematic(false)
+	RigidBodyComponent::RigidBodyComponent(BaseEntity* entity)
+		: Component(entity, RIGID_BODY), m_Mass(0.0f), m_UseGravity(true), m_IsKinematic(false)
 	{
 		m_ListShapes.reserve(1);
 	}

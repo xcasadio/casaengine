@@ -578,19 +578,22 @@ void Animation2DPlayerGame::DisplayUI()
 
 		auto sprite_id = m_pAnimatedSprite->GetCurrentAnimation()->GetAnimation2DData()->_frames[m_FrameSelectedIndex]._spriteId;
 		auto* sprite = GetAssetManager().GetAsset<SpriteData>(sprite_id);
-		auto& collision = sprite->_collisionShapes[m_CollisionSelectedIndex];
-		auto* shape = (CasaEngine::Rectangle*)collision.GetShape();
-		const float step = 1.0f;
-		ImGui::Text("Move collision");
+		if (sprite->_collisionShapes.size() > 0)
+		{
+			auto& collision = sprite->_collisionShapes[m_CollisionSelectedIndex];
+			auto* shape = (CasaEngine::Rectangle*)collision.GetShape();
+			const float step = 1.0f;
+			ImGui::Text("Move collision");
 
-		ImGui::SetNextItemWidth(100.0f);
-		ImGui::InputScalar("x", ImGuiDataType_Float, &shape->x, &step, nullptr, "%.0f");
-		ImGui::SetNextItemWidth(100.0f);
-		ImGui::InputScalar("y", ImGuiDataType_Float, &shape->y, &step, nullptr, "%.0f");
-		ImGui::SetNextItemWidth(100.0f);
-		ImGui::InputScalar("w", ImGuiDataType_Float, &shape->w, &step, nullptr, "%.0f");
-		ImGui::SetNextItemWidth(100.0f);
-		ImGui::InputScalar("h", ImGuiDataType_Float, &shape->h, &step, nullptr, "%.0f");
+			ImGui::SetNextItemWidth(100.0f);
+			ImGui::InputScalar("x", ImGuiDataType_Float, &shape->x, &step, nullptr, "%.0f");
+			ImGui::SetNextItemWidth(100.0f);
+			ImGui::InputScalar("y", ImGuiDataType_Float, &shape->y, &step, nullptr, "%.0f");
+			ImGui::SetNextItemWidth(100.0f);
+			ImGui::InputScalar("w", ImGuiDataType_Float, &shape->w, &step, nullptr, "%.0f");
+			ImGui::SetNextItemWidth(100.0f);
+			ImGui::InputScalar("h", ImGuiDataType_Float, &shape->h, &step, nullptr, "%.0f");
+		}
 
 		ImGui::Separator();
 

@@ -10,7 +10,7 @@ namespace CasaEngine
 		public CameraComponent
 	{
 	public:
-		Camera3DComponent(BaseEntity* pEntity_, int type);
+		Camera3DComponent(BaseEntity* entity, int type);
 
 		void Initialize() override;
 

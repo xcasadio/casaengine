@@ -8,8 +8,8 @@
 
 namespace CasaEngine
 {
-	Camera3DComponent::Camera3DComponent(BaseEntity* pEntity_, int type)
-		: CameraComponent(pEntity_, type),
+	Camera3DComponent::Camera3DComponent(BaseEntity* entity, int type)
+		: CameraComponent(entity, type),
 		m_fFOV(PI_OVER_4)
 	{
 	}

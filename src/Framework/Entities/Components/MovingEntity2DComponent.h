@@ -31,7 +31,7 @@ namespace CasaEngine
 		bool                 m_bSmoothingOn;
 
 	public:
-		explicit MovingEntity2DComponent(BaseEntity* pEntity_, int smootherSampleSize_ = 10.0f, Vector2 smootherZeroValue_ = Vector2::Zero());
+		explicit MovingEntity2DComponent(BaseEntity* entity, int smootherSampleSize_ = 10.0f, Vector2 smootherZeroValue_ = Vector2::Zero());
 		virtual ~MovingEntity2DComponent();
 
 		//all entities must implement an Initialize function

@@ -13,7 +13,7 @@ namespace CasaEngine
 		public Component
 	{
 	public:
-		MeshComponent(BaseEntity* pEntity_);
+		MeshComponent(BaseEntity* entity);
 
 		void Initialize() override;
 		void Update(const GameTime& gameTime_) override;

@@ -18,7 +18,7 @@ namespace CasaEngine
 	public:
 		static const char * GetEventName();
 
-		EntityParentChangeEvent(BaseEntity *pEntity_, BaseEntity *pParent_);
+		EntityParentChangeEvent(BaseEntity *entity, BaseEntity *pParent_);
 
 		BaseEntity *getEntity() const;
 		BaseEntity *getParent() const;

@@ -9,7 +9,7 @@ namespace CasaEngine
 		public Component
 	{
 	public:
-		DebugComponent(BaseEntity* pEntity_);
+		DebugComponent(BaseEntity* entity);
 
 		void Initialize() override;
 		void Update(const GameTime& gameTime_) override;

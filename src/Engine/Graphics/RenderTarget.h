@@ -9,7 +9,7 @@ namespace CasaEngine
 	{
 	public:
 		RenderTarget();
-		const RenderTarget& operator = (const RenderTarget& rsh_);
+		RenderTarget& operator = (const RenderTarget& rsh_);
 		virtual ~RenderTarget();
 
 		Rectangle GetArea() const;
@@ -23,6 +23,6 @@ namespace CasaEngine
 		virtual bool IsRenderingInverted() const = 0;
 
 	protected:
-		Rectangle m_Area;
+		Rectangle _area;
 	};
 }
