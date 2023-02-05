@@ -46,22 +46,15 @@ namespace CasaEngine
 	public:
 
 
-		MovingEntity(Vector2 position,
-			float   radius,
-			Vector2 velocity,
-			float   max_speed,
-			Vector2 heading,
-			float   mass,
-			Vector2 scale,
-			float   turn_rate,
-			float   max_force) :
-			m_vHeading(heading),
+		MovingEntity(Vector2 position, float   radius, Vector2 velocity, float   max_speed, Vector2 heading, float   mass,
+			Vector2 scale, float   turn_rate, float   max_force) :
 			m_vVelocity(velocity),
-			m_fMass(mass),
+			m_vHeading(heading),
 			m_vSide(m_vHeading.GetOrthogonal()),
+			m_fMass(mass),
 			m_fMaxSpeed(max_speed),
-			m_fMaxTurnRate(turn_rate),
-			m_fMaxForce(max_force)
+			m_fMaxForce(max_force),
+			m_fMaxTurnRate(turn_rate)
 		{
 			//m_vPosition = position;
 			//m_fBoundingRadius = radius; 
@@ -108,7 +101,8 @@ namespace CasaEngine
 	//-----------------------------------------------------------------------------
 	inline bool MovingEntity::RotateHeadingToFacePosition(Vector2 target)
 	{
-		Vector2 toTarget = target - m_vPosition;
+		const Vector2 position(GetCoordinates().GetPosition().GetX(), GetCoordinates().GetPosition().GetY());
+		Vector2 toTarget = target - position;
 		toTarget.Normalize();
 
 		float dot = m_vHeading.Dot(toTarget);
@@ -157,8 +151,7 @@ namespace CasaEngine
 	//-----------------------------------------------------------------------------
 	inline void MovingEntity::SetHeading(Vector2 new_heading)
 	{
-		CA_ASSERT(new_heading.LengthSquared() - 1.0f < 0.00001f,
-			"MovingEntity::SetHeading() : don't use a vector equal to Vector::Zero");
+		CA_ASSERT(new_heading.LengthSquared() - 1.0f < 0.00001f, "MovingEntity::SetHeading() : don't use a vector equal to Vector::Zero");
 
 		m_vHeading = new_heading;
 

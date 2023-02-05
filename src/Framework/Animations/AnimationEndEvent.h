@@ -11,7 +11,7 @@ namespace CasaEngine
 	public:
 		AnimationEndEvent();
 		AnimationEndEvent(const AnimationEndEvent& rsh);
-		const AnimationEndEvent& operator = (const AnimationEndEvent& rsh);
+		AnimationEndEvent& operator = (const AnimationEndEvent& rsh);
 		~AnimationEndEvent() override;
 
 		AnimationEvent* Copy() override;
