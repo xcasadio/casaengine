@@ -120,7 +120,7 @@ void Animation2DPlayerGame::LoadContent()
 	//json j2;
 	//to_json(j2, sprites, "sprites");
 	//os << std::setw(4) << j2 << std::endl; // pretty json
-	
+
 	SpriteLoader::LoadFromFile("sprites.json");
 	auto animations = Animation2dLoader::LoadFromFile("animations.json");
 
@@ -188,7 +188,7 @@ void Animation2DPlayerGame::LoadContent()
 
 void Animation2DPlayerGame::Update(const GameTime& gameTime_)
 {
-	if (!m_pEntity->IsEnabled()) // playing animation
+	if (m_pEntity->IsEnabled()) // playing animation
 	{
 		//UpdateSelectedFrame()
 		//UpdateSelectedCollision() -> m_CollisionTypeSelectedIndex
@@ -207,7 +207,8 @@ void Animation2DPlayerGame::Update(const GameTime& gameTime_)
 	{
 		m_pAnimatedSprite->SetCurrentAnimation(animation_names[m_AnimationSelectedIndex]);
 		m_LastAnimationSelectedIndex = m_AnimationSelectedIndex;
-		
+		m_FrameSelectedIndex = m_pAnimatedSprite->GetCurrentFrameIndex();
+
 		m_AnimationTypeSelectedIndex = (int)m_pAnimatedSprite->GetCurrentAnimation()->GetAnimation2DData()->_animationType;
 	}
 
@@ -328,7 +329,7 @@ void Animation2DPlayerGame::DisplayUI()
 			}
 			ImGui::EndPopup();
 		}
-		
+
 		ImGui::SameLine();
 		ImGui::Button(ICON_FK_PENCIL "##renameAnimation", ImVec2(25, 0));
 
@@ -459,7 +460,7 @@ void Animation2DPlayerGame::DisplayUI()
 			}
 
 			ImGui::DragFloat("Duration", &frameData._duration, 0.005f, 0.0f, FLT_MAX, "%.3f");
-			
+
 			ImGui::EndPopup();
 		}
 		ImGui::SameLine();
@@ -511,14 +512,14 @@ void Animation2DPlayerGame::DisplayUI()
 			rectangle->x = rectangle->y = 0;
 			collision.SetShape(rectangle);
 			sprite->_collisionShapes.push_back(collision);
-			
+
 			m_CollisionSelectedIndex++;
 		}
 		ImGui::SameLine();
 		ImGui::Button(ICON_FK_PENCIL "##editCollision", ImVec2(25, 0));
 		if (ImGui::BeginPopupContextItem(nullptr, ImGuiPopupFlags_MouseButtonLeft))
 		{
-			
+
 			//static char editAnimationName[256];
 			//ImGui::Text("Rename the animation:");
 			//ImGui::InputText("##editAnim", editAnimationName, IM_ARRAYSIZE(editAnimationName));
@@ -578,7 +579,7 @@ void Animation2DPlayerGame::DisplayUI()
 		auto sprite_id = m_pAnimatedSprite->GetCurrentAnimation()->GetAnimation2DData()->_frames[m_FrameSelectedIndex]._spriteId;
 		auto* sprite = GetAssetManager().GetAsset<SpriteData>(sprite_id);
 		auto& collision = sprite->_collisionShapes[m_CollisionSelectedIndex];
-		auto* shape = (CasaEngine::Rectangle *)collision.GetShape();
+		auto* shape = (CasaEngine::Rectangle*)collision.GetShape();
 		const float step = 1.0f;
 		ImGui::Text("Move collision");
 
@@ -2744,7 +2745,7 @@ void DisplayIcons()
 	ImGui::Text(ICON_FA_SUPERPOWERS " ICON_FA_SUPERPOWERS");
 	ImGui::Text(ICON_FA_WPEXPLORER " ICON_FA_WPEXPLORER");
 	ImGui::Text(ICON_FA_MEETUP " ICON_FA_MEETUP");
-	
+
 
 	ImGui::Text(FONT_ICON_FILE_NAME_FAS);
 	ImGui::Text(FONT_ICON_FILE_NAME_FAR);
@@ -3844,7 +3845,7 @@ void DisplayIcons()
 	ImGui::Text(ICON_FAB_CREATIVE_COMMONS_NC_JP " ICON_FAB_CREATIVE_COMMONS_NC_JP");
 	ImGui::Text(ICON_FAB_YELP " ICON_FAB_YELP");
 	ImGui::Text(ICON_FAB_VUEJS " ICON_FAB_VUEJS");
-	
+
 
 	ImGui::Text(FONT_ICON_FILE_NAME_KI);
 	ImGui::Text(ICON_KI_HOME " ICON_KI_HOME");
@@ -4076,7 +4077,7 @@ void DisplayIcons()
 	ImGui::Text(ICON_KI_WOLFCMS " ICON_KI_WOLFCMS");
 	ImGui::Text(ICON_KI_WOLFCMS_ALT " ICON_KI_WOLFCMS_ALT");
 
-	
+
 	ImGui::Text(FONT_ICON_FILE_NAME_MD);
 	ImGui::Text(ICON_MD_3D_ROTATION " ICON_MD_3D_ROTATION");
 	ImGui::Text(ICON_MD_AC_UNIT " ICON_MD_AC_UNIT");
@@ -4794,7 +4795,7 @@ void DisplayIcons()
 	ImGui::Text(ICON_MD_SCHEDULE " ICON_MD_SCHEDULE");
 	ImGui::Text(ICON_MD_SCHOOL " ICON_MD_SCHOOL");
 
-	
+
 	ImGui::Text(FONT_ICON_FILE_NAME_MDI " FONT_ICON_FILE_NAME_MDI");
 	ImGui::Text(ICON_MDI_ACCESS_POINT " ICON_MDI_ACCESS_POINT");
 	ImGui::Text(ICON_MDI_ACCESS_POINT_NETWORK " ICON_MDI_ACCESS_POINT_NETWORK");
