@@ -14,7 +14,7 @@ namespace CasaEngine
 		Box(const Box& rsh);
 		Box& operator=(const Box& rsh);
 
-		virtual IShape* Copy() override;
+		IShape* Copy() override;
 
 		Vector3 Size() const;
 		void Size(Vector3 val);

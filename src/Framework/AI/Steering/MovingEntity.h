@@ -68,8 +68,7 @@ namespace CasaEngine
 			//m_vScale = scale;
 		}
 
-
-		virtual ~MovingEntity() = default;
+		~MovingEntity() override = default;
 
 		//accessors
 		Vector2  Velocity()const { return m_vVelocity; }

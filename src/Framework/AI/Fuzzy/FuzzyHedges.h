@@ -16,57 +16,57 @@
 namespace CasaEngine
 {
 
-class CA_EXPORT FzVery : public FuzzyTerm
-{
-private:
+	class CA_EXPORT FzVery : public FuzzyTerm
+	{
+	private:
 
-  FuzzySet& m_Set;
+		FuzzySet& m_Set;
 
-  //prevent copying and assignment by clients
-  FzVery(const FzVery& inst):m_Set(inst.m_Set){}
-  FzVery& operator=(const FzVery&);
- 
+		//prevent copying and assignment by clients
+		FzVery(const FzVery& inst) :m_Set(inst.m_Set) {}
+		FzVery& operator=(const FzVery&);
 
-public:
 
-  FzVery(FzSet& ft):m_Set(ft.m_Set){}
+	public:
 
-  float GetDOM()const
-  {
-    return m_Set.GetDOM() * m_Set.GetDOM();
-  }
+		FzVery(FzSet& ft) :m_Set(ft.m_Set) {}
 
-  FuzzyTerm* Clone()const{return new FzVery(*this);}
+		float GetDOM()const override
+		{
+			return m_Set.GetDOM() * m_Set.GetDOM();
+		}
 
-  void ClearDOM(){m_Set.ClearDOM();}
-  void ORwithDOM(float val){m_Set.ORwithDOM(val * val);}
-};
+		FuzzyTerm* Clone()const override { return new FzVery(*this); }
 
-///////////////////////////////////////////////////////////////////////////////
-class CA_EXPORT FzFairly : public FuzzyTerm
-{
-private:
+		void ClearDOM() override { m_Set.ClearDOM(); }
+		void ORwithDOM(float val) override { m_Set.ORwithDOM(val * val); }
+	};
 
-  FuzzySet& m_Set;
+	///////////////////////////////////////////////////////////////////////////////
+	class CA_EXPORT FzFairly : public FuzzyTerm
+	{
+	private:
 
-  //prevent copying and assignment
-  FzFairly(const FzFairly& inst):m_Set(inst.m_Set){}
-  FzFairly& operator=(const FzFairly&);
+		FuzzySet& m_Set;
 
-public:
+		//prevent copying and assignment
+		FzFairly(const FzFairly& inst) :m_Set(inst.m_Set) {}
+		FzFairly& operator=(const FzFairly&);
 
-  FzFairly(FzSet& ft):m_Set(ft.m_Set){}
+	public:
 
-  float GetDOM()const
-  {
-    return sqrt(m_Set.GetDOM());
-  }
+		FzFairly(FzSet& ft) :m_Set(ft.m_Set) {}
 
-  FuzzyTerm* Clone()const{return new FzFairly(*this);}
+		float GetDOM()const override
+		{
+			return sqrt(m_Set.GetDOM());
+		}
 
-  void ClearDOM(){m_Set.ClearDOM();}
-  void ORwithDOM(float val){m_Set.ORwithDOM(sqrt(val));}
-};
+		FuzzyTerm* Clone()const override { return new FzFairly(*this); }
+
+		void ClearDOM() override { m_Set.ClearDOM(); }
+		void ORwithDOM(float val) override { m_Set.ORwithDOM(sqrt(val)); }
+	};
 
 }
 

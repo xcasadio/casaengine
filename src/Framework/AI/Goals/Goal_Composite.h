@@ -40,36 +40,35 @@ namespace CasaEngine
 
 		//when this object is destroyed make sure any subgoals are terminated
 		//and destroyed.
-		virtual ~Goal_Composite() { RemoveAllSubgoals(); }
+		~Goal_Composite() override { RemoveAllSubgoals(); }
 
 		//logic to run when the goal is activated.
-		virtual void Activate() = 0;
+		void Activate() override = 0;
 
 		//logic to run each update-step.
-		virtual int  Process() = 0;
+		int  Process() override = 0;
 
 		//logic to run prior to the goal's destruction
-		virtual void Terminate() = 0;
+		void Terminate() override = 0;
 
 		//if a child class of Goal_Composite does not define a message handler
 		//the default behavior is to forward the message to the front-most
 		//subgoal
-		virtual bool HandleMessage(const Telegram& msg)
+		bool HandleMessage(const Telegram& msg) override
 		{
 			return ForwardMessageToFrontMostSubgoal(msg);
 		}
 
 		//adds a subgoal to the front of the subgoal list
-		void         AddSubgoal(Goal<entity_type>* g);
+		void         AddSubgoal(Goal<entity_type>* g) override;
 
 		//this method iterates through the subgoals and calls each one's Terminate
 		//method before deleting the subgoal and removing it from the subgoal list
 		void         RemoveAllSubgoals();
 
-
-		virtual void RenderAtPos(Vector2F& pos, TypeToString* tts)const;
+		void RenderAtPos(Vector2F& pos, TypeToString* tts)const override;
 		//this is only used to render information for debugging purposes
-		virtual void Render();
+		void Render() override;
 	};
 
 

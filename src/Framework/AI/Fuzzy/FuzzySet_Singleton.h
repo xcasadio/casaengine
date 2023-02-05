@@ -16,28 +16,28 @@
 namespace CasaEngine
 {
 
-class CA_EXPORT FuzzySet_Singleton : public FuzzySet
-{
-private:
+	class CA_EXPORT FuzzySet_Singleton : public FuzzySet
+	{
+	private:
 
-    //the values that define the shape of this FLV
-  float   m_fMidPoint;
-  float   m_fLeftOffset;
-  float   m_fRightOffset;
+		//the values that define the shape of this FLV
+		float   m_fMidPoint;
+		float   m_fLeftOffset;
+		float   m_fRightOffset;
 
-public:
-  
-  FuzzySet_Singleton(float       mid,
-                     float       lft,
-                     float       rgt):FuzzySet(mid),
-                                      m_fMidPoint(mid),
-                                      m_fLeftOffset(lft),
-                                      m_fRightOffset(rgt)
-  {}
+	public:
 
-  //this method calculates the degree of membership for a particular value
-  float     CalculateDOM(float val)const; 
-};
+		FuzzySet_Singleton(float       mid,
+			float       lft,
+			float       rgt) :FuzzySet(mid),
+			m_fMidPoint(mid),
+			m_fLeftOffset(lft),
+			m_fRightOffset(rgt)
+		{}
+
+		//this method calculates the degree of membership for a particular value
+		float     CalculateDOM(float val)const override;
+	};
 
 }
 

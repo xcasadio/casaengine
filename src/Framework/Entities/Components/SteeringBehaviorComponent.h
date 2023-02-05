@@ -161,13 +161,13 @@ namespace CasaEngine
 
 	public:
 		SteeringBehaviorComponent(BaseEntity* entity);
-		virtual ~SteeringBehaviorComponent();
+		~SteeringBehaviorComponent() override;
 
 		//all entities must implement an Initialize function
-		void Initialize();
+		void Initialize() override;
 
 		//all entities must implement an update function
-		void  Update(const GameTime& gameTime_);
+		void  Update(const GameTime& gameTime_) override;
 
 		//all entities can communicate using messages. They are sent
 		//using the MessageDispatcher singleton class

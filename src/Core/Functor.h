@@ -140,7 +140,7 @@ namespace CasaEngine
 	template <typename Ret>
 	class CFunction0 : public IFunction
 	{
-		virtual std::string Execute(const std::string& Params)
+		std::string Execute(const std::string& Params) override
 		{
 			CStringExtractor(Params.c_str()).ThrowIfEOF();
 
@@ -159,8 +159,7 @@ namespace CasaEngine
 	class CFunction1 : public IFunction
 	{
 	private:
-
-		virtual std::string Execute(const std::string& Params)
+		std::string Execute(const std::string& Params) override
 		{
 			typename Base<Arg1>::Type a1;
 			CStringExtractor(Params.c_str())(a1).ThrowIfEOF();
@@ -180,8 +179,7 @@ namespace CasaEngine
 	class CFunction2 : public IFunction
 	{
 	private:
-
-		virtual std::string Execute(const std::string& Params)
+		std::string Execute(const std::string& Params) override
 		{
 			typename Base<Arg1>::Type a1;
 			typename Base<Arg2>::Type a2;
@@ -202,8 +200,7 @@ namespace CasaEngine
 	class CFunctionMem0 : public IFunction
 	{
 	private:
-
-		virtual std::string Execute(const std::string& Params)
+		std::string Execute(const std::string& Params) override
 		{
 			try { CStringExtractor(Params.c_str()).ThrowIfEOF(); }
 			catch (BadConversion& e) { return "The argument is empty"; }
@@ -232,8 +229,7 @@ namespace CasaEngine
 	class CFunctionMem1 : public IFunction
 	{
 	private:
-
-		virtual std::string Execute(const std::string& Params)
+		std::string Execute(const std::string& Params) override
 		{
 			typename Base<Arg1>::Type a1;
 
@@ -255,8 +251,7 @@ namespace CasaEngine
 	class CFunctionMem2 : public IFunction
 	{
 	private:
-
-		virtual std::string Execute(const std::string& Params)
+		std::string Execute(const std::string& Params) override
 		{
 			typename Base<Arg1>::Type a1;
 			typename Base<Arg2>::Type a2;

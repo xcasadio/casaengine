@@ -88,8 +88,7 @@ namespace CasaEngine
 			stream >> buffer >> m_iIndex >> buffer >> m_vPosition.x >> buffer >> m_vPosition.y;
 		}
 
-
-		virtual ~NavGraphNode() {}
+		~NavGraphNode() override {}
 
 		Vector2   Pos()const { return m_vPosition; }
 		void       SetPos(Vector2 NewPosition) { m_vPosition = NewPosition; }

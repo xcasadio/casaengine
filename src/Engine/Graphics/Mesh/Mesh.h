@@ -1,5 +1,4 @@
-#ifndef MESH_H
-#define MESH_H
+#pragma once
 
 #include "CA_Export.h"
 
@@ -35,5 +34,3 @@ namespace CasaEngine
 		Material* m_pMaterial;
 	};
 }
-
-#endif

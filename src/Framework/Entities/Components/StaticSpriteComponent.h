@@ -18,13 +18,13 @@ namespace CasaEngine
 	private:
 		std::string _spriteId;
 		Sprite* _sprite;
-		SpriteRenderer*	_spriteRenderer;
-		Color _color;		
+		SpriteRenderer* _spriteRenderer;
+		Color _color;
 		eSpriteEffects _spriteEffect;
 
 	public:
 		StaticSpriteComponent(BaseEntity* entity);
-		virtual ~StaticSpriteComponent();
+		~StaticSpriteComponent() override;
 
 		std::string GetSpriteID() const;
 		void SetSpriteID(std::string val);
@@ -34,8 +34,8 @@ namespace CasaEngine
 		eSpriteEffects GetSpriteEffect() const;
 		void SetSpriteEffect(eSpriteEffects val);
 
-		void Initialize();
-		void Update(const GameTime& gameTime_);
-		void Draw();
+		void Initialize() override;
+		void Update(const GameTime& gameTime_) override;
+		void Draw() override;
 	};
 }

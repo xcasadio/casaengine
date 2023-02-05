@@ -21,25 +21,25 @@ namespace CasaEngine
 	class CA_EXPORT FzSet : public FuzzyTerm
 	{
 	private:
-  
-	  //let the hedge classes be friends 
-	  friend class FzVery;
-	  friend class FzFairly;
+
+		//let the hedge classes be friends 
+		friend class FzVery;
+		friend class FzFairly;
 
 	private:
 
-	  //a reference to the fuzzy set this proxy represents
-	  FuzzySet& m_Set;
+		//a reference to the fuzzy set this proxy represents
+		FuzzySet& m_Set;
 
 	public:
 
-	  FzSet(FuzzySet& fs):m_Set(fs){}
-	  FzSet& operator = (const FzSet &rsh) { m_Set = rsh.m_Set; return *this;}
+		FzSet(FuzzySet& fs) :m_Set(fs) {}
+		FzSet& operator = (const FzSet& rsh) { m_Set = rsh.m_Set; return *this; }
 
-	  FuzzyTerm* Clone()const {return new FzSet(*this);}
-	  float     GetDOM()const {return m_Set.GetDOM();}
-	  void       ClearDOM(){m_Set.ClearDOM();}
-	  void       ORwithDOM(float val){m_Set.ORwithDOM(val);}
+		FuzzyTerm* Clone()const override { return new FzSet(*this); }
+		float     GetDOM()const override { return m_Set.GetDOM(); }
+		void       ClearDOM() override { m_Set.ClearDOM(); }
+		void       ORwithDOM(float val) override { m_Set.ORwithDOM(val); }
 	};
 
 }

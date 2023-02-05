@@ -1,5 +1,4 @@
-#ifndef MATERIAL_H
-#define MATERIAL_H
+#pragma once
 
 #include "CA_Export.h"
 #include "Assets/Assetable.h"
@@ -15,7 +14,7 @@ namespace CasaEngine
 		Material();
 		Material& operator = (const Material& rsh_);
 		Material(const Material& rsh_);
-		~Material();
+		~Material() override;
 
 		Material* Clone() const;
 
@@ -36,5 +35,3 @@ namespace CasaEngine
 		Vector2 m_Texture0Repeat;
 	};
 }
-
-#endif

@@ -45,7 +45,7 @@ namespace CasaEngine
 
 #if EDITOR
 	public:
-		void Draw();
+		void Draw() override;
 #endif
 	};
 

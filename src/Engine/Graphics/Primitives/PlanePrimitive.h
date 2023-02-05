@@ -1,5 +1,4 @@
-#ifndef PLANEPRIMITIVE_H
-#define PLANEPRIMITIVE_H
+#pragma once
 
 #include "CA_Export.h"
 
@@ -17,5 +16,3 @@ namespace CasaEngine
 		float m_Height;
 	};
 }
-
-#endif

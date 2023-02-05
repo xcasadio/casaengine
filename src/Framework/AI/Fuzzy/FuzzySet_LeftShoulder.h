@@ -39,7 +39,7 @@ namespace CasaEngine
 		{}
 
 		//this method calculates the degree of membership for a particular value
-		float CalculateDOM(float val)const;
+		float CalculateDOM(float val)const override;
 	};
 
 }
