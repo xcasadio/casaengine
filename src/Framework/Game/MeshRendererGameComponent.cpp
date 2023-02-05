@@ -21,8 +21,7 @@ namespace CasaEngine
 	}
 
 	MeshRendererGameComponent::~MeshRendererGameComponent()
-	{
-	}
+		= default;
 
 	void MeshRendererGameComponent::OnLoadContent()
 	{
@@ -34,7 +33,7 @@ namespace CasaEngine
 			it != m_Datas.end();
 			++it)
 		{
-			delete (*it); //TODO : no delete in real time
+			delete* it; //TODO : no delete in real time
 		}
 
 		m_Datas.clear();

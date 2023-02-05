@@ -14,12 +14,10 @@ namespace CasaEngine
 	 *
 	 */
 	AnimationEndEvent::AnimationEndEvent()
-	{
-
-	}
+		= default;
 
 	/**
-	 * 
+	 *
 	 */
 	AnimationEndEvent::AnimationEndEvent(const AnimationEndEvent& rsh)
 	{
@@ -27,21 +25,16 @@ namespace CasaEngine
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	const AnimationEndEvent& AnimationEndEvent::operator = (const AnimationEndEvent& rsh)
-	{
-		AnimationEvent::operator=(rsh);
-		return *this;
-	}
+		= default;
 
 	/**
-	 * 
+	 *
 	 */
 	AnimationEndEvent::~AnimationEndEvent()
-	{
-
-	}
+		= default;
 
 	AnimationEvent* AnimationEndEvent::Copy()
 	{
@@ -49,10 +42,10 @@ namespace CasaEngine
 	}
 
 	/**
-	 * 
+	 *
 	 */
-	void AnimationEndEvent::Activate(Animation *pAnim_)
+	void AnimationEndEvent::Activate(Animation* pAnim_)
 	{
-		
+
 	}
 }

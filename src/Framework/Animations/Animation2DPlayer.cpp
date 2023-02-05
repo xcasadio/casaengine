@@ -6,69 +6,68 @@
 namespace CasaEngine
 {
 
-float Animation2DPlayer::m_sAnimationSpeed = 1.0f;
+	float Animation2DPlayer::m_sAnimationSpeed = 1.0f;
 
-/**
- * 
- */
-Animation2DPlayer::Animation2DPlayer() :
-	m_pCurrentAnimation(NULL),
-	m_iCurrentAnimationIndex(-1)
-{
-}
-
-/**
- * 
- */
-Animation2DPlayer::~Animation2DPlayer()
-{
-}
-
-void Animation2DPlayer::SetCurrentAnimationByID(int id_)
-{
-	if (m_iCurrentAnimationIndex != id_)
+	/**
+	 *
+	 */
+	Animation2DPlayer::Animation2DPlayer() :
+		m_pCurrentAnimation(NULL),
+		m_iCurrentAnimationIndex(-1)
 	{
-		m_iCurrentAnimationIndex = id_;
-		m_pCurrentAnimation = m_Animations[id_];
-		//m_pCurrentAnimation->ResetTime();
-	}  
-}
+	}
 
-/**
- * 
- */
-void Animation2DPlayer::SetCurrentAnimationByName(std::string name_)
-{
-	int index = -1;
+	/**
+	 *
+	 */
+	Animation2DPlayer::~Animation2DPlayer()
+		= default;
 
-	std::map<int, Animation2D*>::const_iterator it;
-
-	for (it = m_Animations.cbegin(); it != m_Animations.cend(); it++)
+	void Animation2DPlayer::SetCurrentAnimationByID(int id_)
 	{
-		if (it->second->GetAnimationData()->GetName() == name_)
+		if (m_iCurrentAnimationIndex != id_)
 		{
-			index = it->first;
+			m_iCurrentAnimationIndex = id_;
+			m_pCurrentAnimation = m_Animations[id_];
+			//m_pCurrentAnimation->ResetTime();
 		}
 	}
 
-	if (m_iCurrentAnimationIndex != index)
+	/**
+	 *
+	 */
+	void Animation2DPlayer::SetCurrentAnimationByName(std::string name_)
 	{
-		m_iCurrentAnimationIndex = index;
-		m_pCurrentAnimation = m_Animations[index];
-		//m_pCurrentAnimation->ResetTime();
-	}
-}
+		int index = -1;
 
-/**
- * 
- */
-void Animation2DPlayer::Advance(float elapsedTime_)
-{
+		std::map<int, Animation2D*>::const_iterator it;
+
+		for (it = m_Animations.cbegin(); it != m_Animations.cend(); it++)
+		{
+			if (it->second->GetAnimationData()->GetName() == name_)
+			{
+				index = it->first;
+			}
+		}
+
+		if (m_iCurrentAnimationIndex != index)
+		{
+			m_iCurrentAnimationIndex = index;
+			m_pCurrentAnimation = m_Animations[index];
+			//m_pCurrentAnimation->ResetTime();
+		}
+	}
+
+	/**
+	 *
+	 */
+	void Animation2DPlayer::Advance(float elapsedTime_)
+	{
 #if !FINAL	
-	elapsedTime_ *= m_sAnimationSpeed;
+		elapsedTime_ *= m_sAnimationSpeed;
 #endif
 
 
-}
+	}
 
 }

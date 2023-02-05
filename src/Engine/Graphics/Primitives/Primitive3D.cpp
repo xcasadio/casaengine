@@ -14,8 +14,7 @@ namespace CasaEngine
 	}
 
 	IPrimitive3D::~IPrimitive3D()
-	{
-	}
+		= default;
 
 	/// <summary>
 	/// Adds a new vertex to the primitive model. This should only be called

@@ -15,8 +15,7 @@ namespace CasaEngine
 	}
 
 	ColliderComponent::~ColliderComponent()
-	{
-	}
+		= default;
 
 	void ColliderComponent::Initialize()
 	{

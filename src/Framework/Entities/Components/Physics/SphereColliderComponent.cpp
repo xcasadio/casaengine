@@ -14,9 +14,7 @@ namespace CasaEngine
 	}
 
 	SphereColliderComponent::~SphereColliderComponent()
-	{
-
-	}
+		= default;
 
 	void SphereColliderComponent::Initialize()
 	{

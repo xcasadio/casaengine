@@ -16,9 +16,7 @@ namespace CasaEngine
 		return m_Shape;
 	}
 
-	BoxColliderComponent::~BoxColliderComponent()
-	{
-	}
+	BoxColliderComponent::~BoxColliderComponent() = default;
 
 	void BoxColliderComponent::Initialize()
 	{

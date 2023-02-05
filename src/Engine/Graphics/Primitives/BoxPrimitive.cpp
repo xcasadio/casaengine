@@ -62,8 +62,7 @@ namespace CasaEngine
 	 *
 	 */
 	BoxPrimitive::~BoxPrimitive()
-	{
-	}
+		= default;
 
 	/**
 	 *

@@ -13,9 +13,7 @@
 namespace CasaEngine
 {
 	SetFrameEvent::SetFrameEvent()
-	{
-
-	}
+		= default;
 
 	SetFrameEvent::SetFrameEvent(const SetFrameEvent& rsh)
 	{
@@ -23,16 +21,10 @@ namespace CasaEngine
 	}
 
 	SetFrameEvent& SetFrameEvent::operator = (const SetFrameEvent& rsh)
-	{
-		AnimationEvent::operator=(rsh);
-		m_FrameID = rsh.m_FrameID;
-		return *this;
-	}
+		= default;
 
 	SetFrameEvent::~SetFrameEvent()
-	{
-
-	}
+		= default;
 
 	AnimationEvent* SetFrameEvent::Copy()
 	{

@@ -41,8 +41,7 @@ namespace CasaEngine
 	 *
 	 */
 	Material::~Material()
-	{
-	}
+		= default;
 
 	/**
 	 *

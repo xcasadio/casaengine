@@ -31,12 +31,12 @@ namespace CasaEngine
 		T Length() const;
 		T LengthSquared() const;
 		void Normalized();
-		static CVector4<T> Normalize(const CVector4<T> &v);
+		static CVector4<T> Normalize(const CVector4<T>& v);
 		static T Dot(const CVector4<T>& v1, const CVector4<T>& v2);
 		static CVector4<T> Cross(const CVector4<T>& v1, const CVector4<T>& v2);
 		static float Distance(CVector4<T> value1, CVector4<T> value2);
 		static float DistanceSquared(CVector4<T> value1, CVector4<T> value2);
-        static CVector4<T> Clamp(CVector4<T> value1, CVector4<T> min, CVector4<T> max);
+		static CVector4<T> Clamp(CVector4<T> value1, CVector4<T> min, CVector4<T> max);
 		static CVector4<T> Lerp(CVector4<T> value1, CVector4<T> value2, float amount);
 		static CVector4<T> Transform(CVector2<T> position, Matrix4 matrix);
 		static CVector4<T> Transform(CVector3<T> position, Matrix4 matrix);
@@ -234,20 +234,20 @@ namespace CasaEngine
 		// We must follow HLSL behavior in the case user specified min value is bigger than max value.
 
 		float x = value1.x;
-		x = (x > max.x) ? max.x : x;
-		x = (x < min.x) ? min.x : x;
+		x = x > max.x ? max.x : x;
+		x = x < min.x ? min.x : x;
 
 		float y = value1.y;
-		y = (y > max.y) ? max.y : y;
-		y = (y < min.y) ? min.y : y;
+		y = y > max.y ? max.y : y;
+		y = y < min.y ? min.y : y;
 
 		float z = value1.z;
-		z = (z > max.z) ? max.z : z;
-		z = (z < min.z) ? min.z : z;
+		z = z > max.z ? max.z : z;
+		z = z < min.z ? min.z : z;
 
 		float w = value1.w;
-		w = (w > max.w) ? max.w : w;
-		w = (w < min.w) ? min.w : w;
+		w = w > max.w ? max.w : w;
+		w = w < min.w ? min.w : w;
 
 		return CVector4<T>(x, y, z, w);
 	}
@@ -475,7 +475,7 @@ namespace CasaEngine
 	template <class T>
 	CVector4<T> CVector4<T>::operator*(const CVector4<T>& v) const
 	{
-		return Multiply(*this, v);			
+		return Multiply(*this, v);
 	}
 
 	template <class T>
@@ -537,10 +537,10 @@ namespace CasaEngine
 	template <class T>
 	bool CVector4<T>::operator ==(const CVector4<T>& v) const
 	{
-		return ((std::abs(x - v.x) <= std::numeric_limits<T>::epsilon()) &&
-			(std::abs(y - v.y) <= std::numeric_limits<T>::epsilon()) &&
-			(std::abs(z - v.z) <= std::numeric_limits<T>::epsilon()) &&
-			(std::abs(w - v.w) <= std::numeric_limits<T>::epsilon()));
+		return std::abs(x - v.x) <= std::numeric_limits<T>::epsilon() &&
+			std::abs(y - v.y) <= std::numeric_limits<T>::epsilon() &&
+			std::abs(z - v.z) <= std::numeric_limits<T>::epsilon() &&
+			std::abs(w - v.w) <= std::numeric_limits<T>::epsilon();
 	}
 
 	template <class T>

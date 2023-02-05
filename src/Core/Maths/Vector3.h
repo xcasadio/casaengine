@@ -49,7 +49,7 @@ namespace CasaEngine
 		T Length() const;
 		T LengthSquared() const;
 
-		static CVector3<T> Normalize(CVector3<T> &vec);
+		static CVector3<T> Normalize(CVector3<T>& vec);
 		void Normalize();
 		CVector3<T> GetNormalized();
 
@@ -68,8 +68,8 @@ namespace CasaEngine
 		void SetOrthogonal(const CVector3<T>& v);
 		CVector3<T> GetOrthogonal() const;
 
-		static CVector3<T> Reflect(CVector3<T>&vector, CVector3<T>&normal);
-		static CVector3<T> Clamp(CVector3<T> &value1, CVector3<T> &min, CVector3<T> &max);
+		static CVector3<T> Reflect(CVector3<T>& vector, CVector3<T>& normal);
+		static CVector3<T> Clamp(CVector3<T>& value1, CVector3<T>& min, CVector3<T>& max);
 		static CVector3<T> Lerp(const CVector3<T>& v1, const CVector3<T>& v2, float t);
 
 		static CVector3<T> Add(const CVector3<T>& v1, const CVector3<T>& v2);
@@ -117,9 +117,9 @@ namespace CasaEngine
 	template <class T>
 	bool IsEquivalent(const CVector3<T>& v0, const CVector3<T>& v1, float epsilon = Epsilon)
 	{
-		return ((std::fabs(v0.x - v1.x) <= epsilon) &&
-			(std::fabs(v0.y - v1.y) <= epsilon) &&
-			(std::fabs(v0.z - v1.z) <= epsilon));
+		return std::fabs(v0.x - v1.x) <= epsilon &&
+			std::fabs(v0.y - v1.y) <= epsilon &&
+			std::fabs(v0.z - v1.z) <= epsilon;
 	}
 
 	template <class T>
@@ -289,7 +289,7 @@ namespace CasaEngine
 	template <class T>
 	CVector3<T> CVector3<T>::Min(const CVector3<T>& a, const CVector3<T>& b)
 	{
-		return { std::min(a.x, b.x), std::min(a.y, b.y), std::min(a.z, b.z)};
+		return { std::min(a.x, b.x), std::min(a.y, b.y), std::min(a.z, b.z) };
 	}
 
 	template <class T>
@@ -390,16 +390,16 @@ namespace CasaEngine
 		// We must follow HLSL behavior in the case user specified min value is bigger than max value.
 
 		float x = value1.x;
-		x = (x > max.x) ? max.x : x;
-		x = (x < min.x) ? min.x : x;
+		x = x > max.x ? max.x : x;
+		x = x < min.x ? min.x : x;
 
 		float y = value1.y;
-		y = (y > max.y) ? max.y : y;
-		y = (y < min.y) ? min.y : y;
+		y = y > max.y ? max.y : y;
+		y = y < min.y ? min.y : y;
 
 		float z = value1.z;
-		z = (z > max.z) ? max.z : z;
-		z = (z < min.z) ? min.z : z;
+		z = z > max.z ? max.z : z;
+		z = z < min.z ? min.z : z;
 
 		return CVector3<T>(x, y, z);
 	}
@@ -553,9 +553,9 @@ namespace CasaEngine
 	template <class T>
 	bool CVector3<T>::operator ==(const CVector3<T>& v) const
 	{
-		return ((std::abs(x - v.x) <= std::numeric_limits<T>::epsilon()) &&
-			(std::abs(y - v.y) <= std::numeric_limits<T>::epsilon()) &&
-			(std::abs(z - v.z) <= std::numeric_limits<T>::epsilon()));
+		return std::abs(x - v.x) <= std::numeric_limits<T>::epsilon() &&
+			std::abs(y - v.y) <= std::numeric_limits<T>::epsilon() &&
+			std::abs(z - v.z) <= std::numeric_limits<T>::epsilon();
 	}
 
 	template <class T>

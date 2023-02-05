@@ -55,7 +55,7 @@ namespace CasaEngine
 
 		for (it = m_ListShapes.begin(); it != m_ListShapes.end(); it++)
 		{
-			if ((*it) == pShape_)
+			if (*it == pShape_)
 			{
 				m_ListShapes.erase(it);
 				break;

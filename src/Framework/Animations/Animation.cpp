@@ -24,7 +24,7 @@ namespace CasaEngine
 	{
 		for (auto it = m_Events.begin(); it != m_Events.end(); ++it)
 		{
-			delete (*it);
+			delete* it;
 		}
 	}
 
@@ -152,7 +152,7 @@ namespace CasaEngine
 			it != m_Events.end();
 			++it)
 		{
-			if ((*it) == event)
+			if (*it == event)
 			{
 				break;
 			}

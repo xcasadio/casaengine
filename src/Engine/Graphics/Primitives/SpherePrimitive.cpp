@@ -8,30 +8,27 @@
 
 namespace CasaEngine
 {
-	/**
-	 *
-	 */
-	SpherePrimitive::SpherePrimitive(float diameter_, unsigned int tessellation_) :
+	SpherePrimitive::SpherePrimitive(const float diameter, unsigned int tessellation) :
 		IPrimitive3D(Primitive3DType::SPHERE)
 	{
-		if (tessellation_ < 3)
+		if (tessellation < 3)
+		{
 			throw new ArgumentOutOfRangeException("tessellation < 3");
+		}
 
-		int verticalSegments = tessellation_;
-		int horizontalSegments = tessellation_ * 2;
+		int verticalSegments = tessellation;
+		int horizontalSegments = tessellation * 2;
 
-		m_Diameter = diameter_;
-		m_Tessellation = tessellation_;
-		float radius = diameter_ / 2.0f;
+		_diameter = diameter;
+		_tessellation = tessellation;
+		float radius = diameter / 2.0f;
 
 		//TODO : UVs are not the same with OpenGL and DX
 
 		// Create rings of vertices at progressively higher latitudes.
 		for (int i = 0; i <= verticalSegments; i++)
 		{
-			float latitude = static_cast<float>(i) * PI /
-				static_cast<float>(verticalSegments) - PI_OVER_2;
-
+			float latitude = static_cast<float>(i) * PI / static_cast<float>(verticalSegments) - PI_OVER_2;
 			float dy = sinf(latitude);
 			float dxz = cosf(latitude);
 
@@ -72,10 +69,5 @@ namespace CasaEngine
 		}
 	}
 
-	/**
-	 *
-	 */
-	SpherePrimitive::~SpherePrimitive()
-	{
-	}
+	SpherePrimitive::~SpherePrimitive() = default;
 }

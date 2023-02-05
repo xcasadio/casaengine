@@ -31,9 +31,7 @@ namespace CasaEngine
 	}
 
 	SteeringBehaviorComponent::~SteeringBehaviorComponent()
-	{
-
-	}
+		= default;
 
 	void SteeringBehaviorComponent::Initialize()
 	{
@@ -149,7 +147,10 @@ namespace CasaEngine
 		float MagnitudeRemaining = this->GetEntity()->GetPhysicalEntity().MaxForce() - MagnitudeSoFar;
 
 		//return false if there is no more force left to use
-		if (MagnitudeRemaining <= 0.0) return false;
+		if (MagnitudeRemaining <= 0.0)
+		{
+			return false;
+		}
 
 		//calculate the magnitude of the force we want to add
 		float MagnitudeToAdd = ForceToAdd.Length();

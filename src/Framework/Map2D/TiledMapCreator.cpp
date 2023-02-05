@@ -68,7 +68,7 @@ namespace CasaEngine
 		//}
 
 		std::filesystem::path path(fileName);
-		
+
 
 		Create(path.stem().string(), autoTileSetData, tileSetData, *tiledMapData, world);
 	}
@@ -102,8 +102,8 @@ namespace CasaEngine
 
 			for (const auto& tileId : layer.tilesId)
 			{
-				int x = (index % tiledMapData.mapSize.x);
-				int y = (index / tiledMapData.mapSize.x);
+				int x = index % tiledMapData.mapSize.x;
+				int y = index / tiledMapData.mapSize.x;
 				const int posX = x * tileSetData.tileSize.x;
 				const int posY = y * tileSetData.tileSize.y;
 
@@ -113,7 +113,7 @@ namespace CasaEngine
 				tileEntity->SetName(oss.str());
 				tileEntity->IsPersistent(false);
 				tileEntity->SetParent(layerEntity);
-				tileEntity->GetCoordinates().SetLocalPosition(Vector3(posX, 	posY, 0.0f));
+				tileEntity->GetCoordinates().SetLocalPosition(Vector3(posX, posY, 0.0f));
 
 				ITile* tile = nullptr;
 				TileCollisionType collisionType = TileCollisionType::None;
@@ -160,7 +160,7 @@ namespace CasaEngine
 
 					physics_world.AddCollisionObject(collisionShape);
 				}
-				
+
 				auto* tileComponent = new TileComponent(tileEntity);
 				tileComponent->Tile(tile);
 				tileEntity->GetComponentMgr()->AddComponent(tileComponent);

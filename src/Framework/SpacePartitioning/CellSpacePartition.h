@@ -108,7 +108,7 @@ namespace CasaEngine
 		entity& next() { ++m_curNeighbor; return *m_curNeighbor; }
 
 		//returns true if the end of the vector is found (a zero value marks the end)
-		bool   end() { return (m_curNeighbor == m_Neighbors.end()) || (*m_curNeighbor == 0); }
+		bool   end() { return m_curNeighbor == m_Neighbors.end() || *m_curNeighbor == 0; }
 
 		//empties the cells of entities
 		void        EmptyCells();
@@ -240,7 +240,10 @@ namespace CasaEngine
 
 		//if the entity's position is equal to Vector2(m_fSpaceWidth, m_fSpaceHeight)
 		//then the index will overshoot. We need to check for this and adjust
-		if (idx > static_cast<int>(m_Cells.size()) - 1) idx = static_cast<int>(m_Cells.size()) - 1;
+		if (idx > static_cast<int>(m_Cells.size()) - 1)
+		{
+			idx = static_cast<int>(m_Cells.size()) - 1;
+		}
 
 		return idx;
 	}
@@ -281,7 +284,10 @@ namespace CasaEngine
 
 		int NewIdx = PositionToIndex(pTrans->GetPosition());
 
-		if (NewIdx == OldIdx) return;
+		if (NewIdx == OldIdx)
+		{
+			return;
+		}
 
 		//the entity has moved into another cell so delete from current cell
 		//and add to new one

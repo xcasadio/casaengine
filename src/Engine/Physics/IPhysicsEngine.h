@@ -8,8 +8,8 @@ namespace CasaEngine
 	class CA_EXPORT IPhysicsEngine
 	{
 	public:
-		IPhysicsEngine() {}
-		virtual ~IPhysicsEngine() {}
+		IPhysicsEngine() = default;
+		virtual ~IPhysicsEngine() = default;
 
 		virtual void Initialize() = 0;
 

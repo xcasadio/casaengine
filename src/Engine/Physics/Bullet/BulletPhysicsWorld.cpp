@@ -114,7 +114,7 @@ namespace CasaEngine
 		startTransform.setOrigin(btVector3(position.x, position.y, position.z));
 
 		//rigid body is dynamic if and only if mass is non zero, otherwise static
-		isDynamic = (mass != 0.0f);
+		isDynamic = mass != 0.0f;
 
 		if (isDynamic)
 		{

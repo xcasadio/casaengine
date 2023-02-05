@@ -10,8 +10,7 @@ namespace CasaEngine
 	}
 
 	Input::~Input()
-	{
-	}
+		= default;
 
 	void Input::Initialize()
 	{
@@ -35,47 +34,47 @@ namespace CasaEngine
 	}
 
 	//
-	void Input::OnEvent(sf::Event& event_)
+	void Input::OnEvent(const sf::Event& event)
 	{
-		switch (event_.type)
+		switch (event.type)
 		{
 		case sf::Event::KeyPressed:
-			m_Keys[event_.key.code] = true;
+			m_Keys[event.key.code] = true;
 			break;
 
 		case sf::Event::KeyReleased:
-			m_Keys[event_.key.code] = false;
+			m_Keys[event.key.code] = false;
 			break;
 
 		case sf::Event::MouseWheelMoved:
-			m_MouseWheel = event_.mouseWheel.delta;
+			m_MouseWheel = event.mouseWheel.delta;
 			break;
 
 		case sf::Event::MouseButtonPressed:
-			m_MouseButtons[event_.mouseButton.button] = true;
+			m_MouseButtons[event.mouseButton.button] = true;
 			break;
 
 		case sf::Event::MouseButtonReleased:
-			m_MouseButtons[event_.mouseButton.button] = false;
+			m_MouseButtons[event.mouseButton.button] = false;
 			break;
 
 		case sf::Event::MouseMoved:
-			m_MouseDeltaX = event_.mouseMove.x - m_MouseX;
-			m_MouseDeltaY = event_.mouseMove.y - m_MouseY;
-			m_MouseX = event_.mouseMove.x;
-			m_MouseY = event_.mouseMove.y;
+			m_MouseDeltaX = event.mouseMove.x - m_MouseX;
+			m_MouseDeltaY = event.mouseMove.y - m_MouseY;
+			m_MouseX = event.mouseMove.x;
+			m_MouseY = event.mouseMove.y;
 			break;
 
 		case sf::Event::JoystickButtonPressed:
-			m_JoystickButtons[event_.joystickButton.joystickId][event_.joystickButton.button] = true;
+			m_JoystickButtons[event.joystickButton.joystickId][event.joystickButton.button] = true;
 			break;
 
 		case sf::Event::JoystickButtonReleased:
-			m_JoystickButtons[event_.joystickButton.joystickId][event_.joystickButton.button] = false;
+			m_JoystickButtons[event.joystickButton.joystickId][event.joystickButton.button] = false;
 			break;
 
 		case sf::Event::JoystickMoved:
-			m_JoystickAxis[event_.joystickMove.joystickId][event_.joystickMove.axis] = event_.joystickMove.position;
+			m_JoystickAxis[event.joystickMove.joystickId][event.joystickMove.axis] = event.joystickMove.position;
 			break;
 
 		case sf::Event::JoystickConnected:
@@ -136,40 +135,39 @@ namespace CasaEngine
 		}*/
 	}
 
-	bool Input::IsKeyDown(sf::Keyboard::Key KeyCode) const
+	bool Input::IsKeyDown(sf::Keyboard::Key keyCode) const
 	{
-		return m_Keys[KeyCode];
+		return m_Keys[keyCode];
 	}
 
-	bool Input::IsKeyJustDown(sf::Keyboard::Key KeyCode) const
+	bool Input::IsKeyJustDown(sf::Keyboard::Key keyCode) const
 	{
-		return m_Keys[KeyCode]
-			&& m_LastKeys[KeyCode] == false;
+		return m_Keys[keyCode]
+			&& m_LastKeys[keyCode] == false;
 	}
 
-	bool Input::IsMouseButtonDown(sf::Mouse::Button Button) const
+	bool Input::IsMouseButtonDown(sf::Mouse::Button button) const
 	{
-		return m_MouseButtons[Button];
+		return m_MouseButtons[button];
 	}
 
-	bool Input::IsMouseButtonJustDown(sf::Mouse::Button Button) const
+	bool Input::IsMouseButtonJustDown(sf::Mouse::Button button) const
 	{
-		return m_MouseButtons[Button]
-			&& m_LastMouseButtons[Button] == false;
+		return m_MouseButtons[button] && m_LastMouseButtons[button] == false;
 	}
 
-	bool Input::IsJoystickButtonDown(unsigned int JoyId, unsigned int Button) const
+	bool Input::IsJoystickButtonDown(unsigned int joyId, unsigned int button) const
 	{
-		if ((JoyId < sf::Joystick::Count) && (Button < sf::Joystick::ButtonCount))
-			return m_JoystickButtons[JoyId][Button];
-		else
-			return false;
+		if (joyId < sf::Joystick::Count && button < sf::Joystick::ButtonCount)
+		{
+			return m_JoystickButtons[joyId][button];
+		}
+		return false;
 	}
 
-	bool Input::IsJoystickButtonJustDown(unsigned int JoyId, unsigned int Button) const
+	bool Input::IsJoystickButtonJustDown(unsigned int joyId, const unsigned int button) const
 	{
-		return IsJoystickButtonDown(JoyId, Button)
-			&& m_LastJoystickButtons[Button] == false;
+		return IsJoystickButtonDown(joyId, button) && !m_LastJoystickButtons[button];
 	}
 
 	int Input::GetDeltaMouseX() const
@@ -197,45 +195,45 @@ namespace CasaEngine
 		return m_LastMouseWheel;
 	}
 
-	float Input::GetJoystickAxis(unsigned int JoyId, sf::Joystick::Axis Axis) const
+	float Input::GetJoystickAxis(unsigned int joyId, const sf::Joystick::Axis axis) const
 	{
-		if (JoyId < sf::Joystick::Count)
+		if (joyId < sf::Joystick::Count)
 		{
-			return m_JoystickAxis[JoyId][Axis];
+			return m_JoystickAxis[joyId][axis];
 		}
 
 		return 0.f;
 	}
 
-	float Input::GetJoystickLeftStickX(unsigned JoyId) const
+	float Input::GetJoystickLeftStickX(unsigned joyId) const
 	{
-		return GetJoystickAxis(JoyId, sf::Joystick::X);
+		return GetJoystickAxis(joyId, sf::Joystick::X);
 	}
 
-	float Input::GetJoystickLeftStickY(unsigned JoyId) const
+	float Input::GetJoystickLeftStickY(unsigned joyId) const
 	{
-		return GetJoystickAxis(JoyId, sf::Joystick::Y);
+		return GetJoystickAxis(joyId, sf::Joystick::Y);
 	}
 
-	float Input::GetJoystickRightStickX(unsigned JoyId) const
+	float Input::GetJoystickRightStickX(unsigned joyId) const
 	{
-		return GetJoystickAxis(JoyId, sf::Joystick::U);
+		return GetJoystickAxis(joyId, sf::Joystick::U);
 	}
 
-	float Input::GetJoystickRightStickY(unsigned JoyId) const
+	float Input::GetJoystickRightStickY(unsigned joyId) const
 	{
-		return GetJoystickAxis(JoyId, sf::Joystick::V);
+		return GetJoystickAxis(joyId, sf::Joystick::V);
 	}
 
-	float Input::GetJoystickLeftTrigger(unsigned JoyId) const
+	float Input::GetJoystickLeftTrigger(unsigned joyId) const
 	{
-		float val = GetJoystickAxis(JoyId, sf::Joystick::Z);
+		float val = GetJoystickAxis(joyId, sf::Joystick::Z);
 		return val > 0.0f ? val : 0.0f;
 	}
 
-	float Input::GetJoystickRightTrigger(unsigned JoyId) const
+	float Input::GetJoystickRightTrigger(unsigned joyId) const
 	{
-		float val = GetJoystickAxis(JoyId, sf::Joystick::Z);
+		float val = GetJoystickAxis(joyId, sf::Joystick::Z);
 		return val < 0.0f ? std::abs(val) : 0.0f;
 	}
 

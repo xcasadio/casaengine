@@ -31,7 +31,7 @@ namespace CasaEngine
 	std::string DateTime::GetCurrentDate() const
 	{
 		char sTime[24];
-		strftime(sTime, sizeof(sTime), "%d/%m/%Y", m_pTm);
+		strftime(sTime, sizeof sTime, "%d/%m/%Y", m_pTm);
 
 		return sTime;
 	}
@@ -39,7 +39,7 @@ namespace CasaEngine
 	std::string DateTime::GetCurrentTime() const
 	{
 		char sTime[24];
-		strftime(sTime, sizeof(sTime), "%H:%M:%S", m_pTm);
+		strftime(sTime, sizeof sTime, "%H:%M:%S", m_pTm);
 		return sTime;
 	}
 

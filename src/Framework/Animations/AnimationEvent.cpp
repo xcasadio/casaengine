@@ -15,25 +15,19 @@ namespace CasaEngine
 	}
 
 	AnimationEvent& AnimationEvent::operator = (const AnimationEvent& rsh)
-	{
-		this->m_ID = rsh.m_ID;
-		this->m_Time = rsh.m_Time;
-		return *this;
-	}
+		= default;
 
 	AnimationEvent::~AnimationEvent()
+		= default;
+
+	unsigned int AnimationEvent::ID() const
 	{
-
+		return m_ID;
 	}
 
-	unsigned int AnimationEvent::ID() const 
-	{ 
-		return m_ID; 
-	}
-
-	float AnimationEvent::Time() const 
-	{ 
-		return m_Time; 
+	float AnimationEvent::Time() const
+	{
+		return m_Time;
 	}
 
 	void AnimationEvent::Time(float val)

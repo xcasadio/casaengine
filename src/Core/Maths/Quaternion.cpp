@@ -180,11 +180,11 @@ namespace CasaEngine
 
 		float s1, s2;
 
-		if (cosOmega > (1.0f - epsilon))
+		if (cosOmega > 1.0f - epsilon)
 		{
 			// Too close, do straight linear interpolation.
 			s1 = 1.0f - t;
-			s2 = (flip) ? -t : t;
+			s2 = flip ? -t : t;
 		}
 		else
 		{
@@ -192,7 +192,7 @@ namespace CasaEngine
 			float invSinOmega = 1.0f / sinf(omega);
 
 			s1 = sinf((1.0f - t) * omega) * invSinOmega;
-			s2 = (flip)
+			s2 = flip
 				? -sinf(t * omega) * invSinOmega
 				: sinf(t * omega) * invSinOmega;
 		}
@@ -299,7 +299,7 @@ namespace CasaEngine
 		}
 
 
-		float num8 = (matrix.m11 + matrix.m22) + matrix.m33;
+		float num8 = matrix.m11 + matrix.m22 + matrix.m33;
 		Quaternion quaternion;
 		if (num8 > 0.0f)
 		{
@@ -310,7 +310,7 @@ namespace CasaEngine
 			quaternion.y = -(matrix.m31 - matrix.m13) * num; // -
 			quaternion.z = -(matrix.m12 - matrix.m21) * num; // -
 		}
-		else if ((matrix.m11 >= matrix.m22) && (matrix.m11 >= matrix.m33))
+		else if (matrix.m11 >= matrix.m22 && matrix.m11 >= matrix.m33)
 		{
 			float num7 = sqrtf(1.0 + matrix.m11 - matrix.m22 - matrix.m33);
 			float num4 = 0.5f / num7;

@@ -14,9 +14,7 @@ namespace CasaEngine
 	}
 
 	CapsuleColliderComponent::~CapsuleColliderComponent()
-	{
-
-	}
+		= default;
 
 	void CapsuleColliderComponent::Initialize()
 	{

@@ -12,7 +12,7 @@ namespace CasaEngine
 	class CA_EXPORT FuzzyTerm
 	{
 	public:
-		virtual ~FuzzyTerm() {}
+		virtual ~FuzzyTerm() = default;
 
 		//all terms must implement a virtual constructor
 		virtual FuzzyTerm* Clone()const = 0;

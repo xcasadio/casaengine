@@ -17,7 +17,7 @@ namespace CasaEngine
 {
 #if EDITOR
 	void ShowUI4AllComponents(BaseEntity* pEntity);
-	void DrawGrid(GridOrientation orientation, Line3DRendererComponent *line3DRenderer);
+	void DrawGrid(GridOrientation orientation, Line3DRendererComponent* line3DRenderer);
 	void DrawAxis(bgfx::VertexBufferHandle vertexHandle_, bgfx::ProgramHandle program_handle);
 	void ShowFPS();
 	void ShowDebugWindow();
@@ -153,7 +153,7 @@ namespace CasaEngine
 		void reset()
 		{
 			m_offset = 0;
-			bx::memSet(m_values, 0, sizeof(m_values));
+			bx::memSet(m_values, 0, sizeof m_values);
 
 			m_min = 0.0f;
 			m_max = 0.0f;
@@ -497,7 +497,7 @@ namespace CasaEngine
 					ImGui::BeginChild("buttons");
 					if (ImGui::Button("Revert"))
 					{
-						
+
 					}
 					ImGui::EndChild();
 				}

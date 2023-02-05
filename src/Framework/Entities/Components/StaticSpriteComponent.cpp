@@ -22,9 +22,7 @@ namespace CasaEngine
 	}
 
 	StaticSpriteComponent::~StaticSpriteComponent()
-	{
-
-	}
+		= default;
 
 	std::string StaticSpriteComponent::GetSpriteID() const
 	{

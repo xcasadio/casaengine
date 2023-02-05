@@ -8,8 +8,7 @@
 namespace CasaEngine
 {
 	RenderTarget::RenderTarget()
-	{
-	}
+		= default;
 
 	RenderTarget& RenderTarget::operator=(const RenderTarget& rsh_)
 	{
@@ -18,8 +17,7 @@ namespace CasaEngine
 	}
 
 	RenderTarget::~RenderTarget()
-	{
-	}
+		= default;
 
 	Rectangle RenderTarget::GetArea() const
 	{

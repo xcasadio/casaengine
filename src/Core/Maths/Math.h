@@ -40,7 +40,7 @@ namespace CasaEngine
 	template<typename T>
 	bool IsZero(T val)
 	{
-		return -std::numeric_limits<T>::min < val && val < std::numeric_limits<T>::min;
+		return -std::numeric_limits<T>::min < val&& val < std::numeric_limits<T>::min;
 	}
 
 	/**
@@ -52,10 +52,10 @@ namespace CasaEngine
 	{
 		if (start < end)
 		{
-			return (val > start && val < end);
+			return val > start && val < end;
 		}
 
-		return (val < start && val > end);
+		return val < start&& val > end;
 	}
 
 	/**
@@ -175,7 +175,7 @@ namespace CasaEngine
 	template<class T>
 	T Sign(T a)
 	{
-		return (a < static_cast<T>(0)) ? static_cast<T>(-1) : static_cast<T>(1);
+		return a < static_cast<T>(0) ? static_cast<T>(-1) : static_cast<T>(1);
 	}
 
 	inline unsigned int NearestPowerOfTwo(unsigned int value)

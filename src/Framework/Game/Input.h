@@ -17,22 +17,22 @@ namespace CasaEngine
 
 		void Initialize();
 		void Update();
-		void OnEvent(sf::Event& event_);
+		void OnEvent(const sf::Event& event);
 
-		bool IsKeyDown(sf::Keyboard::Key KeyCode) const;
-		bool IsKeyJustDown(sf::Keyboard::Key KeyCode) const;
-		bool IsMouseButtonDown(sf::Mouse::Button Button) const;
-		bool IsMouseButtonJustDown(sf::Mouse::Button Button) const;
-		bool IsJoystickButtonDown(unsigned int JoyId, unsigned int Button) const;
-		bool IsJoystickButtonJustDown(unsigned int JoyId, unsigned int Button) const;
+		bool IsKeyDown(sf::Keyboard::Key keyCode) const;
+		bool IsKeyJustDown(sf::Keyboard::Key keyCode) const;
+		bool IsMouseButtonDown(sf::Mouse::Button button) const;
+		bool IsMouseButtonJustDown(sf::Mouse::Button button) const;
+		bool IsJoystickButtonDown(unsigned int joyId, unsigned int button) const;
+		bool IsJoystickButtonJustDown(unsigned int joyId, unsigned int button) const;
 
-		float GetJoystickAxis(unsigned int JoyId, sf::Joystick::Axis Axis) const;
-		float GetJoystickLeftStickX(unsigned int JoyId) const;
-		float GetJoystickLeftStickY(unsigned int JoyId) const;
-		float GetJoystickRightStickX(unsigned int JoyId) const;
-		float GetJoystickRightStickY(unsigned int JoyId) const;
-		float GetJoystickLeftTrigger(unsigned int JoyId) const;
-		float GetJoystickRightTrigger(unsigned int JoyId) const;
+		float GetJoystickAxis(unsigned int joyId, sf::Joystick::Axis axis) const;
+		float GetJoystickLeftStickX(unsigned int joyId) const;
+		float GetJoystickLeftStickY(unsigned int joyId) const;
+		float GetJoystickRightStickX(unsigned int joyId) const;
+		float GetJoystickRightStickY(unsigned int joyId) const;
+		float GetJoystickLeftTrigger(unsigned int joyId) const;
+		float GetJoystickRightTrigger(unsigned int joyId) const;
 
 		int GetDeltaMouseX() const;
 		int GetDeltaMouseY() const;

@@ -4,8 +4,7 @@
 namespace CasaEngine
 {
 	Animation2DData::Animation2DData()
-	{
-	}
+		= default;
 
 	Animation2DData::Animation2DData(const Animation2DData& rsh)
 	{
@@ -14,18 +13,17 @@ namespace CasaEngine
 
 	Animation2DData& Animation2DData::operator=(const Animation2DData& rsh)
 	{
-		for (auto& frame: rsh._frames)
-		{ 
+		for (auto& frame : rsh._frames)
+		{
 			_frames.push_back(frame);
 		}
-		
+
 		AnimationData::operator=(rsh);
 		return *this;
 	}
 
 	Animation2DData::~Animation2DData()
-	{
-	}
+		= default;
 
 	Animation2DData* Animation2DData::Copy() const
 	{

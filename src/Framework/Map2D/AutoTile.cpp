@@ -23,7 +23,7 @@ namespace CasaEngine
 	constexpr unsigned int mask_left_bottom = 1 << 5;
 	constexpr unsigned int mask_right_top = 1 << 6;
 	constexpr unsigned int mask_right_bottom = 1 << 7;
-	constexpr unsigned int mask_all = (mask_left | mask_right | mask_top | mask_bottom | mask_left_top | mask_left_bottom | mask_right_top | mask_right_bottom);
+	constexpr unsigned int mask_all = mask_left | mask_right | mask_top | mask_bottom | mask_left_top | mask_left_bottom | mask_right_top | mask_right_bottom;
 
 	AutoTile::AutoTile(TileData* tileData) :
 		_tiledMapLayerData(nullptr),
@@ -129,11 +129,11 @@ namespace CasaEngine
 	{
 		CA_ASSERT(tiles.size() == 6, "AutoTile::SetTileInfo() : size is not 6")
 
-		for (int i = 0; i < 6; ++i)
-		{
-			CA_ASSERT(tiles[i] != nullptr, "AutoTile::SetTileInfo() : ITile is null")
-			_tiles[i] = tiles[i];
-		}
+			for (int i = 0; i < 6; ++i)
+			{
+				CA_ASSERT(tiles[i] != nullptr, "AutoTile::SetTileInfo() : ITile is null")
+					_tiles[i] = tiles[i];
+			}
 
 		_tileSize = tileSize;
 		_mapSize = mapSize;
@@ -238,7 +238,7 @@ namespace CasaEngine
 			_drawingInfos[index++].SetInfo(4, x, y, z, Rectangle(width, 0, width, height));
 		}
 		else if (mask1 == (mask_left_bottom | mask_left)
-			|| (mask1 == mask_left))
+			|| mask1 == mask_left)
 		{
 			_drawingInfos[index++].SetInfo(4, x, y, z, Rectangle(width, height, width, height));
 		}

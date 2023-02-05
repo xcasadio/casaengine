@@ -141,7 +141,7 @@ namespace CasaEngine
 	//-----------------------------------------------------------------------------
 	inline void PhysicalEntity::SetHeading(Vector3 new_heading)
 	{
-		CA_ASSERT((new_heading.LengthSquared() - 1.0f) < 0.00001f, "PhysicalEntity::SetHeading() : don't use Vector::Zero");
+		CA_ASSERT(new_heading.LengthSquared() - 1.0f < 0.00001f, "PhysicalEntity::SetHeading() : don't use Vector::Zero");
 
 		m_vHeading = new_heading;
 

@@ -35,10 +35,14 @@ namespace CasaEngine
 	{
 		std::string Path = path_;
 
-		if (Path.empty() || (*Path.rbegin() == '\\') || (*Path.rbegin() == '/'))
+		if (Path.empty() || *Path.rbegin() == '\\' || *Path.rbegin() == '/')
+		{
 			m_Paths.insert(Path);
+		}
 		else
+		{
 			m_Paths.insert(Path + "\\");
+		}
 	}
 
 	IFile* MediaManager::FindMedia(const std::string& fileName_, bool isBinary_) const

@@ -17,7 +17,7 @@ namespace CasaEngine
 	//  
 	//  see description in header
 	//------------------------------------------------------------------------
-		void MessageDispatcher::Discharge(BaseEntity* pReceiver, const Telegram& telegram)
+	void MessageDispatcher::Discharge(BaseEntity* pReceiver, const Telegram& telegram)
 	{
 		if (!pReceiver->HandleMessage(telegram))
 		{
@@ -45,7 +45,7 @@ namespace CasaEngine
 
 		//for debugging
 		BaseEntity* pSender = Game::Instance().GetEntityManager().GetEntityFromId(sender);
-		const char* senderName = (pSender == nullptr ? "" : pSender->GetName());
+		const char* senderName = pSender == nullptr ? "" : pSender->GetName();
 
 		//make sure the receiver is valid
 		if (pReceiver == nullptr)
@@ -93,8 +93,8 @@ namespace CasaEngine
 		//remove all telegrams from the front of the queue that have gone
 		//past their sell by date
 		while (!PriorityQ.empty() &&
-			(PriorityQ.begin()->DispatchTime < CurrentTime) &&
-			(PriorityQ.begin()->DispatchTime > 0))
+			PriorityQ.begin()->DispatchTime < CurrentTime &&
+			PriorityQ.begin()->DispatchTime > 0)
 		{
 			//read the telegram from the front of the queue
 			const Telegram& telegram = *PriorityQ.begin();

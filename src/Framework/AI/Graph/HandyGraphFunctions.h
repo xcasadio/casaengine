@@ -48,7 +48,10 @@ namespace CasaEngine
 				int nodeY = row + i;
 
 				//skip if equal to this node
-				if (i == 0 && j == 0) continue;
+				if (i == 0 && j == 0)
+				{
+					continue;
+				}
 
 				//check to see if this is a valid neighbour
 				if (ValidNeighbour(nodeX, nodeY, NumCellsX, NumCellsY))
@@ -134,7 +137,10 @@ namespace CasaEngine
 	{
 
 		//just return if the graph has no nodes
-		if (graph.NumNodes() == 0) return;
+		if (graph.NumNodes() == 0)
+		{
+			return;
+		}
 
 		gdi->SetPenColor(color);
 
@@ -232,7 +238,7 @@ namespace CasaEngine
 				{
 					int nd = target;
 
-					while (nd != source && (spt[nd] != 0))
+					while (nd != source && spt[nd] != 0)
 					{
 						ShortestPaths[spt[nd]->From][target] = nd;
 
@@ -325,7 +331,10 @@ namespace CasaEngine
 			graph_type::ConstEdgeIterator EdgeItr(G, pN->Index());
 			for (const graph_type::EdgeType* pE = EdgeItr.begin(); !EdgeItr.end(); pE = EdgeItr.next())
 			{
-				if (pE->Cost() > greatest)greatest = pE->Cost();
+				if (pE->Cost() > greatest)
+				{
+					greatest = pE->Cost();
+				}
 			}
 		}
 

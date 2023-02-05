@@ -8,9 +8,7 @@
 namespace CasaEngine
 {
 	SpriteData::SpriteData()
-	{
-
-	}
+		= default;
 
 	SpriteData::SpriteData(const SpriteData& rsh)
 	{
@@ -75,7 +73,7 @@ namespace CasaEngine
 		return _positionInTexture == rsh._positionInTexture && _origin == rsh._origin && _assetFileName == rsh._assetFileName;
 	}
 
-//#ifdef EDITOR
+	//#ifdef EDITOR
 
 	void SpriteData::SetPositionInTexture(Rectangle val)
 	{

@@ -14,13 +14,8 @@ namespace CasaEngine
 	}
 
 	AnimationData& AnimationData::operator=(const AnimationData& rsh)
-	{
-		_animationType = rsh._animationType;
-		IAssetable::operator=(rsh);
-		return *this;
-	}
+		= default;
 
 	AnimationData::~AnimationData()
-	{
-	}
+		= default;
 }

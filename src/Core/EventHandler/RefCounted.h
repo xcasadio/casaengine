@@ -31,7 +31,7 @@ namespace CasaEngine
 		RefCounted(T* ob) :
 			d_object(ob),
 			// use system heap for this! no CEGUI_NEW_PT!
-			d_count((ob != nullptr) ? new unsigned int(1) : nullptr)
+			d_count(ob != nullptr ? new unsigned int(1) : nullptr)
 		{
 		}
 

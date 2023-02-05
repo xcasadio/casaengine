@@ -74,7 +74,7 @@ namespace CasaEngine
 		const CVector2<T>& operator +=(const CVector2<T>& v);
 		const CVector2<T>& operator -=(const CVector2<T>& v);
 		CVector2<T> operator /(const CVector2<T>& v) const;
-		CVector2<T> operator *(const CVector2<T> &v) const;
+		CVector2<T> operator *(const CVector2<T>& v) const;
 		CVector2<T> operator *(T t) const;
 		CVector2<T> operator /(T t) const;
 		const CVector2<T>& operator *=(T t);
@@ -171,7 +171,7 @@ namespace CasaEngine
 	template <class T>
 	T CVector2<T>::LengthSquared() const
 	{
-		return (x * x + y * y);
+		return x * x + y * y;
 	}
 
 	template <class T>
@@ -281,7 +281,7 @@ namespace CasaEngine
 	CVector2<T> CVector2<T>::Reflect(const CVector2<T>& vector, const CVector2<T>& normal)
 	{
 		float dot = Dot(vector, normal);
-		return vector - (2.0f * dot * normal);
+		return vector - 2.0f * dot * normal;
 	}
 
 	template <class T>
@@ -290,12 +290,12 @@ namespace CasaEngine
 		// This compare order is very important!!!
 		// We must follow HLSL behavior in the case user specified min value is bigger than max value.
 		float x = value1.x;
-		x = (x > max.x) ? max.x : x;
-		x = (x < min.x) ? min.x : x;
+		x = x > max.x ? max.x : x;
+		x = x < min.x ? min.x : x;
 
 		float y = value1.y;
-		y = (y > max.y) ? max.y : y;
-		y = (y < min.y) ? min.y : y;
+		y = y > max.y ? max.y : y;
+		y = y < min.y ? min.y : y;
 
 		return { x, y };
 	}
@@ -321,7 +321,7 @@ namespace CasaEngine
 	}
 
 	template <class T>
-	CVector2<T> CVector2<T>::Abs(const CVector2<T> &v)
+	CVector2<T> CVector2<T>::Abs(const CVector2<T>& v)
 	{
 		return CVector2<T>(std::fabsf(v.x), std::fabsf(v.y));
 	}
@@ -462,8 +462,8 @@ namespace CasaEngine
 	template <class T>
 	bool CVector2<T>::operator ==(const CVector2<T>& v) const
 	{
-		return ((std::abs(x - v.x) <= std::numeric_limits<T>::epsilon()) &&
-			(std::abs(y - v.y) <= std::numeric_limits<T>::epsilon()));
+		return std::abs(x - v.x) <= std::numeric_limits<T>::epsilon() &&
+			std::abs(y - v.y) <= std::numeric_limits<T>::epsilon();
 	}
 
 	template <class T>

@@ -22,7 +22,7 @@ namespace CasaEngine
 	}
 
 	BadDelete::BadDelete(const void* ptr, const std::string& file, int line, bool new_array) :
-		Exception(CStringBuilder("Bad des/allocation ")((new_array ? "new[] / delete" : "new / delete[]"))(" found")(". ")("Memory address : 0x")(ptr)("\nSource file : ")(file)(" (")(line)(")"))
+		Exception(CStringBuilder("Bad des/allocation ")(new_array ? "new[] / delete" : "new / delete[]")(" found")(". ")("Memory address : 0x")(ptr)("\nSource file : ")(file)(" (")(line)(")"))
 	{
 	}
 

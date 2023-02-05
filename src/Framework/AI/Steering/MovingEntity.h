@@ -69,7 +69,7 @@ namespace CasaEngine
 		}
 
 
-		virtual ~MovingEntity() {}
+		virtual ~MovingEntity() = default;
 
 		//accessors
 		Vector2  Velocity()const { return m_vVelocity; }
@@ -122,10 +122,16 @@ namespace CasaEngine
 		float angle = acos(dot);
 
 		//return true if the player is facing the target
-		if (angle < 0.00001f) return true;
+		if (angle < 0.00001f)
+		{
+			return true;
+		}
 
 		//clamp the amount to turn to the max turn rate
-		if (angle > m_fMaxTurnRate) angle = m_fMaxTurnRate;
+		if (angle > m_fMaxTurnRate)
+		{
+			angle = m_fMaxTurnRate;
+		}
 
 		//The next few lines use a rotation matrix to rotate the player's heading
 		//vector accordingly
@@ -152,7 +158,7 @@ namespace CasaEngine
 	//-----------------------------------------------------------------------------
 	inline void MovingEntity::SetHeading(Vector2 new_heading)
 	{
-		CA_ASSERT((new_heading.LengthSquared() - 1.0f) < 0.00001f,
+		CA_ASSERT(new_heading.LengthSquared() - 1.0f < 0.00001f,
 			"MovingEntity::SetHeading() : don't use a vector equal to Vector::Zero");
 
 		m_vHeading = new_heading;

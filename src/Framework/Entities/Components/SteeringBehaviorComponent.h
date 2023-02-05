@@ -17,38 +17,38 @@
 
 namespace CasaEngine
 {
-	const float WanderRad    = 1.2f; //the radius of the constraining circle for the wander behavior
-	const float WanderDist   = 2.0f; //distance the wander circle is projected in front of the agent
+	const float WanderRad = 1.2f; //the radius of the constraining circle for the wander behavior
+	const float WanderDist = 2.0f; //distance the wander circle is projected in front of the agent
 	const float WanderJitterPerSec = 80.0f; //the maximum amount of displacement along the circle each frame
-	const float WaypointSeekDist   = 20.f; //used in path following
+	const float WaypointSeekDist = 20.f; //used in path following
 
 	class CA_EXPORT SteeringBehaviorComponent :
 		public Component
 	{
 	public:
-		enum summing_method{WEIGHTED_AVERAGE, PRIORITIZED, DITHERED};
+		enum summing_method { WEIGHTED_AVERAGE, PRIORITIZED, DITHERED };
 
 	private:
 
 		enum behavior_type
 		{
-			none               = 0x00000,
-			seek               = 0x00002,
-			flee               = 0x00004,
-			arrive             = 0x00008,
-			wander             = 0x00010,
-			cohesion           = 0x00020,
-			separation         = 0x00040,
-			allignment         = 0x00080,
+			none = 0x00000,
+			seek = 0x00002,
+			flee = 0x00004,
+			arrive = 0x00008,
+			wander = 0x00010,
+			cohesion = 0x00020,
+			separation = 0x00040,
+			allignment = 0x00080,
 			obstacle_avoidance = 0x00100,
-			wall_avoidance     = 0x00200,
-			follow_path        = 0x00400,
-			pursuit            = 0x00800,
-			evade              = 0x01000,
-			interpose          = 0x02000,
-			hide               = 0x04000,
-			flock              = 0x08000,
-			offset_pursuit     = 0x10000,
+			wall_avoidance = 0x00200,
+			follow_path = 0x00400,
+			pursuit = 0x00800,
+			evade = 0x01000,
+			interpose = 0x02000,
+			hide = 0x04000,
+			flock = 0x08000,
+			offset_pursuit = 0x10000,
 		};
 
 	private:
@@ -64,8 +64,8 @@ namespace CasaEngine
 		Vector2    m_vSteeringForce;
 
 		//these can be used to keep track of friends, pursuers, or prey
-		BaseEntity*     m_pTargetAgent1;
-		BaseEntity*     m_pTargetAgent2;
+		BaseEntity* m_pTargetAgent1;
+		BaseEntity* m_pTargetAgent2;
 
 		//the current target
 		Vector2    m_vTarget;
@@ -77,7 +77,7 @@ namespace CasaEngine
 
 		//the current position on the wander circle the agent is
 		//attempting to steer towards
-		Vector2     m_vWanderTarget; 
+		Vector2     m_vWanderTarget;
 
 		//explained above
 		float        m_fWanderJitter;
@@ -110,7 +110,7 @@ namespace CasaEngine
 		float        m_fWallDetectionFeelerLength;
 
 		//how far the agent can 'see'
-		float        m_fViewDistance;		
+		float        m_fViewDistance;
 
 		//the distance (squared) a BaseEntity has to be from a path waypoint before
 		//it starts seeking to the next waypoint
@@ -139,12 +139,12 @@ namespace CasaEngine
 		int           m_iFlags;
 
 		//pointer to any current path
-		Path*          m_pPath;
+		Path* m_pPath;
 
 
 		//Arrive makes use of these to determine how quickly a BaseEntity
 		//should decelerate to its target
-		enum Deceleration{SLOW = 3, NORMAL = 2, FAST = 1};
+		enum Deceleration { SLOW = 3, NORMAL = 2, FAST = 1 };
 
 		//default
 		Deceleration m_Deceleration;
@@ -157,7 +157,7 @@ namespace CasaEngine
 
 		//this is used to store any valid neighbors when an agent searches
 		//its neighboring space
-		std::vector<BaseEntity *> m_Neighbors;
+		std::vector<BaseEntity*> m_Neighbors;
 
 	public:
 		SteeringBehaviorComponent(BaseEntity* entity);
@@ -190,166 +190,241 @@ namespace CasaEngine
 		//calculated
 		void      RenderAids();
 
-		void      SetTarget(const Vector2 t){m_vTarget = t;}
+		void      SetTarget(const Vector2 t) { m_vTarget = t; }
 
-		void      SetTargetAgent1(BaseEntity* Agent){m_pTargetAgent1 = Agent;}
-		void      SetTargetAgent2(BaseEntity* Agent){m_pTargetAgent2 = Agent;}
+		void      SetTargetAgent1(BaseEntity* Agent) { m_pTargetAgent1 = Agent; }
+		void      SetTargetAgent2(BaseEntity* Agent) { m_pTargetAgent2 = Agent; }
 
-		void      SetOffset(const Vector2 offset){m_vOffset = offset;}
-		Vector2  GetOffset()const{return m_vOffset;}
+		void      SetOffset(const Vector2 offset) { m_vOffset = offset; }
+		Vector2  GetOffset()const { return m_vOffset; }
 
-		void      SetPath(std::list<Vector2> new_path){m_pPath->Set(new_path);}
+		void      SetPath(std::list<Vector2> new_path) { m_pPath->Set(new_path); }
 		/*void      CreateRandomPath(int num_waypoints, int mx, int my, int cx, int cy)const
 			{m_pPath->CreateRandomPath(num_waypoints, mx, my, cx, cy);}*/
 
-		Vector2 Force()const{return m_vSteeringForce;}
+		Vector2 Force()const { return m_vSteeringForce; }
 
-		void      ToggleSpacePartitioningOnOff(){m_bCellSpaceOn = !m_bCellSpaceOn;}
-		bool      isSpacePartitioningOn()const{return m_bCellSpaceOn;}
+		void      ToggleSpacePartitioningOnOff() { m_bCellSpaceOn = !m_bCellSpaceOn; }
+		bool      isSpacePartitioningOn()const { return m_bCellSpaceOn; }
 
-		void      SetSummingMethod(summing_method sm){m_SummingMethod = sm;}
+		void      SetSummingMethod(summing_method sm) { m_SummingMethod = sm; }
 
 
-		void FleeOn(){m_iFlags |= flee;}
-		void SeekOn(){m_iFlags |= seek;}
-		void ArriveOn(){m_iFlags |= arrive;}
-		void WanderOn(){m_iFlags |= wander;}
-		void PursuitOn(BaseEntity* v){m_iFlags |= pursuit; m_pTargetAgent1 = v;}
-		void EvadeOn(BaseEntity* v){m_iFlags |= evade; m_pTargetAgent1 = v;}
-		void CohesionOn(){m_iFlags |= cohesion;}
-		void SeparationOn(){m_iFlags |= separation;}
-		void AlignmentOn(){m_iFlags |= allignment;}
-		void ObstacleAvoidanceOn(){m_iFlags |= obstacle_avoidance;}
-		void WallAvoidanceOn(){m_iFlags |= wall_avoidance;}
-		void FollowPathOn(){m_iFlags |= follow_path;}
-		void InterposeOn(BaseEntity* v1, BaseEntity* v2){m_iFlags |= interpose; m_pTargetAgent1 = v1; m_pTargetAgent2 = v2;}
-		void HideOn(BaseEntity* v){m_iFlags |= hide; m_pTargetAgent1 = v;}
-		void OffsetPursuitOn(BaseEntity* v1, const Vector2 offset){m_iFlags |= offset_pursuit; m_vOffset = offset; m_pTargetAgent1 = v1;}  
-		void FlockingOn(){CohesionOn(); AlignmentOn(); SeparationOn(); WanderOn();}
+		void FleeOn() { m_iFlags |= flee; }
+		void SeekOn() { m_iFlags |= seek; }
+		void ArriveOn() { m_iFlags |= arrive; }
+		void WanderOn() { m_iFlags |= wander; }
+		void PursuitOn(BaseEntity* v) { m_iFlags |= pursuit; m_pTargetAgent1 = v; }
+		void EvadeOn(BaseEntity* v) { m_iFlags |= evade; m_pTargetAgent1 = v; }
+		void CohesionOn() { m_iFlags |= cohesion; }
+		void SeparationOn() { m_iFlags |= separation; }
+		void AlignmentOn() { m_iFlags |= allignment; }
+		void ObstacleAvoidanceOn() { m_iFlags |= obstacle_avoidance; }
+		void WallAvoidanceOn() { m_iFlags |= wall_avoidance; }
+		void FollowPathOn() { m_iFlags |= follow_path; }
+		void InterposeOn(BaseEntity* v1, BaseEntity* v2) { m_iFlags |= interpose; m_pTargetAgent1 = v1; m_pTargetAgent2 = v2; }
+		void HideOn(BaseEntity* v) { m_iFlags |= hide; m_pTargetAgent1 = v; }
+		void OffsetPursuitOn(BaseEntity* v1, const Vector2 offset) { m_iFlags |= offset_pursuit; m_vOffset = offset; m_pTargetAgent1 = v1; }
+		void FlockingOn() { CohesionOn(); AlignmentOn(); SeparationOn(); WanderOn(); }
 
-		void FleeOff()  {if(On(flee))   m_iFlags ^=flee;}
-		void SeekOff()  {if(On(seek))   m_iFlags ^=seek;}
-		void ArriveOff(){if(On(arrive)) m_iFlags ^=arrive;}
-		void WanderOff(){if(On(wander)) m_iFlags ^=wander;}
-		void PursuitOff(){if(On(pursuit)) m_iFlags ^=pursuit;}
-		void EvadeOff(){if(On(evade)) m_iFlags ^=evade;}
-		void CohesionOff(){if(On(cohesion)) m_iFlags ^=cohesion;}
-		void SeparationOff(){if(On(separation)) m_iFlags ^=separation;}
-		void AlignmentOff(){if(On(allignment)) m_iFlags ^=allignment;}
-		void ObstacleAvoidanceOff(){if(On(obstacle_avoidance)) m_iFlags ^=obstacle_avoidance;}
-		void WallAvoidanceOff(){if(On(wall_avoidance)) m_iFlags ^=wall_avoidance;}
-		void FollowPathOff(){if(On(follow_path)) m_iFlags ^=follow_path;}
-		void InterposeOff(){if(On(interpose)) m_iFlags ^=interpose;}
-		void HideOff(){if(On(hide)) m_iFlags ^=hide;}
-		void OffsetPursuitOff(){if(On(offset_pursuit)) m_iFlags ^=offset_pursuit;}
-		void FlockingOff(){CohesionOff(); AlignmentOff(); SeparationOff(); WanderOff();}
+		void FleeOff() {
+			if (On(flee))
+			{
+				m_iFlags ^= flee;
+			}
+		}
+		void SeekOff() {
+			if (On(seek))
+			{
+				m_iFlags ^= seek;
+			}
+		}
+		void ArriveOff() {
+			if (On(arrive))
+			{
+				m_iFlags ^= arrive;
+			}
+		}
+		void WanderOff() {
+			if (On(wander))
+			{
+				m_iFlags ^= wander;
+			}
+		}
+		void PursuitOff() {
+			if (On(pursuit))
+			{
+				m_iFlags ^= pursuit;
+			}
+		}
+		void EvadeOff() {
+			if (On(evade))
+			{
+				m_iFlags ^= evade;
+			}
+		}
+		void CohesionOff() {
+			if (On(cohesion))
+			{
+				m_iFlags ^= cohesion;
+			}
+		}
+		void SeparationOff() {
+			if (On(separation))
+			{
+				m_iFlags ^= separation;
+			}
+		}
+		void AlignmentOff() {
+			if (On(allignment))
+			{
+				m_iFlags ^= allignment;
+			}
+		}
+		void ObstacleAvoidanceOff() {
+			if (On(obstacle_avoidance))
+			{
+				m_iFlags ^= obstacle_avoidance;
+			}
+		}
+		void WallAvoidanceOff() {
+			if (On(wall_avoidance))
+			{
+				m_iFlags ^= wall_avoidance;
+			}
+		}
+		void FollowPathOff() {
+			if (On(follow_path))
+			{
+				m_iFlags ^= follow_path;
+			}
+		}
+		void InterposeOff() {
+			if (On(interpose))
+			{
+				m_iFlags ^= interpose;
+			}
+		}
+		void HideOff() {
+			if (On(hide))
+			{
+				m_iFlags ^= hide;
+			}
+		}
+		void OffsetPursuitOff() {
+			if (On(offset_pursuit))
+			{
+				m_iFlags ^= offset_pursuit;
+			}
+		}
+		void FlockingOff() { CohesionOff(); AlignmentOff(); SeparationOff(); WanderOff(); }
 
-		bool isFleeOn(){return On(flee);}
-		bool isSeekOn(){return On(seek);}
-		bool isArriveOn(){return On(arrive);}
-		bool isWanderOn(){return On(wander);}
-		bool isPursuitOn(){return On(pursuit);}
-		bool isEvadeOn(){return On(evade);}
-		bool isCohesionOn(){return On(cohesion);}
-		bool isSeparationOn(){return On(separation);}
-		bool isAlignmentOn(){return On(allignment);}
-		bool isObstacleAvoidanceOn(){return On(obstacle_avoidance);}
-		bool isWallAvoidanceOn(){return On(wall_avoidance);}
-		bool isFollowPathOn(){return On(follow_path);}
-		bool isInterposeOn(){return On(interpose);}
-		bool isHideOn(){return On(hide);}
-		bool isOffsetPursuitOn(){return On(offset_pursuit);}
+		bool isFleeOn() { return On(flee); }
+		bool isSeekOn() { return On(seek); }
+		bool isArriveOn() { return On(arrive); }
+		bool isWanderOn() { return On(wander); }
+		bool isPursuitOn() { return On(pursuit); }
+		bool isEvadeOn() { return On(evade); }
+		bool isCohesionOn() { return On(cohesion); }
+		bool isSeparationOn() { return On(separation); }
+		bool isAlignmentOn() { return On(allignment); }
+		bool isObstacleAvoidanceOn() { return On(obstacle_avoidance); }
+		bool isWallAvoidanceOn() { return On(wall_avoidance); }
+		bool isFollowPathOn() { return On(follow_path); }
+		bool isInterposeOn() { return On(interpose); }
+		bool isHideOn() { return On(hide); }
+		bool isOffsetPursuitOn() { return On(offset_pursuit); }
 
 		//=================== settings ======================
 
 		// GET
-		float DBoxLength()const{return m_fDBoxLength;}
-		const std::vector<Vector2>& GetFeelers()const{return m_Feelers;}
+		float DBoxLength()const { return m_fDBoxLength; }
+		const std::vector<Vector2>& GetFeelers()const { return m_Feelers; }
 
-		float WanderJitter()const{return m_fWanderJitter;}
-		float WanderDistance()const{return m_fWanderDistance;}
-		float WanderRadius()const{return m_fWanderRadius;}
+		float WanderJitter()const { return m_fWanderJitter; }
+		float WanderDistance()const { return m_fWanderDistance; }
+		float WanderRadius()const { return m_fWanderRadius; }
 
-		float SeparationWeight()const{return m_fWeightSeparation;}
-		float AlignmentWeight()const{return m_fWeightAlignment;}
-		float CohesionWeight()const{return m_fWeightCohesion;}
+		float SeparationWeight()const { return m_fWeightSeparation; }
+		float AlignmentWeight()const { return m_fWeightAlignment; }
+		float CohesionWeight()const { return m_fWeightCohesion; }
 
-		float WanderWeight()const{return m_fWeightWander;}
-		float ObstacleAvoidanceWeight()const{return m_fWeightObstacleAvoidance;}
-		float WallAvoidanceWeight()const{return m_fWeightWallAvoidance;}
-		float SeekWeight()const{return m_fWeightSeek;}
-		float FleeWeight()const{return m_fWeightFlee;}
-		float ArriveWeight()const{return m_fWeightArrive;}
-		float PursuitWeight()const{return m_fWeightPursuit;}
-		float OffsetPursuitWeight()const{return m_fWeightOffsetPursuit;}
-		float InterposeWeight()const{return m_fWeightInterpose;}
-		float HideWeight()const{return m_fWeightHide;}
-		float EvadeWeight()const{return m_fWeightEvade;}
-		float FollowPathWeight()const{return m_fWeightFollowPath;}
+		float WanderWeight()const { return m_fWeightWander; }
+		float ObstacleAvoidanceWeight()const { return m_fWeightObstacleAvoidance; }
+		float WallAvoidanceWeight()const { return m_fWeightWallAvoidance; }
+		float SeekWeight()const { return m_fWeightSeek; }
+		float FleeWeight()const { return m_fWeightFlee; }
+		float ArriveWeight()const { return m_fWeightArrive; }
+		float PursuitWeight()const { return m_fWeightPursuit; }
+		float OffsetPursuitWeight()const { return m_fWeightOffsetPursuit; }
+		float InterposeWeight()const { return m_fWeightInterpose; }
+		float HideWeight()const { return m_fWeightHide; }
+		float EvadeWeight()const { return m_fWeightEvade; }
+		float FollowPathWeight()const { return m_fWeightFollowPath; }
 
-		float PrWallAvoidance()const{return m_PrWallAvoidance;}
-		float PrObstacleAvoidance()const{return m_PrObstacleAvoidance;}
-		float PrSeparation()const{return m_PrSeparation;}
-		float PrAlignment()const{return m_PrAlignment;}
-		float PrCohesion()const{return m_PrCohesion;}
-		float PrWander()const{return m_PrWander;}
-		float PrSeek()const{return m_PrSeek;}
-		float PrFlee()const{return m_PrFlee;}
-		float PrEvade()const{return m_PrEvade;}
-		float PrHide()const{return m_PrHide;}
-		float PrArrive()const{return m_PrArrive;}
+		float PrWallAvoidance()const { return m_PrWallAvoidance; }
+		float PrObstacleAvoidance()const { return m_PrObstacleAvoidance; }
+		float PrSeparation()const { return m_PrSeparation; }
+		float PrAlignment()const { return m_PrAlignment; }
+		float PrCohesion()const { return m_PrCohesion; }
+		float PrWander()const { return m_PrWander; }
+		float PrSeek()const { return m_PrSeek; }
+		float PrFlee()const { return m_PrFlee; }
+		float PrEvade()const { return m_PrEvade; }
+		float PrHide()const { return m_PrHide; }
+		float PrArrive()const { return m_PrArrive; }
 
 		// SET
-		void DBoxLength(float val_){m_fDBoxLength = val_;}
+		void DBoxLength(float val_) { m_fDBoxLength = val_; }
 
-		void WallDetectionFeelerLength(float val_){m_fWallDetectionFeelerLength = val_;}
-		void ViewDistance(float val_){m_fViewDistance = val_;}
-		void WaypointSeekDist(float val_){m_fWaypointSeekDistSq = val_ * val_;}
-		
-		void WanderJitter(float val_){m_fWanderJitter = val_;}
-		void WanderDistance(float val_){m_fWanderDistance = val_;}
-		void WanderRadius(float val_){m_fWanderRadius = val_;}
-		
-		void SeparationWeight(float val_){m_fWeightSeparation = val_;}
-		void AlignmentWeight(float val_){m_fWeightAlignment = val_;}
-		void CohesionWeight(float val_){m_fWeightCohesion = val_;}
-		
-		void WanderWeight(float val_){m_fWeightWander = val_;}
-		void ObstacleAvoidanceWeight(float val_){m_fWeightObstacleAvoidance = val_;}
-		void WallAvoidanceWeight(float val_){m_fWeightWallAvoidance = val_;}
-		void SeekWeight(float val_){m_fWeightSeek = val_;}
-		void FleeWeight(float val_){m_fWeightFlee = val_;}
-		void ArriveWeight(float val_){m_fWeightArrive = val_;}
-		void PursuitWeight(float val_){m_fWeightPursuit = val_;}
-		void OffsetPursuitWeight(float val_){m_fWeightOffsetPursuit = val_;}
-		void InterposeWeight(float val_){m_fWeightInterpose = val_;}
-		void HideWeight(float val_){m_fWeightHide = val_;}
-		void EvadeWeight(float val_){m_fWeightEvade = val_;}
-		void FollowPathWeight(float val_){m_fWeightFollowPath = val_;}
-		
-		void PrWallAvoidance(float val_){m_PrWallAvoidance = val_;}
-		void PrObstacleAvoidance(float val_){m_PrObstacleAvoidance = val_;}
-		void PrSeparation(float val_){m_PrSeparation = val_;}
-		void PrAlignment(float val_){m_PrAlignment = val_;}
-		void PrCohesion(float val_){m_PrCohesion = val_;}
-		void PrWander(float val_){m_PrWander = val_;}
-		void PrSeek(float val_){m_PrSeek = val_;}
-		void PrFlee(float val_){m_PrFlee = val_;}
-		void PrEvade(float val_){m_PrEvade = val_;}
-		void PrHide(float val_){m_PrHide = val_;}
-		void PrArrive(float val_){m_PrArrive = val_;}
+		void WallDetectionFeelerLength(float val_) { m_fWallDetectionFeelerLength = val_; }
+		void ViewDistance(float val_) { m_fViewDistance = val_; }
+		void WaypointSeekDist(float val_) { m_fWaypointSeekDistSq = val_ * val_; }
+
+		void WanderJitter(float val_) { m_fWanderJitter = val_; }
+		void WanderDistance(float val_) { m_fWanderDistance = val_; }
+		void WanderRadius(float val_) { m_fWanderRadius = val_; }
+
+		void SeparationWeight(float val_) { m_fWeightSeparation = val_; }
+		void AlignmentWeight(float val_) { m_fWeightAlignment = val_; }
+		void CohesionWeight(float val_) { m_fWeightCohesion = val_; }
+
+		void WanderWeight(float val_) { m_fWeightWander = val_; }
+		void ObstacleAvoidanceWeight(float val_) { m_fWeightObstacleAvoidance = val_; }
+		void WallAvoidanceWeight(float val_) { m_fWeightWallAvoidance = val_; }
+		void SeekWeight(float val_) { m_fWeightSeek = val_; }
+		void FleeWeight(float val_) { m_fWeightFlee = val_; }
+		void ArriveWeight(float val_) { m_fWeightArrive = val_; }
+		void PursuitWeight(float val_) { m_fWeightPursuit = val_; }
+		void OffsetPursuitWeight(float val_) { m_fWeightOffsetPursuit = val_; }
+		void InterposeWeight(float val_) { m_fWeightInterpose = val_; }
+		void HideWeight(float val_) { m_fWeightHide = val_; }
+		void EvadeWeight(float val_) { m_fWeightEvade = val_; }
+		void FollowPathWeight(float val_) { m_fWeightFollowPath = val_; }
+
+		void PrWallAvoidance(float val_) { m_PrWallAvoidance = val_; }
+		void PrObstacleAvoidance(float val_) { m_PrObstacleAvoidance = val_; }
+		void PrSeparation(float val_) { m_PrSeparation = val_; }
+		void PrAlignment(float val_) { m_PrAlignment = val_; }
+		void PrCohesion(float val_) { m_PrCohesion = val_; }
+		void PrWander(float val_) { m_PrWander = val_; }
+		void PrSeek(float val_) { m_PrSeek = val_; }
+		void PrFlee(float val_) { m_PrFlee = val_; }
+		void PrEvade(float val_) { m_PrEvade = val_; }
+		void PrHide(float val_) { m_PrHide = val_; }
+		void PrArrive(float val_) { m_PrArrive = val_; }
 
 		//=========================================
 
 		//entities should be able to read/write their data to a stream
-		void Write(std::ostream&  os)const;
-		void Read (std::ifstream& is);
+		void Write(std::ostream& os)const;
+		void Read(std::ifstream& is);
 
 	private:
 		//this function tests if a specific bit of m_iFlags is set
-		bool      On(behavior_type bt){return (m_iFlags & bt) == bt;}
+		bool      On(behavior_type bt) { return (m_iFlags & bt) == bt; }
 
-		bool      AccumulateForce(Vector2 &sf, Vector2 ForceToAdd);
+		bool      AccumulateForce(Vector2& sf, Vector2 ForceToAdd);
 
 		//creates the antenna utilized by the wall avoidance behavior
 		void      CreateFeelers();
@@ -360,7 +435,7 @@ namespace CasaEngine
 
 			.......................................................*/
 
-		//this behavior moves the agent towards a target position
+			//this behavior moves the agent towards a target position
 		Vector2 Seek(Vector2 TargetPos);
 
 		//this behavior returns a vector that moves the agent away
@@ -370,7 +445,7 @@ namespace CasaEngine
 		//this behavior is similar to seek but it attempts to arrive 
 		//at the target position with a zero velocity
 		Vector2 Arrive(Vector2     TargetPos,
-						Deceleration deceleration);
+			Deceleration deceleration);
 
 		//this behavior predicts where an agent will be in time T and seeks
 		//towards that point to intercept it.
@@ -392,9 +467,9 @@ namespace CasaEngine
 
 		//this returns a steering force which will keep the agent away from any
 		//walls it may encounter
-		Vector2 WallAvoidance(const std::vector<Line2D> &walls);
+		Vector2 WallAvoidance(const std::vector<Line2D>& walls);
 
-  
+
 		//given a series of Vector2Ds, this method produces a force that will
 		//move the agent along the waypoints in order
 		Vector2 FollowPath();
@@ -410,17 +485,17 @@ namespace CasaEngine
 
 		// -- Group Behaviors -- //
 
-		Vector2 Cohesion(const std::vector<BaseEntity*> &agents);
-  
-		Vector2 Separation(const std::vector<BaseEntity*> &agents);
+		Vector2 Cohesion(const std::vector<BaseEntity*>& agents);
 
-		Vector2 Alignment(const std::vector<BaseEntity*> &agents);
+		Vector2 Separation(const std::vector<BaseEntity*>& agents);
+
+		Vector2 Alignment(const std::vector<BaseEntity*>& agents);
 
 		//the following three are the same as above but they use cell-space
 		//partitioning to find the neighbors
-		Vector2 CohesionPlus(const std::vector<BaseEntity*> &agents);
-		Vector2 SeparationPlus(const std::vector<BaseEntity*> &agents);
-		Vector2 AlignmentPlus(const std::vector<BaseEntity*> &agents);
+		Vector2 CohesionPlus(const std::vector<BaseEntity*>& agents);
+		Vector2 SeparationPlus(const std::vector<BaseEntity*>& agents);
+		Vector2 AlignmentPlus(const std::vector<BaseEntity*>& agents);
 
 		/* .......................................................
 
@@ -428,7 +503,7 @@ namespace CasaEngine
 
 			.......................................................*/
 
-		//calculates and sums the steering forces from any active behaviors
+			//calculates and sums the steering forces from any active behaviors
 		Vector2 CalculateWeightedSum(float elapsedTime_);
 		Vector2 CalculatePrioritized(float elapsedTime_);
 		Vector2 CalculateDithered(float elapsedTime_);
@@ -436,7 +511,7 @@ namespace CasaEngine
 		//helper method for Hide. Returns a position located on the other
 		//side of an obstacle to the pursuer
 		Vector2 GetHidingPosition(const Vector2& posOb,
-									const float     radiusOb,
-									const Vector2& posHunter);
+			const float     radiusOb,
+			const Vector2& posHunter);
 	}; // class SteeringBehaviourComponent
 }

@@ -17,68 +17,64 @@
 namespace CasaEngine
 {
 
-class CA_EXPORT FuzzySet_Triangle : 
-	public FuzzySet
-{
-private:
+	class CA_EXPORT FuzzySet_Triangle :
+		public FuzzySet
+	{
+	private:
 
-  //the values that define the shape of this FLV
-  float   m_fMidPoint;
-  float   m_fLeftOffset;
-  float   m_fRightOffset;
+		//the values that define the shape of this FLV
+		float   m_fMidPoint;
+		float   m_fLeftOffset;
+		float   m_fRightOffset;
 
-public:
-  
-  FuzzySet_Triangle(std::string name,
-                float mid,
-                float lft,
-                float rgt):FuzzySet(name),
-                           m_fMidPoint(mid),
-                           m_fLeftOffset(lft),
-                           m_fRightOffset(rgt)
-  {}
+	public:
 
-  //this method calculates the degree of membership for a particular value
-  inline float CalculateDOM(float val);
+		FuzzySet_Triangle(std::string name,
+			float mid,
+			float lft,
+			float rgt) :FuzzySet(name),
+			m_fMidPoint(mid),
+			m_fLeftOffset(lft),
+			m_fRightOffset(rgt)
+		{}
 
-  //for a triangular set this is the range value at the midpoint
-  float RepresentativeValue()const{return m_fMidPoint;}
-  
-};
+		//this method calculates the degree of membership for a particular value
+		inline float CalculateDOM(float val);
 
-///////////////////////////////////////////////////////////////////////////////
+		//for a triangular set this is the range value at the midpoint
+		float RepresentativeValue()const { return m_fMidPoint; }
 
-inline
-float FuzzySet_Triangle::CalculateDOM(float val)
-{
-  //test for the case where the triangle's left or right offsets are zero
-  if ( (isEqual(m_fRightOffset, 0.0) && (isEqual(m_fMidPoint, val))) ||
-       (isEqual(m_fLeftOffset, 0.0) && (isEqual(m_fMidPoint, val))) )
-  {
-    return 1.0;
-  }
+	};
 
-  //find DOM if left of center
-  if ( (val <= m_fMidPoint) && (val > (m_fMidPoint - m_fLeftOffset)) )
-  {
-    float grad = 1.0 / m_fLeftOffset;
+	///////////////////////////////////////////////////////////////////////////////
 
-    return grad * (val - (m_fMidPoint - m_fLeftOffset));
-  }
-  //find DOM if right of center
-  else if ( (val > m_fMidPoint) && (val < (m_fMidPoint + m_fRightOffset)) )
-  {
-    float grad = 1.0 / -m_fRightOffset;
+	inline
+		float FuzzySet_Triangle::CalculateDOM(float val)
+	{
+		//test for the case where the triangle's left or right offsets are zero
+		if (isEqual(m_fRightOffset, 0.0) && isEqual(m_fMidPoint, val) ||
+			isEqual(m_fLeftOffset, 0.0) && isEqual(m_fMidPoint, val))
+		{
+			return 1.0;
+		}
 
-    return grad * (val - m_fMidPoint) + 1.0;
-  }
-  //out of range of this FLV, return zero
-  else
-  {
-    return 0.0;
-  }
+		//find DOM if left of center
+		if (val <= m_fMidPoint && val > m_fMidPoint - m_fLeftOffset)
+		{
+			float grad = 1.0 / m_fLeftOffset;
 
-}
+			return grad * (val - (m_fMidPoint - m_fLeftOffset));
+		}
+		//find DOM if right of center
+		if (val > m_fMidPoint && val < m_fMidPoint + m_fRightOffset)
+		{
+			float grad = 1.0 / -m_fRightOffset;
+
+			return grad * (val - m_fMidPoint) + 1.0;
+		}
+		//out of range of this FLV, return zero
+		return 0.0;
+	}
 
 }
 

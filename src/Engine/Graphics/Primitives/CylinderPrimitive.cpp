@@ -91,6 +91,5 @@ namespace CasaEngine
 	}
 
 	CylinderPrimitive::~CylinderPrimitive()
-	{
-	}
+		= default;
 }

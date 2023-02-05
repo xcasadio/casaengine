@@ -32,8 +32,7 @@ namespace CasaEngine
 	}
 
 	Character2DBase::~Character2DBase()
-	{
-	}
+		= default;
 
 	void Character2DBase::Initialize()
 	{

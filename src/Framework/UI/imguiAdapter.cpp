@@ -118,9 +118,9 @@ namespace CasaEngine
 		}
 	}
 
-	void ImGuiAdapter::DisplayUI4Material(Material &mat_, int x_, int y_, int width_, int height_, bool enabled_)
+	void ImGuiAdapter::DisplayUI4Material(Material& mat_, int x_, int y_, int width_, int height_, bool enabled_)
 	{
-		int id = (int)(&mat_);
+		int id = (int)&mat_;
 
 		if (m_Vars.find(id) == m_Vars.end())
 		{

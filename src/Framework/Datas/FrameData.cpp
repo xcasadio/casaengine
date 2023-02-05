@@ -3,8 +3,7 @@
 namespace CasaEngine
 {
 	FrameData::FrameData()
-	{
-	}
+		= default;
 
 	FrameData::FrameData(const FrameData& rsh)
 	{
@@ -12,15 +11,8 @@ namespace CasaEngine
 	}
 
 	FrameData& FrameData::operator=(const FrameData& rsh)
-	{
-		_duration = rsh._duration;
-		_spriteId = rsh._spriteId;
-		IAssetable::operator=(rsh);
-
-		return *this;
-	}
+		= default;
 
 	FrameData::~FrameData()
-	{
-	}
+		= default;
 }
