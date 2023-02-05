@@ -1,4 +1,5 @@
 #pragma once
+
 #include "SystemPlatform.h"
 
 #if CA_PLATFORM_ANDROID
@@ -27,5 +28,5 @@ namespace CasaEngine
 		Fatal,
 		None
 #endif
-	};
+};
 }

@@ -17,7 +17,7 @@ public:
 	~Character() override;
 
 	void Initialize() override;
-	void Update(const GameTime& gameTime_) override;
+	void Update(const GameTime& gameTime) override;
 	void Draw() override;
 
 protected:

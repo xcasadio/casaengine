@@ -941,9 +941,6 @@
     <ClCompile Include="..\..\src\Core\IO\IOManager.cpp">
       <Filter>Core\IO</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Core\Log\Logger.cpp">
-      <Filter>Core\Log</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Core\Log\LoggerDebug.cpp">
       <Filter>Core\Log</Filter>
     </ClCompile>

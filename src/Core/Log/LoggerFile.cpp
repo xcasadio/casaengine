@@ -19,15 +19,10 @@ namespace CasaEngine
 		{
 			throw LoadingFailed(filename, "LoggerFile()");
 		}
-
-		_file << "CasaEngine v" << CA_PRODUCT_VERSION << "." << CA_MAJOR_VERSION << "." << CA_MINOR_VERSION;
-		_file << " - Event log - " << DateTime::Now().GetCurrentDate() << " " << DateTime::Now().GetCurrentTime() <<
-			std::endl;
 	}
 
 	LoggerFile::~LoggerFile()
 	{
-		_file << "CasaEngine closed at " << DateTime::Now().GetCurrentTime() << std::endl;
 		_file.close();
 	}
 
@@ -66,6 +61,6 @@ namespace CasaEngine
 	{
 		CA_ASSERT(_file.is_open(), "LoggerFile::Write() : file is not open")
 
-		_file << message << std::flush;
+			_file << message << std::flush;
 	}
 }

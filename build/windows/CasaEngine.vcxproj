@@ -442,7 +442,6 @@
     <ClCompile Include="..\..\src\Core\IO\IFile.cpp" />
     <ClCompile Include="..\..\src\Core\IO\IOManager.cpp" />
     <ClCompile Include="..\..\src\Core\Log\LogManager.cpp" />
-    <ClCompile Include="..\..\src\Core\Log\Logger.cpp" />
     <ClCompile Include="..\..\src\Core\Log\LoggerDebug.cpp" />
     <ClCompile Include="..\..\src\Core\Log\LoggerFile.cpp" />
     <ClCompile Include="..\..\src\Core\Maths\2D\Geometry.cpp" />

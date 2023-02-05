@@ -1,14 +1,14 @@
-#include <windows.h>
+#include <Windows.h>
 
 #include <Log/LoggerDebug.h>
 
 namespace CasaEngine
 {
-	void CLoggerDebug::Write(TLogVerbosity verbose_, const std::string& Message)
+	void LoggerDebug::Write(const TLogVerbosity verbose, const std::string& message)
 	{
-		std::string str = "";
+		std::string str;
 
-		switch (verbose_)
+		switch (verbose)
 		{
 		case Trace:
 			str = "[TRACE] - ";
@@ -22,14 +22,16 @@ namespace CasaEngine
 		case Warning:
 			str = "[WARNING] - ";
 			break;
+		case Fatal:
 		case Error:
 			str = "[ERROR] - ";
 			break;
+		case None: break;
 		default:
-			str = "[UNKNOWN] - ";;
+			str = "[UNKNOWN] - ";
 		}
 
-		str += Message;
+		str += message;
 
 		OutputDebugString((str + '\n').c_str());
 	}

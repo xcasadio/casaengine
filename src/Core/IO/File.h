@@ -1,5 +1,4 @@
-#ifndef FILE_H
-#define FILE_H
+#pragma once
 
 #include "CA_Export.h"
 #include "IO/IFile.h"
@@ -17,20 +16,18 @@ namespace CasaEngine
 
 		~File() override;
 
-		bool Open(const char* fileName_, unsigned int mode_) override;
-		bool Create(const char* fileName_, bool append_) override;
+		bool Open(const char* fileName, unsigned int mode) override;
+		bool Create(const char* fileName, bool append) override;
 		void Close() override;
 		bool Exists() const override;
-		int Read(char* dst_, unsigned int size_) override;
-		int Write(char* data_, unsigned int size_) override;
-		unsigned int Seek(unsigned int off_, SeekDir dir_) override;
+		int Read(char* dst, unsigned int size) override;
+		int Write(char* data, unsigned int size) override;
+		unsigned int Seek(unsigned int off, SeekDir dir) override;
 
 	protected:
 		void FillBuffer() override;
 
 	private:
-		std::fstream m_Stream;
+		std::fstream _stream;
 	};
 }
-
-#endif

@@ -4,14 +4,14 @@
 namespace CasaEngine
 {
 	IFile::IFile() :
-		m_BufferSize(0),
-		m_pBuffer(nullptr)
+		_bufferSize(0),
+		_buffer(nullptr)
 	{
 	}
 
 	IFile::IFile(const IFile& rsh) :
-		m_BufferSize(0),
-		m_pBuffer(nullptr)
+		_bufferSize(0),
+		_buffer(nullptr)
 	{
 		*this = rsh;
 	}
@@ -20,9 +20,9 @@ namespace CasaEngine
 	{
 		if (&rsh != this)
 		{
-			m_Name = rsh.m_Name;
+			_fullPath = rsh._fullPath;
 
-			if (rsh.m_BufferSize > 0 && rsh.m_pBuffer != nullptr)
+			if (rsh._bufferSize > 0 && rsh._buffer != nullptr)
 			{
 				FillBuffer();
 			}
@@ -37,36 +37,36 @@ namespace CasaEngine
 
 	char* IFile::GetBuffer()
 	{
-		if (m_pBuffer == nullptr)
+		if (_buffer == nullptr)
 		{
 			FillBuffer();
 		}
 
-		return m_pBuffer;
+		return _buffer;
 	}
 
 	std::size_t IFile::GetBufferLength()
 	{
-		if (m_pBuffer == nullptr)
+		if (_buffer == nullptr)
 		{
 			FillBuffer();
 		}
 
-		return m_BufferSize;
+		return _bufferSize;
 	}
 
 	void IFile::DestroyBuffer()
 	{
-		if (m_pBuffer != nullptr)
+		if (_buffer != nullptr)
 		{
-			delete[] m_pBuffer;
-			m_pBuffer = nullptr;
+			delete[] _buffer;
+			_buffer = nullptr;
 		}
 	}
 
-	unsigned int IFile::Seek(unsigned int pos_)
+	unsigned int IFile::Seek(const unsigned int pos)
 	{
-		return Seek(pos_, SeekDir::SEEKDIR_SET);
+		return Seek(pos, SeekDir::SEEKDIR_SET);
 	}
 
 	unsigned int IFile::Position()
@@ -76,32 +76,29 @@ namespace CasaEngine
 
 	const std::string& IFile::Fullname() const
 	{
-		return m_Name;
+		return _fullPath;
 	}
 
 	std::string IFile::Filename() const
 	{
-		std::string::size_type Pos = m_Name.find_last_of("\\/");
-
-		if (Pos != std::string::npos)
+		if (const std::string::size_type pos = _fullPath.find_last_of("\\/"); pos != std::string::npos)
 		{
-			return m_Name.substr(Pos + 1, std::string::npos);
+			return _fullPath.substr(pos + 1, std::string::npos);
 		}
 
-		return m_Name;
+		return _fullPath;
 	}
 
 	std::string IFile::ShortFilename() const
 	{
-		return Filename().substr(0, Filename().find_last_of("."));
+		return Filename().substr(0, Filename().find_last_of('.'));
 	}
 
 	std::string IFile::Extension() const
 	{
-		std::string::size_type Pos = m_Name.find_last_of(".");
-		if (Pos != std::string::npos)
+		if (const std::string::size_type pos = _fullPath.find_last_of('.'); pos != std::string::npos)
 		{
-			return m_Name.substr(Pos + 1, std::string::npos);
+			return _fullPath.substr(pos + 1, std::string::npos);
 		}
 		return "";
 	}

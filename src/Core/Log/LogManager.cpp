@@ -5,8 +5,10 @@
 
 #include "CA_Assert.h"
 #include "LogManager.h"
+
 #include "Exceptions.h"
 #include "Logger.h"
+#include "Version.h"
 
 namespace CasaEngine
 {
@@ -40,6 +42,7 @@ namespace CasaEngine
 	{
 		for (auto* log : _logs)
 		{
+			log->Write(Info, "CasaEngine closed");
 			delete log;
 		}
 	}
@@ -48,6 +51,11 @@ namespace CasaEngine
 	{
 		CA_ASSERT(logger != nullptr, "LogManager::AddLogger() : logger is nullptr");
 		_logs.push_back(logger);
+
+		std::ostringstream oss;
+		oss << "CasaEngine version=" << CA_PRODUCT_VERSION << "." << CA_MAJOR_VERSION << "." << CA_MINOR_VERSION << std::endl;
+
+		logger->Write(Info, oss.str());
 	}
 
 	void LogManager::RemoveLogger(const ILogger* logger)
@@ -55,8 +63,8 @@ namespace CasaEngine
 		CA_ASSERT(logger != nullptr, "LogManager::RemoveLogger() : logger is nullptr");
 
 		for (auto it = _logs.begin();
-		     it != _logs.end();
-		     ++it)
+			it != _logs.end();
+			++it)
 		{
 			if (*it == logger)
 			{
@@ -85,7 +93,7 @@ namespace CasaEngine
 		return _verbosity;
 	}
 
-	void LogManager::setVerbosity(TLogVerbosity val)
+	void LogManager::setVerbosity(const TLogVerbosity val)
 	{
 		_verbosity = val;
 	}

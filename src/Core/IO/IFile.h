@@ -25,14 +25,14 @@ namespace CasaEngine
 	{
 	public:
 		virtual ~IFile();
-		virtual bool Open(const char* fileName_, unsigned int mode_) = 0;
-		virtual bool Create(const char* fileName_, bool append_) = 0;
+		virtual bool Open(const char* fileName, unsigned int mode_) = 0;
+		virtual bool Create(const char* fileName, bool append) = 0;
 		virtual void Close() = 0;
 		virtual bool Exists() const = 0;
-		virtual int Read(char* dst_, unsigned int size_) = 0;
-		virtual int Write(char* data_, unsigned int size_) = 0;
-		unsigned int Seek(unsigned int pos_);
-		virtual unsigned int Seek(unsigned int off_, SeekDir dir_) = 0;
+		virtual int Read(char* dst, unsigned int size) = 0;
+		virtual int Write(char* data, unsigned int size) = 0;
+		unsigned int Seek(unsigned int pos);
+		virtual unsigned int Seek(unsigned int off, SeekDir dir) = 0;
 		unsigned int Position();
 		char* GetBuffer();
 		std::size_t GetBufferLength();
@@ -48,8 +48,8 @@ namespace CasaEngine
 		virtual void FillBuffer() = 0;
 		void DestroyBuffer();
 
-		std::string m_Name; ///< fullpath
-		std::size_t m_BufferSize;
-		char* m_pBuffer;
+		std::string _fullPath;
+		std::size_t _bufferSize;
+		char* _buffer;
 	};
 }

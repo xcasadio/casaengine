@@ -28,9 +28,9 @@ void Character::Initialize()
 	m_MP = m_MPMax;
 }
 
-void Character::Update(const GameTime& gameTime_)
+void Character::Update(const GameTime& gameTime)
 {
-	Character2DBase::Update(gameTime_);
+	Character2DBase::Update(gameTime);
 }
 
 void Character::Draw()

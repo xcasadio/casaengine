@@ -16,9 +16,6 @@ namespace CasaEngine
 
 	AAssetManager* IOManager::m_pAAssetManager(nullptr);
 
-	/**
-	 *
-	 */
 	void IOManager::SetAssetManager(AAssetManager* mgr)
 	{
 		CA_ASSERT(mgr != nullptr, "IOManager::SetAssetManager() : AAssetManager is nullptr");
@@ -27,18 +24,11 @@ namespace CasaEngine
 
 #endif
 
-	/**
-	 *
-	 */
-	IFile* IOManager::OpenFile(std::string& fileName_, unsigned int mode_)
+	IFile* IOManager::OpenFile(const std::string& fileName, unsigned int mode)
 	{
-		return OpenFile(fileName_.c_str(), mode_);
+		return OpenFile(fileName.c_str(), mode);
 	}
-
-	/**
-	 *
-	 */
-	IFile* IOManager::OpenFile(const char* fileName_, unsigned int mode_)
+	IFile* IOManager::OpenFile(const char* fileName, unsigned int mode)
 	{
 		IFile* pRes = nullptr;
 
@@ -52,18 +42,15 @@ namespace CasaEngine
 		pRes = new File();
 #endif
 
-		pRes->Open(fileName_, mode_);
+		pRes->Open(fileName, mode);
 		return pRes;
 	}
 
-	/**
-	 *
-	 */
-	IFile* IOManager::CreateFile(const std::string& Filename, bool append_)
+	IFile* IOManager::CreateFile(const std::string& filename, const bool append)
 	{
 		IFile* pRes = new File();
 
-		if (pRes->Create(Filename.c_str(), append_) == false)
+		if (pRes->Create(filename.c_str(), append) == false)
 		{
 			delete pRes;
 			pRes = nullptr;

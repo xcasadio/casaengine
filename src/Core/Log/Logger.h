@@ -1,5 +1,4 @@
-#ifndef LOGGER_H
-#define LOGGER_H
+#pragma once
 
 #include <sstream>
 #include <string>
@@ -13,9 +12,7 @@ namespace CasaEngine
 	class CA_EXPORT ILogger
 	{
 	public:
-		virtual ~ILogger();
-		virtual void Write(TLogVerbosity verbose_, const std::string& Message) = 0;
+		virtual ~ILogger() = default;
+		virtual void Write(TLogVerbosity verbose, const std::string& message) = 0;
 	};
 }
-
-#endif

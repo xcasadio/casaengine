@@ -1,5 +1,4 @@
-#ifndef IOMANAGER_H
-#define IOMANAGER_H
+#pragma once
 
 #include "CA_Export.h"
 #include "IFile.h"
@@ -17,9 +16,9 @@ namespace CasaEngine
 	class CA_EXPORT IOManager
 	{
 	public:
-		static IFile* OpenFile(std::string& fileName_, unsigned int mode_);
-		static IFile* OpenFile(const char* fileName_, unsigned int mode_);
-		static IFile* CreateFile(const std::string& filename_, bool append_ = false);
+		static IFile* OpenFile(const std::string& fileName, unsigned int mode);
+		static IFile* OpenFile(const char* fileName, unsigned int mode);
+		static IFile* CreateFile(const std::string& filename, bool append = false);
 
 #if CA_PLATFORM_ANDROID
 	public:
@@ -31,5 +30,3 @@ namespace CasaEngine
 #endif
 	};
 }
-
-#endif

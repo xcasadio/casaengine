@@ -1,16 +1,13 @@
-#ifndef LOGGERDEBUG_H
-#define LOGGERDEBUG_H
+#pragma once
 
 #include <Log/Logger.h>
 #include "LogVerbose.h"
 
 namespace CasaEngine
 {
-	class CA_EXPORT CLoggerDebug : public ILogger
+	class CA_EXPORT LoggerDebug : public ILogger
 	{
 	private:
-		void Write(TLogVerbosity verbose_, const std::string& Message) override;
+		void Write(TLogVerbosity verbose, const std::string& message) override;
 	};
 }
-
-#endif

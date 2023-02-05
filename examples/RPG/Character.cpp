@@ -53,9 +53,9 @@ void Character::Initialize()
 	m_ComboNumber = 0;
 }
 
-void Character::Update(const GameTime& gameTime_)
+void Character::Update(const GameTime& gameTime)
 {
-	Character2DBase::Update(gameTime_);
+	Character2DBase::Update(gameTime);
 }
 
 void Character::Draw()
