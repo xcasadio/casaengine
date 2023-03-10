@@ -105,7 +105,7 @@ namespace CasaEngine
 		//matWorld.CreateScale(0.989f, 1.0f, 1.0f);
 		Vector3 scale(1.0f, 1.0f, 1.0f);
 		Quaternion rot;
-		rot.FromAxisAngle(Vector3::UnitZ(), 0.5f * PI);
+		rot.FromAxisAngle(Vector3::UnitZ(), 0.5f * Math::Pi);
 		matWorld.Transformation(
 			nullptr, nullptr,
 			&scale,
@@ -165,8 +165,8 @@ namespace CasaEngine
 			m_values[m_offset] = value;
 			m_offset = (m_offset + 1) % kNumSamples;
 
-			float min = MaxFloat;
-			float max = -MaxFloat;
+			float min = Math::MaxFloat;
+			float max = -Math::MaxFloat;
 			float avg = 0.0f;
 
 			for (uint32_t ii = 0; ii < kNumSamples; ++ii)

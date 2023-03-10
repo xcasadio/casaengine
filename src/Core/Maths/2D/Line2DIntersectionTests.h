@@ -95,7 +95,7 @@ namespace CasaEngine
 		Vector2& ip,
 		const ContWall& walls)
 	{
-		distance = MaxFloat;
+		distance = Math::MaxFloat;
 
 		typename ContWall::const_iterator curWall = walls.cbegin();
 		for (curWall; curWall != walls.cend(); ++curWall)

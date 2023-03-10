@@ -67,7 +67,7 @@ namespace CasaEngine
 		}
 
 		//make sure bottom is not equal to zero
-		if (isEqual(0, bottom))
+		if (Math::isEqual(0, bottom))
 		{
 			return 0.0;
 		}
@@ -106,7 +106,7 @@ namespace CasaEngine
 			for (curSet; curSet != m_MemberSets.end(); ++curSet)
 			{
 				float contribution =
-					MinOf(curSet->second->CalculateDOM(m_fMinRange + samp * StepSize),
+					Math::MinOf(curSet->second->CalculateDOM(m_fMinRange + samp * StepSize),
 						curSet->second->GetDOM());
 
 				TotalArea += contribution;
@@ -116,7 +116,7 @@ namespace CasaEngine
 		}
 
 		//make sure total area is not equal to zero
-		if (isEqual(0, TotalArea))
+		if (Math::isEqual(0, TotalArea))
 		{
 			return 0.0;
 		}

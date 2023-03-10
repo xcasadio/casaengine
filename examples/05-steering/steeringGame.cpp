@@ -99,7 +99,7 @@ void SteeringGame::CreateEntities()
 	pEntity->GetComponentMgr()->AddComponent(pTransform);
 	MeshComponent* pModelCpt = new MeshComponent(pEntity);
 	BoxPrimitive* pBox = new BoxPrimitive(100.0f, 1.0f, 100.0f);
-	Mesh* pModel = pBox->CreateModel();
+	Mesh* pModel = pBox->CreateMesh();
 	//new material
 	Material* pMat = pModel->GetMaterial()->Clone();
 	pMat->Texture0(Texture::loadTexture(Game::Instance().GetMediaManager().FindMedia("ceilingMain_DIF.dds"), BGFX_SAMPLER_MIN_ANISOTROPIC | BGFX_SAMPLER_MAG_ANISOTROPIC));

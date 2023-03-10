@@ -10,7 +10,7 @@ namespace CasaEngine
 {
 	Vector3 GetCircleVector(int i_, int tessellation_)
 	{
-		const float angle = i_ * MATH_2PI / tessellation_;
+		const float angle = i_ * Math::MATH_2PI / tessellation_;
 
 		float dx = cosf(angle);
 		float dz = sinf(angle);

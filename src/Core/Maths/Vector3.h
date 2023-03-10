@@ -115,7 +115,7 @@ namespace CasaEngine
 	}
 
 	template <class T>
-	bool IsEquivalent(const CVector3<T>& v0, const CVector3<T>& v1, float epsilon = Epsilon)
+	bool IsEquivalent(const CVector3<T>& v0, const CVector3<T>& v1, float epsilon = Math::Epsilon)
 	{
 		return std::fabs(v0.x - v1.x) <= epsilon &&
 			std::fabs(v0.y - v1.y) <= epsilon &&
@@ -231,7 +231,7 @@ namespace CasaEngine
 	template <class T>
 	bool CVector3<T>::IsZero()const
 	{
-		return LengthSquared() < Epsilon; // std::numeric_limits<T>::epsilon();
+		return LengthSquared() < Math::Epsilon; // std::numeric_limits<T>::epsilon();
 	}
 
 	template <class T>

@@ -10,7 +10,7 @@ namespace CasaEngine
 {
 	Camera3DComponent::Camera3DComponent(BaseEntity* entity, int type)
 		: CameraComponent(entity, type),
-		m_fFOV(PI_OVER_4)
+		m_fFOV(Math::PI_OVER_4)
 	{
 	}
 
@@ -28,7 +28,7 @@ namespace CasaEngine
 		m_fFOV = val;
 		m_needToComputeProjectionMatrix = true;
 	}
-	
+
 	void Camera3DComponent::ComputeProjectionMatrix()
 	{
 		m_needToComputeProjectionMatrix = false;

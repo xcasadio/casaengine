@@ -51,7 +51,7 @@ namespace CasaEngine
 	/**
 	 * The new Mesh must be deleted
 	 */
-	Mesh* IPrimitive3D::CreateModel()
+	Mesh* IPrimitive3D::CreateMesh()
 	{
 		return new Mesh(m_Vertices.data(), m_Vertices.size(), m_Indices.data(), m_Indices.size());
 	}

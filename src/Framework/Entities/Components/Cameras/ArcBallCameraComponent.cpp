@@ -21,12 +21,12 @@ namespace CasaEngine
 		m_fInputDistanceRate(3.0f),
 		m_fInputTurnRate(0.3f),
 		m_fInputDisplacementRate(10.0f),
-		m_fArcBallYaw(PI),
+		m_fArcBallYaw(Math::Pi),
 		m_fArcBallPitch(0.0f)
 	{
 		//orientation quaternion assumes a PI rotation so you're facing the "front"
 		//of the model (looking down the +Z axis)
-		m_ArcBallOrientation.FromAxisAngle(Vector3::Up(), PI);
+		m_ArcBallOrientation.FromAxisAngle(Vector3::Up(), Math::Pi);
 		m_Target = Vector3::Zero();
 	}
 
@@ -196,7 +196,7 @@ namespace CasaEngine
 		//  2.  The initial aspect does not change
 		//The reduced form of the same equation follows
 		Vector3 right = Vector3::Zero();
-		right.x = 
+		right.x =
 			m_ArcBallOrientation.x * m_ArcBallOrientation.x + m_ArcBallOrientation.w * m_ArcBallOrientation.w -
 			(m_ArcBallOrientation.z * m_ArcBallOrientation.z + m_ArcBallOrientation.y * m_ArcBallOrientation.y);
 		right.y = 2.0f * (m_ArcBallOrientation.x * m_ArcBallOrientation.y + m_ArcBallOrientation.z * m_ArcBallOrientation.w);
@@ -293,10 +293,10 @@ namespace CasaEngine
 		m_fArcBallPitch -= angle;
 
 		//constrain pitch to vertical to avoid confusion
-		Clamp<float, float, float>(
+		Math::Clamp<float, float, float>(
 			m_fArcBallPitch,
-			-PI_OVER_2 + 0.0001f,
-			PI_OVER_2 - 0.0001f);
+			-Math::PI_OVER_2 + 0.0001f,
+			Math::PI_OVER_2 - 0.0001f);
 
 		q1.FromAxisAngle(Vector3::Up(), -m_fArcBallYaw);
 		q2.FromAxisAngle(Vector3::Right(), m_fArcBallPitch);
@@ -321,7 +321,7 @@ namespace CasaEngine
 
 		//float mod yaw to avoid eventual precision errors
 		//as we move away from 0
-		m_fArcBallYaw = fmod(m_fArcBallYaw, MATH_2PI);
+		m_fArcBallYaw = fmod(m_fArcBallYaw, Math::MATH_2PI);
 
 		q1.FromAxisAngle(Vector3::Up(), -m_fArcBallYaw);
 		q2.FromAxisAngle(Vector3::Right(), m_fArcBallPitch);
@@ -408,13 +408,13 @@ namespace CasaEngine
 		//and use the sign of the x-component since we have 360 degrees
 		//of freedom
 		//m_fArcBallYaw = ;
-		ArcBallYaw(acosf(-dir.z) * Sign(dir.x));
+		ArcBallYaw(acosf(-dir.z) * Math::Sign(dir.x));
 
 		//Get the pitch from the angle formed by the Up vector and the 
 		//the forward direction, then subtracting PI / 2, since 
 		//we pitch is zero at Forward, not Up.
 		//m_fArcBallPitch = ;
-		ArcBallPitch(-(acosf(Vector3::Dot(Up(), Direction())) - PI_OVER_2));
+		ArcBallPitch(-(acosf(Vector3::Dot(Up(), Direction())) - Math::PI_OVER_2));
 	}
 
 	void ArcBallCameraComponent::Write(std::ostream& /*os*/) const

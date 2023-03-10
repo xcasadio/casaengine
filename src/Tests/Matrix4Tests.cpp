@@ -87,7 +87,7 @@ namespace CasaEngineTests
 
 	TEST(Matrix4, RotateX)
 	{
-		Matrix4 rot = Matrix4::CreateRotationX(PI / 2.0f);
+		Matrix4 rot = Matrix4::CreateRotationX(pi / 2.0f);
 		Vector3 v(Vector3::UnitY());
 		v = rot.Transform(v);
 
@@ -98,7 +98,7 @@ namespace CasaEngineTests
 
 	TEST(Matrix4, RotateY)
 	{
-		Matrix4 rot = Matrix4::CreateRotationY(PI / 2.0f);
+		Matrix4 rot = Matrix4::CreateRotationY(pi / 2.0f);
 		Vector3 v(Vector3::UnitX());
 		v = rot.Transform(v);
 
@@ -109,7 +109,7 @@ namespace CasaEngineTests
 
 	TEST(Matrix4, RotateZ)
 	{
-		Matrix4 rot = Matrix4::CreateRotationZ(PI / 2.0f);
+		Matrix4 rot = Matrix4::CreateRotationZ(pi / 2.0f);
 		Vector3 v(Vector3::UnitX());
 		v = rot.Transform(v);
 
@@ -621,16 +621,16 @@ namespace CasaEngineTests
 		const int rotCount = 16;
 		for (int i = 0; i < rotCount; ++i)
 		{
-			float latitude = (2.0f * PI) * ((float)i / (float)rotCount);
+			float latitude = (2.0f * pi) * ((float)i / (float)rotCount);
 			for (int j = 0; j < rotCount; ++j)
 			{
-				float longitude = -PI_OVER_2 + PI * ((float)j / (float)rotCount);
+				float longitude = -PI_OVER_2 + pi * ((float)j / (float)rotCount);
 
 				Matrix4 m = Matrix4::CreateRotationZ(longitude) * Matrix4::CreateRotationY(latitude);
 				Vector3 axis = m.Right();
 				for (int k = 0; k < rotCount; ++k)
 				{
-					float rot = (2.0f * PI) * ((float)k / (float)rotCount);
+					float rot = (2.0f * pi) * ((float)k / (float)rotCount);
 					expected = Matrix4::CreateFromQuaternion(Quaternion::CreateFromAxisAngle(axis, rot));
 					actual = Matrix4::CreateFromAxisAngle(axis, rot);
 					EXPECT_EQ(expected, actual);

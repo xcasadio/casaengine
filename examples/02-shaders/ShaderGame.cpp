@@ -16,9 +16,8 @@
 
 using namespace CasaEngine;
 
-
 ShaderGame::ShaderGame() :
-	m_pWorld(nullptr)
+	_world(nullptr)
 {
 	Logging.AddLogger(new LoggerFile("Out.log"));
 }
@@ -35,8 +34,8 @@ void ShaderGame::Initialize()
 	AddDebugComponents();
 	AddUsualComponents();
 
-	m_LightDir.Set(1.0f, 0.0f, 0.5f);
-	m_LightDir.Normalize();
+	_lightDirection.Set(1.0f, 0.0f, 0.5f);
+	_lightDirection.Normalize();
 	//Game::Instance().GetMediaManager().RegisterLoader(new CMD2Loader, "md2");
 
 	// Enregistrement des commandes console
@@ -90,72 +89,79 @@ void ShaderGame::Initialize()
 	Game::Initialize();
 }
 
+void ShaderGame::CreateGround()
+{
+	auto* entity = new BaseEntity();
+	entity->SetName("ground");
+	entity->GetCoordinates().SetLocalPosition(Vector3(0.0f, -0.5f, 0.0f));
+	entity->GetCoordinates().SetLocalRotation(0.0f);
+	entity->GetCoordinates().SetLocalScale(Vector3::One());
+	auto* meshComponent = new MeshComponent(entity);
+	auto* box = new BoxPrimitive(100.0f, 1.0f, 100.0f);
+	Mesh* mesh = box->CreateMesh();
+	//new material
+	_groundMaterial = mesh->GetMaterial()->Clone();
+	_groundMaterial->Texture0(Texture::loadTexture(Instance().GetMediaManager().FindMedia("ceilingMain_DIF.dds"), BGFX_SAMPLER_MIN_ANISOTROPIC | BGFX_SAMPLER_MAG_ANISOTROPIC));
+	_groundMaterial->Texture0Repeat(Vector2(50, 50));
+	mesh->SetMaterial(_groundMaterial);
+	//
+	meshComponent->SetModel(mesh);
+	meshComponent->SetProgram(_program);
+
+	entity->GetComponentMgr()->AddComponent(meshComponent);
+
+	_world->AddEntity(entity);
+}
+
+void ShaderGame::CreateCamera()
+{
+	auto* cameraEntity = new BaseEntity();
+	auto* arcBallCamera = new ArcBallCameraComponent(cameraEntity);
+	arcBallCamera->SetCamera(Vector3(0, 25.0f, -80.0f), Vector3(0.0f, 1.9f, 0.0f), Vector3::Up());
+	arcBallCamera->Distance(7.0f);
+	cameraEntity->GetComponentMgr()->AddComponent(arcBallCamera);
+
+	GetGameInfo().SetActiveCamera(arcBallCamera);
+}
+
+void ShaderGame::CreateMesh()
+{
+	_entity = new BaseEntity();
+	_entity->SetName("model");
+	_entity->GetCoordinates().SetLocalPosition(Vector3(0.0f, -5.0f, 0.0f));
+	_entity->GetCoordinates().SetLocalRotation(0.0f);
+	_entity->GetCoordinates().SetLocalScale(Vector3::One());
+	auto* meshComponent = new MeshComponent(_entity);
+
+	CMD2Loader loader;
+	IFile* file = GetMediaManager().FindMedia("Goblin.md2", (unsigned int)FileMode::READ | (unsigned int)FileMode::BINARY);
+	_mesh = loader.LoadFromFile(file);
+	//
+	meshComponent->SetModel(_mesh);
+	meshComponent->SetProgram(_program);
+
+	_entity->GetComponentMgr()->AddComponent(meshComponent);
+
+	_world->AddEntity(_entity);
+}
+
 void ShaderGame::LoadContent()
 {
 	Game::LoadContent();
 
-	m_pWorld = new World();
-	GetGameInfo().SetWorld(m_pWorld);
+	_world = new World();
+	GetGameInfo().SetWorld(_world);
 
 	//m_CartoonShadingTextureHandle = CreateFromFile("cartoon_shading.dds", PixelFormat::AL_88, TEX_NOMIPMAP);
-	Texture::loadTexture(Game::Instance().GetMediaManager().FindMedia("cartoon_shading.dds", true), BGFX_SAMPLER_MIN_ANISOTROPIC | BGFX_SAMPLER_MAG_ANISOTROPIC, 1);
-	m_pProgram = new Program("vs_mesh", "fs_mesh");
+	//m_pCartoonShading = Texture::loadTexture(Instance().GetMediaManager().FindMedia("cartoon_shading.dds", true), BGFX_SAMPLER_MIN_ANISOTROPIC | BGFX_SAMPLER_MAG_ANISOTROPIC, 1);
 
-	//ground
-	m_pEntity = new BaseEntity();
-	m_pEntity->SetName("ground");
-	m_pEntity->GetCoordinates().SetLocalPosition(Vector3(0.0f, -0.5f, 0.0f));
-	m_pEntity->GetCoordinates().SetLocalRotation(0.0f);
-	m_pEntity->GetCoordinates().SetLocalScale(Vector3::One());
-	MeshComponent* pModelCpt = new MeshComponent(m_pEntity);
-	BoxPrimitive* pBox = new BoxPrimitive(100.0f, 1.0f, 100.0f);
-	Mesh* pModel = pBox->CreateModel();
-	//new material
-	m_pGroundMaterial = pModel->GetMaterial()->Clone();
-	m_pGroundMaterial->Texture0(Texture::loadTexture(Game::Instance().GetMediaManager().FindMedia("ceilingMain_DIF.dds"), BGFX_SAMPLER_MIN_ANISOTROPIC | BGFX_SAMPLER_MAG_ANISOTROPIC));
-	m_pGroundMaterial->Texture0Repeat(Vector2(50, 50));
-	pModel->SetMaterial(m_pGroundMaterial);
-	//
-	pModelCpt->SetModel(pModel);
-	pModelCpt->SetProgram(m_pProgram);
+	_program = new Program("vs_mesh", "fs_mesh");
 
-	m_pEntity->GetComponentMgr()->AddComponent(pModelCpt);
+	CreateGround();
+	CreateCamera();
+	CreateMesh();
 
-	m_pWorld->AddEntity(m_pEntity);
-
-	//Camera 3D
-	BaseEntity* pCamera = new BaseEntity();
-	m_pCamera3D = new ArcBallCameraComponent(pCamera);
-	m_pCamera3D->SetCamera(Vector3(0, 25.0f, -80.0f), Vector3(0.0f, 1.9f, 0.0f), Vector3::Up());
-	m_pCamera3D->Distance(7.0f);
-	pCamera->GetComponentMgr()->AddComponent(m_pCamera3D);
-
-	m_pWorld->AddEntity(pCamera);
-	GetGameInfo().SetActiveCamera(m_pCamera3D);
-
-	//Mesh
-	m_pModelEntity = new BaseEntity();
-	m_pModelEntity->SetName("model");
-	m_pModelEntity->GetCoordinates().SetLocalPosition(Vector3(0.0f, -5.0f, 0.0f));
-	m_pModelEntity->GetCoordinates().SetLocalRotation(0.0f);
-	m_pModelEntity->GetCoordinates().SetLocalScale(Vector3::One());
-	pModelCpt = new MeshComponent(m_pModelEntity);
-
-	CMD2Loader loader;
-	IFile* pFile = GetMediaManager().FindMedia("Goblin.md2", (unsigned int)FileMode::READ | (unsigned int)FileMode::BINARY);
-	m_Player = loader.LoadFromFile(pFile);
-	//
-	pModelCpt->SetModel(m_Player);
-	pModelCpt->SetProgram(m_pProgram);
-
-	m_pModelEntity->GetComponentMgr()->AddComponent(pModelCpt);
-
-	m_pWorld->AddEntity(m_pModelEntity);
-
-	m_pWorld->Initialize();
-
-	//ChangeShaders("simple");
-	//LoadModel("goblin");
+	_world->Initialize();
 }
 
 void ShaderGame::Update(const GameTime& gameTime_)
@@ -163,14 +169,21 @@ void ShaderGame::Update(const GameTime& gameTime_)
 	Game::Update(gameTime_);
 
 	Quaternion q1, q2;
-	q1.FromAxisAngle(Vector3::UnitX(), -PI_OVER_2);
-	q2.FromAxisAngle(Vector3::UnitZ(), gameTime_.TotalTime() * 0.1f * PI);
+	q1.FromAxisAngle(Vector3::UnitX(), -Math::PI_OVER_2);
+	q2.FromAxisAngle(Vector3::UnitZ(), gameTime_.TotalTime() * 0.1f * Math::Pi);
 
-	m_pModelEntity->GetCoordinates().SetLocalPosition(Vector3(0.0f, 2.4f, 0.0f));
-	m_pModelEntity->GetCoordinates().SetLocalRotation(q1 * q2);
-	m_pModelEntity->GetCoordinates().SetLocalScale(Vector3(0.1f, 0.1f, 0.1f));
+	_entity->GetCoordinates().SetLocalPosition(Vector3(0.0f, 2.4f, 0.0f));
+	_entity->GetCoordinates().SetLocalRotation(q1 * q2);
+	_entity->GetCoordinates().SetLocalScale(Vector3(0.1f, 0.1f, 0.1f));
 
 	//UpdateShadersParams(gameTime_);
+}
+
+void ShaderGame::Draw()
+{
+	Game::Draw();
+
+
 }
 
 void ShaderGame::ChangeShaders(const std::string& Type)
@@ -205,21 +218,21 @@ void ShaderGame::ChangeShaders(const std::string& Type)
 
 void ShaderGame::UpdateShadersParams(const GameTime& gameTime_)
 {
-	//     Matrix4 ModelView = m_Rotation * Game::Instance().GetGameInfo().GetActiveCamera()->GetViewMatrix();
+	//     Matrix4 ModelView = _matRotation * Game::Instance().GetGameInfo().GetActiveCamera()->GetViewMatrix();
 	//     Matrix4 ModelViewProj = ModelView * Game::Instance().GetGameInfo().GetActiveCamera()->GetProjectionMatrix();
 	//
 	//     if (m_ShadersType == "cartoon")
 	//     {
 	//         m_VertexShader.SetParameter("ModelViewProj", ModelViewProj);
 	//         m_VertexShader.SetParameter("ModelView",     ModelView);
-	//         m_VertexShader.SetParameter("LightDir",      m_LightDir);
+	//         m_VertexShader.SetParameter("LightDir",      _lightDirection);
 	//         m_VertexShader.SetParameter("CameraPos",     Game::Instance().GetGameInfo().GetActiveCamera()->GetViewMatrix().GetTranslation());
 	//     }
 	//     else if (m_ShadersType == "scale")
 	//     {
 	//         m_VertexShader.SetParameter("ModelViewProj", ModelViewProj);
 	//         m_VertexShader.SetParameter("ModelView",     ModelView);
-	//         m_VertexShader.SetParameter("LightDir",      m_LightDir);
+	//         m_VertexShader.SetParameter("LightDir",      _lightDirection);
 	//     }
 	//     else if (m_ShadersType == "simple")
 	//     {
@@ -254,6 +267,6 @@ void ShaderGame::LoadModel(const char* Filename)
 {
 	static CMD2Loader loader;
 
-	IFile* pFile = Game::Instance().GetMediaManager().FindMedia((std::string(Filename) + ".md2").c_str(), (unsigned int)FileMode::READ | (unsigned int)FileMode::BINARY);
-	m_Player = loader.LoadFromFile(pFile);
+	IFile* pFile = Instance().GetMediaManager().FindMedia((std::string(Filename) + ".md2").c_str(), (unsigned int)FileMode::READ | (unsigned int)FileMode::BINARY);
+	_mesh = loader.LoadFromFile(pFile);
 }

@@ -32,7 +32,7 @@ namespace CasaEngine
 	{
 	public:
 		static Game& Instance();
-		
+
 		Game(const Game&) = delete;
 		Game& operator = (const Game&) = delete;
 
@@ -44,7 +44,7 @@ namespace CasaEngine
 		template <class T> T* GetGameComponent() const;
 
 		bool LoadGamePlayDLL(const char* pFileName_);
-		void RenderThreadloop();
+		void RenderThreadLoop();
 
 		Vector2I GetWindowSize() const;
 		EngineSettings& GetEngineSettings();

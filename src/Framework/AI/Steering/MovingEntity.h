@@ -109,7 +109,7 @@ namespace CasaEngine
 
 		//some compilers lose accuracy so the value is clamped to ensure it
 		//remains valid for the acos
-		Clamp(dot, -1, 1);
+		Math::Clamp(dot, -1, 1);
 
 		//first determine the angle between the heading vector and the target
 		float angle = acos(dot);
@@ -132,7 +132,7 @@ namespace CasaEngine
 
 		//notice how the direction of rotation has to be determined when creating
 		//the rotation matrix
-		RotationMatrix.Rotate(angle * m_vHeading.Sign(toTarget));
+		RotationMatrix.Rotate(angle * m_vHeading.Math::Sign(toTarget));
 		RotationMatrix.TransformVector(m_vHeading);
 		RotationMatrix.TransformVector(m_vVelocity);
 

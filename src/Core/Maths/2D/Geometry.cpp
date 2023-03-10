@@ -236,7 +236,7 @@ namespace CasaEngine
 
 		if (Bot == 0)//parallel
 		{
-			if (isEqual(rTop, 0) && isEqual(sTop, 0))
+			if (Math::isEqual(rTop, 0) && Math::isEqual(sTop, 0))
 			{
 				return true;
 			}
@@ -495,7 +495,7 @@ namespace CasaEngine
 	//-----------------------------------------------------------------------
 	float Geometry::CircleArea(float radius)
 	{
-		return PI * radius * radius;
+		return Math::Pi * radius * radius;
 	}
 
 	//----------------------- PointInCircle ----------------------------------

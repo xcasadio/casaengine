@@ -677,7 +677,7 @@ namespace CasaEngine
 
 		Matrix4 result;
 
-		const auto negFarRange = IsPositiveInfinity(farPlaneDistance) ? -1.0f : farPlaneDistance / (nearPlaneDistance - farPlaneDistance);
+		const auto negFarRange = Math::IsPositiveInfinity(farPlaneDistance) ? -1.0f : farPlaneDistance / (nearPlaneDistance - farPlaneDistance);
 
 		result.m11 = 2.0f * nearPlaneDistance / width;
 		result.m12 = result.m13 = result.m14 = 0.0f;
@@ -694,7 +694,7 @@ namespace CasaEngine
 
 	Matrix4 Matrix4::CreatePerspectiveFieldOfView(float fieldOfView, float aspectRatio, float nearPlaneDistance, float farPlaneDistance)
 	{
-		if (fieldOfView <= 0.0f || fieldOfView >= PI)
+		if (fieldOfView <= 0.0f || fieldOfView >= Math::Pi)
 		{
 			throw ArgumentException("fieldOfView <= 0 or >= PI");
 		}
@@ -715,7 +715,7 @@ namespace CasaEngine
 
 		/*const auto yScale = 1.0f / std::tanf(fieldOfView * 0.5f);
 		const auto xScale = yScale / aspectRatio;
-		const auto negFarRange = IsPositiveInfinity(farPlaneDistance) ? -1.0f : farPlaneDistance / (farPlaneDistance - nearPlaneDistance);
+		const auto negFarRange = Math::IsPositiveInfinity(farPlaneDistance) ? -1.0f : farPlaneDistance / (farPlaneDistance - nearPlaneDistance);
 
 		result.m11 = xScale;
 		result.m12 = result.m13 = result.m14 = 0.0f;
@@ -729,7 +729,7 @@ namespace CasaEngine
 
 		const float yScale = 1.0f / std::tanf(fieldOfView / 2.0f);
 		const float xScale = yScale / aspectRatio;
-		const float negFarRange = IsPositiveInfinity(farPlaneDistance) ? -1.0f : farPlaneDistance / (nearPlaneDistance - farPlaneDistance);
+		const float negFarRange = Math::IsPositiveInfinity(farPlaneDistance) ? -1.0f : farPlaneDistance / (nearPlaneDistance - farPlaneDistance);
 
 		//TODO : righthanded : XScale = -XScale;
 		//TODO : lefthanded : XScale = XScale;
@@ -778,7 +778,7 @@ namespace CasaEngine
 		}
 
 		Matrix4 result;
-		const float negFarRange = IsPositiveInfinity(farPlaneDistance) ? -1.0f : farPlaneDistance / (nearPlaneDistance - farPlaneDistance);
+		const float negFarRange = Math::IsPositiveInfinity(farPlaneDistance) ? -1.0f : farPlaneDistance / (nearPlaneDistance - farPlaneDistance);
 
 		result.m11 = 2.0f * nearPlaneDistance / (right - left);
 		result.m12 = result.m13 = result.m14 = 0;
@@ -1114,9 +1114,9 @@ namespace CasaEngine
 		translation.y = m42;
 		translation.z = m43;
 
-		const float xs = Sign(m11 * m12 * m13 * m14) < 0.0f ? -1.0f : 1.0f;
-		const float ys = Sign(m21 * m22 * m23 * m24) < 0.0f ? -1.0f : 1.0f;
-		const float zs = Sign(m31 * m32 * m33 * m34) < 0.0f ? -1.0f : 1.0f;
+		const float xs = Math::Sign(m11 * m12 * m13 * m14) < 0.0f ? -1.0f : 1.0f;
+		const float ys = Math::Sign(m21 * m22 * m23 * m24) < 0.0f ? -1.0f : 1.0f;
+		const float zs = Math::Sign(m31 * m32 * m33 * m34) < 0.0f ? -1.0f : 1.0f;
 
 		scale.x = xs * sqrtf(m11 * m11 + m12 * m12 + m13 * m13);
 		scale.y = ys * sqrtf(m21 * m21 + m22 * m22 + m23 * m23);
@@ -1333,7 +1333,7 @@ namespace CasaEngine
 
 	bool Matrix4::operator ==(const Matrix4& m) const
 	{
-		constexpr float epsilon = Epsilon; // std::numeric_limits<float>::epsilon();
+		constexpr float epsilon = Math::Epsilon; // std::numeric_limits<float>::epsilon();
 		return std::fabs(m11 - m.m11) < epsilon && std::fabs(m12 - m.m12) < epsilon &&
 			std::fabs(m13 - m.m13) < epsilon && std::fabs(m14 - m.m14) < epsilon &&
 			std::fabs(m21 - m.m21) < epsilon && std::fabs(m22 - m.m22) < epsilon &&

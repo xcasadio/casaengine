@@ -79,7 +79,7 @@ void Weapon::CollideWith(CollisionParameters* collisionParameters, BaseEntity* o
 		{
 			if (tileComponent->Tile()->GetTileData()->isBreakable)
 			{
-				otherEntity->ToRemoved(true);
+				otherEntity->ToBeRemoved(true);
 
 				auto* auto_tile = dynamic_cast<AutoTile*>(tileComponent->Tile());
 				if (auto_tile)
@@ -88,7 +88,7 @@ void Weapon::CollideWith(CollisionParameters* collisionParameters, BaseEntity* o
 				}
 			}
 
-			
+
 		}
 	}
 

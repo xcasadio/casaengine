@@ -36,8 +36,8 @@ namespace CasaEngine
 
 		Coordinates& GetCoordinates();
 
-		bool ToRemoved() const;
-		void ToRemoved(bool val);
+		bool ToBeRemoved() const;
+		void ToBeRemoved(bool val);
 
 		bool IsEnabled() const;
 		void IsEnabled(bool val);

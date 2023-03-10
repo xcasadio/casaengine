@@ -149,7 +149,7 @@ namespace CasaEngine
 		static AABB CreateAABBfromCone(const Cone& c);
 	};
 
-	bool IsEquivalent(const AABB& a, const AABB& b, float epsilon = Epsilon);
+	bool IsEquivalent(const AABB& a, const AABB& b, float epsilon = Math::Epsilon);
 
 	/**
 	 *

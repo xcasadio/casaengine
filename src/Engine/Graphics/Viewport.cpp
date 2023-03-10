@@ -68,18 +68,12 @@ namespace CasaEngine
 		m_fFarClipPlane = val;
 	}
 
-	bool WithinEpsilon(float a, float b)
-	{
-		float num = a - b;
-		return -1.401298E-45f <= num && num <= 1.401298E-45f;
-	}
-
 	Vector3 Viewport::Project(const Vector3& source, const Matrix4& projection, const Matrix4& view, const Matrix4& world) const
 	{
 		Matrix4 mat = Matrix4::Multiply(Matrix4::Multiply(world, view), projection);
 		Vector3 vector = mat.Transform(source); // Vector3::Transform(source, mat);
 		float a = source.x * mat.m14 + source.y * mat.m24 + source.z * mat.m34 + mat.m44;
-		if (!WithinEpsilon(a, 1.0f))
+		if (!Math::isEqual(a, 1.0f))
 		{
 			vector = vector / a;
 		}
@@ -99,7 +93,7 @@ namespace CasaEngine
 
 		vector = mat.Transform(source); // Vector3.Transform(source, mat);
 		const float a = source.x * mat.m14 + source.y * mat.m24 + source.z * mat.m34 + mat.m44;
-		if (!WithinEpsilon(a, 1.0f))
+		if (!Math::isEqual(a, 1.0f))
 		{
 			vector = vector / a;
 		}

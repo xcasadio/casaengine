@@ -122,7 +122,7 @@ namespace CasaEngine
 		// 
 		// 	//notice how the direction of rotation has to be determined when creating
 		// 	//the rotation matrix
-		// 	RotationMatrix.Rotate(angle * m_vHeading.Sign(toTarget));	
+		// 	RotationMatrix.Rotate(angle * m_vHeading.Math::Sign(toTarget));	
 		// 	RotationMatrix.TransformVector3F(m_vHeading);
 		// 	RotationMatrix.TransformVector3F(m_vVelocity);
 		// 

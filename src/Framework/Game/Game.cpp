@@ -163,7 +163,7 @@ namespace CasaEngine
 		}
 #endif
 	}
-	
+
 	void Game::HandleWindowEvents()
 	{
 		sf::Event event;
@@ -202,8 +202,8 @@ namespace CasaEngine
 
 	int32_t renderThreadFunc(void* _userData)
 	{
-		auto game = static_cast<Game*>(_userData);
-		game->RenderThreadloop();
+		auto* game = static_cast<Game*>(_userData);
+		game->RenderThreadLoop();
 		return 0;
 	}
 
@@ -213,10 +213,10 @@ namespace CasaEngine
 		MakeWindow();
 		m_Renderer.Initialize(m_EngineSettings, m_pWindow->getSystemHandle());
 		OnWindowResized(m_EngineSettings.WindowWidth, m_EngineSettings.WindowHeight);
-		RenderThreadloop();
+		RenderThreadLoop();
 	}
 
-	void Game::RenderThreadloop()
+	void Game::RenderThreadLoop()
 	{
 		CA_TRACE("Renderer initialized\n");
 		Initialize();

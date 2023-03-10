@@ -81,7 +81,7 @@ namespace CasaEngine
 		const float ls = q.x * q.x + q.y * q.y + q.z * q.z + q.w * q.w;
 		float invNorm = 1.0f / sqrtf(ls);
 
-		//if (std::fabs(Norm) > Epsilon)
+		//if (std::fabs(Norm) > Math::Epsilon)
 		{
 			result.x = q.x * invNorm;
 			result.y = q.y * invNorm;
@@ -365,7 +365,7 @@ namespace CasaEngine
 		angle = std::acosf(w) * 2;
 
 		const float Norm = std::sqrtf(x * x + y * y + z * z);
-		if (std::fabs(Norm) > Epsilon)
+		if (std::fabs(Norm) > Math::Epsilon)
 		{
 			axis.x = x / Norm;
 			axis.y = y / Norm;
@@ -612,10 +612,10 @@ namespace CasaEngine
 
 	bool Quaternion::operator==(const Quaternion& v) const
 	{
-		return std::fabs(x - v.x) <= Epsilon &&
-			std::fabs(y - v.y) <= Epsilon &&
-			std::fabs(z - v.z) <= Epsilon &&
-			std::fabs(w - v.w) <= Epsilon;
+		return std::fabs(x - v.x) <= Math::Epsilon &&
+			std::fabs(y - v.y) <= Math::Epsilon &&
+			std::fabs(z - v.z) <= Math::Epsilon &&
+			std::fabs(w - v.w) <= Math::Epsilon;
 	}
 
 	bool Quaternion::operator!=(const Quaternion& v) const

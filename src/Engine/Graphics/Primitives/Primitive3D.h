@@ -27,7 +27,7 @@ namespace CasaEngine
 	public:
 		virtual ~IPrimitive3D();
 
-		Mesh* CreateModel();
+		Mesh* CreateMesh();
 
 	protected:
 		IPrimitive3D(Primitive3DType type_);

@@ -11,8 +11,7 @@ namespace CasaEngine
 	{
 	}
 
-	GameInfo::~GameInfo()
-		= default;
+	GameInfo::~GameInfo() = default;
 
 	World* GameInfo::GetWorld() const
 	{

@@ -10,7 +10,7 @@
 namespace CasaEngine
 {
 	unsigned int BaseEntity::_nextValidId = 0;
-	
+
 	BaseEntity::BaseEntity() :
 		_id(_nextValidId), _parent(nullptr),
 		_componentManager(new ComponentManager(this)),
@@ -44,13 +44,13 @@ namespace CasaEngine
 		return _id;
 	}
 
-	BaseEntity* BaseEntity::GetParent() const 
-	{ 
-		return _parent; 
+	BaseEntity* BaseEntity::GetParent() const
+	{
+		return _parent;
 	}
 
-	void BaseEntity::SetParent(BaseEntity* val) 
-	{ 
+	void BaseEntity::SetParent(BaseEntity* val)
+	{
 		_parent = val;
 		_coordinates.SetParent(_parent != nullptr ? &_parent->GetCoordinates() : nullptr);
 
@@ -59,7 +59,7 @@ namespace CasaEngine
 	}
 
 	ComponentManager* BaseEntity::GetComponentMgr()
-	{ 
+	{
 		return _componentManager;
 	}
 
@@ -89,17 +89,17 @@ namespace CasaEngine
 		_componentManager->Draw();
 	}
 
-	const char *BaseEntity::GetName() const 
-	{ 
+	const char* BaseEntity::GetName() const
+	{
 		return _name.c_str();
 	}
 
-	void BaseEntity::SetName(const std::string &val)
+	void BaseEntity::SetName(const std::string& val)
 	{
 		_name = val;
 	}
 
-	void BaseEntity::SetName(const char * val) 
+	void BaseEntity::SetName(const char* val)
 	{
 		_name = val;
 	}
@@ -109,12 +109,12 @@ namespace CasaEngine
 		return _coordinates;
 	}
 
-	bool BaseEntity::ToRemoved() const
+	bool BaseEntity::ToBeRemoved() const
 	{
 		return _toRemoved;
 	}
 
-	void BaseEntity::ToRemoved(bool val)
+	void BaseEntity::ToBeRemoved(bool val)
 	{
 		_toRemoved = val;
 	}
@@ -129,7 +129,7 @@ namespace CasaEngine
 		return _isEnabled;
 	}
 
-	void BaseEntity::IsEnabled( bool val )
+	void BaseEntity::IsEnabled(bool val)
 	{
 		_isEnabled = val;
 	}
@@ -139,16 +139,16 @@ namespace CasaEngine
 		return _isVisible;
 	}
 
-	void BaseEntity::IsVisible( bool val )
+	void BaseEntity::IsVisible(bool val)
 	{
 		_isVisible = val;
 	}
 
-	PhysicalEntity & BaseEntity::GetPhysicalEntity()
+	PhysicalEntity& BaseEntity::GetPhysicalEntity()
 	{
 		return _physicalEntity;
 	}
-	
+
 #ifdef EDITOR
 	void BaseEntity::IsSelected(bool val)
 	{

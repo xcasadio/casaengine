@@ -9,8 +9,6 @@
 
 namespace CasaEngine
 {
-	class ICameraController;
-
 	class CA_EXPORT CameraComponent :
 		public Component
 	{

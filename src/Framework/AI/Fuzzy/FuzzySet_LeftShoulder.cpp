@@ -8,8 +8,8 @@ namespace CasaEngine
 	{
 		//test for the case where the left or right offsets are zero
 		//(to prevent divide by zero errors below)
-		if (isEqual(m_fRightOffset, 0.0f) && isEqual(m_fPeakPoint, val) ||
-			isEqual(m_fLeftOffset, 0.0f) && isEqual(m_fPeakPoint, val))
+		if (Math::isEqual(m_fRightOffset, 0.0f) && Math::isEqual(m_fPeakPoint, val) ||
+			Math::isEqual(m_fLeftOffset, 0.0f) && Math::isEqual(m_fPeakPoint, val))
 		{
 			return 1.0f;
 		}

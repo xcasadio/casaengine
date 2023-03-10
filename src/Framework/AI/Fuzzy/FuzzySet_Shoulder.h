@@ -52,8 +52,8 @@ namespace CasaEngine
 		float FuzzySet_Triangle::CalculateDOM(float val)
 	{
 		//test for the case where the triangle's left or right offsets are zero
-		if (isEqual(m_fRightOffset, 0.0) && isEqual(m_fMidPoint, val) ||
-			isEqual(m_fLeftOffset, 0.0) && isEqual(m_fMidPoint, val))
+		if (Math::isEqual(m_fRightOffset, 0.0) && Math::isEqual(m_fMidPoint, val) ||
+			Math::isEqual(m_fLeftOffset, 0.0) && Math::isEqual(m_fMidPoint, val))
 		{
 			return 1.0;
 		}

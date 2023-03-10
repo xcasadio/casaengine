@@ -701,7 +701,7 @@ namespace CasaEngine
 		//     float speed =  dist / ((float)deceleration * DecelerationTweaker);     
 		// 
 		//     //make sure the velocity does not exceed the max
-		//     speed = MinOf(speed, this->GetEntity()->GetPhysicalEntity().MaxSpeed());
+		//     speed = Math::MinOf(speed, this->GetEntity()->GetPhysicalEntity().MaxSpeed());
 		// 
 		//     //from here proceed just like Seek except we don't need to normalize 
 		//     //the ToTarget vector because we have already gone to the trouble
@@ -863,7 +863,7 @@ namespace CasaEngine
 		//   BaseEntity* ClosestIntersectingObstacle = nullptr;
 		//  
 		//   //this will be used to track the distance to the CIB
-		//   float DistToClosestIP = MaxFloat;
+		//   float DistToClosestIP = Math::MaxFloat;
 		// 
 		//   //this will record the transformed local coordinates of the CIB
 		//   Vector2 LocalPosOfClosestObstacle;
@@ -979,7 +979,7 @@ namespace CasaEngine
 		CreateFeelers();
 
 		float DistToThisIP = 0.0;
-		float DistToClosestIP = MaxFloat;
+		float DistToClosestIP = Math::MaxFloat;
 
 		//this will hold an index into the vector of walls
 		int ClosestWall = -1;
@@ -1050,12 +1050,12 @@ namespace CasaEngine
 		// 
 		//   //feeler to left
 		//   Vector2 temp = heading;
-		//   Transformation::Vec2DRotateAroundOrigin(temp, PI_OVER_2 * 3.5f);
+		//   Transformation::Vec2DRotateAroundOrigin(temp, Math::PI_OVER_2 * 3.5f);
 		//   m_Feelers[1] = pos + m_fWallDetectionFeelerLength / 2.0f * temp;
 		// 
 		//   //feeler to right
 		//   temp = heading;
-		//   Transformation::Vec2DRotateAroundOrigin(temp, PI_OVER_2 * 0.5f);
+		//   Transformation::Vec2DRotateAroundOrigin(temp, Math::PI_OVER_2 * 0.5f);
 		//   m_Feelers[2] = pos + m_fWallDetectionFeelerLength / 2.0f * temp;
 	}
 
@@ -1350,7 +1350,7 @@ namespace CasaEngine
 	CasaEngine::Vector2 SteeringBehaviorComponent::Hide(BaseEntity* hunter,
 		const std::vector<BaseEntity*>& obstacles)
 	{
-		//   float    DistToClosest = MaxFloat;
+		//   float    DistToClosest = Math::MaxFloat;
 		//   Vector2 BestHidingSpot;
 		// 
 		//   Transform2DComponent* pHunterTransform2D = hunter->GetComponentMgr()->GetComponent<Transform2DComponent>();
@@ -1388,7 +1388,7 @@ namespace CasaEngine
 		//   }//end while
 		//   
 		//   //if no suitable obstacles found then Evade the hunter
-		//   if (DistToClosest == MaxFloat)
+		//   if (DistToClosest == Math::MaxFloat)
 		//   {
 		//     return Evade(hunter);
 		//   }
@@ -1519,12 +1519,12 @@ namespace CasaEngine
 		//render wander stuff if relevant
 		if (On(wander) && Game::Instance().GetGameInfo().GetWorld()->RenderWanderCircle())
 		{
-		  if (KEYDOWN('F')){m_fWanderJitter+=1.0f*GetEntity()->TimeElapsed(); Clamp(m_fWanderJitter, 0.0f, 100.0f);}
-		  if (KEYDOWN('V')){m_fWanderJitter-=1.0f*GetEntity()->TimeElapsed(); Clamp(m_fWanderJitter, 0.0f, 100.0f );}
-		  if (KEYDOWN('G')){m_fWanderDistance+=2.0f*GetEntity()->TimeElapsed(); Clamp(m_fWanderDistance, 0.0f, 50.0f);}
-		  if (KEYDOWN('B')){m_fWanderDistance-=2.0f*GetEntity()->TimeElapsed(); Clamp(m_fWanderDistance, 0.0f, 50.0f);}
-		  if (KEYDOWN('H')){m_fWanderRadius+=2.0f*GetEntity()->TimeElapsed(); Clamp(m_fWanderRadius, 0.0f, 100.0f);}
-		  if (KEYDOWN('N')){m_fWanderRadius-=2.0f*GetEntity()->TimeElapsed(); Clamp(m_fWanderRadius, 0.0f, 100.0f);}
+		  if (KEYDOWN('F')){m_fWanderJitter+=1.0f*GetEntity()->TimeElapsed(); Math::Clamp(m_fWanderJitter, 0.0f, 100.0f);}
+		  if (KEYDOWN('V')){m_fWanderJitter-=1.0f*GetEntity()->TimeElapsed(); Math::Clamp(m_fWanderJitter, 0.0f, 100.0f );}
+		  if (KEYDOWN('G')){m_fWanderDistance+=2.0f*GetEntity()->TimeElapsed(); Math::Clamp(m_fWanderDistance, 0.0f, 50.0f);}
+		  if (KEYDOWN('B')){m_fWanderDistance-=2.0f*GetEntity()->TimeElapsed(); Math::Clamp(m_fWanderDistance, 0.0f, 50.0f);}
+		  if (KEYDOWN('H')){m_fWanderRadius+=2.0f*GetEntity()->TimeElapsed(); Math::Clamp(m_fWanderRadius, 0.0f, 100.0f);}
+		  if (KEYDOWN('N')){m_fWanderRadius-=2.0f*GetEntity()->TimeElapsed(); Math::Clamp(m_fWanderRadius, 0.0f, 100.0f);}
 
 
 		  if (GetEntity()->Id() == 0){ gdi->TextAtPos(5,NextSlot, "Jitter(F/V): "); gdi->TextAtPos(160, NextSlot, ttos(m_fWanderJitter));NextSlot+=SlotSize;}
@@ -1657,23 +1657,23 @@ namespace CasaEngine
 		{
 		  if (GetEntity()->Id() == 0){ gdi->TextAtPos(5, NextSlot, "Separation(S/X):");gdi->TextAtPos(160,NextSlot, ttos(m_fWeightSeparation/Prm.SteeringForceTweaker));NextSlot+=SlotSize;}
 
-		  if (KEYDOWN('S')){m_fWeightSeparation += 200*GetEntity()->TimeElapsed(); Clamp(m_fWeightSeparation, 0.0f, 50.0f * Prm.SteeringForceTweaker);}
-		  if (KEYDOWN('X')){m_fWeightSeparation -= 200*GetEntity()->TimeElapsed();Clamp(m_fWeightSeparation, 0.0f, 50.0f * Prm.SteeringForceTweaker);}
+		  if (KEYDOWN('S')){m_fWeightSeparation += 200*GetEntity()->TimeElapsed(); Math::Clamp(m_fWeightSeparation, 0.0f, 50.0f * Prm.SteeringForceTweaker);}
+		  if (KEYDOWN('X')){m_fWeightSeparation -= 200*GetEntity()->TimeElapsed();Math::Clamp(m_fWeightSeparation, 0.0f, 50.0f * Prm.SteeringForceTweaker);}
 		}
 
 		if (On(allignment))
 		{
 		  if (GetEntity()->Id() == 0) {gdi->TextAtPos(5, NextSlot, "Alignment(A/Z):"); gdi->TextAtPos(160, NextSlot, ttos(m_fWeightAlignment/Prm.SteeringForceTweaker));NextSlot+=SlotSize;}
 
-		  if (KEYDOWN('A')){m_fWeightAlignment += 200*GetEntity()->TimeElapsed();Clamp(m_fWeightAlignment, 0.0f, 50.0f * Prm.SteeringForceTweaker);}
-		  if (KEYDOWN('Z')){m_fWeightAlignment -= 200*GetEntity()->TimeElapsed();Clamp(m_fWeightAlignment, 0.0f, 50.0f * Prm.SteeringForceTweaker);}
+		  if (KEYDOWN('A')){m_fWeightAlignment += 200*GetEntity()->TimeElapsed();Math::Clamp(m_fWeightAlignment, 0.0f, 50.0f * Prm.SteeringForceTweaker);}
+		  if (KEYDOWN('Z')){m_fWeightAlignment -= 200*GetEntity()->TimeElapsed();Math::Clamp(m_fWeightAlignment, 0.0f, 50.0f * Prm.SteeringForceTweaker);}
 		}
 
 		if (On(cohesion))
 		{
 		  if (GetEntity()->Id() == 0) {gdi->TextAtPos(5, NextSlot, "Cohesion(D/C):"); gdi->TextAtPos(160, NextSlot, ttos(m_fWeightCohesion/Prm.SteeringForceTweaker));NextSlot+=SlotSize;}
-		  if (KEYDOWN('D')){m_fWeightCohesion += 200*GetEntity()->TimeElapsed();Clamp(m_fWeightCohesion, 0.0f, 50.0f * Prm.SteeringForceTweaker);}
-		  if (KEYDOWN('C')){m_fWeightCohesion -= 200*GetEntity()->TimeElapsed();Clamp(m_fWeightCohesion, 0.0f, 50.0f * Prm.SteeringForceTweaker);}
+		  if (KEYDOWN('D')){m_fWeightCohesion += 200*GetEntity()->TimeElapsed();Math::Clamp(m_fWeightCohesion, 0.0f, 50.0f * Prm.SteeringForceTweaker);}
+		  if (KEYDOWN('C')){m_fWeightCohesion -= 200*GetEntity()->TimeElapsed();Math::Clamp(m_fWeightCohesion, 0.0f, 50.0f * Prm.SteeringForceTweaker);}
 		}
 
 		if (On(follow_path))
@@ -1682,7 +1682,7 @@ namespace CasaEngine
 		  if (GetEntity()->Id() == 0){ gdi->TextAtPos(5, NextSlot, "SeekDistance(D/C):");gdi->TextAtPos(160, NextSlot,ttos(sd));NextSlot+=SlotSize;}
 
 		  if (KEYDOWN('D')){m_fWaypointSeekDistSq += 1.0;}
-		  if (KEYDOWN('C')){m_fWaypointSeekDistSq -= 1.0; Clamp(m_fWaypointSeekDistSq, 0.0f, 400.0f);}
+		  if (KEYDOWN('C')){m_fWaypointSeekDistSq -= 1.0; Math::Clamp(m_fWaypointSeekDistSq, 0.0f, 400.0f);}
 		}
 		*/
 	}

@@ -74,7 +74,7 @@ void CubeGame::LoadContent()
 	pEntity->GetCoordinates().SetLocalScale(Vector3::One());
 	pModelCpt = new MeshComponent(pEntity);
 	pPrimitive = new CylinderPrimitive();
-	pModel = pPrimitive->CreateModel();
+	pModel = pPrimitive->CreateMesh();
 	pModelCpt->SetModel(pModel);
 	pModelCpt->SetProgram(m_pProgram);
 	pEntity->GetComponentMgr()->AddComponent(pModelCpt);
@@ -90,7 +90,7 @@ void CubeGame::LoadContent()
 	entityMatrix = pEntity->GetCoordinates().GetLocalMatrix();
 	pModelCpt = new MeshComponent(pEntity);
 	pPrimitive = new BoxPrimitive();
-	pModel = pPrimitive->CreateModel();
+	pModel = pPrimitive->CreateMesh();
 	pModelCpt->SetModel(pModel);
 	pModelCpt->SetProgram(m_pProgram);
 	pEntity->GetComponentMgr()->AddComponent(pModelCpt);
@@ -105,7 +105,7 @@ void CubeGame::LoadContent()
 	pEntity->GetCoordinates().SetLocalScale(Vector3::One());
 	pModelCpt = new MeshComponent(pEntity);
 	pPrimitive = new SpherePrimitive();
-	pModel = pPrimitive->CreateModel();
+	pModel = pPrimitive->CreateMesh();
 	pModelCpt->SetModel(pModel);
 	pModelCpt->SetProgram(m_pProgram);
 	pEntity->GetComponentMgr()->AddComponent(pModelCpt);
@@ -120,7 +120,7 @@ void CubeGame::LoadContent()
 	pEntity->GetCoordinates().SetLocalScale(Vector3::One());
 	pModelCpt = new MeshComponent(pEntity);
 	pPrimitive = new PlanePrimitive(100.0f, 100.0f);
-	pModel = pPrimitive->CreateModel();
+	pModel = pPrimitive->CreateMesh();
 	Material* pMat = pModel->GetMaterial()->Clone();
 	pModel->SetMaterial(pMat);
 	pMat->Texture0(Texture::loadTexture(Game::Instance().GetMediaManager().FindMedia("ceilingMain_DIF.dds"), BGFX_SAMPLER_MIN_ANISOTROPIC | BGFX_SAMPLER_MAG_ANISOTROPIC));

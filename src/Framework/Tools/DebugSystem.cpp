@@ -4,23 +4,23 @@
 
 namespace CasaEngine
 {
-	DebugSystem::DebugSystem():
+	DebugSystem::DebugSystem() :
 		m_offset(0), m_min(0), m_max(0), m_avg(0), m_lastGameTimes{}
 	{
-		for (int i=0; i<numSamples; i++)
+		for (int i = 0; i < numSamples; i++)
 		{
 			m_lastGameTimes[i] = -1.0f;
 		}
 	}
 
-	void DebugSystem::Update( const GameTime& gameTime_ )
+	void DebugSystem::Update(const GameTime& gameTime_)
 	{
 		m_lastGameTimes[m_offset] = gameTime_.FrameTime();
 		m_offset = ++m_offset % numSamples;
 
 		float avg = 0.0f;
-		float min = MaxFloat;
-		float max = -MaxFloat;
+		float min = Math::MaxFloat;
+		float max = -Math::MaxFloat;
 		int count = 0;
 
 		for (float val : m_lastGameTimes)
@@ -30,8 +30,8 @@ namespace CasaEngine
 				continue;
 			}
 
-			min = MinOf(min, val);
-			max = MaxOf(max, val);
+			min = Math::MinOf(min, val);
+			max = Math::MaxOf(max, val);
 			avg += val;
 			count++;
 		}

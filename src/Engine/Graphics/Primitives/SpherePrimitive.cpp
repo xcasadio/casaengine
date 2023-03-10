@@ -28,14 +28,14 @@ namespace CasaEngine
 		// Create rings of vertices at progressively higher latitudes.
 		for (int i = 0; i <= verticalSegments; i++)
 		{
-			float latitude = static_cast<float>(i) * PI / static_cast<float>(verticalSegments) - PI_OVER_2;
+			float latitude = static_cast<float>(i) * Math::Pi / static_cast<float>(verticalSegments) - Math::PI_OVER_2;
 			float dy = sinf(latitude);
 			float dxz = cosf(latitude);
 
 			// Create a single ring of vertices at this latitude.
 			for (int j = 0; j <= horizontalSegments; j++)
 			{
-				float longitude = static_cast<float>(j) * MATH_2PI / static_cast<float>(horizontalSegments);
+				float longitude = static_cast<float>(j) * Math::MATH_2PI / static_cast<float>(horizontalSegments);
 
 				float dx = cosf(longitude) * dxz;
 				float dz = sinf(longitude) * dxz;

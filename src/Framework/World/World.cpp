@@ -53,9 +53,9 @@ namespace CasaEngine
 		}
 #endif
 		_entities.push_back(entity);
-		
+
 	}
-	
+
 	void World::RemoveMarkedEntities()
 	{
 		std::vector<BaseEntity*> entities;
@@ -63,7 +63,7 @@ namespace CasaEngine
 
 		for (auto* entity : _entities)
 		{
-			if (entity->ToRemoved())
+			if (entity->ToBeRemoved())
 			{
 				//delete entity;
 			}
@@ -101,7 +101,7 @@ namespace CasaEngine
 	}
 
 	void World::WorldComponent::Initialize()
-	{		
+	{
 		for (const auto entity : m_pWorld->GetEntities())
 		{
 			entity->Initialize();
@@ -113,12 +113,12 @@ namespace CasaEngine
 		m_pWorld->GetPhysicsWorld().Update(gameTime_);
 
 		for (auto it = m_pWorld->GetEntities().begin();
-		     it != m_pWorld->GetEntities().end();
-		     ++it)
+			it != m_pWorld->GetEntities().end();
+			++it)
 		{
-			if ((*it)->ToRemoved() == false)
+			if ((*it)->ToBeRemoved() == false)
 			{
-				(*it)->Update(gameTime_);				
+				(*it)->Update(gameTime_);
 			}
 		}
 
@@ -130,10 +130,10 @@ namespace CasaEngine
 		m_pWorld->GetPhysicsWorld().Draw();
 
 		for (auto it = m_pWorld->GetEntities().begin();
-		     it != m_pWorld->GetEntities().end();
-		     ++it)
+			it != m_pWorld->GetEntities().end();
+			++it)
 		{
-			if ((*it)->ToRemoved() == false)
+			if ((*it)->ToBeRemoved() == false)
 			{
 				(*it)->Draw();
 			}
