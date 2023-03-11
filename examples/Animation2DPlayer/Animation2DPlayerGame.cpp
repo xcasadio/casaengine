@@ -202,6 +202,24 @@ void Animation2DPlayerGame::Update(const GameTime& gameTime_)
 		m_pEntity->IsEnabled(false);
 	}
 
+	if (m_FrameSelectionChanged)
+	{
+		m_pEntity->IsEnabled(false);
+		//m_FrameSelectedIndex = m_LastFrameSelectedIndex =
+		auto frameTime = 0.0f;
+
+		for (int i = 0; i < m_FrameSelectedIndex; ++i)
+		{
+			frameTime += m_pAnimatedSprite->GetCurrentAnimation()->GetAnimation2DData()->_frames[i]._duration;
+		}
+
+		*m_pAnimatedSprite->GetCurrentAnimation()->CurrentTimePtr() = frameTime;
+		m_pAnimatedSprite->GetCurrentAnimation()->Update(0.0f);
+
+		m_FrameSelectionChanged = false;
+	}
+
+
 	//if (Game::Instance().GetInput().IsKeyJustDown(sf::Keyboard::Space))
 	if (m_LastAnimationSelectedIndex != m_AnimationSelectedIndex)
 	{
@@ -411,6 +429,7 @@ void Animation2DPlayerGame::DisplayUI()
 				ImGui::PushID(n);
 				if (ImGui::Selectable(frameNames[n], m_FrameSelectedIndex == n))
 				{
+					m_FrameSelectionChanged = true;
 					m_FrameSelectedIndex = n;
 				}
 

@@ -119,8 +119,7 @@ namespace CasaEngine
 		// m_Events must be sorted by time
 		for (auto* event : m_Events)
 		{
-			if (lastTime >= event->Time()
-				&& event->Time() < currentTime)
+			if (lastTime >= event->Time() && event->Time() < currentTime)
 			{
 				event->Activate(this);
 			}

@@ -34,4 +34,5 @@ private:
 	int m_FrameSelectedIndex, m_LastFrameSelectedIndex;
 	int m_CollisionSelectedIndex, m_LastCollisionSelectedIndex;
 	int m_CollisionTypeSelectedIndex, m_LastCollisionTypeSelectedIndex;
+	bool m_FrameSelectionChanged;
 };
