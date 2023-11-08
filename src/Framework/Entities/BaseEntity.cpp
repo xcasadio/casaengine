@@ -162,12 +162,12 @@ namespace CasaEngine
 
 	void BaseEntity::IsPersistent(bool val)
 	{
-		_isSelected = val;
+		_isPersistent = val;
 	}
 
 	bool BaseEntity::IsPersistent() const
 	{
-		return _isSelected;
+		return _isPersistent;
 	}
 #endif
 }

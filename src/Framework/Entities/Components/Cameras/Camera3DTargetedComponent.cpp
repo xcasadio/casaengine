@@ -19,7 +19,7 @@ namespace CasaEngine
 		{
 			auto viewport = GetViewport();
 			const auto winSize = Game::Instance().GetWindowSize();
-			const auto targetPosition = GetEntity()->GetCoordinates().GetPosition();
+			const auto targetPosition = m_pTargetedEntity->GetCoordinates().GetPosition();
 
 			const Rectangle deadZone(m_Offset.x + static_cast<float>(winSize.x) * (1.0f - m_DeadZoneRatio.x) / 2.0f,
 				m_Offset.y + static_cast<float>(winSize.y) * (1.0f - m_DeadZoneRatio.y) / 2.0f,
@@ -79,7 +79,7 @@ namespace CasaEngine
 		//const float midx = w * 0.5f;
 		//const float midy = h * 0.5f;
 		//const float z = midx / (aspect * d_yfov_tan);
-		
+
 		//float fovy = ToDegree(FOV()); // field of view - degrees
 		//float aspect = w / h;
 		//float zNearClip = 0.1f;

@@ -1,5 +1,4 @@
-#ifndef SHAPETYPE_H
-#define SHAPETYPE_H
+#pragma once
 
 namespace CasaEngine
 {
@@ -15,5 +14,3 @@ namespace CasaEngine
 		POLYGON,
 	};
 }
-
-#endif

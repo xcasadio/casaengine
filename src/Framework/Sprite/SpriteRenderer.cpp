@@ -14,7 +14,7 @@
 
 namespace CasaEngine
 {
-	SpriteRenderer::SpriteRenderer(Game* pGame_) : 
+	SpriteRenderer::SpriteRenderer(Game* pGame_) :
 		DrawableGameComponent(pGame_),
 		m_MaxSprite(5000)
 	{
@@ -27,7 +27,7 @@ namespace CasaEngine
 
 		destroy(m_VertexBuffer);
 		destroy(m_IndexBuffer);
-		
+
 		delete m_Program;
 	}
 
@@ -41,25 +41,22 @@ namespace CasaEngine
 		m_VertexBuffer = createDynamicVertexBuffer(m_MaxSprite * 4, VertexPositionColorTexture::ms_layout);
 
 		const int nbIndex = 6;
-		std::unique_ptr<short[]> pIndices(new short[nbIndex * 6]);
+		std::unique_ptr<short[]> pIndices(new short[nbIndex]);
 
-		for (int i=0; i< nbIndex; i++)
-		{
-			pIndices[i * 6 + 0] = static_cast<short>(0 + i * 4);
-			pIndices[i * 6 + 1] = static_cast<short>(2 + i * 4);
-			pIndices[i * 6 + 2] = static_cast<short>(1 + i * 4);
-			pIndices[i * 6 + 3] = static_cast<short>(0 + i * 4);
-			pIndices[i * 6 + 4] = static_cast<short>(3 + i * 4);
-			pIndices[i * 6 + 5] = static_cast<short>(2 + i * 4);
-		}
+		pIndices[0] = static_cast<short>(0);
+		pIndices[1] = static_cast<short>(2);
+		pIndices[2] = static_cast<short>(1);
+		pIndices[3] = static_cast<short>(0);
+		pIndices[4] = static_cast<short>(3);
+		pIndices[5] = static_cast<short>(2);
 
-		m_IndexBuffer = createIndexBuffer(bgfx::copy(pIndices.get(), sizeof(short) * nbIndex * 6 ));
+		m_IndexBuffer = createIndexBuffer(bgfx::copy(pIndices.get(), sizeof(short) * nbIndex));
 
 		m_Program = new Program("vs_spritebatch", "fs_spritebatch");
 		m_texColor = createUniform("s_texColor", bgfx::UniformType::Sampler);
 	}
 
-	void SpriteRenderer::Update(const GameTime& /*gametime_*/ )
+	void SpriteRenderer::Update(const GameTime& /*gametime_*/)
 	{
 		m_SpriteDatas.clear();
 	}
@@ -73,7 +70,7 @@ namespace CasaEngine
 
 		UpdateBuffer();
 
-		CameraComponent *pCamera = Game::Instance().GetGameInfo().GetActiveCamera();
+		CameraComponent* pCamera = Game::Instance().GetGameInfo().GetActiveCamera();
 		bgfx::setViewTransform(0, pCamera->GetViewMatrix(), pCamera->GetProjectionMatrix());
 
 		for (auto i = 0; i < m_SpriteDatas.size(); i++)
@@ -89,7 +86,7 @@ namespace CasaEngine
 			setTexture(0, m_texColor, m_SpriteDatas[i].Texture->Handle());
 			//bgfx::setUniform(m_ColorUniform, m_SpriteDatas[i].Color);
 			bgfx::setTransform(m_SpriteDatas[i].transform);
-			submit(0, m_Program->Handle());			
+			submit(0, m_Program->Handle());
 		}
 	}
 
@@ -103,7 +100,7 @@ namespace CasaEngine
 		const int nbVertices = 4;
 
 		std::sort(m_SpriteDatas.begin(), m_SpriteDatas.end(), sortSpriteDatas);
-		
+
 		for (auto i = 0; i < m_SpriteDatas.size(); i++)
 		{
 			const int index = i * nbVertices;
@@ -144,18 +141,18 @@ namespace CasaEngine
 		{
 			throw ArgumentNullException("SpriteRenderer::AddSprite() : Sprite is null");
 		}
-		
+
 		AddSprite(sprite->GetTexture2D(), sprite->GetSpriteData()->GetPositionInTexture(), sprite->GetSpriteData()->GetOrigin(), transform, color_, effects_);
 	}
 
 	void SpriteRenderer::AddSprite(const Texture* tex_,
-	                               const Rectangle& posInTex, const Vector2I& origin, const Matrix4& transform, const Color& color_, eSpriteEffects effects_)
+		const Rectangle& posInTex, const Vector2I& origin, const Matrix4& transform, const Color& color_, eSpriteEffects effects_)
 	{
 		if (tex_ == nullptr)
 		{
 			throw ArgumentNullException("SpriteRenderer::AddSprite() : Texture is null");
 		}
-		
+
 		if (m_SpriteDatas.size() >= m_MaxSprite)
 		{
 			return;
@@ -251,16 +248,16 @@ namespace CasaEngine
 		//transform.SetTranslation(Vector3(pos.x, pos.y));
 		//transform.CreateScale(scale.x, scale.y, 0.0f);
 		transform.Transformation(nullptr,
-			nullptr, 
+			nullptr,
 			&scale3,
-			&rotationCenter, 
+			&rotationCenter,
 			&quaternionRotation,
 			&translation);
 		AddSprite(tex_, posInTex, origin, transform, color, effects);
 	}
 
-	void SpriteRenderer::AddSprite(Sprite* pSprite, const Vector2 &pos_, 
-		float rot_, const Vector2 &scale_, const Color &color_, float ZOrder_, eSpriteEffects effects_)
+	void SpriteRenderer::AddSprite(Sprite* pSprite, const Vector2& pos_,
+		float rot_, const Vector2& scale_, const Color& color_, float ZOrder_, eSpriteEffects effects_)
 	{
 		if (pSprite->GetTexture2D() == nullptr)
 		{
