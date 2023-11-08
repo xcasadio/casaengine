@@ -1,5 +1,5 @@
-#include "FSMGame.h"
-#include <Windows.h>
+#include  "FSMGame.hpp"
+#include  <Windows.h>
 #include <exception>
 
 INT WINAPI WinMain(HINSTANCE Instance, HINSTANCE PrevInst, LPSTR CmdLine, INT NbCmd)

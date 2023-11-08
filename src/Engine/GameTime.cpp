@@ -1,4 +1,4 @@
-#include "GameTime.h"
+#include  "GameTime.hpp"
 
 #ifdef CA_PLATFORM_WINDOWS
 

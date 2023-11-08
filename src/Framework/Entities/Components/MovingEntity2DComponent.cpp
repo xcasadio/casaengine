@@ -1,11 +1,11 @@
-#include "Base.h"
+#include  "Base.hpp"
 
-#include "Entities/BaseEntity.h"
-#include "Entities/ComponentTypeEnum.h"
-#include "Game/Game.h"
-#include "MovingEntity2DComponent.h"
-#include "SteeringBehaviorComponent.h"
-#include "StringUtils.h"
+#include  "Entities/BaseEntity.hpp"
+#include  "Entities/ComponentTypeEnum.hpp"
+#include  "Game/Game.hpp"
+#include  "MovingEntity2DComponent.hpp"
+#include  "SteeringBehaviorComponent.hpp"
+#include  "StringUtils.hpp"
 
 #include <string>
 

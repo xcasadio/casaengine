@@ -28,8 +28,8 @@
     <ClCompile Include="..\..\examples\Animation2DPlayer\main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\examples\Animation2DPlayer\Animation2DPlayerGame.h" />
-    <ClInclude Include="..\..\examples\Animation2DPlayer\save_load_types.h" />
+    <ClInclude Include="..\..\examples\Animation2DPlayer\Animation2DPlayerGame.hpp" />
+    <ClInclude Include="..\..\examples\Animation2DPlayer\save_load_types.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{eec26e1a-75e9-469d-858e-4b0d6becd730}</ProjectGuid>

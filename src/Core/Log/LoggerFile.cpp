@@ -1,13 +1,13 @@
-#include "Base.h"
+#include  "Base.hpp"
 
-#include <Log/LoggerFile.h>
-#include <Exceptions.h>
-#include "LogManager.h"
-#include "LogVerbose.h"
-#include "DateTime.h"
-#include "Version.h"
+#include <Log/LoggerFile.hpp>
+#include <Exceptions.hpp>
+#include  "LogManager.hpp"
+#include  "LogVerbose.hpp"
+#include  "DateTime.hpp"
+#include  "Version.hpp"
 
-#include "CA_Assert.h"
+#include  "CA_Assert.hpp"
 
 namespace CasaEngine
 {

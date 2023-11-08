@@ -1,8 +1,8 @@
-#include "MD2Loader.h"
+#include  "MD2Loader.hpp"
 #include <fstream>
 
-#include "Graphics/Vertices/VertexType.h"
-#include "Game/Game.h"
+#include  "Graphics/Vertices/VertexType.hpp"
+#include  "Game/Game.hpp"
 
 using namespace CasaEngine;
 

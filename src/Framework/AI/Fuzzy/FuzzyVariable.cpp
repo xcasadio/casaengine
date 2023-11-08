@@ -1,17 +1,17 @@
 
 #include <iostream>
 #include <algorithm>
-#include "Log/LogManager.h"
-#include "Maths/Math.h"
-#include "Base.h"
-#include "fuzzyvariable.h"
-#include "FuzzySet_triangle.h"
-#include "FuzzySet_LeftShoulder.h"
-#include "FuzzySet_RightShoulder.h"
-#include "FuzzySet_Singleton.h"
-#include "FzSet.h"
+#include  "Log/LogManager.hpp"
+#include  "Maths/Math.hpp"
+#include  "Base.hpp"
+#include  "fuzzyvariable.hpp"
+#include  "FuzzySet_triangle.hpp"
+#include  "FuzzySet_LeftShoulder.hpp"
+#include  "FuzzySet_RightShoulder.hpp"
+#include  "FuzzySet_Singleton.hpp"
+#include  "FzSet.hpp"
 
-#include "CA_Assert.h"
+#include  "CA_Assert.hpp"
 
 
 namespace CasaEngine

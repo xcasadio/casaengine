@@ -1,7 +1,7 @@
-#include "Base.h"
+#include  "Base.hpp"
 #include <cstdlib>
-#include "DynamicModule.h"
-#include "Exceptions.h"
+#include  "DynamicModule.hpp"
+#include  "Exceptions.hpp"
 
 #if defined(__WIN32__) || defined(_WIN32)
 #   if defined(_MSC_VER)

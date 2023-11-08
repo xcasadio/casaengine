@@ -1,7 +1,7 @@
-#include "Camera2DTargetedComponent.h"
+#include  "Camera2DTargetedComponent.hpp"
 
-#include "Entities/ComponentTypeEnum.h"
-#include "Game/Game.h"
+#include  "Entities/ComponentTypeEnum.hpp"
+#include  "Game/Game.hpp"
 
 namespace CasaEngine
 {

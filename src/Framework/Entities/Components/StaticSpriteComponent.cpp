@@ -1,15 +1,15 @@
-#include "Base.h"
-#include "Entities/BaseEntity.h"
+#include  "Base.hpp"
+#include  "Entities/BaseEntity.hpp"
 
-#include "StaticSpriteComponent.h"
-#include "Maths/Matrix4.h"
-#include "Entities/ComponentTypeEnum.h"
+#include  "StaticSpriteComponent.hpp"
+#include  "Maths/Matrix4.hpp"
+#include  "Entities/ComponentTypeEnum.hpp"
 #include <string>
-#include "Game/Game.h"
-#include "Sprite/SpriteRenderer.h"
-#include "Sprite/SpriteTypes.h"
-#include "Graphics/Color.h"
-#include "Assets/AssetManager.h"
+#include  "Game/Game.hpp"
+#include  "Sprite/SpriteRenderer.hpp"
+#include  "Sprite/SpriteTypes.hpp"
+#include  "Graphics/Color.hpp"
+#include  "Assets/AssetManager.hpp"
 
 namespace CasaEngine
 {

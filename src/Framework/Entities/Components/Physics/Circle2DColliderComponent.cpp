@@ -1,7 +1,7 @@
-#include "Entities/BaseEntity.h"
+#include  "Entities/BaseEntity.hpp"
 
-#include "Circle2DColliderComponent.h"
-#include "Entities/ComponentTypeEnum.h"
+#include  "Circle2DColliderComponent.hpp"
+#include  "Entities/ComponentTypeEnum.hpp"
 
 namespace CasaEngine
 {

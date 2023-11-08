@@ -1,8 +1,8 @@
-#include "FSMGame.h"
-#include "Game/GameInfo.h"
-#include "Log/LoggerFile.h"
-#include "WestWorldWithMessaging/MinerComponent.h"
-#include "WestWorldWithMessaging/MinersWifeComponent.h"
+#include  "FSMGame.hpp"
+#include  "Game/GameInfo.hpp"
+#include  "Log/LoggerFile.hpp"
+#include  "WestWorldWithMessaging/MinerComponent.hpp"
+#include  "WestWorldWithMessaging/MinersWifeComponent.hpp"
 
 using namespace CasaEngine;
 

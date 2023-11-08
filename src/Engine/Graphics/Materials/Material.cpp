@@ -1,6 +1,6 @@
-#include "Base.h"
+#include  "Base.hpp"
 
-#include "Material.h"
+#include  "Material.hpp"
 #include <bgfx/bgfx.h>
 
 namespace CasaEngine

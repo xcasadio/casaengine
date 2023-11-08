@@ -1,9 +1,9 @@
-#include "Base.h"
+#include  "Base.hpp"
 
-#include "RenderTarget.h"
-#include "Maths/Matrix4.h"
+#include  "RenderTarget.hpp"
+#include  "Maths/Matrix4.hpp"
 
-#include "Log/LogManager.h"
+#include  "Log/LogManager.hpp"
 
 namespace CasaEngine
 {

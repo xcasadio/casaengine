@@ -1,7 +1,7 @@
-#include "Base.h"
-#include "CharacterBase.h"
-#include "MessageType.h"
-#include "Game/Game.h"
+#include  "Base.hpp"
+#include  "CharacterBase.hpp"
+#include  "MessageType.hpp"
+#include  "Game/Game.hpp"
 
 namespace CasaEngine
 {

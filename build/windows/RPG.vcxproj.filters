@@ -16,20 +16,20 @@
     <ClCompile Include="..\..\examples\RPG\ScriptWeapon.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\examples\RPG\Character.h" />
-    <ClInclude Include="..\..\examples\RPG\CharacterEnum.h" />
-    <ClInclude Include="..\..\examples\RPG\CustomComponentType.h" />
-    <ClInclude Include="..\..\examples\RPG\EnemyStates.h" />
-    <ClInclude Include="..\..\examples\RPG\PlayerController.h" />
-    <ClInclude Include="..\..\examples\RPG\PlayerStates.h" />
-    <ClInclude Include="..\..\examples\RPG\RPGGame.h" />
-    <ClInclude Include="..\..\examples\RPG\EnemyController.h" />
-    <ClInclude Include="..\..\examples\RPG\Enemy.h" />
-    <ClInclude Include="..\..\examples\RPG\ScriptCharacter.h" />
-    <ClInclude Include="..\..\examples\RPG\load_save_types.h" />
-    <ClInclude Include="..\..\examples\RPG\Player.h" />
-    <ClInclude Include="..\..\examples\RPG\ScriptGrass.h" />
-    <ClInclude Include="..\..\examples\RPG\Weapon.h" />
-    <ClInclude Include="..\..\examples\RPG\ScriptWeapon.h" />
+    <ClInclude Include="..\..\examples\RPG\Character.hpp" />
+    <ClInclude Include="..\..\examples\RPG\CharacterEnum.hpp" />
+    <ClInclude Include="..\..\examples\RPG\CustomComponentType.hpp" />
+    <ClInclude Include="..\..\examples\RPG\EnemyStates.hpp" />
+    <ClInclude Include="..\..\examples\RPG\PlayerController.hpp" />
+    <ClInclude Include="..\..\examples\RPG\PlayerStates.hpp" />
+    <ClInclude Include="..\..\examples\RPG\RPGGame.hpp" />
+    <ClInclude Include="..\..\examples\RPG\EnemyController.hpp" />
+    <ClInclude Include="..\..\examples\RPG\Enemy.hpp" />
+    <ClInclude Include="..\..\examples\RPG\ScriptCharacter.hpp" />
+    <ClInclude Include="..\..\examples\RPG\load_save_types.hpp" />
+    <ClInclude Include="..\..\examples\RPG\Player.hpp" />
+    <ClInclude Include="..\..\examples\RPG\ScriptGrass.hpp" />
+    <ClInclude Include="..\..\examples\RPG\Weapon.hpp" />
+    <ClInclude Include="..\..\examples\RPG\ScriptWeapon.hpp" />
   </ItemGroup>
 </Project>

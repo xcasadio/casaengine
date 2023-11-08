@@ -1,9 +1,9 @@
-#include "Base.h"
+#include  "Base.hpp"
 
-#include "Animations/AnimationEndEvent.h"
-#include "Animation.h"
-#include "Animation2D.h"
-#include "Log/LogManager.h"
+#include  "Animations/AnimationEndEvent.hpp"
+#include  "Animation.hpp"
+#include  "Animation2D.hpp"
+#include  "Log/LogManager.hpp"
 
 #include <ostream>
 #include <fstream>

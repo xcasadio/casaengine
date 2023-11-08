@@ -1,12 +1,12 @@
-#include "Base.h"
-#include "Entities/BaseEntity.h"
+#include  "Base.hpp"
+#include  "Entities/BaseEntity.hpp"
 
-#include "RigidBodyComponent.h"
-#include "Entities/ComponentTypeEnum.h"
-#include "Game/Game.h"
+#include  "RigidBodyComponent.hpp"
+#include  "Entities/ComponentTypeEnum.hpp"
+#include  "Game/Game.hpp"
 
-#include "CA_Assert.h"
-#include "Game/GameInfo.h"
+#include  "CA_Assert.hpp"
+#include  "Game/GameInfo.hpp"
 
 namespace CasaEngine
 {

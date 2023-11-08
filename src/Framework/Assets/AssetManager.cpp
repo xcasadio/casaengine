@@ -1,8 +1,8 @@
-#include "Base.h"
-#include "Log/LogManager.h"
-#include "AssetManager.h"
-#include "Asset.h"
-#include "StringUtils.h"
+#include  "Base.hpp"
+#include  "Log/LogManager.hpp"
+#include  "AssetManager.hpp"
+#include  "Asset.hpp"
+#include  "StringUtils.hpp"
 #include <string>
 #include <map>
 #include <string>

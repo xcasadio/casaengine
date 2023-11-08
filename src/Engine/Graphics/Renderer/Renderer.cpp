@@ -2,15 +2,15 @@
 
 #include <bgfx/bgfx.h>
 
-#include "Graphics/Renderer/Renderer.h"
+#include  "Graphics/Renderer/Renderer.hpp"
 
 #include <bgfx/platform.h>
 #include <bx/bx.h>
 
-#include "Maths/Matrix4.h"
+#include  "Maths/Matrix4.hpp"
 
-#include "EngineSettings.h"
-#include "Graphics/Vertices/VertexType.h"
+#include  "EngineSettings.hpp"
+#include  "Graphics/Vertices/VertexType.hpp"
 
 namespace CasaEngine
 {

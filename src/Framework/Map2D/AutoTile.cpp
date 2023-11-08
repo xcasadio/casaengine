@@ -1,7 +1,7 @@
-#include "AutoTile.h"
+#include  "AutoTile.hpp"
 
-#include "StaticTile.h"
-#include "Game/Game.h"
+#include  "StaticTile.hpp"
+#include  "Game/Game.hpp"
 
 namespace CasaEngine
 {

@@ -1,12 +1,12 @@
 // Read an INI file into easy-to-access name/value pairs.
 
-#include "Base.h"
+#include  "Base.hpp"
 
 #include <algorithm>
 #include <cctype>
 #include <cstdlib>
-#include "ini.h"
-#include "INIReader.h"
+#include  "ini.h"
+#include  "INIReader.hpp"
 
 using std::string;
 

@@ -1,7 +1,7 @@
-#include "SpriteLoader.h"
+#include  "SpriteLoader.hpp"
 
-#include "Game/Game.h"
-#include "Serializer/Serializer.h"
+#include  "Game/Game.hpp"
+#include  "Serializer/Serializer.hpp"
 
 namespace CasaEngine
 {

@@ -1,12 +1,12 @@
-#include "Base.h"
-#include "SpritePhysicsHelper.h"
+#include  "Base.hpp"
+#include  "SpritePhysicsHelper.hpp"
 
 #include <BulletCollision/CollisionShapes/btBoxShape.h>
 
-#include "Physics/CollisionParameters.h"
-#include "Game/Game.h"
-#include "Physics/Bullet/BulletObjectsContainer.h"
-#include "Physics/Bullet/BulletPhysicsWorld.h"
+#include  "Physics/CollisionParameters.hpp"
+#include  "Game/Game.hpp"
+#include  "Physics/Bullet/BulletObjectsContainer.hpp"
+#include  "Physics/Bullet/BulletPhysicsWorld.hpp"
 
 namespace CasaEngine
 {

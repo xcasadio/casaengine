@@ -1,6 +1,5 @@
-#include "Base.h"
-
-#include "Physics/Collision.h"
+#include  "Base.hpp"
+#include  "Physics/Collision.hpp"
 
 namespace CasaEngine
 {
@@ -59,7 +58,7 @@ namespace CasaEngine
 		return _shape;
 	}
 
-	void Collision::SetShape(IShape *shape)
+	void Collision::SetShape(IShape* shape)
 	{
 		_shape = shape;
 	}

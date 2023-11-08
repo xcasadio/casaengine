@@ -1,7 +1,7 @@
-#include "Base.h"
+#include  "Base.hpp"
 
-#include "Program.h"
-#include "Shader.h"
+#include  "Program.hpp"
+#include  "Shader.hpp"
 
 namespace CasaEngine
 {

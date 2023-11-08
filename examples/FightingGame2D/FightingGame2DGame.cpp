@@ -1,33 +1,33 @@
 #include <iosfwd>
 
-#include "FightingGame2DGame.h"
-#include "Characters/ScriptCharacter.h"
-#include "Characters/Player.h"
+#include  "FightingGame2DGame.hpp"
+#include  "Characters/ScriptCharacter.hpp"
+#include  "Characters/Player.hpp"
 
-#include "Animations/Animation2D.h"
-#include "Assets/AssetManager.h"
+#include  "Animations/Animation2D.hpp"
+#include  "Assets/AssetManager.hpp"
 
-#include "Entities/Components/AnimatedSpriteComponent.h"
-#include "Entities/Components/StaticSpriteComponent.h"
-#include "Game/Game.h"
-#include "Game/GameInfo.h"
-#include "Game/Input.h"
-#include "GameTime.h"
+#include  "Entities/Components/AnimatedSpriteComponent.hpp"
+#include  "Entities/Components/StaticSpriteComponent.hpp"
+#include  "Game/Game.hpp"
+#include  "Game/GameInfo.hpp"
+#include  "Game/Input.hpp"
+#include  "GameTime.hpp"
 
-#include "Log/LoggerFile.h"
-#include "Maths/Vector3.h"
+#include  "Log/LoggerFile.hpp"
+#include  "Maths/Vector3.hpp"
 
-#include "Physics/PhysicsEngine.h"
-#include "Sprite/SpriteTypes.h"
-#include <IO/File.h>
-#include "../../external/dear-imgui/imgui.h"
-#include "Animations/Animation2dLoader.h"
-#include "Entities/Components/DebugComponent.h"
-#include "Entities/Components/ScriptComponent.h"
-#include "Entities/Components/Cameras/Camera2DTargetedComponent.h"
-#include "Serializer/Serializer.h"
-#include "Sprite/SpriteLoader.h"
-#include "Stages/Stage.h"
+#include  "Physics/PhysicsEngine.hpp"
+#include  "Sprite/SpriteTypes.hpp"
+#include  <IO/File.hpp>
+#include  "../../external/dear-imgui/imgui.h"
+#include  "Animations/Animation2dLoader.hpp"
+#include  "Entities/Components/DebugComponent.hpp"
+#include  "Entities/Components/ScriptComponent.hpp"
+#include  "Entities/Components/Cameras/Camera2DTargetedComponent.hpp"
+#include  "Serializer/Serializer.hpp"
+#include  "Sprite/SpriteLoader.hpp"
+#include  "Stages/Stage.hpp"
 
 using namespace CasaEngine;
 
@@ -39,7 +39,7 @@ FightingGame2DGame::FightingGame2DGame() :
 
 FightingGame2DGame::~FightingGame2DGame()
 {
-	
+
 }
 
 void FightingGame2DGame::Initialize()
@@ -175,7 +175,7 @@ void FightingGame2DGame::LoadContent()
 	//stage info
 	auto* stageInfo = new StageInfo(stage, pPlayer1, pPlayer2);
 	stage->SetStageInfo(stageInfo);
-	
+
 	m_pWorld->Initialize();
 }
 

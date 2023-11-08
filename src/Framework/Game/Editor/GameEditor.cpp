@@ -1,14 +1,14 @@
-#include "Base.h"
-#include "GameEditor.h"
-#include "Game/Game.h"
+#include  "Base.hpp"
+#include  "GameEditor.hpp"
+#include  "Game/Game.hpp"
 
-#include "Entities/BaseEntity.h"
-#include "Entities/Components/Cameras/Camera3DComponent.h"
-#include "Entities/Components/Cameras/ArcBallCameraComponent.h"
-#include "World/World.h"
-#include "Game/GameInfo.h"
-#include "Maths/Vector3.h"
-#include "Log/LoggerFile.h"
+#include  "Entities/BaseEntity.hpp"
+#include  "Entities/Components/Cameras/Camera3DComponent.hpp"
+#include  "Entities/Components/Cameras/ArcBallCameraComponent.hpp"
+#include  "World/World.hpp"
+#include  "Game/GameInfo.hpp"
+#include  "Maths/Vector3.hpp"
+#include  "Log/LoggerFile.hpp"
 
 
 namespace CasaEngine

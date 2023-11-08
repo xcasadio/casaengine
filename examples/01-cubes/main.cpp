@@ -1,6 +1,6 @@
 #include <exception>
 #include <Windows.h>
-#include "CubeGame.h"
+#include  "CubeGame.hpp"
 
 INT WINAPI WinMain(HINSTANCE Instance, HINSTANCE PrevInst, LPSTR CmdLine, INT NbCmd)
 {

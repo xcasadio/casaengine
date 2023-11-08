@@ -1,12 +1,12 @@
-#include "Base.h"
-#include "Log/LogManager.h"
-#include "Animations/Animation.h"
+#include  "Base.hpp"
+#include  "Log/LogManager.hpp"
+#include  "Animations/Animation.hpp"
 #include <string>
-#include "AnimationEvent.h"
-#include "Assets/Assetable.h"
+#include  "AnimationEvent.hpp"
+#include  "Assets/Assetable.hpp"
 
-#include "CA_Assert.h"
-#include "Entities/Events/BaseEntityEvents.h"
+#include  "CA_Assert.hpp"
+#include  "Entities/Events/BaseEntityEvents.hpp"
 
 
 namespace CasaEngine

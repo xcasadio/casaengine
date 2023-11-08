@@ -1,9 +1,9 @@
-#include "Base.h"
-#include "World.h"
-#include "Entities/BaseEntity.h"
-#include "Entities/ComponentTypeEnum.h"
-#include "Game/Game.h"
-#include "Physics/Bullet/BulletPhysicsWorld.h"
+#include  "Base.hpp"
+#include  "World.hpp"
+#include  "Entities/BaseEntity.hpp"
+#include  "Entities/ComponentTypeEnum.hpp"
+#include  "Game/Game.hpp"
+#include  "Physics/Bullet/BulletPhysicsWorld.hpp"
 
 namespace CasaEngine
 {

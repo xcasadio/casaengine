@@ -1,9 +1,9 @@
-#include "Base.h"
+#include  "Base.hpp"
 
-#include "MediaManager.h"
+#include  "MediaManager.hpp"
 
-#include "IO/IOManager.h"
-#include "IO/IFile.h"
+#include  "IO/IOManager.hpp"
+#include  "IO/IFile.hpp"
 
 #if CA_PLATFORM_WINDOWS
 #	include <windows.h>

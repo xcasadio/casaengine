@@ -1,12 +1,12 @@
-#include "Base.h"
+#include  "Base.hpp"
 
-#include "Game/MeshRendererGameComponent.h"
-#include "Game/Game.h"
-#include "GameTime.h"
-#include "Graphics/Mesh/Mesh.h"
-#include "Maths/Matrix4.h"
-#include "GameInfo.h"
-#include "Entities/Components/CameraComponent.h"
+#include  "Game/MeshRendererGameComponent.hpp"
+#include  "Game/Game.hpp"
+#include  "GameTime.hpp"
+#include  "Graphics/Mesh/Mesh.hpp"
+#include  "Maths/Matrix4.hpp"
+#include  "GameInfo.hpp"
+#include  "Entities/Components/CameraComponent.hpp"
 
 
 namespace CasaEngine

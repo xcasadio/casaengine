@@ -1,6 +1,6 @@
-#include "DebugOptions.h"
+#include  "DebugOptions.hpp"
 #include <string>
-#include "Game/Game.h"
+#include  "Game/Game.hpp"
 
 namespace CasaEngine
 {

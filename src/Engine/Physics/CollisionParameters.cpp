@@ -1,4 +1,4 @@
-#include "CollisionParameters.h"
+#include  "CollisionParameters.hpp"
 
 namespace CasaEngine
 {

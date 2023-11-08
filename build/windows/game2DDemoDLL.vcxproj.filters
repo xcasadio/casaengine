@@ -11,17 +11,17 @@
     <ClCompile Include="..\..\examples\game2DDemoDLL\ScriptPlayer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\examples\game2DDemoDLL\Character.h" />
-    <ClInclude Include="..\..\examples\game2DDemoDLL\CharacterEnum.h" />
-    <ClInclude Include="..\..\examples\game2DDemoDLL\CustomComponentType.h" />
-    <ClInclude Include="..\..\examples\game2DDemoDLL\EnemyStates.h" />
-    <ClInclude Include="..\..\examples\game2DDemoDLL\Export.h" />
-    <ClInclude Include="..\..\examples\game2DDemoDLL\Hero.h" />
-    <ClInclude Include="..\..\examples\game2DDemoDLL\IController.h" />
-    <ClInclude Include="..\..\examples\game2DDemoDLL\MessageType.h" />
-    <ClInclude Include="..\..\examples\game2DDemoDLL\PlayerController.h" />
-    <ClInclude Include="..\..\examples\game2DDemoDLL\PlayerStates.h" />
-    <ClInclude Include="..\..\examples\game2DDemoDLL\ScriptObjectFactory.h" />
-    <ClInclude Include="..\..\examples\game2DDemoDLL\ScriptPlayer.h" />
+    <ClInclude Include="..\..\examples\game2DDemoDLL\Character.hpp" />
+    <ClInclude Include="..\..\examples\game2DDemoDLL\CharacterEnum.hpp" />
+    <ClInclude Include="..\..\examples\game2DDemoDLL\CustomComponentType.hpp" />
+    <ClInclude Include="..\..\examples\game2DDemoDLL\EnemyStates.hpp" />
+    <ClInclude Include="..\..\examples\game2DDemoDLL\Export.hpp" />
+    <ClInclude Include="..\..\examples\game2DDemoDLL\Hero.hpp" />
+    <ClInclude Include="..\..\examples\game2DDemoDLL\IController.hpp" />
+    <ClInclude Include="..\..\examples\game2DDemoDLL\MessageType.hpp" />
+    <ClInclude Include="..\..\examples\game2DDemoDLL\PlayerController.hpp" />
+    <ClInclude Include="..\..\examples\game2DDemoDLL\PlayerStates.hpp" />
+    <ClInclude Include="..\..\examples\game2DDemoDLL\ScriptObjectFactory.hpp" />
+    <ClInclude Include="..\..\examples\game2DDemoDLL\ScriptPlayer.hpp" />
   </ItemGroup>
 </Project>

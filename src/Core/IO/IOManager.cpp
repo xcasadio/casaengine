@@ -1,12 +1,12 @@
-#include "Base.h"
+#include  "Base.hpp"
 
-#include "IOManager.h"
-#include "Log/LogManager.h"
-#include "File.h"
+#include  "IOManager.hpp"
+#include  "Log/LogManager.hpp"
+#include  "File.hpp"
 
 #if CA_PLATFORM_ANDROID
 
-#include "android/FileAsset.h"
+#include  "android/FileAsset.hpp"
 
 #endif
 

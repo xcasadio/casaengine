@@ -1,11 +1,11 @@
-#include "Base.h"
+#include  "Base.hpp"
 
-#include "TorusPrimitive.h"
-#include "Exceptions.h"
-#include "Maths/Vector3.h"
-#include "Maths/Vector2.h"
-#include "Graphics/Renderer/Renderer.h"
-#include "Maths/Matrix4.h"
+#include  "TorusPrimitive.hpp"
+#include  "Exceptions.hpp"
+#include  "Maths/Vector3.hpp"
+#include  "Maths/Vector2.hpp"
+#include  "Graphics/Renderer/Renderer.hpp"
+#include  "Maths/Matrix4.hpp"
 
 namespace CasaEngine
 {

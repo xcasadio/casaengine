@@ -1,15 +1,15 @@
-#include "MinersWifeOwnedStates.h"
-#include "MinersWifeComponent.h"
-#include "MessageTypes.h"
+#include  "MinersWifeOwnedStates.hpp"
+#include  "MinersWifeComponent.hpp"
+#include  "MessageTypes.hpp"
 
-#include "Messaging/Telegram.h"
-#include "Maths/Random.h"
-#include "../FSMGame.h"
-#include "Log/LogVerbose.h"
-#include "Log/LogManager.h"
-#include "DateTime.h"
-#include "Messaging/MessageDispatcher.h"
-#include "Tools/InGameLogger.h"
+#include  "Messaging/Telegram.hpp"
+#include  "Maths/Random.hpp"
+#include  "../FSMGame.hpp"
+#include  "Log/LogVerbose.hpp"
+#include  "Log/LogManager.hpp"
+#include  "DateTime.hpp"
+#include  "Messaging/MessageDispatcher.hpp"
+#include  "Tools/InGameLogger.hpp"
 
 using namespace CasaEngine;
 

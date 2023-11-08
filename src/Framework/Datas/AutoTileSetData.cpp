@@ -1,6 +1,6 @@
-#include "Base.h"
+#include  "Base.hpp"
 
-#include "AutoTileSetData.h"
+#include  "AutoTileSetData.hpp"
 
 
 namespace CasaEngine

@@ -1,6 +1,6 @@
-#include "Tile.h"
+#include  "Tile.hpp"
 
-#include "Game/Game.h"
+#include  "Game/Game.hpp"
 
 namespace CasaEngine
 {

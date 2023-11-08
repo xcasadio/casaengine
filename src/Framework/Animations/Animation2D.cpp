@@ -1,12 +1,12 @@
-#include "Base.h"
+#include  "Base.hpp"
 
-#include "Animations/Animation2D.h"
+#include  "Animations/Animation2D.hpp"
 #include <string>
-#include "SetFrameEvent.h"
+#include  "SetFrameEvent.hpp"
 
-#include "Entities/EntityManager.h"
-#include "Entities/Events/BaseEntityEvents.h"
-#include "Animations/AnimationEndEvent.h"
+#include  "Entities/EntityManager.hpp"
+#include  "Entities/Events/BaseEntityEvents.hpp"
+#include  "Animations/AnimationEndEvent.hpp"
 
 namespace CasaEngine
 {

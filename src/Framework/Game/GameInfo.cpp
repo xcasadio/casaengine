@@ -1,7 +1,7 @@
-#include "Base.h"
-#include "GameInfo.h"
-#include "Graphics/Renderer/Renderer.h"
-#include "Game.h"
+#include  "Base.hpp"
+#include  "GameInfo.hpp"
+#include  "Graphics/Renderer/Renderer.hpp"
+#include  "Game.hpp"
 
 namespace CasaEngine
 {

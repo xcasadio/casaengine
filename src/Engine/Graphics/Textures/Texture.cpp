@@ -1,9 +1,9 @@
-#include "Base.h"
-#include "Texture.h"
-#include "Log/LogManager.h"
-#include "Resources/MediaManager.h"
-#include "bx/string.h"
-#include "bimg/decode.h"
+#include  "Base.hpp"
+#include  "Texture.hpp"
+#include  "Log/LogManager.hpp"
+#include  "Resources/MediaManager.hpp"
+#include  "bx/string.h"
+#include  "bimg/decode.h"
 
 namespace CasaEngine
 {

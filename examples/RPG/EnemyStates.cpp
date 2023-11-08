@@ -1,7 +1,7 @@
-#include "EnemyStates.h"
+#include  "EnemyStates.hpp"
 
-#include "CharacterEnum.h"
-#include "Game/Game.h"
+#include  "CharacterEnum.hpp"
+#include  "Game/Game.hpp"
 
 /**
  *

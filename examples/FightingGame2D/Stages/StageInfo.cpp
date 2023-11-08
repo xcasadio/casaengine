@@ -1,9 +1,9 @@
-#include "Stage.h"
+#include  "Stage.hpp"
 
 
-#include "Entities/ComponentTypeEnum.h"
-#include "Game/Game.h"
-#include "Sprite/SpriteRenderer.h"
+#include  "Entities/ComponentTypeEnum.hpp"
+#include  "Game/Game.hpp"
+#include  "Sprite/SpriteRenderer.hpp"
 
 using namespace CasaEngine;
 

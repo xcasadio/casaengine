@@ -1,19 +1,19 @@
-#include "CubeGame.h"
+#include  "CubeGame.hpp"
 
 #include <bx/math.h>
 #include <bx/timer.h>
 
-#include "Entities/Components/Cameras/ArcBallCameraComponent.h"
-#include "Entities/Components/MeshComponent.h"
-#include "Game/GameInfo.h"
-#include "Game/MeshRendererGameComponent.h"
-#include "Graphics/Primitives/BoxPrimitive.h"
-#include "Graphics/Primitives/CylinderPrimitive.h"
-#include "Graphics/Primitives/PlanePrimitive.h"
-#include "Graphics/Primitives/SpherePrimitive.h"
-#include "Log/LoggerFile.h"
-#include "Log/LogManager.h"
-#include "World/World.h"
+#include  "Entities/Components/Cameras/ArcBallCameraComponent.hpp"
+#include  "Entities/Components/MeshComponent.hpp"
+#include  "Game/GameInfo.hpp"
+#include  "Game/MeshRendererGameComponent.hpp"
+#include  "Graphics/Primitives/BoxPrimitive.hpp"
+#include  "Graphics/Primitives/CylinderPrimitive.hpp"
+#include  "Graphics/Primitives/PlanePrimitive.hpp"
+#include  "Graphics/Primitives/SpherePrimitive.hpp"
+#include  "Log/LoggerFile.hpp"
+#include  "Log/LogManager.hpp"
+#include  "World/World.hpp"
 
 Matrix4 entityMatrix;
 

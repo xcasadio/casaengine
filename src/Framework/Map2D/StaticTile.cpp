@@ -1,4 +1,4 @@
-#include "StaticTile.h"
+#include  "StaticTile.hpp"
 
 namespace CasaEngine
 {

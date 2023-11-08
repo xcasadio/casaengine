@@ -1,12 +1,12 @@
-#include "Base.h"
+#include  "Base.hpp"
 
-#include "Game/DrawableGameComponent.h"
-#include "Game/Game.h"
-#include "Sprite/Sprite.h"
-#include "Sprite/SpriteRenderer.h"
-#include "Sprite/SpriteTypes.h"
-#include "Entities/Components/CameraComponent.h"
-#include "Game/GameInfo.h"
+#include  "Game/DrawableGameComponent.hpp"
+#include  "Game/Game.hpp"
+#include  "Sprite/Sprite.hpp"
+#include  "Sprite/SpriteRenderer.hpp"
+#include  "Sprite/SpriteTypes.hpp"
+#include  "Entities/Components/CameraComponent.hpp"
+#include  "Game/GameInfo.hpp"
 
 #include <bx/math.h>
 

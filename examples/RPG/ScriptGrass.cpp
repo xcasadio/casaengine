@@ -1,11 +1,11 @@
-#include "ScriptGrass.h"
+#include  "ScriptGrass.hpp"
 
-#include "Game/Game.h"
-#include "GameDatas/MessageType.h"
-#include "Map2D/AutoTile.h"
-#include "Map2D/EmptyTile.h"
-#include "Map2D/TileComponent.h"
-#include "Physics/CollisionParametersBetween2Entities.h"
+#include  "Game/Game.hpp"
+#include  "GameDatas/MessageType.hpp"
+#include  "Map2D/AutoTile.hpp"
+#include  "Map2D/EmptyTile.hpp"
+#include  "Map2D/TileComponent.hpp"
+#include  "Physics/CollisionParametersBetween2Entities.hpp"
 
 ScriptGrass::ScriptGrass(BaseEntity* entity) :
 	IScriptObject(entity)

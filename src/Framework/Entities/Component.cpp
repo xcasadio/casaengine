@@ -1,9 +1,9 @@
-#include "Base.h"
-#include "Log/LogManager.h"
-#include "Component.h"
-#include "BaseEntity.h"
+#include  "Base.hpp"
+#include  "Log/LogManager.hpp"
+#include  "Component.hpp"
+#include  "BaseEntity.hpp"
 
-#include "CA_Assert.h"
+#include  "CA_Assert.hpp"
 
 namespace CasaEngine
 {

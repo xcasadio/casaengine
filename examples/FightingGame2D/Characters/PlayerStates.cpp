@@ -1,6 +1,6 @@
-#include "PlayerStates.h"
-#include "Game/Game.h"
-#include "PlayerController.h"
+#include  "PlayerStates.hpp"
+#include  "Game/Game.hpp"
+#include  "PlayerController.hpp"
 
 
 

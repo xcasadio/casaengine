@@ -1,8 +1,8 @@
-#include "InGameLogger.h"
+#include  "InGameLogger.hpp"
 
 #if defined(CA_IN_GAME_LOGGER)
 
-#include "Game/Game.h"
+#include  "Game/Game.hpp"
 #include <cstdarg>
 
 namespace CasaEngine

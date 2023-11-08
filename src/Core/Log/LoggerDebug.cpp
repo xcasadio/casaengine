@@ -1,6 +1,6 @@
 #include <Windows.h>
 
-#include <Log/LoggerDebug.h>
+#include <Log/LoggerDebug.hpp>
 
 namespace CasaEngine
 {

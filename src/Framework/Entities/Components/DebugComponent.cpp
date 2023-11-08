@@ -1,11 +1,11 @@
-#include "Entities/BaseEntity.h"
+#include  "Entities/BaseEntity.hpp"
 
-#include "DebugComponent.h"
+#include  "DebugComponent.hpp"
 
-#include "AnimatedSpriteComponent.h"
-#include "Entities/ComponentTypeEnum.h"
-#include "Game/Game.h"
-#include "Game/Line3DRendererComponent.h"
+#include  "AnimatedSpriteComponent.hpp"
+#include  "Entities/ComponentTypeEnum.hpp"
+#include  "Game/Game.hpp"
+#include  "Game/Line3DRendererComponent.hpp"
 
 namespace CasaEngine
 {

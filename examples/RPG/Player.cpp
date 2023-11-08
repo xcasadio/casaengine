@@ -1,6 +1,6 @@
-#include "Base.h"
-#include "Player.h"
-#include "PlayerController.h"
+#include  "Base.hpp"
+#include  "Player.hpp"
+#include  "PlayerController.hpp"
 
 
 Player::Player(BaseEntity* pEntity) :

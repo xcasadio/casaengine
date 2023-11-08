@@ -1,6 +1,6 @@
-#include "Game/DrawableGameComponent.h"
-#include "Game/GameComponent.h"
-#include "Game/Game.h"
+#include  "Game/DrawableGameComponent.hpp"
+#include  "Game/GameComponent.hpp"
+#include  "Game/Game.hpp"
 
 namespace CasaEngine
 {

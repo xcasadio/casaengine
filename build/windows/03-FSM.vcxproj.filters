@@ -17,26 +17,26 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\examples\03-FSM\FSMGame.h" />
-    <ClInclude Include="..\..\examples\03-FSM\WestWorldWithMessaging\Locations.h">
+    <ClInclude Include="..\..\examples\03-FSM\FSMGame.hpp" />
+    <ClInclude Include="..\..\examples\03-FSM\WestWorldWithMessaging\Locations.hpp">
       <Filter>WestWorldWithMessaging</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\examples\03-FSM\WestWorldWithMessaging\MessageTypes.h">
+    <ClInclude Include="..\..\examples\03-FSM\WestWorldWithMessaging\MessageTypes.hpp">
       <Filter>WestWorldWithMessaging</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\examples\03-FSM\WestWorldWithMessaging\MinerComponent.h">
+    <ClInclude Include="..\..\examples\03-FSM\WestWorldWithMessaging\MinerComponent.hpp">
       <Filter>WestWorldWithMessaging</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\examples\03-FSM\WestWorldWithMessaging\MinerOwnedStates.h">
+    <ClInclude Include="..\..\examples\03-FSM\WestWorldWithMessaging\MinerOwnedStates.hpp">
       <Filter>WestWorldWithMessaging</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\examples\03-FSM\WestWorldWithMessaging\MinersWifeComponent.h">
+    <ClInclude Include="..\..\examples\03-FSM\WestWorldWithMessaging\MinersWifeComponent.hpp">
       <Filter>WestWorldWithMessaging</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\examples\03-FSM\WestWorldWithMessaging\MinersWifeOwnedStates.h">
+    <ClInclude Include="..\..\examples\03-FSM\WestWorldWithMessaging\MinersWifeOwnedStates.hpp">
       <Filter>WestWorldWithMessaging</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\examples\03-FSM\WestWorldWithMessaging\Config.h">
+    <ClInclude Include="..\..\examples\03-FSM\WestWorldWithMessaging\Config.hpp">
       <Filter>WestWorldWithMessaging</Filter>
     </ClInclude>
   </ItemGroup>

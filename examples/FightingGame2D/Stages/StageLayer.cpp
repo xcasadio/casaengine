@@ -1,7 +1,7 @@
-#include "Stage.h"
+#include  "Stage.hpp"
 
-#include "Game/Game.h"
-#include "Sprite/SpriteRenderer.h"
+#include  "Game/Game.hpp"
+#include  "Sprite/SpriteRenderer.hpp"
 
 using namespace CasaEngine;
 

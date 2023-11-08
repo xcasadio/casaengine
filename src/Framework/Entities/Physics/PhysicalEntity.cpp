@@ -1,11 +1,11 @@
-#include "Base.h"
-#include "PhysicalEntity.h"
+#include  "Base.hpp"
+#include  "PhysicalEntity.hpp"
 #include <string>
-#include "CA_Assert.h"
-#include "Log/LogManager.h"
-#include "Game/GameInfo.h"
-#include "Entities/BaseEntity.h"
-#include "Game/Game.h"
+#include  "CA_Assert.hpp"
+#include  "Log/LogManager.hpp"
+#include  "Game/GameInfo.hpp"
+#include  "Entities/BaseEntity.hpp"
+#include  "Game/Game.hpp"
 
 namespace CasaEngine
 {

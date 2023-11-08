@@ -1,11 +1,11 @@
-#include "EventSet.h"
-//#include "Exceptions.h"
-#include "GlobalEventSet.h"
-#include "Exceptions.h"
+#include  "EventSet.hpp"
+//#include  "Exceptions.hpp"
+#include  "GlobalEventSet.hpp"
+#include  "Exceptions.hpp"
 #include <sstream>
 #include <fstream>
-//#include "ScriptModule.h"
-//#include "System.h"
+//#include  "ScriptModule.hpp"
+//#include  "System.hpp"
 
 // Start of CEGUI namespace section
 namespace CasaEngine

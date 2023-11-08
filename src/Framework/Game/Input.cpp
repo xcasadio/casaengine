@@ -1,6 +1,6 @@
-#include "Game/Input.h"
+#include  "Game/Input.hpp"
 #include "SFML/Window/Event.hpp"
-#include "Game.h"
+#include  "Game.hpp"
 
 namespace CasaEngine
 {

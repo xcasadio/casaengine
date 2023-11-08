@@ -1,8 +1,8 @@
-#include "Base.h"
-#include "Datas/SpriteData.h"
-#include "Game/Game.h"
-#include "Maths/Vector2.h"
-#include "Maths/Rectangle.h"
+#include  "Base.hpp"
+#include  "Datas/SpriteData.hpp"
+#include  "Game/Game.hpp"
+#include  "Maths/Vector2.hpp"
+#include  "Maths/Rectangle.hpp"
 
 
 namespace CasaEngine

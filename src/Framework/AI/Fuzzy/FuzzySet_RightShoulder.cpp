@@ -1,6 +1,6 @@
-#include "FuzzySet_RightShoulder.h"
+#include  "FuzzySet_RightShoulder.hpp"
 
-#include "Maths/Math.h"
+#include  "Maths/Math.hpp"
 
 namespace CasaEngine
 {

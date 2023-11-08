@@ -5,6 +5,6 @@
     <ClCompile Include="..\..\examples\04-TileMap\TileMapGame.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\examples\04-TileMap\TileMapGame.h" />
+    <ClInclude Include="..\..\examples\04-TileMap\TileMapGame.hpp" />
   </ItemGroup>
 </Project>

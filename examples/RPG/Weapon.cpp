@@ -1,10 +1,10 @@
-#include "Base.h"
-#include "Weapon.h"
+#include  "Base.hpp"
+#include  "Weapon.hpp"
 
-#include "Game/Game.h"
-#include "GameDatas/MessageType.h"
-#include "Map2D/AutoTile.h"
-#include "Map2D/TileComponent.h"
+#include  "Game/Game.hpp"
+#include  "GameDatas/MessageType.hpp"
+#include  "Map2D/AutoTile.hpp"
+#include  "Map2D/TileComponent.hpp"
 
 
 Weapon::Weapon(BaseEntity* entity, Character* owner) :

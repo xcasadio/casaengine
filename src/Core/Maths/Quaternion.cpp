@@ -1,10 +1,10 @@
-#include "Base.h"
-#include "Log/LogManager.h"
+#include  "Base.hpp"
+#include  "Log/LogManager.hpp"
 
-#include "Maths/Quaternion.h"
-#include "Maths/Matrix4.h"
-#include "Maths/Vector3.h"
-#include "CA_Assert.h"
+#include  "Maths/Quaternion.hpp"
+#include  "Maths/Matrix4.hpp"
+#include  "Maths/Vector3.hpp"
+#include  "CA_Assert.hpp"
 
 namespace CasaEngine
 {

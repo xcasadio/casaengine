@@ -1,10 +1,10 @@
-#include "Base.h"
-#include "Log/LogManager.h"
-#include "Asset.h"
+#include  "Base.hpp"
+#include  "Log/LogManager.hpp"
+#include  "Asset.hpp"
 #include <string>
-#include "Assetable.h"
-#include "Exceptions.h"
-#include "CA_Assert.h"
+#include  "Assetable.hpp"
+#include  "Exceptions.hpp"
+#include  "CA_Assert.hpp"
 
 
 namespace CasaEngine

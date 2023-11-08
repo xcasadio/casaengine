@@ -1,8 +1,8 @@
-#include "Base.h"
-#include "Game/Game.h"
-#include "Character.h"
-#include "EnemyController.h"
-#include "EnemyStates.h"
+#include  "Base.hpp"
+#include  "Game/Game.hpp"
+#include  "Character.hpp"
+#include  "EnemyController.hpp"
+#include  "EnemyStates.hpp"
 
 EnemyController::EnemyController(Character* pCharacter) :
 	IController(pCharacter)

@@ -1,7 +1,7 @@
-#include "Sprite/Sprite.h"
+#include  "Sprite/Sprite.hpp"
 
-#include "Game/Game.h"
-#include "Graphics/Textures/Texture.h"
+#include  "Game/Game.hpp"
+#include  "Graphics/Textures/Texture.hpp"
 
 namespace CasaEngine
 {

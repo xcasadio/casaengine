@@ -1,9 +1,9 @@
-#include "Base.h"
+#include  "Base.hpp"
 
-#include "Shader.h"
+#include  "Shader.hpp"
 
-#include "Game/Game.h"
-#include "Graphics/Renderer/Renderer.h"
+#include  "Game/Game.hpp"
+#include  "Graphics/Renderer/Renderer.hpp"
 
 
 

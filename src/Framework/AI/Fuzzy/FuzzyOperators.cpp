@@ -1,9 +1,9 @@
 
-#include "Base.h"
+#include  "Base.hpp"
 
-#include "Maths/Math.h"
-#include "FuzzyOperators.h"
-#include "Exceptions.h"
+#include  "Maths/Math.hpp"
+#include  "FuzzyOperators.hpp"
+#include  "Exceptions.hpp"
 
 namespace CasaEngine
 {

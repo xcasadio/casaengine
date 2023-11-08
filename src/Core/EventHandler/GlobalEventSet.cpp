@@ -1,6 +1,6 @@
-#include "GlobalEventSet.h"
+#include  "GlobalEventSet.hpp"
 #include <string>
-#include "Log/LogManager.h"
+#include  "Log/LogManager.hpp"
 
 namespace CasaEngine
 {

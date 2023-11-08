@@ -1,14 +1,14 @@
 #include <cstdio>
 #include <cstdarg>
 
-#include "Base.h"
+#include  "Base.hpp"
 
-#include "CA_Assert.h"
-#include "LogManager.h"
+#include  "CA_Assert.hpp"
+#include  "LogManager.hpp"
 
-#include "Exceptions.h"
-#include "Logger.h"
-#include "Version.h"
+#include  "Exceptions.hpp"
+#include  "Logger.hpp"
+#include  "Version.hpp"
 
 namespace CasaEngine
 {

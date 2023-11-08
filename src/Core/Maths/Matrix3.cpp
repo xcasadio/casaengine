@@ -1,6 +1,6 @@
-#include "Maths/Matrix3.h"
-#include "Maths/Vector2.h"
-#include "Maths/Vector3.h"
+#include  "Maths/Matrix3.hpp"
+#include  "Maths/Vector2.hpp"
+#include  "Maths/Vector3.hpp"
 
 namespace CasaEngine
 {

@@ -1,10 +1,10 @@
-#include "Base.h"
+#include  "Base.hpp"
 
-#include "Primitive3D.h"
-#include "Maths/Vector3.h"
-#include "Maths/Vector2.h"
-#include "Graphics/Renderer/Renderer.h"
-#include "Graphics/Mesh/Mesh.h"
+#include  "Primitive3D.hpp"
+#include  "Maths/Vector3.hpp"
+#include  "Maths/Vector2.hpp"
+#include  "Graphics/Renderer/Renderer.hpp"
+#include  "Graphics/Mesh/Mesh.hpp"
 
 namespace CasaEngine
 {

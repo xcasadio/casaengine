@@ -3,8 +3,8 @@
 	created:    Tue Feb 28 2006
 	author:     Paul D Turner <paul@cegui.org.uk>
 *************************************************************************/
-#include "Event.h"
-#include "EventArgs.h"
+#include  "Event.hpp"
+#include  "EventArgs.hpp"
 
 #include <algorithm>
 

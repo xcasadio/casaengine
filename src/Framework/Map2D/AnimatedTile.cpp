@@ -1,8 +1,8 @@
-#include "AnimatedTile.h"
+#include  "AnimatedTile.hpp"
 
-#include "Assets/AssetManager.h"
-#include "Game/Game.h"
-#include "Sprite/Sprite.h"
+#include  "Assets/AssetManager.hpp"
+#include  "Game/Game.hpp"
+#include  "Sprite/Sprite.hpp"
 
 namespace CasaEngine
 {

@@ -1,8 +1,8 @@
-#include "Log/LogManager.h"
-#include "BulletObjectsContainer.h"
-#include "CA_Assert.h"
-#include "LinearMath/btVector3.h"
-#include "LinearMath/btQuaternion.h"
+#include  "Log/LogManager.hpp"
+#include  "BulletObjectsContainer.hpp"
+#include  "CA_Assert.hpp"
+#include    "LinearMath/btVector3.h"
+#include    "LinearMath/btQuaternion.h"
 
 namespace CasaEngine
 {

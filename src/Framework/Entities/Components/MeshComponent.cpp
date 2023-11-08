@@ -1,12 +1,12 @@
-#include "Entities/BaseEntity.h"
-#include "Entities/ComponentTypeEnum.h"
-#include "Base.h"
-#include "Game/Game.h"
-#include "Assets/AssetManager.h"
-#include "Maths/Matrix4.h"
-#include "MeshComponent.h"
-#include "StringUtils.h"
-#include "Game/MeshRendererGameComponent.h"
+#include  "Entities/BaseEntity.hpp"
+#include  "Entities/ComponentTypeEnum.hpp"
+#include  "Base.hpp"
+#include  "Game/Game.hpp"
+#include  "Assets/AssetManager.hpp"
+#include  "Maths/Matrix4.hpp"
+#include  "MeshComponent.hpp"
+#include  "StringUtils.hpp"
+#include  "Game/MeshRendererGameComponent.hpp"
 
 namespace CasaEngine
 {

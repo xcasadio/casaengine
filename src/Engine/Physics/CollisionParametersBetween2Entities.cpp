@@ -1,4 +1,4 @@
-#include "CollisionParametersBetween2Entities.h"
+#include  "CollisionParametersBetween2Entities.hpp"
 
 namespace CasaEngine
 {

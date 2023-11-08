@@ -1,6 +1,6 @@
-#include <Windows.h>
+#include  <Windows.h>
 #include <exception>
-#include "ShaderGame.h"
+#include  "ShaderGame.hpp"
 
 INT WINAPI WinMain(HINSTANCE Instance, HINSTANCE PrevInst, LPSTR CmdLine, INT NbCmd)
 {

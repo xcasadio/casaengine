@@ -1,7 +1,7 @@
-#include "TileComponent.h"
+#include  "TileComponent.hpp"
 
-#include "Entities/ComponentTypeEnum.h"
-#include "Game/Game.h"
+#include  "Entities/ComponentTypeEnum.hpp"
+#include  "Game/Game.hpp"
 
 namespace CasaEngine
 {

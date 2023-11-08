@@ -1,21 +1,21 @@
-#include "Base.h"
+#include  "Base.hpp"
 
-#include "Game/Line3DRendererComponent.h"
-#include "Game/Game.h"
-#include "GameTime.h"
-#include "Maths/Matrix4.h"
+#include  "Game/Line3DRendererComponent.hpp"
+#include  "Game/Game.hpp"
+#include  "GameTime.hpp"
+#include  "Maths/Matrix4.hpp"
 
 
-#include "Entities/Components/CameraComponent.h"
-#include "GameInfo.h"
-#include "Graphics/Color.h"
-#include "Maths/Vector3.h"
+#include  "Entities/Components/CameraComponent.hpp"
+#include  "GameInfo.hpp"
+#include  "Graphics/Color.hpp"
+#include  "Maths/Vector3.hpp"
 
 
 
 #include <vector>
 
-#include "Graphics/Vertices/VertexType.h"
+#include  "Graphics/Vertices/VertexType.hpp"
 
 namespace CasaEngine
 {

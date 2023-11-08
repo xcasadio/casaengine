@@ -6,7 +6,7 @@
     <ClCompile Include="..\..\examples\02-shaders\ShaderGame.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\examples\02-shaders\MD2Loader.h" />
-    <ClInclude Include="..\..\examples\02-shaders\ShaderGame.h" />
+    <ClInclude Include="..\..\examples\02-shaders\MD2Loader.hpp" />
+    <ClInclude Include="..\..\examples\02-shaders\ShaderGame.hpp" />
   </ItemGroup>
 </Project>

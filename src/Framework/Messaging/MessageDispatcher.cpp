@@ -1,12 +1,12 @@
-#include "Base.h"
-#include "MessageDispatcher.h"
-#include "Entities/BaseEntity.h"
-#include "Entities/EntityManager.h"
-#include "Log/LogVerbose.h"
-#include "Log/LogManager.h"
-#include "GameTime.h"
+#include  "Base.hpp"
+#include  "MessageDispatcher.hpp"
+#include  "Entities/BaseEntity.hpp"
+#include  "Entities/EntityManager.hpp"
+#include  "Log/LogVerbose.hpp"
+#include  "Log/LogManager.hpp"
+#include  "GameTime.hpp"
 
-#include "Game/Game.h"
+#include  "Game/Game.hpp"
 
 namespace CasaEngine
 {

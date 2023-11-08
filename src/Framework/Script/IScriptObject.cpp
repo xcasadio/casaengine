@@ -1,5 +1,5 @@
-#include "IScriptObject.h"
-#include "CA_Assert.h"
+#include  "IScriptObject.hpp"
+#include  "CA_Assert.hpp"
 
 namespace CasaEngine
 {

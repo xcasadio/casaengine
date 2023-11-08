@@ -1,10 +1,10 @@
-#include "Entities/BaseEntity.h"
+#include  "Entities/BaseEntity.hpp"
 
-#include "Box2DColliderComponent.h"
-#include "Entities/ComponentTypeEnum.h"
+#include  "Box2DColliderComponent.hpp"
+#include  "Entities/ComponentTypeEnum.hpp"
 
-#include "Game/Game.h"
-#include "Maths/Rectangle.h"
+#include  "Game/Game.hpp"
+#include  "Maths/Rectangle.hpp"
 
 namespace CasaEngine
 {

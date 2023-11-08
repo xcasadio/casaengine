@@ -1,4 +1,4 @@
-#include "ScriptCharacter.h"
+#include  "ScriptCharacter.hpp"
 
 ScriptCharacter::ScriptCharacter(BaseEntity* entity_, Character* character) :
 	IScriptObject(entity_), _character(character)

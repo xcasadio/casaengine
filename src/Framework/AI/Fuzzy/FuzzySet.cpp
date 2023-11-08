@@ -1,12 +1,12 @@
 
-#include "Base.h"
-#include "Log/LogManager.h"
+#include  "Base.hpp"
+#include  "Log/LogManager.hpp"
 
 #include <string>
 
-#include "FuzzySet.h"
+#include  "FuzzySet.hpp"
 
-#include "CA_Assert.h"
+#include  "CA_Assert.hpp"
 
 namespace CasaEngine
 {

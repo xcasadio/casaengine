@@ -28,7 +28,7 @@
     <ClCompile Include="..\..\examples\04-TileMap\TileMapGame.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\examples\04-TileMap\TileMapGame.h" />
+    <ClInclude Include="..\..\examples\04-TileMap\TileMapGame.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{591FF8F9-F97D-40FC-BAF5-47AAEEC33BB9}</ProjectGuid>

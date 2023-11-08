@@ -1,8 +1,8 @@
-#include "Base.h"
-#include "Entities/BaseEntity.h"
-#include "ColliderComponent.h"
-#include "Game/Game.h"
-#include "Game/GameInfo.h"
+#include  "Base.hpp"
+#include  "Entities/BaseEntity.hpp"
+#include  "ColliderComponent.hpp"
+#include  "Game/Game.hpp"
+#include  "Game/GameInfo.hpp"
 
 namespace CasaEngine
 {

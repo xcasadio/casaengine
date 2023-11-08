@@ -1,9 +1,9 @@
-#include "Base.h"
-#include "Character.h"
-#include "Entities/Physics/PhysicalEntity.h"
-#include "GameDatas/MessageType.h"
-#include "Entities/BaseEntity.h"
-#include "GameTime.h"
+#include  "Base.hpp"
+#include  "Character.hpp"
+#include  "Entities/Physics/PhysicalEntity.hpp"
+#include  "GameDatas/MessageType.hpp"
+#include  "Entities/BaseEntity.hpp"
+#include  "GameTime.hpp"
 
 
 Character::Character(BaseEntity* pEntity) :

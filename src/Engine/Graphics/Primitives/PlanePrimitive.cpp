@@ -1,6 +1,6 @@
-#include "PlanePrimitive.h"
-#include "Maths/Vector3.h"
-#include "Maths/Vector2.h"
+#include  "PlanePrimitive.hpp"
+#include  "Maths/Vector3.hpp"
+#include  "Maths/Vector2.hpp"
 
 namespace CasaEngine
 {

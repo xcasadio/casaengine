@@ -1,5 +1,5 @@
-#include "Game/GameComponent.h"
-#include "Game/Game.h"
+#include  "Game/GameComponent.hpp"
+#include  "Game/Game.hpp"
 
 namespace CasaEngine
 {

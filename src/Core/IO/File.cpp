@@ -1,7 +1,7 @@
-#include "Base.h"
-#include "Log/LogManager.h"
+#include  "Base.hpp"
+#include  "Log/LogManager.hpp"
 
-#include "File.h"
+#include  "File.hpp"
 
 #include <algorithm>
 #include <fstream>

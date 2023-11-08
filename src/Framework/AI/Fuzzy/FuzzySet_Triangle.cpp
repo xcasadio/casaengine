@@ -1,5 +1,5 @@
-#include "Maths/Math.h"
-#include "FuzzySet_Triangle.h"
+#include  "Maths/Math.hpp"
+#include  "FuzzySet_Triangle.hpp"
 
 namespace CasaEngine
 {

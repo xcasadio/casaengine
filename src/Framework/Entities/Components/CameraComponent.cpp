@@ -1,13 +1,13 @@
-#include "Base.h"
+#include  "Base.hpp"
 
-#include "Entities/BaseEntity.h"
-#include "CameraComponent.h"
+#include  "Entities/BaseEntity.hpp"
+#include  "CameraComponent.hpp"
 
-#include "Game/Game.h"
+#include  "Game/Game.hpp"
 
-#include "EventHandler/GlobalEventSet.h"
-#include "EventHandler/Event.h"
-#include "../Events/BaseEntityEvents.h"
+#include  "EventHandler/GlobalEventSet.hpp"
+#include  "EventHandler/Event.hpp"
+#include  "../Events/BaseEntityEvents.hpp"
 
 namespace CasaEngine
 {

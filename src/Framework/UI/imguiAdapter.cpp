@@ -1,5 +1,5 @@
-#include "ImGuiAdapter.h"
-#include "imgui/bgfx-imgui.h"
+#include  "ImGuiAdapter.hpp"
+#include  "imgui/bgfx-imgui.h"
 
 namespace CasaEngine
 {

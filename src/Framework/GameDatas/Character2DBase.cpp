@@ -1,12 +1,12 @@
-#include "Base.h"
-#include "Character2DBase.h"
-#include "CA_Assert.h"
-#include "Log/LogManager.h"
-#include "Assets/AssetManager.h"
-#include "Entities/Physics/PhysicalEntity.h"
-#include "AI/MovementSystem/MovementRequest.h"
-#include "MessageType.h"
-#include "Entities/Events/BaseEntityEvents.h"
+#include  "Base.hpp"
+#include  "Character2DBase.hpp"
+#include  "CA_Assert.hpp"
+#include  "Log/LogManager.hpp"
+#include  "Assets/AssetManager.hpp"
+#include  "Entities/Physics/PhysicalEntity.hpp"
+#include  "AI/MovementSystem/MovementRequest.hpp"
+#include  "MessageType.hpp"
+#include  "Entities/Events/BaseEntityEvents.hpp"
 
 namespace CasaEngine
 {

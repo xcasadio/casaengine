@@ -177,586 +177,586 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\Core\Base.h">
+    <ClInclude Include="..\..\src\Core\Base.hpp">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\CA_Assert.h">
+    <ClInclude Include="..\..\src\Core\CA_Assert.hpp">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\CompilationConfig.h">
+    <ClInclude Include="..\..\src\Core\CompilationConfig.hpp">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\ContainerUtil.h">
+    <ClInclude Include="..\..\src\Core\ContainerUtil.hpp">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\DateTime.h">
+    <ClInclude Include="..\..\src\Core\DateTime.hpp">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\debug.h">
+    <ClInclude Include="..\..\src\Core\debug.hpp">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\DynamicModule.h">
+    <ClInclude Include="..\..\src\Core\DynamicModule.hpp">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\Exceptions.h">
+    <ClInclude Include="..\..\src\Core\Exceptions.hpp">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\StringUtils.h">
+    <ClInclude Include="..\..\src\Core\StringUtils.hpp">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\SystemPlatform.h">
+    <ClInclude Include="..\..\src\Core\SystemPlatform.hpp">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\Version.h">
+    <ClInclude Include="..\..\src\Core\Version.hpp">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\EventHandler\BoundSlot.h">
+    <ClInclude Include="..\..\src\Core\EventHandler\BoundSlot.hpp">
       <Filter>Core\EventHandler</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\EventHandler\Event.h">
+    <ClInclude Include="..\..\src\Core\EventHandler\Event.hpp">
       <Filter>Core\EventHandler</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\EventHandler\EventArgs.h">
+    <ClInclude Include="..\..\src\Core\EventHandler\EventArgs.hpp">
       <Filter>Core\EventHandler</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\EventHandler\EventSet.h">
+    <ClInclude Include="..\..\src\Core\EventHandler\EventSet.hpp">
       <Filter>Core\EventHandler</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\EventHandler\FreeFunctionSlot.h">
+    <ClInclude Include="..\..\src\Core\EventHandler\FreeFunctionSlot.hpp">
       <Filter>Core\EventHandler</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\EventHandler\FunctorCopySlot.h">
+    <ClInclude Include="..\..\src\Core\EventHandler\FunctorCopySlot.hpp">
       <Filter>Core\EventHandler</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\EventHandler\FunctorPointerSlot.h">
+    <ClInclude Include="..\..\src\Core\EventHandler\FunctorPointerSlot.hpp">
       <Filter>Core\EventHandler</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\EventHandler\FunctorReferenceBinder.h">
+    <ClInclude Include="..\..\src\Core\EventHandler\FunctorReferenceBinder.hpp">
       <Filter>Core\EventHandler</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\EventHandler\FunctorReferenceSlot.h">
+    <ClInclude Include="..\..\src\Core\EventHandler\FunctorReferenceSlot.hpp">
       <Filter>Core\EventHandler</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\EventHandler\GlobalEventSet.h">
+    <ClInclude Include="..\..\src\Core\EventHandler\GlobalEventSet.hpp">
       <Filter>Core\EventHandler</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\EventHandler\IteratorBase.h">
+    <ClInclude Include="..\..\src\Core\EventHandler\IteratorBase.hpp">
       <Filter>Core\EventHandler</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\EventHandler\MemberFunctionSlot.h">
+    <ClInclude Include="..\..\src\Core\EventHandler\MemberFunctionSlot.hpp">
       <Filter>Core\EventHandler</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\EventHandler\RefCounted.h">
+    <ClInclude Include="..\..\src\Core\EventHandler\RefCounted.hpp">
       <Filter>Core\EventHandler</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\EventHandler\SlotFunctorBase.h">
+    <ClInclude Include="..\..\src\Core\EventHandler\SlotFunctorBase.hpp">
       <Filter>Core\EventHandler</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\EventHandler\SubscriberSlot.h">
+    <ClInclude Include="..\..\src\Core\EventHandler\SubscriberSlot.hpp">
       <Filter>Core\EventHandler</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\IO\File.h">
+    <ClInclude Include="..\..\src\Core\IO\File.hpp">
       <Filter>Core\IO</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\IO\IFile.h">
+    <ClInclude Include="..\..\src\Core\IO\IFile.hpp">
       <Filter>Core\IO</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\IO\IOManager.h">
+    <ClInclude Include="..\..\src\Core\IO\IOManager.hpp">
       <Filter>Core\IO</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\Log\Logger.h">
+    <ClInclude Include="..\..\src\Core\Log\Logger.hpp">
       <Filter>Core\Log</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\Log\LoggerDebug.h">
+    <ClInclude Include="..\..\src\Core\Log\LoggerDebug.hpp">
       <Filter>Core\Log</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\Log\LoggerFile.h">
+    <ClInclude Include="..\..\src\Core\Log\LoggerFile.hpp">
       <Filter>Core\Log</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\Log\LogManager.h">
+    <ClInclude Include="..\..\src\Core\Log\LogManager.hpp">
       <Filter>Core\Log</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\Log\LogVerbose.h">
+    <ClInclude Include="..\..\src\Core\Log\LogVerbose.hpp">
       <Filter>Core\Log</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\Maths\BoundingShapes.h">
+    <ClInclude Include="..\..\src\Core\Maths\BoundingShapes.hpp">
       <Filter>Core\Maths</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\Maths\Math.h">
+    <ClInclude Include="..\..\src\Core\Maths\Math.hpp">
       <Filter>Core\Maths</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\Maths\Matrix3.h">
+    <ClInclude Include="..\..\src\Core\Maths\Matrix3.hpp">
       <Filter>Core\Maths</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\Maths\Matrix4.h">
+    <ClInclude Include="..\..\src\Core\Maths\Matrix4.hpp">
       <Filter>Core\Maths</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\Maths\Plane.h">
+    <ClInclude Include="..\..\src\Core\Maths\Plane.hpp">
       <Filter>Core\Maths</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\Maths\Quaternion.h">
+    <ClInclude Include="..\..\src\Core\Maths\Quaternion.hpp">
       <Filter>Core\Maths</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\Maths\Random.h">
+    <ClInclude Include="..\..\src\Core\Maths\Random.hpp">
       <Filter>Core\Maths</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\Maths\Rectangle.h">
+    <ClInclude Include="..\..\src\Core\Maths\Rectangle.hpp">
       <Filter>Core\Maths</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\Maths\ValidNumber.h">
+    <ClInclude Include="..\..\src\Core\Maths\ValidNumber.hpp">
       <Filter>Core\Maths</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\Maths\Vector2.h">
+    <ClInclude Include="..\..\src\Core\Maths\Vector2.hpp">
       <Filter>Core\Maths</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\Maths\Vector3.h">
+    <ClInclude Include="..\..\src\Core\Maths\Vector3.hpp">
       <Filter>Core\Maths</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\Maths\Vector4.h">
+    <ClInclude Include="..\..\src\Core\Maths\Vector4.hpp">
       <Filter>Core\Maths</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\Maths\2D\Geometry.h">
+    <ClInclude Include="..\..\src\Core\Maths\2D\Geometry.hpp">
       <Filter>Core\Maths\2D</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\Maths\2D\InvertedAABBox2D.h">
+    <ClInclude Include="..\..\src\Core\Maths\2D\InvertedAABBox2D.hpp">
       <Filter>Core\Maths\2D</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\Maths\2D\Line2D.h">
+    <ClInclude Include="..\..\src\Core\Maths\2D\Line2D.hpp">
       <Filter>Core\Maths\2D</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\Maths\2D\Line2DIntersectionTests.h">
+    <ClInclude Include="..\..\src\Core\Maths\2D\Line2DIntersectionTests.hpp">
       <Filter>Core\Maths\2D</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\Maths\2D\Path.h">
+    <ClInclude Include="..\..\src\Core\Maths\2D\Path.hpp">
       <Filter>Core\Maths\2D</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\Maths\2D\Transformations.h">
+    <ClInclude Include="..\..\src\Core\Maths\2D\Transformations.hpp">
       <Filter>Core\Maths\2D</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\Maths\Shape\Sphere.h">
+    <ClInclude Include="..\..\src\Core\Maths\Shape\Sphere.hpp">
       <Filter>Core\Maths\Shape</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\Maths\Shape\Box.h">
+    <ClInclude Include="..\..\src\Core\Maths\Shape\Box.hpp">
       <Filter>Core\Maths\Shape</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\Maths\Shape\Capsule.h">
+    <ClInclude Include="..\..\src\Core\Maths\Shape\Capsule.hpp">
       <Filter>Core\Maths\Shape</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\Maths\Shape\Circle.h">
+    <ClInclude Include="..\..\src\Core\Maths\Shape\Circle.hpp">
       <Filter>Core\Maths\Shape</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\Maths\Shape\IShape.h">
+    <ClInclude Include="..\..\src\Core\Maths\Shape\IShape.hpp">
       <Filter>Core\Maths\Shape</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\Maths\Shape\Polygon.h">
+    <ClInclude Include="..\..\src\Core\Maths\Shape\Polygon.hpp">
       <Filter>Core\Maths\Shape</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\Maths\Shape\ShapeType.h">
+    <ClInclude Include="..\..\src\Core\Maths\Shape\ShapeType.hpp">
       <Filter>Core\Maths\Shape</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\Maths\Utils\Smoother.h">
+    <ClInclude Include="..\..\src\Core\Maths\Utils\Smoother.hpp">
       <Filter>Core\Maths\Utils</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\Parsers\Ini\ini.h">
+    <ClInclude Include="..\..\src\Core\Parsers\Ini\ini.hpp">
       <Filter>Core\Parsers\Ini</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\Parsers\Ini\INIReader.h">
+    <ClInclude Include="..\..\src\Core\Parsers\Ini\INIReader.hpp">
       <Filter>Core\Parsers\Ini</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\Win32\Win32Exception.h">
+    <ClInclude Include="..\..\src\Core\Win32\Win32Exception.hpp">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\Win32\Win32Macro.h">
+    <ClInclude Include="..\..\src\Core\Win32\Win32Macro.hpp">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\CA_Export.h">
+    <ClInclude Include="..\..\src\Core\CA_Export.hpp">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Graphics\Effects\Shader.h">
+    <ClInclude Include="..\..\src\Engine\Graphics\Effects\Shader.hpp">
       <Filter>Engine\Graphics\Effects</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Graphics\Color.h">
+    <ClInclude Include="..\..\src\Engine\Graphics\Color.hpp">
       <Filter>Engine\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Graphics\RenderTarget.h">
+    <ClInclude Include="..\..\src\Engine\Graphics\RenderTarget.hpp">
       <Filter>Engine\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Graphics\TextureTarget.h">
+    <ClInclude Include="..\..\src\Engine\Graphics\TextureTarget.hpp">
       <Filter>Engine\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Graphics\Viewport.h">
+    <ClInclude Include="..\..\src\Engine\Graphics\Viewport.hpp">
       <Filter>Engine\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Graphics\Materials\Material.h">
+    <ClInclude Include="..\..\src\Engine\Graphics\Materials\Material.hpp">
       <Filter>Engine\Graphics\Materials</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Graphics\Vertices\VertexType.h">
+    <ClInclude Include="..\..\src\Engine\Graphics\Vertices\VertexType.hpp">
       <Filter>Engine\Graphics\Vertices</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Graphics\Renderer\Renderer.h">
+    <ClInclude Include="..\..\src\Engine\Graphics\Renderer\Renderer.hpp">
       <Filter>Engine\Graphics\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Graphics\Primitives\BoxPrimitive.h">
+    <ClInclude Include="..\..\src\Engine\Graphics\Primitives\BoxPrimitive.hpp">
       <Filter>Engine\Graphics\Primitives</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Graphics\Primitives\CylinderPrimitive.h">
+    <ClInclude Include="..\..\src\Engine\Graphics\Primitives\CylinderPrimitive.hpp">
       <Filter>Engine\Graphics\Primitives</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Graphics\Primitives\PlanePrimitive.h">
+    <ClInclude Include="..\..\src\Engine\Graphics\Primitives\PlanePrimitive.hpp">
       <Filter>Engine\Graphics\Primitives</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Graphics\Primitives\Primitive3D.h">
+    <ClInclude Include="..\..\src\Engine\Graphics\Primitives\Primitive3D.hpp">
       <Filter>Engine\Graphics\Primitives</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Graphics\Primitives\SpherePrimitive.h">
+    <ClInclude Include="..\..\src\Engine\Graphics\Primitives\SpherePrimitive.hpp">
       <Filter>Engine\Graphics\Primitives</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Graphics\Primitives\TorusPrimitive.h">
+    <ClInclude Include="..\..\src\Engine\Graphics\Primitives\TorusPrimitive.hpp">
       <Filter>Engine\Graphics\Primitives</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Loaders\Loader.h">
+    <ClInclude Include="..\..\src\Engine\Loaders\Loader.hpp">
       <Filter>Engine\Loaders</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Physics\IPhysicsEngine.h">
+    <ClInclude Include="..\..\src\Engine\Physics\IPhysicsEngine.hpp">
       <Filter>Engine\Physics</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Physics\IPhysicsWorld.h">
+    <ClInclude Include="..\..\src\Engine\Physics\IPhysicsWorld.hpp">
       <Filter>Engine\Physics</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Physics\PhysicsEngine.h">
+    <ClInclude Include="..\..\src\Engine\Physics\PhysicsEngine.hpp">
       <Filter>Engine\Physics</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Physics\PhysicsObjectContainer.h">
+    <ClInclude Include="..\..\src\Engine\Physics\PhysicsObjectContainer.hpp">
       <Filter>Engine\Physics</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Physics\RigidBodyParameters.h">
+    <ClInclude Include="..\..\src\Engine\Physics\RigidBodyParameters.hpp">
       <Filter>Engine\Physics</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Physics\Bullet\BulletObjectsContainer.h">
+    <ClInclude Include="..\..\src\Engine\Physics\Bullet\BulletObjectsContainer.hpp">
       <Filter>Engine\Physics\Bullet</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Physics\Bullet\BulletPhysicsEngine.h">
+    <ClInclude Include="..\..\src\Engine\Physics\Bullet\BulletPhysicsEngine.hpp">
       <Filter>Engine\Physics\Bullet</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Physics\Bullet\BulletPhysicsWorld.h">
+    <ClInclude Include="..\..\src\Engine\Physics\Bullet\BulletPhysicsWorld.hpp">
       <Filter>Engine\Physics\Bullet</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\EngineSettings.h">
+    <ClInclude Include="..\..\src\Engine\EngineSettings.hpp">
       <Filter>Engine</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\GameTime.h">
+    <ClInclude Include="..\..\src\Engine\GameTime.hpp">
       <Filter>Engine</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\AI\FSM\IState.h">
+    <ClInclude Include="..\..\src\Framework\AI\FSM\IState.hpp">
       <Filter>Framework\AI\FSM</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\AI\FSM\StateMachine.h">
+    <ClInclude Include="..\..\src\Framework\AI\FSM\StateMachine.hpp">
       <Filter>Framework\AI\FSM</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\AI\Fuzzy\FuzzyHedges.h">
+    <ClInclude Include="..\..\src\Framework\AI\Fuzzy\FuzzyHedges.hpp">
       <Filter>Framework\AI\Fuzzy</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\AI\Fuzzy\FuzzyModule.h">
+    <ClInclude Include="..\..\src\Framework\AI\Fuzzy\FuzzyModule.hpp">
       <Filter>Framework\AI\Fuzzy</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\AI\Fuzzy\FuzzyOperators.h">
+    <ClInclude Include="..\..\src\Framework\AI\Fuzzy\FuzzyOperators.hpp">
       <Filter>Framework\AI\Fuzzy</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\AI\Fuzzy\FuzzyRule.h">
+    <ClInclude Include="..\..\src\Framework\AI\Fuzzy\FuzzyRule.hpp">
       <Filter>Framework\AI\Fuzzy</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\AI\Fuzzy\FuzzySet.h">
+    <ClInclude Include="..\..\src\Framework\AI\Fuzzy\FuzzySet.hpp">
       <Filter>Framework\AI\Fuzzy</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\AI\Fuzzy\FuzzySet_LeftShoulder.h">
+    <ClInclude Include="..\..\src\Framework\AI\Fuzzy\FuzzySet_LeftShoulder.hpp">
       <Filter>Framework\AI\Fuzzy</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\AI\Fuzzy\FuzzySet_RightShoulder.h">
+    <ClInclude Include="..\..\src\Framework\AI\Fuzzy\FuzzySet_RightShoulder.hpp">
       <Filter>Framework\AI\Fuzzy</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\AI\Fuzzy\FuzzySet_Shoulder.h">
+    <ClInclude Include="..\..\src\Framework\AI\Fuzzy\FuzzySet_Shoulder.hpp">
       <Filter>Framework\AI\Fuzzy</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\AI\Fuzzy\FuzzySet_Singleton.h">
+    <ClInclude Include="..\..\src\Framework\AI\Fuzzy\FuzzySet_Singleton.hpp">
       <Filter>Framework\AI\Fuzzy</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\AI\Fuzzy\FuzzySet_Triangle.h">
+    <ClInclude Include="..\..\src\Framework\AI\Fuzzy\FuzzySet_Triangle.hpp">
       <Filter>Framework\AI\Fuzzy</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\AI\Fuzzy\FuzzyTerm.h">
+    <ClInclude Include="..\..\src\Framework\AI\Fuzzy\FuzzyTerm.hpp">
       <Filter>Framework\AI\Fuzzy</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\AI\Fuzzy\FuzzyVariable.h">
+    <ClInclude Include="..\..\src\Framework\AI\Fuzzy\FuzzyVariable.hpp">
       <Filter>Framework\AI\Fuzzy</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\AI\Fuzzy\FzSet.h">
+    <ClInclude Include="..\..\src\Framework\AI\Fuzzy\FzSet.hpp">
       <Filter>Framework\AI\Fuzzy</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\AI\Goals\Goal.h">
+    <ClInclude Include="..\..\src\Framework\AI\Goals\Goal.hpp">
       <Filter>Framework\AI\Goals</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\AI\Goals\Goal_Composite.h">
+    <ClInclude Include="..\..\src\Framework\AI\Goals\Goal_Composite.hpp">
       <Filter>Framework\AI\Goals</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\AI\Graph\AStarHeuristicPolicies.h">
+    <ClInclude Include="..\..\src\Framework\AI\Graph\AStarHeuristicPolicies.hpp">
       <Filter>Framework\AI\Graph</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\AI\Graph\GraphAlgorithms.h">
+    <ClInclude Include="..\..\src\Framework\AI\Graph\GraphAlgorithms.hpp">
       <Filter>Framework\AI\Graph</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\AI\Graph\GraphEdgeTypes.h">
+    <ClInclude Include="..\..\src\Framework\AI\Graph\GraphEdgeTypes.hpp">
       <Filter>Framework\AI\Graph</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\AI\Graph\GraphNodeTypes.h">
+    <ClInclude Include="..\..\src\Framework\AI\Graph\GraphNodeTypes.hpp">
       <Filter>Framework\AI\Graph</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\AI\Graph\HandyGraphFunctions.h">
+    <ClInclude Include="..\..\src\Framework\AI\Graph\HandyGraphFunctions.hpp">
       <Filter>Framework\AI\Graph</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\AI\Graph\NodeTypeEnumerations.h">
+    <ClInclude Include="..\..\src\Framework\AI\Graph\NodeTypeEnumerations.hpp">
       <Filter>Framework\AI\Graph</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\AI\Graph\SparseGraph.h">
+    <ClInclude Include="..\..\src\Framework\AI\Graph\SparseGraph.hpp">
       <Filter>Framework\AI\Graph</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\AI\MovementSystem\IMovementSystem.h">
+    <ClInclude Include="..\..\src\Framework\AI\MovementSystem\IMovementSystem.hpp">
       <Filter>Framework\AI\MovementSystem</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\AI\MovementSystem\MovementRequest.h">
+    <ClInclude Include="..\..\src\Framework\AI\MovementSystem\MovementRequest.hpp">
       <Filter>Framework\AI\MovementSystem</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\AI\MovementSystem\MovementStyle.h">
+    <ClInclude Include="..\..\src\Framework\AI\MovementSystem\MovementStyle.hpp">
       <Filter>Framework\AI\MovementSystem</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\AI\Steering\MovingEntity.h">
+    <ClInclude Include="..\..\src\Framework\AI\Steering\MovingEntity.hpp">
       <Filter>Framework\AI\Steering</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\AI\Steering\SteeringParams.h">
+    <ClInclude Include="..\..\src\Framework\AI\Steering\SteeringParams.hpp">
       <Filter>Framework\AI\Steering</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Animations\Animation.h">
+    <ClInclude Include="..\..\src\Framework\Animations\Animation.hpp">
       <Filter>Framework\Animations</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Animations\Animation2D.h">
+    <ClInclude Include="..\..\src\Framework\Animations\Animation2D.hpp">
       <Filter>Framework\Animations</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Animations\Animation2DPlayer.h">
+    <ClInclude Include="..\..\src\Framework\Animations\Animation2DPlayer.hpp">
       <Filter>Framework\Animations</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Animations\AnimationEvent.h">
+    <ClInclude Include="..\..\src\Framework\Animations\AnimationEvent.hpp">
       <Filter>Framework\Animations</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Animations\IAnimationEventListener.h">
+    <ClInclude Include="..\..\src\Framework\Animations\IAnimationEventListener.hpp">
       <Filter>Framework\Animations</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Animations\SetFrameEvent.h">
+    <ClInclude Include="..\..\src\Framework\Animations\SetFrameEvent.hpp">
       <Filter>Framework\Animations</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Assets\Asset.h">
+    <ClInclude Include="..\..\src\Framework\Assets\Asset.hpp">
       <Filter>Framework\Assets</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Assets\Assetable.h">
+    <ClInclude Include="..\..\src\Framework\Assets\Assetable.hpp">
       <Filter>Framework\Assets</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Assets\AssetManager.h">
+    <ClInclude Include="..\..\src\Framework\Assets\AssetManager.hpp">
       <Filter>Framework\Assets</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Entities\Components\Cameras\ArcBallCameraComponent.h">
+    <ClInclude Include="..\..\src\Framework\Entities\Components\Cameras\ArcBallCameraComponent.hpp">
       <Filter>Framework\Entities\Components\Cameras</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Entities\Components\Physics\Box2DColliderComponent.h">
+    <ClInclude Include="..\..\src\Framework\Entities\Components\Physics\Box2DColliderComponent.hpp">
       <Filter>Framework\Entities\Components\Physics</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Entities\Components\Physics\BoxColliderComponent.h">
+    <ClInclude Include="..\..\src\Framework\Entities\Components\Physics\BoxColliderComponent.hpp">
       <Filter>Framework\Entities\Components\Physics</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Entities\Components\Physics\CapsuleColliderComponent.h">
+    <ClInclude Include="..\..\src\Framework\Entities\Components\Physics\CapsuleColliderComponent.hpp">
       <Filter>Framework\Entities\Components\Physics</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Entities\Components\Physics\Circle2DColliderComponent.h">
+    <ClInclude Include="..\..\src\Framework\Entities\Components\Physics\Circle2DColliderComponent.hpp">
       <Filter>Framework\Entities\Components\Physics</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Entities\Components\Physics\ColliderComponent.h">
+    <ClInclude Include="..\..\src\Framework\Entities\Components\Physics\ColliderComponent.hpp">
       <Filter>Framework\Entities\Components\Physics</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Entities\Components\Physics\RigidBodyComponent.h">
+    <ClInclude Include="..\..\src\Framework\Entities\Components\Physics\RigidBodyComponent.hpp">
       <Filter>Framework\Entities\Components\Physics</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Entities\Components\Physics\SphereColliderComponent.h">
+    <ClInclude Include="..\..\src\Framework\Entities\Components\Physics\SphereColliderComponent.hpp">
       <Filter>Framework\Entities\Components\Physics</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Entities\Components\AnimatedSpriteComponent.h">
+    <ClInclude Include="..\..\src\Framework\Entities\Components\AnimatedSpriteComponent.hpp">
       <Filter>Framework\Entities\Components</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Entities\Components\CameraComponent.h">
+    <ClInclude Include="..\..\src\Framework\Entities\Components\CameraComponent.hpp">
       <Filter>Framework\Entities\Components</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Entities\Components\MovingEntity2DComponent.h">
+    <ClInclude Include="..\..\src\Framework\Entities\Components\MovingEntity2DComponent.hpp">
       <Filter>Framework\Entities\Components</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Entities\Components\ScriptComponent.h">
+    <ClInclude Include="..\..\src\Framework\Entities\Components\ScriptComponent.hpp">
       <Filter>Framework\Entities\Components</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Entities\Components\StaticSpriteComponent.h">
+    <ClInclude Include="..\..\src\Framework\Entities\Components\StaticSpriteComponent.hpp">
       <Filter>Framework\Entities\Components</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Entities\Components\SteeringBehaviorComponent.h">
+    <ClInclude Include="..\..\src\Framework\Entities\Components\SteeringBehaviorComponent.hpp">
       <Filter>Framework\Entities\Components</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Entities\Components\Coordinates.h">
+    <ClInclude Include="..\..\src\Framework\Entities\Components\Coordinates.hpp">
       <Filter>Framework\Entities\Components</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Entities\Events\BaseEntityEvents.h">
+    <ClInclude Include="..\..\src\Framework\Entities\Events\BaseEntityEvents.hpp">
       <Filter>Framework\Entities\Events</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Entities\Physics\PhysicalEntity.h">
+    <ClInclude Include="..\..\src\Framework\Entities\Physics\PhysicalEntity.hpp">
       <Filter>Framework\Entities\Physics</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Entities\BaseEntity.h">
+    <ClInclude Include="..\..\src\Framework\Entities\BaseEntity.hpp">
       <Filter>Framework\Entities</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Entities\Component.h">
+    <ClInclude Include="..\..\src\Framework\Entities\Component.hpp">
       <Filter>Framework\Entities</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Entities\ComponentManager.h">
+    <ClInclude Include="..\..\src\Framework\Entities\ComponentManager.hpp">
       <Filter>Framework\Entities</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Entities\ComponentMessageEnum.h">
+    <ClInclude Include="..\..\src\Framework\Entities\ComponentMessageEnum.hpp">
       <Filter>Framework\Entities</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Entities\ComponentTypeEnum.h">
+    <ClInclude Include="..\..\src\Framework\Entities\ComponentTypeEnum.hpp">
       <Filter>Framework\Entities</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Entities\EntityManager.h">
+    <ClInclude Include="..\..\src\Framework\Entities\EntityManager.hpp">
       <Filter>Framework\Entities</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Game\Editor\GameEditor.h">
+    <ClInclude Include="..\..\src\Framework\Game\Editor\GameEditor.hpp">
       <Filter>Framework\Game\Editor</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Game\DrawableGameComponent.h">
+    <ClInclude Include="..\..\src\Framework\Game\DrawableGameComponent.hpp">
       <Filter>Framework\Game</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Game\Game.h">
+    <ClInclude Include="..\..\src\Framework\Game\Game.hpp">
       <Filter>Framework\Game</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Game\GameComponent.h">
+    <ClInclude Include="..\..\src\Framework\Game\GameComponent.hpp">
       <Filter>Framework\Game</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Game\GameInfo.h">
+    <ClInclude Include="..\..\src\Framework\Game\GameInfo.hpp">
       <Filter>Framework\Game</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Game\Input.h">
+    <ClInclude Include="..\..\src\Framework\Game\Input.hpp">
       <Filter>Framework\Game</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Game\Line2DRendererComponent.h">
+    <ClInclude Include="..\..\src\Framework\Game\Line2DRendererComponent.hpp">
       <Filter>Framework\Game</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Game\Line3DRendererComponent.h">
+    <ClInclude Include="..\..\src\Framework\Game\Line3DRendererComponent.hpp">
       <Filter>Framework\Game</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Script\IScriptObject.h">
+    <ClInclude Include="..\..\src\Framework\Script\IScriptObject.hpp">
       <Filter>Framework\Script</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\SpacePartitioning\CellSpacePartition.h">
+    <ClInclude Include="..\..\src\Framework\SpacePartitioning\CellSpacePartition.hpp">
       <Filter>Framework\SpacePartitioning</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Sprite\Sprite.h">
+    <ClInclude Include="..\..\src\Framework\Sprite\Sprite.hpp">
       <Filter>Framework\Sprite</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Sprite\SpriteRenderer.h">
+    <ClInclude Include="..\..\src\Framework\Sprite\SpriteRenderer.hpp">
       <Filter>Framework\Sprite</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Sprite\SpriteTypes.h">
+    <ClInclude Include="..\..\src\Framework\Sprite\SpriteTypes.hpp">
       <Filter>Framework\Sprite</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Tools\DebugSystem.h">
+    <ClInclude Include="..\..\src\Framework\Tools\DebugSystem.hpp">
       <Filter>Framework\Tools</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Tools\Bullet\BulletPhysicsDebugDrawComponent.h">
+    <ClInclude Include="..\..\src\Framework\Tools\Bullet\BulletPhysicsDebugDrawComponent.hpp">
       <Filter>Framework\Tools\Bullet</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\World\World.h">
+    <ClInclude Include="..\..\src\Framework\World\World.hpp">
       <Filter>Framework\World</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Entities\Components\MeshComponent.h">
+    <ClInclude Include="..\..\src\Framework\Entities\Components\MeshComponent.hpp">
       <Filter>Framework\Entities\Components</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Game\MeshRendererGameComponent.h">
+    <ClInclude Include="..\..\src\Framework\Game\MeshRendererGameComponent.hpp">
       <Filter>Framework\Game</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Graphics\Mesh\Mesh.h">
+    <ClInclude Include="..\..\src\Engine\Graphics\Mesh\Mesh.hpp">
       <Filter>Engine\Graphics\Mesh</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Graphics\Textures\Texture.h">
+    <ClInclude Include="..\..\src\Engine\Graphics\Textures\Texture.hpp">
       <Filter>Engine\Graphics\Textures</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Graphics\Effects\Program.h">
+    <ClInclude Include="..\..\src\Engine\Graphics\Effects\Program.hpp">
       <Filter>Engine\Graphics\Effects</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\UI\Console.h">
+    <ClInclude Include="..\..\src\Framework\UI\Console.hpp">
       <Filter>Framework\UI</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Tools\DebugOptions.h">
+    <ClInclude Include="..\..\src\Framework\Tools\DebugOptions.hpp">
       <Filter>Framework\Tools</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Tools\InGameLogger.h">
+    <ClInclude Include="..\..\src\Framework\Tools\InGameLogger.hpp">
       <Filter>Framework\Tools</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Animations\AnimationEndEvent.h">
+    <ClInclude Include="..\..\src\Framework\Animations\AnimationEndEvent.hpp">
       <Filter>Framework\Animations</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Map2D\AnimatedTile.h">
+    <ClInclude Include="..\..\src\Framework\Map2D\AnimatedTile.hpp">
       <Filter>Framework\Map2D</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Map2D\AutoTile.h">
+    <ClInclude Include="..\..\src\Framework\Map2D\AutoTile.hpp">
       <Filter>Framework\Map2D</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Map2D\StaticTile.h">
+    <ClInclude Include="..\..\src\Framework\Map2D\StaticTile.hpp">
       <Filter>Framework\Map2D</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Map2D\Tile.h">
+    <ClInclude Include="..\..\src\Framework\Map2D\Tile.hpp">
       <Filter>Framework\Map2D</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\UI\ImGuiAdapter.h">
+    <ClInclude Include="..\..\src\Framework\UI\ImGuiAdapter.hpp">
       <Filter>Framework\UI</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Entities\Components\Cameras\Camera2DTargetedComponent.h">
+    <ClInclude Include="..\..\src\Framework\Entities\Components\Cameras\Camera2DTargetedComponent.hpp">
       <Filter>Framework\Entities\Components\Cameras</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Datas\SpriteData.h">
+    <ClInclude Include="..\..\src\Framework\Datas\SpriteData.hpp">
       <Filter>Framework\Datas</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Datas\Animation2DData.h">
+    <ClInclude Include="..\..\src\Framework\Datas\Animation2DData.hpp">
       <Filter>Framework\Datas</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Datas\FrameData.h">
+    <ClInclude Include="..\..\src\Framework\Datas\FrameData.hpp">
       <Filter>Framework\Datas</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Animations\AnimationType.h">
+    <ClInclude Include="..\..\src\Framework\Animations\AnimationType.hpp">
       <Filter>Framework\Animations</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Datas\AnimationData.h">
+    <ClInclude Include="..\..\src\Framework\Datas\AnimationData.hpp">
       <Filter>Framework\Datas</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Core\Functor.h">
+    <ClInclude Include="..\..\src\Core\Functor.hpp">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Resources\MediaManager.h">
+    <ClInclude Include="..\..\src\Engine\Resources\MediaManager.hpp">
       <Filter>Engine\Resources</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\GameDatas\CharacterBase.h">
+    <ClInclude Include="..\..\src\Framework\GameDatas\CharacterBase.hpp">
       <Filter>Framework\GameDatas</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\GameDatas\IController.h">
+    <ClInclude Include="..\..\src\Framework\GameDatas\IController.hpp">
       <Filter>Framework\GameDatas</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\GameDatas\CharacterTypes.h">
+    <ClInclude Include="..\..\src\Framework\GameDatas\CharacterTypes.hpp">
       <Filter>Framework\GameDatas</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Entities\Components\DebugComponent.h">
+    <ClInclude Include="..\..\src\Framework\Entities\Components\DebugComponent.hpp">
       <Filter>Framework\Entities\Components</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Entities\Components\Cameras\Camera3DTargetedComponent.h">
+    <ClInclude Include="..\..\src\Framework\Entities\Components\Cameras\Camera3DTargetedComponent.hpp">
       <Filter>Framework\Entities\Components\Cameras</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Framework\UI\imgui\droidsans.ttf.h">
@@ -840,67 +840,67 @@
     <ClInclude Include="..\..\external\dear-imgui\widgets\range_slider.h">
       <Filter>3rdparty\dear-imgui\widgets</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Entities\Components\Cameras\Camera2DComponent.h">
+    <ClInclude Include="..\..\src\Framework\Entities\Components\Cameras\Camera2DComponent.hpp">
       <Filter>Framework\Entities\Components\Cameras</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Entities\Components\Cameras\Camera3DComponent.h">
+    <ClInclude Include="..\..\src\Framework\Entities\Components\Cameras\Camera3DComponent.hpp">
       <Filter>Framework\Entities\Components\Cameras</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Entities\Components\Cameras\Camera3DLookAtComponent.h">
+    <ClInclude Include="..\..\src\Framework\Entities\Components\Cameras\Camera3DLookAtComponent.hpp">
       <Filter>Framework\Entities\Components\Cameras</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Game\DisplayDebugInfoGameComponent.h">
+    <ClInclude Include="..\..\src\Framework\Game\DisplayDebugInfoGameComponent.hpp">
       <Filter>Framework\Game</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\GameDatas\MessageType.h">
+    <ClInclude Include="..\..\src\Framework\GameDatas\MessageType.hpp">
       <Filter>Framework\GameDatas</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Sprite\SpritePhysicsHelper.h">
+    <ClInclude Include="..\..\src\Framework\Sprite\SpritePhysicsHelper.hpp">
       <Filter>Framework\Sprite</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Physics\CollisionParametersBetween2Entities.h">
+    <ClInclude Include="..\..\src\Engine\Physics\CollisionParametersBetween2Entities.hpp">
       <Filter>Engine\Physics</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Physics\Collision.h">
+    <ClInclude Include="..\..\src\Engine\Physics\Collision.hpp">
       <Filter>Engine\Physics</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\Physics\CollisionParameters.h">
+    <ClInclude Include="..\..\src\Engine\Physics\CollisionParameters.hpp">
       <Filter>Engine\Physics</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\GameDatas\Character2DBase.h">
+    <ClInclude Include="..\..\src\Framework\GameDatas\Character2DBase.hpp">
       <Filter>Framework\GameDatas</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Messaging\MessageDispatcher.h">
+    <ClInclude Include="..\..\src\Framework\Messaging\MessageDispatcher.hpp">
       <Filter>Framework\Messaging</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Messaging\Telegram.h">
+    <ClInclude Include="..\..\src\Framework\Messaging\Telegram.hpp">
       <Filter>Framework\Messaging</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Map2D\TileComponent.h">
+    <ClInclude Include="..\..\src\Framework\Map2D\TileComponent.hpp">
       <Filter>Framework\Map2D</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Datas\AutoTileSetData.h">
+    <ClInclude Include="..\..\src\Framework\Datas\AutoTileSetData.hpp">
       <Filter>Framework\Datas</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Serializer\Serializer.h">
+    <ClInclude Include="..\..\src\Framework\Serializer\Serializer.hpp">
       <Filter>Framework\Serializer</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Map2D\TiledMapCreator.h">
+    <ClInclude Include="..\..\src\Framework\Map2D\TiledMapCreator.hpp">
       <Filter>Framework\Map2D</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Map2D\EmptyTile.h">
+    <ClInclude Include="..\..\src\Framework\Map2D\EmptyTile.hpp">
       <Filter>Framework\Map2D</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Sprite\SpriteLoader.h">
+    <ClInclude Include="..\..\src\Framework\Sprite\SpriteLoader.hpp">
       <Filter>Framework\Sprite</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Datas\TileMapData.h">
+    <ClInclude Include="..\..\src\Framework\Datas\TileMapData.hpp">
       <Filter>Framework\Datas</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Datas\TileSetData.h">
+    <ClInclude Include="..\..\src\Framework\Datas\TileSetData.hpp">
       <Filter>Framework\Datas</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Framework\Animations\Animation2dLoader.h">
+    <ClInclude Include="..\..\src\Framework\Animations\Animation2dLoader.hpp">
       <Filter>Framework\Animations</Filter>
     </ClInclude>
   </ItemGroup>

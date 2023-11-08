@@ -1,4 +1,4 @@
-#include "FuzzySet_Singleton.h"
+#include  "FuzzySet_Singleton.hpp"
 
 namespace CasaEngine
 {

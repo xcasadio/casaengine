@@ -1,4 +1,4 @@
-#include "SubscriberSlot.h"
+#include  "SubscriberSlot.hpp"
 
 namespace CasaEngine
 {

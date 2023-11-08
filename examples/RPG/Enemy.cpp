@@ -1,6 +1,6 @@
-#include "Base.h"
-#include "Enemy.h"
-#include "EnemyController.h"
+#include  "Base.hpp"
+#include  "Enemy.hpp"
+#include  "EnemyController.hpp"
 
 /**
  *

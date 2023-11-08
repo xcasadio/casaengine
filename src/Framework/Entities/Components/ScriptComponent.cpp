@@ -1,9 +1,9 @@
-#include "Base.h"
-#include "ScriptComponent.h"
-#include "Log/LogVerbose.h"
-#include "Log/LogManager.h"
-#include "Entities/ComponentTypeEnum.h"
-#include "Game/Game.h"
+#include  "Base.hpp"
+#include  "ScriptComponent.hpp"
+#include  "Log/LogVerbose.hpp"
+#include  "Log/LogManager.hpp"
+#include  "Entities/ComponentTypeEnum.hpp"
+#include  "Game/Game.hpp"
 
 namespace CasaEngine
 {

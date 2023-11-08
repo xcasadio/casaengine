@@ -1,14 +1,14 @@
-#include "Base.h"
-#include "Animations/SetFrameEvent.h"
+#include  "Base.hpp"
+#include  "Animations/SetFrameEvent.hpp"
 #include <string>
-#include "Animation.h"
-#include "Animation2D.h"
-#include "Log/LogManager.h"
+#include  "Animation.hpp"
+#include  "Animation2D.hpp"
+#include  "Log/LogManager.hpp"
 
 #include <ostream>
 #include <fstream>
 
-#include "CA_Assert.h"
+#include  "CA_Assert.hpp"
 
 namespace CasaEngine
 {

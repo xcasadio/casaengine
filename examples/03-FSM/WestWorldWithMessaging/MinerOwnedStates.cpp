@@ -1,14 +1,14 @@
-#include "MinerOwnedStates.h"
-#include "MinerComponent.h"
-#include "Locations.h"
-#include "MessageTypes.h"
-#include "../FSMGame.h"
+#include  "MinerOwnedStates.hpp"
+#include  "MinerComponent.hpp"
+#include  "Locations.hpp"
+#include  "MessageTypes.hpp"
+#include  "../FSMGame.hpp"
 
-#include "Messaging/Telegram.h"
-#include "Messaging/MessageDispatcher.h"
-#include "Log/LogManager.h"
-#include "DateTime.h"
-#include "Tools/InGameLogger.h"
+#include  "Messaging/Telegram.hpp"
+#include  "Messaging/MessageDispatcher.hpp"
+#include  "Log/LogManager.hpp"
+#include  "DateTime.hpp"
+#include  "Tools/InGameLogger.hpp"
 
 #include <iosfwd>
 

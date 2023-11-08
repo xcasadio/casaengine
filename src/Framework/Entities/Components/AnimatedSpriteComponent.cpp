@@ -1,26 +1,26 @@
 #include <string>
 
-#include "AnimatedSpriteComponent.h"
+#include  "AnimatedSpriteComponent.hpp"
 
 #include <BulletCollision/CollisionDispatch/btGhostObject.h>
 
-#include "Base.h"
-#include "Animations/Animation2D.h"
-#include "Assets/AssetManager.h"
-#include "Entities/BaseEntity.h"
-#include "Entities/ComponentTypeEnum.h"
-#include "EventHandler/Event.h"
-#include "Game/Game.h"
-#include "Game/GameInfo.h"
-#include "Graphics/Color.h"
-#include "Maths/Matrix4.h"
-#include "Sprite/SpritePhysicsHelper.h"
-#include "Sprite/SpriteRenderer.h"
-#include "Sprite/SpriteTypes.h"
-#include "../Events/BaseEntityEvents.h"
-#include "Physics/CollisionParameters.h"
-#include "Physics/Bullet/BulletObjectsContainer.h"
-#include "Physics/Bullet/BulletPhysicsWorld.h"
+#include  "Base.hpp"
+#include  "Animations/Animation2D.hpp"
+#include  "Assets/AssetManager.hpp"
+#include  "Entities/BaseEntity.hpp"
+#include  "Entities/ComponentTypeEnum.hpp"
+#include  "EventHandler/Event.hpp"
+#include  "Game/Game.hpp"
+#include  "Game/GameInfo.hpp"
+#include  "Graphics/Color.hpp"
+#include  "Maths/Matrix4.hpp"
+#include  "Sprite/SpritePhysicsHelper.hpp"
+#include  "Sprite/SpriteRenderer.hpp"
+#include  "Sprite/SpriteTypes.hpp"
+#include  "../Events/BaseEntityEvents.hpp"
+#include  "Physics/CollisionParameters.hpp"
+#include  "Physics/Bullet/BulletObjectsContainer.hpp"
+#include  "Physics/Bullet/BulletPhysicsWorld.hpp"
 
 
 namespace CasaEngine

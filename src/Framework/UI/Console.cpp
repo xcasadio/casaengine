@@ -1,6 +1,6 @@
-﻿#include "Console.h"
+﻿#include  "Console.hpp"
 #include <string>
-#include "Game/Game.h"
+#include  "Game/Game.hpp"
 
 namespace CasaEngine
 {

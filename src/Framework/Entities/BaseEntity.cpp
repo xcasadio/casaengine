@@ -1,9 +1,9 @@
-#include "Base.h"
+#include  "Base.hpp"
 
-#include "BaseEntity.h"
-#include "Events/BaseEntityEvents.h"
-#include "EntityManager.h"
-#include "Game/Game.h"
+#include  "BaseEntity.hpp"
+#include  "Events/BaseEntityEvents.hpp"
+#include  "EntityManager.hpp"
+#include  "Game/Game.hpp"
 
 #include <sstream>
 

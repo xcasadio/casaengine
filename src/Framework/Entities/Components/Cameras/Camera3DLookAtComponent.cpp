@@ -1,9 +1,9 @@
-#include "Entities/BaseEntity.h"
+#include  "Entities/BaseEntity.hpp"
 
-#include "Camera3DLookAtComponent.h"
-#include "Maths/Matrix4.h"
-#include "Entities/ComponentTypeEnum.h"
-#include "StringUtils.h"
+#include  "Camera3DLookAtComponent.hpp"
+#include  "Maths/Matrix4.hpp"
+#include  "Entities/ComponentTypeEnum.hpp"
+#include  "StringUtils.hpp"
 
 
 namespace CasaEngine

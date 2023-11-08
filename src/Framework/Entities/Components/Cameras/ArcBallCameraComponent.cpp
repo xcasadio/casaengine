@@ -1,17 +1,17 @@
-#include "Base.h"
+#include  "Base.hpp"
 
 #include <iosfwd>
 #include <cmath>
 
-#include "ArcBallCameraComponent.h"
+#include  "ArcBallCameraComponent.hpp"
 
-#include "Game/Game.h"
-#include "Maths/Matrix4.h"
-#include "StringUtils.h"
-#include "Entities/ComponentTypeEnum.h"
-#include "Maths/Math.h"
-#include "Maths/Quaternion.h"
-#include "Game/Input.h"
+#include  "Game/Game.hpp"
+#include  "Maths/Matrix4.hpp"
+#include  "StringUtils.hpp"
+#include  "Entities/ComponentTypeEnum.hpp"
+#include  "Maths/Math.hpp"
+#include  "Maths/Quaternion.hpp"
+#include  "Game/Input.hpp"
 
 namespace CasaEngine
 {

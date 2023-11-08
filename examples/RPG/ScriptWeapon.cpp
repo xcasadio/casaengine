@@ -1,4 +1,4 @@
-#include "ScriptWeapon.h"
+#include  "ScriptWeapon.hpp"
 
 ScriptWeapon::ScriptWeapon(BaseEntity* entity, Weapon* weapon) :
 	IScriptObject(entity),

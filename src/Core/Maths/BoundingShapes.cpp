@@ -1,6 +1,6 @@
-#include "BoundingShapes.h"
-#include "Matrix3.h"
-#include "Vector3.h"
+#include  "BoundingShapes.hpp"
+#include  "Matrix3.hpp"
+#include  "Vector3.hpp"
 
 namespace CasaEngine
 {

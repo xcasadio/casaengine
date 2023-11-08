@@ -1,9 +1,9 @@
-#include "Base.h"
-#include "PlayerController.h"
-#include "Game/Game.h"
-#include "CA_Assert.h"
-#include "PlayerStates.h"
-#include "Character.h"
+#include  "Base.hpp"
+#include  "PlayerController.hpp"
+#include  "Game/Game.hpp"
+#include  "CA_Assert.hpp"
+#include  "PlayerStates.hpp"
+#include  "Character.hpp"
 
 
 PlayerController::PlayerController(Player* pHero_, PlayerIndex index_) :

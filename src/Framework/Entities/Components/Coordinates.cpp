@@ -1,5 +1,5 @@
-#include "Coordinates.h"
-#include "Entities/BaseEntity.h"
+#include  "Coordinates.hpp"
+#include  "Entities/BaseEntity.hpp"
 
 namespace CasaEngine
 {

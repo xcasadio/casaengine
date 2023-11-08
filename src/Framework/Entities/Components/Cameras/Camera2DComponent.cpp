@@ -1,9 +1,9 @@
-#include "Entities/BaseEntity.h"
+#include  "Entities/BaseEntity.hpp"
 
-#include "Camera2DComponent.h"
-#include "Maths/Matrix4.h"
-#include "Entities/ComponentTypeEnum.h"
-#include "Game/Game.h"
+#include  "Camera2DComponent.hpp"
+#include  "Maths/Matrix4.hpp"
+#include  "Entities/ComponentTypeEnum.hpp"
+#include  "Game/Game.hpp"
 
 namespace CasaEngine
 {

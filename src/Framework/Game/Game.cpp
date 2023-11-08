@@ -1,16 +1,16 @@
-#include "Base.h"
+#include  "Base.hpp"
 
-#include "Entities/EntityManager.h"
-#include "Exceptions.h"
-#include "Game/DrawableGameComponent.h"
-#include "Game/Game.h"
-#include "Game/GameComponent.h"
-#include "Game/GameInfo.h"
-#include "GameTime.h"
+#include  "Entities/EntityManager.hpp"
+#include  "Exceptions.hpp"
+#include  "Game/DrawableGameComponent.hpp"
+#include  "Game/Game.hpp"
+#include  "Game/GameComponent.hpp"
+#include  "Game/GameInfo.hpp"
+#include  "GameTime.hpp"
 
-#include "Graphics/Renderer/Renderer.h"
-#include "Log/LogManager.h"
-#include "Log/LoggerFile.h"
+#include  "Graphics/Renderer/Renderer.hpp"
+#include  "Log/LogManager.hpp"
+#include  "Log/LoggerFile.hpp"
 
 
 #include "SFML/Window/Window.hpp"
@@ -20,28 +20,28 @@
 
 #if CA_PLATFORM_WINDOWS
 
-#	include "Win32/Win32Exception.h"
+#	include "Win32/Win32Exception.hpp"
 
 #endif
 
-#include "Assets/AssetManager.h"
+#include  "Assets/AssetManager.hpp"
 #include "SFML/Window/Keyboard.hpp"
 #include "SFML/Window/Mouse.hpp"
 #include <iosfwd>
-#include "EventHandler/GlobalEventSet.h"
-#include "Physics/PhysicsEngine.h"
+#include  "EventHandler/GlobalEventSet.hpp"
+#include  "Physics/PhysicsEngine.hpp"
 
-#include "Physics/Bullet/BulletPhysicsEngine.h"
+#include  "Physics/Bullet/BulletPhysicsEngine.hpp"
 
-#include "DisplayDebugInfoGameComponent.h"
-#include "Line2DRendererComponent.h"
-#include "Line3DRendererComponent.h"
-#include "MeshRendererGameComponent.h"
-#include "Sprite/SpriteRenderer.h"
-#include "Tools/InGameLogger.h"
-#include "Tools/Bullet/BulletPhysicsDebugDrawComponent.h"
-#include "UI/ImGuiAdapter.h"
-#include <Entities/Events/BaseEntityEvents.h>
+#include  "DisplayDebugInfoGameComponent.hpp"
+#include  "Line2DRendererComponent.hpp"
+#include  "Line3DRendererComponent.hpp"
+#include  "MeshRendererGameComponent.hpp"
+#include  "Sprite/SpriteRenderer.hpp"
+#include  "Tools/InGameLogger.hpp"
+#include  "Tools/Bullet/BulletPhysicsDebugDrawComponent.hpp"
+#include  "UI/ImGuiAdapter.hpp"
+#include <Entities/Events/BaseEntityEvents.hpp>
 
 namespace CasaEngine
 {

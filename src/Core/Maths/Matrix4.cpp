@@ -1,8 +1,8 @@
-#include "Quaternion.h"
-#include "Maths/Matrix4.h"
-#include "Maths/Vector3.h"
-#include "Maths/Vector4.h"
-#include "Exceptions.h"
+#include  "Quaternion.hpp"
+#include  "Maths/Matrix4.hpp"
+#include  "Maths/Vector3.hpp"
+#include  "Maths/Vector4.hpp"
+#include  "Exceptions.hpp"
 
 namespace CasaEngine
 {

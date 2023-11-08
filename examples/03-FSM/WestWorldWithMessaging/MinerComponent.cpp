@@ -1,11 +1,11 @@
-#include "Entities/BaseEntity.h"
+#include  "Entities/BaseEntity.hpp"
 
-#include "MinerComponent.h"
-#include "Entities/ComponentTypeEnum.h"
-#include "Game/Game.h"
-#include "AI/FSM/StateMachine.h"
-#include "MinerOwnedStates.h"
-#include "Config.h"
+#include  "MinerComponent.hpp"
+#include  "Entities/ComponentTypeEnum.hpp"
+#include  "Game/Game.hpp"
+#include  "AI/FSM/StateMachine.hpp"
+#include  "MinerOwnedStates.hpp"
+#include  "Config.hpp"
 
 using namespace CasaEngine;
 

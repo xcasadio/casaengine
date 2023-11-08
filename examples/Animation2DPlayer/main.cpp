@@ -1,5 +1,5 @@
-#include "Animation2DPlayerGame.h"
-#include <Windows.h>
+#include  "Animation2DPlayerGame.hpp"
+#include  <Windows.h>
 #include <exception>
 
 INT WINAPI WinMain(HINSTANCE Instance, HINSTANCE PrevInst, LPSTR CmdLine, INT NbCmd)

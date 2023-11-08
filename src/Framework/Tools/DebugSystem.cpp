@@ -1,6 +1,6 @@
-#include "Tools/DebugSystem.h"
-#include "GameTime.h"
-#include "Maths/Math.h"
+#include  "Tools/DebugSystem.hpp"
+#include  "GameTime.hpp"
+#include  "Maths/Math.hpp"
 
 namespace CasaEngine
 {

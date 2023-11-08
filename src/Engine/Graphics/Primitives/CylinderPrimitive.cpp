@@ -1,10 +1,10 @@
-#include "Base.h"
+#include  "Base.hpp"
 
-#include "CylinderPrimitive.h"
-#include "Exceptions.h"
-#include "Maths/Vector3.h"
-#include "Maths/Vector2.h"
-#include "Graphics/Renderer/Renderer.h"
+#include  "CylinderPrimitive.hpp"
+#include  "Exceptions.hpp"
+#include  "Maths/Vector3.hpp"
+#include  "Maths/Vector2.hpp"
+#include  "Graphics/Renderer/Renderer.hpp"
 
 namespace CasaEngine
 {

@@ -1,4 +1,4 @@
-#include "VertexType.h"
+#include  "VertexType.hpp"
 
 namespace CasaEngine
 {
